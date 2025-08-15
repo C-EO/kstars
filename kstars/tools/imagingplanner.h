@@ -269,8 +269,8 @@ protected:
 
     QMap<QString, CatalogImageInfo> m_CatalogImageInfoMap;
 
-    QSharedPointer<PlateSolve> m_PlateSolve;
-    QSharedPointer<ScreenCapture> m_CaptureWidget;
+    QPointer<PlateSolve> m_PlateSolve;
+    QPointer<ScreenCapture> m_CaptureWidget;
     QString m_ScreenShotFilename;
     QImage m_ScreenShotImage;
     void extractImage();

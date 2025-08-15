@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-04 02:12+0000\n"
+"POT-Creation-Date: 2025-08-15 02:16+0000\n"
 "PO-Revision-Date: 2025-04-11 22:27+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -584,7 +584,7 @@ msgstr "Отказ"
 #: ekos/align/opsastrometryindexfiles.cpp:736
 #: ekos/align/opsastrometryindexfiles.cpp:746 ekos/analyze/analyze.cpp:140
 #: ekos/analyze/analyze.cpp:142 ekos/capture/sequencejob.cpp:24
-#: ekos/manager.cpp:1275 ekos/manager.cpp:1290 ekos/manager.cpp:1306
+#: ekos/manager.cpp:1276 ekos/manager.cpp:1291 ekos/manager.cpp:1307
 #: ekos/scheduler/scheduler.cpp:1632 fitsviewer/solveInfo.ui:86
 #: indi/indidome.cpp:23 indi/indidustcap.cpp:18 indi/indimount.cpp:32
 #: kstarsactions.cpp:505 kstarsactions.cpp:513 kstarsactions.cpp:523
@@ -710,7 +710,7 @@ msgctxt "Unknown cardinal / intercardinal direction"
 msgid "???"
 msgstr "???"
 
-#: auxiliary/ksutils.cpp:1346
+#: auxiliary/ksutils.cpp:1347
 #, kde-format
 msgid ""
 "The selected Astrometry Index File Location:\n"
@@ -721,18 +721,18 @@ msgstr ""
 " %1 \n"
 " не съществува.  Искате ли да създадете директорията?"
 
-#: auxiliary/ksutils.cpp:1349
+#: auxiliary/ksutils.cpp:1350
 #, kde-format
 msgid "Make Astrometry Index File Directory?"
 msgstr "﻿Да се създаде ли директория за астрометрични индексирани файлове?"
 
-#: auxiliary/ksutils.cpp:1354
+#: auxiliary/ksutils.cpp:1355
 #, kde-format
 msgid "The Default Astrometry Index File Location was created."
 msgstr ""
 "Създадено е местоположението на астрометричния индексен файл по подразбиране."
 
-#: auxiliary/ksutils.cpp:1359
+#: auxiliary/ksutils.cpp:1360
 #, kde-format
 msgid ""
 "The Default Astrometry Index File Directory does not exist and was not able "
@@ -741,19 +741,19 @@ msgstr ""
 "Директорията за астрометрични индексирани файлове по подразбиране не "
 "съществува и не може да бъде създадена."
 
-#: auxiliary/ksutils.cpp:1380 auxiliary/ksutils.cpp:1536
-#: auxiliary/ksutils.cpp:1601
+#: auxiliary/ksutils.cpp:1381 auxiliary/ksutils.cpp:1537
+#: auxiliary/ksutils.cpp:1602
 #, kde-format
 msgid "Astrometry Configuration File Read Error."
 msgstr "Грешка при четене на астрометричен конфигурационен файл."
 
-#: auxiliary/ksutils.cpp:1394 auxiliary/ksutils.cpp:1579
-#: auxiliary/ksutils.cpp:1621
+#: auxiliary/ksutils.cpp:1395 auxiliary/ksutils.cpp:1580
+#: auxiliary/ksutils.cpp:1622
 #, kde-format
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Вътрешна грешка при запис на астрометричен конфигурационен файл."
 
-#: auxiliary/ksutils.cpp:1667 fitsviewer/fitsdata.cpp:1572
+#: auxiliary/ksutils.cpp:1668 fitsviewer/fitsdata.cpp:1573
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -762,22 +762,22 @@ msgstr ""
 "Невъзможно е да се намерят dcraw и cjpeg. Моля, инсталирайте необходимите "
 "инструменти за конвертиране на CR2/NEF в JPEG."
 
-#: auxiliary/ksutils.cpp:1678
+#: auxiliary/ksutils.cpp:1679
 #, kde-format
 msgid "Cannot open %1: %2"
 msgstr "Грешка при отваряне на %1: %2"
 
-#: auxiliary/ksutils.cpp:1686
+#: auxiliary/ksutils.cpp:1687
 #, kde-format
 msgid "Cannot unpack_thumb %1: %2"
 msgstr "Не може да се извърши unpack_thumb  %1: %2"
 
-#: auxiliary/ksutils.cpp:1697
+#: auxiliary/ksutils.cpp:1698
 #, kde-format
 msgid "Cannot write %s %1: %2"
 msgstr "Не може да се запише %s %1: %2"
 
-#: auxiliary/ksutils.cpp:1821 ekos/scheduler/framingassistantui.cpp:177
+#: auxiliary/ksutils.cpp:1822 ekos/scheduler/framingassistantui.cpp:177
 #: ekos/scheduler/framingassistantui.cpp:192
 #: ekos/scheduler/framingassistantui.cpp:903
 #: ekos/scheduler/framingassistantui.cpp:922 skyobjects/ksplanetbase.h:60
@@ -1063,7 +1063,7 @@ msgstr "Разглеждане на слънчевата система с XPlan
 #: skyobjects/satellite.cpp:1223 skyobjects/skyobject.cpp:287
 #: skyobjects/skypoint.cpp:434 skyqpainter.cpp:524 skyqpainter.cpp:548
 #: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:296
-#: tools/imagingplanner.cpp:1576 tools/jmoontool.cpp:106
+#: tools/imagingplanner.cpp:1541 tools/jmoontool.cpp:106
 #: tools/modcalcdaylength.ui:109 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:388 tools/modcalcplanets.ui:190
 #: tools/modcalcplanets.ui:614 tools/pvplotwidget.cpp:94
@@ -1140,8 +1140,8 @@ msgstr "Земя"
 #: skyobjects/skyobject.cpp:417 skyqpainter.cpp:525 skyqpainter.cpp:548
 #: skyqpainter.cpp:551 skyqpainter.cpp:573 tools/conjunctions.cpp:59
 #: tools/eclipsetool.cpp:29 tools/eclipsetool/lunareclipsehandler.h:58
-#: tools/imagingplanner.cpp:85 tools/imagingplanner.cpp:1551
-#: tools/imagingplanner.cpp:3097 tools/ksconjunct.cpp:75
+#: tools/imagingplanner.cpp:85 tools/imagingplanner.cpp:1516
+#: tools/imagingplanner.cpp:3062 tools/ksconjunct.cpp:75
 #: tools/modcalcdaylength.ui:453 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:392 tools/modcalcplanets.ui:185
 #: tools/modcalcplanets.ui:609 tools/whatsinteresting/wiview.cpp:612
@@ -2049,7 +2049,7 @@ msgstr "Състояние:"
 #: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:24
 #: ekos/ekos.h:20 ekos/ekos.h:71 ekos/ekos.h:118 ekos/ekos.h:138
 #: ekos/ekos.h:161 ekos/ekos.h:198 ekos/guide/guidestatewidget.ui:38
-#: ekos/manager.cpp:805 ekos/manager/guidemanager.cpp:135
+#: ekos/manager.cpp:806 ekos/manager/guidemanager.cpp:135
 #: ekos/manager/guidemanager.ui:117 ekos/scheduler/scheduler.cpp:1625
 #: ekos/scheduler/scheduler.cpp:2277 ekos/scheduler/scheduler.cpp:2502
 #: ekos/scheduler/scheduler.cpp:2510 ekos/scheduler/scheduler.cpp:2520
@@ -2696,7 +2696,7 @@ msgstr "Без разглеждане"
 msgid "Show webpage about "
 msgstr "Показване на страницата за "
 
-#: dialogs/addlinkdialog.h:38 tools/imagingplanner.cpp:3242
+#: dialogs/addlinkdialog.h:38 tools/imagingplanner.cpp:3207
 #, kde-format
 msgid "object"
 msgstr "обект"
@@ -3341,7 +3341,7 @@ msgstr "Експортиране на каталог"
 
 #. i18n: ectx: property (text), widget (QPushButton, DevelCheckCatalogButton)
 #: dialogs/catalogsdbui.cpp:176 dialogs/catalogsdbui.cpp:196
-#: tools/imagingplanner.ui:508
+#: tools/imagingplanner.ui:507
 #, kde-format
 msgid "Catalog"
 msgstr "Каталог"
@@ -6507,7 +6507,7 @@ msgstr "Решаването е прекъснато след %1 секунди.
 
 #: ekos/align/align.cpp:2637 ekos/analyze/analyze.cpp:4136
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2098 ekos/mount/mount.cpp:765
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2105 ekos/mount/mount.cpp:765
 #: ekos/observatory/observatory.cpp:1042
 #: ekos/scheduler/schedulerprocess.cpp:3689
 #, kde-format
@@ -6674,18 +6674,18 @@ msgstr "ΔДекл (дъг. сек.)"
 msgid "Filter operation failed."
 msgstr "Операцията на филтъра е неуспешна."
 
-#: ekos/align/align.cpp:3666 ekos/capture/camera.cpp:585
+#: ekos/align/align.cpp:3666 ekos/capture/camera.cpp:579
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr "Промяна на изместването на фокуса с %1 стъпки ..."
 
 #: ekos/align/align.cpp:3673 ekos/auxiliary/buildfilteroffsets.cpp:466
-#: ekos/capture/camera.cpp:590
+#: ekos/capture/camera.cpp:584
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr "Филтърът се сменя на  %1..."
 
-#: ekos/align/align.cpp:3678 ekos/capture/camera.cpp:595
+#: ekos/align/align.cpp:3678 ekos/capture/camera.cpp:589
 #, kde-format
 msgid "Auto focus on filter change..."
 msgstr "Автоматичен фокус при смяна на филтъра..."
@@ -10396,7 +10396,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, StartB)
 #: ekos/align/polaralignmentassistant.ui:810
 #: ekos/align/polaralignmentassistant.ui:813 ekos/auxiliary/darklibrary.ui:575
-#: ekos/manager.cpp:149 ekos/manager.cpp:252 ekos/manager.cpp:813
+#: ekos/manager.cpp:149 ekos/manager.cpp:252 ekos/manager.cpp:814
 #: ekos/observatory/observatorydomemodel.cpp:132
 #: ekos/observatory/observatorydomemodel.cpp:135
 #: fitsviewer/livestacking.ui:1272 kstarslite/qml/indi/INDIControlPanel.qml:166
@@ -10560,7 +10560,7 @@ msgstr "Не може да се покаже временния файл на и
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2303 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2246 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2253 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10569,7 +10569,7 @@ msgstr "Фокус"
 
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
-#: ekos/analyze/analyze.cpp:2304 ekos/manager.cpp:2202
+#: ekos/analyze/analyze.cpp:2304 ekos/manager.cpp:2209
 #: ekos/scheduler/framingassistant.ui:1276 ekos/scheduler/scheduler.ui:240
 #: fitsviewer/fitsviewer.cpp:562
 #, kde-format
@@ -10581,7 +10581,7 @@ msgstr "Подравняване"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2305 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2467
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2474
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -10597,7 +10597,7 @@ msgstr "Обръщане"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MountLogging)
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/analyze/analyze.cpp:2307 ekos/auxiliary/opslogs.ui:77
-#: ekos/auxiliary/opslogs.ui:413 ekos/manager.cpp:2392 ekos/manager.ui:778
+#: ekos/auxiliary/opslogs.ui:413 ekos/manager.cpp:2399 ekos/manager.ui:778
 #, kde-format
 msgid "Mount"
 msgstr "Монтиране"
@@ -12875,7 +12875,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2517
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2524
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -14556,46 +14556,46 @@ msgstr ""
 msgid "Sky flats"
 msgstr "Небесни плоски кадри"
 
-#: ekos/capture/camera.cpp:78 ekos/capture/camera.cpp:80
+#: ekos/capture/camera.cpp:72 ekos/capture/camera.cpp:74
 #, kde-format
 msgid "Capture Sequence Editor: %1"
 msgstr "Редактор на последователности от заснемания: %1"
 
 #. i18n: ectx: property (text), widget (QLabel, secLabel)
-#: ekos/capture/camera.cpp:89 ekos/capture/camera.ui:2768
+#: ekos/capture/camera.cpp:83 ekos/capture/camera.ui:2768
 #, kde-format
 msgid "sec"
 msgstr "сек"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: ekos/capture/camera.cpp:90 ekos/capture/limits.ui:180
+#: ekos/capture/camera.cpp:84 ekos/capture/limits.ui:180
 #: ekos/guide/opsdither.ui:170 ekos/scheduler/opsalignmentsettings.ui:82
 #, kde-format
 msgid "frames"
 msgstr "кадри"
 
-#: ekos/capture/camera.cpp:139 ekos/capture/camera_jobs.cpp:258
+#: ekos/capture/camera.cpp:133 ekos/capture/camera_jobs.cpp:258
 #, kde-format
 msgid "Add job to sequence queue"
 msgstr "Добавяне на задание към опашката за последователност"
 
-#: ekos/capture/camera.cpp:140 ekos/capture/camera_jobs.cpp:259
+#: ekos/capture/camera.cpp:134 ekos/capture/camera_jobs.cpp:259
 #, kde-format
 msgid "Remove job from sequence queue"
 msgstr "Премахване на задание от опашката за последователност"
 
-#: ekos/capture/camera.cpp:505
+#: ekos/capture/camera.cpp:499
 #, kde-format
 msgid "Downloading..."
 msgstr "Изтегляне..."
 
-#: ekos/capture/camera.cpp:602
+#: ekos/capture/camera.cpp:596
 #, kde-format
 msgid "Filter set to %1."
 msgstr "Филтърът е настроен на %1."
 
-#: ekos/capture/camera.cpp:627
+#: ekos/capture/camera.cpp:621
 #, kde-format
 msgid ""
 "Warning: in-sequence focusing is selected but autofocus process was not "
@@ -14604,7 +14604,7 @@ msgstr ""
 "Предупреждение: избрано е последователно фокусиране, но процесът на "
 "автоматично фокусиране не е стартиран."
 
-#: ekos/capture/camera.cpp:630
+#: ekos/capture/camera.cpp:624
 #, kde-format
 msgid ""
 "Warning: temperature delta check is selected but autofocus process was not "
@@ -24855,19 +24855,19 @@ msgstr "Разширение '%1' е прекъснато."
 msgid "Extension '%1': %2"
 msgstr "Разширение „%1“: %2"
 
-#: ekos/manager.cpp:834
+#: ekos/manager.cpp:835
 #, kde-format
 msgctxt "@title:window"
 msgid "Ekos"
 msgstr "Ekos"
 
-#: ekos/manager.cpp:982 ekos/manager.cpp:1007
+#: ekos/manager.cpp:983 ekos/manager.cpp:1008
 #, fuzzy, kde-format
 #| msgid "Ekos requires at least one CCD or Guider to operate."
 msgid "Ekos requires at least one Camera to operate."
 msgstr "Ekos изисква поне един CCD или гид модул, за да работи."
 
-#: ekos/manager.cpp:1070
+#: ekos/manager.cpp:1071
 #, kde-format
 msgid ""
 "Ekos detected that PTP Camera is running and may prevent a Canon or Nikon "
@@ -24876,17 +24876,17 @@ msgstr ""
 "Ekos е открила, че PTP камера е стартирана и може да попречи на камера Canon "
 "или Nikon да се свърже с Ekos. Искате ли да прекратите PTP камера сега?"
 
-#: ekos/manager.cpp:1071
+#: ekos/manager.cpp:1072
 #, kde-format
 msgid "PTP Camera"
 msgstr "Камера PTP"
 
-#: ekos/manager.cpp:1085
+#: ekos/manager.cpp:1086
 #, kde-format
 msgid "Starting INDI services..."
 msgstr "Стартиране на INDI услуги..."
 
-#: ekos/manager.cpp:1116
+#: ekos/manager.cpp:1117
 #, kde-format
 msgid ""
 "Ekos detected an instance of INDI server running. Do you wish to shut down "
@@ -24896,47 +24896,47 @@ msgstr ""
 "изключите съществуващата инстанция, преди да стартирате нова?"
 
 #. i18n: ectx: property (title), widget (QGroupBox, indiServerGroup)
-#: ekos/manager.cpp:1118 indi/opsindi.ui:248
+#: ekos/manager.cpp:1119 indi/opsindi.ui:248
 #, kde-format
 msgid "INDI Server"
 msgstr "Сървър на INDI"
 
-#: ekos/manager.cpp:1133
+#: ekos/manager.cpp:1134
 #, kde-format
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "Свързване към отдалечен INDI сървър на %1 на порт %2"
 
-#: ekos/manager.cpp:1153
+#: ekos/manager.cpp:1154
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Неуспешно стартиране на профил в отдалечен INDI уеб мениджър."
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "Стартиране на профил на отдалечения INDI уеб мениджър..."
 
-#: ekos/manager.cpp:1170
+#: ekos/manager.cpp:1171
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "Установява се комуникация с отдалечен INDI уеб мениджър..."
 
-#: ekos/manager.cpp:1190
+#: ekos/manager.cpp:1191
 #, kde-format
 msgid "Warning: INDI Web Manager is not online."
 msgstr "Предупреждение: Уеб мениджърът на INDI не е онлайн."
 
-#: ekos/manager.cpp:1227
+#: ekos/manager.cpp:1228
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr "INDI услугите стартираха на порт %1."
 
-#: ekos/manager.cpp:1230
+#: ekos/manager.cpp:1231
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr "Услугите INDI са стартирани на порт %1. Моля, свържете устройствата."
 
-#: ekos/manager.cpp:1235
+#: ekos/manager.cpp:1236
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
@@ -24945,27 +24945,27 @@ msgstr ""
 "Стартиране на услугите на INDI. Връзката с отдалечения INDI сървър %1:%2 е "
 "успешна. Изчакваме устройства..."
 
-#: ekos/manager.cpp:1266
+#: ekos/manager.cpp:1267
 #, kde-format
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Неуспешно свързване с локален INDI сървър %1:%2"
 
-#: ekos/manager.cpp:1268
+#: ekos/manager.cpp:1269
 #, kde-format
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Неуспешно свързване с отдалечен INDI сървър %1:%2"
 
-#: ekos/manager.cpp:1281
+#: ekos/manager.cpp:1282
 #, kde-format
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "Загубена връзка с локалния INDI сървър %1:%2"
 
-#: ekos/manager.cpp:1283
+#: ekos/manager.cpp:1284
 #, kde-format
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "Загубена връзка с отдалечен INDI сървър %1:%2"
 
-#: ekos/manager.cpp:1346
+#: ekos/manager.cpp:1347
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
@@ -24973,7 +24973,7 @@ msgstr ""
 "Не успя да се свърже с %1. Моля, уверете се, че устройството е свързано и "
 "включено."
 
-#: ekos/manager.cpp:1348
+#: ekos/manager.cpp:1349
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -24984,7 +24984,7 @@ msgstr ""
 "%1\n"
 "Моля, уверете се, че всяко устройство е свързано и включено."
 
-#: ekos/manager.cpp:1376
+#: ekos/manager.cpp:1377
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -24995,13 +24995,13 @@ msgstr ""
 "%1\n"
 "Моля, уверете се, че устройството е свързано и включено."
 
-#: ekos/manager.cpp:1380 ekos/manager.cpp:1388 ekos/manager.cpp:1421
-#: ekos/manager.cpp:1429
+#: ekos/manager.cpp:1381 ekos/manager.cpp:1389 ekos/manager.cpp:1422
+#: ekos/manager.cpp:1430
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Грешка при стартиране на Ekos"
 
-#: ekos/manager.cpp:1384
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -25012,7 +25012,7 @@ msgstr ""
 "%1\n"
 "Моля, уверете се, че всяко устройство е свързано и включено."
 
-#: ekos/manager.cpp:1417
+#: ekos/manager.cpp:1418
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -25023,7 +25023,7 @@ msgstr ""
 "%1\n"
 "Моля, уверете се, че устройството е свързано и включено."
 
-#: ekos/manager.cpp:1425
+#: ekos/manager.cpp:1426
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -25034,32 +25034,32 @@ msgstr ""
 "%1\n"
 "Моля, уверете се, че всяко устройство е свързано и включено."
 
-#: ekos/manager.cpp:1483
+#: ekos/manager.cpp:1484
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "Свързване на INDI устройства..."
 
-#: ekos/manager.cpp:1494
+#: ekos/manager.cpp:1495
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "Прекъсване на INDI устройствата..."
 
-#: ekos/manager.cpp:1533
+#: ekos/manager.cpp:1534
 #, kde-format
 msgid "INDI services stopped."
 msgstr "Услугите на INDI са спрени."
 
-#: ekos/manager.cpp:1593
+#: ekos/manager.cpp:1594
 #, kde-format
 msgid "Remote devices established."
 msgstr "Установени са отдалечени устройства."
 
-#: ekos/manager.cpp:1595
+#: ekos/manager.cpp:1596
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "Установени са отдалечени устройства. Моля, свържете устройствата."
 
-#: ekos/manager.cpp:1659
+#: ekos/manager.cpp:1660
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
@@ -25068,119 +25068,119 @@ msgstr ""
 "%1 не успя да се свърже.\n"
 "Моля, уверете се, че устройството е свързано и включено."
 
-#: ekos/manager.cpp:1666
+#: ekos/manager.cpp:1667
 #, kde-format
 msgid "%1 is disconnected."
 msgstr "%1 е разкачен."
 
-#: ekos/manager.cpp:1687 ekos/manager.cpp:1696 ekos/manager.cpp:1729
+#: ekos/manager.cpp:1688 ekos/manager.cpp:1697 ekos/manager.cpp:1730
 #: indi/indistd.cpp:716
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 е достъпен."
 
-#: ekos/manager.cpp:1704
+#: ekos/manager.cpp:1705
 #, kde-format
 msgid "%1 filter is online."
 msgstr "%1 филтър е онлайн."
 
-#: ekos/manager.cpp:1713
+#: ekos/manager.cpp:1714
 #, kde-format
 msgid "%1 focuser is online."
 msgstr "%1 фокусер е достъпен."
 
-#: ekos/manager.cpp:1720
+#: ekos/manager.cpp:1721
 #, kde-format
 msgid "Rotator %1 is online."
 msgstr "Ротатор %1 е онлайн."
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1737
 #, kde-format
 msgid "%1 Weather is online."
 msgstr "%1 Времето е онлайн."
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1744
 #, kde-format
 msgid "%1 GPS is online."
 msgstr "%1 GPS е онлайн."
 
-#: ekos/manager.cpp:1752
+#: ekos/manager.cpp:1753
 #, kde-format
 msgid "%1 Dust cap is online."
 msgstr "%1 Защитната капачка е онлайн."
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1760
 #, kde-format
 msgid "%1 Light box is online."
 msgstr "%1 Светлинен източник е онлайн."
 
-#: ekos/manager.cpp:1911
+#: ekos/manager.cpp:1918
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 е недостъпен."
 
-#: ekos/manager.cpp:2150
+#: ekos/manager.cpp:2157
 #, kde-format
 msgctxt "Charge-Coupled Device"
 msgid "CCD"
 msgstr "CCD"
 
-#: ekos/manager.cpp:2534
+#: ekos/manager.cpp:2541
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "Портът на гид модула от %1 е готов."
 
-#: ekos/manager.cpp:2723
+#: ekos/manager.cpp:2730
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Сигурни ли сте, че искате да изтриете профила?"
 
-#: ekos/manager.cpp:2724
+#: ekos/manager.cpp:2731
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Потвърждение за изтриване"
 
-#: ekos/manager.cpp:2776
+#: ekos/manager.cpp:2783
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "Местоположението е актуализирано на %1."
 
-#: ekos/manager.cpp:2778
+#: ekos/manager.cpp:2785
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "Не успя да актуализира местоположението до %1. Градът не е намерен."
 
-#: ekos/manager.cpp:3051
+#: ekos/manager.cpp:3058
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "Включване на регистрирането на грешки за %1..."
 
-#: ekos/manager.cpp:3059
+#: ekos/manager.cpp:3066
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "Изключване на регистрирането на грешки за %1..."
 
-#: ekos/manager.cpp:3087
+#: ekos/manager.cpp:3094
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "Повторно активиране на регистрирането на грешки за %1..."
 
-#: ekos/manager.cpp:3099
+#: ekos/manager.cpp:3106
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "Повторно деактивиране на регистрирането на грешки за %1..."
 
-#: ekos/manager.cpp:3824
+#: ekos/manager.cpp:3835
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Източникът на визуализация е зададен като външен"
 
-#: ekos/manager.cpp:3831
+#: ekos/manager.cpp:3842
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Възстановяване на източника на визуализация към вътрешен"
 
-#: ekos/manager.cpp:3838
+#: ekos/manager.cpp:3849
 #, kde-format
 msgid "Received external preview file"
 msgstr "Получен файл за външен преглед"
@@ -26631,12 +26631,6 @@ msgstr ""
 msgid "Drivers"
 msgstr "Драйвери:"
 
-#. i18n: ectx: property (text), item, widget (QComboBox, guideTypeCombo)
-#: ekos/profileeditor.cpp:505 ekos/profileeditor.ui:254
-#, kde-format
-msgid "Internal"
-msgstr "Вътрешен"
-
 #: ekos/profileeditor.cpp:703
 #, kde-format
 msgctxt "@title:window"
@@ -26816,6 +26810,12 @@ msgstr "8624"
 #, kde-format
 msgid "&Local"
 msgstr "&Локално"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, guideTypeCombo)
+#: ekos/profileeditor.ui:254
+#, kde-format
+msgid "Internal"
+msgstr "Вътрешен"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, guideTypeCombo)
 #. i18n: ectx: property (text), widget (QRadioButton, usePHD2R)
@@ -27235,7 +27235,7 @@ msgstr "AtikBase"
 
 #. i18n: ectx: property (text), widget (QPushButton, equipmentOtherB)
 #. i18n: ectx: property (text), widget (QCheckBox, OtherCB)
-#: ekos/profilewizard.ui:432 tools/imagingplanner.ui:2010
+#: ekos/profilewizard.ui:432 tools/imagingplanner.ui:1927
 #, kde-format
 msgid "Other"
 msgstr "Друго"
@@ -29461,8 +29461,8 @@ msgstr "Минимална височина:"
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, AstrobinMinRadius)
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, AstrobinMaxRadius)
 #: ekos/scheduler/scheduler.ui:1690 ekos/scheduler/scheduler.ui:1753
-#: ekos/scheduler/scheduler.ui:1795 tools/imagingplanner.ui:1169
-#: tools/imagingplanner.ui:1522 tools/imagingplanner.ui:1570
+#: ekos/scheduler/scheduler.ui:1795 tools/imagingplanner.ui:1097
+#: tools/imagingplanner.ui:1445 tools/imagingplanner.ui:1491
 #, kde-format
 msgid " °"
 msgstr " °"
@@ -30955,7 +30955,7 @@ msgstr "Грешка при отваряне на FITS файл (fits_get_img_pa
 msgid "1D FITS images are not supported in KStars."
 msgstr "1D FITS изображенията не се поддържат в KStars."
 
-#: fitsviewer/fitsdata.cpp:926 fitsviewer/fitsdata.cpp:1424
+#: fitsviewer/fitsdata.cpp:926 fitsviewer/fitsdata.cpp:1425
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "Битова дълбочина %1 не се поддържа."
@@ -30970,137 +30970,137 @@ msgstr "Изображението има невалидни размери %1x%
 msgid "Error reading image: %1"
 msgstr "Грешка при четене на изображението: %1"
 
-#: fitsviewer/fitsdata.cpp:1323
+#: fitsviewer/fitsdata.cpp:1324
 #, kde-format
 msgid "File contain no images"
 msgstr "Файлът не съдържа изображения"
 
-#: fitsviewer/fitsdata.cpp:1352
+#: fitsviewer/fitsdata.cpp:1353
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "Примерен формат %1 не се поддържа."
 
-#: fitsviewer/fitsdata.cpp:1387
+#: fitsviewer/fitsdata.cpp:1388
 #, kde-format
 msgid "XISF file open error: "
 msgstr "Грешка при отваряне на XISF файл:"
 
-#: fitsviewer/fitsdata.cpp:1439
+#: fitsviewer/fitsdata.cpp:1440
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Грешка при запазване на XISF изображение"
 
-#: fitsviewer/fitsdata.cpp:1531 fitsviewer/fitsdata.cpp:1647
+#: fitsviewer/fitsdata.cpp:1532 fitsviewer/fitsdata.cpp:1648
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
 msgstr ""
 "FITSData: Няма достатъчно памет за канала на image_buffer. Заявено: %1 байта "
 
-#: fitsviewer/fitsdata.cpp:1586
+#: fitsviewer/fitsdata.cpp:1587
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "Не може да се отвори файл %1: %2"
 
-#: fitsviewer/fitsdata.cpp:1599
+#: fitsviewer/fitsdata.cpp:1600
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Не може да се отвори буфер: %1"
 
-#: fitsviewer/fitsdata.cpp:1610
+#: fitsviewer/fitsdata.cpp:1611
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "Не може да се разопакова_thumb: %1"
 
-#: fitsviewer/fitsdata.cpp:1617
+#: fitsviewer/fitsdata.cpp:1618
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "Не може да се извърши dcraw_process: %1"
 
-#: fitsviewer/fitsdata.cpp:1625
+#: fitsviewer/fitsdata.cpp:1626
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "Не може да се зареди в паметта: %1"
 
-#: fitsviewer/fitsdata.cpp:1772
+#: fitsviewer/fitsdata.cpp:1773
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "Запазването на компресирани файлове не се поддържа."
 
-#: fitsviewer/fitsdata.cpp:1837
+#: fitsviewer/fitsdata.cpp:1838
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Неуспешно създаване на файл: %1"
 
-#: fitsviewer/fitsdata.cpp:1852
+#: fitsviewer/fitsdata.cpp:1853
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Неуспешно създаване на изображение: %1"
 
-#: fitsviewer/fitsdata.cpp:1861 fitsviewer/fitsdata.cpp:1868
+#: fitsviewer/fitsdata.cpp:1862 fitsviewer/fitsdata.cpp:1869
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Неуспешно актуализиране на ключа: %1"
 
-#: fitsviewer/fitsdata.cpp:1969
+#: fitsviewer/fitsdata.cpp:1970
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Неуспешно актуализиране на датата: %1"
 
-#: fitsviewer/fitsdata.cpp:1978
+#: fitsviewer/fitsdata.cpp:1979
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Неуспешно актуализиране на хронологията: %1"
 
-#: fitsviewer/fitsdata.cpp:2000
+#: fitsviewer/fitsdata.cpp:2001
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Неуспешно записване на изображение: %1"
 
-#: fitsviewer/fitsdata.cpp:3723 fitsviewer/fitsdata.cpp:3734
-#: fitsviewer/fitsdata.cpp:3771 fitsviewer/fitsdata.cpp:3807
-#: fitsviewer/fitsdata.cpp:3941
+#: fitsviewer/fitsdata.cpp:3724 fitsviewer/fitsdata.cpp:3735
+#: fitsviewer/fitsdata.cpp:3772 fitsviewer/fitsdata.cpp:3808
+#: fitsviewer/fitsdata.cpp:3942
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "Няма намерени световни координатни системи."
 
-#: fitsviewer/fitsdata.cpp:4116 fitsviewer/fitsdata.cpp:4224
+#: fitsviewer/fitsdata.cpp:4117 fitsviewer/fitsdata.cpp:4225
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Грешка при запитване към Simbad"
 
-#: fitsviewer/fitsdata.cpp:4133
+#: fitsviewer/fitsdata.cpp:4134
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "Времето за изчакване на заявката за Simbad изтече"
 
-#: fitsviewer/fitsdata.cpp:5110
+#: fitsviewer/fitsdata.cpp:5111
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr "Поддържат се само 8 и 16-битови изображения на Bayer."
 
-#: fitsviewer/fitsdata.cpp:5143
+#: fitsviewer/fitsdata.cpp:5144
 #, kde-format
 msgid "Unsupported bayer pattern %1."
 msgstr "Неподдържан модел на Bayer %1."
 
-#: fitsviewer/fitsdata.cpp:5174
+#: fitsviewer/fitsdata.cpp:5175
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Неподдържани отмествания по Байер %1 %2."
 
-#: fitsviewer/fitsdata.cpp:5331 fitsviewer/fitsdata.cpp:5378
-#: fitsviewer/fitsdata.cpp:5423 fitsviewer/fitsdata.cpp:5470
+#: fitsviewer/fitsdata.cpp:5332 fitsviewer/fitsdata.cpp:5379
+#: fitsviewer/fitsdata.cpp:5424 fitsviewer/fitsdata.cpp:5471
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr "Не може да се разпредели памет за временен буфер на Bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:5341 fitsviewer/fitsdata.cpp:5433
+#: fitsviewer/fitsdata.cpp:5342 fitsviewer/fitsdata.cpp:5434
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr "Не може да се разпредели памет за временен буфер на Bayer."
 
-#: fitsviewer/fitsdata.cpp:5361 fitsviewer/fitsdata.cpp:5453
+#: fitsviewer/fitsdata.cpp:5362 fitsviewer/fitsdata.cpp:5454
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "Неуспешно прилагане на филтър на Bayer (%1)"
@@ -31208,7 +31208,7 @@ msgstr "Готово."
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #. i18n: ectx: property (text), widget (QCheckBox, keywordCB)
-#: fitsviewer/fitsheaderdialog.ui:48 tools/imagingplanner.ui:2144
+#: fitsviewer/fitsheaderdialog.ui:48 tools/imagingplanner.ui:2061
 #, kde-format
 msgid "Keyword"
 msgstr "Ключова дума"
@@ -31457,7 +31457,7 @@ msgstr "CDS Portal"
 #. i18n: ectx: property (text), widget (QPushButton, searchSimbad)
 #. i18n: ectx: property (text), widget (QPushButton, searchSimbad2)
 #: fitsviewer/fitstab.cpp:778 fitsviewer/opsfits.ui:445
-#: tools/imagingplanner.ui:1456 tools/imagingplanner.ui:1787
+#: tools/imagingplanner.ui:1377 tools/imagingplanner.ui:1714
 #, kde-format
 msgid "Simbad"
 msgstr "Симбад"
@@ -32970,24 +32970,24 @@ msgstr "Неуспешно извличане: %1s"
 msgid "Extracted %1 stars (%2 unfiltered) in %3s"
 msgstr "Извлечени %1 звезди (%2 нефилтрирани) за %3s"
 
-#: fitsviewer/platesolve.cpp:420
+#: fitsviewer/platesolve.cpp:423
 #, kde-format
 msgid "Solver timed out: %1s"
 msgstr "Времето за изчакване на програмата за решаване е изтекло: %1s"
 
-#: fitsviewer/platesolve.cpp:426
+#: fitsviewer/platesolve.cpp:429
 #, kde-format
 msgid "Solver failed: %1s"
 msgstr "Неуспешно решаване: %1s"
 
-#: fitsviewer/platesolve.cpp:664
+#: fitsviewer/platesolve.cpp:667
 #, kde-format
 msgid "Warning! This tool only supports the internal StellarSolver solver."
 msgstr ""
 "Предупреждение! Този инструмент поддържа само вътрешния модул за решаване на "
 "StellarSolver."
 
-#: fitsviewer/platesolve.cpp:665
+#: fitsviewer/platesolve.cpp:668
 #, kde-format
 msgid "Change to that in the Ekos Align options menu."
 msgstr "Променете това в менюто с опции за подравняване на Ekos."
@@ -35174,34 +35174,34 @@ msgctxt "@title:window"
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:290 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:109
+#: kstars.cpp:294 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:109
 #, kde-format, kde-kuit-format
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:291
+#: kstars.cpp:295
 #, fuzzy, kde-format
 #| msgid "KStars Lite"
 msgid "KStars Live Stacker"
 msgstr "KStars Lite"
 
-#: kstars.cpp:292
+#: kstars.cpp:296
 #, fuzzy, kde-format
 #| msgid "(c), The KStars Team"
 msgid "© 2025 KStars Team"
 msgstr "(c), Екипът на KStars"
 
-#: kstars.cpp:416 kstarsactions.cpp:1650 skymap.cpp:463
+#: kstars.cpp:420 kstarsactions.cpp:1650 skymap.cpp:463
 #, kde-format
 msgid "Stop &Tracking"
 msgstr "Край на &проследяването"
 
-#: kstars.cpp:424 kstarsactions.cpp:1817 kstarsinit.cpp:277
+#: kstars.cpp:428 kstarsactions.cpp:1817 kstarsinit.cpp:277
 #, kde-format
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Превключване към изглед на звезден глобус (екваториални &координати)"
 
-#: kstars.cpp:425 kstarsactions.cpp:1798 kstarsinit.cpp:278
+#: kstars.cpp:429 kstarsactions.cpp:1798 kstarsinit.cpp:278
 #, kde-format
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"
 msgstr "Превключване към хоризонтален изглед (хоризонтални &координати)"
@@ -80532,7 +80532,7 @@ msgstr "Останка от свръхнова"
 
 #. i18n: ectx: property (text), widget (QCheckBox, GalaxyCB)
 #: printing/legend.cpp:368 printing/legend.cpp:403 skyobjects/skyobject.cpp:359
-#: skyobjects/skyobject.cpp:409 tools/imagingplanner.ui:1980
+#: skyobjects/skyobject.cpp:409 tools/imagingplanner.ui:1892
 #, kde-format
 msgid "Galaxy"
 msgstr "Галактика"
@@ -81805,25 +81805,24 @@ msgid "Open Clr"
 msgstr "Отваряне на Clr"
 
 #. i18n: ectx: property (text), widget (QCheckBox, GlobularClusterCB)
-#: skyobjects/skyobject.cpp:401 tools/imagingplanner.ui:1950
+#: skyobjects/skyobject.cpp:401 tools/imagingplanner.ui:1862
 #, kde-format
 msgid "Globular"
 msgstr "Кълбовиден"
 
 #. i18n: ectx: property (text), widget (QCheckBox, NebulaCB)
-#: skyobjects/skyobject.cpp:403 tools/imagingplanner.ui:1940
+#: skyobjects/skyobject.cpp:403 tools/imagingplanner.ui:1852
 #, kde-format
 msgid "Nebula"
 msgstr "Мъглявина"
 
-#. i18n: ectx: property (text), widget (QCheckBox, PlanetaryCB)
-#: skyobjects/skyobject.cpp:405 tools/imagingplanner.ui:1960
+#: skyobjects/skyobject.cpp:405
 #, kde-format
 msgid "Planetary"
 msgstr "Планетарна"
 
 #. i18n: ectx: property (text), widget (QCheckBox, SupernovaRemnantCB)
-#: skyobjects/skyobject.cpp:407 tools/imagingplanner.ui:1970
+#: skyobjects/skyobject.cpp:407 tools/imagingplanner.ui:1882
 #, kde-format
 msgid "Remnant"
 msgstr "Остатък"
@@ -81833,8 +81832,7 @@ msgstr "Остатък"
 msgid "Galaxy Clr"
 msgstr "Galaxy Clr"
 
-#. i18n: ectx: property (text), widget (QCheckBox, DarkNebulaCB)
-#: skyobjects/skyobject.cpp:429 tools/imagingplanner.ui:2000
+#: skyobjects/skyobject.cpp:429
 #, kde-format
 msgid "Dark Neb"
 msgstr "Тъмно Неб"
@@ -83350,8 +83348,8 @@ msgid "Object Set"
 msgstr "Залез"
 
 #. i18n: ectx: property (text), widget (QPushButton, transitButton)
-#: tools/altvstime.ui:352 tools/imagingplanner.cpp:3114
-#: tools/imagingplanner.cpp:3125 tools/imagingplanner.cpp:3140
+#: tools/altvstime.ui:352 tools/imagingplanner.cpp:3079
+#: tools/imagingplanner.cpp:3090 tools/imagingplanner.cpp:3105
 #, kde-format
 msgid "Transit"
 msgstr "Кулминация"
@@ -84467,37 +84465,37 @@ msgid "Coord"
 msgstr "Коорд"
 
 #. i18n: ectx: property (text), widget (QCheckBox, imagedCB)
-#: tools/imagingplanner.cpp:186 tools/imagingplanner.ui:2057
+#: tools/imagingplanner.cpp:186 tools/imagingplanner.ui:1974
 #, kde-format
 msgid "Imaged"
 msgstr "Изобразено"
 
 #. i18n: ectx: property (text), widget (QCheckBox, pickedCB)
-#: tools/imagingplanner.cpp:191 tools/imagingplanner.ui:2027
+#: tools/imagingplanner.cpp:191 tools/imagingplanner.ui:1944
 #, kde-format
 msgid "Picked"
 msgstr "Избрано"
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoredCB)
-#: tools/imagingplanner.cpp:197 tools/imagingplanner.ui:2114
+#: tools/imagingplanner.cpp:197 tools/imagingplanner.ui:2031
 #, kde-format
 msgid "Ignored"
 msgstr "Игнорирани"
 
-#: tools/imagingplanner.cpp:1021
+#: tools/imagingplanner.cpp:1013
 #, kde-format
 msgctxt "@title:window"
 msgid "Imaging Planner"
 msgstr "Планер за изображения"
 
-#: tools/imagingplanner.cpp:1171
+#: tools/imagingplanner.cpp:1138
 #, kde-format
 msgid "Object Name--click header to sort ascending/descending."
 msgstr ""
 "Име на обект - щракнете върху заглавката, за да сортирате възходящо/"
 "низходящо."
 
-#: tools/imagingplanner.cpp:1173
+#: tools/imagingplanner.cpp:1140
 #, kde-format
 msgid ""
 "Number of hours the object can be imaged--click header to sort ascending/"
@@ -84506,13 +84504,13 @@ msgstr ""
 "Брой часове, в които обектът може да бъде изобразен - щракнете върху "
 "заглавката, за да сортирате възходящо/низходящо."
 
-#: tools/imagingplanner.cpp:1175
+#: tools/imagingplanner.cpp:1142
 #, kde-format
 msgid "Object Type--click header to sort ascending/descending."
 msgstr ""
 "Тип обект - щракнете върху заглавката, за да сортирате възходящо/низходящо."
 
-#: tools/imagingplanner.cpp:1177
+#: tools/imagingplanner.cpp:1144
 #, kde-format
 msgid ""
 "Maximum object dimension (arcmin)--click header to sort ascending/descending."
@@ -84520,14 +84518,14 @@ msgstr ""
 "Максимален размер на обекта (arcmin) - щракнете върху заглавката, за да "
 "сортирате възходящо/низходящо."
 
-#: tools/imagingplanner.cpp:1179
+#: tools/imagingplanner.cpp:1146
 #, kde-format
 msgid "Maximum altitude--click header to sort ascending/descending."
 msgstr ""
 "Максимална надморска височина - щракнете върху заглавката, за да сортирате "
 "възходящо/низходящо."
 
-#: tools/imagingplanner.cpp:1181
+#: tools/imagingplanner.cpp:1148
 #, kde-format
 msgid ""
 "Moon angular separation at midnight--click header to sort ascending/"
@@ -84536,45 +84534,45 @@ msgstr ""
 "Лунно ъглово разделение в полунощ - щракнете върху заглавката, за да "
 "сортирате възходящо/низходящо."
 
-#: tools/imagingplanner.cpp:1183
+#: tools/imagingplanner.cpp:1150
 #, kde-format
 msgid "Constellation--click header to sort ascending/descending."
 msgstr ""
 "Съзвездие - щракнете върху заглавката, за да сортирате възходящо/низходящо."
 
-#: tools/imagingplanner.cpp:1185
+#: tools/imagingplanner.cpp:1152
 #, kde-format
 msgid "RA/DEC coordinates--click header to sort ascending/descending."
 msgstr ""
 "RA/DEC координати - щракнете върху заглавката, за да сортирате възходящо/"
 "низходящо."
 
-#: tools/imagingplanner.cpp:1620
+#: tools/imagingplanner.cpp:1585
 #, kde-format
 msgid "No match for \"%1\""
 msgstr "Няма съответствие за \"%1\""
 
-#: tools/imagingplanner.cpp:1684
+#: tools/imagingplanner.cpp:1649
 #, kde-format
 msgid "Open a browser with the 1st link in this note: %1"
 msgstr "Отваряне на браузър с първата връзка в тази бележка: %1"
 
-#: tools/imagingplanner.cpp:1689
+#: tools/imagingplanner.cpp:1654
 #, kde-format
 msgid "Open a browser with the 2nd link in this note: %1"
 msgstr "Отваряне на браузър с втората връзка в тази бележка: %1"
 
-#: tools/imagingplanner.cpp:1694
+#: tools/imagingplanner.cpp:1659
 #, kde-format
 msgid "Open a browser with the 3rd link in this note: %1"
 msgstr "Отваряне на браузър с 3-тата връзка в тази бележка: %1"
 
-#: tools/imagingplanner.cpp:2029
+#: tools/imagingplanner.cpp:1994
 #, kde-format
 msgid "Updating tables..."
 msgstr "Таблиците се актуализират..."
 
-#: tools/imagingplanner.cpp:2430
+#: tools/imagingplanner.cpp:2395
 #, fuzzy, kde-format
 #| msgid ""
 #| "You need to load a catalog to start using this tool.\n"
@@ -84587,40 +84585,40 @@ msgstr ""
 "Трябва да заредите каталог, за да започнете да използвате този инструмент.\n"
 "Вижте Данни -> Изтегляне на нови данни..."
 
-#: tools/imagingplanner.cpp:2433
+#: tools/imagingplanner.cpp:2398
 #, kde-format
 msgid "No Catalog!"
 msgstr "Без каталог!"
 
-#: tools/imagingplanner.cpp:2479
+#: tools/imagingplanner.cpp:2444
 #, kde-format
 msgid "Select an object."
 msgstr "Изберете обект."
 
-#: tools/imagingplanner.cpp:2481
+#: tools/imagingplanner.cpp:2446
 #, kde-format
 msgid "Check Filters to unhide objects."
 msgstr "Поставете отметка във Филтри, за да покажете обектите."
 
-#: tools/imagingplanner.cpp:2483
+#: tools/imagingplanner.cpp:2448
 #, kde-format
 msgid "Load a Catalog."
 msgstr "Зареждане на  каталог."
 
-#: tools/imagingplanner.cpp:2613
+#: tools/imagingplanner.cpp:2578
 #, fuzzy, kde-format
 #| msgid "Search the Professor Seligman online site for NGC/IC images."
 msgid "Search the Professor Seligman online site for NGC images."
 msgstr "Потърсете в онлайн сайта на професор Селигман за NGC/IC изображения."
 
-#: tools/imagingplanner.cpp:2618
+#: tools/imagingplanner.cpp:2583
 #, fuzzy, kde-format
 #| msgid "Search the Professor Seligman online site for NGC/IC images."
 msgid ""
 "Search the Professor Seligman online site for information about IC objects.."
 msgstr "Потърсете в онлайн сайта на професор Селигман за NGC/IC изображения."
 
-#: tools/imagingplanner.cpp:2624
+#: tools/imagingplanner.cpp:2589
 #, kde-format
 msgid ""
 "Search the galaxymap.org online site for information about Sharpless2 "
@@ -84629,93 +84627,93 @@ msgstr ""
 "Потърсете в онлайн сайта galaxymap.org за информация относно обектите "
 "Sharpless2."
 
-#: tools/imagingplanner.cpp:2630
+#: tools/imagingplanner.cpp:2595
 #, kde-format
 msgid "Search Nasa's online site for information about Messier objects.."
 msgstr ""
 "Потърсете онлайн сайта на НАСА за информация относно обектите на Месие."
 
-#: tools/imagingplanner.cpp:2635
+#: tools/imagingplanner.cpp:2600
 #, kde-format
 msgid "Search Emil Ivanov's online site for information about VDB objects."
 msgstr "Потърсете в онлайн сайта на Емил Иванов информация за VDB обекти."
 
-#: tools/imagingplanner.cpp:2778
+#: tools/imagingplanner.cpp:2743
 #, kde-format
 msgid "Loading Catalogs..."
 msgstr "Каталозите се зареждат..."
 
-#: tools/imagingplanner.cpp:3103
+#: tools/imagingplanner.cpp:3068
 #, kde-format
 msgid "Transits"
 msgstr "Транзити"
 
-#: tools/imagingplanner.cpp:3108 tools/imagingplanner.cpp:3112
+#: tools/imagingplanner.cpp:3073 tools/imagingplanner.cpp:3077
 #, kde-format
 msgid "Sets at"
 msgstr "Залязва в"
 
-#: tools/imagingplanner.cpp:3119 tools/imagingplanner.cpp:3123
+#: tools/imagingplanner.cpp:3084 tools/imagingplanner.cpp:3088
 #, kde-format
 msgid "Rises at"
 msgstr "Издига се в"
 
-#: tools/imagingplanner.cpp:3130 tools/imagingplanner.cpp:3136
+#: tools/imagingplanner.cpp:3095 tools/imagingplanner.cpp:3101
 #, kde-format
 msgid "Rises"
 msgstr "Издига се"
 
-#: tools/imagingplanner.cpp:3132 tools/imagingplanner.cpp:3138
+#: tools/imagingplanner.cpp:3097 tools/imagingplanner.cpp:3103
 #, kde-format
 msgid "Sets"
 msgstr "Залязва"
 
-#: tools/imagingplanner.cpp:3244 tools/imagingplanner.cpp:3500
+#: tools/imagingplanner.cpp:3209 tools/imagingplanner.cpp:3465
 #, kde-format
 msgid "objects"
 msgstr "обекти"
 
-#: tools/imagingplanner.cpp:3496
+#: tools/imagingplanner.cpp:3461
 #, kde-format
 msgid "%1, %2 and %3 other objects"
 msgstr "%1, %2 и %3 други обекти"
 
-#: tools/imagingplanner.cpp:3504 tools/imagingplanner.cpp:3508
+#: tools/imagingplanner.cpp:3469 tools/imagingplanner.cpp:3473
 #, kde-format
 msgid "Mark %1 as NOT imaged"
 msgstr "Маркиране на %1 като НЕ Е изобразено"
 
-#: tools/imagingplanner.cpp:3505 tools/imagingplanner.cpp:3510
+#: tools/imagingplanner.cpp:3470 tools/imagingplanner.cpp:3475
 #, kde-format
 msgid "Mark %1 as already imaged"
 msgstr "Маркиране на %1 като вече изобразено"
 
-#: tools/imagingplanner.cpp:3514 tools/imagingplanner.cpp:3518
+#: tools/imagingplanner.cpp:3479 tools/imagingplanner.cpp:3483
 #, kde-format
 msgid "Un-pick %1"
 msgstr "Отменете избора на %1"
 
-#: tools/imagingplanner.cpp:3515 tools/imagingplanner.cpp:3520
+#: tools/imagingplanner.cpp:3480 tools/imagingplanner.cpp:3485
 #, kde-format
 msgid "Pick %1"
 msgstr "Избиране на %1"
 
-#: tools/imagingplanner.cpp:3525 tools/imagingplanner.cpp:3530
+#: tools/imagingplanner.cpp:3490 tools/imagingplanner.cpp:3495
 #, kde-format
 msgid "Stop ignoring %1"
 msgstr "Спиране на игнориране на %1"
 
-#: tools/imagingplanner.cpp:3526 tools/imagingplanner.cpp:3532
+#: tools/imagingplanner.cpp:3491 tools/imagingplanner.cpp:3497
 #, kde-format
 msgid "Ignore %1"
 msgstr "Игнориране на %1"
 
-#: tools/imagingplanner.cpp:3535
+#: tools/imagingplanner.cpp:3500
 #, kde-format
 msgid "Center %1 on SkyMap"
 msgstr "Центриране на %1 върху небесната карта"
 
-#: tools/imagingplanner.cpp:3537
+#: tools/imagingplanner.cpp:3502
 #, kde-format
 msgid ""
 "Screenshot some image of %1, plate-solve it, and temporarily place it on the "
@@ -84724,60 +84722,60 @@ msgstr ""
 "Направете екранна снимка на изображение на %1, разрешете го и го поставете "
 "временно върху SkyMap"
 
-#: tools/imagingplanner.cpp:3677
+#: tools/imagingplanner.cpp:3642
 #, kde-format
 msgid "Successfully marked %1 objects as read"
 msgstr "Успешно маркирани %1 обекти като прочетени"
 
-#: tools/imagingplanner.cpp:3679
+#: tools/imagingplanner.cpp:3644
 #, kde-format
 msgid "Empty file"
 msgstr "Празен файл"
 
-#: tools/imagingplanner.cpp:3688
+#: tools/imagingplanner.cpp:3653
 #, kde-format
 msgid "Failed marking all of these objects imaged: %1"
 msgstr "Неуспешно маркиране на всички тези изобразени обекти: %1"
 
-#: tools/imagingplanner.cpp:3690
+#: tools/imagingplanner.cpp:3655
 #, kde-format
 msgid "Failed marking %1 objects imaged, including: %2"
 msgstr "Неуспешно маркиране на %1 изобразени обекти, включително: %2"
 
-#: tools/imagingplanner.cpp:3692
+#: tools/imagingplanner.cpp:3657
 #, kde-format
 msgid "Succeeded marking %1 objects imaged. Failed with %2: %3"
 msgstr "Маркирането на %1 обекта бе успешно. Неуспешно с %2: %3"
 
-#: tools/imagingplanner.cpp:3695
+#: tools/imagingplanner.cpp:3660
 #, kde-format
 msgid "Succeeded marking %1 objects imaged. Failed with %2 including these: %3"
 msgstr ""
 "Маркирането на %1 обекта бе успешно. Неуспешно с %2, включително тези: %3"
 
-#: tools/imagingplanner.cpp:3701 tools/imagingplanner.cpp:3951
+#: tools/imagingplanner.cpp:3666 tools/imagingplanner.cpp:3916
 #, kde-format
 msgid "Sorry, couldn't open file: \"%1\""
 msgstr "За съжаление не можа да се отворя файл: \"%1\""
 
-#: tools/imagingplanner.cpp:3815
+#: tools/imagingplanner.cpp:3780
 #, kde-format
 msgid "Sorry, catalog file doesn't exist: \"%1\""
 msgstr "За съжаление каталожният файл не съществува: \"%1\""
 
-#: tools/imagingplanner.cpp:3936
+#: tools/imagingplanner.cpp:3901
 #, kde-format
 msgid "%1/%2: Adding %3"
 msgstr "%1/%2: Добавяне на %3"
 
-#: tools/imagingplanner.cpp:4019
+#: tools/imagingplanner.cpp:3984
 #, fuzzy, kde-format
 #| msgid "OK"
 msgctxt "@action:button"
 msgid "OK"
 msgstr "Добре"
 
-#: tools/imagingplanner.cpp:4020
+#: tools/imagingplanner.cpp:3985
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgctxt "@action:button"
@@ -84792,7 +84790,7 @@ msgstr "Търсене на обект в таблицата."
 
 #. i18n: ectx: property (placeholderText), widget (QTextEdit, SearchText)
 #. i18n: ectx: property (title), widget (QGroupBox, ObjectBox)
-#: tools/imagingplanner.ui:103 tools/wutdialog.ui:397
+#: tools/imagingplanner.ui:102 tools/wutdialog.ui:397
 #, kde-format
 msgid "Object Name"
 msgstr "Име на обект"
@@ -84810,31 +84808,31 @@ msgid "Back one day"
 msgstr "Обратно един ден"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, DateEdit)
-#: tools/imagingplanner.ui:319
+#: tools/imagingplanner.ui:318
 #, kde-format
 msgid "dd/MM/yy"
 msgstr "дд/мм/гг"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, forwardOneDay)
-#: tools/imagingplanner.ui:347
+#: tools/imagingplanner.ui:346
 #, kde-format
 msgid "Forward one day"
 msgstr "Напред един ден"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, optionsButton)
-#: tools/imagingplanner.ui:395
+#: tools/imagingplanner.ui:393
 #, kde-format
 msgid "Open options menu."
 msgstr "Отваряне на менюто с опции."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, helpButton)
-#: tools/imagingplanner.ui:421
+#: tools/imagingplanner.ui:418
 #, kde-format
 msgid "Open web documentation."
 msgstr "Отваряне на уеб документация."
 
 #. i18n: ectx: property (text), widget (QLabel, DevelLabel)
-#: tools/imagingplanner.ui:445
+#: tools/imagingplanner.ui:441
 #, kde-format
 msgid ""
 "\n"
@@ -84845,40 +84843,40 @@ msgstr ""
 "                 Разработване на каталог:\n"
 "              "
 
-#. i18n: ectx: property (text), widget (QPushButton, DevelDownsampleButton)
-#: tools/imagingplanner.ui:464
-#, fuzzy, kde-format
-#| msgid "DownSample"
-msgid "Downsample"
-msgstr "Намаляване на дискретизацията"
-
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelDownsampleButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckTargetsButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckCatalogButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckTargetsPrevButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckTargetsNextButton)
-#: tools/imagingplanner.ui:467 tools/imagingplanner.ui:489
-#: tools/imagingplanner.ui:511 tools/imagingplanner.ui:536
-#: tools/imagingplanner.ui:568
+#: tools/imagingplanner.ui:460 tools/imagingplanner.ui:482
+#: tools/imagingplanner.ui:504 tools/imagingplanner.ui:532
+#: tools/imagingplanner.ui:563
 #, kde-format
 msgid "For catalog development"
 msgstr "За разработване на каталог"
 
+#. i18n: ectx: property (text), widget (QPushButton, DevelDownsampleButton)
+#: tools/imagingplanner.ui:463
+#, fuzzy, kde-format
+#| msgid "DownSample"
+msgid "Downsample"
+msgstr "Намаляване на дискретизацията"
+
 #. i18n: ectx: property (text), widget (QPushButton, DevelCheckTargetsButton)
-#: tools/imagingplanner.ui:486
+#: tools/imagingplanner.ui:485
 #, fuzzy, kde-format
 #| msgid "Check URL"
 msgid "Check"
 msgstr "Проверка на адрес"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesEditButton)
-#: tools/imagingplanner.ui:713
+#: tools/imagingplanner.ui:707
 #, kde-format
 msgid "Create/Edit some user notes for this object"
 msgstr "Създаване/редактиране на някои потребителски бележки за този обект"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesDoneButton)
-#: tools/imagingplanner.ui:745
+#: tools/imagingplanner.ui:738
 #, kde-format
 msgid "Done creating/editing some user notes for this object"
 msgstr ""
@@ -84886,61 +84884,49 @@ msgstr ""
 "този обект"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesOpenLink)
-#: tools/imagingplanner.ui:777
+#: tools/imagingplanner.ui:769
 #, kde-format
 msgid "Open a browser with the 1st link in this note."
 msgstr "Отваряне на браузър с първата връзка в тази бележка."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesOpenLink2)
-#: tools/imagingplanner.ui:809
+#: tools/imagingplanner.ui:800
 #, kde-format
 msgid "Open a browser with the 2nd link in this note."
 msgstr "Отваряне на браузър с втората връзка в тази бележка."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesOpenLink3)
-#: tools/imagingplanner.ui:841
+#: tools/imagingplanner.ui:831
 #, kde-format
 msgid "Open a browser with the 3rd link in this note."
 msgstr "Отваряне на браузър с 3-тата връзка в тази бележка."
 
 #. i18n: ectx: property (text), widget (QLabel, userNotesLabel)
-#: tools/imagingplanner.ui:867
+#: tools/imagingplanner.ui:856
 #, kde-format
 msgid "Note:"
 msgstr "Забележка:"
 
 #. i18n: ectx: property (placeholderText), widget (QTextEdit, userNotesEdit)
-#: tools/imagingplanner.ui:893
+#: tools/imagingplanner.ui:888
 #, kde-format
 msgid "Enter notes here"
 msgstr "Въведете бележки тук"
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideAltitudeGraphB)
-#: tools/imagingplanner.ui:958
-#, kde-format
-msgid "Minimize the altitude vs time graph."
-msgstr "Минимизиране на графиката надморска височина спрямо време."
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, showAltitudeGraphB)
-#: tools/imagingplanner.ui:1053
-#, kde-format
-msgid "Maximize the altitude vs time graph."
-msgstr "Максимализиране на графиката височина спрямо време."
-
 #. i18n: ectx: property (toolTip), widget (QLabel, HiddenAltitudeGraphLabel)
-#: tools/imagingplanner.ui:1085
+#: tools/imagingplanner.ui:1013
 #, kde-format
 msgid "Altitude vs Time graph."
 msgstr "Графика надморска височина срещу време."
 
 #. i18n: ectx: property (text), widget (QLabel, HiddenAltitudeGraphLabel)
-#: tools/imagingplanner.ui:1088
+#: tools/imagingplanner.ui:1016
 #, kde-format
 msgid "Altitude vs Time graph"
 msgstr "Графика надморска височина срещу време"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, useArtificialHorizon)
-#: tools/imagingplanner.ui:1128
+#: tools/imagingplanner.ui:1056
 #, kde-format
 msgid ""
 "<html><head/><body><p>Use the system's artificial horizon for calculating "
@@ -84950,14 +84936,14 @@ msgstr ""
 "изчисляване на часовете за изображения.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useArtificialHorizon)
-#: tools/imagingplanner.ui:1131
+#: tools/imagingplanner.ui:1059
 #, kde-format
 msgid "Artificial horizon"
 msgstr "Изкуствен хоризонт"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, minAltitudeLabel)
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, minAltitude)
-#: tools/imagingplanner.ui:1144 tools/imagingplanner.ui:1166
+#: tools/imagingplanner.ui:1072 tools/imagingplanner.ui:1094
 #, kde-format
 msgid ""
 "For imaging hours calculation, object must be at least at this altitude (and "
@@ -84967,13 +84953,13 @@ msgstr ""
 "надморска височина (и над всеки използван изкуствен хоризонт)."
 
 #. i18n: ectx: property (text), widget (QLabel, minAltitudeLabel)
-#: tools/imagingplanner.ui:1147
+#: tools/imagingplanner.ui:1075
 #, kde-format
 msgid "Min alt"
 msgstr "Мин. алт"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, minMoonLabel)
-#: tools/imagingplanner.ui:1191
+#: tools/imagingplanner.ui:1119
 #, kde-format
 msgid ""
 "<html><head/><body><p>For imaging hours calculations, object must be at "
@@ -84985,14 +84971,14 @@ msgstr ""
 "под височината във 2-ро поле.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, minMoonLabel)
-#: tools/imagingplanner.ui:1194
+#: tools/imagingplanner.ui:1122
 #, fuzzy, kde-format
 #| msgid "Moon"
 msgid "Moon:"
 msgstr "Луна"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, minMoon)
-#: tools/imagingplanner.ui:1213
+#: tools/imagingplanner.ui:1141
 #, fuzzy, kde-format
 #| msgid ""
 #| "For imaging hours calculation, object must be at least this far from the "
@@ -85006,14 +84992,14 @@ msgstr ""
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, minMoon)
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, maxMoonAltitude)
-#: tools/imagingplanner.ui:1216 tools/imagingplanner.ui:1235
+#: tools/imagingplanner.ui:1144 tools/imagingplanner.ui:1163
 #, fuzzy, kde-format
 #| msgid "°C"
 msgid "°"
 msgstr "°C"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, maxMoonAltitude)
-#: tools/imagingplanner.ui:1232
+#: tools/imagingplanner.ui:1160
 #, fuzzy, kde-format
 #| msgid ""
 #| "<html><head/><body><p>Plot the mount's hour angle value.</p></body></html>"
@@ -85024,29 +85010,23 @@ msgstr ""
 "<html><head/><body><p>Показване на стойността на часовия ъгъл на "
 "монтировката.</p></body></html>"
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideAstrobinDetailsButton)
-#: tools/imagingplanner.ui:1307
-#, kde-format
-msgid "Minimize the Astrobin search details section"
-msgstr "Минимизиране на секцията с подробности за търсенето на Astrobin"
-
 #. i18n: ectx: property (toolTip), widget (QLabel, SearchLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, SearchLabel2)
-#: tools/imagingplanner.ui:1339 tools/imagingplanner.ui:1670
+#: tools/imagingplanner.ui:1242 tools/imagingplanner.ui:1579
 #, kde-format
 msgid "Select a button to search for the selected object on the internet."
 msgstr "Изберете бутон за търсене на избрания обект в интернет."
 
 #. i18n: ectx: property (text), widget (QLabel, SearchLabel)
 #. i18n: ectx: property (text), widget (QLabel, SearchLabel2)
-#: tools/imagingplanner.ui:1342 tools/imagingplanner.ui:1673
+#: tools/imagingplanner.ui:1245 tools/imagingplanner.ui:1582
 #, kde-format
 msgid "Search"
 msgstr "Търсене"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, astrobinButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, astrobinButton2)
-#: tools/imagingplanner.ui:1366 tools/imagingplanner.ui:1697
+#: tools/imagingplanner.ui:1275 tools/imagingplanner.ui:1612
 #, kde-format
 msgid ""
 "Search Astrobin for the selected object using the search constraints in this "
@@ -85057,48 +85037,48 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, astrobinButton)
 #. i18n: ectx: property (text), widget (QPushButton, astrobinButton2)
-#: tools/imagingplanner.ui:1369 tools/imagingplanner.ui:1700
+#: tools/imagingplanner.ui:1278 tools/imagingplanner.ui:1615
 #, kde-format
 msgid "Astrobin"
 msgstr "Astrobin"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchWikipedia)
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchWikipedia2)
-#: tools/imagingplanner.ui:1393 tools/imagingplanner.ui:1724
+#: tools/imagingplanner.ui:1308 tools/imagingplanner.ui:1645
 #, kde-format
 msgid "Search Wikipedia for the selected object."
 msgstr "Търсене в Wikipedia за избрания обект."
 
 #. i18n: ectx: property (text), widget (QPushButton, searchWikipedia)
 #. i18n: ectx: property (text), widget (QPushButton, searchWikipedia2)
-#: tools/imagingplanner.ui:1396 tools/imagingplanner.ui:1727
+#: tools/imagingplanner.ui:1311 tools/imagingplanner.ui:1648
 #, kde-format
 msgid "Wikipedia"
 msgstr "Wikipedia"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSpecialWebPageImages)
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSpecialWebPageImages2)
-#: tools/imagingplanner.ui:1426 tools/imagingplanner.ui:1757
+#: tools/imagingplanner.ui:1341 tools/imagingplanner.ui:1678
 #, kde-format
 msgid "Search the Professor Seligman online site for NGC/IC images."
 msgstr "Потърсете в онлайн сайта на професор Селигман за NGC/IC изображения."
 
 #. i18n: ectx: property (text), widget (QPushButton, searchSpecialWebPageImages)
 #. i18n: ectx: property (text), widget (QPushButton, searchSpecialWebPageImages2)
-#: tools/imagingplanner.ui:1429 tools/imagingplanner.ui:1760
+#: tools/imagingplanner.ui:1344 tools/imagingplanner.ui:1681
 #, kde-format
 msgid "NGC/IC"
 msgstr "NGC/IC"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSimbad)
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSimbad2)
-#: tools/imagingplanner.ui:1453 tools/imagingplanner.ui:1784
+#: tools/imagingplanner.ui:1374 tools/imagingplanner.ui:1711
 #, kde-format
 msgid "Search Simbad."
 msgstr "Търсете Simbad."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, AstrobinAward)
-#: tools/imagingplanner.ui:1463
+#: tools/imagingplanner.ui:1386
 #, kde-format
 msgid ""
 "<html><head/><body><p>Required one of the Astrobin awards when searching "
@@ -85108,45 +85088,32 @@ msgstr ""
 "изображения на Astrobin.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, AstrobinAward)
-#: tools/imagingplanner.ui:1466
+#: tools/imagingplanner.ui:1389
 #, kde-format
 msgid "Awards Required"
 msgstr "Задължителни награди"
 
 #. i18n: ectx: property (text), widget (QLabel, radiusLabel)
-#: tools/imagingplanner.ui:1485
+#: tools/imagingplanner.ui:1410
 #, kde-format
 msgid "Radius:"
 msgstr "Радиус:"
 
 #. i18n: ectx: property (text), widget (QLabel, minRadiusLabel)
-#: tools/imagingplanner.ui:1500
+#: tools/imagingplanner.ui:1423
 #, kde-format
 msgid "Min:"
 msgstr "Мин.:"
 
 #. i18n: ectx: property (text), widget (QLabel, maxRadiusLabel)
-#: tools/imagingplanner.ui:1548
+#: tools/imagingplanner.ui:1469
 #, kde-format
 msgid "Max:"
 msgstr "Макс."
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, showAstrobinDetailsButton)
-#. i18n: ectx: property (toolTip), widget (QPushButton, showFilterTypesButton)
-#: tools/imagingplanner.ui:1638 tools/imagingplanner.ui:2248
-#, kde-format
-msgid "Maximize the Astrobin search details section"
-msgstr "Максимализиране на секцията с подробности за търсенето на Astrobin"
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideFilterTypesButton)
-#: tools/imagingplanner.ui:1850
-#, kde-format
-msgid "Minimize the Filters section"
-msgstr "Минимизиране на раздела Филтри"
-
 #. i18n: ectx: property (toolTip), widget (QLabel, FiltersLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, FiltersLabel2)
-#: tools/imagingplanner.ui:1876 tools/imagingplanner.ui:2280
+#: tools/imagingplanner.ui:1788 tools/imagingplanner.ui:2177
 #, kde-format
 msgid ""
 "Constrain the list of object on the left by the filters in this section."
@@ -85154,14 +85121,14 @@ msgstr "Ограничаване на списъка с обекти отляв�
 
 #. i18n: ectx: property (text), widget (QLabel, FiltersLabel)
 #. i18n: ectx: property (text), widget (QLabel, FiltersLabel2)
-#: tools/imagingplanner.ui:1879 tools/imagingplanner.ui:2283
+#: tools/imagingplanner.ui:1791 tools/imagingplanner.ui:2180
 #, kde-format
 msgid "Filters"
 msgstr "Филтри"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, minHoursLabel)
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, minHours)
-#: tools/imagingplanner.ui:1892 tools/imagingplanner.ui:1911
+#: tools/imagingplanner.ui:1804 tools/imagingplanner.ui:1823
 #, kde-format
 msgid ""
 "Objects are only shown if they can be imaged for at least this many hours."
@@ -85170,13 +85137,13 @@ msgstr ""
 "много часове."
 
 #. i18n: ectx: property (text), widget (QLabel, minHoursLabel)
-#: tools/imagingplanner.ui:1898
+#: tools/imagingplanner.ui:1810
 #, kde-format
 msgid "Min Hours:"
 msgstr "Мин. часове:"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, OpenClusterCB)
-#: tools/imagingplanner.ui:1927
+#: tools/imagingplanner.ui:1839
 #, kde-format
 msgid ""
 "<html><head/><body><p>Hide open clusters if unchecked.</p></body></html>"
@@ -85185,13 +85152,13 @@ msgstr ""
 "body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, OpenClusterCB)
-#: tools/imagingplanner.ui:1930
+#: tools/imagingplanner.ui:1842
 #, kde-format
 msgid "Open Cl"
 msgstr "Open Cl"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, NebulaCB)
-#: tools/imagingplanner.ui:1937
+#: tools/imagingplanner.ui:1849
 #, kde-format
 msgid "<html><head/><body><p>Hide nebulae if unchecked.</p></body></html>"
 msgstr ""
@@ -85199,7 +85166,7 @@ msgstr ""
 "html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, GlobularClusterCB)
-#: tools/imagingplanner.ui:1947
+#: tools/imagingplanner.ui:1859
 #, kde-format
 msgid ""
 "<html><head/><body><p>Hide globular clusters if unchecked.</p></body></html>"
@@ -85208,7 +85175,7 @@ msgstr ""
 "p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, PlanetaryCB)
-#: tools/imagingplanner.ui:1957
+#: tools/imagingplanner.ui:1869
 #, kde-format
 msgid ""
 "<html><head/><body><p>Hide planetary nebulae if unchecked.</p></body></html>"
@@ -85216,8 +85183,15 @@ msgstr ""
 "<html><head/><body><p>Скриване на планетарните мъглявини, ако няма отметка.</"
 "p></body></html>"
 
+#. i18n: ectx: property (text), widget (QCheckBox, PlanetaryCB)
+#: tools/imagingplanner.ui:1872
+#, fuzzy, kde-format
+#| msgid "N"
+msgid "PN"
+msgstr "С"
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, SupernovaRemnantCB)
-#: tools/imagingplanner.ui:1967
+#: tools/imagingplanner.ui:1879
 #, kde-format
 msgid ""
 "<html><head/><body><p>Hide supernova remnants if unchecked.</p></body></html>"
@@ -85226,7 +85200,7 @@ msgstr ""
 "отметнато.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, GalaxyCB)
-#: tools/imagingplanner.ui:1977
+#: tools/imagingplanner.ui:1889
 #, kde-format
 msgid "<html><head/><body><p>Hide galaxies if unchecked.</p></body></html>"
 msgstr ""
@@ -85234,7 +85208,7 @@ msgstr ""
 "html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, GalaxyClusterCB)
-#: tools/imagingplanner.ui:1987
+#: tools/imagingplanner.ui:1899
 #, kde-format
 msgid ""
 "<html><head/><body><p>Hide galaxy clusters if unchecked.</p></body></html>"
@@ -85243,21 +85217,28 @@ msgstr ""
 "p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, GalaxyClusterCB)
-#: tools/imagingplanner.ui:1990
+#: tools/imagingplanner.ui:1902
 #, kde-format
 msgid "Galaxy Cl"
 msgstr "Galaxy Cl"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, DarkNebulaCB)
-#: tools/imagingplanner.ui:1997
+#: tools/imagingplanner.ui:1914
 #, kde-format
 msgid "<html><head/><body><p>Hide dark nebulae if unchecked.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Скриване на тъмни мъглявини, ако няма отметка.</p></"
 "body></html>"
 
+#. i18n: ectx: property (text), widget (QCheckBox, DarkNebulaCB)
+#: tools/imagingplanner.ui:1917
+#, fuzzy, kde-format
+#| msgid "Dark Neb"
+msgid "DarkNeb"
+msgstr "Тъмно Неб"
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, OtherCB)
-#: tools/imagingplanner.ui:2007
+#: tools/imagingplanner.ui:1924
 #, kde-format
 msgid ""
 "<html><head/><body><p>Hide other object types if unchecked.</p></body></html>"
@@ -85266,7 +85247,7 @@ msgstr ""
 "p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, pickedCB)
-#: tools/imagingplanner.ui:2024
+#: tools/imagingplanner.ui:1941
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that are marked picked (don't show "
@@ -85276,7 +85257,7 @@ msgstr ""
 "(без показване на тези, които не са избрани).</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notPickedCB)
-#: tools/imagingplanner.ui:2034
+#: tools/imagingplanner.ui:1951
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that are not marked picked (don't "
@@ -85286,13 +85267,13 @@ msgstr ""
 "избрани (без показване на тези, които са избрани).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notPickedCB)
-#: tools/imagingplanner.ui:2037
+#: tools/imagingplanner.ui:1954
 #, kde-format
 msgid "Not Picked"
 msgstr "Не избрано"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCarePickedCB)
-#: tools/imagingplanner.ui:2044
+#: tools/imagingplanner.ui:1961
 #, kde-format
 msgid ""
 "<html><head/><body><p>Object display doesn't depend on whether objects are "
@@ -85305,14 +85286,14 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, dontCareImagedCB)
 #. i18n: ectx: property (text), widget (QCheckBox, dontCareIgnoredCB)
 #. i18n: ectx: property (text), widget (QCheckBox, dontCareKeywordCB)
-#: tools/imagingplanner.ui:2047 tools/imagingplanner.ui:2077
-#: tools/imagingplanner.ui:2134 tools/imagingplanner.ui:2164
+#: tools/imagingplanner.ui:1964 tools/imagingplanner.ui:1994
+#: tools/imagingplanner.ui:2051 tools/imagingplanner.ui:2081
 #, kde-format
 msgid "Don't care"
 msgstr "Няма значение"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, imagedCB)
-#: tools/imagingplanner.ui:2054
+#: tools/imagingplanner.ui:1971
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that are marked imaged (and don't "
@@ -85323,7 +85304,7 @@ msgstr ""
 "</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notImagedCB)
-#: tools/imagingplanner.ui:2064
+#: tools/imagingplanner.ui:1981
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that are not marked imaged (and don't "
@@ -85334,13 +85315,13 @@ msgstr ""
 "p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notImagedCB)
-#: tools/imagingplanner.ui:2067
+#: tools/imagingplanner.ui:1984
 #, kde-format
 msgid "Not imaged"
 msgstr "Не е изобразено"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCareImagedCB)
-#: tools/imagingplanner.ui:2074
+#: tools/imagingplanner.ui:1991
 #, kde-format
 msgid ""
 "<html><head/><body><p>Object display doesn't depend on whether objects are "
@@ -85350,7 +85331,7 @@ msgstr ""
 "са маркирани преди изобразени или не.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, loadImagedB)
-#: tools/imagingplanner.ui:2101
+#: tools/imagingplanner.ui:2018
 #, kde-format
 msgid ""
 "Load a file listing the names of already imaged objects--one name per line. "
@@ -85360,13 +85341,15 @@ msgstr ""
 "име на ред. Това добавя към списъка с изобразени обекти, не ги замества."
 
 #. i18n: ectx: property (text), widget (QPushButton, loadImagedB)
-#: tools/imagingplanner.ui:2104
-#, kde-format
-msgid "Load Imaged"
-msgstr "Зареждане на изображението"
+#: tools/imagingplanner.ui:2021
+#, fuzzy, kde-format
+#| msgctxt "string from libindi, used in the config dialog"
+#| msgid "Load"
+msgid "Load"
+msgstr "Зареждане"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, ignoredCB)
-#: tools/imagingplanner.ui:2111
+#: tools/imagingplanner.ui:2028
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that have been ignored (and don't "
@@ -85376,7 +85359,7 @@ msgstr ""
 "показване на тези, които не са били игнорирани).</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notIgnoredCB)
-#: tools/imagingplanner.ui:2121
+#: tools/imagingplanner.ui:2038
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that have not been ignored (and don't "
@@ -85386,13 +85369,13 @@ msgstr ""
 "не показване на тези, които са били игнорирани).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notIgnoredCB)
-#: tools/imagingplanner.ui:2124
+#: tools/imagingplanner.ui:2041
 #, kde-format
 msgid "Not ignored"
 msgstr "Не се игнорира"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCareIgnoredCB)
-#: tools/imagingplanner.ui:2131
+#: tools/imagingplanner.ui:2048
 #, kde-format
 msgid ""
 "<html><head/><body><p>Object display doesn't depend on whether objects have "
@@ -85402,7 +85385,7 @@ msgstr ""
 "са били игнорирани или не.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, keywordCB)
-#: tools/imagingplanner.ui:2141
+#: tools/imagingplanner.ui:2058
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that have the (case-sensitive) "
@@ -85413,7 +85396,7 @@ msgstr ""
 "тези, които нямат).</p></body>< /html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notKeywordCB)
-#: tools/imagingplanner.ui:2151
+#: tools/imagingplanner.ui:2068
 #, kde-format
 msgid ""
 "<html><head/><body><p>Show the objects that don't have the (case-sensitive) "
@@ -85424,13 +85407,13 @@ msgstr ""
 "тези, които имат).</p></body> </html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notKeywordCB)
-#: tools/imagingplanner.ui:2154
+#: tools/imagingplanner.ui:2071
 #, kde-format
 msgid "Not keyword"
 msgstr "Не е ключова дума"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCareKeywordCB)
-#: tools/imagingplanner.ui:2161
+#: tools/imagingplanner.ui:2078
 #, kde-format
 msgid ""
 "<html><head/><body><p>Object display doesn't depend on whether or not "
@@ -85440,7 +85423,7 @@ msgstr ""
 "имат или не ключовата дума в своите бележки.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QTextEdit, keywordEdit)
-#: tools/imagingplanner.ui:2182
+#: tools/imagingplanner.ui:2099
 #, kde-format
 msgid ""
 "Enter the (case-sensitive) keyword to be used for the checkboxes to the left."
@@ -85449,43 +85432,32 @@ msgstr ""
 "използва за квадратчетата за отметка вляво."
 
 #. i18n: ectx: property (placeholderText), widget (QTextEdit, keywordEdit)
-#: tools/imagingplanner.ui:2185
-#, kde-format
-msgid "Enter keyword here"
-msgstr "Въведете ключова дума тук"
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideImageButton)
-#: tools/imagingplanner.ui:2343
-#, kde-format
-msgid "Minimize the image section"
-msgstr "Минимизиране на секцията с изображение"
+#: tools/imagingplanner.ui:2102
+#, fuzzy, kde-format
+#| msgid "Keyword"
+msgid "keyword"
+msgstr "Ключова дума"
 
 #. i18n: ectx: property (text), widget (QLabel, ImageFrameLabel)
 #. i18n: ectx: property (text), widget (QLabel, ImageFrameLabel2)
-#: tools/imagingplanner.ui:2369 tools/imagingplanner.ui:2556
+#: tools/imagingplanner.ui:2236 tools/imagingplanner.ui:2396
 #, kde-format
 msgid "Catalog Image"
 msgstr "Изображение на каталог"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, LoadCatalogButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, LoadCatalogButton2)
-#: tools/imagingplanner.ui:2407 tools/imagingplanner.ui:2588
+#: tools/imagingplanner.ui:2274 tools/imagingplanner.ui:2428
 #, kde-format
 msgid "Load a new catalog"
 msgstr "Зареждане на  нов каталог"
 
 #. i18n: ectx: property (text), widget (QPushButton, LoadCatalogButton)
 #. i18n: ectx: property (text), widget (QPushButton, LoadCatalogButton2)
-#: tools/imagingplanner.ui:2410 tools/imagingplanner.ui:2591
+#: tools/imagingplanner.ui:2277 tools/imagingplanner.ui:2431
 #, kde-format
 msgid "Load Catalog"
 msgstr "Зареждане на каталог"
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, showImageButton)
-#: tools/imagingplanner.ui:2530
-#, kde-format
-msgid "Maximize the image section"
-msgstr "Максимализиране на секцията с изображение"
 
 #: tools/imagingplanneroptions.cpp:25
 #, kde-format
@@ -90129,6 +90101,33 @@ msgstr "Цвят на фона:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Задаване на цвета на фона."
+
+#~ msgid "Minimize the altitude vs time graph."
+#~ msgstr "Минимизиране на графиката надморска височина спрямо време."
+
+#~ msgid "Maximize the altitude vs time graph."
+#~ msgstr "Максимализиране на графиката височина спрямо време."
+
+#~ msgid "Minimize the Astrobin search details section"
+#~ msgstr "Минимизиране на секцията с подробности за търсенето на Astrobin"
+
+#~ msgid "Maximize the Astrobin search details section"
+#~ msgstr "Максимализиране на секцията с подробности за търсенето на Astrobin"
+
+#~ msgid "Minimize the Filters section"
+#~ msgstr "Минимизиране на раздела Филтри"
+
+#~ msgid "Load Imaged"
+#~ msgstr "Зареждане на изображението"
+
+#~ msgid "Enter keyword here"
+#~ msgstr "Въведете ключова дума тук"
+
+#~ msgid "Minimize the image section"
+#~ msgstr "Минимизиране на секцията с изображение"
+
+#~ msgid "Maximize the image section"
+#~ msgstr "Максимализиране на секцията с изображение"
 
 #~ msgid ""
 #~ "<html><head/><body><p>Averaged HFR value from the last frame.</p></body></"

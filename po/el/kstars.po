@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-08-04 02:12+0000\n"
+"POT-Creation-Date: 2025-08-15 02:16+0000\n"
 "PO-Revision-Date: 2013-02-16 13:09+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -615,7 +615,7 @@ msgstr "Ακύρωση"
 #: ekos/align/opsastrometryindexfiles.cpp:736
 #: ekos/align/opsastrometryindexfiles.cpp:746 ekos/analyze/analyze.cpp:140
 #: ekos/analyze/analyze.cpp:142 ekos/capture/sequencejob.cpp:24
-#: ekos/manager.cpp:1275 ekos/manager.cpp:1290 ekos/manager.cpp:1306
+#: ekos/manager.cpp:1276 ekos/manager.cpp:1291 ekos/manager.cpp:1307
 #: ekos/scheduler/scheduler.cpp:1632 fitsviewer/solveInfo.ui:86
 #: indi/indidome.cpp:23 indi/indidustcap.cpp:18 indi/indimount.cpp:32
 #: kstarsactions.cpp:505 kstarsactions.cpp:513 kstarsactions.cpp:523
@@ -741,7 +741,7 @@ msgctxt "Unknown cardinal / intercardinal direction"
 msgid "???"
 msgstr ""
 
-#: auxiliary/ksutils.cpp:1346
+#: auxiliary/ksutils.cpp:1347
 #, kde-format
 msgid ""
 "The selected Astrometry Index File Location:\n"
@@ -749,19 +749,19 @@ msgid ""
 " does not exist.  Do you want to make the directory?"
 msgstr ""
 
-#: auxiliary/ksutils.cpp:1349
+#: auxiliary/ksutils.cpp:1350
 #, fuzzy, kde-format
 #| msgid "Align"
 msgid "Make Astrometry Index File Directory?"
 msgstr "Στοίχιση"
 
-#: auxiliary/ksutils.cpp:1354
+#: auxiliary/ksutils.cpp:1355
 #, fuzzy, kde-format
 #| msgid "Align"
 msgid "The Default Astrometry Index File Location was created."
 msgstr "Στοίχιση"
 
-#: auxiliary/ksutils.cpp:1359
+#: auxiliary/ksutils.cpp:1360
 #, fuzzy, kde-format
 #| msgid "Align"
 msgid ""
@@ -769,45 +769,45 @@ msgid ""
 "to be created."
 msgstr "Στοίχιση"
 
-#: auxiliary/ksutils.cpp:1380 auxiliary/ksutils.cpp:1536
-#: auxiliary/ksutils.cpp:1601
+#: auxiliary/ksutils.cpp:1381 auxiliary/ksutils.cpp:1537
+#: auxiliary/ksutils.cpp:1602
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid "Astrometry Configuration File Read Error."
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
-#: auxiliary/ksutils.cpp:1394 auxiliary/ksutils.cpp:1579
-#: auxiliary/ksutils.cpp:1621
+#: auxiliary/ksutils.cpp:1395 auxiliary/ksutils.cpp:1580
+#: auxiliary/ksutils.cpp:1622
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
-#: auxiliary/ksutils.cpp:1667 fitsviewer/fitsdata.cpp:1572
+#: auxiliary/ksutils.cpp:1668 fitsviewer/fitsdata.cpp:1573
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
 "CR2/NEF to JPEG."
 msgstr ""
 
-#: auxiliary/ksutils.cpp:1678
+#: auxiliary/ksutils.cpp:1679
 #, fuzzy, kde-format
 #| msgid "Could not open file: %1"
 msgid "Cannot open %1: %2"
 msgstr "Αδύνατο το άνοιγμα του αρχείου: %1"
 
-#: auxiliary/ksutils.cpp:1686
+#: auxiliary/ksutils.cpp:1687
 #, kde-format
 msgid "Cannot unpack_thumb %1: %2"
 msgstr ""
 
-#: auxiliary/ksutils.cpp:1697
+#: auxiliary/ksutils.cpp:1698
 #, fuzzy, kde-format
 #| msgid "Cannot write to user log file"
 msgid "Cannot write %s %1: %2"
 msgstr "Αδυναμία εγγραφής στο αρχείο καταγραφής χρήστη"
 
-#: auxiliary/ksutils.cpp:1821 ekos/scheduler/framingassistantui.cpp:177
+#: auxiliary/ksutils.cpp:1822 ekos/scheduler/framingassistantui.cpp:177
 #: ekos/scheduler/framingassistantui.cpp:192
 #: ekos/scheduler/framingassistantui.cpp:903
 #: ekos/scheduler/framingassistantui.cpp:922 skyobjects/ksplanetbase.h:60
@@ -1101,7 +1101,7 @@ msgstr "Προβολέας ηλιακού συστήματος"
 #: skyobjects/satellite.cpp:1223 skyobjects/skyobject.cpp:287
 #: skyobjects/skypoint.cpp:434 skyqpainter.cpp:524 skyqpainter.cpp:548
 #: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:296
-#: tools/imagingplanner.cpp:1576 tools/jmoontool.cpp:106
+#: tools/imagingplanner.cpp:1541 tools/jmoontool.cpp:106
 #: tools/modcalcdaylength.ui:109 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:388 tools/modcalcplanets.ui:190
 #: tools/modcalcplanets.ui:614 tools/pvplotwidget.cpp:94
@@ -1178,8 +1178,8 @@ msgstr "Γη"
 #: skyobjects/skyobject.cpp:417 skyqpainter.cpp:525 skyqpainter.cpp:548
 #: skyqpainter.cpp:551 skyqpainter.cpp:573 tools/conjunctions.cpp:59
 #: tools/eclipsetool.cpp:29 tools/eclipsetool/lunareclipsehandler.h:58
-#: tools/imagingplanner.cpp:85 tools/imagingplanner.cpp:1551
-#: tools/imagingplanner.cpp:3097 tools/ksconjunct.cpp:75
+#: tools/imagingplanner.cpp:85 tools/imagingplanner.cpp:1516
+#: tools/imagingplanner.cpp:3062 tools/ksconjunct.cpp:75
 #: tools/modcalcdaylength.ui:453 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:392 tools/modcalcplanets.ui:185
 #: tools/modcalcplanets.ui:609 tools/whatsinteresting/wiview.cpp:612
@@ -2130,7 +2130,7 @@ msgstr "Κατάσταση"
 #: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:24
 #: ekos/ekos.h:20 ekos/ekos.h:71 ekos/ekos.h:118 ekos/ekos.h:138
 #: ekos/ekos.h:161 ekos/ekos.h:198 ekos/guide/guidestatewidget.ui:38
-#: ekos/manager.cpp:805 ekos/manager/guidemanager.cpp:135
+#: ekos/manager.cpp:806 ekos/manager/guidemanager.cpp:135
 #: ekos/manager/guidemanager.ui:117 ekos/scheduler/scheduler.cpp:1625
 #: ekos/scheduler/scheduler.cpp:2277 ekos/scheduler/scheduler.cpp:2502
 #: ekos/scheduler/scheduler.cpp:2510 ekos/scheduler/scheduler.cpp:2520
@@ -2775,7 +2775,7 @@ msgstr "Χωρίς περιήγηση"
 msgid "Show webpage about "
 msgstr "Εμφάνιση ιστοσελίδας σχετικά "
 
-#: dialogs/addlinkdialog.h:38 tools/imagingplanner.cpp:3242
+#: dialogs/addlinkdialog.h:38 tools/imagingplanner.cpp:3207
 #, kde-format
 msgid "object"
 msgstr "αντικείμενο"
@@ -3473,7 +3473,7 @@ msgstr "Εισαγωγή καταλόγου"
 
 #. i18n: ectx: property (text), widget (QPushButton, DevelCheckCatalogButton)
 #: dialogs/catalogsdbui.cpp:176 dialogs/catalogsdbui.cpp:196
-#: tools/imagingplanner.ui:508
+#: tools/imagingplanner.ui:507
 #, fuzzy, kde-format
 #| msgid "Catalogs"
 msgid "Catalog"
@@ -6746,7 +6746,7 @@ msgstr "Το αρχείο FITS αποθηκεύτηκε στο %1"
 
 #: ekos/align/align.cpp:2637 ekos/analyze/analyze.cpp:4136
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2098 ekos/mount/mount.cpp:765
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2105 ekos/mount/mount.cpp:765
 #: ekos/observatory/observatory.cpp:1042
 #: ekos/scheduler/schedulerprocess.cpp:3689
 #, kde-format
@@ -6928,18 +6928,18 @@ msgstr "δεύτερα του τόξου"
 msgid "Filter operation failed."
 msgstr "Βαθμονόμηση"
 
-#: ekos/align/align.cpp:3666 ekos/capture/camera.cpp:585
+#: ekos/align/align.cpp:3666 ekos/capture/camera.cpp:579
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr ""
 
 #: ekos/align/align.cpp:3673 ekos/auxiliary/buildfilteroffsets.cpp:466
-#: ekos/capture/camera.cpp:590
+#: ekos/capture/camera.cpp:584
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr ""
 
-#: ekos/align/align.cpp:3678 ekos/capture/camera.cpp:595
+#: ekos/align/align.cpp:3678 ekos/capture/camera.cpp:589
 #, fuzzy, kde-format
 #| msgid "Autofocus complete."
 msgid "Auto focus on filter change..."
@@ -10611,7 +10611,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, StartB)
 #: ekos/align/polaralignmentassistant.ui:810
 #: ekos/align/polaralignmentassistant.ui:813 ekos/auxiliary/darklibrary.ui:575
-#: ekos/manager.cpp:149 ekos/manager.cpp:252 ekos/manager.cpp:813
+#: ekos/manager.cpp:149 ekos/manager.cpp:252 ekos/manager.cpp:814
 #: ekos/observatory/observatorydomemodel.cpp:132
 #: ekos/observatory/observatorydomemodel.cpp:135
 #: fitsviewer/livestacking.ui:1272 kstarslite/qml/indi/INDIControlPanel.qml:166
@@ -10791,7 +10791,7 @@ msgstr "Αδυναμία διαγραφής του αρχείου: %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2303 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2246 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2253 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10800,7 +10800,7 @@ msgstr "Εστίαση"
 
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
-#: ekos/analyze/analyze.cpp:2304 ekos/manager.cpp:2202
+#: ekos/analyze/analyze.cpp:2304 ekos/manager.cpp:2209
 #: ekos/scheduler/framingassistant.ui:1276 ekos/scheduler/scheduler.ui:240
 #: fitsviewer/fitsviewer.cpp:562
 #, fuzzy, kde-format
@@ -10813,7 +10813,7 @@ msgstr "Στοίχιση"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2305 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2467
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2474
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -10829,7 +10829,7 @@ msgstr "Φέρβιου"
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_MountLogging)
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/analyze/analyze.cpp:2307 ekos/auxiliary/opslogs.ui:77
-#: ekos/auxiliary/opslogs.ui:413 ekos/manager.cpp:2392 ekos/manager.ui:778
+#: ekos/auxiliary/opslogs.ui:413 ekos/manager.cpp:2399 ekos/manager.ui:778
 #, fuzzy, kde-format
 msgid "Mount"
 msgstr "Πλήθος:"
@@ -13075,7 +13075,7 @@ msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσε
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2517
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2524
 #: ekos/observatory/observatory.ui:14
 #, fuzzy, kde-format
 msgid "Observatory"
@@ -14704,13 +14704,13 @@ msgstr ""
 msgid "Sky flats"
 msgstr "Ποιότητα JPEG"
 
-#: ekos/capture/camera.cpp:78 ekos/capture/camera.cpp:80
+#: ekos/capture/camera.cpp:72 ekos/capture/camera.cpp:74
 #, kde-format
 msgid "Capture Sequence Editor: %1"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, secLabel)
-#: ekos/capture/camera.cpp:89 ekos/capture/camera.ui:2768
+#: ekos/capture/camera.cpp:83 ekos/capture/camera.ui:2768
 #, fuzzy, kde-format
 #| msgctxt "second"
 #| msgid "sec"
@@ -14719,45 +14719,45 @@ msgstr "δεύτερο"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: ekos/capture/camera.cpp:90 ekos/capture/limits.ui:180
+#: ekos/capture/camera.cpp:84 ekos/capture/limits.ui:180
 #: ekos/guide/opsdither.ui:170 ekos/scheduler/opsalignmentsettings.ui:82
 #, fuzzy, kde-format
 #| msgid "Frame:"
 msgid "frames"
 msgstr "Καρέ:"
 
-#: ekos/capture/camera.cpp:139 ekos/capture/camera_jobs.cpp:258
+#: ekos/capture/camera.cpp:133 ekos/capture/camera_jobs.cpp:258
 #, fuzzy, kde-format
 #| msgid "Capture Image Sequence..."
 msgid "Add job to sequence queue"
 msgstr "Σύλληψη ακολουθίας εικόνων..."
 
-#: ekos/capture/camera.cpp:140 ekos/capture/camera_jobs.cpp:259
+#: ekos/capture/camera.cpp:134 ekos/capture/camera_jobs.cpp:259
 #, fuzzy, kde-format
 #| msgid "Capture Image Sequence..."
 msgid "Remove job from sequence queue"
 msgstr "Σύλληψη ακολουθίας εικόνων..."
 
-#: ekos/capture/camera.cpp:505
+#: ekos/capture/camera.cpp:499
 #, fuzzy, kde-format
 #| msgid "Download New Data..."
 msgid "Downloading..."
 msgstr "Λήψη νέων δεδομένων..."
 
-#: ekos/capture/camera.cpp:602
+#: ekos/capture/camera.cpp:596
 #, fuzzy, kde-format
 #| msgid "FITS file saved to %1"
 msgid "Filter set to %1."
 msgstr "Το αρχείο FITS αποθηκεύτηκε στο %1"
 
-#: ekos/capture/camera.cpp:627
+#: ekos/capture/camera.cpp:621
 #, kde-format
 msgid ""
 "Warning: in-sequence focusing is selected but autofocus process was not "
 "started."
 msgstr ""
 
-#: ekos/capture/camera.cpp:630
+#: ekos/capture/camera.cpp:624
 #, kde-format
 msgid ""
 "Warning: temperature delta check is selected but autofocus process was not "
@@ -25160,40 +25160,40 @@ msgstr "Διαστάσεις:"
 msgid "Extension '%1': %2"
 msgstr ""
 
-#: ekos/manager.cpp:834
+#: ekos/manager.cpp:835
 #, fuzzy, kde-format
 #| msgid "Ekos"
 msgctxt "@title:window"
 msgid "Ekos"
 msgstr "Ekos"
 
-#: ekos/manager.cpp:982 ekos/manager.cpp:1007
+#: ekos/manager.cpp:983 ekos/manager.cpp:1008
 #, fuzzy, kde-format
 #| msgid "Ekos requires at least one CCD or Guider to operate."
 msgid "Ekos requires at least one Camera to operate."
 msgstr ""
 "Το Ekos χρειάζεται τουλάχιστον ένα CCD ή έναν Οδηγό για να να λειτουργήσει."
 
-#: ekos/manager.cpp:1070
+#: ekos/manager.cpp:1071
 #, kde-format
 msgid ""
 "Ekos detected that PTP Camera is running and may prevent a Canon or Nikon "
 "camera from connecting to Ekos. Do you want to quit PTP Camera now?"
 msgstr ""
 
-#: ekos/manager.cpp:1071
+#: ekos/manager.cpp:1072
 #, fuzzy, kde-format
 #| msgid "Camera"
 msgid "PTP Camera"
 msgstr "Φωτογραφική"
 
-#: ekos/manager.cpp:1085
+#: ekos/manager.cpp:1086
 #, fuzzy, kde-format
 #| msgid "Connecting INDI devices..."
 msgid "Starting INDI services..."
 msgstr "Σύνδεση συσκευών του INDI..."
 
-#: ekos/manager.cpp:1116
+#: ekos/manager.cpp:1117
 #, kde-format
 msgid ""
 "Ekos detected an instance of INDI server running. Do you wish to shut down "
@@ -25201,13 +25201,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, indiServerGroup)
-#: ekos/manager.cpp:1118 indi/opsindi.ui:248
+#: ekos/manager.cpp:1119 indi/opsindi.ui:248
 #, fuzzy, kde-format
 #| msgid "INDI Server:"
 msgid "INDI Server"
 msgstr "Εξυπηρετητής του INDI:"
 
-#: ekos/manager.cpp:1133
+#: ekos/manager.cpp:1134
 #, fuzzy, kde-format
 #| msgid "Connection to INDI server at host %1 with port %2 failed."
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
@@ -25215,41 +25215,41 @@ msgstr ""
 "Η σύνδεση με τον εξυπηρετητή του INDI στον υπολογιστή %1 με τη θύρα %2 "
 "απέτυχε."
 
-#: ekos/manager.cpp:1153
+#: ekos/manager.cpp:1154
 #, fuzzy, kde-format
 #| msgid "Name of the remote INDI focuser device."
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Όνομα απομακρυσμένης συσκευής εστιαστή του INDI"
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr ""
 
-#: ekos/manager.cpp:1170
+#: ekos/manager.cpp:1171
 #, fuzzy, kde-format
 #| msgid "Name of the remote INDI focuser device."
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "Όνομα απομακρυσμένης συσκευής εστιαστή του INDI"
 
-#: ekos/manager.cpp:1190
+#: ekos/manager.cpp:1191
 #, kde-format
 msgid "Warning: INDI Web Manager is not online."
 msgstr ""
 
-#: ekos/manager.cpp:1227
+#: ekos/manager.cpp:1228
 #, fuzzy, kde-format
 #| msgid "INDI services started. Please connect devices."
 msgid "INDI services started on port %1."
 msgstr "Οι υπηρεσίες του INDI ξεκίνησαν. Παρακαλώ συνδέστε τις συσκευές. "
 
-#: ekos/manager.cpp:1230
+#: ekos/manager.cpp:1231
 #, fuzzy, kde-format
 #| msgid "INDI services started. Please connect devices."
 msgid "INDI services started on port %1. Please connect devices."
 msgstr "Οι υπηρεσίες του INDI ξεκίνησαν. Παρακαλώ συνδέστε τις συσκευές. "
 
-#: ekos/manager.cpp:1235
+#: ekos/manager.cpp:1236
 #, fuzzy, kde-format
 #| msgid "INDI services started. Connection to %1 at %2 is successful."
 msgid ""
@@ -25259,31 +25259,31 @@ msgstr ""
 "Οι υπηρεσίες του INDI ξεκίνησαν. Η σύνδεση του %1 στο %2 πραγματοποιήθηκε με "
 "επιτυχία."
 
-#: ekos/manager.cpp:1266
+#: ekos/manager.cpp:1267
 #, fuzzy, kde-format
 #| msgid "Name of the remote INDI focuser device."
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Όνομα απομακρυσμένης συσκευής εστιαστή του INDI"
 
-#: ekos/manager.cpp:1268
+#: ekos/manager.cpp:1269
 #, fuzzy, kde-format
 #| msgid "Name of the remote INDI focuser device."
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Όνομα απομακρυσμένης συσκευής εστιαστή του INDI"
 
-#: ekos/manager.cpp:1281
+#: ekos/manager.cpp:1282
 #, fuzzy, kde-format
 #| msgid "Connect"
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "Σύνδεση"
 
-#: ekos/manager.cpp:1283
+#: ekos/manager.cpp:1284
 #, fuzzy, kde-format
 #| msgid "Name of the remote INDI focuser device."
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "Όνομα απομακρυσμένης συσκευής εστιαστή του INDI"
 
-#: ekos/manager.cpp:1346
+#: ekos/manager.cpp:1347
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25293,7 +25293,7 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1348
+#: ekos/manager.cpp:1349
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25305,7 +25305,7 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1376
+#: ekos/manager.cpp:1377
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25317,15 +25317,15 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1380 ekos/manager.cpp:1388 ekos/manager.cpp:1421
-#: ekos/manager.cpp:1429
+#: ekos/manager.cpp:1381 ekos/manager.cpp:1389 ekos/manager.cpp:1422
+#: ekos/manager.cpp:1430
 #, fuzzy, kde-format
 #| msgid "%1 star detected."
 #| msgid_plural "%1 stars detected."
 msgid "Ekos startup error"
 msgstr "Ανιχνεύθηκε %1 αστέρας."
 
-#: ekos/manager.cpp:1384
+#: ekos/manager.cpp:1385
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25337,7 +25337,7 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1417
+#: ekos/manager.cpp:1418
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25349,7 +25349,7 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1425
+#: ekos/manager.cpp:1426
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25361,33 +25361,33 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1483
+#: ekos/manager.cpp:1484
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "Σύνδεση συσκευών του INDI..."
 
-#: ekos/manager.cpp:1494
+#: ekos/manager.cpp:1495
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "Αποσύνδεση συσκευών του INDI..."
 
-#: ekos/manager.cpp:1533
+#: ekos/manager.cpp:1534
 #, kde-format
 msgid "INDI services stopped."
 msgstr "Οι υπηρεσίες του INDI διακόπηκαν."
 
-#: ekos/manager.cpp:1593
+#: ekos/manager.cpp:1594
 #, fuzzy, kde-format
 #| msgid "Remote devices established. Please connect devices."
 msgid "Remote devices established."
 msgstr "Οι απομακρυσμένες συσκευές εγκαταστάθηκαν. Παρακαλώ συνδέστε συσκευές."
 
-#: ekos/manager.cpp:1595
+#: ekos/manager.cpp:1596
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "Οι απομακρυσμένες συσκευές εγκαταστάθηκαν. Παρακαλώ συνδέστε συσκευές."
 
-#: ekos/manager.cpp:1659
+#: ekos/manager.cpp:1660
 #, fuzzy, kde-format
 #| msgid "Unable to completely establish remote devices. %1 device remaining."
 #| msgid_plural ""
@@ -25398,130 +25398,130 @@ msgid ""
 msgstr ""
 "Αδυναμία πλήρους εγκατάστασης απομακρυσμένων συσκευών. Απομένει %1 συσκευή."
 
-#: ekos/manager.cpp:1666
+#: ekos/manager.cpp:1667
 #, fuzzy, kde-format
 #| msgid "Disconnect"
 msgid "%1 is disconnected."
 msgstr "Αποσύνδεση"
 
-#: ekos/manager.cpp:1687 ekos/manager.cpp:1696 ekos/manager.cpp:1729
+#: ekos/manager.cpp:1688 ekos/manager.cpp:1697 ekos/manager.cpp:1730
 #: indi/indistd.cpp:716
 #, kde-format
 msgid "%1 is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1704
+#: ekos/manager.cpp:1705
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 filter is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1713
+#: ekos/manager.cpp:1714
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 focuser is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1720
+#: ekos/manager.cpp:1721
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Rotator %1 is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1737
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 Weather is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1744
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 GPS is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1752
+#: ekos/manager.cpp:1753
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 Dust cap is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1760
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 Light box is online."
 msgstr "Το %1 είναι σε σύνδεση."
 
-#: ekos/manager.cpp:1911
+#: ekos/manager.cpp:1918
 #, kde-format
 msgid "%1 is offline."
 msgstr "Το %1 είναι εκτός σύνδεσης."
 
-#: ekos/manager.cpp:2150
+#: ekos/manager.cpp:2157
 #, fuzzy, kde-format
 #| msgid "CCD"
 msgctxt "Charge-Coupled Device"
 msgid "CCD"
 msgstr "CCD"
 
-#: ekos/manager.cpp:2534
+#: ekos/manager.cpp:2541
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "Η θύρα του Οδηγού από το %1 είναι έτοιμη."
 
-#: ekos/manager.cpp:2723
+#: ekos/manager.cpp:2730
 #, fuzzy, kde-format
 #| msgid "Are you sure you want to remove the %1 client?"
 msgid "Are you sure you want to delete the profile?"
 msgstr "Επιθυμείτε σίγουρα την αφαίρεση του πελάτη %1;"
 
-#: ekos/manager.cpp:2724
+#: ekos/manager.cpp:2731
 #, fuzzy, kde-format
 #| msgid "Config file"
 msgid "Confirm Delete"
 msgstr "Αρχείο ρύθμισης"
 
-#: ekos/manager.cpp:2776
+#: ekos/manager.cpp:2783
 #, kde-format
 msgid "Site location updated to %1."
 msgstr ""
 
-#: ekos/manager.cpp:2778
+#: ekos/manager.cpp:2785
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr ""
 
-#: ekos/manager.cpp:3051
+#: ekos/manager.cpp:3058
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3059
+#: ekos/manager.cpp:3066
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3087
+#: ekos/manager.cpp:3094
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3099
+#: ekos/manager.cpp:3106
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3824
+#: ekos/manager.cpp:3835
 #, kde-format
 msgid "Preview source set to external"
 msgstr ""
 
-#: ekos/manager.cpp:3831
+#: ekos/manager.cpp:3842
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr ""
 
-#: ekos/manager.cpp:3838
+#: ekos/manager.cpp:3849
 #, kde-format
 msgid "Received external preview file"
 msgstr ""
@@ -27012,13 +27012,6 @@ msgstr ""
 msgid "Drivers"
 msgstr "Οδηγός:"
 
-#. i18n: ectx: property (text), item, widget (QComboBox, guideTypeCombo)
-#: ekos/profileeditor.cpp:505 ekos/profileeditor.ui:254
-#, fuzzy, kde-format
-#| msgid "Interval:"
-msgid "Internal"
-msgstr "Χρονικό διάστημα:"
-
 #: ekos/profileeditor.cpp:703
 #, fuzzy, kde-format
 #| msgid "Artwork"
@@ -27194,6 +27187,13 @@ msgstr ""
 #| msgid "Local"
 msgid "&Local"
 msgstr "Τοπική"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, guideTypeCombo)
+#: ekos/profileeditor.ui:254
+#, fuzzy, kde-format
+#| msgid "Interval:"
+msgid "Internal"
+msgstr "Χρονικό διάστημα:"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, guideTypeCombo)
 #. i18n: ectx: property (text), widget (QRadioButton, usePHD2R)
@@ -27583,7 +27583,7 @@ msgstr "Ατίκ"
 
 #. i18n: ectx: property (text), widget (QPushButton, equipmentOtherB)
 #. i18n: ectx: property (text), widget (QCheckBox, OtherCB)
-#: ekos/profilewizard.ui:432 tools/imagingplanner.ui:2010
+#: ekos/profilewizard.ui:432 tools/imagingplanner.ui:1927
 #, fuzzy, kde-format
 #| msgctxt "Advanced URLs: description or category"
 #| msgid "Other"
@@ -29670,8 +29670,8 @@ msgstr "Ελάχιστο υψόμετρο:"
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, AstrobinMinRadius)
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, AstrobinMaxRadius)
 #: ekos/scheduler/scheduler.ui:1690 ekos/scheduler/scheduler.ui:1753
-#: ekos/scheduler/scheduler.ui:1795 tools/imagingplanner.ui:1169
-#: tools/imagingplanner.ui:1522 tools/imagingplanner.ui:1570
+#: ekos/scheduler/scheduler.ui:1795 tools/imagingplanner.ui:1097
+#: tools/imagingplanner.ui:1445 tools/imagingplanner.ui:1491
 #, kde-format
 msgid " °"
 msgstr ""
@@ -31144,7 +31144,7 @@ msgstr "Σφάλμα ανοίγματος αρχείου FITS (fits_get_img_para
 msgid "1D FITS images are not supported in KStars."
 msgstr "To KStars δεν υποστηρίζει εικόνες FITS 1D."
 
-#: fitsviewer/fitsdata.cpp:926 fitsviewer/fitsdata.cpp:1424
+#: fitsviewer/fitsdata.cpp:926 fitsviewer/fitsdata.cpp:1425
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr ""
@@ -31160,152 +31160,152 @@ msgstr ""
 msgid "Error reading image: %1"
 msgstr "Σφάλμα: Αδυναμία αποθήκευσης της εικόνας: %1 "
 
-#: fitsviewer/fitsdata.cpp:1323
+#: fitsviewer/fitsdata.cpp:1324
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "File contain no images"
 msgstr "Αποτυχία φόρτωσης της εικόνας"
 
-#: fitsviewer/fitsdata.cpp:1352
+#: fitsviewer/fitsdata.cpp:1353
 #, fuzzy, kde-format
 #| msgid "Autofocus in progress..."
 msgid "Sample format %1 is not supported."
 msgstr "Αυτόματη εστίαση σε εξέλιξη..."
 
-#: fitsviewer/fitsdata.cpp:1387
+#: fitsviewer/fitsdata.cpp:1388
 #, fuzzy, kde-format
 msgid "XISF file open error: "
 msgstr "Εγγραφή ορίων σημειώσεων"
 
-#: fitsviewer/fitsdata.cpp:1439
+#: fitsviewer/fitsdata.cpp:1440
 #, fuzzy, kde-format
 #| msgid "Error: Unable to save image: %1 "
 msgid "Error saving XISF image"
 msgstr "Σφάλμα: Αδυναμία αποθήκευσης της εικόνας: %1 "
 
-#: fitsviewer/fitsdata.cpp:1531 fitsviewer/fitsdata.cpp:1647
+#: fitsviewer/fitsdata.cpp:1532 fitsviewer/fitsdata.cpp:1648
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1586
+#: fitsviewer/fitsdata.cpp:1587
 #, fuzzy, kde-format
 #| msgid "Could not open file: %1"
 msgid "Cannot open file %1: %2"
 msgstr "Αδύνατο το άνοιγμα του αρχείου: %1"
 
-#: fitsviewer/fitsdata.cpp:1599
+#: fitsviewer/fitsdata.cpp:1600
 #, fuzzy, kde-format
 #| msgid "Could not open file: %1"
 msgid "Cannot open buffer: %1"
 msgstr "Αδύνατο το άνοιγμα του αρχείου: %1"
 
-#: fitsviewer/fitsdata.cpp:1610
+#: fitsviewer/fitsdata.cpp:1611
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1617
+#: fitsviewer/fitsdata.cpp:1618
 #, fuzzy, kde-format
 #| msgid "Cannot write to user log file"
 msgid "Cannot dcraw_process: %1"
 msgstr "Αδυναμία εγγραφής στο αρχείο καταγραφής χρήστη"
 
-#: fitsviewer/fitsdata.cpp:1625
+#: fitsviewer/fitsdata.cpp:1626
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1772
+#: fitsviewer/fitsdata.cpp:1773
 #, fuzzy, kde-format
 #| msgid "Autofocus in progress..."
 msgid "Saving compressed files is not supported."
 msgstr "Αυτόματη εστίαση σε εξέλιξη..."
 
-#: fitsviewer/fitsdata.cpp:1837
+#: fitsviewer/fitsdata.cpp:1838
 #, fuzzy, kde-format
 #| msgid "Could not open file %1."
 msgid "Failed to create file: %1"
 msgstr "Δεν ήταν δυνατό το άνοιγμα του αρχείου %1."
 
-#: fitsviewer/fitsdata.cpp:1852
+#: fitsviewer/fitsdata.cpp:1853
 #, fuzzy, kde-format
 #| msgid "Failed to load image at %1"
 msgid "Failed to create image: %1"
 msgstr "Αποτυχία φόρτωσης της εικόνας στο %1"
 
-#: fitsviewer/fitsdata.cpp:1861 fitsviewer/fitsdata.cpp:1868
+#: fitsviewer/fitsdata.cpp:1862 fitsviewer/fitsdata.cpp:1869
 #, fuzzy, kde-format
 #| msgid "Failed to set binning."
 msgid "Failed to update key: %1"
 msgstr "Αποτυχία καθορισμού συνένωσης εικονοστοιχείων (binning)"
 
-#: fitsviewer/fitsdata.cpp:1969
+#: fitsviewer/fitsdata.cpp:1970
 #, fuzzy, kde-format
 #| msgid "Failed to load image at %1"
 msgid "Failed to update date: %1"
 msgstr "Αποτυχία φόρτωσης της εικόνας στο %1"
 
-#: fitsviewer/fitsdata.cpp:1978
+#: fitsviewer/fitsdata.cpp:1979
 #, fuzzy, kde-format
 #| msgid "Failed to set binning."
 msgid "Failed to update history: %1"
 msgstr "Αποτυχία καθορισμού συνένωσης εικονοστοιχείων (binning)"
 
-#: fitsviewer/fitsdata.cpp:2000
+#: fitsviewer/fitsdata.cpp:2001
 #, fuzzy, kde-format
 #| msgid "Failed to load image at %1"
 msgid "Failed to write image: %1"
 msgstr "Αποτυχία φόρτωσης της εικόνας στο %1"
 
-#: fitsviewer/fitsdata.cpp:3723 fitsviewer/fitsdata.cpp:3734
-#: fitsviewer/fitsdata.cpp:3771 fitsviewer/fitsdata.cpp:3807
-#: fitsviewer/fitsdata.cpp:3941
+#: fitsviewer/fitsdata.cpp:3724 fitsviewer/fitsdata.cpp:3735
+#: fitsviewer/fitsdata.cpp:3772 fitsviewer/fitsdata.cpp:3808
+#: fitsviewer/fitsdata.cpp:3942
 #, fuzzy, kde-format
 #| msgid "Use horizontal coordinate system?"
 msgid "No world coordinate systems found."
 msgstr "Χρήση οριζόντιου συστήματος συντεταγμένων;"
 
-#: fitsviewer/fitsdata.cpp:4116 fitsviewer/fitsdata.cpp:4224
+#: fitsviewer/fitsdata.cpp:4117 fitsviewer/fitsdata.cpp:4225
 #, fuzzy, kde-format
 #| msgid "Error: Unable to save image: %1 "
 msgid "Error querying Simbad"
 msgstr "Σφάλμα: Αδυναμία αποθήκευσης της εικόνας: %1 "
 
-#: fitsviewer/fitsdata.cpp:4133
+#: fitsviewer/fitsdata.cpp:4134
 #, fuzzy, kde-format
 #| msgid "Guiding rate,x15\"/sec"
 msgid "Simbad query timed out"
 msgstr "Ρυθμός οδήγησης,x15\"/δευτερόλεπτο"
 
-#: fitsviewer/fitsdata.cpp:5110
+#: fitsviewer/fitsdata.cpp:5111
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:5143
+#: fitsviewer/fitsdata.cpp:5144
 #, kde-format
 msgid "Unsupported bayer pattern %1."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:5174
+#: fitsviewer/fitsdata.cpp:5175
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:5331 fitsviewer/fitsdata.cpp:5378
-#: fitsviewer/fitsdata.cpp:5423 fitsviewer/fitsdata.cpp:5470
+#: fitsviewer/fitsdata.cpp:5332 fitsviewer/fitsdata.cpp:5379
+#: fitsviewer/fitsdata.cpp:5424 fitsviewer/fitsdata.cpp:5471
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:5341 fitsviewer/fitsdata.cpp:5433
+#: fitsviewer/fitsdata.cpp:5342 fitsviewer/fitsdata.cpp:5434
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:5361 fitsviewer/fitsdata.cpp:5453
+#: fitsviewer/fitsdata.cpp:5362 fitsviewer/fitsdata.cpp:5454
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr ""
@@ -31422,7 +31422,7 @@ msgstr "Ρίντινγκ"
 
 #. i18n: ectx: property (text), widget (QTableWidget, tableWidget)
 #. i18n: ectx: property (text), widget (QCheckBox, keywordCB)
-#: fitsviewer/fitsheaderdialog.ui:48 tools/imagingplanner.ui:2144
+#: fitsviewer/fitsheaderdialog.ui:48 tools/imagingplanner.ui:2061
 #, kde-format
 msgid "Keyword"
 msgstr "Λέξη κλειδί"
@@ -31688,7 +31688,7 @@ msgstr "Πορτογαλία"
 #. i18n: ectx: property (text), widget (QPushButton, searchSimbad)
 #. i18n: ectx: property (text), widget (QPushButton, searchSimbad2)
 #: fitsviewer/fitstab.cpp:778 fitsviewer/opsfits.ui:445
-#: tools/imagingplanner.ui:1456 tools/imagingplanner.ui:1787
+#: tools/imagingplanner.ui:1377 tools/imagingplanner.ui:1714
 #, fuzzy, kde-format
 #| msgctxt "Advanced URLs: description or category"
 #| msgid "Simbad"
@@ -33241,24 +33241,24 @@ msgstr "Χωρίς FOV"
 msgid "Extracted %1 stars (%2 unfiltered) in %3s"
 msgstr ""
 
-#: fitsviewer/platesolve.cpp:420
+#: fitsviewer/platesolve.cpp:423
 #, fuzzy, kde-format
 #| msgid "Guiding rate,x15\"/sec"
 msgid "Solver timed out: %1s"
 msgstr "Ρυθμός οδήγησης,x15\"/δευτερόλεπτο"
 
-#: fitsviewer/platesolve.cpp:426
+#: fitsviewer/platesolve.cpp:429
 #, fuzzy, kde-format
 #| msgid "No FOV"
 msgid "Solver failed: %1s"
 msgstr "Χωρίς FOV"
 
-#: fitsviewer/platesolve.cpp:664
+#: fitsviewer/platesolve.cpp:667
 #, kde-format
 msgid "Warning! This tool only supports the internal StellarSolver solver."
 msgstr ""
 
-#: fitsviewer/platesolve.cpp:665
+#: fitsviewer/platesolve.cpp:668
 #, kde-format
 msgid "Change to that in the Ekos Align options menu."
 msgstr ""
@@ -35570,35 +35570,35 @@ msgctxt "@title:window"
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:290 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:109
+#: kstars.cpp:294 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:109
 #, kde-format, kde-kuit-format
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:291
+#: kstars.cpp:295
 #, fuzzy, kde-format
 #| msgid "KStars"
 msgid "KStars Live Stacker"
 msgstr "KStars"
 
-#: kstars.cpp:292
+#: kstars.cpp:296
 #, fuzzy, kde-format
 #| msgid "(c) 2001-2012, The KStars Team"
 msgid "© 2025 KStars Team"
 msgstr "(c) 2001-2012, Η ομάδα του KStars"
 
-#: kstars.cpp:416 kstarsactions.cpp:1650 skymap.cpp:463
+#: kstars.cpp:420 kstarsactions.cpp:1650 skymap.cpp:463
 #, kde-format
 msgid "Stop &Tracking"
 msgstr "Σταμάτημα ανί&χνευσης"
 
-#: kstars.cpp:424 kstarsactions.cpp:1817 kstarsinit.cpp:277
+#: kstars.cpp:428 kstarsactions.cpp:1817 kstarsinit.cpp:277
 #, fuzzy, kde-format
 #| msgid "Switch to star globe view (Equatorial &Coordinates)"
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Εναλλαγή σε προβολή σφαίρας αστέρα (Ισημερινές &συντεταγμένες)"
 
-#: kstars.cpp:425 kstarsactions.cpp:1798 kstarsinit.cpp:278
+#: kstars.cpp:429 kstarsactions.cpp:1798 kstarsinit.cpp:278
 #, fuzzy, kde-format
 #| msgid "Switch to horizonal view (Horizontal &Coordinates)"
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"
@@ -82802,7 +82802,7 @@ msgstr "Παλιός σουπερνόβα"
 
 #. i18n: ectx: property (text), widget (QCheckBox, GalaxyCB)
 #: printing/legend.cpp:368 printing/legend.cpp:403 skyobjects/skyobject.cpp:359
-#: skyobjects/skyobject.cpp:409 tools/imagingplanner.ui:1980
+#: skyobjects/skyobject.cpp:409 tools/imagingplanner.ui:1892
 #, kde-format
 msgid "Galaxy"
 msgstr "Γαλαξίας"
@@ -84066,28 +84066,27 @@ msgid "Open Clr"
 msgstr "Ανοικτό σμήνος"
 
 #. i18n: ectx: property (text), widget (QCheckBox, GlobularClusterCB)
-#: skyobjects/skyobject.cpp:401 tools/imagingplanner.ui:1950
+#: skyobjects/skyobject.cpp:401 tools/imagingplanner.ui:1862
 #, fuzzy, kde-format
 #| msgid "Globular Cluster"
 msgid "Globular"
 msgstr "Σφαιρωτό σμήνος"
 
 #. i18n: ectx: property (text), widget (QCheckBox, NebulaCB)
-#: skyobjects/skyobject.cpp:403 tools/imagingplanner.ui:1940
+#: skyobjects/skyobject.cpp:403 tools/imagingplanner.ui:1852
 #, fuzzy, kde-format
 #| msgid "Nebulae"
 msgid "Nebula"
 msgstr "Νεφελώματα"
 
-#. i18n: ectx: property (text), widget (QCheckBox, PlanetaryCB)
-#: skyobjects/skyobject.cpp:405 tools/imagingplanner.ui:1960
+#: skyobjects/skyobject.cpp:405
 #, fuzzy, kde-format
 #| msgid "Planet"
 msgid "Planetary"
 msgstr "Πλανήτης"
 
 #. i18n: ectx: property (text), widget (QCheckBox, SupernovaRemnantCB)
-#: skyobjects/skyobject.cpp:407 tools/imagingplanner.ui:1970
+#: skyobjects/skyobject.cpp:407 tools/imagingplanner.ui:1882
 #, kde-format
 msgid "Remnant"
 msgstr ""
@@ -84098,8 +84097,7 @@ msgstr ""
 msgid "Galaxy Clr"
 msgstr "Σμήνος γαλαξιών"
 
-#. i18n: ectx: property (text), widget (QCheckBox, DarkNebulaCB)
-#: skyobjects/skyobject.cpp:429 tools/imagingplanner.ui:2000
+#: skyobjects/skyobject.cpp:429
 #, fuzzy, kde-format
 #| msgid "Dark Nebula"
 msgid "Dark Neb"
@@ -85680,8 +85678,8 @@ msgid "Object Set"
 msgstr "Αντικείμενο"
 
 #. i18n: ectx: property (text), widget (QPushButton, transitButton)
-#: tools/altvstime.ui:352 tools/imagingplanner.cpp:3114
-#: tools/imagingplanner.cpp:3125 tools/imagingplanner.cpp:3140
+#: tools/altvstime.ui:352 tools/imagingplanner.cpp:3079
+#: tools/imagingplanner.cpp:3090 tools/imagingplanner.cpp:3105
 #, fuzzy, kde-format
 #| msgid "Transit:"
 msgid "Transit"
@@ -86902,106 +86900,106 @@ msgid "Coord"
 msgstr "Συντεταγμένες EQ"
 
 #. i18n: ectx: property (text), widget (QCheckBox, imagedCB)
-#: tools/imagingplanner.cpp:186 tools/imagingplanner.ui:2057
+#: tools/imagingplanner.cpp:186 tools/imagingplanner.ui:1974
 #, fuzzy, kde-format
 #| msgid "Image"
 msgid "Imaged"
 msgstr "Εικόνα"
 
 #. i18n: ectx: property (text), widget (QCheckBox, pickedCB)
-#: tools/imagingplanner.cpp:191 tools/imagingplanner.ui:2027
+#: tools/imagingplanner.cpp:191 tools/imagingplanner.ui:1944
 #, kde-format
 msgid "Picked"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, ignoredCB)
-#: tools/imagingplanner.cpp:197 tools/imagingplanner.ui:2114
+#: tools/imagingplanner.cpp:197 tools/imagingplanner.ui:2031
 #, fuzzy, kde-format
 #| msgid "Ignore"
 msgid "Ignored"
 msgstr "Αγνόηση"
 
-#: tools/imagingplanner.cpp:1021
+#: tools/imagingplanner.cpp:1013
 #, fuzzy, kde-format
 #| msgid "Observation Planner"
 msgctxt "@title:window"
 msgid "Imaging Planner"
 msgstr "Σχεδιαστής παρατήρησης"
 
-#: tools/imagingplanner.cpp:1171
+#: tools/imagingplanner.cpp:1138
 #, kde-format
 msgid "Object Name--click header to sort ascending/descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1173
+#: tools/imagingplanner.cpp:1140
 #, kde-format
 msgid ""
 "Number of hours the object can be imaged--click header to sort ascending/"
 "descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1175
+#: tools/imagingplanner.cpp:1142
 #, kde-format
 msgid "Object Type--click header to sort ascending/descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1177
+#: tools/imagingplanner.cpp:1144
 #, kde-format
 msgid ""
 "Maximum object dimension (arcmin)--click header to sort ascending/descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1179
+#: tools/imagingplanner.cpp:1146
 #, kde-format
 msgid "Maximum altitude--click header to sort ascending/descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1181
+#: tools/imagingplanner.cpp:1148
 #, kde-format
 msgid ""
 "Moon angular separation at midnight--click header to sort ascending/"
 "descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1183
+#: tools/imagingplanner.cpp:1150
 #, kde-format
 msgid "Constellation--click header to sort ascending/descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1185
+#: tools/imagingplanner.cpp:1152
 #, kde-format
 msgid "RA/DEC coordinates--click header to sort ascending/descending."
 msgstr ""
 
-#: tools/imagingplanner.cpp:1620
+#: tools/imagingplanner.cpp:1585
 #, fuzzy, kde-format
 #| msgctxt "%1 is a location on earth"
 #| msgid "Almanac for %1"
 msgid "No match for \"%1\""
 msgstr "Αλμανάκ για το %1"
 
-#: tools/imagingplanner.cpp:1684
+#: tools/imagingplanner.cpp:1649
 #, kde-format
 msgid "Open a browser with the 1st link in this note: %1"
 msgstr ""
 
-#: tools/imagingplanner.cpp:1689
+#: tools/imagingplanner.cpp:1654
 #, kde-format
 msgid "Open a browser with the 2nd link in this note: %1"
 msgstr ""
 
-#: tools/imagingplanner.cpp:1694
+#: tools/imagingplanner.cpp:1659
 #, kde-format
 msgid "Open a browser with the 3rd link in this note: %1"
 msgstr ""
 
-#: tools/imagingplanner.cpp:2029
+#: tools/imagingplanner.cpp:1994
 #, fuzzy, kde-format
 #| msgid "Loading images..."
 msgid "Updating tables..."
 msgstr "Φόρτωση εικόνων..."
 
-#: tools/imagingplanner.cpp:2430
+#: tools/imagingplanner.cpp:2395
 #, kde-format
 msgid ""
 "You need to load a catalog to start using this tool.\n"
@@ -87009,206 +87007,206 @@ msgid ""
 "See Data -> Download New Data if not..."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2433
+#: tools/imagingplanner.cpp:2398
 #, fuzzy, kde-format
 #| msgid "Catalogs"
 msgid "No Catalog!"
 msgstr "Κατάλογοι"
 
-#: tools/imagingplanner.cpp:2479
+#: tools/imagingplanner.cpp:2444
 #, fuzzy, kde-format
 #| msgid "Select object..."
 msgid "Select an object."
 msgstr "Επιλογή αντικειμένου..."
 
-#: tools/imagingplanner.cpp:2481
+#: tools/imagingplanner.cpp:2446
 #, kde-format
 msgid "Check Filters to unhide objects."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2483
+#: tools/imagingplanner.cpp:2448
 #, fuzzy, kde-format
 #| msgid "Load Catalog..."
 msgid "Load a Catalog."
 msgstr "Φόρτωση καταλόγου..."
 
-#: tools/imagingplanner.cpp:2613
+#: tools/imagingplanner.cpp:2578
 #, kde-format
 msgid "Search the Professor Seligman online site for NGC images."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2618
+#: tools/imagingplanner.cpp:2583
 #, kde-format
 msgid ""
 "Search the Professor Seligman online site for information about IC objects.."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2624
+#: tools/imagingplanner.cpp:2589
 #, kde-format
 msgid ""
 "Search the galaxymap.org online site for information about Sharpless2 "
 "objects."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2630
+#: tools/imagingplanner.cpp:2595
 #, kde-format
 msgid "Search Nasa's online site for information about Messier objects.."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2635
+#: tools/imagingplanner.cpp:2600
 #, kde-format
 msgid "Search Emil Ivanov's online site for information about VDB objects."
 msgstr ""
 
-#: tools/imagingplanner.cpp:2778
+#: tools/imagingplanner.cpp:2743
 #, fuzzy, kde-format
 #| msgid "Load Catalog..."
 msgid "Loading Catalogs..."
 msgstr "Φόρτωση καταλόγου..."
 
-#: tools/imagingplanner.cpp:3103
+#: tools/imagingplanner.cpp:3068
 #, fuzzy, kde-format
 #| msgid "Transit:"
 msgid "Transits"
 msgstr "Επαναφορά:"
 
-#: tools/imagingplanner.cpp:3108 tools/imagingplanner.cpp:3112
+#: tools/imagingplanner.cpp:3073 tools/imagingplanner.cpp:3077
 #, fuzzy, kde-format
 #| msgid "Sets at: %1"
 msgid "Sets at"
 msgstr "Δύει στις: %1"
 
-#: tools/imagingplanner.cpp:3119 tools/imagingplanner.cpp:3123
+#: tools/imagingplanner.cpp:3084 tools/imagingplanner.cpp:3088
 #, fuzzy, kde-format
 #| msgid "Rises at: %1"
 msgid "Rises at"
 msgstr "Ανατέλλει στις: %1"
 
-#: tools/imagingplanner.cpp:3130 tools/imagingplanner.cpp:3136
+#: tools/imagingplanner.cpp:3095 tools/imagingplanner.cpp:3101
 #, fuzzy, kde-format
 #| msgid "Rise:"
 msgid "Rises"
 msgstr "Ανατολή:"
 
-#: tools/imagingplanner.cpp:3132 tools/imagingplanner.cpp:3138
+#: tools/imagingplanner.cpp:3097 tools/imagingplanner.cpp:3103
 #, kde-format
 msgid "Sets"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3244 tools/imagingplanner.cpp:3500
+#: tools/imagingplanner.cpp:3209 tools/imagingplanner.cpp:3465
 #, fuzzy, kde-format
 #| msgid "object"
 msgid "objects"
 msgstr "αντικείμενο"
 
-#: tools/imagingplanner.cpp:3496
+#: tools/imagingplanner.cpp:3461
 #, fuzzy, kde-format
 #| msgid "%1, %2 and %3"
 msgid "%1, %2 and %3 other objects"
 msgstr "%1, %2 και %3"
 
-#: tools/imagingplanner.cpp:3504 tools/imagingplanner.cpp:3508
+#: tools/imagingplanner.cpp:3469 tools/imagingplanner.cpp:3473
 #, kde-format
 msgid "Mark %1 as NOT imaged"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3505 tools/imagingplanner.cpp:3510
+#: tools/imagingplanner.cpp:3470 tools/imagingplanner.cpp:3475
 #, kde-format
 msgid "Mark %1 as already imaged"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3514 tools/imagingplanner.cpp:3518
+#: tools/imagingplanner.cpp:3479 tools/imagingplanner.cpp:3483
 #, kde-format
 msgid "Un-pick %1"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3515 tools/imagingplanner.cpp:3520
+#: tools/imagingplanner.cpp:3480 tools/imagingplanner.cpp:3485
 #, kde-format
 msgid "Pick %1"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3525 tools/imagingplanner.cpp:3530
+#: tools/imagingplanner.cpp:3490 tools/imagingplanner.cpp:3495
 #, fuzzy, kde-format
 #| msgid "Stop &Tracking"
 msgid "Stop ignoring %1"
 msgstr "Σταμάτημα ανί&χνευσης"
 
-#: tools/imagingplanner.cpp:3526 tools/imagingplanner.cpp:3532
+#: tools/imagingplanner.cpp:3491 tools/imagingplanner.cpp:3497
 #, fuzzy, kde-format
 #| msgid "Ignore"
 msgid "Ignore %1"
 msgstr "Αγνόηση"
 
-#: tools/imagingplanner.cpp:3535
+#: tools/imagingplanner.cpp:3500
 #, fuzzy, kde-format
 #| msgid "Center in Map"
 msgid "Center %1 on SkyMap"
 msgstr "Κεντράρισμα στον χάρτη"
 
-#: tools/imagingplanner.cpp:3537
+#: tools/imagingplanner.cpp:3502
 #, kde-format
 msgid ""
 "Screenshot some image of %1, plate-solve it, and temporarily place it on the "
 "SkyMap"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3677
+#: tools/imagingplanner.cpp:3642
 #, fuzzy, kde-format
 #| msgid "Name of the remote INDI focuser device."
 msgid "Successfully marked %1 objects as read"
 msgstr "Όνομα απομακρυσμένης συσκευής εστιαστή του INDI"
 
-#: tools/imagingplanner.cpp:3679
+#: tools/imagingplanner.cpp:3644
 #, fuzzy, kde-format
 #| msgid "Input file:"
 msgid "Empty file"
 msgstr "Αρχείο εισόδου:"
 
-#: tools/imagingplanner.cpp:3688
+#: tools/imagingplanner.cpp:3653
 #, fuzzy, kde-format
 #| msgid "Add a name label to the object named %1."
 msgid "Failed marking all of these objects imaged: %1"
 msgstr "Προσθήκη ετικέτας ονόματος στο αντικείμενο με όνομα %1."
 
-#: tools/imagingplanner.cpp:3690
+#: tools/imagingplanner.cpp:3655
 #, kde-format
 msgid "Failed marking %1 objects imaged, including: %2"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3692
+#: tools/imagingplanner.cpp:3657
 #, kde-format
 msgid "Succeeded marking %1 objects imaged. Failed with %2: %3"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3695
+#: tools/imagingplanner.cpp:3660
 #, kde-format
 msgid "Succeeded marking %1 objects imaged. Failed with %2 including these: %3"
 msgstr ""
 
-#: tools/imagingplanner.cpp:3701 tools/imagingplanner.cpp:3951
+#: tools/imagingplanner.cpp:3666 tools/imagingplanner.cpp:3916
 #, fuzzy, kde-format
 #| msgid "Could not open file %1"
 msgid "Sorry, couldn't open file: \"%1\""
 msgstr "Δεν ήταν δυνατό το άνοιγμα του αρχείου %1"
 
-#: tools/imagingplanner.cpp:3815
+#: tools/imagingplanner.cpp:3780
 #, kde-format
 msgid "Sorry, catalog file doesn't exist: \"%1\""
 msgstr ""
 
-#: tools/imagingplanner.cpp:3936
+#: tools/imagingplanner.cpp:3901
 #, kde-format
 msgid "%1/%2: Adding %3"
 msgstr ""
 
-#: tools/imagingplanner.cpp:4019
+#: tools/imagingplanner.cpp:3984
 #, fuzzy, kde-format
 #| msgid "&OK"
 msgctxt "@action:button"
 msgid "OK"
 msgstr "&Εντάξει"
 
-#: tools/imagingplanner.cpp:4020
+#: tools/imagingplanner.cpp:3985
 #, fuzzy, kde-format
 #| msgid "Cancel"
 msgctxt "@action:button"
@@ -87223,7 +87221,7 @@ msgstr ""
 
 #. i18n: ectx: property (placeholderText), widget (QTextEdit, SearchText)
 #. i18n: ectx: property (title), widget (QGroupBox, ObjectBox)
-#: tools/imagingplanner.ui:103 tools/wutdialog.ui:397
+#: tools/imagingplanner.ui:102 tools/wutdialog.ui:397
 #, kde-format
 msgid "Object Name"
 msgstr "Όνομα αντικειμένου"
@@ -87243,14 +87241,14 @@ msgid "Back one day"
 msgstr "Φόντο"
 
 #. i18n: ectx: property (displayFormat), widget (QDateEdit, DateEdit)
-#: tools/imagingplanner.ui:319
+#: tools/imagingplanner.ui:318
 #, fuzzy, kde-format
 #| msgid "M/d/yyyy h:mm AP"
 msgid "dd/MM/yy"
 msgstr "Μ/η/εεεε ω:λλ AP"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, forwardOneDay)
-#: tools/imagingplanner.ui:347
+#: tools/imagingplanner.ui:346
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Firmware data"
@@ -87258,20 +87256,20 @@ msgid "Forward one day"
 msgstr "Δεδομένα firmware"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, optionsButton)
-#: tools/imagingplanner.ui:395
+#: tools/imagingplanner.ui:393
 #, fuzzy, kde-format
 #| msgid "Option Name"
 msgid "Open options menu."
 msgstr "Όνομα επιλογής"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, helpButton)
-#: tools/imagingplanner.ui:421
+#: tools/imagingplanner.ui:418
 #, kde-format
 msgid "Open web documentation."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, DevelLabel)
-#: tools/imagingplanner.ui:445
+#: tools/imagingplanner.ui:441
 #, kde-format
 msgid ""
 "\n"
@@ -87279,106 +87277,92 @@ msgid ""
 "              "
 msgstr ""
 
-#. i18n: ectx: property (text), widget (QPushButton, DevelDownsampleButton)
-#: tools/imagingplanner.ui:464
-#, fuzzy, kde-format
-#| msgid "Delete all Images"
-msgid "Downsample"
-msgstr "Διαγραφή όλων των εικόνων"
-
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelDownsampleButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckTargetsButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckCatalogButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckTargetsPrevButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, DevelCheckTargetsNextButton)
-#: tools/imagingplanner.ui:467 tools/imagingplanner.ui:489
-#: tools/imagingplanner.ui:511 tools/imagingplanner.ui:536
-#: tools/imagingplanner.ui:568
+#: tools/imagingplanner.ui:460 tools/imagingplanner.ui:482
+#: tools/imagingplanner.ui:504 tools/imagingplanner.ui:532
+#: tools/imagingplanner.ui:563
 #, kde-format
 msgid "For catalog development"
 msgstr ""
 
+#. i18n: ectx: property (text), widget (QPushButton, DevelDownsampleButton)
+#: tools/imagingplanner.ui:463
+#, fuzzy, kde-format
+#| msgid "Delete all Images"
+msgid "Downsample"
+msgstr "Διαγραφή όλων των εικόνων"
+
 #. i18n: ectx: property (text), widget (QPushButton, DevelCheckTargetsButton)
-#: tools/imagingplanner.ui:486
+#: tools/imagingplanner.ui:485
 #, fuzzy, kde-format
 #| msgid "Check URL"
 msgid "Check"
 msgstr "Έλεγχος URL"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesEditButton)
-#: tools/imagingplanner.ui:713
+#: tools/imagingplanner.ui:707
 #, fuzzy, kde-format
 #| msgid "Set observing notes for the object:"
 msgid "Create/Edit some user notes for this object"
 msgstr "Καθορισμός σημειώσεων παρατήρησης για το αντικείμενο:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesDoneButton)
-#: tools/imagingplanner.ui:745
+#: tools/imagingplanner.ui:738
 #, kde-format
 msgid "Done creating/editing some user notes for this object"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesOpenLink)
-#: tools/imagingplanner.ui:777
+#: tools/imagingplanner.ui:769
 #, kde-format
 msgid "Open a browser with the 1st link in this note."
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesOpenLink2)
-#: tools/imagingplanner.ui:809
+#: tools/imagingplanner.ui:800
 #, kde-format
 msgid "Open a browser with the 2nd link in this note."
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, userNotesOpenLink3)
-#: tools/imagingplanner.ui:841
+#: tools/imagingplanner.ui:831
 #, kde-format
 msgid "Open a browser with the 3rd link in this note."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, userNotesLabel)
-#: tools/imagingplanner.ui:867
+#: tools/imagingplanner.ui:856
 #, fuzzy, kde-format
 #| msgid "Remote"
 msgid "Note:"
 msgstr "Απομακρυσμένη"
 
 #. i18n: ectx: property (placeholderText), widget (QTextEdit, userNotesEdit)
-#: tools/imagingplanner.ui:893
+#: tools/imagingplanner.ui:888
 #, kde-format
 msgid "Enter notes here"
 msgstr ""
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideAltitudeGraphB)
-#: tools/imagingplanner.ui:958
-#, fuzzy, kde-format
-#| msgid "Print the Altitude vs. time plot"
-msgid "Minimize the altitude vs time graph."
-msgstr "Εκτύπωση γραφήματος υψομέτρου με χρόνο"
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, showAltitudeGraphB)
-#: tools/imagingplanner.ui:1053
-#, fuzzy, kde-format
-#| msgid "Print the Altitude vs. time plot"
-msgid "Maximize the altitude vs time graph."
-msgstr "Εκτύπωση γραφήματος υψομέτρου με χρόνο"
-
 #. i18n: ectx: property (toolTip), widget (QLabel, HiddenAltitudeGraphLabel)
-#: tools/imagingplanner.ui:1085
+#: tools/imagingplanner.ui:1013
 #, fuzzy, kde-format
 #| msgid "Altitude vs. Time"
 msgid "Altitude vs Time graph."
 msgstr "Ύψωση έναντι Χρόνου"
 
 #. i18n: ectx: property (text), widget (QLabel, HiddenAltitudeGraphLabel)
-#: tools/imagingplanner.ui:1088
+#: tools/imagingplanner.ui:1016
 #, fuzzy, kde-format
 #| msgid "Altitude vs. Time"
 msgid "Altitude vs Time graph"
 msgstr "Ύψωση έναντι Χρόνου"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, useArtificialHorizon)
-#: tools/imagingplanner.ui:1128
+#: tools/imagingplanner.ui:1056
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87387,7 +87371,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useArtificialHorizon)
-#: tools/imagingplanner.ui:1131
+#: tools/imagingplanner.ui:1059
 #, fuzzy, kde-format
 #| msgid "Color of horizon line"
 msgid "Artificial horizon"
@@ -87395,7 +87379,7 @@ msgstr "Χρώμα γραμμής του ορίζοντα"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, minAltitudeLabel)
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, minAltitude)
-#: tools/imagingplanner.ui:1144 tools/imagingplanner.ui:1166
+#: tools/imagingplanner.ui:1072 tools/imagingplanner.ui:1094
 #, kde-format
 msgid ""
 "For imaging hours calculation, object must be at least at this altitude (and "
@@ -87403,7 +87387,7 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, minAltitudeLabel)
-#: tools/imagingplanner.ui:1147
+#: tools/imagingplanner.ui:1075
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Main Control"
@@ -87411,7 +87395,7 @@ msgid "Min alt"
 msgstr "Βασικός έλεγχος"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, minMoonLabel)
-#: tools/imagingplanner.ui:1191
+#: tools/imagingplanner.ui:1119
 #, kde-format
 msgid ""
 "<html><head/><body><p>For imaging hours calculations, object must be at "
@@ -87420,14 +87404,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, minMoonLabel)
-#: tools/imagingplanner.ui:1194
+#: tools/imagingplanner.ui:1122
 #, fuzzy, kde-format
 #| msgid "Moon"
 msgid "Moon:"
 msgstr "Σελήνη"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, minMoon)
-#: tools/imagingplanner.ui:1213
+#: tools/imagingplanner.ui:1141
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87437,13 +87421,13 @@ msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσε
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, minMoon)
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, maxMoonAltitude)
-#: tools/imagingplanner.ui:1216 tools/imagingplanner.ui:1235
+#: tools/imagingplanner.ui:1144 tools/imagingplanner.ui:1163
 #, fuzzy, kde-format
 msgid "°"
 msgstr "1"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, maxMoonAltitude)
-#: tools/imagingplanner.ui:1232
+#: tools/imagingplanner.ui:1160
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87451,22 +87435,16 @@ msgid ""
 "than this altitude.</p></body></html>"
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideAstrobinDetailsButton)
-#: tools/imagingplanner.ui:1307
-#, kde-format
-msgid "Minimize the Astrobin search details section"
-msgstr ""
-
 #. i18n: ectx: property (toolTip), widget (QLabel, SearchLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, SearchLabel2)
-#: tools/imagingplanner.ui:1339 tools/imagingplanner.ui:1670
+#: tools/imagingplanner.ui:1242 tools/imagingplanner.ui:1579
 #, kde-format
 msgid "Select a button to search for the selected object on the internet."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, SearchLabel)
 #. i18n: ectx: property (text), widget (QLabel, SearchLabel2)
-#: tools/imagingplanner.ui:1342 tools/imagingplanner.ui:1673
+#: tools/imagingplanner.ui:1245 tools/imagingplanner.ui:1582
 #, fuzzy, kde-format
 #| msgid "Auto Stretch"
 msgid "Search"
@@ -87474,7 +87452,7 @@ msgstr "Αυτόματη επιμήκυνση"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, astrobinButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, astrobinButton2)
-#: tools/imagingplanner.ui:1366 tools/imagingplanner.ui:1697
+#: tools/imagingplanner.ui:1275 tools/imagingplanner.ui:1612
 #, kde-format
 msgid ""
 "Search Astrobin for the selected object using the search constraints in this "
@@ -87483,7 +87461,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, astrobinButton)
 #. i18n: ectx: property (text), widget (QPushButton, astrobinButton2)
-#: tools/imagingplanner.ui:1369 tools/imagingplanner.ui:1700
+#: tools/imagingplanner.ui:1278 tools/imagingplanner.ui:1615
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid "Astrobin"
@@ -87491,7 +87469,7 @@ msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσε
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchWikipedia)
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchWikipedia2)
-#: tools/imagingplanner.ui:1393 tools/imagingplanner.ui:1724
+#: tools/imagingplanner.ui:1308 tools/imagingplanner.ui:1645
 #, fuzzy, kde-format
 #| msgid "Duration of night for selected date"
 msgid "Search Wikipedia for the selected object."
@@ -87499,7 +87477,7 @@ msgstr "Διάρκεια της νύχτας για την επιλεγμένη 
 
 #. i18n: ectx: property (text), widget (QPushButton, searchWikipedia)
 #. i18n: ectx: property (text), widget (QPushButton, searchWikipedia2)
-#: tools/imagingplanner.ui:1396 tools/imagingplanner.ui:1727
+#: tools/imagingplanner.ui:1311 tools/imagingplanner.ui:1648
 #, fuzzy, kde-format
 #| msgctxt "Image/info menu item (should be translated)"
 #| msgid "Wikipedia Page"
@@ -87508,28 +87486,28 @@ msgstr "Σελίδα Wikipedia"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSpecialWebPageImages)
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSpecialWebPageImages2)
-#: tools/imagingplanner.ui:1426 tools/imagingplanner.ui:1757
+#: tools/imagingplanner.ui:1341 tools/imagingplanner.ui:1678
 #, kde-format
 msgid "Search the Professor Seligman online site for NGC/IC images."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, searchSpecialWebPageImages)
 #. i18n: ectx: property (text), widget (QPushButton, searchSpecialWebPageImages2)
-#: tools/imagingplanner.ui:1429 tools/imagingplanner.ui:1760
+#: tools/imagingplanner.ui:1344 tools/imagingplanner.ui:1681
 #, kde-format
 msgid "NGC/IC"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSimbad)
 #. i18n: ectx: property (toolTip), widget (QPushButton, searchSimbad2)
-#: tools/imagingplanner.ui:1453 tools/imagingplanner.ui:1784
+#: tools/imagingplanner.ui:1374 tools/imagingplanner.ui:1711
 #, fuzzy, kde-format
 #| msgid "Search satellites"
 msgid "Search Simbad."
 msgstr "Αναζήτηση δορυφόρων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, AstrobinAward)
-#: tools/imagingplanner.ui:1463
+#: tools/imagingplanner.ui:1386
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87538,45 +87516,32 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, AstrobinAward)
-#: tools/imagingplanner.ui:1466
+#: tools/imagingplanner.ui:1389
 #, kde-format
 msgid "Awards Required"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, radiusLabel)
-#: tools/imagingplanner.ui:1485
+#: tools/imagingplanner.ui:1410
 #, fuzzy, kde-format
 msgid "Radius:"
 msgstr "Ράντισον"
 
 #. i18n: ectx: property (text), widget (QLabel, minRadiusLabel)
-#: tools/imagingplanner.ui:1500
+#: tools/imagingplanner.ui:1423
 #, kde-format
 msgid "Min:"
 msgstr "Ελάχιστο:"
 
 #. i18n: ectx: property (text), widget (QLabel, maxRadiusLabel)
-#: tools/imagingplanner.ui:1548
+#: tools/imagingplanner.ui:1469
 #, kde-format
 msgid "Max:"
 msgstr "Μέγιστο:"
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, showAstrobinDetailsButton)
-#. i18n: ectx: property (toolTip), widget (QPushButton, showFilterTypesButton)
-#: tools/imagingplanner.ui:1638 tools/imagingplanner.ui:2248
-#, kde-format
-msgid "Maximize the Astrobin search details section"
-msgstr ""
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideFilterTypesButton)
-#: tools/imagingplanner.ui:1850
-#, kde-format
-msgid "Minimize the Filters section"
-msgstr ""
-
 #. i18n: ectx: property (toolTip), widget (QLabel, FiltersLabel)
 #. i18n: ectx: property (toolTip), widget (QLabel, FiltersLabel2)
-#: tools/imagingplanner.ui:1876 tools/imagingplanner.ui:2280
+#: tools/imagingplanner.ui:1788 tools/imagingplanner.ui:2177
 #, kde-format
 msgid ""
 "Constrain the list of object on the left by the filters in this section."
@@ -87584,7 +87549,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, FiltersLabel)
 #. i18n: ectx: property (text), widget (QLabel, FiltersLabel2)
-#: tools/imagingplanner.ui:1879 tools/imagingplanner.ui:2283
+#: tools/imagingplanner.ui:1791 tools/imagingplanner.ui:2180
 #, fuzzy, kde-format
 #| msgid "Filters:"
 msgid "Filters"
@@ -87592,21 +87557,21 @@ msgstr "Φίλτρα:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, minHoursLabel)
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, minHours)
-#: tools/imagingplanner.ui:1892 tools/imagingplanner.ui:1911
+#: tools/imagingplanner.ui:1804 tools/imagingplanner.ui:1823
 #, kde-format
 msgid ""
 "Objects are only shown if they can be imaged for at least this many hours."
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, minHoursLabel)
-#: tools/imagingplanner.ui:1898
+#: tools/imagingplanner.ui:1810
 #, fuzzy, kde-format
 #| msgid "hours"
 msgid "Min Hours:"
 msgstr "ώρες"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, OpenClusterCB)
-#: tools/imagingplanner.ui:1927
+#: tools/imagingplanner.ui:1839
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87614,21 +87579,21 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, OpenClusterCB)
-#: tools/imagingplanner.ui:1930
+#: tools/imagingplanner.ui:1842
 #, fuzzy, kde-format
 #| msgid "Open Cluster"
 msgid "Open Cl"
 msgstr "Ανοικτό σμήνος"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, NebulaCB)
-#: tools/imagingplanner.ui:1937
+#: tools/imagingplanner.ui:1849
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid "<html><head/><body><p>Hide nebulae if unchecked.</p></body></html>"
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, GlobularClusterCB)
-#: tools/imagingplanner.ui:1947
+#: tools/imagingplanner.ui:1859
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87636,15 +87601,23 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, PlanetaryCB)
-#: tools/imagingplanner.ui:1957
+#: tools/imagingplanner.ui:1869
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
 "<html><head/><body><p>Hide planetary nebulae if unchecked.</p></body></html>"
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
+#. i18n: ectx: property (text), widget (QCheckBox, PlanetaryCB)
+#: tools/imagingplanner.ui:1872
+#, fuzzy, kde-format
+#| msgctxt "Abbreviated cardinal / intercardinal etc. direction"
+#| msgid "N"
+msgid "PN"
+msgstr "Β"
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, SupernovaRemnantCB)
-#: tools/imagingplanner.ui:1967
+#: tools/imagingplanner.ui:1879
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87652,14 +87625,14 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, GalaxyCB)
-#: tools/imagingplanner.ui:1977
+#: tools/imagingplanner.ui:1889
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid "<html><head/><body><p>Hide galaxies if unchecked.</p></body></html>"
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, GalaxyClusterCB)
-#: tools/imagingplanner.ui:1987
+#: tools/imagingplanner.ui:1899
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87667,21 +87640,28 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, GalaxyClusterCB)
-#: tools/imagingplanner.ui:1990
+#: tools/imagingplanner.ui:1902
 #, fuzzy, kde-format
 #| msgid "Galaxy"
 msgid "Galaxy Cl"
 msgstr "Γαλαξίας"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, DarkNebulaCB)
-#: tools/imagingplanner.ui:1997
+#: tools/imagingplanner.ui:1914
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid "<html><head/><body><p>Hide dark nebulae if unchecked.</p></body></html>"
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
+#. i18n: ectx: property (text), widget (QCheckBox, DarkNebulaCB)
+#: tools/imagingplanner.ui:1917
+#, fuzzy, kde-format
+#| msgid "Dark Nebula"
+msgid "DarkNeb"
+msgstr "Σκοτεινό νεφέλωμα"
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, OtherCB)
-#: tools/imagingplanner.ui:2007
+#: tools/imagingplanner.ui:1924
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87689,7 +87669,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, pickedCB)
-#: tools/imagingplanner.ui:2024
+#: tools/imagingplanner.ui:1941
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87698,7 +87678,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notPickedCB)
-#: tools/imagingplanner.ui:2034
+#: tools/imagingplanner.ui:1951
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87707,14 +87687,14 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notPickedCB)
-#: tools/imagingplanner.ui:2037
+#: tools/imagingplanner.ui:1954
 #, fuzzy, kde-format
 #| msgid "Does not rise"
 msgid "Not Picked"
 msgstr "Δεν ανατέλλει"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCarePickedCB)
-#: tools/imagingplanner.ui:2044
+#: tools/imagingplanner.ui:1961
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87726,14 +87706,14 @@ msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσε
 #. i18n: ectx: property (text), widget (QCheckBox, dontCareImagedCB)
 #. i18n: ectx: property (text), widget (QCheckBox, dontCareIgnoredCB)
 #. i18n: ectx: property (text), widget (QCheckBox, dontCareKeywordCB)
-#: tools/imagingplanner.ui:2047 tools/imagingplanner.ui:2077
-#: tools/imagingplanner.ui:2134 tools/imagingplanner.ui:2164
+#: tools/imagingplanner.ui:1964 tools/imagingplanner.ui:1994
+#: tools/imagingplanner.ui:2051 tools/imagingplanner.ui:2081
 #, kde-format
 msgid "Don't care"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, imagedCB)
-#: tools/imagingplanner.ui:2054
+#: tools/imagingplanner.ui:1971
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87742,7 +87722,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notImagedCB)
-#: tools/imagingplanner.ui:2064
+#: tools/imagingplanner.ui:1981
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87751,14 +87731,14 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notImagedCB)
-#: tools/imagingplanner.ui:2067
+#: tools/imagingplanner.ui:1984
 #, fuzzy, kde-format
 #| msgid "Loading Image URLs"
 msgid "Not imaged"
 msgstr "Φόρτωση URL εικόνων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCareImagedCB)
-#: tools/imagingplanner.ui:2074
+#: tools/imagingplanner.ui:1991
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87767,7 +87747,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, loadImagedB)
-#: tools/imagingplanner.ui:2101
+#: tools/imagingplanner.ui:2018
 #, kde-format
 msgid ""
 "Load a file listing the names of already imaged objects--one name per line. "
@@ -87775,14 +87755,15 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, loadImagedB)
-#: tools/imagingplanner.ui:2104
+#: tools/imagingplanner.ui:2021
 #, fuzzy, kde-format
-#| msgid "Loading Image URLs"
-msgid "Load Imaged"
-msgstr "Φόρτωση URL εικόνων"
+#| msgctxt "string from libindi, used in the config dialog"
+#| msgid "Load"
+msgid "Load"
+msgstr "Φόρτωση"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, ignoredCB)
-#: tools/imagingplanner.ui:2111
+#: tools/imagingplanner.ui:2028
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87791,7 +87772,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notIgnoredCB)
-#: tools/imagingplanner.ui:2121
+#: tools/imagingplanner.ui:2038
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87800,14 +87781,14 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notIgnoredCB)
-#: tools/imagingplanner.ui:2124
+#: tools/imagingplanner.ui:2041
 #, fuzzy, kde-format
 #| msgid "Does not rise"
 msgid "Not ignored"
 msgstr "Δεν ανατέλλει"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCareIgnoredCB)
-#: tools/imagingplanner.ui:2131
+#: tools/imagingplanner.ui:2048
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87816,7 +87797,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, keywordCB)
-#: tools/imagingplanner.ui:2141
+#: tools/imagingplanner.ui:2058
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87825,7 +87806,7 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, notKeywordCB)
-#: tools/imagingplanner.ui:2151
+#: tools/imagingplanner.ui:2068
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87834,14 +87815,14 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (text), widget (QCheckBox, notKeywordCB)
-#: tools/imagingplanner.ui:2154
+#: tools/imagingplanner.ui:2071
 #, fuzzy, kde-format
 #| msgid "Keyword"
 msgid "Not keyword"
 msgstr "Λέξη κλειδί"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dontCareKeywordCB)
-#: tools/imagingplanner.ui:2161
+#: tools/imagingplanner.ui:2078
 #, fuzzy, kde-format
 #| msgid "Use the specified configuration file"
 msgid ""
@@ -87850,28 +87831,22 @@ msgid ""
 msgstr "Χρήση του καθορισμένου αρχείου ρυθμίσεων"
 
 #. i18n: ectx: property (toolTip), widget (QTextEdit, keywordEdit)
-#: tools/imagingplanner.ui:2182
+#: tools/imagingplanner.ui:2099
 #, kde-format
 msgid ""
 "Enter the (case-sensitive) keyword to be used for the checkboxes to the left."
 msgstr ""
 
 #. i18n: ectx: property (placeholderText), widget (QTextEdit, keywordEdit)
-#: tools/imagingplanner.ui:2185
+#: tools/imagingplanner.ui:2102
 #, fuzzy, kde-format
-#| msgid "Enter name for the script"
-msgid "Enter keyword here"
-msgstr "Εισάγετε όνομα για το σενάριο"
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, hideImageButton)
-#: tools/imagingplanner.ui:2343
-#, kde-format
-msgid "Minimize the image section"
-msgstr ""
+#| msgid "Keyword"
+msgid "keyword"
+msgstr "Λέξη κλειδί"
 
 #. i18n: ectx: property (text), widget (QLabel, ImageFrameLabel)
 #. i18n: ectx: property (text), widget (QLabel, ImageFrameLabel2)
-#: tools/imagingplanner.ui:2369 tools/imagingplanner.ui:2556
+#: tools/imagingplanner.ui:2236 tools/imagingplanner.ui:2396
 #, fuzzy, kde-format
 #| msgid "Catalog name:"
 msgid "Catalog Image"
@@ -87879,7 +87854,7 @@ msgstr "Όνομα καταλόγου:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, LoadCatalogButton)
 #. i18n: ectx: property (toolTip), widget (QPushButton, LoadCatalogButton2)
-#: tools/imagingplanner.ui:2407 tools/imagingplanner.ui:2588
+#: tools/imagingplanner.ui:2274 tools/imagingplanner.ui:2428
 #, fuzzy, kde-format
 #| msgid "Load Catalog..."
 msgid "Load a new catalog"
@@ -87887,18 +87862,11 @@ msgstr "Φόρτωση καταλόγου..."
 
 #. i18n: ectx: property (text), widget (QPushButton, LoadCatalogButton)
 #. i18n: ectx: property (text), widget (QPushButton, LoadCatalogButton2)
-#: tools/imagingplanner.ui:2410 tools/imagingplanner.ui:2591
+#: tools/imagingplanner.ui:2277 tools/imagingplanner.ui:2431
 #, fuzzy, kde-format
 #| msgid "Load Catalog..."
 msgid "Load Catalog"
 msgstr "Φόρτωση καταλόγου..."
-
-#. i18n: ectx: property (toolTip), widget (QPushButton, showImageButton)
-#: tools/imagingplanner.ui:2530
-#, fuzzy, kde-format
-#| msgid "Maximum Altitude:"
-msgid "Maximize the image section"
-msgstr "Μέγιστο υψόμετρο:"
 
 #: tools/imagingplanneroptions.cpp:25
 #, fuzzy, kde-format
@@ -92655,6 +92623,31 @@ msgid "Set the color for the background."
 msgstr "Ορισμός του χρώματος του φόντου."
 
 #, fuzzy
+#~| msgid "Print the Altitude vs. time plot"
+#~ msgid "Minimize the altitude vs time graph."
+#~ msgstr "Εκτύπωση γραφήματος υψομέτρου με χρόνο"
+
+#, fuzzy
+#~| msgid "Print the Altitude vs. time plot"
+#~ msgid "Maximize the altitude vs time graph."
+#~ msgstr "Εκτύπωση γραφήματος υψομέτρου με χρόνο"
+
+#, fuzzy
+#~| msgid "Loading Image URLs"
+#~ msgid "Load Imaged"
+#~ msgstr "Φόρτωση URL εικόνων"
+
+#, fuzzy
+#~| msgid "Enter name for the script"
+#~ msgid "Enter keyword here"
+#~ msgstr "Εισάγετε όνομα για το σενάριο"
+
+#, fuzzy
+#~| msgid "Maximum Altitude:"
+#~ msgid "Maximize the image section"
+#~ msgstr "Μέγιστο υψόμετρο:"
+
+#, fuzzy
 #~| msgid "Use the specified configuration file"
 #~ msgid ""
 #~ "<html><head/><body><p>Averaged HFR value from the last frame.</p></body></"
@@ -93323,12 +93316,6 @@ msgstr "Ορισμός του χρώματος του φόντου."
 #~| msgid "Supernovae options"
 #~ msgid "Save capture sequence"
 #~ msgstr "Επιλογές υπερκαινοφανών αστέρων"
-
-#, fuzzy
-#~| msgctxt "string from libindi, used in the config dialog"
-#~| msgid "Load"
-#~ msgid "Load"
-#~ msgstr "Φόρτωση"
 
 #, fuzzy
 #~| msgid "Autofocus Options"

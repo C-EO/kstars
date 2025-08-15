@@ -988,14 +988,6 @@ void ImagingPlannerUI::setupIcons()
     userNotesOpenLink->setIcon(QIcon::fromTheme("link"));
     userNotesOpenLink2->setIcon(QIcon::fromTheme("link"));
     userNotesOpenLink3->setIcon(QIcon::fromTheme("link"));
-    hideAltitudeGraphB->setIcon(QIcon::fromTheme("window-minimize"));
-    showAltitudeGraphB->setIcon(QIcon::fromTheme("window-maximize"));
-    hideAstrobinDetailsButton->setIcon(QIcon::fromTheme("window-minimize"));
-    showAstrobinDetailsButton->setIcon(QIcon::fromTheme("window-maximize"));
-    hideFilterTypesButton->setIcon(QIcon::fromTheme("window-minimize"));
-    showFilterTypesButton->setIcon(QIcon::fromTheme("window-maximize"));
-    hideImageButton->setIcon(QIcon::fromTheme("window-minimize"));
-    showImageButton->setIcon(QIcon::fromTheme("window-maximize"));
 }
 
 GeoLocation *ImagingPlanner::getGeo()
@@ -1034,33 +1026,6 @@ ImagingPlanner::ImagingPlanner() : QDialog(nullptr), m_networkManager(this), m_m
 #endif
     }
     initialize();
-}
-
-// Sets up the hide/show buttons that minimize/maximize the plot/search/filters/image sections.
-void ImagingPlanner::setupHideButtons(bool(*option)(), void(*setOption)(bool),
-                                      QPushButton * hideButton, QPushButton * showButton,
-                                      QFrame * widget, QFrame * hiddenWidget)
-{
-    hiddenWidget->setVisible(option());
-    widget->setVisible(!option());
-
-    connect(hideButton, &QAbstractButton::clicked, this, [this, setOption, hiddenWidget, widget]()
-    {
-        setOption(true);
-        Options::self()->save();
-        hiddenWidget->setVisible(true);
-        widget->setVisible(false);
-        focusOnTable();
-        adjustWindowSize();
-    });
-    connect(showButton, &QAbstractButton::clicked, this, [this, setOption, hiddenWidget, widget]()
-    {
-        setOption(false);
-        Options::self()->save();
-        hiddenWidget->setVisible(false);
-        widget->setVisible(true);
-        focusOnTable();
-    });
 }
 
 // Gives the keyboard focus to the CatalogView object table.
@@ -1157,6 +1122,8 @@ void ImagingPlanner::initialize()
 
     // Connects the threaded catalog loader to the UI.
     connect(this, &ImagingPlanner::popupSorry, this, &ImagingPlanner::sorry);
+    m_PopupMenu = nullptr;
+    m_CaptureWidget = nullptr;
 
     // Setup the Table Views
     m_CatalogModel = new QStandardItemModel(0, LAST_COLUMN);
@@ -1214,9 +1181,8 @@ void ImagingPlanner::initialize()
 
     setStatus("");
 
-    setupHideButtons(&Options::imagingPlannerHideAltitudeGraph, &Options::setImagingPlannerHideAltitudeGraph,
-                     ui->hideAltitudeGraphB, ui->showAltitudeGraphB,
-                     ui->AltitudeGraphFrame, ui->HiddenAltitudeGraphFrame);
+    ui->altitudeGraphMinimizeWidget->setupUI(Options::imagingPlannerHideAltitudeGraph(),
+            &Options::setImagingPlannerHideAltitudeGraph);
 
     // Date buttons
     connect(ui->backOneDay, &QPushButton::clicked, this, &ImagingPlanner::moveBackOneDay);
@@ -1265,11 +1231,9 @@ void ImagingPlanner::initialize()
         }
     });
 
-    // Always start with hiding the details.
-    Options::setImagingPlannerHideAstrobinDetails(true);
-    setupHideButtons(&Options::imagingPlannerHideAstrobinDetails, &Options::setImagingPlannerHideAstrobinDetails,
-                     ui->hideAstrobinDetailsButton, ui->showAstrobinDetailsButton,
-                     ui->AstrobinSearchFrame, ui->HiddenAstrobinSearchFrame);
+    ui->astrobinSearchMinimizeWidget->setupUI(Options::imagingPlannerHideAstrobinDetails(),
+            &Options::setImagingPlannerHideAstrobinDetails);
+
     ui->AstrobinAward->setChecked(Options::astrobinAward());
     connect(ui->AstrobinAward, &QAbstractButton::clicked, [this](bool checked)
     {
@@ -1299,15 +1263,13 @@ void ImagingPlanner::initialize()
     setDefaultImage();
     connect(ui->LoadCatalogButton, &QPushButton::clicked, this, &ImagingPlanner::loadCatalogViaMenu);
     connect(ui->LoadCatalogButton2, &QPushButton::clicked, this, &ImagingPlanner::loadCatalogViaMenu);
-    setupHideButtons(&Options::imagingPlannerHideImage, &Options::setImagingPlannerHideImage,
-                     ui->hideImageButton, ui->showImageButton,
-                     ui->ImageFrame, ui->HiddenImageFrame);
+
+    ui->imageFrameMinimizeWidget->setupUI(Options::imagingPlannerHideImage(),
+                                          &Options::setImagingPlannerHideImage);
 
     // Initialize filter section
-    Options::setImagingPlannerHideFilters(true);
-    setupHideButtons(&Options::imagingPlannerHideFilters, &Options::setImagingPlannerHideFilters,
-                     ui->hideFilterTypesButton, ui->showFilterTypesButton,
-                     ui->FilterTypesFrame, ui->HiddenFilterTypesFrame);
+    ui->filtersMinimizeWidget->setupUI(Options::imagingPlannerHideFilters(),
+                                       &Options::setImagingPlannerHideFilters);
     setupFilterButton(ui->OpenClusterCB, &Options::imagingPlannerAcceptOpenCluster,
                       &Options::setImagingPlannerAcceptOpenCluster);
     setupFilterButton(ui->NebulaCB, &Options::imagingPlannerAcceptNebula, &Options::setImagingPlannerAcceptNebula);
@@ -1489,15 +1451,18 @@ void ImagingPlanner::initialize()
     // the event filter isn't called until initialize is complete.
     installEventFilters();
 
-    m_PlateSolve.reset(new PlateSolve(this));
+    m_PlateSolve = new PlateSolve(this);
     m_PlateSolve->enableAuxButton("Retake screenshot",
                                   "Retake the screenshot of the object if you're having issues solving.");
-    connect(m_PlateSolve.get(), &PlateSolve::clicked, this, &ImagingPlanner::extractImage, Qt::UniqueConnection);
-    connect(m_PlateSolve.get(), &PlateSolve::auxClicked, this, [this]()
+    connect(m_PlateSolve.data(), &PlateSolve::clicked, this, &ImagingPlanner::extractImage, Qt::UniqueConnection);
+    connect(m_PlateSolve.data(), &PlateSolve::auxClicked, this, [this]()
     {
         m_PlateSolve->abort();
         takeScreenshot();
     });
+
+    // Fix some Qt5 weirdness...
+    ui->WholeLayout->setAlignment(ui->RightSideLayoutWithSpacer, Qt::AlignTop);
 }
 
 void ImagingPlanner::installEventFilters()
@@ -3959,7 +3924,7 @@ void ImagingPlanner::sorry(const QString &message)
 
 void ImagingPlanner::captureRegion(const QImage &screenshot)
 {
-    if (m_PlateSolve.get()) disconnect(m_PlateSolve.get());
+    if (m_PlateSolve.data()) disconnect(m_PlateSolve.data());
 
     // This code to convert the screenshot to a FITSData is, of course, convoluted.
     // TODO: improve it.
@@ -3972,8 +3937,8 @@ void ImagingPlanner::captureRegion(const QImage &screenshot)
     this->raise();
     this->activateWindow();
 
-    if (!m_PlateSolve.get())
-        m_PlateSolve.reset(new PlateSolve(this));
+    if (!m_PlateSolve.data())
+        m_PlateSolve = new PlateSolve(this);
 
     m_PlateSolve->setImageDisplay(m_ScreenShotImage);
     if (currentCatalogObject())
@@ -4029,22 +3994,22 @@ void ImagingPlanner::takeScreenshot()
     {
         // Don't remember the cancel response.
         KMessageBox::enableMessage(messageID);
-        disconnect(m_CaptureWidget.get());
-        m_CaptureWidget.reset();
+        disconnect(m_CaptureWidget.data());
+        m_CaptureWidget.clear();
         this->raise();
         this->activateWindow();
         return;
     }
 
-    if (m_CaptureWidget.get()) disconnect(m_CaptureWidget.get());
-    m_CaptureWidget.reset(new ScreenCapture());
-    QObject::connect(m_CaptureWidget.get(), &ScreenCapture::areaSelected,
+    if (m_CaptureWidget.data()) disconnect(m_CaptureWidget.data());
+    m_CaptureWidget = new ScreenCapture(this);
+    QObject::connect(m_CaptureWidget.data(), &ScreenCapture::areaSelected,
                      this, &ImagingPlanner::captureRegion, Qt::UniqueConnection);
-    disconnect(m_CaptureWidget.get(), &ScreenCapture::aborted, nullptr, nullptr);
-    QObject::connect(m_CaptureWidget.get(), &ScreenCapture::aborted, this, [this]()
+    disconnect(m_CaptureWidget.data(), &ScreenCapture::aborted, nullptr, nullptr);
+    QObject::connect(m_CaptureWidget.data(), &ScreenCapture::aborted, this, [this]()
     {
-        disconnect(m_CaptureWidget.get());
-        m_CaptureWidget.reset();
+        disconnect(m_CaptureWidget.data());
+        m_CaptureWidget.clear();
         this->raise();
         this->activateWindow();
     });
@@ -4053,15 +4018,15 @@ void ImagingPlanner::takeScreenshot()
 
 void ImagingPlanner::extractImage()
 {
-    disconnect(m_PlateSolve.get(), &PlateSolve::solverFailed, nullptr, nullptr);
-    connect(m_PlateSolve.get(), &PlateSolve::solverFailed, this, [this]()
+    disconnect(m_PlateSolve.data(), &PlateSolve::solverFailed, nullptr, nullptr);
+    connect(m_PlateSolve.data(), &PlateSolve::solverFailed, this, [this]()
     {
-        disconnect(m_PlateSolve.get());
+        disconnect(m_PlateSolve.data());
     });
-    disconnect(m_PlateSolve.get(), &PlateSolve::solverSuccess, nullptr, nullptr);
-    connect(m_PlateSolve.get(), &PlateSolve::solverSuccess, this, [this]()
+    disconnect(m_PlateSolve.data(), &PlateSolve::solverSuccess, nullptr, nullptr);
+    connect(m_PlateSolve.data(), &PlateSolve::solverSuccess, this, [this]()
     {
-        disconnect(m_PlateSolve.get());
+        disconnect(m_PlateSolve.data());
         const FITSImage::Solution &solution = m_PlateSolve->solution();
         ImageOverlay overlay;
         overlay.m_Orientation = solution.orientation;

@@ -279,7 +279,7 @@ class FITSTab : public QWidget
         QList<QString> m_BlinkFilenames;
         int m_BlinkIndex { 0 };
 
-        QSharedPointer<PlateSolve> m_PlateSolve;
+        QPointer<PlateSolve> m_PlateSolve;
 
         // Live Stacking
         void plateSolveSub(const double ra, const double dec, const double pixScale, const int index,

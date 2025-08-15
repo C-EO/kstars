@@ -753,6 +753,7 @@ void Manager::reset()
     RotatorUtils::release();
 
     m_DriverDevicesCount = 0;
+    m_syncedDevices.clear();
 
     removeTabs();
 
@@ -1011,7 +1012,7 @@ void Manager::start()
             return;
         }
 
-        m_DriverDevicesCount = m_CurrentProfile->drivers.count();
+        m_DriverDevicesCount = m_CurrentProfile->count();
     }
 
 
@@ -1114,7 +1115,7 @@ void Manager::start()
             });
 
             KSMessageBox::Instance()->questionYesNo(i18n("Ekos detected an instance of INDI server running. Do you wish to "
-                                                    "shut down the existing instance before starting a new one?"),
+                                                         "shut down the existing instance before starting a new one?"),
                                                     i18n("INDI Server"), 5);
         }
         else
@@ -1763,7 +1764,13 @@ void Manager::addLightBox(ISD::LightBox * device)
 
 void Manager::syncGenericDevice(const QSharedPointer<ISD::GenericDevice> &device)
 {
+    if (m_syncedDevices.contains(device->getDeviceName()))
+    {
+        return;
+    }
+
     qCDebug(KSTARS_EKOS) << "Syncing Generic Device" << device->getDeviceName();
+    m_syncedDevices.insert(device->getDeviceName());
 
     createModules(device);
 
@@ -3746,10 +3753,14 @@ void Manager::setDeviceReady()
     {
         for (auto &oneDevice : INDIListener::devices())
         {
-            // Fix issue reported by Ed Lee (#238) as we only need to sync once per device
-            if (oneDevice->getDeviceName() == device->getDeviceName())
+            // Sync all devices that are connected and ready. The syncGenericDevice function
+            // itself will ensure that each device is only processed once.
+            if (oneDevice->isConnected() && oneDevice->isReady())
+            {
                 syncGenericDevice(oneDevice);
+            }
         }
+        // Set the profile for OpticalTrainManager only once after all devices have been processed.
         OpticalTrainManager::Instance()->setProfile(m_CurrentProfile);
     }
 }

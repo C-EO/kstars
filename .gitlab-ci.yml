@@ -2,14 +2,6 @@
 # It uses both KDE CI and custom image until tests are stabilised in the KDE CI image
 # Build dependencies for the custom image are packaged into image definition 'docker/Dockerfile'
 
-stages:
-  - build
-  - test
-  #- test-unstable
-  - validate
-  - deploy
-  - publish
-
 include:
   - local: '.gitlab-ci/common_rules.yml'
   - project: sysadmin/ci-utilities
@@ -24,13 +16,6 @@ include:
       - /gitlab-templates/craft-macos-arm64-qt6.yml
 
 # Jobs
-
-# Android CI is not ready yet
-# android_qt515:
-#   rules:
-#     - when: manual
-#       allow_failure: true
-
 # Standard build recipes
    
 .standard-build-recipes:
@@ -57,7 +42,6 @@ suse_tumbleweed_qt515:
     - !reference [.standard-build-recipes, rules]
 
 json-validation:
-  allow_failure: true
   rules:
     - !reference [.standard-build-recipes, rules]
 
@@ -106,12 +90,9 @@ craft_macos_qt6_arm64: # Extended from /gitlab-templates/craft-macos-arm64-qt6.y
     - !reference [.always-on-stable-release, rules]
     - when: never
 
-# TODO Update to microsoftpublish for Qt6
-# microsoftstore_qt515:
-#   needs:
-#     - craft_windows_qt515_x86_64
-#   rules:
-#     - !reference [.publishing-recipes, rules]
+microsoftstore_qt6:
+   rules:
+     - !reference [.publishing-recipes, rules]
 
 # Custom build recipes - until tests are operational in the KDE CI image
 
