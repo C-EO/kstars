@@ -155,7 +155,10 @@ void Message::onTextReceived(const QString &message)
             for (auto &nodeManager : m_NodeManagers)
             {
                 if (nodeManager->message() == node)
+                {
+                    node->setClientState(true);
                     nodeManager->media()->setClientState(true);
+                }
             }
 
             // If the clock is PAUSED, run it now and sync time as well.
@@ -178,7 +181,10 @@ void Message::onTextReceived(const QString &message)
             for (auto &nodeManager : m_NodeManagers)
             {
                 if (nodeManager->message() == node)
+                {
+                    node->setClientState(false);
                     nodeManager->media()->setClientState(false);
+                }
             }
             // It was started with paused state, so let's pause IF Ekos is not running
             if (KStars::Instance()->isStartedWithClockRunning() == false && m_Manager->ekosStatus() == Ekos::CommunicationStatus::Idle)
@@ -1887,26 +1893,26 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
 
         switch (objectType)
         {
-            // Stars
+                // Stars
             case SkyObject::STAR:
             case SkyObject::CATALOG_STAR:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::STAR));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::CATALOG_STAR));
                 break;
-            // Planets & Moon
+                // Planets & Moon
             case SkyObject::PLANET:
             case SkyObject::MOON:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::PLANET));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::MOON));
                 break;
-            // Comets & Asteroids
+                // Comets & Asteroids
             case SkyObject::COMET:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::COMET));
                 break;
             case SkyObject::ASTEROID:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::ASTEROID));
                 break;
-            // Clusters
+                // Clusters
             case SkyObject::OPEN_CLUSTER:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::OPEN_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
@@ -1915,7 +1921,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GLOBULAR_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
                 break;
-            // Nebuale
+                // Nebuale
             case SkyObject::GASEOUS_NEBULA:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GASEOUS_NEBULA, objectMaxMagnitude));
                 isDSO = true;
@@ -2479,6 +2485,17 @@ void Message::sendResponse(const QString &command, bool payload)
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///
 ///////////////////////////////////////////////////////////////////////////////////////////
+void Message::sendEvent(const QString &command, const QJsonObject &payload)
+{
+    for (auto &nodeManager : m_NodeManagers)
+    {
+        nodeManager->message()->sendEvent(command, payload);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
 void Message::autofocusAborted()
 {
     QJsonObject cStatus =
@@ -2651,7 +2668,7 @@ void Message::sendEvent(const QString &message, KSNotification::EventSource sour
         {"uuid", QUuid::createUuid().toString()}
     };
 
-    sendResponse(commands[NEW_NOTIFICATION], newEvent);
+    sendEvent(commands[NEW_NOTIFICATION], newEvent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
