@@ -23,7 +23,11 @@
 
 #if !defined(KSTARS_LITE)
 #include <KAboutData>
-#include <KCrash>
+#endif
+
+#include "config-kstars.h"
+#if defined(HAVE_SENTRY) && !defined(KSTARS_LITE) && !defined(ANDROID)
+#include <sentry.h>
 #endif
 
 #include <ki18n_version.h>
@@ -73,6 +77,33 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
+#if defined(HAVE_SENTRY) && !defined(KSTARS_LITE) && !defined(ANDROID)
+    // Initialize Sentry for crash reporting
+    sentry_options_t *options = sentry_options_new();
+    sentry_options_set_dsn(options, "https://dd7f240ee9134b979acadff30efc873c@crash-reports.kde.org/73");
+    sentry_options_set_release(options, KSTARS_VERSION);
+    sentry_options_set_environment(options, KSTARS_BUILD_RELEASE);
+    sentry_options_set_crashpad_wait_for_upload(options, true);
+    sentry_options_set_debug(options, 1);
+
+    // Set additional context
+    sentry_options_set_auto_session_tracking(options, true);
+
+    if (sentry_init(options) != 0)
+    {
+        qCWarning(KSTARS) << "Failed to initialize Sentry crash reporting";
+    }
+    else
+    {
+        qCDebug(KSTARS) << "Sentry crash reporting initialized";
+
+        // Set user context
+        sentry_set_tag("application", "kstars");
+        sentry_set_tag("version", KSTARS_VERSION);
+        sentry_set_tag("build_release", KSTARS_BUILD_RELEASE);
+    }
+#endif
+
 #ifdef Q_OS_MACOS
     //Note, this function will return true on OS X if the data directories are good to go.  If not, quit with error code 1!
     if (!KSUtils::setupMacKStarsIfNeeded())
@@ -102,7 +133,6 @@ int main(int argc, char *argv[])
     writableDir.mkdir(KSPaths::writableLocation(QStandardPaths::GenericDataLocation));
     writableDir.mkdir(KSPaths::writableLocation(QStandardPaths::TempLocation));
 
-    KCrash::initialize();
     QString versionString =
         QString("%1 %2").arg(KSTARS_VERSION).arg(KSTARS_BUILD_RELEASE);
     KAboutData aboutData(
@@ -405,5 +435,11 @@ int main(int argc, char *argv[])
 
     app.exec();
 #endif
+
+#if defined(HAVE_SENTRY) && !defined(KSTARS_LITE) && !defined(ANDROID)
+    // Cleanup Sentry
+    sentry_close();
+#endif
+
     return 0;
 }

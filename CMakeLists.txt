@@ -32,6 +32,13 @@ option(BUILD_KSTARS_LITE "Build KStars Lite" OFF)
 # Build the Python bindings for the SkyMesh indexation
 option(BUILD_PYKSTARS "Build SkyMesh Python Bindings" OFF)
 
+# Enable Sentry crash reporting (desktop only)
+if(NOT ANDROID AND NOT BUILD_KSTARS_LITE)
+    option(ENABLE_SENTRY "Enable Sentry crash reporting" OFF)
+else()
+    set(ENABLE_SENTRY OFF)
+endif()
+
 # KStars Timestap build
 string(TIMESTAMP KSTARS_BUILD_TS UTC)
 
@@ -148,7 +155,6 @@ else(BUILD_KSTARS_LITE)
        find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
          Config
          Crash
-         DocTools
          WidgetsAddons
          NewStuff
          I18n
@@ -166,7 +172,6 @@ else(BUILD_KSTARS_LITE)
         find_package(KF6 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
           Config
           Crash
-          DocTools
           WidgetsAddons
           NewStuff
           I18n
@@ -334,6 +339,13 @@ endif()
 ## OpenGL
 find_package(OpenGL)
 set_package_properties(OpenGL PROPERTIES DESCRIPTION "Open Graphics Library" URL "https://www.opengl.org/" TYPE OPTIONAL PURPOSE "Support for hardware rendering in KStars.")
+
+## Sentry
+if(ENABLE_SENTRY)
+    find_package(Sentry)    
+    MACRO_BOOL_TO_01(Sentry_FOUND HAVE_SENTRY)
+    set_package_properties(Sentry PROPERTIES DESCRIPTION "Sentry crash reporting SDK" URL "https://sentry.io" TYPE OPTIONAL PURPOSE "Provides crash reporting and error tracking for KStars.")
+endif()
 
 add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
@@ -516,17 +528,7 @@ IF (NOT ANDROID)
     enable_testing(true)
     add_subdirectory(Tests)
     ENDIF()
-    # Make it possible to use the po files fetched by the fetch-translations step    
     ki18n_install(po)
-    if (NOT BUILD_WITH_QT6)
-        find_package(KF5DocTools CONFIG)
-    else()
-        find_package(KF6DocTools CONFIG)
-    endif()
-    if(KF5DocTools_FOUND OR KF6DocTools_FOUND)
-        kdoctools_install(po)
-    endif()
-
 ENDIF ()
 
 if(NOT APPLE) #This is not used on MacOS

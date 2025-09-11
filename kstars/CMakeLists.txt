@@ -189,9 +189,6 @@ if (INDI_FOUND)
             ekos/guide/manualdither.ui
             ekos/guide/manualpulse.ui
             ekos/observatory/observatory.ui
-            #TODO remove from GIT
-            #ekos/guide/guider.ui
-            #ekos/guide/rcalibration.ui
             # Auxiliary
             ekos/auxiliary/filtersettings.ui
             ekos/auxiliary/buildfilteroffsets.ui
@@ -364,9 +361,7 @@ if (INDI_FOUND)
             ekos/guide/internalguide/guidealgorithms.cpp
             ekos/guide/internalguide/calibrationprocess.cpp
             ekos/guide/internalguide/internalguider.cpp
-            #ekos/guide/internalguide/guider.cpp
             ekos/guide/internalguide/matr.cpp
-            #ekos/guide/internalguide/rcalibration.cpp
             ekos/guide/internalguide/vect.cpp
             ekos/guide/internalguide/imageautoguiding.cpp
             ekos/guide/internalguide/guidelog.cpp
@@ -1372,7 +1367,7 @@ IF (NOT ANDROID)
         )
     else()
         target_link_libraries(KStarsLib
-            KF6::Crash
+            # KF6::Crash
             KF6::I18n
             KF6::XmlGui
             KF6::NewStuffWidgets
@@ -1500,17 +1495,13 @@ if (NOVA_FOUND)
     target_link_libraries(KStarsLib ${NOVA_LIBRARIES})
 endif()
 
-if (LibXISF_FOUND)
-    target_link_libraries(KStarsLib LibXISF::LibXISF)
-endif()
+    if (LibXISF_FOUND)
+        target_link_libraries(KStarsLib LibXISF::LibXISF)
+    endif()
 
-#FIXME Enable OpenGL Later
-#if( OPENGL_FOUND )
-#    target_link_libraries(KStarsLib
-#    ${OPENGL_LIBRARIES}
-#    ${QT_QTOPENGL_LIBRARY}
-#    )
-#endif( OPENGL_FOUND )
+    if (Sentry_FOUND)
+        target_link_libraries(KStarsLib sentry::sentry)
+    endif()
 
 if (OpenCV_FOUND)
     target_link_libraries(KStarsLib ${OpenCV_LIBS})
