@@ -45,7 +45,7 @@ enum ColumnIndex
     NUM_COLUMNS
 };
 
-// These needs to be syncronized with enum Status and initializeGui::StatusNames().
+// These needs to be synchronized with enum Status and initializeGui::StatusNames().
 constexpr int UNPROCESSED_INDEX = 0;
 constexpr int OK_INDEX = 4;
 
@@ -319,7 +319,9 @@ void ImageOverlayComponent::selectionChanged()
 
 bool ImageOverlayComponent::selected()
 {
-    return Options::showImageOverlays();
+    // The image overlay painter will decide, since the Options::showImageOverlays() switch
+    // doesn't apply to temporary overlays.
+    return true;
 }
 
 void ImageOverlayComponent::draw(SkyPainter *skyp)
@@ -327,7 +329,8 @@ void ImageOverlayComponent::draw(SkyPainter *skyp)
 #if !defined(KSTARS_LITE)
     if (m_Initialized)
     {
-        skyp->drawImageOverlay(&m_Overlays);
+        if (Options::showImageOverlays())
+            skyp->drawImageOverlay(&m_Overlays);
         skyp->drawImageOverlay(&m_TemporaryOverlays);
     }
 #else
