@@ -474,7 +474,7 @@ class KStars : public KXmlGuiWindow
              * @param width width of the image, in arcminutes (default = 15)
              * @param height height of the image, in arcminutes (default = 15)
              */
-        Q_SCRIPTABLE QString getDSSURL(double RA_J2000, double Dec_J2000, float width = 15, float height = 15);
+        Q_SCRIPTABLE QString getDSSURL(double RA_J2000, double Dec_J2000, double width = 15, double height = 15);
 
         /** DBUS interface function.  Return XML containing information about a sky object
              * @param objectName name of the object.
@@ -535,6 +535,76 @@ class KStars : public KXmlGuiWindow
              * if the file is located at /home/john/m42.fits then the full URL is file:///home/john/m42.fits
              */
         Q_SCRIPTABLE Q_NOREPLY void openFITS(const QUrl &imageUrl);
+
+        /** DBUS interface function. Return a list of SkyMap "View"s available
+         */
+        Q_SCRIPTABLE QStringList listSkyMapViews();
+
+        /** DBUS interface function. Apply a SkyMap "View".
+         * @param viewName Name of the view
+         * @note Essentially calls @see slotApplySkyMapView()
+         */
+        Q_SCRIPTABLE bool setSkyMapView(const QString& viewName);
+
+        /** DBUS interface function. Sets the given FOV symbol to the given visbility state.
+         * @param fovName Name of the FOV symbol
+         * @param visible true if the FOV symbol should be shown, false if it should be hidden
+         * @return true if FOV symbol name was in the list and the method succeeded
+         */
+        Q_SCRIPTABLE bool setFOVIndicatorVisibility(const QString& fovName, bool visibility);
+
+        /** DBUS interface function. Get the visibility of the given FOV symbol.
+         * @param fovName Name of the FOV symbol
+         * @note Returns false if the FOV symbol does not exist
+         */
+        Q_SCRIPTABLE bool getFOVIndicatorVisibility(const QString& fovName);
+
+        /** DBUS interface function. Get the list of available FOV indicators.
+         */
+        Q_SCRIPTABLE QStringList getFOVIndicators();
+
+        /** DBUS interface function. Set the rotation of the skymap.
+         * @param viewAngle Angle in degrees. 0° is north up / zenith up depending on coordinate system
+         */
+        Q_SCRIPTABLE Q_NOREPLY void setSkyMapRotation(const double viewAngle);
+
+        /** DBUS interface function. Get the rotation of the skymap.
+         * @return View angle in degrees.
+         */
+        Q_SCRIPTABLE double getSkyMapRotation();
+
+        /** DBUS interface function. Return whether the sky map rendered is mirrored.
+         */
+        Q_SCRIPTABLE bool skyMapIsMirrored();
+
+        /** DBUS interface function. Turn on/off the mirroring of the sky map.
+         */
+        Q_SCRIPTABLE Q_NOREPLY void setSkyMapMirrored(bool mirrored);
+
+        /** DBUS interface function. Get the states of all the checkable actions in the collection.
+         * @return a JSON object containing a mapping between toggleable action names and their boolean states
+         */
+        Q_SCRIPTABLE QString getToggleableActionStates();
+
+        /** DBUS interface function. Activate the given action
+         * @param actionName name of the action
+         * @note Although KMainWindow does expose this on DBus, it is convenient to have it in our own interface
+         * @return false if there was no action matching @p actionName
+         */
+        Q_SCRIPTABLE bool activateAction(const QString& actionName);
+
+        /** DBUS interface function. List available actions
+         * @note Although KMainWindow does expose this on DBus, it is convenient to have it in our own interface
+         */
+        Q_SCRIPTABLE QStringList getActions();
+
+        /** DBUS interface function. Set the given checkable action to the given state by activating it if needed
+         * @param actionName name of the checkable (toggleable) action
+         * @param state checked-state of the action
+         * @note this essentially activates the action only if the state does not match
+         * @return false if actionName does not match a toggleable (checkable) action
+         */
+        Q_SCRIPTABLE bool setToggleableActionState(const QString& actionName, const bool state);
 
         /** @}*/
 
@@ -777,7 +847,7 @@ class KStars : public KXmlGuiWindow
         void slotTargetSymbol(bool flag);
 
         /** Apply the provided sky map view */
-        void slotApplySkyMapView(const QString &viewName);
+        bool slotApplySkyMapView(const QString &viewName);
 
         /** Select the HIPS Source catalog. */
         void slotHIPSSource();

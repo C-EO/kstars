@@ -844,7 +844,7 @@ void KStars::repopulateFOV()
     fovActionMenu->menu()->clear();
     foreach (FOV *fov, data()->availFOVs)
     {
-        KToggleAction *kta = actionCollection()->add<KToggleAction>(fov->name());
+        KToggleAction *kta = actionCollection()->add<KToggleAction>("fov:" + fov->name());
         kta->setText(fov->name());
         if (Options::fOVNames().contains(fov->name()))
         {
@@ -870,7 +870,7 @@ void KStars::repopulateHIPS()
     for (auto &action : actions)
         hipsGroup->removeAction(action);
 
-    auto ka = actionCollection()->addAction(i18n("None"), this, SLOT(slotHIPSSource()))
+    auto ka = actionCollection()->addAction("hips:off", this, SLOT(slotHIPSSource()))
               << i18n("None") << AddToGroup(hipsGroup)
               << Checked(Options::hIPSSource() == "None");
 
@@ -881,7 +881,7 @@ void KStars::repopulateHIPS()
     {
         QString title = source.value("obs_title");
 
-        auto newAction = actionCollection()->addAction(title, this, SLOT(slotHIPSSource()))
+        auto newAction = actionCollection()->addAction("hips:" + title, this, SLOT(slotHIPSSource()))
                          << title << AddToGroup(hipsGroup)
                          << Checked(Options::hIPSSource() == title);
 

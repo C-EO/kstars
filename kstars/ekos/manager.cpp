@@ -3318,6 +3318,20 @@ void Manager::connectModules()
                 Qt::UniqueConnection);
     }
 
+    // Align <---> Guide connections
+    if (alignProcess && guideProcess)
+    {
+        connect(alignModule(), &Ekos::Align::newPA, guideModule()->getGuiderInstance(), &Ekos::GuideInterface::newPA,
+                Qt::UniqueConnection);
+    }
+
+    // Capture(Camera) <---> Guide connections
+    if (captureProcess && guideProcess)
+    {
+        connect(captureModule(), &Ekos::Capture::newPA , guideModule()->getGuiderInstance(), &Ekos::GuideInterface::newPA,
+                Qt::UniqueConnection);
+    }
+
     // Align <--> EkosLive connections
     if (alignProcess && ekosLiveClient)
     {
@@ -3805,7 +3819,7 @@ void Manager::createRotatorController(ISD::Rotator *device)
     auto Name = device->getDeviceName();
     if (m_RotatorControllers.contains(Name) == false)
     {
-        QSharedPointer<RotatorSettings> newRC(new RotatorSettings(this));
+        QSharedPointer<RotatorSettings> newRC(new RotatorSettings(nullptr));
         // Properties are fetched in RotatorSettings::initRotator!
         m_RotatorControllers[Name] = newRC;
     }

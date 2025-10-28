@@ -1883,18 +1883,26 @@ void KStars::slotColorScheme()
 
 void KStars::slotTargetSymbol(bool flag)
 {
-    qDebug() << Q_FUNC_INFO << QString("slotTargetSymbol: %1 %2").arg(sender()->objectName()).arg(flag);
+    QString name = sender()->objectName();
+    qDebug() << Q_FUNC_INFO << QString("slotTargetSymbol: %1 %2").arg(name).arg(flag);
+
+    Q_ASSERT(name.startsWith("fov:"));
+    if (!name.startsWith("fov:")) {
+        qCWarning(KSTARS) << "Invalid FOV action " << name << " does not start with prefix `fov:`";
+        return;
+    }
+    name.remove(0, 4); // 4 characters for `fov:`
 
     QStringList names = Options::fOVNames();
     if (flag)
     {
         // Add FOV to list
-        names.append(sender()->objectName());
+        names.append(name);
     }
     else
     {
         // Remove FOV from list
-        int ix = names.indexOf(sender()->objectName());
+        int ix = names.indexOf(name);
         if (ix >= 0)
             names.removeAt(ix);
     }
@@ -1906,14 +1914,14 @@ void KStars::slotTargetSymbol(bool flag)
     map()->forceUpdate();
 }
 
-void KStars::slotApplySkyMapView(const QString &viewName)
+bool KStars::slotApplySkyMapView(const QString &viewName)
 {
 
     auto view = SkyMapViewManager::viewNamed(viewName);
     if (!view)
     {
         qCWarning(KSTARS) << "View named " << viewName << " not found!";
-        return;
+        return false;
     }
 
     // FIXME: Ugly hack to update the menus correctly...
@@ -1958,6 +1966,7 @@ void KStars::slotApplySkyMapView(const QString &viewName)
                     << "FOV: " << view->fov;
     actionCollection()->action(QString("view:%1").arg(viewName))->setChecked(true);
     map()->forceUpdate();
+    return true;
 }
 
 void KStars::slotHIPSSource()
@@ -1965,11 +1974,15 @@ void KStars::slotHIPSSource()
     QAction *selectedAction = qobject_cast<QAction *>(sender());
     Q_ASSERT(selectedAction != nullptr);
 
-    QString selectedSource = selectedAction->text().remove('&');
+    QString selectedSource = selectedAction->objectName(); // Use action's internal name so we don't have to deal with i18n()
+    Q_ASSERT(selectedSource.startsWith("hips:"));
+    if (!selectedSource.startsWith("hips:")) {
+        qCWarning(KSTARS) << "Invalid sender " << selectedSource << " for slotHIPSSource()";
+        return;
+    }
+    selectedSource.remove(0, 5); // Remove the prefix "hips:"
 
-    // selectedSource could be translated, while we need to send only Latin "None"
-    // to Hips manager.
-    if (selectedSource == i18n("None"))
+    if (selectedSource == "off")
         HIPSManager::Instance()->setCurrentSource("None");
     else
         HIPSManager::Instance()->setCurrentSource(selectedSource);
