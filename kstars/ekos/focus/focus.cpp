@@ -548,6 +548,43 @@ bool Focus::setFilterWheel(ISD::FilterWheel *device)
     return true;
 }
 
+bool Focus::setDustCap(ISD::DustCap *device)
+{
+    if (m_DustCap && m_DustCap == device)
+    {
+        return false;
+    }
+
+    if (m_DustCap)
+    {
+        disconnect(m_DustCap, &ISD::DustCap::newStatus, this, &Ekos::Focus::onDustCapStatusChanged);
+    }
+
+    m_DustCap = device;
+
+    if (m_DustCap)
+    {
+        connect(m_DustCap, &ISD::DustCap::newStatus, this, &Ekos::Focus::onDustCapStatusChanged, Qt::UniqueConnection);
+    }
+    return true;
+}
+
+void Focus::onDustCapStatusChanged(ISD::DustCap::Status status)
+{
+    if (m_waitingForDustCapUnpark && status == ISD::DustCap::CAP_IDLE)
+    {
+        appendLogText(i18n("Dustcap unparked. Resuming capture."));
+        m_waitingForDustCapUnpark = false;
+        capture(); // Resume capture
+    }
+    else if (status == ISD::DustCap::CAP_ERROR)
+    {
+        appendLogText(i18n("Dustcap error detected. Aborting focus."));
+        m_waitingForDustCapUnpark = false;
+        completeFocusProcedure(Ekos::FOCUS_ABORTED, Ekos::FOCUS_FAIL_DUSTCAP_ERROR);
+    }
+}
+
 void Focus::updateTemperatureSources(const QList<QSharedPointer<ISD::GenericDevice >> &temperatureSources)
 {
     defaultFocusTemperatureSource->blockSignals(true);
@@ -1114,7 +1151,7 @@ void Focus::runAutoFocus(AutofocusReason autofocusReason, const QString &reasonI
 
     if (m_Camera == nullptr)
     {
-        appendLogText(i18n("No CCD connected."));
+        appendLogText(i18n("No camera connected."));
         completeFocusProcedure(Ekos::FOCUS_ABORTED, Ekos::FOCUS_FAIL_NO_CAMERA);
         return;
     }
@@ -1864,6 +1901,25 @@ void Focus::capture(double settleTime)
         return;
     }
 
+    // Check dustcap status before proceeding with capture
+    if (m_DustCap && m_DustCap->isParked())
+    {
+        appendLogText(i18n("Dustcap is parked. Unparking before capture..."));
+        m_waitingForDustCapUnpark = true;
+        m_DustCap->unpark();
+        return; // Wait for onDustCapStatusChanged to resume capture
+    }
+    else if (m_DustCap && m_DustCap->isUnParked() == false && m_DustCap->status() != ISD::DustCap::CAP_IDLE)
+    {
+        // If dustcap is not unparked and not in an idle state (e.g., parking, unparking, error)
+        appendLogText(i18n("Dustcap is not ready (status: %1). Waiting before capture...",
+                           ISD::DustCap::getStatusString(m_DustCap->status())));
+        m_waitingForDustCapUnpark = true;
+        // No explicit unpark call here, as it might already be in motion or error.
+        // The onDustCapStatusChanged will eventually trigger CAP_IDLE or CAP_ERROR.
+        return;
+    }
+
     // reset timeout for receiving an image
     captureTimeout.stop();
     // reset timeout for focus star selection
@@ -2348,7 +2404,7 @@ void Focus::getFWHM(const QList<Edge *> &stars, double *FWHM, double *weight)
 
         default:
             qCDebug(KSTARS_EKOS_FOCUS) << "Unknown image buffer datatype " << m_ImageData->getStatistics().dataType <<
-                                       " Cannot calc FWHM";
+                                          " Cannot calc FWHM";
             break;
     }
 }
@@ -2405,7 +2461,7 @@ void Focus::getFourierPower(double *fourierPower, double *weight, const int mosa
 
         default:
             qCDebug(KSTARS_EKOS_FOCUS) << "Unknown image buffer datatype " << m_ImageData->getStatistics().dataType <<
-                                       " Cannot calc Fourier Power";
+                                          " Cannot calc Fourier Power";
             break;
     }
 }
@@ -2465,7 +2521,7 @@ void Focus::getBlurriness(const StarMeasure starMeasure, const bool denoise, dou
 
         default:
             qCDebug(KSTARS_EKOS_FOCUS) << "Unknown image buffer datatype " << m_ImageData->getStatistics().dataType <<
-                                       " Cannot calc Blurriness";
+                                          " Cannot calc Blurriness";
             break;
     }
 #else
@@ -2585,7 +2641,7 @@ bool Focus::appendMeasure()
     // Save the focus frame
     frameData.filename = saveFocusFrame();
     // clone the stars since they get cleared
-    for (Edge* star : m_ImageData->getStarCenters())
+    for (Edge * star : m_ImageData->getStarCenters())
     {
         QSharedPointer<Edge> clonedStar;
         clonedStar.reset(star->clone());
@@ -2797,7 +2853,7 @@ void Focus::completeFocusProcedure(FocusState completionState, AutofocusFailReas
         appendLogText(i18n("Settling for %1s...", settleTime));
 
     QTimer::singleShot(settleTime * 1000, this, [ &, settleTime, completionState, autoFocusUsed, inBuildOffsetsUsed, failCode,
-                          failCodeInfo]()
+                       failCodeInfo]()
     {
         settle(completionState, autoFocusUsed, inBuildOffsetsUsed, failCode, failCodeInfo);
 
@@ -2826,7 +2882,7 @@ void Focus::updateMeasurements()
     // Let's now report the current HFR
     qCDebug(KSTARS_EKOS_FOCUS) << "Focus newFITS #" << starMeasureFrames.count() + 1 << ": Current HFR " <<
                                lastFrame().hfr <<
-                               " Num stars "
+    " Num stars "
                                << (starSelected ? 1 : lastFrame().numStars);
 
     // Take the new HFR into account, eventually continue to stack samples
@@ -3367,10 +3423,10 @@ void Focus::setHFRComplete()
         {
             qCDebug(KSTARS_EKOS_FOCUS) << "Current HFR:" << lastFrame().hfr << "is above required minimum HFR:" <<
                                        minimumRequiredHFR <<
-                                       ". Starting AutoFocus...";
+            ". Starting AutoFocus...";
             QString reasonInfo = i18n("HFR %1 > Limit %2", QString::number(lastFrame().hfr, 'f', 2),
                                       QString::number(minimumRequiredHFR, 'f',
-                                              2));
+                                          2));
             minimumRequiredHFR = INVALID_STAR_MEASURE;
             runAutoFocus(AutofocusReason::FOCUS_HFR_CHECK, reasonInfo);
         }
@@ -3379,7 +3435,7 @@ void Focus::setHFRComplete()
         {
             qCDebug(KSTARS_EKOS_FOCUS) << "Current HFR:" << lastFrame().hfr << "is below required minimum HFR:" <<
                                        minimumRequiredHFR <<
-                                       ". Autofocus successful.";
+            ". Autofocus successful.";
             completeFocusProcedure(Ekos::FOCUS_COMPLETE, Ekos::FOCUS_FAIL_NONE);
         }
 
@@ -4987,7 +5043,7 @@ void Focus::startFraming()
 {
     if (m_Camera == nullptr)
     {
-        appendLogText(i18n("No CCD connected."));
+        appendLogText(i18n("No camera connected."));
         return;
     }
 
@@ -5346,7 +5402,7 @@ void Focus::focusStarSelected(int x, int y)
         subFramed = true;
 
         qCDebug(KSTARS_EKOS_FOCUS) << "Frame is subframed. X:" << x << "Y:" << y << "W:" << w << "H:" << h << "binX:" << subBinX <<
-                                   "binY:" << subBinY;
+                                      "binY:" << subBinY;
 
         m_FocusView->setFirstLoad(true);
 
@@ -5824,6 +5880,14 @@ void Focus::removeDevice(const QSharedPointer<ISD::GenericDevice> &deviceRemoved
             checkFilter();
             resetButtons();
         });
+    }
+
+    // Check DustCap
+    if (m_DustCap && m_DustCap->getDeviceName() == name)
+    {
+        disconnect(m_DustCap, &ISD::DustCap::newStatus, this, &Ekos::Focus::onDustCapStatusChanged);
+        m_DustCap = nullptr;
+        appendLogText(i18n("Dustcap device %1 removed.", name));
     }
 }
 
@@ -8070,6 +8134,9 @@ void Focus::refreshOpticalTrain(const int id)
 
     auto filterWheel = OpticalTrainManager::Instance()->getFilterWheel(name);
     setFilterWheel(filterWheel);
+
+    auto dustcap = OpticalTrainManager::Instance()->getDustCap(name);
+    setDustCap(dustcap);
 
     // Update calcs for the CFZ based on the new OT
     resetCFZToOT();

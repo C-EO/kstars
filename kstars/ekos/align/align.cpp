@@ -63,6 +63,7 @@
 #include <basedevice.h>
 #include <indicom.h>
 #include <memory>
+#include <algorithm>
 
 //Qt Includes
 #include <QToolTip>
@@ -353,22 +354,22 @@ void Align::handlePointTooltip(QMouseEvent *event)
                 return;
             QToolTip::showText(event->globalPos(),
                                i18n("<table>"
-                                    "<tr>"
-                                    "<th colspan=\"2\">Object %1: %2</th>"
-                                    "</tr>"
-                                    "<tr>"
-                                    "<td>RA:</td><td>%3</td>"
-                                    "</tr>"
-                                    "<tr>"
-                                    "<td>DE:</td><td>%4</td>"
-                                    "</tr>"
-                                    "<tr>"
-                                    "<td>dRA:</td><td>%5</td>"
-                                    "</tr>"
-                                    "<tr>"
-                                    "<td>dDE:</td><td>%6</td>"
-                                    "</tr>"
-                                    "</table>",
+                 "<tr>"
+                 "<th colspan=\"2\">Object %1: %2</th>"
+                 "</tr>"
+                 "<tr>"
+                 "<td>RA:</td><td>%3</td>"
+                 "</tr>"
+                 "<tr>"
+                 "<td>DE:</td><td>%4</td>"
+                 "</tr>"
+                 "<tr>"
+                 "<td>dRA:</td><td>%5</td>"
+                 "</tr>"
+                 "<tr>"
+                 "<td>dDE:</td><td>%6</td>"
+                 "</tr>"
+                 "</table>",
                                     point + 1,
                                     solutionTable->item(point, 2)->text(),
                                     solutionTable->item(point, 0)->text(),
@@ -770,6 +771,43 @@ bool Align::setDome(ISD::Dome *device)
     return true;
 }
 
+bool Align::setDustCap(ISD::DustCap *device)
+{
+    if (m_DustCap && m_DustCap == device)
+    {
+        return false;
+    }
+
+    if (m_DustCap)
+    {
+        disconnect(m_DustCap, &ISD::DustCap::newStatus, this, &Ekos::Align::onDustCapStatusChanged);
+    }
+
+    m_DustCap = device;
+
+    if (m_DustCap)
+    {
+        connect(m_DustCap, &ISD::DustCap::newStatus, this, &Ekos::Align::onDustCapStatusChanged, Qt::UniqueConnection);
+    }
+    return true;
+}
+
+void Align::onDustCapStatusChanged(ISD::DustCap::Status status)
+{
+    if (m_waitingForDustCapUnpark && status == ISD::DustCap::CAP_IDLE)
+    {
+        appendLogText(i18n("Dustcap unparked. Resuming capture and solve."));
+        m_waitingForDustCapUnpark = false;
+        captureAndSolve(false); // Resume capture and solve
+    }
+    else if (status == ISD::DustCap::CAP_ERROR)
+    {
+        appendLogText(i18n("Dustcap error detected. Aborting alignment."));
+        m_waitingForDustCapUnpark = false;
+        stop(ALIGN_ABORTED); // Abort alignment
+    }
+}
+
 void Align::removeDevice(const QSharedPointer<ISD::GenericDevice> &device)
 {
     auto name = device->getDeviceName();
@@ -820,6 +858,13 @@ void Align::removeDevice(const QSharedPointer<ISD::GenericDevice> &device)
         QTimer::singleShot(1000, this, &Align::checkFilter);
     }
 
+    // Check DustCap
+    if (m_DustCap && m_DustCap->getDeviceName() == name)
+    {
+        disconnect(m_DustCap, &ISD::DustCap::newStatus, this, &Ekos::Align::onDustCapStatusChanged);
+        m_DustCap = nullptr;
+        appendLogText(i18n("Dustcap device %1 removed.", name));
+    }
 }
 
 bool Align::syncTelescopeInfo()
@@ -1488,7 +1533,7 @@ bool Align::captureAndSolve(bool initialCall)
 
     if (m_CameraPixelWidth == -1 || m_CameraPixelHeight == -1)
     {
-        KSNotification::error(i18n("CCD pixel size is missing. Please check your driver settings and try again."));
+        KSNotification::error(i18n("Camera pixel size is missing. Please check your driver settings and try again."));
         return false;
     }
 
@@ -1528,6 +1573,25 @@ bool Align::captureAndSolve(bool initialCall)
         }
     }
 
+    // Check dustcap status before proceeding with capture
+    if (m_DustCap && m_DustCap->isParked())
+    {
+        appendLogText(i18n("Dustcap is parked. Unparking before capture and solve..."));
+        m_waitingForDustCapUnpark = true;
+        m_DustCap->unpark();
+        return true; // Wait for onDustCapStatusChanged to resume captureAndSolve
+    }
+    else if (m_DustCap && m_DustCap->isUnParked() == false && m_DustCap->status() != ISD::DustCap::CAP_IDLE)
+    {
+        // If dustcap is not unparked and not in an idle state (e.g., parking, unparking, error)
+        appendLogText(i18n("Dustcap is not ready (status: %1). Waiting before capture and solve...",
+                           ISD::DustCap::getStatusString(m_DustCap->status())));
+        m_waitingForDustCapUnpark = true;
+        // No explicit unpark call here, as it might already be in motion or error.
+        // The onDustCapStatusChanged will eventually trigger CAP_IDLE or CAP_ERROR.
+        return true;
+    }
+
     double seqExpose = alignExposure->value();
 
     auto targetChip = m_Camera->getChip(useGuideHead ? ISD::CameraChip::GUIDE_CCD : ISD::CameraChip::PRIMARY_CCD);
@@ -1542,7 +1606,7 @@ bool Align::captureAndSolve(bool initialCall)
 
     if (targetChip->isCapturing())
     {
-        appendLogText(i18n("Cannot capture while CCD exposure is in progress. Retrying in %1 seconds...",
+        appendLogText(i18n("Cannot capture while camera exposure is in progress. Retrying in %1 seconds...",
                            CAPTURE_RETRY_DELAY / 1000));
         m_CaptureTimer.start(CAPTURE_RETRY_DELAY);
         return true;
@@ -1551,7 +1615,7 @@ bool Align::captureAndSolve(bool initialCall)
     if (m_Dome && m_Dome->isMoving())
     {
         qCWarning(KSTARS_EKOS_ALIGN) << "Cannot capture while dome is in motion. Retrying in" <<  CAPTURE_RETRY_DELAY / 1000 <<
-                                     "seconds...";
+                                        "seconds...";
         m_CaptureTimer.start(CAPTURE_RETRY_DELAY);
         return true;
     }
@@ -1582,6 +1646,8 @@ bool Align::captureAndSolve(bool initialCall)
             default:
             {
                 TimeOut *= m_CaptureTimeoutCounter; // Extend Timeout in case estimated value is too short
+                // Ensure TimeOut does not exceed 60 seconds (60000 milliseconds)
+                TimeOut = std::min(TimeOut, 60000);
                 m_estimateRotatorTimeFrame = false;
                 appendLogText(i18n("Cannot capture while rotator is busy: Retrying in %1 seconds...", TimeOut / 1000));
                 m_CaptureTimer.start(TimeOut);
@@ -2919,7 +2985,7 @@ void Align::updateProperty(INDI::Property prop)
         }
         else if (m_estimateRotatorTimeFrame) // Estimate time frame during first timeout
         {
-            m_RotatorTimeFrame = RotatorUtils::Instance()->calcTimeFrame(RAngle);
+            m_RotatorTimeFrame = std::min(RotatorUtils::Instance()->calcTimeFrame(RAngle), 60);
         }
     }
     else if (prop.isNameMatch("TELESCOPE_MOTION_NS") || prop.isNameMatch("TELESCOPE_MOTION_WE"))
@@ -4013,7 +4079,7 @@ void Align::exportSolutionPoints()
     {
         int r = KMessageBox::warningContinueCancel(nullptr,
                 i18n("A file named \"%1\" already exists. "
-                     "Overwrite it?",
+             "Overwrite it?",
                      exportFile.fileName()),
                 i18n("Overwrite File?"), KStandardGuiItem::overwrite());
         if (r == KMessageBox::Cancel)
@@ -4266,6 +4332,9 @@ void Align::refreshOpticalTrain()
 
         auto rotator = OpticalTrainManager::Instance()->getRotator(name);
         setRotator(rotator);
+
+        auto dustcap = OpticalTrainManager::Instance()->getDustCap(name);
+        setDustCap(dustcap);
 
         // Load train settings
         OpticalTrainSettings::Instance()->setOpticalTrainID(id);
