@@ -9,7 +9,7 @@
 #include "greedyscheduler.h"
 #include "schedulerutils.h"
 #include "schedulerjob.h"
-#include "schedulerweather.h"
+#include "schedulersafetymonitor.h"
 #include "taskqueue/queue/queuemanager.h"
 #include "taskqueue/queue/queueexecutor.h"
 #include "taskqueue/queue/queueitem.h"
@@ -54,7 +54,6 @@ SchedulerProcess::SchedulerProcess(QSharedPointer<SchedulerModuleState> state, c
     {
         connect(m_queueExecutor, &QueueExecutor::completed, this, &SchedulerProcess::queueExecutionCompleted);
         connect(m_queueExecutor, &QueueExecutor::itemFailed, this, &SchedulerProcess::queueItemFailed);
-        connect(m_queueExecutor, &QueueExecutor::newLog, this, &SchedulerProcess::appendLogText);
     }
     connect(KConfigDialog::exists("settings"), &KConfigDialog::settingsChanged, this, &SchedulerProcess::applyConfig);
 
@@ -88,30 +87,30 @@ SchedulerProcess::SchedulerProcess(QSharedPointer<SchedulerModuleState> state, c
     m_WeatherShutdownTimer.setSingleShot(true);
     connect(&m_WeatherShutdownTimer, &QTimer::timeout, this, &SchedulerProcess::startShutdownDueToWeather);
 
-    // Initialize standalone weather monitoring (before equipment profile starts)
+    // Initialize standalone safety monitor monitoring (before equipment profile starts)
     if (Options::schedulerWeather())
     {
-        QString connectionString = Options::schedulerWeatherConnectionString();
+        QString connectionString = Options::schedulerSafetyMonitorConnectionString();
         if (!connectionString.isEmpty())
         {
-            m_StandaloneWeather = new SchedulerWeather(this);
-            connect(m_StandaloneWeather, &SchedulerWeather::newWeatherStatus, this, &SchedulerProcess::setWeatherStatus);
-            connect(m_StandaloneWeather, &SchedulerWeather::newLog, this, &SchedulerProcess::appendLogText);
-            m_StandaloneWeather->initStandaloneWeather(connectionString);
+            m_StandaloneSafetyMonitor = new SchedulerSafetyMonitor(this);
+            connect(m_StandaloneSafetyMonitor, &SchedulerSafetyMonitor::newSafetyStatus, this, &SchedulerProcess::setSafetyStatus);
+            connect(m_StandaloneSafetyMonitor, &SchedulerSafetyMonitor::newLog, this, &SchedulerProcess::appendLogText);
+            m_StandaloneSafetyMonitor->initStandaloneSafetyMonitor(connectionString);
         }
     }
 }
 
 SchedulerProcess::~SchedulerProcess()
 {
-    // Clean up standalone weather monitoring
-    if (m_StandaloneWeather)
+    // Clean up standalone safety monitor monitoring
+    if (m_StandaloneSafetyMonitor)
     {
-        delete m_StandaloneWeather;
-        m_StandaloneWeather = nullptr;
+        delete m_StandaloneSafetyMonitor;
+        m_StandaloneSafetyMonitor = nullptr;
     }
 
-    qCDebug(KSTARS_EKOS_SCHEDULER) << "SchedulerProcess destructor: Standalone weather cleanup complete";
+    qCDebug(KSTARS_EKOS_SCHEDULER) << "SchedulerProcess destructor: Standalone safety monitor cleanup complete";
 }
 
 SchedulerState SchedulerProcess::status()
@@ -544,7 +543,7 @@ void SchedulerProcess::wakeUpScheduler()
             {
                 if (m_queueManager->count() > 0)
                 {
-                    appendLogText(i18n("Executing post-startup tasks from %1 after weather recovery...", queueFile));
+                    appendLogText(i18n("Executing post-startup tasks from %1 after safety recovery...", queueFile));
                     // Set a temporary state to track post-weather-recovery startup
                     moduleState()->setStartupState(STARTUP_POST_DEVICES_RUNNING);
                     m_queueExecutor->start();
@@ -553,7 +552,7 @@ void SchedulerProcess::wakeUpScheduler()
             }
             else
             {
-                appendLogText(i18n("Warning: Failed to load post-startup queue from %1 after weather recovery", queueFile));
+                appendLogText(i18n("Warning: Failed to load post-startup queue from %1 after safety recovery", queueFile));
             }
         }
 
@@ -720,7 +719,7 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
             // If we're already in preemptive shutdown, give up on this job
             if (moduleState()->weatherGracePeriodActive())
             {
-                appendLogText(i18n("Job '%1' cannot start because weather status is %2 and grace period is over.",
+                appendLogText(i18n("Job '%1' cannot start because safety status is %2 and grace period is over.",
                                    job->getName(), (weatherStatus == ISD::Weather::WEATHER_WARNING) ? i18n("Warning") : i18n("Alert")));
                 job->setState(SCHEDJOB_ERROR);
                 moduleState()->setWeatherGracePeriodActive(false);
@@ -730,7 +729,7 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
 
             QDateTime wakeupTime = SchedulerModuleState::getLocalTime().addSecs(Options::schedulerWeatherGracePeriod() * 60);
 
-            appendLogText(i18n("Job '%1' cannot start because weather status is %2. Waiting until weather improves or until %3",
+            appendLogText(i18n("Job '%1' cannot start because safety status is %2. Waiting until weather improves or until %3",
                                job->getName(), (weatherStatus == ISD::Weather::WEATHER_WARNING) ? i18n("Warning") : i18n("Alert"),
                                wakeupTime.toString()));
 
@@ -1653,6 +1652,12 @@ bool SchedulerProcess::completeShutdown()
                             m_queueExecutor->start();
                             return false;
                         }
+                        else
+                        {
+                            // Queue loaded but is empty - consider shutdown complete
+                            appendLogText(i18n("Post-shutdown queue is empty, shutdown complete."));
+                            moduleState()->setShutdownState(SHUTDOWN_COMPLETE);
+                        }
                     }
                     else
                     {
@@ -1660,6 +1665,11 @@ bool SchedulerProcess::completeShutdown()
                         moduleState()->setShutdownState(SHUTDOWN_ERROR);
                         return false;
                     }
+                }
+                else
+                {
+                    // No post-shutdown queue configured - shutdown is complete
+                    moduleState()->setShutdownState(SHUTDOWN_COMPLETE);
                 }
             }
         }
@@ -3051,7 +3061,7 @@ void SchedulerProcess::queueExecutionCompleted()
         // we need to explicitly resume scheduler execution since we returned early from wakeUpScheduler()
         if (moduleState()->schedulerState() == SCHEDULER_IDLE || moduleState()->schedulerState() == SCHEDULER_PAUSED)
         {
-            appendLogText(i18n("Resuming scheduler after weather recovery startup tasks..."));
+            appendLogText(i18n("Resuming scheduler after safety recovery startup tasks..."));
             execute();
         }
         return;
@@ -3733,9 +3743,46 @@ void SchedulerProcess::setMountStatus(ISD::Mount::Status status)
     }
 }
 
-void SchedulerProcess::setWeatherStatus(ISD::Weather::Status status)
+void SchedulerProcess::setSafetyStatus(IPState status)
+{
+    // Map IPState to ISD::Weather::Status for compatibility
+    ISD::Weather::Status weatherStatus;
+    switch (status)
+    {
+        case IPS_IDLE:
+            weatherStatus = ISD::Weather::WEATHER_IDLE;
+            break;
+        case IPS_OK:
+            weatherStatus = ISD::Weather::WEATHER_OK;
+            break;
+        case IPS_BUSY:
+            weatherStatus = ISD::Weather::WEATHER_WARNING;
+            break;
+        case IPS_ALERT:
+            weatherStatus = ISD::Weather::WEATHER_ALERT;
+            break;
+        default:
+            weatherStatus = ISD::Weather::WEATHER_IDLE;
+            break;
+    }
+
+    setWeatherStatus(weatherStatus, true);
+}
+
+void SchedulerProcess::setWeatherStatus(ISD::Weather::Status status, bool fromStandaloneSafetyMonitor)
 {
     ISD::Weather::Status newStatus = status;
+
+    // If we have a standalone safety monitor connected and this update is from the observatory interface,
+    // we should only accept it if it's worse than the current status or ignore it completely
+    if (m_StandaloneSafetyMonitor != nullptr && !fromStandaloneSafetyMonitor)
+    {
+        // Standalone safety monitor takes precedence - ignore observatory interface weather updates
+        qCDebug(KSTARS_EKOS_SCHEDULER) <<
+        "Ignoring observatory interface weather status update because standalone safety monitor is active. "
+                                       << "Observatory status:" << status << "Current status:" << moduleState()->weatherStatus();
+        return;
+    }
 
     if (newStatus == moduleState()->weatherStatus())
         return;
@@ -3752,7 +3799,7 @@ void SchedulerProcess::setWeatherStatus(ISD::Weather::Status status)
             oldStatus != ISD::Weather::WEATHER_OK &&
             newStatus == ISD::Weather::WEATHER_OK)
     {
-        appendLogText(i18n("Weather has improved. Resuming operations."));
+        appendLogText(i18n("Safety has improved. Resuming operations."));
         moduleState()->setWeatherGracePeriodActive(false);
         wakeUpScheduler();
     }
@@ -3762,7 +3809,7 @@ void SchedulerProcess::setWeatherStatus(ISD::Weather::Status status)
              moduleState()->schedulerState() != Ekos::SCHEDULER_SHUTDOWN))
     {
         m_WeatherShutdownTimer.start(Options::schedulerWeatherShutdownDelay() * 1000);
-        appendLogText(i18n("Weather alert detected. Starting soft shutdown procedure in %1 seconds.",
+        appendLogText(i18n("Safety alert detected. Starting soft shutdown procedure in %1 seconds.",
                            Options::schedulerWeatherShutdownDelay()));
     }
 
@@ -3789,7 +3836,7 @@ void SchedulerProcess::startShutdownDueToWeather()
         moduleState()->setWeatherGracePeriodActive(true);
         moduleState()->enablePreemptiveShutdown(wakeupTime);
 
-        appendLogText(i18n("Observatory scheduled for soft shutdown until weather improves or until %1.",
+        appendLogText(i18n("Observatory scheduled for soft shutdown until safety improves or until %1.",
                            wakeupTime.toString()));
 
         // Initiate shutdown procedure
@@ -4139,27 +4186,6 @@ void SchedulerProcess::registerNewDevice(const QString &name, int interface)
         }
     }
 
-    // if (interface & INDI::BaseDevice::WEATHER_INTERFACE)
-    // {
-    //     QList<QVariant> dbusargs;
-    //     dbusargs.append(INDI::BaseDevice::WEATHER_INTERFACE);
-    //     QDBusReply<QStringList> paths = indiInterface()->callWithArgumentList(QDBus::AutoDetect, "getDevicesPaths",
-    //                                     dbusargs);
-    //     if (paths.error().type() == QDBusError::NoError)
-    //     {
-    //         // Select last device in case a restarted caused multiple instances in the tree
-    //         setWeatherPathString(paths.value().last());
-    //         delete weatherInterface();
-    //         setWeatherInterface(new QDBusInterface(kstarsInterfaceString, weatherPathString,
-    //                                                weatherInterfaceString,
-    //                                                QDBusConnection::sessionBus(), this));
-    //         connect(weatherInterface(), SIGNAL(ready()), this, SLOT(syncProperties()));
-    //         connect(weatherInterface(), SIGNAL(newStatus(ISD::Weather::Status)), this,
-    //                 SLOT(setWeatherStatus(ISD::Weather::Status)));
-    //         checkInterfaceReady(weatherInterface());
-    //     }
-    // }
-
     if (interface & INDI::BaseDevice::DUSTCAP_INTERFACE)
     {
         QList<QVariant> dbusargs;
@@ -4370,6 +4396,34 @@ void SchedulerProcess::updateCompletedJobsCount(bool forced)
 SchedulerJob *SchedulerProcess::activeJob()
 {
     return  moduleState()->activeJob();
+}
+
+void SchedulerProcess::updateSafetyMonitorConnection()
+{
+    // Read the current connection string from settings
+    QString connectionString = Options::schedulerSafetyMonitorConnectionString();
+
+    // If weather monitoring is disabled, nothing to update
+    if (!Options::schedulerWeather())
+    {
+        qCDebug(KSTARS_EKOS_SCHEDULER) << "Weather monitoring is disabled, skipping safety monitor update";
+        return;
+    }
+
+    // If we don't have a standalone safety monitor yet, initialize it if connection string is provided
+    if (m_StandaloneSafetyMonitor == nullptr && !connectionString.isEmpty())
+    {
+        m_StandaloneSafetyMonitor = new SchedulerSafetyMonitor(this);
+        connect(m_StandaloneSafetyMonitor, &SchedulerSafetyMonitor::newSafetyStatus, this, &SchedulerProcess::setSafetyStatus);
+        connect(m_StandaloneSafetyMonitor, &SchedulerSafetyMonitor::newLog, this, &SchedulerProcess::appendLogText);
+        m_StandaloneSafetyMonitor->initStandaloneSafetyMonitor(connectionString);
+        appendLogText(i18n("Safety monitor initialized with connection string: %1", connectionString));
+    }
+    // If we have a standalone safety monitor, update its connection
+    else if (m_StandaloneSafetyMonitor != nullptr)
+    {
+        m_StandaloneSafetyMonitor->updateConnectionString(connectionString);
+    }
 }
 
 void SchedulerProcess::printStates(const QString &label)
