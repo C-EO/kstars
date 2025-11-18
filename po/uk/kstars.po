@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-16 01:59+0000\n"
+"POT-Creation-Date: 2025-11-17 08:59+0000\n"
 "PO-Revision-Date: 2025-11-14 12:35+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -12792,12 +12792,12 @@ msgstr "Середня точка за довжиною хвилі фільтр�
 msgid "Wavelength"
 msgstr "Довжина хвилі"
 
-#: ekos/auxiliary/filtermanager.cpp:581
+#: ekos/auxiliary/filtermanager.cpp:578
 #, kde-format
 msgid "Set filter to %1. Is filter set?"
 msgstr "Встановлення фільтра у %1. Фільтр встановлено?"
 
-#: ekos/auxiliary/filtermanager.cpp:582
+#: ekos/auxiliary/filtermanager.cpp:579
 #, kde-format
 msgid "Confirm Filter"
 msgstr "Підтвердження фільтра"
