@@ -838,12 +838,29 @@ bool DriverManager::disconnectRemoteHost(const QSharedPointer<DriverInfo> &drive
 
     if (clientManager)
     {
+        // This is critical for Flatpak where server shutdown happens very quickly
+        clientManager->setPendingDisconnection(true);
+
+        // Disconnect all Qt signal/slot connections
+        clientManager->disconnect();
+
+        // Remove the managed driver (cleans up driver state)
         clientManager->removeManagedDriver(driver);
+
+        // Disconnect all servers
         clientManager->disconnectAll();
+
+        // Remove Client from GUI and INDI Listener
         GUIManager::Instance()->removeClient(clientManager);
         INDIListener::Instance()->removeClient(clientManager);
+
+        // Remove from our DriverManager list
         clients.removeOne(clientManager);
+
+        // Delete later
         clientManager->deleteLater();
+
+        // Sync menu actions
         updateMenuActions();
         return true;
     }
