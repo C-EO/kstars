@@ -71,15 +71,27 @@ do {\
   * @brief Subroutine version of QTRY_TIMEOUT_DEBUG_IMPL
   * @return false if expression equals false, otherwise continuing
   */
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #define KTRY_TIMEOUT_DEBUG_IMPL_SUB(expr, timeoutValue, step)\
     if (!(expr)) { \
         QTRY_LOOP_IMPL((expr), (2 * timeoutValue), step);\
         if (expr) { \
             QString msg = QString::fromUtf8("QTestLib: This test case check (\"%1\") failed because the requested timeout (%2 ms) was too short, %3 ms would have been sufficient this time."); \
-            msg = msg.arg(QString::fromUtf8(#expr)).arg(timeoutValue).arg(timeoutValue + qt_test_i); \
+            msg = msg.arg(QString::fromUtf8(#expr)).arg(timeoutValue + qt_test_i); \
             KVERIFY2_SUB(false, qPrintable(msg)); \
         } \
     }
+#else
+#define KTRY_TIMEOUT_DEBUG_IMPL_SUB(expr, timeoutValue, step)\
+    if (!(expr)) { \
+        QTRY_LOOP_IMPL((expr), (2 * timeoutValue), step);\
+        if (expr) { \
+            QString msg = QString::fromUtf8("QTestLib: This test case check (\"%1\") failed because the requested timeout (%2 ms) was too short, %3 ms would have been sufficient this time."); \
+            msg = msg.arg(QString::fromUtf8(#expr)).arg(timeoutValue + static_cast<int>(qt_test_i.count())); \
+            KVERIFY2_SUB(false, qPrintable(msg)); \
+        } \
+    }
+#endif
 
 /**
   * @brief Subroutine version of QTRY_IMPL
@@ -342,6 +354,7 @@ do {\
     } while (false)
 
 #define CLOSE_MODAL_DIALOG(button_nr) do { \
+    QTRY_IMPL(QApplication::activeModalWidget() != nullptr, 5000); \
     QTimer::singleShot(1000, capture, [&]() { \
         QDialog * const dialog = qobject_cast <QDialog*> (QApplication::activeModalWidget()); \
         if (dialog) \
@@ -446,6 +459,11 @@ class TestEkosHelper : public QObject
          * @param isDone will be true if everything succeeds
          */
         void fillProfile(bool *isDone);
+
+        /**
+         * @brief addDriver Add a driver to a profile
+         */
+        void addDriverToProfile(QString drivername);
 
         /**
          * @brief create a new EKOS profile
@@ -582,13 +600,6 @@ class TestEkosHelper : public QObject
         void updateJ2000Coordinates(SkyPoint *target);
 
         /**
-         * @brief Set a tree view combo to a given value
-         * @param combo box with tree view
-         * @param lookup target value
-         */
-        void setTreeviewCombo(QComboBox *combo, const QString lookup);
-
-        /**
          * @brief Simple write-string-to-file utility.
          * @param filename name of the file to be created
          * @param lines file content
@@ -708,7 +719,7 @@ class TestEkosHelper : public QObject
          */
         OAL::Scope *createScopeIfNecessary(QString model, QString vendor, QString type, double aperture, double focallenght);
 
-private:
+    private:
         // current mount status
         ISD::Mount::Status m_MountStatus { ISD::Mount::MOUNT_IDLE };
 
