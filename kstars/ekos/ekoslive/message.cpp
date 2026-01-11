@@ -2764,6 +2764,12 @@ void Message::processMessage(const QSharedPointer<ISD::GenericDevice> &device, i
         return;
 
     auto message = QString::fromStdString(device->getBaseDevice().messageQueue(id));
+
+    // Return if message doesn't contain any log level indicator
+    static const QRegularExpression logLevelRegex(QStringLiteral("\\[(INFO|WARNING|ERROR)\\]"));
+    if (!logLevelRegex.match(message).hasMatch())
+        return;
+
     QJsonObject payload =
     {
         {"device", device->getDeviceName()},
