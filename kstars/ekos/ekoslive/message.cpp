@@ -289,6 +289,8 @@ void Message::onTextReceived(const QString &message)
         processDarkLibraryCommands(command, payload);
     else if (command.startsWith("device_"))
         processDeviceCommands(command, payload);
+    else if (command.startsWith("livestacker_"))
+        processLiveStackerCommands(command, payload);
 
 }
 
@@ -1893,26 +1895,26 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
 
         switch (objectType)
         {
-                // Stars
+            // Stars
             case SkyObject::STAR:
             case SkyObject::CATALOG_STAR:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::STAR));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::CATALOG_STAR));
                 break;
-                // Planets & Moon
+            // Planets & Moon
             case SkyObject::PLANET:
             case SkyObject::MOON:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::PLANET));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::MOON));
                 break;
-                // Comets & Asteroids
+            // Comets & Asteroids
             case SkyObject::COMET:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::COMET));
                 break;
             case SkyObject::ASTEROID:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::ASTEROID));
                 break;
-                // Clusters
+            // Clusters
             case SkyObject::OPEN_CLUSTER:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::OPEN_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
@@ -1921,7 +1923,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GLOBULAR_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
                 break;
-                // Nebuale
+            // Nebuale
             case SkyObject::GASEOUS_NEBULA:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GASEOUS_NEBULA, objectMaxMagnitude));
                 isDSO = true;
@@ -3109,6 +3111,165 @@ void Message::invokeMethod(QObject *context, const QJsonObject &payload)
     {
         QMetaObject::invokeMethod(context, name);
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
+void Message::processLiveStackerCommands(const QString &command, const QJsonObject &payload)
+{
+    if (command == commands[LIVESTACKER_INITIALIZE])
+    {
+        // Close existing viewer if any
+        if (m_LiveStackerViewer)
+        {
+            m_LiveStackerViewer->close();
+            m_LiveStackerViewer = nullptr;
+        }
+
+        // Create new FITS Viewer for live stacking
+        m_LiveStackerViewer = KStars::Instance()->createFITSViewer();
+        if (!m_LiveStackerViewer)
+        {
+            sendResponse(commands[NEW_LIVESTACKER_STATE],
+            QJsonObject{{"state", "error"}, {"message", "Failed to create FITS Viewer"}});
+            return;
+        }
+
+        // Trigger stack mode (this opens LiveStacker UI)
+        m_LiveStackerViewer->stack();
+
+        sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "initialized"}});
+    }
+    else if (command == commands[LIVESTACKER_SET_ALL_SETTINGS])
+    {
+        // Store settings for later use when starting
+        m_LiveStackerSettings = payload["settings"].toVariant().toMap();
+        sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "settings_applied"}});
+    }
+    else if (command == commands[LIVESTACKER_GET_ALL_SETTINGS])
+    {
+        sendResponse(commands[LIVESTACKER_GET_ALL_SETTINGS], QJsonObject::fromVariantMap(m_LiveStackerSettings));
+    }
+    else if (command == commands[LIVESTACKER_START])
+    {
+        if (!m_LiveStackerViewer)
+        {
+            sendResponse(commands[NEW_LIVESTACKER_STATE],
+            QJsonObject{{"state", "error"}, {"message", "LiveStacker not initialized"}});
+            return;
+        }
+
+        QSharedPointer<FITSView> currentView;
+        if (!m_LiveStackerViewer->getCurrentView(currentView) || !currentView)
+        {
+            sendResponse(commands[NEW_LIVESTACKER_STATE],
+            QJsonObject{{"state", "error"}, {"message", "No active view"}});
+            return;
+        }
+
+        // Get the directory to monitor
+        QString directory = m_LiveStackerSettings.value("stackingDirectory").toString();
+        if (directory.isEmpty())
+        {
+            sendResponse(commands[NEW_LIVESTACKER_STATE],
+            QJsonObject{{"state", "error"}, {"message", "No stacking directory specified"}});
+            return;
+        }
+
+        // Build LiveStackData from settings
+        LiveStackData params;
+        params.calcSNR = m_LiveStackerSettings.value("calcSNR", true).toBool();
+        params.alignMethod = static_cast<LiveStackAlignMethod>(m_LiveStackerSettings.value("alignMethod", 0).toInt());
+        params.stackingMethod = static_cast<LiveStackStackingMethod>(m_LiveStackerSettings.value("stackingMethod", 0).toInt());
+        params.downscale = static_cast<LiveStackDownscale>(m_LiveStackerSettings.value("downscale", 0).toInt());
+        params.numInMem = m_LiveStackerSettings.value("numInMem", 10).toInt();
+        params.weighting = static_cast<LiveStackFrameWeighting>(m_LiveStackerSettings.value("weighting", 0).toInt());
+        params.lowSigma = m_LiveStackerSettings.value("lowSigma", 2.0).toDouble();
+        params.highSigma = m_LiveStackerSettings.value("highSigma", 3.0).toDouble();
+
+        // Post-processing settings
+        params.postProcessing.postProcess = m_LiveStackerSettings.value("postProcess", false).toBool();
+        params.postProcessing.sharpenAmt = m_LiveStackerSettings.value("sharpenAmt", 0.0).toDouble();
+        params.postProcessing.denoiseAmt = m_LiveStackerSettings.value("denoiseAmt", 0.0).toDouble();
+        params.postProcessing.deconvAmt = m_LiveStackerSettings.value("deconvAmt", 0.0).toDouble();
+
+        // Master dark/flat paths
+        QString masterDark = m_LiveStackerSettings.value("masterDarkPath").toString();
+        QString masterFlat = m_LiveStackerSettings.value("masterFlatPath").toString();
+
+        if (!masterDark.isEmpty())
+            params.masterDark = QVector<QString> {masterDark};
+        if (!masterFlat.isEmpty())
+            params.masterFlat = QVector<QString> {masterFlat};
+
+        // EkosLive integration: output directory where stacked images are saved to disk.
+        // This is DIFFERENT from stackingDirectory (input) - the EkosLive server monitors
+        // this outputDirectory offline for new stacked frames.
+        params.outputDirectory = m_LiveStackerSettings.value("outputDirectory").toString();
+
+        // Start stacking by loading the directory
+        QStringList paths{directory};
+        currentView->loadStack(paths, params);
+
+        // Connect signals for progress updates
+        connect(currentView.get(), &FITSView::stackUpdateStats, this, &Message::sendLiveStackerProgress);
+        connect(currentView.get(), &FITSView::resetStack, this, &Message::sendLiveStackerComplete);
+
+        sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "started"}});
+    }
+    else if (command == commands[LIVESTACKER_STOP])
+    {
+        if (m_LiveStackerViewer)
+        {
+            QSharedPointer<FITSView> currentView;
+            if (m_LiveStackerViewer->getCurrentView(currentView) && currentView)
+            {
+                currentView->cancelStack();
+            }
+            sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "stopped"}});
+        }
+    }
+    else if (command == commands[LIVESTACKER_CLOSE])
+    {
+        if (m_LiveStackerViewer)
+        {
+            m_LiveStackerViewer->close();
+            m_LiveStackerViewer = nullptr;
+        }
+        m_LiveStackerSettings.clear();
+        sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "closed"}});
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
+void Message::sendLiveStackerProgress(bool ok, int sub, int total, double meanSNR, double minSNR, double maxSNR)
+{
+    QJsonObject state =
+    {
+        {"state", "stacking"},
+        {"ok", ok},
+        {"frames_stacked", sub},
+        {"total_frames", total},
+        {"mean_snr", meanSNR},
+        {"min_snr", minSNR},
+        {"max_snr", maxSNR}
+    };
+    sendResponse(commands[NEW_LIVESTACKER_STATE], state);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
+void Message::sendLiveStackerComplete()
+{
+    QJsonObject state =
+    {
+        {"state", "complete"}
+    };
+    sendResponse(commands[NEW_LIVESTACKER_STATE], state);
 }
 
 }

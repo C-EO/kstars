@@ -298,6 +298,7 @@ QFuture<bool> FITSData::loadFromFile(const QString &inFilename)
 bool FITSData::loadStack(const QStringList &inDir, const LiveStackData &params)
 {
     m_LiveStackData = params;
+    m_StackSavedFrameCount = 0;  // Reset frame counter for new stacking session
     if (!initStackChannels(inDir, params.masterDark, params.masterFlat))
         return true;
 

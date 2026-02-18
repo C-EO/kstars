@@ -560,6 +560,12 @@ class FITSView : public QScrollArea
                               const double maxSNR);
         void updateStackSNR(const double SNR);
         void resetStack(const bool cancelled);
+        /**
+         * @brief stackFrameSaved emitted when a stacked image is successfully saved to outputDirectory (EkosLive).
+         * @param frameNumber sequential frame index (0-based)
+         * @param filePath absolute path to the saved FITS file
+         */
+        void stackFrameSaved(int frameNumber, const QString &filePath);
 
         friend class FITSLabel;
 };
