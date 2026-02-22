@@ -15,6 +15,7 @@
 #include "indiapi.h"
 #include "indi/indistd.h"
 #include "indi/indidustcap.h"
+#include "indi/indilightbox.h"
 #include "indi/indicamera.h"
 #include "indi/indimount.h"
 #include "indi/indidome.h"
@@ -258,11 +259,11 @@ class CameraState: public QObject
 
         void setCurrentFilterPosition(int position, const QString &name, const QString &focusFilterName);
 
-        LightState getLightBoxLightState() const
+        ISD::LightBox::LightStatus getLightBoxLightState() const
         {
             return m_lightBoxLightState;
         }
-        void setLightBoxLightState(LightState value)
+        void setLightBoxLightState(ISD::LightBox::LightStatus value)
         {
             m_lightBoxLightState = value;
         }
@@ -281,11 +282,11 @@ class CameraState: public QObject
          */
         void dustCapStateChanged(ISD::DustCap::Status status);
 
-        CapState getDustCapState() const
+        ISD::DustCap::Status getDustCapState() const
         {
             return m_dustCapState;
         }
-        void setDustCapState(CapState value)
+        void setDustCapState(ISD::DustCap::Status value)
         {
             m_dustCapState = value;
         }
@@ -1089,8 +1090,8 @@ class CameraState: public QObject
         IPState m_DitheringState {IPS_IDLE};
         AlignState m_AlignState { ALIGN_IDLE };
         FilterState m_FilterManagerState { FILTER_IDLE };
-        LightState m_lightBoxLightState { CAP_LIGHT_UNKNOWN };
-        CapState m_dustCapState { CAP_UNKNOWN };
+        ISD::LightBox::LightStatus m_lightBoxLightState { ISD::LightBox::LIGHT_UNKNOWN };
+        ISD::DustCap::Status m_dustCapState { ISD::DustCap::CAP_UNKNOWN };
         ISD::Mount::Status m_scopeState { ISD::Mount::MOUNT_IDLE };
         ISD::Mount::PierSide m_pierSide { ISD::Mount::PIER_UNKNOWN };
         ISD::ParkStatus m_scopeParkState { ISD::PARK_UNKNOWN };

@@ -285,25 +285,19 @@ void CameraState::setCurrentFilterPosition(int position, const QString &name, co
 
 void CameraState::dustCapStateChanged(ISD::DustCap::Status status)
 {
+    setDustCapState(status);
     switch (status)
     {
         case ISD::DustCap::CAP_ERROR:
-            setDustCapState(CAP_ERROR);
             emit newLog(i18n("Dust cap error."));
             break;
         case ISD::DustCap::CAP_PARKED:
-            setDustCapState(CAP_PARKED);
             emit newLog(i18n("Dust cap parked."));
             break;
         case ISD::DustCap::CAP_IDLE:
-            setDustCapState(CAP_IDLE);
             emit newLog(i18n("Dust cap unparked."));
             break;
-        case ISD::DustCap::CAP_UNPARKING:
-            setDustCapState(CAP_UNPARKING);
-            break;
-        case ISD::DustCap::CAP_PARKING:
-            setDustCapState(CAP_PARKING);
+        default:
             break;
     }
 }

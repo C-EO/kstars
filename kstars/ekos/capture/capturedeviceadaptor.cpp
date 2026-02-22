@@ -84,6 +84,9 @@ void CaptureDeviceAdaptor::connectDustCap(SequenceJobState *state)
     if (m_ActiveDustCap != nullptr)
         connect(m_ActiveDustCap, &ISD::DustCap::newStatus, this, &CaptureDeviceAdaptor::dustCapStatusChanged);
 
+    if (m_ActiveLightBox != nullptr)
+        connect(m_ActiveLightBox, &ISD::LightBox::newLightStatus, this, &CaptureDeviceAdaptor::lightBoxStatusChanged);
+
     if (state == nullptr)
         return;
 
@@ -95,6 +98,7 @@ void CaptureDeviceAdaptor::connectDustCap(SequenceJobState *state)
     connect(this, &CaptureDeviceAdaptor::manualScopeCoverUpdated, state, &SequenceJobState::updateManualScopeCover);
     connect(this, &CaptureDeviceAdaptor::lightBoxLight, state, &SequenceJobState::lightBoxLight);
     connect(this, &CaptureDeviceAdaptor::dustCapStatusChanged, state, &SequenceJobState::dustCapStateChanged);
+    connect(this, &CaptureDeviceAdaptor::lightBoxStatusChanged, state, &SequenceJobState::lightBoxStateChanged);
 }
 
 void CaptureDeviceAdaptor::disconnectDustCap(SequenceJobState *state)

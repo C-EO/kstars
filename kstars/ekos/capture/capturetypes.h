@@ -70,24 +70,6 @@ typedef enum
 
 typedef enum
 {
-    CAP_IDLE,
-    CAP_PARKING,
-    CAP_UNPARKING,
-    CAP_PARKED,
-    CAP_ERROR,
-    CAP_UNKNOWN
-} CapState;
-
-typedef enum
-{
-    CAP_LIGHT_OFF,     /* light is on               */
-    CAP_LIGHT_ON,      /* light is off              */
-    CAP_LIGHT_UNKNOWN, /* unknown whether on or off */
-    CAP_LIGHT_BUSY     /* light state changing      */
-} LightState;
-
-typedef enum
-{
     CAPTURE_CONTINUE_ACTION_NONE,            /* do nothing              */
     CAPTURE_CONTINUE_ACTION_NEXT_EXPOSURE,   /* start next exposure     */
     CAPTURE_CONTINUE_ACTION_CAPTURE_COMPLETE /* recall capture complete */

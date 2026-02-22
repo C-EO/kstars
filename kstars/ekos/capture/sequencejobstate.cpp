@@ -485,39 +485,39 @@ IPState SequenceJobState::checkDustCapReady(CCDFrameType frameType)
                                  << "Current cap state:" << m_CameraState->getDustCapState();
 
     // turning on flat light running
-    if (m_CameraState->getLightBoxLightState() == CAP_LIGHT_BUSY  ||
-            m_CameraState->getDustCapState() == CAP_PARKING ||
-            m_CameraState->getDustCapState() == CAP_UNPARKING)
+    if (m_CameraState->getLightBoxLightState() == ISD::LightBox::LIGHT_BUSY  ||
+            m_CameraState->getDustCapState() == ISD::DustCap::CAP_PARKING ||
+            m_CameraState->getDustCapState() == ISD::DustCap::CAP_UNPARKING)
     {
         qCDebug(KSTARS_EKOS_CAPTURE) << "Dust cap busy (parking/unparking), returning IPS_BUSY";
         return IPS_BUSY;
     }
     // error occurred
-    if (m_CameraState->getDustCapState() == CAP_ERROR)
+    if (m_CameraState->getDustCapState() == ISD::DustCap::CAP_ERROR)
         return IPS_ALERT;
 
     auto captureLights = (frameType == FRAME_LIGHT);
 
     // for flats open the cap and close it otherwise
-    CapState targetCapState = captureLights ? CAP_IDLE : CAP_PARKED;
+    ISD::DustCap::Status targetCapState = captureLights ? ISD::DustCap::CAP_IDLE : ISD::DustCap::CAP_PARKED;
     // If cap is parked, unpark it since dark cap uses external light source.
     if (m_CameraState->hasDustCap && m_CameraState->getDustCapState() != targetCapState)
     {
         qCDebug(KSTARS_EKOS_CAPTURE) << "Dust cap state mismatch - current:" << m_CameraState->getDustCapState()
                                      << "target:" << targetCapState << "Initiating" << (captureLights ? "unpark" : "park");
-        m_CameraState->setDustCapState(captureLights ? CAP_UNPARKING : CAP_PARKING);
+        m_CameraState->setDustCapState(captureLights ? ISD::DustCap::CAP_UNPARKING : ISD::DustCap::CAP_PARKING);
         emit parkDustCap(!captureLights);
         emit newLog(captureLights ? i18n("Unparking dust cap...") : i18n("Parking dust cap..."));
         return IPS_BUSY;
     }
 
     auto captureFlats = (frameType == FRAME_FLAT);
-    LightState targetLightBoxStatus = captureFlats ? CAP_LIGHT_ON :
-                                      CAP_LIGHT_OFF;
+    ISD::LightBox::LightStatus targetLightBoxStatus = captureFlats ? ISD::LightBox::LIGHT_ON :
+        ISD::LightBox::LIGHT_OFF;
 
     if (m_CameraState->hasLightBox && m_CameraState->getLightBoxLightState() != targetLightBoxStatus)
     {
-        m_CameraState->setLightBoxLightState(CAP_LIGHT_BUSY);
+        m_CameraState->setLightBoxLightState(ISD::LightBox::LIGHT_BUSY);
         emit setLightBoxLight(captureFlats);
         emit newLog(captureFlats ? i18n("Turn light box light on...") : i18n("Turn light box light off..."));
         return IPS_BUSY;
@@ -589,14 +589,14 @@ IPState SequenceJobState::checkWallPositionReady(CCDFrameType frametype)
 
         // wall position reached, check if we have a light box to turn on for flats and off otherwise
         bool captureFlats = (frametype == FRAME_FLAT);
-        LightState targetLightState = (captureFlats ? CAP_LIGHT_ON :
-                                       CAP_LIGHT_OFF);
+        ISD::LightBox::LightStatus targetLightState = (captureFlats ? ISD::LightBox::LIGHT_ON :
+            ISD::LightBox::LIGHT_OFF);
 
         if (m_CameraState->hasLightBox == true)
         {
             if (m_CameraState->getLightBoxLightState() != targetLightState)
             {
-                m_CameraState->setLightBoxLightState(CAP_LIGHT_BUSY);
+                m_CameraState->setLightBoxLightState(ISD::LightBox::LIGHT_BUSY);
                 emit setLightBoxLight(captureFlats);
                 emit newLog(captureFlats ? i18n("Turn light box light on...") : i18n("Turn light box light off..."));
                 return IPS_BUSY;
@@ -696,11 +696,11 @@ IPState SequenceJobState::checkHasShutter()
 IPState SequenceJobState::checkLightFrameScopeCoverOpen()
 {
     // Account for light box only (no dust cap)
-    if (m_CameraState->hasLightBox && m_CameraState->getLightBoxLightState() != CAP_LIGHT_OFF)
+    if (m_CameraState->hasLightBox && m_CameraState->getLightBoxLightState() != ISD::LightBox::LIGHT_OFF)
     {
-        if (m_CameraState->getLightBoxLightState() != CAP_LIGHT_BUSY)
+        if (m_CameraState->getLightBoxLightState() != ISD::LightBox::LIGHT_BUSY)
         {
-            m_CameraState->setLightBoxLightState(CAP_LIGHT_BUSY);
+            m_CameraState->setLightBoxLightState(ISD::LightBox::LIGHT_BUSY);
             emit setLightBoxLight(false);
             emit newLog(i18n("Turn light box light off..."));
         }
@@ -710,11 +710,11 @@ IPState SequenceJobState::checkLightFrameScopeCoverOpen()
     // If we have a dust cap, then we must unpark
     if (m_CameraState->hasDustCap)
     {
-        if (m_CameraState->getDustCapState() != CAP_IDLE)
+        if (m_CameraState->getDustCapState() != ISD::DustCap::CAP_IDLE)
         {
-            if (m_CameraState->getDustCapState() != CAP_UNPARKING)
+            if (m_CameraState->getDustCapState() != ISD::DustCap::CAP_UNPARKING)
             {
-                m_CameraState->setDustCapState(CAP_UNPARKING);
+                m_CameraState->setDustCapState(ISD::DustCap::CAP_UNPARKING);
                 emit parkDustCap(false);
                 emit newLog(i18n("Unparking dust cap..."));
             }
@@ -939,47 +939,83 @@ void SequenceJobState::updateManualScopeCover(bool closed, bool success, bool li
 
 void SequenceJobState::lightBoxLight(bool on)
 {
-    // ignore events if preparation is already completed
-    if (preparationCompleted())
-        return;
+    // ALWAYS update the state to reflect what Ekos commanded
+    m_CameraState->setLightBoxLightState(on ? ISD::LightBox::LIGHT_ON : ISD::LightBox::LIGHT_OFF);
 
-    m_CameraState->setLightBoxLightState(on ? CAP_LIGHT_ON : CAP_LIGHT_OFF);
-    emit newLog(i18n(on ? "Light box on." : "Light box off."));
-    // re-run checks
-    checkAllActionsReady();
+    // Only re-run checks if preparation is not completed
+    if (!preparationCompleted())
+        checkAllActionsReady();
+}
+
+void SequenceJobState::lightBoxStateChanged(ISD::LightBox::LightStatus status)
+{
+    // Only log if the state has actually changed
+    if (m_CameraState->getLightBoxLightState() != status)
+    {
+        switch (status)
+        {
+            case ISD::LightBox::LIGHT_ON:
+                emit newLog(i18n("Light box light turned on."));
+                break;
+            case ISD::LightBox::LIGHT_OFF:
+                emit newLog(i18n("Light box light turned off."));
+                break;
+            case ISD::LightBox::LIGHT_BUSY:
+                emit newLog(i18n("Light box busy."));
+                break;
+            case ISD::LightBox::LIGHT_ERROR:
+                emit newLog(i18n("Light box error."));
+                break;
+            default:
+                break;
+        }
+    }
+
+    // ALWAYS update the state to reflect actual hardware state
+    m_CameraState->setLightBoxLightState(status);
+
+    // Only re-run checks if preparation is not completed
+    if (!preparationCompleted())
+        checkAllActionsReady();
 }
 
 void SequenceJobState::dustCapStateChanged(ISD::DustCap::Status status)
 {
-    // ignore events if preparation is already completed
-    if (preparationCompleted())
-        return;
-
-    switch (status)
+    // ALWAYS update the state to reflect actual hardware state
+    // Only log if the state has actually changed
+    if (m_CameraState->getDustCapState() != status)
     {
-        case ISD::DustCap::CAP_ERROR:
-            emit newLog(i18n("Dust cap error occurred."));
-            emit abortCapture();
-            break;
-        case ISD::DustCap::CAP_IDLE:
-            emit newLog(i18n("Dust cap is idle."));
-            break;
-        case ISD::DustCap::CAP_PARKED:
-            emit newLog(i18n("Dust cap is parked."));
-            break;
-        case ISD::DustCap::CAP_PARKING:
-            emit newLog(i18n("Dust cap is parking..."));
-            break;
-        case ISD::DustCap::CAP_UNPARKING:
-            emit newLog(i18n("Dust cap is unparking..."));
-            break;
-        default:
-            emit newLog(i18n("Dust cap status unknown."));
-            break;
+        switch (status)
+        {
+            case ISD::DustCap::CAP_ERROR:
+                emit newLog(i18n("Dust cap error occurred."));
+                // Only abort if we're in active preparation
+                if (!preparationCompleted())
+                    emit abortCapture();
+                break;
+            case ISD::DustCap::CAP_IDLE:
+                emit newLog(i18n("Dust cap is idle."));
+                break;
+            case ISD::DustCap::CAP_PARKED:
+                emit newLog(i18n("Dust cap is parked."));
+                break;
+            case ISD::DustCap::CAP_PARKING:
+                emit newLog(i18n("Dust cap is parking..."));
+                break;
+            case ISD::DustCap::CAP_UNPARKING:
+                emit newLog(i18n("Dust cap is unparking..."));
+                break;
+            default:
+                emit newLog(i18n("Dust cap status unknown."));
+                break;
+        }
     }
 
-    // re-run checks
-    checkAllActionsReady();
+    m_CameraState->setDustCapState(status);
+
+    // Only re-run checks if preparation is not completed
+    if (!preparationCompleted())
+        checkAllActionsReady();
 }
 
 void SequenceJobState::scopeStatusChanged(ISD::Mount::Status status)

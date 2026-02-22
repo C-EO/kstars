@@ -134,7 +134,7 @@ bool CameraProcess::setDustCap(ISD::DustCap *device)
         return false;
 
     devices()->setDustCap(device);
-    state()->setDustCapState(CAP_UNKNOWN);
+    state()->setDustCapState(ISD::DustCap::CAP_UNKNOWN);
 
     return true;
 
@@ -146,7 +146,7 @@ bool CameraProcess::setLightBox(ISD::LightBox *device)
         return false;
 
     devices()->setLightBox(device);
-    state()->setLightBoxLightState(CAP_LIGHT_UNKNOWN);
+    state()->setLightBoxLightState(ISD::LightBox::LIGHT_UNKNOWN);
 
     return true;
 }
@@ -2071,7 +2071,7 @@ void CameraProcess::removeDevice(const QSharedPointer<ISD::GenericDevice> &devic
         devices()->dustCap()->disconnect(this);
         devices()->setDustCap(nullptr);
         state()->hasDustCap = false;
-        state()->setDustCapState(CAP_UNKNOWN);
+        state()->setDustCapState(ISD::DustCap::CAP_UNKNOWN);
     }
 
     // Light Boxes
@@ -2080,7 +2080,7 @@ void CameraProcess::removeDevice(const QSharedPointer<ISD::GenericDevice> &devic
         devices()->lightBox()->disconnect(this);
         devices()->setLightBox(nullptr);
         state()->hasLightBox = false;
-        state()->setLightBoxLightState(CAP_LIGHT_UNKNOWN);
+        state()->setLightBoxLightState(ISD::LightBox::LIGHT_UNKNOWN);
     }
 
     // Cameras
