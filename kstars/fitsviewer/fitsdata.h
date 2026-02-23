@@ -810,6 +810,32 @@ class FITSData : public QObject
         }
 
         /**
+         * @brief getLiveStackData returns the current live stack parameters, including outputDirectory
+         * @return const reference to LiveStackData
+         */
+        const LiveStackData &getLiveStackData() const
+        {
+            return m_LiveStackData;
+        }
+
+        /**
+         * @brief getStackSavedFrameCount returns how many stacked frames have been saved to outputDirectory
+         * @return frame count
+         */
+        int getStackSavedFrameCount() const
+        {
+            return m_StackSavedFrameCount;
+        }
+
+        /**
+         * @brief incrementStackSavedFrameCount increments the saved frame counter after a successful save
+         */
+        void incrementStackSavedFrameCount()
+        {
+            ++m_StackSavedFrameCount;
+        }
+
+        /**
          * @brief redo Post Processing on the existing stack (user requsted)
          * @param ppParams are the current user requested post processing params
          */
@@ -1426,4 +1452,5 @@ class FITSData : public QObject
         double m_StackSubPixscale { 0.0 };
         int m_StackSubIndex { 0 };
         int m_StackSubHealpix { 0 };
+        int m_StackSavedFrameCount { 0 };  // Counter for saved stacked frames (EkosLive)
 };

@@ -15,7 +15,7 @@ namespace ISD
 {
 
 const QList<KLocalizedString> DustCap::capStates = { ki18n("Idle"), ki18n("Parking"), ki18n("UnParking"),
-    ki18n("Parked"), ki18n("Error")
+    ki18n("Parked"), ki18n("Error"), ki18n("Unknown")
 };
 
 DustCap::DustCap(GenericDevice *parent): ConcreteDevice(parent)
@@ -125,7 +125,7 @@ bool DustCap::isParked()
     if (!parkSP)
         return false;
 
-    return ((parkSP->getState() == IPS_OK || parkSP->getState() == IPS_IDLE) && parkSP->at(0)->getState() == ISS_ON);
+    return ((parkSP.getState() == IPS_OK || parkSP.getState() == IPS_IDLE) && parkSP[0].getState() == ISS_ON);
 }
 
 bool DustCap::isUnParked()
@@ -134,7 +134,7 @@ bool DustCap::isUnParked()
     if (!parkSP)
         return false;
 
-    return ( (parkSP->getState() == IPS_OK || parkSP->getState() == IPS_IDLE) && parkSP->at(1)->getState() == ISS_ON);
+    return ( (parkSP.getState() == IPS_OK || parkSP.getState() == IPS_IDLE) && parkSP[1].getState() == ISS_ON);
 }
 
 bool DustCap::park()
@@ -143,11 +143,11 @@ bool DustCap::park()
     if (!parkSP)
         return false;
 
-    auto parkSW = parkSP->findWidgetByName("PARK");
+    auto parkSW = parkSP.findWidgetByName("PARK");
     if (!parkSW)
         return false;
 
-    parkSP->reset();
+    parkSP.reset();
     parkSW->setState(ISS_ON);
     sendNewProperty(parkSP);
 
@@ -160,11 +160,11 @@ bool DustCap::unpark()
     if (!parkSP)
         return false;
 
-    auto parkSW = parkSP->findWidgetByName("UNPARK");
+    auto parkSW = parkSP.findWidgetByName("UNPARK");
     if (!parkSW)
         return false;
 
-    parkSP->reset();
+    parkSP.reset();
     parkSW->setState(ISS_ON);
     sendNewProperty(parkSP);
 

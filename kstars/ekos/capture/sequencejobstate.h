@@ -7,6 +7,7 @@
 #pragma once
 
 #include "indi/indicommon.h"
+#include "indi/indilightbox.h"
 #include "skypoint.h"
 #include "camerastate.h"
 #include "ekos/auxiliary/filtermanager.h"
@@ -222,6 +223,10 @@ class SequenceJobState: public QObject
          * @brief dust cap status change
          */
         void dustCapStateChanged(ISD::DustCap::Status status);
+        /**
+         * @brief light box status change
+         */
+        void lightBoxStateChanged(ISD::LightBox::LightStatus status);
         /**
          * @brief telescope status change
          */

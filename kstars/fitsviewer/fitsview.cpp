@@ -756,7 +756,32 @@ void FITSView::loadInFrame()
     // If stack has just been processed, plate solve and check for more subs...
 #if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
     if (mode == FITS_LIVESTACKING && !m_ImageData.isNull())
+    {
+        // EkosLive integration: save the stacked image to outputDirectory if set.
+        // This enables the EkosLive server to monitor the directory for new stacked frames.
+        const auto &lsd = m_ImageData->getLiveStackData();
+        if (!m_ImageData->isStackedImageEmpty() && !lsd.outputDirectory.isEmpty())
+        {
+            QDir outDir(lsd.outputDirectory);
+            outDir.mkpath(".");
+            const QString filename = QString("stacked_frame_%1.fits")
+                                     .arg(m_ImageData->getStackSavedFrameCount(), 4, 10, QChar('0'));
+            const QString fullPath = outDir.filePath(filename);
+            if (m_ImageData->saveImage(fullPath))
+            {
+                qCDebug(KSTARS_FITS) << "EkosLive: saved stacked frame" << m_ImageData->getStackSavedFrameCount()
+                                     << "to:" << fullPath;
+                const int savedIndex = m_ImageData->getStackSavedFrameCount();
+                m_ImageData->incrementStackSavedFrameCount();
+                emit stackFrameSaved(savedIndex, fullPath);
+            }
+            else
+            {
+                qCWarning(KSTARS_FITS) << "EkosLive: failed to save stacked frame to:" << fullPath;
+            }
+        }
         m_ImageData->incrementalStack();
+    }
 #endif
 }
 

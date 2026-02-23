@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-30 02:25+0000\n"
+"POT-Creation-Date: 2026-02-23 02:05+0000\n"
 "PO-Revision-Date: 2025-09-14 15:11+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -29,7 +29,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "yasen@lindeas.com,zlatkopopov@fsa-bg.org,mkondarev@yahoo.de"
 
-#: auxiliary/colorscheme.cpp:29 kstars.cpp:62
+#: auxiliary/colorscheme.cpp:29 kstars.cpp:63
 #, kde-format
 msgid "Sky"
 msgstr "Небе"
@@ -599,8 +599,9 @@ msgstr "Отказ"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indimount.cpp:32 kstarsactions.cpp:506 kstarsactions.cpp:514
-#: kstarsactions.cpp:524 skycomponents/imageoverlaycomponent.cpp:556
+#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
 msgstr "Грешка"
@@ -2454,7 +2455,8 @@ msgstr "Изберете, ако магнитудът е неизвестен"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indigroup.cpp:30 skycomponents/constellationboundarylines.cpp:294
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, kde-format
 msgid "Unknown"
@@ -12967,7 +12969,7 @@ msgstr "Подготвяне..."
 msgid "Waiting..."
 msgstr "Изчакване..."
 
-#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:412
+#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:406
 #, kde-format
 msgid "Dithering requested..."
 msgstr "Заявен е дитъринг..."
@@ -15066,7 +15068,7 @@ msgid "Turn cooler on"
 msgstr "Включване на охладителя"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
 #, kde-format
 msgid "On"
 msgstr "Включено"
@@ -15079,7 +15081,7 @@ msgstr "Изключване на охладителя"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
 #, kde-format
 msgid "Off"
 msgstr "Изключено"
@@ -16605,116 +16607,116 @@ msgstr "Предупреждение: Дитърингът е неуспешен
 msgid "Dust cap error."
 msgstr "Грешка в противопраховата капачка."
 
-#: ekos/capture/camerastate.cpp:296
+#: ekos/capture/camerastate.cpp:295
 #, kde-format
 msgid "Dust cap parked."
 msgstr "Противопрахова капачка е паркирана."
 
-#: ekos/capture/camerastate.cpp:300
+#: ekos/capture/camerastate.cpp:298
 #, kde-format
 msgid "Dust cap unparked."
 msgstr "Противопраховият капак е разпаркиран."
 
-#: ekos/capture/camerastate.cpp:503
+#: ekos/capture/camerastate.cpp:497
 #, kde-format
 msgid "Meridian flip is successfully completed"
 msgstr "Меридианното обръщане е завършено успешно"
 
-#: ekos/capture/camerastate.cpp:645
+#: ekos/capture/camerastate.cpp:639
 #, kde-format
 msgid "Performing post flip re-calibration and guiding..."
 msgstr "Извършване на повторно калибриране след обръщане и насочване..."
 
-#: ekos/capture/camerastate.cpp:659
+#: ekos/capture/camerastate.cpp:653
 #, kde-format
 msgid "Post meridian flip calibration error. Restarting..."
 msgstr "Грешка при калибрирането след обръщането на меридиана. Рестартиране..."
 
-#: ekos/capture/camerastate.cpp:690
+#: ekos/capture/camerastate.cpp:684
 #, kde-format
 msgid "Autoguiding stopped. Waiting for autofocus to finish..."
 msgstr "Автоматичното насочване спря. Изчаква се автофокусът да приключи..."
 
-#: ekos/capture/camerastate.cpp:699
+#: ekos/capture/camerastate.cpp:693
 #, kde-format
 msgid "Autoguiding stopped. Aborting..."
 msgstr "Автоматичното насочване спря. Прекъсване..."
 
-#: ekos/capture/camerastate.cpp:706
+#: ekos/capture/camerastate.cpp:700
 #, kde-format
 msgid "Post meridian flip calibration error. Aborting..."
 msgstr "Грешка при калибрирането след обръщането на меридиана. Прекъсване..."
 
-#: ekos/capture/camerastate.cpp:728
+#: ekos/capture/camerastate.cpp:722
 #, kde-format
 msgid "Adaptive focus complete."
 msgstr "Завършен адаптивен фокус."
 
-#: ekos/capture/camerastate.cpp:752
+#: ekos/capture/camerastate.cpp:746
 #, kde-format
 msgid "Autofocus failed. Aborting exposure..."
 msgstr "Автофокусът е неуспешен. Прекъсване на експозицията..."
 
 #. i18np since guidingRate is DOUBLE value (e.g. 1.36) so we always use plural with that.
-#: ekos/capture/camerastate.cpp:788
+#: ekos/capture/camerastate.cpp:782
 #, kde-format
 msgid "Focus complete. Resuming in %1 seconds..."
 msgstr "Фокусирането завърши. Възобновяване след %1 секунди..."
 
-#: ekos/capture/camerastate.cpp:811
+#: ekos/capture/camerastate.cpp:805
 #, kde-format
 msgid "Limit: %1 °C"
 msgstr "Ограничение: %1 °C"
 
-#: ekos/capture/camerastate.cpp:815
+#: ekos/capture/camerastate.cpp:809
 #, kde-format
 msgid "Limit: %1 mins"
 msgstr "Ограничение: %1 мин"
 
-#: ekos/capture/camerastate.cpp:989
+#: ekos/capture/camerastate.cpp:983
 #, kde-format
 msgid "Performing post flip re-alignment..."
 msgstr "Извършване на пренастройване след обръщане..."
 
-#: ekos/capture/camerastate.cpp:1009
+#: ekos/capture/camerastate.cpp:1003
 #, kde-format
 msgid "Guide module timed out."
 msgstr "Времето за изчакване на модула за гидиране изтече."
 
-#: ekos/capture/camerastate.cpp:1041
+#: ekos/capture/camerastate.cpp:1035
 #, kde-format
 msgid "Initial guiding deviation %1 below limit value of %2 arcsecs"
 msgstr ""
 "Първоначално отклонение в гидирането %1 е под граничната стойност от %2 "
 "дъгови секунди"
 
-#: ekos/capture/camerastate.cpp:1050
+#: ekos/capture/camerastate.cpp:1044
 #, kde-format
 msgid "Initial guiding deviation %1 exceeded limit value of %2 arcsecs"
 msgstr ""
 "Първоначалното отклонение в гидирането %1 е надвишило граничната стойност от "
 "%2 дъгови секунди"
 
-#: ekos/capture/camerastate.cpp:1072
+#: ekos/capture/camerastate.cpp:1066
 #, kde-format
 msgid "Post meridian flip calibration completed successfully."
 msgstr "Калибрирането след обръщането на меридиана е завършено успешно."
 
-#: ekos/capture/camerastate.cpp:1086
+#: ekos/capture/camerastate.cpp:1080
 #, kde-format
 msgid "Guiding deviation at capture startup %1 exceeded limit %2 arcsecs."
 msgstr ""
 "Отклонението в гидирането при стартиране на заснемането %1 е надвишило "
 "границата %2 дъгови секунди."
 
-#: ekos/capture/camerastate.cpp:1100
+#: ekos/capture/camerastate.cpp:1094
 #, kde-format
 msgid "Guiding deviation at capture startup %1 below limit value of %2 arcsecs"
 msgstr ""
 "Отклонението в гидирането при стартиране на заснемането %1 е под граничната "
 "стойност от %2 дъгови секунди"
 
-#: ekos/capture/camerastate.cpp:1127
+#: ekos/capture/camerastate.cpp:1121
 #, kde-format
 msgid ""
 "Guiding deviation %1 exceeded limit value of %2 arcsecs for %4 consecutive "
@@ -16724,7 +16726,7 @@ msgstr ""
 "секунди за %4 последователни проби, спиране на експозицията и изчакване на "
 "гидирането до %3 секунди."
 
-#: ekos/capture/camerastate.cpp:1174
+#: ekos/capture/camerastate.cpp:1168
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16733,7 +16735,7 @@ msgstr ""
 "Отклонението в гидирането %1 вече е по-ниско от граничната стойност от %2 "
 "дъгови секунди, възобновяване на експозицията."
 
-#: ekos/capture/camerastate.cpp:1178
+#: ekos/capture/camerastate.cpp:1172
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16742,24 +16744,24 @@ msgstr ""
 "Отклонението в гидирането %1 сега е по-ниско от граничната стойност от %2 "
 "дъгови секунди, възобновяване на експозицията след %3 секунди."
 
-#: ekos/capture/camerastate.cpp:1193
+#: ekos/capture/camerastate.cpp:1187
 #, kde-format
 msgid "Guiding deviation %1 is still higher than limit value of %2 arcsecs."
 msgstr ""
 "Отклонението в гидирането %1 все още е по-високо от граничната стойност от "
 "%2 дъгови секунди."
 
-#: ekos/capture/camerastate.cpp:1573
+#: ekos/capture/camerastate.cpp:1567
 #, kde-format
 msgid "Post flip re-alignment completed successfully."
 msgstr "Повторното подреждане след обръщането е завършено успешно."
 
-#: ekos/capture/camerastate.cpp:1592
+#: ekos/capture/camerastate.cpp:1586
 #, kde-format
 msgid "Post-flip alignment failed."
 msgstr "Подравняването след обръщане е неуспешно."
 
-#: ekos/capture/camerastate.cpp:1597
+#: ekos/capture/camerastate.cpp:1591
 #, kde-format
 msgid "Post-flip alignment failed. Retrying..."
 msgstr "Неуспешно подравняване след обръщане. Повторен опит..."
@@ -16924,7 +16926,7 @@ msgstr ""
 "Превключване на дисплея в графичен режим на показване на броячите за "
 "заснемане."
 
-#: ekos/capture/capturedeviceadaptor.cpp:429
+#: ekos/capture/capturedeviceadaptor.cpp:433
 #, fuzzy, kde-format
 #| msgid ""
 #| "Filter manager is not initilized yet. Filter wheel missing from train?"
@@ -16933,22 +16935,22 @@ msgstr ""
 "Диспечерът на филтри все още не е инициализиран. Филтърното колело липсва от "
 "системата?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:683
+#: ekos/capture/capturedeviceadaptor.cpp:687
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Свалете капака на телескопа, за да продължите."
 
-#: ekos/capture/capturedeviceadaptor.cpp:684
+#: ekos/capture/capturedeviceadaptor.cpp:688
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Покрит телескоп"
 
-#: ekos/capture/capturedeviceadaptor.cpp:816
+#: ekos/capture/capturedeviceadaptor.cpp:820
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "Има ли %1 затвор?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:817
+#: ekos/capture/capturedeviceadaptor.cpp:821
 #: ekos/capture/sequencejobstate.cpp:473
 #, kde-format
 msgid "Dark Exposure"
@@ -18370,37 +18372,56 @@ msgstr "Паркирането на купола е неуспешно, прек
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Паркиране на купола преди заснемане на кадри за калибриране..."
 
-#: ekos/capture/sequencejobstate.cpp:921
-#, kde-format
-msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:958
+#, fuzzy, kde-format
+#| msgid "Turn light box light on..."
+msgid "Light box light turned on."
+msgstr "Включете светлината на светлинната кутия..."
+
+#: ekos/capture/sequencejobstate.cpp:961
+#, fuzzy, kde-format
+#| msgid "Turn light box light off..."
+msgid "Light box light turned off."
+msgstr "Изключете светлината на светлинната кутия..."
+
+#: ekos/capture/sequencejobstate.cpp:964
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box busy."
 msgstr "Включена е светлинната кутия."
 
-#: ekos/capture/sequencejobstate.cpp:935
+#: ekos/capture/sequencejobstate.cpp:967
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box error."
+msgstr "Включена е светлинната кутия."
+
+#: ekos/capture/sequencejobstate.cpp:991
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Възникна грешка в капачката за прах."
 
-#: ekos/capture/sequencejobstate.cpp:939
+#: ekos/capture/sequencejobstate.cpp:997
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Капачката за прах е в покой."
 
-#: ekos/capture/sequencejobstate.cpp:942
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Прахозащитната капачка е паркирана."
 
-#: ekos/capture/sequencejobstate.cpp:945
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Прахозащитната капачка е паркирана..."
 
-#: ekos/capture/sequencejobstate.cpp:948
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Капачката за прах се откопчава..."
 
-#: ekos/capture/sequencejobstate.cpp:951
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Състоянието на капачката за прах е неизвестно."
@@ -31735,6 +31756,7 @@ msgid "OK"
 msgstr "Добре"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
+#: indi/indilightbox.cpp:18
 #, kde-format
 msgid "Busy"
 msgstr ""
@@ -32968,7 +32990,8 @@ msgid ""
 "%6\n"
 "%7\n"
 "%8\n"
-"%9"
+"%9\n"
+"%10"
 msgstr ""
 
 #: fitsviewer/fitsstackmonitor.h:240
@@ -33946,7 +33969,7 @@ msgstr "Маркиране на звезди"
 msgid "View 3D Graph"
 msgstr "Преглед на 3D графика"
 
-#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:65
+#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "KStars Live Stacker"
@@ -37930,38 +37953,38 @@ msgstr "Отиване и задаване като позиция за парк
 msgid "Find Telescope"
 msgstr "Търсене на телескоп"
 
-#: kstars.cpp:65
+#: kstars.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:298 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
+#: kstars.cpp:299 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
 #, kde-format, kde-kuit-format
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:299
+#: kstars.cpp:300
 #, kde-format
 msgid "KStars Live Stacker"
 msgstr "KStars Live Stacker"
 
-#: kstars.cpp:300
+#: kstars.cpp:301
 #, kde-format
 msgid "© 2025 KStars Team"
 msgstr "© 2025 Екип на KStars"
 
-#: kstars.cpp:427 kstarsactions.cpp:1658 skymap.cpp:463
+#: kstars.cpp:428 kstarsactions.cpp:1658 skymap.cpp:463
 #, kde-format
 msgid "Stop &Tracking"
 msgstr "Край на &проследяването"
 
-#: kstars.cpp:435 kstarsactions.cpp:1825 kstarsinit.cpp:277
+#: kstars.cpp:436 kstarsactions.cpp:1825 kstarsinit.cpp:277
 #, kde-format
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Превключване към изглед на звезден глобус (екваториални &координати)"
 
-#: kstars.cpp:436 kstarsactions.cpp:1806 kstarsinit.cpp:278
+#: kstars.cpp:437 kstarsactions.cpp:1806 kstarsinit.cpp:278
 #, kde-format
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"
 msgstr "Превключване към хоризонтален изглед (хоризонтални &координати)"

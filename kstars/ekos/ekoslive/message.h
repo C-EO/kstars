@@ -213,6 +213,11 @@ class Message : public QObject
         // Process file commands
         void processFileCommands(const QString &command, const QJsonObject &payload);
 
+        // LiveStacker commands
+        void processLiveStackerCommands(const QString &command, const QJsonObject &payload);
+        void sendLiveStackerProgress(bool ok, int sub, int total, double meanSNR, double minSNR, double maxSNR);
+        void sendLiveStackerComplete();
+
         void dispatchDebounceQueue();
 
         KStarsDateTime getNextDawn();
@@ -263,6 +268,10 @@ class Message : public QObject
 
         QDateTime m_ThrottleTS;
         CatalogsDB::DBManager m_DSOManager;
+
+        // LiveStacker
+        QSharedPointer<FITSViewer> m_LiveStackerViewer;
+        QVariantMap m_LiveStackerSettings;
 
         typedef enum
         {

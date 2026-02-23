@@ -14,6 +14,7 @@
 #include "indi/indidome.h"
 #include "indi/indicamerachip.h"
 #include "indi/indidustcap.h"
+#include "indi/indilightbox.h"
 #include "indi/indimount.h"
 
 #include "ekos/auxiliary/filtermanager.h"
@@ -323,6 +324,10 @@ class CaptureDeviceAdaptor: public QObject
          * @brief dust cap status change
          */
         void dustCapStatusChanged(ISD::DustCap::Status status);
+        /**
+         * @brief light box status change
+         */
+        void lightBoxStatusChanged(ISD::LightBox::LightStatus status);
         /**
          * @brief telescope status change
          */

@@ -406,6 +406,9 @@ struct LiveStackData
     double sigma;
     int PSFUpdate;
     LiveStackPPData postProcessing;
+
+    // EkosLive integration: output directory for saved stacked images
+    QString outputDirectory;      // If empty, don't save to disk (display only)
 };
 
 enum class LSStage

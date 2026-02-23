@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-30 02:25+0000\n"
+"POT-Creation-Date: 2026-02-23 02:05+0000\n"
 "PO-Revision-Date: 2002-11-07 11:31+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -26,7 +26,7 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "frix@expertron.co.za"
 
-#: auxiliary/colorscheme.cpp:29 kstars.cpp:62
+#: auxiliary/colorscheme.cpp:29 kstars.cpp:63
 #, kde-format
 msgid "Sky"
 msgstr "Lug"
@@ -596,8 +596,9 @@ msgstr "Dc"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indimount.cpp:32 kstarsactions.cpp:506 kstarsactions.cpp:514
-#: kstarsactions.cpp:524 skycomponents/imageoverlaycomponent.cpp:556
+#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
 msgstr ""
@@ -2449,7 +2450,8 @@ msgstr ""
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indigroup.cpp:30 skycomponents/constellationboundarylines.cpp:294
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, fuzzy, kde-format
 msgid "Unknown"
@@ -12255,7 +12257,7 @@ msgstr "Strand"
 msgid "Waiting..."
 msgstr "Vertoon naam"
 
-#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:412
+#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:406
 #, fuzzy, kde-format
 msgid "Dithering requested..."
 msgstr "Vertoon naam"
@@ -14207,7 +14209,7 @@ msgid "Turn cooler on"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
 #, fuzzy, kde-format
 msgid "On"
 msgstr "Wenner"
@@ -14220,7 +14222,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
 #, fuzzy, kde-format
 msgid "Off"
 msgstr "Bereken"
@@ -15525,148 +15527,148 @@ msgstr "Vertoon naam"
 msgid "Dust cap error."
 msgstr "Belize Stad"
 
-#: ekos/capture/camerastate.cpp:296
+#: ekos/capture/camerastate.cpp:295
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
 msgid "Dust cap parked."
 msgstr "Belize Stad"
 
-#: ekos/capture/camerastate.cpp:300
+#: ekos/capture/camerastate.cpp:298
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
 msgid "Dust cap unparked."
 msgstr "Belize Stad"
 
-#: ekos/capture/camerastate.cpp:503
+#: ekos/capture/camerastate.cpp:497
 #, kde-format
 msgid "Meridian flip is successfully completed"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:645
+#: ekos/capture/camerastate.cpp:639
 #, kde-format
 msgid "Performing post flip re-calibration and guiding..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:659
+#: ekos/capture/camerastate.cpp:653
 #, kde-format
 msgid "Post meridian flip calibration error. Restarting..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:690
+#: ekos/capture/camerastate.cpp:684
 #, fuzzy, kde-format
 msgid "Autoguiding stopped. Waiting for autofocus to finish..."
 msgstr "Soek Voorwerp"
 
-#: ekos/capture/camerastate.cpp:699
+#: ekos/capture/camerastate.cpp:693
 #, fuzzy, kde-format
 msgid "Autoguiding stopped. Aborting..."
 msgstr "Soek Voorwerp"
 
-#: ekos/capture/camerastate.cpp:706
+#: ekos/capture/camerastate.cpp:700
 #, kde-format
 msgid "Post meridian flip calibration error. Aborting..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:728
+#: ekos/capture/camerastate.cpp:722
 #, fuzzy, kde-format
 msgid "Adaptive focus complete."
 msgstr "Bereken"
 
-#: ekos/capture/camerastate.cpp:752
+#: ekos/capture/camerastate.cpp:746
 #, kde-format
 msgid "Autofocus failed. Aborting exposure..."
 msgstr ""
 
 #. i18np since guidingRate is DOUBLE value (e.g. 1.36) so we always use plural with that.
-#: ekos/capture/camerastate.cpp:788
+#: ekos/capture/camerastate.cpp:782
 #, fuzzy, kde-format
 msgid "Focus complete. Resuming in %1 seconds..."
 msgstr "Soek Voorwerp"
 
-#: ekos/capture/camerastate.cpp:811
+#: ekos/capture/camerastate.cpp:805
 #, kde-format
 msgid "Limit: %1 °C"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:815
+#: ekos/capture/camerastate.cpp:809
 #, fuzzy, kde-format
 msgid "Limit: %1 mins"
 msgstr "Stoor Huidige Kleure..."
 
-#: ekos/capture/camerastate.cpp:989
+#: ekos/capture/camerastate.cpp:983
 #, kde-format
 msgid "Performing post flip re-alignment..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1009
+#: ekos/capture/camerastate.cpp:1003
 #, fuzzy, kde-format
 msgid "Guide module timed out."
 msgstr "Soek Voorwerp"
 
-#: ekos/capture/camerastate.cpp:1041
+#: ekos/capture/camerastate.cpp:1035
 #, kde-format
 msgid "Initial guiding deviation %1 below limit value of %2 arcsecs"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1050
+#: ekos/capture/camerastate.cpp:1044
 #, kde-format
 msgid "Initial guiding deviation %1 exceeded limit value of %2 arcsecs"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1072
+#: ekos/capture/camerastate.cpp:1066
 #, kde-format
 msgid "Post meridian flip calibration completed successfully."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1086
+#: ekos/capture/camerastate.cpp:1080
 #, kde-format
 msgid "Guiding deviation at capture startup %1 exceeded limit %2 arcsecs."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1100
+#: ekos/capture/camerastate.cpp:1094
 #, kde-format
 msgid "Guiding deviation at capture startup %1 below limit value of %2 arcsecs"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1127
+#: ekos/capture/camerastate.cpp:1121
 #, kde-format
 msgid ""
 "Guiding deviation %1 exceeded limit value of %2 arcsecs for %4 consecutive "
 "samples, suspending exposure and waiting for guider up to %3 seconds."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1174
+#: ekos/capture/camerastate.cpp:1168
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
 "exposure."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1178
+#: ekos/capture/camerastate.cpp:1172
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
 "exposure in %3 seconds."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1193
+#: ekos/capture/camerastate.cpp:1187
 #, kde-format
 msgid "Guiding deviation %1 is still higher than limit value of %2 arcsecs."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1573
+#: ekos/capture/camerastate.cpp:1567
 #, kde-format
 msgid "Post flip re-alignment completed successfully."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1592
+#: ekos/capture/camerastate.cpp:1586
 #, kde-format
 msgid "Post-flip alignment failed."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1597
+#: ekos/capture/camerastate.cpp:1591
 #, fuzzy, kde-format
 msgid "Post-flip alignment failed. Retrying..."
 msgstr "Planeet"
@@ -15819,27 +15821,27 @@ msgstr "Sidereal Tyd"
 msgid "Switch display to the graphical mode of capture counts display."
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:429
+#: ekos/capture/capturedeviceadaptor.cpp:433
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:683
+#: ekos/capture/capturedeviceadaptor.cpp:687
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:684
+#: ekos/capture/capturedeviceadaptor.cpp:688
 #, fuzzy, kde-format
 msgid "Telescope Covered"
 msgstr "Aarde koördinate"
 
-#: ekos/capture/capturedeviceadaptor.cpp:816
+#: ekos/capture/capturedeviceadaptor.cpp:820
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:817
+#: ekos/capture/capturedeviceadaptor.cpp:821
 #: ekos/capture/sequencejobstate.cpp:473
 #, fuzzy, kde-format
 msgid "Dark Exposure"
@@ -17149,45 +17151,60 @@ msgstr "Planeet"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Spanje"
 
-#: ekos/capture/sequencejobstate.cpp:921
-#, kde-format
-msgid "Light box on."
-msgstr ""
+#: ekos/capture/sequencejobstate.cpp:958
+#, fuzzy, kde-format
+msgid "Light box light turned on."
+msgstr "Bereken"
 
-#: ekos/capture/sequencejobstate.cpp:935
+#: ekos/capture/sequencejobstate.cpp:961
+#, fuzzy, kde-format
+msgid "Light box light turned off."
+msgstr "Bereken"
+
+#: ekos/capture/sequencejobstate.cpp:964
+#, fuzzy, kde-format
+msgid "Light box busy."
+msgstr "Beeld"
+
+#: ekos/capture/sequencejobstate.cpp:967
+#, fuzzy, kde-format
+msgid "Light box error."
+msgstr "Beeld"
+
+#: ekos/capture/sequencejobstate.cpp:991
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
 msgid "Dust cap error occurred."
 msgstr "Belize Stad"
 
-#: ekos/capture/sequencejobstate.cpp:939
+#: ekos/capture/sequencejobstate.cpp:997
 #, fuzzy, kde-format
 msgid "Dust cap is idle."
 msgstr "Bereken"
 
-#: ekos/capture/sequencejobstate.cpp:942
+#: ekos/capture/sequencejobstate.cpp:1000
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
 msgid "Dust cap is parked."
 msgstr "Belize Stad"
 
-#: ekos/capture/sequencejobstate.cpp:945
+#: ekos/capture/sequencejobstate.cpp:1003
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
 msgid "Dust cap is parking..."
 msgstr "Belize Stad"
 
-#: ekos/capture/sequencejobstate.cpp:948
+#: ekos/capture/sequencejobstate.cpp:1006
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
 msgid "Dust cap is unparking..."
 msgstr "Belize Stad"
 
-#: ekos/capture/sequencejobstate.cpp:951
+#: ekos/capture/sequencejobstate.cpp:1009
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Belize City"
@@ -29019,6 +29036,7 @@ msgid "OK"
 msgstr ""
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
+#: indi/indilightbox.cpp:18
 #, kde-format
 msgid "Busy"
 msgstr ""
@@ -30167,7 +30185,8 @@ msgid ""
 "%6\n"
 "%7\n"
 "%8\n"
-"%9"
+"%9\n"
+"%10"
 msgstr ""
 
 #: fitsviewer/fitsstackmonitor.h:240
@@ -31101,7 +31120,7 @@ msgstr "Moore"
 msgid "View 3D Graph"
 msgstr ""
 
-#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:65
+#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:66
 #, fuzzy, kde-format
 #| msgid "KStars"
 msgctxt "@title:window"
@@ -34701,41 +34720,41 @@ msgstr ""
 msgid "Find Telescope"
 msgstr "Planeet"
 
-#: kstars.cpp:65
+#: kstars.cpp:66
 #, fuzzy, kde-format
 #| msgid "KStars"
 msgctxt "@title:window"
 msgid "KStars"
 msgstr "K-sterre"
 
-#: kstars.cpp:298 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
+#: kstars.cpp:299 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
 #, kde-format, kde-kuit-format
 msgid "KStars"
 msgstr "K-sterre"
 
-#: kstars.cpp:299
+#: kstars.cpp:300
 #, fuzzy, kde-format
 #| msgid "KStars"
 msgid "KStars Live Stacker"
 msgstr "K-sterre"
 
-#: kstars.cpp:300
+#: kstars.cpp:301
 #, kde-format
 msgid "© 2025 KStars Team"
 msgstr ""
 
-#: kstars.cpp:427 kstarsactions.cpp:1658 skymap.cpp:463
+#: kstars.cpp:428 kstarsactions.cpp:1658 skymap.cpp:463
 #, fuzzy, kde-format
 msgid "Stop &Tracking"
 msgstr "Stop Horlosie"
 
-#: kstars.cpp:435 kstarsactions.cpp:1825 kstarsinit.cpp:277
+#: kstars.cpp:436 kstarsactions.cpp:1825 kstarsinit.cpp:277
 #, fuzzy, kde-format
 #| msgid "Equatorial &Coordinates"
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Ekwatoriale Koördinate"
 
-#: kstars.cpp:436 kstarsactions.cpp:1806 kstarsinit.cpp:278
+#: kstars.cpp:437 kstarsactions.cpp:1806 kstarsinit.cpp:278
 #, fuzzy, kde-format
 #| msgid "Horizontal &Coordinates"
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"

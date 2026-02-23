@@ -252,6 +252,15 @@ enum COMMANDS
     // File Operations
     FILE_DEFAULT_PATH,
     FILE_DIRECTORY_OPERATION,
+
+    // LiveStacker
+    LIVESTACKER_INITIALIZE,
+    LIVESTACKER_CLOSE,
+    LIVESTACKER_START,
+    LIVESTACKER_STOP,
+    LIVESTACKER_GET_ALL_SETTINGS,
+    LIVESTACKER_SET_ALL_SETTINGS,
+    NEW_LIVESTACKER_STATE,
 };
 
 static QMap<COMMANDS, QString> const commands =
@@ -471,6 +480,14 @@ static QMap<COMMANDS, QString> const commands =
 
     {FILE_DEFAULT_PATH, "file_default_path"},
     {FILE_DIRECTORY_OPERATION, "file_directory_operation"},
+
+    {LIVESTACKER_INITIALIZE, "livestacker_initialize"},
+    {LIVESTACKER_CLOSE, "livestacker_close"},
+    {LIVESTACKER_START, "livestacker_start"},
+    {LIVESTACKER_STOP, "livestacker_stop"},
+    {LIVESTACKER_GET_ALL_SETTINGS, "livestacker_get_all_settings"},
+    {LIVESTACKER_SET_ALL_SETTINGS, "livestacker_set_all_settings"},
+    {NEW_LIVESTACKER_STATE, "new_livestacker_state"},
 };
 
 }

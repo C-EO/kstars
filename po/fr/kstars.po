@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars_3.8.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-30 02:25+0000\n"
+"POT-Creation-Date: 2026-02-23 02:05+0000\n"
 "PO-Revision-Date: 2026-01-28 15:29+0100\n"
 "Last-Translator: steve <stax@ik.me>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 "vincent.jagot@free.fr,annma@kde.org,ternisien@gmail.com,sdepiets@gmail.com, "
 "xavier.besnard@kde.org, robert.morelli@laposte.net, stax@ik.me"
 
-#: auxiliary/colorscheme.cpp:29 kstars.cpp:62
+#: auxiliary/colorscheme.cpp:29 kstars.cpp:63
 #, kde-format
 msgid "Sky"
 msgstr "Ciel"
@@ -622,8 +622,9 @@ msgstr "Annuler"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indimount.cpp:32 kstarsactions.cpp:506 kstarsactions.cpp:514
-#: kstarsactions.cpp:524 skycomponents/imageoverlaycomponent.cpp:556
+#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
 msgstr "Erreur"
@@ -2484,7 +2485,8 @@ msgstr "Veuillez vérifier si la magnitude est inconnue"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indigroup.cpp:30 skycomponents/constellationboundarylines.cpp:294
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, kde-format
 msgid "Unknown"
@@ -12959,7 +12961,7 @@ msgstr "En préparation…"
 msgid "Waiting..."
 msgstr "En attente…"
 
-#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:412
+#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:406
 #, kde-format
 msgid "Dithering requested..."
 msgstr "Décalage demandé…"
@@ -15065,7 +15067,7 @@ msgid "Turn cooler on"
 msgstr "Activer le refroidissement"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
 #, kde-format
 msgid "On"
 msgstr "Allumé"
@@ -15078,7 +15080,7 @@ msgstr "Arrêter le refroidissement"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
 #, kde-format
 msgid "Off"
 msgstr "Éteint"
@@ -16532,125 +16534,125 @@ msgstr "Avertissement : échec du décalage."
 msgid "Dust cap error."
 msgstr "Erreur du capuchon antipoussière."
 
-#: ekos/capture/camerastate.cpp:296
+#: ekos/capture/camerastate.cpp:295
 #, kde-format
 msgid "Dust cap parked."
 msgstr "Parcage du capuchon antipoussière effectuée."
 
-#: ekos/capture/camerastate.cpp:300
+#: ekos/capture/camerastate.cpp:298
 #, kde-format
 msgid "Dust cap unparked."
 msgstr "Ouverture du capuchon antipoussière."
 
-#: ekos/capture/camerastate.cpp:503
+#: ekos/capture/camerastate.cpp:497
 #, kde-format
 msgid "Meridian flip is successfully completed"
 msgstr "Le retournement au méridien s'est terminé avec succès."
 
-#: ekos/capture/camerastate.cpp:645
+#: ekos/capture/camerastate.cpp:639
 #, kde-format
 msgid "Performing post flip re-calibration and guiding..."
 msgstr ""
 "Réalisation d'une nouvelle calibration et reprise du guidage après "
 "retournement au méridien…"
 
-#: ekos/capture/camerastate.cpp:659
+#: ekos/capture/camerastate.cpp:653
 #, kde-format
 msgid "Post meridian flip calibration error. Restarting..."
 msgstr ""
 "Erreur de calibration après le retournement au méridien. Redémarrage en "
 "cours…"
 
-#: ekos/capture/camerastate.cpp:690
+#: ekos/capture/camerastate.cpp:684
 #, kde-format
 msgid "Autoguiding stopped. Waiting for autofocus to finish..."
 msgstr ""
 "Guidage automatique arrêté. En attente de la fin de la mise au point "
 "automatique…"
 
-#: ekos/capture/camerastate.cpp:699
+#: ekos/capture/camerastate.cpp:693
 #, kde-format
 msgid "Autoguiding stopped. Aborting..."
 msgstr "Guidage automatique arrêté. Annulation en cours…"
 
-#: ekos/capture/camerastate.cpp:706
+#: ekos/capture/camerastate.cpp:700
 #, kde-format
 msgid "Post meridian flip calibration error. Aborting..."
 msgstr ""
 "Erreur de calibration après le retournement au méridien. Annulation en cours…"
 
-#: ekos/capture/camerastate.cpp:728
+#: ekos/capture/camerastate.cpp:722
 #, kde-format
 msgid "Adaptive focus complete."
 msgstr "Mise au point adaptative terminée."
 
-#: ekos/capture/camerastate.cpp:752
+#: ekos/capture/camerastate.cpp:746
 #, kde-format
 msgid "Autofocus failed. Aborting exposure..."
 msgstr ""
 "Échec de la mise au point automatique. Annulation de l'acquisition en cours…"
 
 #. i18np since guidingRate is DOUBLE value (e.g. 1.36) so we always use plural with that.
-#: ekos/capture/camerastate.cpp:788
+#: ekos/capture/camerastate.cpp:782
 #, kde-format
 msgid "Focus complete. Resuming in %1 seconds..."
 msgstr "Mise au point terminée. Reprise dans %1 secondes…"
 
-#: ekos/capture/camerastate.cpp:811
+#: ekos/capture/camerastate.cpp:805
 #, kde-format
 msgid "Limit: %1 °C"
 msgstr "Limite : %1 °C"
 
-#: ekos/capture/camerastate.cpp:815
+#: ekos/capture/camerastate.cpp:809
 #, kde-format
 msgid "Limit: %1 mins"
 msgstr "Limite : %1 min"
 
-#: ekos/capture/camerastate.cpp:989
+#: ekos/capture/camerastate.cpp:983
 #, kde-format
 msgid "Performing post flip re-alignment..."
 msgstr "Réalisation d'un réalignement après retournement au méridien…"
 
-#: ekos/capture/camerastate.cpp:1009
+#: ekos/capture/camerastate.cpp:1003
 #, kde-format
 msgid "Guide module timed out."
 msgstr "Délai du module de guidage écoulé"
 
-#: ekos/capture/camerastate.cpp:1041
+#: ekos/capture/camerastate.cpp:1035
 #, kde-format
 msgid "Initial guiding deviation %1 below limit value of %2 arcsecs"
 msgstr ""
 "La déviation de guidage %1 est toujours supérieure à la valeur limite de %2 "
 "secondes d'arc."
 
-#: ekos/capture/camerastate.cpp:1050
+#: ekos/capture/camerastate.cpp:1044
 #, kde-format
 msgid "Initial guiding deviation %1 exceeded limit value of %2 arcsecs"
 msgstr ""
 "La déviation de guidage initial %1 a dépassé la valeur limite de %2 secondes "
 "d'arc."
 
-#: ekos/capture/camerastate.cpp:1072
+#: ekos/capture/camerastate.cpp:1066
 #, kde-format
 msgid "Post meridian flip calibration completed successfully."
 msgstr ""
 "La calibration après le retournement au méridien s'est terminée avec succès."
 
-#: ekos/capture/camerastate.cpp:1086
+#: ekos/capture/camerastate.cpp:1080
 #, kde-format
 msgid "Guiding deviation at capture startup %1 exceeded limit %2 arcsecs."
 msgstr ""
 "La déviation de guidage au début de l'acquisition %1 a dépassé la valeur "
 "limite de %2 secondes d'arc."
 
-#: ekos/capture/camerastate.cpp:1100
+#: ekos/capture/camerastate.cpp:1094
 #, kde-format
 msgid "Guiding deviation at capture startup %1 below limit value of %2 arcsecs"
 msgstr ""
 "La déviation de guidage au début de l'acquisition %1 est sous la valeur "
 "limite de %2 secondes d'arc."
 
-#: ekos/capture/camerastate.cpp:1127
+#: ekos/capture/camerastate.cpp:1121
 #, kde-format
 msgid ""
 "Guiding deviation %1 exceeded limit value of %2 arcsecs for %4 consecutive "
@@ -16660,7 +16662,7 @@ msgstr ""
 "pendant %4 échantillons consécutifs, conduisant à suspendre l'exposition et "
 "attendre l'assistant de guidage jusqu'à %3 secondes."
 
-#: ekos/capture/camerastate.cpp:1174
+#: ekos/capture/camerastate.cpp:1168
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16669,7 +16671,7 @@ msgstr ""
 "La déviation de guidage %1 est maintenant inférieure à la valeur limite de "
 "%2 secondes d'arc, reprise de l'acquisition."
 
-#: ekos/capture/camerastate.cpp:1178
+#: ekos/capture/camerastate.cpp:1172
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16678,24 +16680,24 @@ msgstr ""
 "La déviation de guidage %1 est maintenant inférieure à la valeur limite de "
 "%2 secondes d'arc, reprise de l'exposition dans %3 secondes."
 
-#: ekos/capture/camerastate.cpp:1193
+#: ekos/capture/camerastate.cpp:1187
 #, kde-format
 msgid "Guiding deviation %1 is still higher than limit value of %2 arcsecs."
 msgstr ""
 "La déviation de guidage %1 est toujours supérieure à la valeur limite de %2 "
 "secondes d'arc."
 
-#: ekos/capture/camerastate.cpp:1573
+#: ekos/capture/camerastate.cpp:1567
 #, kde-format
 msgid "Post flip re-alignment completed successfully."
 msgstr "Le réalignement après le retournement s'est terminé avec succès."
 
-#: ekos/capture/camerastate.cpp:1592
+#: ekos/capture/camerastate.cpp:1586
 #, kde-format
 msgid "Post-flip alignment failed."
 msgstr "Échec de l'alignement après retournement au méridien."
 
-#: ekos/capture/camerastate.cpp:1597
+#: ekos/capture/camerastate.cpp:1591
 #, kde-format
 msgid "Post-flip alignment failed. Retrying..."
 msgstr "Échec de l'alignement après retournement au méridien. Nouvel essai…"
@@ -16857,29 +16859,29 @@ msgstr "Total"
 msgid "Switch display to the graphical mode of capture counts display."
 msgstr "(Dés)active l'affichage des compteurs d'acquisition en mode graphique."
 
-#: ekos/capture/capturedeviceadaptor.cpp:429
+#: ekos/capture/capturedeviceadaptor.cpp:433
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 "Le gestionnaire de filtres n'est pas encore initialisé. La roue à filtres "
 "fait-elle partie du train ?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:683
+#: ekos/capture/capturedeviceadaptor.cpp:687
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Enlever le capuchon du télescope pour continuer."
 
-#: ekos/capture/capturedeviceadaptor.cpp:684
+#: ekos/capture/capturedeviceadaptor.cpp:688
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Télescope couvert"
 
-#: ekos/capture/capturedeviceadaptor.cpp:816
+#: ekos/capture/capturedeviceadaptor.cpp:820
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "Est-ce que %1 possède un obturateur ?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:817
+#: ekos/capture/capturedeviceadaptor.cpp:821
 #: ekos/capture/sequencejobstate.cpp:473
 #, kde-format
 msgid "Dark Exposure"
@@ -18310,37 +18312,56 @@ msgstr "Échec du parcage du dôme. Annulation…"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Parcage du dôme avant acquisition des poses de calibration…"
 
-#: ekos/capture/sequencejobstate.cpp:921
-#, kde-format
-msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:958
+#, fuzzy, kde-format
+#| msgid "Turn light box light on..."
+msgid "Light box light turned on."
+msgstr "Allumer la boite à flat…"
+
+#: ekos/capture/sequencejobstate.cpp:961
+#, fuzzy, kde-format
+#| msgid "Turn light box light off..."
+msgid "Light box light turned off."
+msgstr "Éteindre la boite à flat…"
+
+#: ekos/capture/sequencejobstate.cpp:964
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box busy."
 msgstr "Boîte à flat allumée."
 
-#: ekos/capture/sequencejobstate.cpp:935
+#: ekos/capture/sequencejobstate.cpp:967
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box error."
+msgstr "Boîte à flat allumée."
+
+#: ekos/capture/sequencejobstate.cpp:991
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Une erreur du capuchon antipoussière s'est produite."
 
-#: ekos/capture/sequencejobstate.cpp:939
+#: ekos/capture/sequencejobstate.cpp:997
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Le capuchon antipoussière est au repos."
 
-#: ekos/capture/sequencejobstate.cpp:942
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Le capuchon antipoussière est parqué."
 
-#: ekos/capture/sequencejobstate.cpp:945
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Parcage du capuchon antipoussière en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:948
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Déparcage du capuchon antipoussière en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:951
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "État du capuchon antipoussière inconnu."
@@ -31657,6 +31678,7 @@ msgid "OK"
 msgstr "Ok"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
+#: indi/indilightbox.cpp:18
 #, kde-format
 msgid "Busy"
 msgstr "Occupé"
@@ -32840,7 +32862,18 @@ msgstr ""
 "%2 = Non applicable"
 
 #: fitsviewer/fitsstackmonitor.h:220
-#, kde-format
+#, fuzzy, kde-format
+#| msgctxt "Stack monitor overall status help"
+#| msgid ""
+#| "%1 \n"
+#| "%2\n"
+#| "%3 = Processed Successfully\n"
+#| "%4\n"
+#| "%5\n"
+#| "%6\n"
+#| "%7\n"
+#| "%8\n"
+#| "%9"
 msgctxt "Stack monitor overall status help"
 msgid ""
 "%1 \n"
@@ -32851,7 +32884,8 @@ msgid ""
 "%6\n"
 "%7\n"
 "%8\n"
-"%9"
+"%9\n"
+"%10"
 msgstr ""
 "%1 \n"
 "%2\n"
@@ -33799,7 +33833,7 @@ msgstr "Marquer des étoiles"
 msgid "View 3D Graph"
 msgstr "Afficher en graphique 3D"
 
-#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:65
+#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "KStars Live Stacker"
@@ -37683,38 +37717,38 @@ msgstr "Aller à et définir comme position de parcage"
 msgid "Find Telescope"
 msgstr "Trouver un télescope"
 
-#: kstars.cpp:65
+#: kstars.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:298 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
+#: kstars.cpp:299 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
 #, kde-format, kde-kuit-format
 msgid "KStars"
 msgstr "KStars"
 
-#: kstars.cpp:299
+#: kstars.cpp:300
 #, kde-format
 msgid "KStars Live Stacker"
 msgstr "Empilement en direct de KStars"
 
-#: kstars.cpp:300
+#: kstars.cpp:301
 #, kde-format
 msgid "© 2025 KStars Team"
 msgstr "© 2025 KStars Team"
 
-#: kstars.cpp:427 kstarsactions.cpp:1658 skymap.cpp:463
+#: kstars.cpp:428 kstarsactions.cpp:1658 skymap.cpp:463
 #, kde-format
 msgid "Stop &Tracking"
 msgstr "&Arrêter le suivi"
 
-#: kstars.cpp:435 kstarsactions.cpp:1825 kstarsinit.cpp:277
+#: kstars.cpp:436 kstarsactions.cpp:1825 kstarsinit.cpp:277
 #, kde-format
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Passer en &coordonnées équatoriales"
 
-#: kstars.cpp:436 kstarsactions.cpp:1806 kstarsinit.cpp:278
+#: kstars.cpp:437 kstarsactions.cpp:1806 kstarsinit.cpp:278
 #, kde-format
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"
 msgstr "Passer en &coordonnées horizontales"

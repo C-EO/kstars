@@ -38,7 +38,8 @@ class DustCap : public ConcreteDevice
             CAP_PARKING,
             CAP_UNPARKING,
             CAP_PARKED,
-            CAP_ERROR
+            CAP_ERROR,
+            CAP_UNKNOWN
         } Status;
 
         virtual void processSwitch(INDI::Property prop) override;

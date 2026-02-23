@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-30 02:25+0000\n"
-"PO-Revision-Date: 2026-01-22 12:19+0300\n"
-"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
+"POT-Creation-Date: 2026-02-23 02:05+0000\n"
+"PO-Revision-Date: 2026-02-20 15:45+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.12.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -38,7 +38,7 @@ msgstr ""
 "gorkem@kde.org, engincagatay@yahoo.com, renan@pardus.org.tr, "
 "kaanozdincer@gmail.com, emir_sari@icloud.com"
 
-#: auxiliary/colorscheme.cpp:29 kstars.cpp:62
+#: auxiliary/colorscheme.cpp:29 kstars.cpp:63
 #, kde-format
 msgid "Sky"
 msgstr "Gökyüzü"
@@ -607,8 +607,9 @@ msgstr "İptal"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indimount.cpp:32 kstarsactions.cpp:506 kstarsactions.cpp:514
-#: kstarsactions.cpp:524 skycomponents/imageoverlaycomponent.cpp:556
+#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
 msgstr "Hata"
@@ -2452,7 +2453,8 @@ msgstr "Büyüklük bilinmiyorsa işaretleyin"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indigroup.cpp:30 skycomponents/constellationboundarylines.cpp:294
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, kde-format
 msgid "Unknown"
@@ -12810,7 +12812,7 @@ msgstr "Hazırlanıyor…"
 msgid "Waiting..."
 msgstr "Bekleniyor…"
 
-#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:412
+#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:406
 #, kde-format
 msgid "Dithering requested..."
 msgstr "Kıpırdatma istendi…"
@@ -14891,7 +14893,7 @@ msgid "Turn cooler on"
 msgstr "Soğutucuyu aç"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
 #, kde-format
 msgid "On"
 msgstr "Açık"
@@ -14904,7 +14906,7 @@ msgstr "Soğutucuyu kapat"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
 #, kde-format
 msgid "Off"
 msgstr "Kapalı"
@@ -16332,113 +16334,113 @@ msgstr "Uyarı: Kıpırdatma başarısız oldu."
 msgid "Dust cap error."
 msgstr "Toz kapağı hatası."
 
-#: ekos/capture/camerastate.cpp:296
+#: ekos/capture/camerastate.cpp:295
 #, kde-format
 msgid "Dust cap parked."
 msgstr "Toz kapağı park edildi."
 
-#: ekos/capture/camerastate.cpp:300
+#: ekos/capture/camerastate.cpp:298
 #, kde-format
 msgid "Dust cap unparked."
 msgstr "Toz kapağı park edilmemiş."
 
-#: ekos/capture/camerastate.cpp:503
+#: ekos/capture/camerastate.cpp:497
 #, kde-format
 msgid "Meridian flip is successfully completed"
 msgstr "Meridyen geçişi başarıyla tamamlandı"
 
-#: ekos/capture/camerastate.cpp:645
+#: ekos/capture/camerastate.cpp:639
 #, kde-format
 msgid "Performing post flip re-calibration and guiding..."
 msgstr "Döndürme sonrası yeniden kalibrasyon ve kılavuzluk yapılıyor…"
 
-#: ekos/capture/camerastate.cpp:659
+#: ekos/capture/camerastate.cpp:653
 #, kde-format
 msgid "Post meridian flip calibration error. Restarting..."
 msgstr "Meridyen geçişi sonrası kalibrasyonu hatası. Yeniden başlatılıyor…"
 
-#: ekos/capture/camerastate.cpp:690
+#: ekos/capture/camerastate.cpp:684
 #, kde-format
 msgid "Autoguiding stopped. Waiting for autofocus to finish..."
 msgstr ""
 "Kendiliğinden kılavuzluk durduruldu. Kendiliğinden odaklamanın bitmesi "
 "bekleniyor…"
 
-#: ekos/capture/camerastate.cpp:699
+#: ekos/capture/camerastate.cpp:693
 #, kde-format
 msgid "Autoguiding stopped. Aborting..."
 msgstr "Kendiliğinden kılavuzluk durduruldu. İptal ediliyor…"
 
-#: ekos/capture/camerastate.cpp:706
+#: ekos/capture/camerastate.cpp:700
 #, kde-format
 msgid "Post meridian flip calibration error. Aborting..."
 msgstr "Meridyen geçişi sonrası kalibrasyonu hatası. İptal ediliyor…"
 
-#: ekos/capture/camerastate.cpp:728
+#: ekos/capture/camerastate.cpp:722
 #, kde-format
 msgid "Adaptive focus complete."
 msgstr "Uyarlanır odak tamamlandı."
 
-#: ekos/capture/camerastate.cpp:752
+#: ekos/capture/camerastate.cpp:746
 #, kde-format
 msgid "Autofocus failed. Aborting exposure..."
 msgstr "Kendiliğinden odaklama başarısız oldu. Pozlama iptal ediliyor…"
 
 #. i18np since guidingRate is DOUBLE value (e.g. 1.36) so we always use plural with that.
-#: ekos/capture/camerastate.cpp:788
+#: ekos/capture/camerastate.cpp:782
 #, kde-format
 msgid "Focus complete. Resuming in %1 seconds..."
 msgstr "Odak tamamlandı. %1 saniye içinde sürdürülüyor…"
 
-#: ekos/capture/camerastate.cpp:811
+#: ekos/capture/camerastate.cpp:805
 #, kde-format
 msgid "Limit: %1 °C"
 msgstr "Sınır: %1 °C"
 
-#: ekos/capture/camerastate.cpp:815
+#: ekos/capture/camerastate.cpp:809
 #, kde-format
 msgid "Limit: %1 mins"
 msgstr "Sınır: %1 dakika"
 
-#: ekos/capture/camerastate.cpp:989
+#: ekos/capture/camerastate.cpp:983
 #, kde-format
 msgid "Performing post flip re-alignment..."
 msgstr "Döndürme sonrası yeniden hizalama yapılıyor…"
 
-#: ekos/capture/camerastate.cpp:1009
+#: ekos/capture/camerastate.cpp:1003
 #, kde-format
 msgid "Guide module timed out."
 msgstr "Kılavuz modülü zaman aşımına uğradı."
 
-#: ekos/capture/camerastate.cpp:1041
+#: ekos/capture/camerastate.cpp:1035
 #, kde-format
 msgid "Initial guiding deviation %1 below limit value of %2 arcsecs"
 msgstr "Başlangıç kılavuzluk sapması %1, %2 yaysaniye sınır değerinin altında"
 
-#: ekos/capture/camerastate.cpp:1050
+#: ekos/capture/camerastate.cpp:1044
 #, kde-format
 msgid "Initial guiding deviation %1 exceeded limit value of %2 arcsecs"
 msgstr "Başlangıç kılavuzluk sapması %1, %2 yaysaniye sınır değerini aştı"
 
-#: ekos/capture/camerastate.cpp:1072
+#: ekos/capture/camerastate.cpp:1066
 #, kde-format
 msgid "Post meridian flip calibration completed successfully."
 msgstr "Meridyen geçişi sonrası kalibrasyonu başarıyla tamamlandı."
 
-#: ekos/capture/camerastate.cpp:1086
+#: ekos/capture/camerastate.cpp:1080
 #, kde-format
 msgid "Guiding deviation at capture startup %1 exceeded limit %2 arcsecs."
 msgstr ""
 "%1 yakalama başlangıcındaki kılavuzluk sapması %2 yaysaniye sınırını aştı."
 
-#: ekos/capture/camerastate.cpp:1100
+#: ekos/capture/camerastate.cpp:1094
 #, kde-format
 msgid "Guiding deviation at capture startup %1 below limit value of %2 arcsecs"
 msgstr ""
 "%1 yakalama başlangıcındaki kılavuzluk sapması %2 yaysaniye değerinin "
 "altında."
 
-#: ekos/capture/camerastate.cpp:1127
+#: ekos/capture/camerastate.cpp:1121
 #, kde-format
 msgid ""
 "Guiding deviation %1 exceeded limit value of %2 arcsecs for %4 consecutive "
@@ -16447,7 +16449,7 @@ msgstr ""
 "%1 kılavuzluk sapması ardışık %4 örnek için %2 yaysaniyelik sınır değerini "
 "aştı, pozlama askıya alındı ve kılavuz %3 saniyeye kadar bekleniyor."
 
-#: ekos/capture/camerastate.cpp:1174
+#: ekos/capture/camerastate.cpp:1168
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16456,7 +16458,7 @@ msgstr ""
 "%1 kılavuzluk sapması artık %2 yaysaniyelik sınır değerinden daha düşük, "
 "pozlama sürdürülüyor."
 
-#: ekos/capture/camerastate.cpp:1178
+#: ekos/capture/camerastate.cpp:1172
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16465,22 +16467,22 @@ msgstr ""
 "%1 kılavuzluk sapması artık %2 yaysaniyelik sınır değerinden daha düşük, "
 "pozlama %3 saniye içinde sürdürülecek."
 
-#: ekos/capture/camerastate.cpp:1193
+#: ekos/capture/camerastate.cpp:1187
 #, kde-format
 msgid "Guiding deviation %1 is still higher than limit value of %2 arcsecs."
 msgstr "%1 kılavuzluk sapması hâlâ %2 yaysaniyelik sınır değerinden yüksek."
 
-#: ekos/capture/camerastate.cpp:1573
+#: ekos/capture/camerastate.cpp:1567
 #, kde-format
 msgid "Post flip re-alignment completed successfully."
 msgstr "Geçiş sonrası yeniden hizalaması başarıyla tamamlandı."
 
-#: ekos/capture/camerastate.cpp:1592
+#: ekos/capture/camerastate.cpp:1586
 #, kde-format
 msgid "Post-flip alignment failed."
 msgstr "Geçiş sonrası hizalaması başarısız oldu."
 
-#: ekos/capture/camerastate.cpp:1597
+#: ekos/capture/camerastate.cpp:1591
 #, kde-format
 msgid "Post-flip alignment failed. Retrying..."
 msgstr "Geçiş sonrası hizalaması başarısız oldu. Yeniden deneniyor…"
@@ -16638,28 +16640,28 @@ msgstr "Toplam"
 msgid "Switch display to the graphical mode of capture counts display."
 msgstr "Yakalama sayısını grafiksel olarak görüntüle"
 
-#: ekos/capture/capturedeviceadaptor.cpp:429
+#: ekos/capture/capturedeviceadaptor.cpp:433
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 "Süzgeç yöneticisi henüz ilklendirilmedi. Katarda süzgeç tekerleği mi eksik?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:683
+#: ekos/capture/capturedeviceadaptor.cpp:687
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Sürdürmek için teleskopun kapağını kaldırın."
 
-#: ekos/capture/capturedeviceadaptor.cpp:684
+#: ekos/capture/capturedeviceadaptor.cpp:688
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Teleskop Örtülü"
 
-#: ekos/capture/capturedeviceadaptor.cpp:816
+#: ekos/capture/capturedeviceadaptor.cpp:820
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "%1 üzerinde bir kepenk var mı?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:817
+#: ekos/capture/capturedeviceadaptor.cpp:821
 #: ekos/capture/sequencejobstate.cpp:473
 #, kde-format
 msgid "Dark Exposure"
@@ -18066,37 +18068,56 @@ msgstr "Kubbeyi park etme başarısız, iptal ediliyor…"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Kalibrasyon kareleri yakalama öncesinde kubbe park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:921
-#, kde-format
-msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:958
+#, fuzzy, kde-format
+#| msgid "Turn light box light on..."
+msgid "Light box light turned on."
+msgstr "Işık kutusu ışığı açılıyor…"
+
+#: ekos/capture/sequencejobstate.cpp:961
+#, fuzzy, kde-format
+#| msgid "Turn light box light off..."
+msgid "Light box light turned off."
+msgstr "Işık kutusu ışığı kapatılıyor…"
+
+#: ekos/capture/sequencejobstate.cpp:964
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box busy."
 msgstr "Işık kutusu açık."
 
-#: ekos/capture/sequencejobstate.cpp:935
+#: ekos/capture/sequencejobstate.cpp:967
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box error."
+msgstr "Işık kutusu açık."
+
+#: ekos/capture/sequencejobstate.cpp:991
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Toz kapağı hatası oluştu."
 
-#: ekos/capture/sequencejobstate.cpp:939
+#: ekos/capture/sequencejobstate.cpp:997
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Toz kapağı boşta."
 
-#: ekos/capture/sequencejobstate.cpp:942
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Toz kapağı park edilmiş."
 
-#: ekos/capture/sequencejobstate.cpp:945
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Toz kapağı park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:948
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Toz kapağı parktan çıkıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:951
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Toz kapağı durumu bilinmiyor."
@@ -31140,6 +31161,7 @@ msgid "OK"
 msgstr "Tamam"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
+#: indi/indilightbox.cpp:18
 #, kde-format
 msgid "Busy"
 msgstr "Meşgul"
@@ -32320,7 +32342,8 @@ msgid ""
 "%6\n"
 "%7\n"
 "%8\n"
-"%9"
+"%9\n"
+"%10"
 msgstr ""
 "%1 \n"
 "%2\n"
@@ -32330,7 +32353,8 @@ msgstr ""
 "%6\n"
 "%7\n"
 "%8\n"
-"%9"
+"%9\n"
+"%10"
 
 #: fitsviewer/fitsstackmonitor.h:240
 #, kde-format
@@ -33289,7 +33313,7 @@ msgstr "Yıldızları İmle"
 msgid "View 3D Graph"
 msgstr "3B Grafiği Görüntüle"
 
-#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:65
+#: fitsviewer/fitsviewer.cpp:350 fitsviewer/fitsviewer.cpp:1124 kstars.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "KStars Live Stacker"
@@ -37125,38 +37149,38 @@ msgstr "Git ve Park Konumu Olarak Ayarla"
 msgid "Find Telescope"
 msgstr "Teleskopu Bul"
 
-#: kstars.cpp:65
+#: kstars.cpp:66
 #, kde-format
 msgctxt "@title:window"
 msgid "KStars"
 msgstr "K Yıldızlar"
 
-#: kstars.cpp:298 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
+#: kstars.cpp:299 kstarslite/qml/dialogs/AboutDialog.qml:28 main.cpp:139
 #, kde-format, kde-kuit-format
 msgid "KStars"
 msgstr "K Yıldızlar"
 
-#: kstars.cpp:299
+#: kstars.cpp:300
 #, kde-format
 msgid "KStars Live Stacker"
 msgstr "K Yıldızlar Canlı Yığıcı"
 
-#: kstars.cpp:300
+#: kstars.cpp:301
 #, kde-format
 msgid "© 2025 KStars Team"
 msgstr "© 2025 K Yıldızlar Takımı"
 
-#: kstars.cpp:427 kstarsactions.cpp:1658 skymap.cpp:463
+#: kstars.cpp:428 kstarsactions.cpp:1658 skymap.cpp:463
 #, kde-format
 msgid "Stop &Tracking"
 msgstr "İzlemeyi &Durdur"
 
-#: kstars.cpp:435 kstarsactions.cpp:1825 kstarsinit.cpp:277
+#: kstars.cpp:436 kstarsactions.cpp:1825 kstarsinit.cpp:277
 #, kde-format
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Yıldız Küresi Görünümüne Geç (Ekvatoryal &Koordinatlar)"
 
-#: kstars.cpp:436 kstarsactions.cpp:1806 kstarsinit.cpp:278
+#: kstars.cpp:437 kstarsactions.cpp:1806 kstarsinit.cpp:278
 #, kde-format
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"
 msgstr "Yatay Görünüme Geç (Yatay &Koordinatlar)"

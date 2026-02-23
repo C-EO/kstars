@@ -20,11 +20,46 @@ namespace ISD
 class LightBox : public ConcreteDevice
 {
         Q_OBJECT
+        Q_CLASSINFO("D-Bus Interface", "org.kde.kstars.INDI.LightBox")
+        Q_PROPERTY(uint16_t brightness READ brightness)
 
     public:
-        explicit LightBox(GenericDevice *parent) : ConcreteDevice(parent) {}
+        /**
+         * @brief LightStatus enum representing the current state of the light box
+         */
+        typedef enum
+        {
+            LIGHT_OFF,
+            LIGHT_ON,
+            LIGHT_BUSY,
+            LIGHT_ERROR,
+            LIGHT_UNKNOWN
+        } LightStatus;
+
+        explicit LightBox(GenericDevice *parent);
+
+        virtual void processSwitch(INDI::Property prop) override;
+        virtual void processNumber(INDI::Property prop) override;
 
         Q_SCRIPTABLE virtual bool isLightOn();
+        LightStatus lightStatus() const
+        {
+            return m_LightStatus;
+        }
+
+        /**
+         * @brief brightness Get current brightness level
+         * @return Brightness level (0-65535)
+         */
+        uint16_t brightness() const
+        {
+            return m_Brightness;
+        }
+
+        static const QString getStatusString(LightStatus status, bool translated = true);
+
+    signals:
+        void newLightStatus(ISD::LightBox::LightStatus status);
 
     public slots:
         /**
@@ -40,5 +75,10 @@ class LightBox : public ConcreteDevice
          * @return True if operation is successful, false otherwise.
          */
         Q_SCRIPTABLE bool setLightEnabled(bool enable);
+
+    private:
+        LightStatus m_LightStatus { LIGHT_OFF };
+        uint16_t m_Brightness { 0 };
+        static const QList<KLocalizedString> lightStates;
 };
 }
