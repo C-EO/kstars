@@ -10,6 +10,8 @@
 #include "lightboxadaptor.h"
 #include "ksnotification.h"
 
+Q_DECLARE_METATYPE(ISD::LightBox::LightStatus)
+
 namespace ISD
 {
 
