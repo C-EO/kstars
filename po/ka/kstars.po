@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-21 02:10+0000\n"
+"POT-Creation-Date: 2026-02-23 02:05+0000\n"
 "PO-Revision-Date: 2025-04-26 09:16+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -597,8 +597,9 @@ msgstr "გაუქმება"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indimount.cpp:32 kstarsactions.cpp:506 kstarsactions.cpp:514
-#: kstarsactions.cpp:524 skycomponents/imageoverlaycomponent.cpp:556
+#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
 msgstr "შეცდომა"
@@ -2388,7 +2389,8 @@ msgstr "შემოწმება, ვარსკვლავური სი
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indigroup.cpp:30 skycomponents/constellationboundarylines.cpp:294
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, kde-format
 msgid "Unknown"
@@ -12077,7 +12079,7 @@ msgstr "მომზადება..."
 msgid "Waiting..."
 msgstr "მოლოდინი…"
 
-#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:412
+#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:406
 #, kde-format
 msgid "Dithering requested..."
 msgstr "დიზერინგი მოთხოვნილია..."
@@ -14003,7 +14005,7 @@ msgid "Turn cooler on"
 msgstr "გაგრილების ჩართვა"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
 #, kde-format
 msgid "On"
 msgstr "ჩართული"
@@ -14016,7 +14018,7 @@ msgstr "გაგრილების გამორთვა"
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
 #, kde-format
 msgid "Off"
 msgstr "გამორთული"
@@ -15314,144 +15316,144 @@ msgstr "გაფრთხილება: დიზერინგის შე
 msgid "Dust cap error."
 msgstr "მტვრის ქუდის შეცდომა."
 
-#: ekos/capture/camerastate.cpp:296
+#: ekos/capture/camerastate.cpp:295
 #, kde-format
 msgid "Dust cap parked."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:300
+#: ekos/capture/camerastate.cpp:298
 #, kde-format
 msgid "Dust cap unparked."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:503
+#: ekos/capture/camerastate.cpp:497
 #, kde-format
 msgid "Meridian flip is successfully completed"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:645
+#: ekos/capture/camerastate.cpp:639
 #, kde-format
 msgid "Performing post flip re-calibration and guiding..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:659
+#: ekos/capture/camerastate.cpp:653
 #, kde-format
 msgid "Post meridian flip calibration error. Restarting..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:690
+#: ekos/capture/camerastate.cpp:684
 #, kde-format
 msgid "Autoguiding stopped. Waiting for autofocus to finish..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:699
+#: ekos/capture/camerastate.cpp:693
 #, kde-format
 msgid "Autoguiding stopped. Aborting..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:706
+#: ekos/capture/camerastate.cpp:700
 #, kde-format
 msgid "Post meridian flip calibration error. Aborting..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:728
+#: ekos/capture/camerastate.cpp:722
 #, kde-format
 msgid "Adaptive focus complete."
 msgstr "ადაპტიური ფოკუსი დასრულდა."
 
-#: ekos/capture/camerastate.cpp:752
+#: ekos/capture/camerastate.cpp:746
 #, kde-format
 msgid "Autofocus failed. Aborting exposure..."
 msgstr ""
 
 #. i18np since guidingRate is DOUBLE value (e.g. 1.36) so we always use plural with that.
-#: ekos/capture/camerastate.cpp:788
+#: ekos/capture/camerastate.cpp:782
 #, kde-format
 msgid "Focus complete. Resuming in %1 seconds..."
 msgstr "ფოკუსი დასრულდა. ვაგრძელებ %1 წამში..."
 
-#: ekos/capture/camerastate.cpp:811
+#: ekos/capture/camerastate.cpp:805
 #, kde-format
 msgid "Limit: %1 °C"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:815
+#: ekos/capture/camerastate.cpp:809
 #, kde-format
 msgid "Limit: %1 mins"
 msgstr "ლიმიტი: %1 წუთი"
 
-#: ekos/capture/camerastate.cpp:989
+#: ekos/capture/camerastate.cpp:983
 #, kde-format
 msgid "Performing post flip re-alignment..."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1009
+#: ekos/capture/camerastate.cpp:1003
 #, kde-format
 msgid "Guide module timed out."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1041
+#: ekos/capture/camerastate.cpp:1035
 #, kde-format
 msgid "Initial guiding deviation %1 below limit value of %2 arcsecs"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1050
+#: ekos/capture/camerastate.cpp:1044
 #, kde-format
 msgid "Initial guiding deviation %1 exceeded limit value of %2 arcsecs"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1072
+#: ekos/capture/camerastate.cpp:1066
 #, kde-format
 msgid "Post meridian flip calibration completed successfully."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1086
+#: ekos/capture/camerastate.cpp:1080
 #, kde-format
 msgid "Guiding deviation at capture startup %1 exceeded limit %2 arcsecs."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1100
+#: ekos/capture/camerastate.cpp:1094
 #, kde-format
 msgid "Guiding deviation at capture startup %1 below limit value of %2 arcsecs"
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1127
+#: ekos/capture/camerastate.cpp:1121
 #, kde-format
 msgid ""
 "Guiding deviation %1 exceeded limit value of %2 arcsecs for %4 consecutive "
 "samples, suspending exposure and waiting for guider up to %3 seconds."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1174
+#: ekos/capture/camerastate.cpp:1168
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
 "exposure."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1178
+#: ekos/capture/camerastate.cpp:1172
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
 "exposure in %3 seconds."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1193
+#: ekos/capture/camerastate.cpp:1187
 #, kde-format
 msgid "Guiding deviation %1 is still higher than limit value of %2 arcsecs."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1573
+#: ekos/capture/camerastate.cpp:1567
 #, kde-format
 msgid "Post flip re-alignment completed successfully."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1592
+#: ekos/capture/camerastate.cpp:1586
 #, kde-format
 msgid "Post-flip alignment failed."
 msgstr ""
 
-#: ekos/capture/camerastate.cpp:1597
+#: ekos/capture/camerastate.cpp:1591
 #, kde-format
 msgid "Post-flip alignment failed. Retrying..."
 msgstr ""
@@ -15603,27 +15605,27 @@ msgstr "ჯამში"
 msgid "Switch display to the graphical mode of capture counts display."
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:429
+#: ekos/capture/capturedeviceadaptor.cpp:433
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:683
+#: ekos/capture/capturedeviceadaptor.cpp:687
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:684
+#: ekos/capture/capturedeviceadaptor.cpp:688
 #, kde-format
 msgid "Telescope Covered"
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:816
+#: ekos/capture/capturedeviceadaptor.cpp:820
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr ""
 
-#: ekos/capture/capturedeviceadaptor.cpp:817
+#: ekos/capture/capturedeviceadaptor.cpp:821
 #: ekos/capture/sequencejobstate.cpp:473
 #, kde-format
 msgid "Dark Exposure"
@@ -16923,37 +16925,54 @@ msgstr ""
 msgid "Parking dome prior to calibration frames capture..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:947
+#: ekos/capture/sequencejobstate.cpp:958
 #, kde-format
-msgid "Light box on."
+msgid "Light box light turned on."
 msgstr ""
 
 #: ekos/capture/sequencejobstate.cpp:961
 #, kde-format
+msgid "Light box light turned off."
+msgstr ""
+
+#: ekos/capture/sequencejobstate.cpp:964
+#, fuzzy, kde-format
+#| msgid "Light box:"
+msgid "Light box busy."
+msgstr "სინათლის ყუთი:"
+
+#: ekos/capture/sequencejobstate.cpp:967
+#, fuzzy, kde-format
+#| msgid "Light box:"
+msgid "Light box error."
+msgstr "სინათლის ყუთი:"
+
+#: ekos/capture/sequencejobstate.cpp:991
+#, kde-format
 msgid "Dust cap error occurred."
 msgstr "მტვრის ქუდის შეცდომა."
 
-#: ekos/capture/sequencejobstate.cpp:965
+#: ekos/capture/sequencejobstate.cpp:997
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "მტვრის ქუდი უქმეა."
 
-#: ekos/capture/sequencejobstate.cpp:968
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "მტვრის ქუდი დაპარკინგებულია."
 
-#: ekos/capture/sequencejobstate.cpp:971
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "მიმდინარეობს მტვრის ქუდის დაპარკინგება..."
 
-#: ekos/capture/sequencejobstate.cpp:974
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "მიმდინარეობს მტვრის ქუდის პარკინგიდან მოხსნა..."
 
-#: ekos/capture/sequencejobstate.cpp:977
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "მტვრის ქუდის სტატუსი უცნობია."
@@ -28815,6 +28834,7 @@ msgid "OK"
 msgstr "დიახ"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
+#: indi/indilightbox.cpp:18
 #, kde-format
 msgid "Busy"
 msgstr ""

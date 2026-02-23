@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-21 02:10+0000\n"
+"POT-Creation-Date: 2026-02-23 02:05+0000\n"
 "PO-Revision-Date: 2026-02-20 14:37+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -614,8 +614,9 @@ msgstr "Cancel·la"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indimount.cpp:32 kstarsactions.cpp:506 kstarsactions.cpp:514
-#: kstarsactions.cpp:524 skycomponents/imageoverlaycomponent.cpp:556
+#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
 msgstr "S'ha produït un error"
@@ -2485,7 +2486,8 @@ msgstr "Trieu-la si es desconeix la magnitud."
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indigroup.cpp:30 skycomponents/constellationboundarylines.cpp:294
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, kde-format
 msgid "Unknown"
@@ -13056,7 +13058,7 @@ msgstr "S'està preparant…"
 msgid "Waiting..."
 msgstr "En espera…"
 
-#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:412
+#: ekos/auxiliary/ledstatuswidget.cpp:46 ekos/capture/camerastate.cpp:406
 #, kde-format
 msgid "Dithering requested..."
 msgstr "S'ha sol·licitat el tramat…"
@@ -15228,7 +15230,7 @@ msgid "Turn cooler on"
 msgstr "Inicia el refrigerador."
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
 #, kde-format
 msgid "On"
 msgstr "Encés"
@@ -15242,7 +15244,7 @@ msgstr "Apaga el refrigerador."
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
 #, kde-format
 msgid "Off"
 msgstr "Apagat"
@@ -16717,122 +16719,122 @@ msgstr "Avís: Ha fallat el tramat."
 msgid "Dust cap error."
 msgstr "S'ha produït un error de la tapa per la pols."
 
-#: ekos/capture/camerastate.cpp:296
+#: ekos/capture/camerastate.cpp:295
 #, kde-format
 msgid "Dust cap parked."
 msgstr "La tapa per la pols està aparcada."
 
-#: ekos/capture/camerastate.cpp:300
+#: ekos/capture/camerastate.cpp:298
 #, kde-format
 msgid "Dust cap unparked."
 msgstr "La tapa per la pols està desaparcada."
 
-#: ekos/capture/camerastate.cpp:503
+#: ekos/capture/camerastate.cpp:497
 #, kde-format
 msgid "Meridian flip is successfully completed"
 msgstr "S'ha completat amb èxit la inversió del meridià"
 
-#: ekos/capture/camerastate.cpp:645
+#: ekos/capture/camerastate.cpp:639
 #, kde-format
 msgid "Performing post flip re-calibration and guiding..."
 msgstr "S'està realitzant el recalibratge i el guiatge després de la inversió…"
 
-#: ekos/capture/camerastate.cpp:659
+#: ekos/capture/camerastate.cpp:653
 #, kde-format
 msgid "Post meridian flip calibration error. Restarting..."
 msgstr ""
 "S'ha produït un error durant el calibratge després de la inversió del "
 "meridià. S'està reiniciant…"
 
-#: ekos/capture/camerastate.cpp:690
+#: ekos/capture/camerastate.cpp:684
 #, kde-format
 msgid "Autoguiding stopped. Waiting for autofocus to finish..."
 msgstr ""
 "S'ha parat el guiatge automàtic. S'està esperant que finalitze l'enfocament "
 "automàtic…"
 
-#: ekos/capture/camerastate.cpp:699
+#: ekos/capture/camerastate.cpp:693
 #, kde-format
 msgid "Autoguiding stopped. Aborting..."
 msgstr "S'ha parat el guiatge automàtic. S'interromp…"
 
-#: ekos/capture/camerastate.cpp:706
+#: ekos/capture/camerastate.cpp:700
 #, kde-format
 msgid "Post meridian flip calibration error. Aborting..."
 msgstr ""
 "S'ha produït un error durant el calibratge després de la inversió del "
 "meridià. S'interromp…"
 
-#: ekos/capture/camerastate.cpp:728
+#: ekos/capture/camerastate.cpp:722
 #, kde-format
 msgid "Adaptive focus complete."
 msgstr "S'ha completat l'enfocament adaptatiu."
 
-#: ekos/capture/camerastate.cpp:752
+#: ekos/capture/camerastate.cpp:746
 #, kde-format
 msgid "Autofocus failed. Aborting exposure..."
 msgstr "No s'ha pogut fer l'enfocament automàtic. S'interromp l'exposició…"
 
 #. i18np since guidingRate is DOUBLE value (e.g. 1.36) so we always use plural with that.
-#: ekos/capture/camerastate.cpp:788
+#: ekos/capture/camerastate.cpp:782
 #, kde-format
 msgid "Focus complete. Resuming in %1 seconds..."
 msgstr "S'ha completat l'enfocament. Es reprendrà en %1 segons…"
 
-#: ekos/capture/camerastate.cpp:811
+#: ekos/capture/camerastate.cpp:805
 #, kde-format
 msgid "Limit: %1 °C"
 msgstr "Límit: %1 °C"
 
-#: ekos/capture/camerastate.cpp:815
+#: ekos/capture/camerastate.cpp:809
 #, kde-format
 msgid "Limit: %1 mins"
 msgstr "Límit: %1 mins"
 
-#: ekos/capture/camerastate.cpp:989
+#: ekos/capture/camerastate.cpp:983
 #, kde-format
 msgid "Performing post flip re-alignment..."
 msgstr "S'està realitzant la realineació després de la inversió…"
 
-#: ekos/capture/camerastate.cpp:1009
+#: ekos/capture/camerastate.cpp:1003
 #, kde-format
 msgid "Guide module timed out."
 msgstr "El mòdul «Guia» ha excedit el temps."
 
-#: ekos/capture/camerastate.cpp:1041
+#: ekos/capture/camerastate.cpp:1035
 #, kde-format
 msgid "Initial guiding deviation %1 below limit value of %2 arcsecs"
 msgstr ""
 "La desviació inicial del guiatge %1 és inferior al valor límit de %2 segons "
 "d'arc"
 
-#: ekos/capture/camerastate.cpp:1050
+#: ekos/capture/camerastate.cpp:1044
 #, kde-format
 msgid "Initial guiding deviation %1 exceeded limit value of %2 arcsecs"
 msgstr ""
 "La desviació inicial del guiatge %1 excedix el valor límit de %2 segons d'arc"
 
-#: ekos/capture/camerastate.cpp:1072
+#: ekos/capture/camerastate.cpp:1066
 #, kde-format
 msgid "Post meridian flip calibration completed successfully."
 msgstr ""
 "S'ha completat amb èxit el calibratge després de la inversió del meridià."
 
-#: ekos/capture/camerastate.cpp:1086
+#: ekos/capture/camerastate.cpp:1080
 #, kde-format
 msgid "Guiding deviation at capture startup %1 exceeded limit %2 arcsecs."
 msgstr ""
 "La desviació del guiatge quan s'inicia la captura %1 excedix el valor límit "
 "de %2 segons d'arc."
 
-#: ekos/capture/camerastate.cpp:1100
+#: ekos/capture/camerastate.cpp:1094
 #, kde-format
 msgid "Guiding deviation at capture startup %1 below limit value of %2 arcsecs"
 msgstr ""
 "La desviació del guiatge quan s'inicia la captura %1 per davall del valor "
 "límit de %2 segons d'arc"
 
-#: ekos/capture/camerastate.cpp:1127
+#: ekos/capture/camerastate.cpp:1121
 #, kde-format
 msgid ""
 "Guiding deviation %1 exceeded limit value of %2 arcsecs for %4 consecutive "
@@ -16842,7 +16844,7 @@ msgstr ""
 "mostres consecutives. Se suspén l'exposició i s'esperarà el sistema de "
 "guiatge fins a %3 segons."
 
-#: ekos/capture/camerastate.cpp:1174
+#: ekos/capture/camerastate.cpp:1168
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16851,7 +16853,7 @@ msgstr ""
 "La desviació del guiatge %1 ara és inferior al límit de %2 segons d'arc. Es "
 "reprén l'exposició."
 
-#: ekos/capture/camerastate.cpp:1178
+#: ekos/capture/camerastate.cpp:1172
 #, kde-format
 msgid ""
 "Guiding deviation %1 is now lower than limit value of %2 arcsecs, resuming "
@@ -16860,24 +16862,24 @@ msgstr ""
 "La desviació del guiatge %1 encara és inferior al límit de %2 segons d'arc. "
 "Es reprendrà l'exposició en %3 segons."
 
-#: ekos/capture/camerastate.cpp:1193
+#: ekos/capture/camerastate.cpp:1187
 #, kde-format
 msgid "Guiding deviation %1 is still higher than limit value of %2 arcsecs."
 msgstr ""
 "La desviació del guiatge %1 encara és superior al límit de %2 segons d'arc."
 
-#: ekos/capture/camerastate.cpp:1573
+#: ekos/capture/camerastate.cpp:1567
 #, kde-format
 msgid "Post flip re-alignment completed successfully."
 msgstr ""
 "S'ha completat amb èxit la realineació després de la inversió del meridià."
 
-#: ekos/capture/camerastate.cpp:1592
+#: ekos/capture/camerastate.cpp:1586
 #, kde-format
 msgid "Post-flip alignment failed."
 msgstr "No s'ha pogut fer l'alineació després de la inversió."
 
-#: ekos/capture/camerastate.cpp:1597
+#: ekos/capture/camerastate.cpp:1591
 #, kde-format
 msgid "Post-flip alignment failed. Retrying..."
 msgstr ""
@@ -17044,29 +17046,29 @@ msgid "Switch display to the graphical mode of capture counts display."
 msgstr ""
 "Canvia la pantalla al mode gràfic de visualització del nombre de captures."
 
-#: ekos/capture/capturedeviceadaptor.cpp:429
+#: ekos/capture/capturedeviceadaptor.cpp:433
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 "El gestor de filtres encara no està inicialitzat. Falta la roda de filtres "
 "del tren?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:683
+#: ekos/capture/capturedeviceadaptor.cpp:687
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Elimina la funda del telescopi per tal de continuar."
 
-#: ekos/capture/capturedeviceadaptor.cpp:684
+#: ekos/capture/capturedeviceadaptor.cpp:688
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Telescopi cobert"
 
-#: ekos/capture/capturedeviceadaptor.cpp:816
+#: ekos/capture/capturedeviceadaptor.cpp:820
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "%1 té un obturador?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:817
+#: ekos/capture/capturedeviceadaptor.cpp:821
 #: ekos/capture/sequencejobstate.cpp:473
 #, kde-format
 msgid "Dark Exposure"
@@ -18537,37 +18539,59 @@ msgstr ""
 "S'està aparcant la cúpula abans de capturar els fotogrames de calibratge…"
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:947
-#, kde-format
-msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:958
+#, fuzzy, kde-format
+#| msgid "Turn light box light on..."
+msgid "Light box light turned on."
+msgstr "Encén el llum de la caixa de llum…"
+
+# skip-rule: kct-box
+#: ekos/capture/sequencejobstate.cpp:961
+#, fuzzy, kde-format
+#| msgid "Turn light box light off..."
+msgid "Light box light turned off."
+msgstr "Apaga el llum de la caixa de llum…"
+
+# skip-rule: kct-box
+#: ekos/capture/sequencejobstate.cpp:964
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box busy."
 msgstr "Caixa de llum encesa."
 
-#: ekos/capture/sequencejobstate.cpp:961
+# skip-rule: kct-box
+#: ekos/capture/sequencejobstate.cpp:967
+#, fuzzy, kde-format
+#| msgid "Light box on."
+msgid "Light box error."
+msgstr "Caixa de llum encesa."
+
+#: ekos/capture/sequencejobstate.cpp:991
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "S'ha produït un error en la tapa per la pols."
 
-#: ekos/capture/sequencejobstate.cpp:965
+#: ekos/capture/sequencejobstate.cpp:997
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "La tapa per la pols està en espera."
 
-#: ekos/capture/sequencejobstate.cpp:968
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "La tapa per la pols està aparcada."
 
-#: ekos/capture/sequencejobstate.cpp:971
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "S'està aparcant la tapa per la pols…"
 
-#: ekos/capture/sequencejobstate.cpp:974
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "S'està desaparcant la tapa per la pols…"
 
-#: ekos/capture/sequencejobstate.cpp:977
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Estat desconegut de la tapa per la pols."
@@ -31940,6 +31964,7 @@ msgid "OK"
 msgstr "D'acord"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
+#: indi/indilightbox.cpp:18
 #, kde-format
 msgid "Busy"
 msgstr "Ocupat"
