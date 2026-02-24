@@ -2,7 +2,7 @@
 
 .optional-on-forked-repository:
   rules:
-    - if: $CI_PROJECT_NAMESPACE !~ "education"
+    - if: $CI_PROJECT_NAMESPACE !~ /education/
       when: manual
       allow_failure: true
 

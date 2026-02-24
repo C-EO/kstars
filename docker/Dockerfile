@@ -1,4 +1,10 @@
-FROM ubuntu:24.10
+ARG BUILD_IMAGE=ubuntu:24.04
+# ARG BUILD_IMAGE=ubuntu:25.10
+FROM ${BUILD_IMAGE}
+
+ARG QT_VERSION=6
+
+RUN apt update && apt -y install git cmake
 
 # Suitable for builds
 RUN apt update && apt -y install --no-install-recommends software-properties-common gpg-agent
@@ -20,25 +26,45 @@ RUN apt update && apt -y install --no-install-recommends \
       libraw-dev \
       libgsl-dev \
       libsecret-1-dev
-RUN apt update && apt -y install --no-install-recommends \
-      qt6-base-dev \
-      qt6-declarative-dev \
-      qt6-multimedia-dev \
-      qt6-positioning-dev \
-      libqt6websockets6-dev \
-      libqt6svg6-dev \
-      libkf6doctools-dev \
-      libkf6config-dev \
-      libkf6guiaddons-dev \
-      libkf6i18n-dev \
-      libkf6newstuff-dev \
-      libkf6notifications-dev \
-      libkf6xmlgui-dev \
-      libkf6plotting-dev \
-      libkf6crash-dev \
-      libkf6notifyconfig-dev \
-      libqt6sql6-sqlite \
-      libqt6datavisualization6-dev
+
+RUN if [ "$QT_VERSION" -eq "6" ]; then \
+      apt update && apt -y install --no-install-recommends \
+          qt6-base-dev \
+          qt6-declarative-dev \
+          qt6-multimedia-dev \
+          qt6-positioning-dev \
+          libqt6websockets6-dev \
+          libqt6svg6-dev \
+          libqt6sql6-sqlite \
+          libqt6datavisualization6-dev \
+          libkf6doctools-dev \
+          libkf6config-dev \
+          libkf6guiaddons-dev \
+          libkf6i18n-dev \
+          libkf6newstuff-dev \
+          libkf6notifications-dev \
+          libkf6xmlgui-dev \
+          libkf6plotting-dev \
+          libkf6crash-dev \
+          libkf6notifyconfig-dev; \
+    else \
+      apt update && apt -y install --no-install-recommends \
+          libkf5plotting-dev \
+          libkf5xmlgui-dev \
+          libkf5kio-dev \
+          kinit-dev \
+          libkf5newstuff-dev \
+          libkf5doctools-dev \
+          libkf5notifications-dev \
+          libkf5crash-dev \
+          libkf5notifyconfig-dev \
+          libqt5svg5-dev \
+          qtdeclarative5-dev \
+          libqt5websockets5-dev \
+          qt5keychain-dev \
+          libqt5datavisualization5-dev; \
+    fi
+
 RUN apt update && apt -y install --no-install-recommends \
       phonon4qt6-backend-vlc \
       qtkeychain-qt6-dev \
