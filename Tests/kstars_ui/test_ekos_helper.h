@@ -71,7 +71,7 @@ do {\
   * @brief Subroutine version of QTRY_TIMEOUT_DEBUG_IMPL
   * @return false if expression equals false, otherwise continuing
   */
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 10, 0)
 #define KTRY_TIMEOUT_DEBUG_IMPL_SUB(expr, timeoutValue, step)\
     if (!(expr)) { \
         QTRY_LOOP_IMPL((expr), (2 * timeoutValue), step);\

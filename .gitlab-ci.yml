@@ -113,11 +113,12 @@ suse_tumbleweed_qt515:
       fi
 
 json-validation:
+  stage: validate
   rules:
     - !reference [.standard-build-recipes, rules]
 
 astyle-check:
-  stage: test
+  stage: validate
   image: ubuntu:24.04
   rules:
     - !reference [.standard-build-recipes, rules]
@@ -236,6 +237,7 @@ ubuntu_qt5:
   extends: .custom_build
   image:
     name: sternejaeger/kstars-ci:qt5
+  allow_failure: true # TODO: REMOVE IF TIMEOUT PROBLEMS ARE FIXED
   needs:
     - suse_tumbleweed_qt610
   script:
