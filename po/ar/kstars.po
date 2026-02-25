@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-24 02:05+0000\n"
-"PO-Revision-Date: 2026-02-21 17:06+0400\n"
+"PO-Revision-Date: 2026-02-24 22:29+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -17781,28 +17781,24 @@ msgid "Parking dome prior to calibration frames capture..."
 msgstr "يركن القبة قبل التقاط إطارات المعايرة..."
 
 #: ekos/capture/sequencejobstate.cpp:958
-#, fuzzy, kde-format
-#| msgid "Turn light box light on..."
+#, kde-format
 msgid "Light box light turned on."
-msgstr "شغّل ضوء صندوق الضوء..."
+msgstr "ضوء صندوق الضوء يعمل."
 
 #: ekos/capture/sequencejobstate.cpp:961
-#, fuzzy, kde-format
-#| msgid "Turn light box light off..."
+#, kde-format
 msgid "Light box light turned off."
-msgstr "أطفئ ضوء صندوق الضوء..."
+msgstr "ضوء صندوق الضوء مطفئ."
 
 #: ekos/capture/sequencejobstate.cpp:964
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#, kde-format
 msgid "Light box busy."
-msgstr "صندوق الضوء مشغل."
+msgstr "صندوق الضوء مشغول."
 
 #: ekos/capture/sequencejobstate.cpp:967
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#, kde-format
 msgid "Light box error."
-msgstr "صندوق الضوء مشغل."
+msgstr "خطأ صندوق الضوء."
 
 #: ekos/capture/sequencejobstate.cpp:991
 #, kde-format
