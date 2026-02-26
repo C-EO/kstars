@@ -28,13 +28,29 @@ include:
     - !reference [.always-on-merge-requests, rules]
     - !reference [.manual-skipped-recipe, rules]
 
-# These jobs are automatically defined by the included templates
-# We just need to override their rules - no need to extend anything
+# Override the script for Suse Tumbleweed to avoid building with tests,
+# since ci-utilities/run-ci-build.py turns it on
 
 suse_tumbleweed_qt610:
+  script:
+    - git config --global --add safe.directory $CI_PROJECT_DIR
+    - >-
+      python3 -u ci-utilities/run-ci-build.py --project $CI_PROJECT_NAME
+      --branch $CI_COMMIT_REF_NAME --platform Linux/Qt6/Shared
+      --extra-cmake-args=-DBUILD_WITH_QT6=ON
+      --extra-cmake-args=-DQT_MAJOR_VERSION=6
+      --extra-cmake-args=-DBUILD_TESTING=OFF
+    - |
+      if [ -d "$INSTALLED_DOC_PATH" ]; then
+        git clone https://invent.kde.org/websites/docs-kde-org.git --depth=1
+        python3 ci-utilities/generate-documentation.py --project $CI_PROJECT_NAME --output-folder "generated_documentation" --format html pdf --branch $CI_COMMIT_REF_NAME --publish --doc-dir $INSTALLED_DOC_PATH
+      fi
   rules:
     - !reference [.always-on-scheduled-pipeline, rules] # Flatpak nightly
     - !reference [.standard-build-recipes, rules]
+
+# These jobs are automatically defined by the included templates
+# We just need to override their rules - no need to extend anything
 
 windows_qt610:
   allow_failure: true # TODO: REMOVE WHEN STELLARSOLVER QT6 IS INCLUDED IN CI IMAGE
@@ -42,17 +58,67 @@ windows_qt610:
     - !reference [.standard-build-recipes, rules]
 
 suse_tumbleweed_qt515:
-  # This job is likely defined by linux.yml template (Qt5 build)
-  allow_failure: true # TODO: REMOVE WHEN STELLARSOLVER QT5 IS INCLUDED IN CI IMAGE
+  variables:
+    HOME: /tmp
+    STELLARSOLVER_PREFIX: "$CI_PROJECT_DIR/.local/stellarsolver"
+    CMAKE_PREFIX_PATH: "$CI_PROJECT_DIR/.local/stellarsolver:$CMAKE_PREFIX_PATH"
+    LD_LIBRARY_PATH: "$CI_PROJECT_DIR/.local/stellarsolver/lib64:$CI_PROJECT_DIR/.local/stellarsolver/lib:$LD_LIBRARY_PATH"
+    PKG_CONFIG_PATH: "$CI_PROJECT_DIR/.local/stellarsolver/lib64/pkgconfig:$CI_PROJECT_DIR/.local/stellarsolver/lib/pkgconfig:$PKG_CONFIG_PATH"
   rules:
-    - !reference [.standard-build-recipes, rules]
+#    - !reference [.standard-build-recipes, rules]
+    - when: never # DISABLED, since tumbleweed has problems with Qt5
+  before_script:
+    - git clone https://invent.kde.org/sysadmin/ci-utilities.git --depth=1
+    - git clone https://invent.kde.org/sysadmin/repo-metadata.git ci-utilities/repo-metadata/ --depth=1
+
+    # Build-Dependencies für StellarSolver (Qt5 Job; Qt/KF5 sind im Basis-Image bereits vorhanden)
+    - zypper -n ref
+    - >-
+      zypper -n in --no-recommends
+      libeigen3-devel
+      cfitsio-devel
+      zlib-ng-devel
+      gettext
+      libnova-devel
+      gsl-devel
+      libraw-devel
+      wcslib-devel
+      xplanet
+      libsecret-1-0
+      kinit-devel
+      kf6-breeze-icons
+
+    # build and install StellarSolver locally
+    - mkdir -p "$STELLARSOLVER_PREFIX"
+    - rm -rf stellarsolver
+    - git clone https://github.com/rlancaste/stellarsolver.git --depth=1 stellarsolver
+    - >-
+      cmake -S stellarsolver -B stellarsolver/build
+      -DCMAKE_BUILD_TYPE=Release
+      -DCMAKE_INSTALL_PREFIX="$STELLARSOLVER_PREFIX"
+    - cmake --build stellarsolver/build -j"$(nproc)"
+    - cmake --install stellarsolver/build
+  script:
+    - git config --global --add safe.directory $CI_PROJECT_DIR
+    - >-
+      python3 -u ci-utilities/run-ci-build.py --project $CI_PROJECT_NAME
+      --branch $CI_COMMIT_REF_NAME --platform Linux/Qt5/Shared
+      --extra-cmake-args=-DBUILD_WITH_QT6=OFF
+      --extra-cmake-args=-DQT_MAJOR_VERSION=5
+      --extra-cmake-args=-DBUILD_TESTING=OFF
+    - |
+      if [ -d "$INSTALLED_DOC_PATH" ]; then
+        git clone https://invent.kde.org/websites/docs-kde-org.git --depth=1
+        python3 ci-utilities/generate-documentation.py --project $CI_PROJECT_NAME --output-folder "generated_documentation" --format html pdf --branch $CI_COMMIT_REF_NAME --publish --doc-dir $INSTALLED_DOC_PATH
+      fi
 
 json-validation:
+  stage: validate
   rules:
     - !reference [.standard-build-recipes, rules]
 
 astyle-check:
-  stage: test
+  stage: validate
   image: ubuntu:24.04
   rules:
     - !reference [.standard-build-recipes, rules]
@@ -148,7 +214,6 @@ flatpak-arm64:
 
 .custom_build:
   interruptible: true
-  image: tallfurryman/kstars-ci:latest
   variables:
     CCACHE_BASEDIR: "$CI_PROJECT_DIR"
     QT_TEST_TIMEOUT_FUNCTION: "600"
@@ -162,18 +227,29 @@ flatpak-arm64:
     - !reference [.custom-build-recipes, rules]
   before_script:
     - du -hs "${CCACHE_DIR}" || mkdir -p "${CCACHE_DIR}"
-    - add-apt-repository --remove ppa:mutlaqja/ppa
-    - add-apt-repository ppa:mutlaqja/ppa
-    - apt update
-    - apt -y --no-install-recommends install libindi1 libindi-dev libindi-data indi-bin xplanet gsc phd2 libstellarsolver libstellarsolver-dev libcurl4-openssl-dev
     - mkdir -p kstars-build
   after_script:
     - ccache -s
 
 # Run the build and keep the ccache folder as a fail-fast
-build:
+ubuntu_qt5:
   stage: build
   extends: .custom_build
+  image:
+    name: sternejaeger/kstars-ci:qt5
+  allow_failure: true # TODO: REMOVE IF TIMEOUT PROBLEMS ARE FIXED
+  needs:
+    - suse_tumbleweed_qt610
+  script:
+    - cd kstars-build
+    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=OFF -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_WITH_QT6=OFF ..
+    - ninja -j8 all install
+
+ubuntu_qt6:
+  stage: build
+  extends: .custom_build
+  image:
+    name: sternejaeger/kstars-ci:qt6
   allow_failure: true # TODO: REMOVE WHEN STABLE AGAIN
   needs:
     - suse_tumbleweed_qt610
@@ -189,9 +265,11 @@ build:
 build-and-test-stable:
   stage: test
   extends: .custom_build
+  image:
+    name: sternejaeger/kstars-ci:qt6
   allow_failure: true # TODO: REMOVE WHEN STABLE AGAIN
   needs:
-    - build
+    - ubuntu_qt6
   timeout: 3 hours
   variables:
     BUILD_TESTING: "ON"

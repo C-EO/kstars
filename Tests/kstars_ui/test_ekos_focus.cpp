@@ -33,39 +33,23 @@ class KFocusProcedureSteps: public QObject
         bool aborted { false };
         bool complete { false };
         bool unguided { false };
+        bool ran_once { false };
         double hfr { -2 };
 
     public:
         KFocusProcedureSteps():
             starting (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::autofocusStarting,
-                              this, [ & ]()
-        {
-            started = true;
-        }, Qt::UniqueConnection)),
-        aborting (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::autofocusAborted, this, [&]()
-        {
-            started = false;
-            aborted = true;
-        }, Qt::UniqueConnection)),
-        completing (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::autofocusComplete,
-                            this, [&]()
-        {
-            started = false;
-            complete = true;
-        }, Qt::UniqueConnection)),
-        notguiding (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::suspendGuiding, this, [&]()
-        {
-            unguided = true;
-        }, Qt::UniqueConnection)),
-        guiding (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::resumeGuiding, this, [&]()
-        {
-            unguided = false;
-        }, Qt::UniqueConnection)),
-        quantifying (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::newHFR,
-                             this, [&](double _hfr)
-        {
-            hfr = _hfr;
-        }, Qt::UniqueConnection))
+                              this, &KFocusProcedureSteps::handleAutofocusStarting, Qt::UniqueConnection)),
+            aborting (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::autofocusAborted,
+                              this, &KFocusProcedureSteps::handleAutofocusAborted, Qt::UniqueConnection)),
+            completing (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::autofocusComplete,
+                                this, &KFocusProcedureSteps::handleAutofocusComplete, Qt::UniqueConnection)),
+            notguiding (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::suspendGuiding,
+                                this, &KFocusProcedureSteps::handleSuspendGuiding, Qt::UniqueConnection)),
+            guiding (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::resumeGuiding,
+                             this, &KFocusProcedureSteps::handleResumeGuiding, Qt::UniqueConnection)),
+            quantifying (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::newHFR,
+                                 this, &KFocusProcedureSteps::handleNewHFR))
         {};
         virtual ~KFocusProcedureSteps()
         {
@@ -76,6 +60,55 @@ class KFocusProcedureSteps: public QObject
             disconnect(guiding);
             disconnect(quantifying);
         };
+    public slots:
+        void handleAutofocusCompleteRestartOnce()
+        {
+            complete = true;
+            started = false;
+            if (!ran_once)
+            {
+                Ekos::Manager::Instance()->focusModule()->mainFocuser()->start();
+                ran_once = true;
+            }
+        }
+        void handleAutofocusAbortedRestartOnce()
+        {
+            aborted = true;
+            started = false;
+            if (!ran_once)
+            {
+                Ekos::Manager::Instance()->focusModule()->mainFocuser()->start();
+                ran_once = true;
+            }
+        }
+
+    private slots:
+        void handleAutofocusStarting()
+        {
+            started = true;
+        }
+        void handleAutofocusAborted()
+        {
+            started = false;
+            aborted = true;
+        }
+        void handleAutofocusComplete()
+        {
+            started = false;
+            complete = true;
+        }
+        void handleSuspendGuiding()
+        {
+            unguided = true;
+        }
+        void handleResumeGuiding()
+        {
+            unguided = false;
+        }
+        void handleNewHFR(double _hfr)
+        {
+            hfr = _hfr;
+        }
 };
 
 class KFocusStateList: public QObject, public QList <Ekos::FocusState>
@@ -86,12 +119,15 @@ class KFocusStateList: public QObject, public QList <Ekos::FocusState>
     public:
         KFocusStateList():
             handler (connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().get(), &Ekos::Focus::newStatus,
-                             this, [ & ](Ekos::FocusState s, const QString &)
-        {
-            append(s);
-        }, Qt::UniqueConnection))
+                             this, &KFocusStateList::onNewState, Qt::UniqueConnection))
         {};
         virtual ~KFocusStateList() {};
+
+    private slots:
+        void onNewState(Ekos::FocusState s, const QString &)
+        {
+            append(s);
+        }
 };
 
 TestEkosFocus::TestEkosFocus(QObject *parent) : QObject(parent)
@@ -268,19 +304,9 @@ void TestEkosFocus::testAutofocusSignalEmission()
     QVERIFY(autofocus.starting);
 
     KTELL("Configure to restart autofocus when it finishes, like Scheduler does.");
-    volatile bool ran_once = false;
     autofocus.completing = connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().data(),
                                    &Ekos::Focus::autofocusComplete,
-                                   &autofocus, [&]()
-    {
-        autofocus.complete = true;
-        autofocus.started = false;
-        if (!ran_once)
-        {
-            Ekos::Manager::Instance()->focusModule()->mainFocuser()->start();
-            ran_once = true;
-        }
-    }, Qt::UniqueConnection);
+                                   &autofocus, &KFocusProcedureSteps::handleAutofocusCompleteRestartOnce, Qt::UniqueConnection);
     QVERIFY(autofocus.completing);
 
     KTELL("Run autofocus, wait for completion.\nHandler restarts a second one immediately.");
@@ -316,18 +342,8 @@ void TestEkosFocus::testFocusAbort()
     QVERIFY(autofocus.completing);
 
     KTELL("Configure to restart autofocus when it finishes, like Scheduler does.");
-    volatile bool ran_once = false;
     autofocus.aborting = connect(Ekos::Manager::Instance()->focusModule()->mainFocuser().data(), &Ekos::Focus::autofocusAborted,
-                                 this, [&]()
-    {
-        autofocus.aborted = true;
-        autofocus.started = false;
-        if (!ran_once)
-        {
-            Ekos::Manager::Instance()->focusModule()->mainFocuser()->start();
-            ran_once = true;
-        }
-    }, Qt::UniqueConnection);
+                                 &autofocus, &KFocusProcedureSteps::handleAutofocusAbortedRestartOnce, Qt::UniqueConnection);
     QVERIFY(autofocus.aborting);
 
     KTELL("Run autofocus, don't wait for the completion signal and abort it.\nHandler restarts a second one immediately.");

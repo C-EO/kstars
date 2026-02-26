@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-23 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2007-06-25 11:21+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -606,7 +606,7 @@ msgstr "Скасаваць"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indilightbox.cpp:18 indi/indimount.cpp:32 kstarsactions.cpp:506
+#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 kstarsactions.cpp:506
 #: kstarsactions.cpp:514 kstarsactions.cpp:524
 #: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
@@ -768,7 +768,7 @@ msgstr ""
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr ""
 
-#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2661
+#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2662
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -2406,7 +2406,7 @@ msgstr ""
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:268
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:640
 #: fitsviewer/fitshistogram.cpp:781 fitsviewer/fitshistogramcommand.cpp:267
-#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:18
+#: indi/indidustcap.cpp:18 indi/indigroup.cpp:30 indi/indilightbox.cpp:20
 #: skycomponents/constellationboundarylines.cpp:294
 #: skyobjects/skyobject.cpp:435
 #, kde-format
@@ -14191,7 +14191,7 @@ msgid "Turn cooler on"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOnB)
-#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:18
+#: ekos/capture/camera.ui:524 indi/indilightbox.cpp:20
 #, fuzzy, kde-format
 msgid "On"
 msgstr "Укл"
@@ -14204,7 +14204,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, coolerOffB)
 #. i18n: ectx: label, entry (ErectObserverCorrection), group (View)
-#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:18 kstars.kcfg:837
+#: ekos/capture/camera.ui:566 indi/indilightbox.cpp:20 kstars.kcfg:837
 #, fuzzy, kde-format
 msgid "Off"
 msgstr "Выкл"
@@ -17177,52 +17177,52 @@ msgstr "Скінуць вылучэнне"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Пачатак:"
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 msgid "Light box light turned on."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 msgid "Light box light turned off."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 msgid "Light box busy."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 msgid "Light box error."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, fuzzy, kde-format
 msgid "Dust cap is idle."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "Ачысціць спіс"
@@ -17467,12 +17467,12 @@ msgstr "Joliet"
 msgid "Offline"
 msgstr "Joliet"
 
-#: ekos/ekoslive/message.cpp:781
+#: ekos/ekoslive/message.cpp:783
 #, fuzzy, kde-format
 msgid "target"
 msgstr "Гішпанія"
 
-#: ekos/ekoslive/message.cpp:1063
+#: ekos/ekoslive/message.cpp:1065
 #, fuzzy, kde-format
 #| msgid "Show webpage about "
 msgid "Mosaic import failed."
@@ -26501,7 +26501,7 @@ msgstr ""
 msgid "Create scheduler jobs to execute the mosaic plan"
 msgstr ""
 
-#: ekos/scheduler/framingassistantui.cpp:229 fitsviewer/fitsview.cpp:892
+#: ekos/scheduler/framingassistantui.cpp:229 fitsviewer/fitsview.cpp:917
 #, kde-format
 msgctxt "%1 is the value, % is the percent sign"
 msgid "%1%"
@@ -29222,7 +29222,7 @@ msgid "OK"
 msgstr "&Добра"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1017
-#: indi/indilightbox.cpp:18
+#: indi/indilightbox.cpp:20
 #, kde-format
 msgid "Busy"
 msgstr ""
@@ -29860,219 +29860,219 @@ msgstr "Апісанне"
 msgid "Object Type Comments"
 msgstr "Тып аб'екта"
 
-#: fitsviewer/fitsdata.cpp:1696
+#: fitsviewer/fitsdata.cpp:1697
 #, fuzzy, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:1709
+#: fitsviewer/fitsdata.cpp:1710
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1725
+#: fitsviewer/fitsdata.cpp:1726
 #, fuzzy, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:1738
+#: fitsviewer/fitsdata.cpp:1739
 #, fuzzy, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:1750
+#: fitsviewer/fitsdata.cpp:1751
 #, fuzzy, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:1757
+#: fitsviewer/fitsdata.cpp:1758
 #, fuzzy, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:1771
+#: fitsviewer/fitsdata.cpp:1772
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1817 fitsviewer/fitsdata.cpp:2513
+#: fitsviewer/fitsdata.cpp:1818 fitsviewer/fitsdata.cpp:2514
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1827
+#: fitsviewer/fitsdata.cpp:1828
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:1877
+#: fitsviewer/fitsdata.cpp:1878
 #, fuzzy, kde-format
 msgid "Error reading image: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2278 fitsviewer/fitsdata.cpp:2476
+#: fitsviewer/fitsdata.cpp:2279 fitsviewer/fitsdata.cpp:2477
 #, fuzzy, kde-format
 msgid "XISF file open error: "
 msgstr "&Змяніць"
 
-#: fitsviewer/fitsdata.cpp:2390
+#: fitsviewer/fitsdata.cpp:2391
 #, fuzzy, kde-format
 msgid "File contain no images"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2419
+#: fitsviewer/fitsdata.cpp:2420
 #, fuzzy, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "выкананае"
 
-#: fitsviewer/fitsdata.cpp:2528
+#: fitsviewer/fitsdata.cpp:2529
 #, fuzzy, kde-format
 msgid "Error saving XISF image"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2620 fitsviewer/fitsdata.cpp:2736
+#: fitsviewer/fitsdata.cpp:2621 fitsviewer/fitsdata.cpp:2737
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:2675
+#: fitsviewer/fitsdata.cpp:2676
 #, fuzzy, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2688
+#: fitsviewer/fitsdata.cpp:2689
 #, fuzzy, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2699
+#: fitsviewer/fitsdata.cpp:2700
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:2706
+#: fitsviewer/fitsdata.cpp:2707
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:2714
+#: fitsviewer/fitsdata.cpp:2715
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:2861
+#: fitsviewer/fitsdata.cpp:2862
 #, fuzzy, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "выкананае"
 
-#: fitsviewer/fitsdata.cpp:2926
+#: fitsviewer/fitsdata.cpp:2927
 #, fuzzy, kde-format
 msgid "Failed to create file: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2941
+#: fitsviewer/fitsdata.cpp:2942
 #, fuzzy, kde-format
 msgid "Failed to create image: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:2950 fitsviewer/fitsdata.cpp:2957
+#: fitsviewer/fitsdata.cpp:2951 fitsviewer/fitsdata.cpp:2958
 #, fuzzy, kde-format
 msgid "Failed to update key: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:3058
+#: fitsviewer/fitsdata.cpp:3059
 #, fuzzy, kde-format
 msgid "Failed to update date: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:3067
+#: fitsviewer/fitsdata.cpp:3068
 #, fuzzy, kde-format
 msgid "Failed to update history: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:3089
+#: fitsviewer/fitsdata.cpp:3090
 #, fuzzy, kde-format
 msgid "Failed to write image: %1"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:4813 fitsviewer/fitsdata.cpp:4824
-#: fitsviewer/fitsdata.cpp:4861 fitsviewer/fitsdata.cpp:4897
-#: fitsviewer/fitsdata.cpp:5031
+#: fitsviewer/fitsdata.cpp:4814 fitsviewer/fitsdata.cpp:4825
+#: fitsviewer/fitsdata.cpp:4862 fitsviewer/fitsdata.cpp:4898
+#: fitsviewer/fitsdata.cpp:5032
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:5206 fitsviewer/fitsdata.cpp:5314
+#: fitsviewer/fitsdata.cpp:5207 fitsviewer/fitsdata.cpp:5315
 #, fuzzy, kde-format
 msgid "Error querying Simbad"
 msgstr "Немагчыма адкрыць файл %1"
 
-#: fitsviewer/fitsdata.cpp:5223
+#: fitsviewer/fitsdata.cpp:5224
 #, fuzzy, kde-format
 #| msgid "Toolbars"
 msgid "Simbad query timed out"
 msgstr "Панелі начыння"
 
-#: fitsviewer/fitsdata.cpp:6200 fitsviewer/fitsdata.cpp:6313
+#: fitsviewer/fitsdata.cpp:6201 fitsviewer/fitsdata.cpp:6314
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6208 fitsviewer/fitsdata.cpp:6319
+#: fitsviewer/fitsdata.cpp:6209 fitsviewer/fitsdata.cpp:6320
 #, fuzzy, kde-format
 #| msgid "Unknown"
 msgid "Unknown bayer pattern %1"
 msgstr "Невядомы"
 
-#: fitsviewer/fitsdata.cpp:6232 fitsviewer/fitsdata.cpp:6258
+#: fitsviewer/fitsdata.cpp:6233 fitsviewer/fitsdata.cpp:6259
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6266
+#: fitsviewer/fitsdata.cpp:6267
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6277 fitsviewer/fitsdata.cpp:6330
+#: fitsviewer/fitsdata.cpp:6278 fitsviewer/fitsdata.cpp:6331
 #, fuzzy, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Метка:"
 
-#: fitsviewer/fitsdata.cpp:6288 fitsviewer/fitsdata.cpp:6341
+#: fitsviewer/fitsdata.cpp:6289 fitsviewer/fitsdata.cpp:6342
 #, fuzzy, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Метка:"
 
-#: fitsviewer/fitsdata.cpp:6297 fitsviewer/fitsdata.cpp:6350
+#: fitsviewer/fitsdata.cpp:6298 fitsviewer/fitsdata.cpp:6351
 #, fuzzy, kde-format
 #| msgid "Invalid URL"
 msgid "Invalid debayer engine"
 msgstr "Няправільная спасылка URL"
 
-#: fitsviewer/fitsdata.cpp:6604
+#: fitsviewer/fitsdata.cpp:6605
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6620 fitsviewer/fitsdata.cpp:6666
-#: fitsviewer/fitsdata.cpp:6724 fitsviewer/fitsdata.cpp:6770
+#: fitsviewer/fitsdata.cpp:6621 fitsviewer/fitsdata.cpp:6667
+#: fitsviewer/fitsdata.cpp:6725 fitsviewer/fitsdata.cpp:6771
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6630 fitsviewer/fitsdata.cpp:6734
+#: fitsviewer/fitsdata.cpp:6631 fitsviewer/fitsdata.cpp:6735
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6649 fitsviewer/fitsdata.cpp:6753
+#: fitsviewer/fitsdata.cpp:6650 fitsviewer/fitsdata.cpp:6754
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6709
+#: fitsviewer/fitsdata.cpp:6710
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""
@@ -31103,85 +31103,85 @@ msgstr ""
 msgid "Rescaling image failed."
 msgstr "Паказаць старонку пра"
 
-#: fitsviewer/fitsview.cpp:902
+#: fitsviewer/fitsview.cpp:927
 #, kde-format
 msgid "Cannot zoom in further due to active limited resources mode."
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:1986
+#: fitsviewer/fitsview.cpp:2011
 #, kde-format
 msgctxt "North Celestial Pole"
 msgid "NCP"
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:2003
+#: fitsviewer/fitsview.cpp:2028
 #, kde-format
 msgctxt "South Celestial Pole"
 msgid "SCP"
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:2473
+#: fitsviewer/fitsview.cpp:2498
 #, fuzzy, kde-format
 #| msgid "Toolbars"
 msgid "Finding stars..."
 msgstr "Панелі начыння"
 
-#: fitsviewer/fitsview.cpp:2773
+#: fitsviewer/fitsview.cpp:2798
 #, kde-format
 msgid "Zoom In"
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:2776
+#: fitsviewer/fitsview.cpp:2801
 #, kde-format
 msgid "Zoom Out"
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:2779
+#: fitsviewer/fitsview.cpp:2804
 #, fuzzy, kde-format
 msgid "Default Zoom"
 msgstr "&Па прамоўчцы"
 
-#: fitsviewer/fitsview.cpp:2782
+#: fitsviewer/fitsview.cpp:2807
 #, kde-format
 msgid "Zoom to Fit"
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:2785
+#: fitsviewer/fitsview.cpp:2810
 #, fuzzy, kde-format
 #| msgid "Toolbars"
 msgid "Toggle Stretch"
 msgstr "Панелі начыння"
 
-#: fitsviewer/fitsview.cpp:2793 fitsviewer/fitsviewer.cpp:235
+#: fitsviewer/fitsview.cpp:2818 fitsviewer/fitsviewer.cpp:235
 #, kde-format
 msgid "Show Cross Hairs"
 msgstr ""
 
-#: fitsviewer/fitsview.cpp:2797 fitsviewer/fitsviewer.cpp:248
+#: fitsviewer/fitsview.cpp:2822 fitsviewer/fitsviewer.cpp:248
 #, fuzzy, kde-format
 #| msgctxt "NAME OF TRANSLATORS"
 #| msgid "Your names"
 msgid "Show Pixel Gridlines"
 msgstr "Дарафей Праляскоўскі"
 
-#: fitsviewer/fitsview.cpp:2802 fitsviewer/fitsview.cpp:2911
+#: fitsviewer/fitsview.cpp:2827 fitsviewer/fitsview.cpp:2936
 #, fuzzy, kde-format
 msgid "Detect Stars in Image"
 msgstr "&Стартаваць"
 
-#: fitsviewer/fitsview.cpp:2808
+#: fitsviewer/fitsview.cpp:2833
 #, fuzzy, kde-format
 #| msgid "Start"
 msgid "View Star Profile..."
 msgstr "Запусціць"
 
-#: fitsviewer/fitsview.cpp:2818 fitsviewer/fitsviewer.cpp:254
+#: fitsviewer/fitsview.cpp:2843 fitsviewer/fitsviewer.cpp:254
 #: fitsviewer/fitsviewer.cpp:1511
 #, fuzzy, kde-format
 msgid "Show Equatorial Gridlines"
 msgstr "Экватарыяльная Гвінэя"
 
-#: fitsviewer/fitsview.cpp:2824 fitsviewer/fitsviewer.cpp:261
+#: fitsviewer/fitsview.cpp:2849 fitsviewer/fitsviewer.cpp:261
 #: fitsviewer/fitsviewer.cpp:1513
 #, fuzzy, kde-format
 #| msgctxt "NAME OF TRANSLATORS"
@@ -31189,13 +31189,13 @@ msgstr "Экватарыяльная Гвінэя"
 msgid "Show Objects in Image"
 msgstr "Дарафей Праляскоўскі"
 
-#: fitsviewer/fitsview.cpp:2830
+#: fitsviewer/fitsview.cpp:2855
 #, fuzzy, kde-format
 #| msgid "Center"
 msgid "Center Telescope"
 msgstr "Пасярэдзіне"
 
-#: fitsviewer/fitsview.cpp:2836 fitsviewer/fitsviewer.cpp:268
+#: fitsviewer/fitsview.cpp:2861 fitsviewer/fitsviewer.cpp:268
 #, fuzzy, kde-format
 #| msgctxt "NAME OF TRANSLATORS"
 #| msgid "Your names"
