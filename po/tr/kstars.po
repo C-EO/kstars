@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2026-02-23 08:08+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -18068,52 +18068,52 @@ msgstr "Kubbeyi park etme başarısız, iptal ediliyor…"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Kalibrasyon kareleri yakalama öncesinde kubbe park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, kde-format
 msgid "Light box light turned on."
 msgstr "Işık kutusu ışığı açıldı."
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, kde-format
 msgid "Light box light turned off."
 msgstr "Işık kutusu ışığı kapatıldı."
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, kde-format
 msgid "Light box busy."
 msgstr "Işık kutusu meşgul."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, kde-format
 msgid "Light box error."
 msgstr "Işık kutusu hatası."
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Toz kapağı hatası oluştu."
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Toz kapağı boşta."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Toz kapağı park edilmiş."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Toz kapağı park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Toz kapağı parktan çıkıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Toz kapağı durumu bilinmiyor."

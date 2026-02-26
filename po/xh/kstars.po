@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2002-11-09 20:07+0200\n"
 "Last-Translator: Thelma Lungcuzo <thelma@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -17415,52 +17415,52 @@ msgstr "Ubeko lwephepha"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Farmington"
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 msgid "Light box light turned on."
 msgstr "Ikhaya"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 msgid "Light box light turned off."
 msgstr "Ikhaya"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 msgid "Light box busy."
 msgstr "&Cima intshukumo"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 msgid "Light box error."
 msgstr "&Cima intshukumo"
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "Goose Creek"
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, fuzzy, kde-format
 msgid "Dust cap is idle."
 msgstr "Ikhaya"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "Goose Creek"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "Goose Creek"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Goose Creek"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "Goose Creek"

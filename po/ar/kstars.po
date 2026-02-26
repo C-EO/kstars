@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2026-02-24 22:29+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -17780,52 +17780,52 @@ msgstr "فشل ركن القبة، إجهاض..."
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "يركن القبة قبل التقاط إطارات المعايرة..."
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, kde-format
 msgid "Light box light turned on."
 msgstr "ضوء صندوق الضوء يعمل."
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, kde-format
 msgid "Light box light turned off."
 msgstr "ضوء صندوق الضوء مطفئ."
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, kde-format
 msgid "Light box busy."
 msgstr "صندوق الضوء مشغول."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, kde-format
 msgid "Light box error."
 msgstr "خطأ صندوق الضوء."
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "حدث خطأ في غطاء الغبار."
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "غطاء الغبار خامل."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "غطاء الغبار مركون."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "غطاء الغبار يركن..."
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "غطاء الغبار يفك ركنه..."
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "حالة غطاء الغبار مجهولة."

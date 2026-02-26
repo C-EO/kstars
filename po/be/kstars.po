@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2007-06-25 11:21+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -17177,52 +17177,52 @@ msgstr "Скінуць вылучэнне"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Пачатак:"
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 msgid "Light box light turned on."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 msgid "Light box light turned off."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 msgid "Light box busy."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 msgid "Light box error."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, fuzzy, kde-format
 msgid "Dust cap is idle."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "Ачысціць спіс"

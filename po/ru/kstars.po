@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2026-02-22 20:52+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -18228,65 +18228,65 @@ msgstr "Не удалось загрузить изображение FITS, пр
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Рестарт процесса автофокусировки..."
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 #| msgid "Turn light box light on..."
 msgid "Light box light turned on."
 msgstr "Включить подсветку светового бокса…"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 #| msgid "Turn light box light off..."
 msgid "Light box light turned off."
 msgstr "Отключить подсветку светового бокса…"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box busy."
 msgstr "Светового бокс включён."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box error."
 msgstr "Светового бокс включён."
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
 msgid "Dust cap error occurred."
 msgstr "Дом-Крик"
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "Dust cap is idle."
 msgstr "фильтр %1 доступен."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
 msgid "Dust cap is parked."
 msgstr "Дом-Крик"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
 msgid "Dust cap is parking..."
 msgstr "Дом-Крик"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
 msgid "Dust cap is unparking..."
 msgstr "Дом-Крик"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"

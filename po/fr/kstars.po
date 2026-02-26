@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars_3.8.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2026-01-28 15:29+0100\n"
 "Last-Translator: steve <stax@ik.me>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -18312,56 +18312,56 @@ msgstr "Échec du parcage du dôme. Annulation…"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Parcage du dôme avant acquisition des poses de calibration…"
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 #| msgid "Turn light box light on..."
 msgid "Light box light turned on."
 msgstr "Allumer la boite à flat…"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 #| msgid "Turn light box light off..."
 msgid "Light box light turned off."
 msgstr "Éteindre la boite à flat…"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box busy."
 msgstr "Boîte à flat allumée."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box error."
 msgstr "Boîte à flat allumée."
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Une erreur du capuchon antipoussière s'est produite."
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Le capuchon antipoussière est au repos."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Le capuchon antipoussière est parqué."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Parcage du capuchon antipoussière en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Déparcage du capuchon antipoussière en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "État du capuchon antipoussière inconnu."

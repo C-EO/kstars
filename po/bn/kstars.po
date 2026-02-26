@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2006-04-24 00:45-0500\n"
 "Last-Translator: Progga <progga@BengaLinux.Org>\n"
 "Language-Team: Bengali <kde-translation@bengalinux.org>\n"
@@ -18167,57 +18167,57 @@ msgstr "বেতার-দূরবীক্ষণ-যন্ত্র"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "ফার্মিংটন"
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Light box light turned on."
 msgstr "%1 অনলাইনে আছে।"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Light box light turned off."
 msgstr "%1 অনলাইনে আছে।"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 #| msgid "Height:"
 msgid "Light box busy."
 msgstr "উচ্চতা:"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 #| msgid "Height:"
 msgid "Light box error."
 msgstr "উচ্চতা:"
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "গুজ ক্রিক"
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Dust cap is idle."
 msgstr "%1 অনলাইনে আছে।"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "গুজ ক্রিক"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "গুজ ক্রিক"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "গুজ ক্রিক"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "গুজ ক্রিক"

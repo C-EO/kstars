@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-24 02:05+0000\n"
+"POT-Creation-Date: 2026-02-26 02:10+0000\n"
 "PO-Revision-Date: 2024-04-22 16:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17456,56 +17456,56 @@ msgstr "归位圆顶失败，终止..."
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "拍摄校准帧前先归位圆顶..."
 
-#: ekos/capture/sequencejobstate.cpp:958
+#: ekos/capture/sequencejobstate.cpp:961
 #, fuzzy, kde-format
 #| msgid "Turn light box light on..."
 msgid "Light box light turned on."
 msgstr "打开 Light box 的灯光..."
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:964
 #, fuzzy, kde-format
 #| msgid "Turn light box light off..."
 msgid "Light box light turned off."
 msgstr "关闭 Light box 的灯光..."
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:967
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box busy."
 msgstr "Light box 打开。"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:970
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box error."
 msgstr "Light box 打开。"
 
-#: ekos/capture/sequencejobstate.cpp:991
+#: ekos/capture/sequencejobstate.cpp:994
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "防尘盖遇到错误。"
 
-#: ekos/capture/sequencejobstate.cpp:997
+#: ekos/capture/sequencejobstate.cpp:1000
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "防尘盖闲置中。"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1003
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "防尘盖已归位。"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1006
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "防尘盖归位中……"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1009
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "防尘盖取消归位中..."
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1012
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "防尘盖状态未知。"
