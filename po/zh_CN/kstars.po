@@ -17457,28 +17457,24 @@ msgid "Parking dome prior to calibration frames capture..."
 msgstr "拍摄校准帧前先归位圆顶..."
 
 #: ekos/capture/sequencejobstate.cpp:961
-#, fuzzy, kde-format
-#| msgid "Turn light box light on..."
+#, kde-format
 msgid "Light box light turned on."
-msgstr "打开 Light box 的灯光..."
+msgstr ""
 
 #: ekos/capture/sequencejobstate.cpp:964
-#, fuzzy, kde-format
-#| msgid "Turn light box light off..."
+#, kde-format
 msgid "Light box light turned off."
-msgstr "关闭 Light box 的灯光..."
+msgstr ""
 
 #: ekos/capture/sequencejobstate.cpp:967
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#, kde-format
 msgid "Light box busy."
-msgstr "Light box 打开。"
+msgstr ""
 
 #: ekos/capture/sequencejobstate.cpp:970
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#, kde-format
 msgid "Light box error."
-msgstr "Light box 打开。"
+msgstr ""
 
 #: ekos/capture/sequencejobstate.cpp:994
 #, kde-format
@@ -31089,18 +31085,7 @@ msgstr ""
 "%2 = 不适用"
 
 #: fitsviewer/fitsstackmonitor.h:220
-#, fuzzy, kde-format
-#| msgctxt "Stack monitor overall status help"
-#| msgid ""
-#| "%1 \n"
-#| "%2\n"
-#| "%3 = Processed Successfully\n"
-#| "%4\n"
-#| "%5\n"
-#| "%6\n"
-#| "%7\n"
-#| "%8\n"
-#| "%9"
+#, kde-format
 msgctxt "Stack monitor overall status help"
 msgid ""
 "%1 \n"
@@ -31114,15 +31099,6 @@ msgid ""
 "%9\n"
 "%10"
 msgstr ""
-"%1 \n"
-"%2\n"
-"%3 = 处理成功\n"
-"%4\n"
-"%5\n"
-"%6\n"
-"%7\n"
-"%8\n"
-"%9"
 
 #: fitsviewer/fitsstackmonitor.h:240
 #, kde-format
