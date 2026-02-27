@@ -258,6 +258,11 @@ class FITSStack : public QObject
             return m_MaxSubSNR;
         }
 
+        int getNumSubsStacked() const
+        {
+            return (m_RunningStackImageData.numSubs == 0) ? m_StackImageData.size() : m_RunningStackImageData.numSubs;
+        }
+
     signals:
         /**
          * @brief Update the Stack Monitor

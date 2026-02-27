@@ -29,7 +29,6 @@
 #include "fitscommon.h"
 #include <QDesktopServices>
 #include <QUrl>
-#include <QDialog>
 
 #include <KLocalizedString>
 
@@ -119,7 +118,7 @@ bool FITSTab::setupView(FITSMode mode, FITSScale filter)
 {
     if (m_View.isNull())
     {
-        m_View.reset(new FITSView(nullptr, mode, filter));
+        m_View.reset(new FITSView(this, mode, filter));
         m_View->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         QVBoxLayout *vlayout = new QVBoxLayout();
 
@@ -962,6 +961,8 @@ void FITSTab::initLiveStacking()
         }
     });
 
+    connect(m_LiveStackingUI.WebcastB, &QPushButton::clicked, this, &FITSTab::launchLiveStackWebcast);
+
     connect(m_LiveStackingUI.StartB, &QPushButton::clicked, this, &FITSTab::liveStack);
     connect(m_LiveStackingUI.SaveB, &QPushButton::clicked, this, &FITSTab::saveSettings);
     connect(m_LiveStackingUI.ReprocessB, &QPushButton::clicked, this, &FITSTab::redoPostProcessing);
@@ -1261,6 +1262,22 @@ void FITSTab::launchLiveStackingHelp()
     const QUrl url("https://kstars-docs.kde.org/en/user_manual/fits-viewer-livestacker.html");
     if (!url.isEmpty())
         QDesktopServices::openUrl(url);
+}
+
+void FITSTab::launchLiveStackWebcast()
+{
+    // If the viewer already has a server/widget instance
+    LiveStackWebcast *webcast = viewer->getLiveStackWebcast();
+
+    if (webcast)
+    {
+        // Pass the webcast to FITSView
+        if (m_View)
+            m_View->setLiveStackWebcast(webcast);
+        webcast->show();
+        webcast->raise();
+        webcast->activateWindow();
+    }
 }
 
 void FITSTab::selectLiveStack(QLineEdit *targetEdit, const QString &title)
@@ -1685,6 +1702,10 @@ void FITSTab::liveStack()
         LiveStackData lsd = getAllSettings();
         m_View->loadStack(m_liveStackDir, lsd);
 
+        LiveStackWebcast *LSWebcast = viewer->getLiveStackWebcast();
+        if (LSWebcast)
+            LSWebcast->setStackingActive(true, m_liveStackDir[0]);
+
         qCInfo(KSTARS_FITS).nospace()
                 << "Starting Live Stacker (" << (m_StackMultiC ? "Multi" : "Single") << " channel) on "
                 << " | Dir(s): " << m_liveStackDir.join(", ")
@@ -1722,6 +1743,10 @@ void FITSTab::liveStack()
         m_LiveStackingUI.StartB->setEnabled(false);
         m_LiveStackingUI.PostProcGroupBox->setEnabled(false);
         m_View->cancelStack();
+
+        LiveStackWebcast *LSWebcast = viewer->getLiveStackWebcast();
+        if (LSWebcast)
+            LSWebcast->setStackingActive(false, m_liveStackDir[0]);
         qCInfo(KSTARS_FITS).nospace() << "Stopping Live Stacker";
     }
 }

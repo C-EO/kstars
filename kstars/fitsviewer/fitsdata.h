@@ -841,6 +841,15 @@ class FITSData : public QObject
          */
         void redoPostProcessStack(const LiveStackPPData &ppParams);
 
+        /**
+         * @brief Get the Live Stack Object, e.g. M51
+         * @return object
+         */
+        LiveStackMetadata const &getLiveStackMetadata() const
+        {
+            return m_LiveStackMetadata;
+        }
+
     signals:
         void converted(QImage);
 
@@ -1251,6 +1260,18 @@ class FITSData : public QObject
          * @return combined 3-channel image
          */
         cv::Mat combineLRGB(const cv::Mat &lum, cv::Mat &r, cv::Mat &g, cv::Mat &b);
+
+        /**
+         * @brief Initialise m_LiveStackMetadata structure
+         * @param target - name of the target
+         * @param exposure - sub exposure in sec
+         */
+        void initLiveStackMetadata(const QString target, const double exposure);
+
+        /**
+         * @brief Update m_LiveStackMetadata structure after each stack operation
+         */
+        void updateLiveStackMetadata();
 #endif
 
         /// Pointer to CFITSIO FITS file struct
@@ -1414,6 +1435,7 @@ class FITSData : public QObject
         QQueue < LiveStackFile > m_StackQ;
         bool m_AlignMasterChosen { false };
         bool m_AlignMasterProcessed { false };
+        LiveStackMetadata m_LiveStackMetadata;
         QMap < LiveStackChannel, bool > m_DarksLoadedMap;
         QMap < LiveStackChannel, bool > m_FlatsLoadedMap;
         uint8_t *m_StackImageBuffer { nullptr };

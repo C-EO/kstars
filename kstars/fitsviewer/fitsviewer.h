@@ -11,6 +11,7 @@
 
 #include "fitscommon.h"
 #include "fitsviewer/stretch.h"
+#include "fitsstackwebcast.h"
 
 #include <KLed>
 #include <kxmlguiwindow.h>
@@ -100,6 +101,9 @@ class FITSViewer : public KXmlGuiWindow
         bool tabExists(int tab_uid);
 
         static QList<KLocalizedString> filterTypes;
+
+        // Live Stack
+        LiveStackWebcast* getLiveStackWebcast();
 
     protected:
         void closeEvent(QCloseEvent *) override;
@@ -192,6 +196,7 @@ class FITSViewer : public KXmlGuiWindow
         Mode m_Mode { Mode::Full };
         bool m_StackBusy { false };
         void createLiveStackingOnly();
+        LiveStackWebcast *m_LiveStackWebcast { nullptr };
 
     signals:
         void trackingStarSelected(int x, int y);

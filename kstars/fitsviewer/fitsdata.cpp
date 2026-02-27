@@ -21,6 +21,7 @@
 #include "kspaths.h"
 #include "Options.h"
 #include "skymapcomposite.h"
+#include "skycomponents/constellationboundarylines.h"
 #include "auxiliary/ksnotification.h"
 #include "auxiliary/robuststatistics.h"
 
@@ -343,6 +344,7 @@ bool FITSData::loadStack(const QStringList &inDir, const LiveStackData &params)
 
     // Choose an alignment master if we can
     m_AlignMasterChosen = m_AlignMasterProcessed = false;
+    m_LiveStackMetadata = LiveStackMetadata();
     if (!m_LiveStackData.alignMaster.isEmpty())
         m_AlignMasterChosen = true;
     else
@@ -944,11 +946,23 @@ bool FITSData::convertMatToFITS(const cv::Mat &inImage)
             return false;
         }
 
+        // Write FITS keywords
+        QString target  = m_LiveStackMetadata.targetName;
+        QString method  = LiveStackStackingMethodNames.value(m_LiveStackData.stackingMethod);
+        int numStacked  = m_LiveStackMetadata.subCount;
+        double expTime  = m_LiveStackMetadata.exposureTime;
+        double exposure = m_LiveStackMetadata.totalIntegration;
+
+        fits_write_key(fptr, TSTRING, "OBJECT", (void *)target.toLatin1().constData(), (char *)"Target name", &status);
+        fits_write_key(fptr, TSTRING, "IMAGETYP", (void *)"STACKED", (char *)"Image type: LIGHT, DARK, etc.", &status);
+        fits_write_key(fptr, TSTRING, "STACKTYP", (void *)method.toLatin1().constData(),
+                       (char *)"Stacking method", &status);
+        fits_write_key(fptr, TINT,    "STACKCNT", &numStacked, (char *)"Number of stacked frames", &status);
+        fits_write_key(fptr, TDOUBLE, "EXPTIME",  &expTime, (char *)"Individual sub-exposure (s)", &status);
+        fits_write_key(fptr, TDOUBLE, "EXPOSURE", &exposure, (char *)"Total integration time (s)", &status);
+
         if (channels == 3)
         {
-            // Write FITS keywords
-            fits_write_key(fptr, TSTRING, "IMAGETYP", (void *)"STACKED", (char *)"Image type: LIGHT, DARK, etc.", &status);
-            fits_write_key(fptr, TSTRING, "STACKTYP", (void *)"Average", (char *)"Stacking method", &status);
             fits_write_key(fptr, TSTRING, "COLORSPC", (void *)"RGB", (char *)"Color space of stacked image", &status);
 
             std::vector<cv::Mat> split(3);
@@ -1281,6 +1295,16 @@ void FITSData::stackFITSLoaded()
         case stackFITSAlignMaster:
             if (m_StackFITSWatcher.result())
             {
+                // Get the OBJECT & EXPOSURE keywords for later use
+                QVariant value;
+                QString target;
+                if (getRecordValue("OBJECT", value, true))
+                    target = value.toString();
+                double exposure;
+                if (getRecordValue("EXPTIME", value, true))
+                    exposure = value.toDouble();
+                initLiveStackMetadata(target, exposure);
+
                 if (plateSolving)
                 {
                     // Next step in the chain is to plate solve
@@ -1329,6 +1353,84 @@ void FITSData::stackFITSLoaded()
         default:
             qCDebug(KSTARS_FITS) << QString("%1 Unknown m_StackFITSAsync %2").arg(__FUNCTION__).arg(m_StackFITSAsync);
     }
+}
+
+void FITSData::initLiveStackMetadata(const QString origTarget, const double exposure)
+{
+    if (origTarget.isEmpty())
+        m_LiveStackMetadata.targetName = "New Target";
+    else
+    {
+        QString target = origTarget;
+        KStarsData *data = KStarsData::Instance();
+        if (data)
+        {
+            QRegularExpression re;
+            re.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
+
+            // We need to get the origTarget into a standard form before trying catalog lookups
+            // Initial Cleanup: Treat underscore as a metadata terminator
+            // "M 101_UV\IR" -> "M 101"
+            if (target.contains('_'))
+                target = target.section('_', 0, 0).trimmed();
+
+            // Standardize spaces
+            re.setPattern("  +");
+            target.replace(re, " ");
+
+            // Catalog Spacing (e.g. "M42" -> "M 42")
+            re.setPattern("^(m|ngc|ic)\\s*\\d*$");
+            if (target.contains(re))
+            {
+                re.setPattern("\\s*(\\d+)");
+                target.replace(re, " \\1");
+                target = target.trimmed();
+            }
+
+            // Comet formatting
+            re.setPattern("^(c|p)\\s*((19|20).*)");
+            if (target.contains(re))
+            {
+                if (target.at(0).toLower() == 'c')
+                    target.replace(re, "c/\\2");
+                else
+                    target.replace(re, "p/\\2");
+            }
+
+            SkyObject *obj = data->objectNamed(target);
+
+            if (!obj)
+            {
+                m_LiveStackMetadata.targetName = origTarget;
+                qCDebug(KSTARS_FITS) << QString("Target lookup failed for %1 -> %2").arg(origTarget).arg(target);
+            }
+            else
+            {
+                qCDebug(KSTARS_FITS) << QString("Target lookup for %1 -> %2").arg(origTarget).arg(target);
+                m_LiveStackMetadata.targetName = target;
+                m_LiveStackMetadata.name = obj->translatedName();
+                m_LiveStackMetadata.name2 = obj->translatedName2();
+                m_LiveStackMetadata.longName = obj->translatedLongName();
+                m_LiveStackMetadata.typeName = obj->typeName();
+                m_LiveStackMetadata.magnitude = obj->mag();
+                m_LiveStackMetadata.constellation = data->skyComposite()->constellationBoundary()->constellationName(obj);
+            }
+        }
+    }
+    m_LiveStackMetadata.exposureTime = exposure;
+}
+
+void FITSData::updateLiveStackMetadata()
+{
+    int numStacked = 0;
+    for (auto &stack : m_Stacks)
+    {
+        if (stack)
+            numStacked += stack->getNumSubsStacked();
+    }
+
+    m_LiveStackMetadata.subCount = numStacked;
+    m_LiveStackMetadata.totalIntegration = numStacked * m_LiveStackMetadata.exposureTime;
 }
 
 // Update plate solving status
@@ -1394,6 +1496,16 @@ void FITSData::solverDone(const bool timedOut, const bool success, const double 
                 wcsvfree(&n, &ptr);
             }
         });
+
+        // Get the OBJECT & EXPOSURE keywords for later use
+        QVariant value;
+        QString target;
+        if (getRecordValue("OBJECT", value, true))
+            target = value.toString();
+        double exposure;
+        if (getRecordValue("EXPTIME", value, true))
+            exposure = value.toDouble();
+        initLiveStackMetadata(target, exposure);
 
         // Now add the align master to all the stacks
         for (auto &stack : m_Stacks)
@@ -1522,6 +1634,7 @@ void FITSData::stackProcessDone()
     if (!m_StackWatcher.result())
         qCDebug(KSTARS_FITS) << "Stacking operation failed";
 
+    updateLiveStackMetadata();
     prepareStackBufferAsync();
 }
 

@@ -467,6 +467,8 @@ if (CFITSIO_FOUND)
         fitsviewer/fitsdirwatcher.cpp
         fitsviewer/fitsmemmonitor.cpp
         fitsviewer/fitsstackmonitor.cpp
+        fitsviewer/qrcodegen.cpp
+        fitsviewer/fitsstackwebcast.cpp
         )
 
     if (Qt5DataVisualization_FOUND OR Qt6DataVisualization_FOUND)
@@ -502,6 +504,7 @@ if (CFITSIO_FOUND)
         fitsviewer/platesolve.ui
         fitsviewer/livestacking.ui
         fitsviewer/livestackmonitor.ui
+        fitsviewer/livestackwebcast.ui
         fitsviewer/catalogobject.ui
         fitsviewer/catalogobjecttypefilter.ui
         fitsviewer/fitsdebayer.ui
@@ -1364,6 +1367,7 @@ IF (NOT ANDROID)
 
     add_library(KStarsLib STATIC ${kstars_SRCS}
         indi/collimationOptions.ui
+        fitsviewer/fitsstackwebcast.h
     )
 
     if (BUILD_PYKSTARS)

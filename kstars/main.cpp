@@ -218,6 +218,8 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Philipp Auersperg-Castell"), i18n("Supernovae daily updates"));
     aboutData.addCredit(i18n("Tony Schriber"), i18n("Rotator Dialog improvements"));
     aboutData.addCredit(i18n("Joseph McGee"), i18n("Sub-exposure calculator based on Dr Robin Glover's work"));
+    aboutData.addCredit(i18n("Project Nayuki"), i18n("QR Code generator library (MIT)"), QString(),
+                        "https://www.nayuki.io/page/qr-code-generator-library");
 
     KAboutData::setApplicationData(aboutData);
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("kstars")));

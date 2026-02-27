@@ -269,6 +269,7 @@ class FITSTab : public QWidget
         void toggleMultiC();
         void stackDirChanged(const QString &text);
         void launchLiveStackingHelp();
+        void launchLiveStackWebcast();
         QString getStackDialogFilters();
         void selectLiveStackMaster(QLineEdit *targetEdit, const QString &title);
         void selectLiveStackAlignSub();

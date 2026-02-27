@@ -160,7 +160,8 @@ void FITSView::setAutoStretchParams()
     }
 }
 
-FITSView::FITSView(QWidget * parent, FITSMode fitsMode, FITSScale filterType) : QScrollArea(parent), m_ZoomFactor(1.2)
+FITSView::FITSView(QWidget * parent, FITSMode fitsMode, FITSScale filterType)
+    : QScrollArea(parent), m_ZoomFactor(1.2)
 {
     static const QRegularExpression re("[-{}]");
 
@@ -435,6 +436,7 @@ void FITSView::initStack()
 void FITSView::loadStack(const QStringList &inDir, const LiveStackData &params)
 {
 #if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+    m_StackDir = (inDir.size() > 0) ?  inDir[0] : "";
     if (floatingToolBar != nullptr)
         floatingToolBar->setVisible(true);
 
@@ -724,6 +726,23 @@ bool FITSView::processData()
     // Fore immediate load of frame for first load.
     m_QueueUpdate = true;
     updateFrame(true);
+
+    // Broadcast if we are in Live Stacking mode and the server is active
+    if (mode == FITS_LIVESTACKING && m_LiveStackWebcast && m_LiveStackWebcast->isListening())
+    {
+        // Safety: check if it's the "no image" placeholder
+        if (m_ImageData && m_ImageData->filename() != ":/images/noimage.png")
+        {
+            // Pull the processed image - stretched, etc.
+            QImage liveView = getDisplayImage();
+
+            if (!liveView.isNull())
+            {
+                LiveStackMetadata meta = m_ImageData->getLiveStackMetadata();
+                m_LiveStackWebcast->processIncomingStack(m_StackDir, meta, liveView);
+            }
+        }
+    }
     return true;
 }
 

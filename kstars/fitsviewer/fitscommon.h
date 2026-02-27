@@ -455,3 +455,29 @@ struct LiveStackStageInfo
 };
 
 Q_DECLARE_METATYPE(LiveStackStageInfo)
+
+struct LiveStackMetadata
+{
+    QString targetName;
+    QString name;
+    QString name2;
+    QString longName;
+    QString typeName;
+    double magnitude = 0.0;
+    QString constellation;
+    int subCount = 0;
+    double exposureTime = 0.0;
+    double totalIntegration = 0.0;
+};
+
+// Webcast conncted viewers structure
+struct ConnectedViewer
+{
+    QString ip;
+    QString name;
+    QString deviceType; // iPhone (Safari), etc
+    QString activity; // "Lobby" or "Watching"
+};
+
+
+

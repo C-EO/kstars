@@ -9,6 +9,7 @@
 
 #include "fitscommon.h"
 #include "fitsstackmonitor.h"
+#include "fitsstackwebcast.h"
 #include "auxiliary/imagemask.h"
 
 #include <config-kstars.h>
@@ -328,6 +329,12 @@ class FITSView : public QScrollArea
 
         void emitZoom();
 
+        // Live Stack Webcast
+        void setLiveStackWebcast(LiveStackWebcast* LSWebcast)
+        {
+            m_LiveStackWebcast = LSWebcast;
+        }
+
     public slots:
         void wheelEvent(QWheelEvent *event) override;
         void resizeEvent(QResizeEvent *event) override;
@@ -529,6 +536,10 @@ class FITSView : public QScrollArea
 
         // Stretching preset.
         int m_AutoStretchPreset = 1;
+
+        // Live Stacking
+        QString m_StackDir;
+        LiveStackWebcast * m_LiveStackWebcast { nullptr };
 
     signals:
         void newStatus(const QString &msg, FITSBar id);

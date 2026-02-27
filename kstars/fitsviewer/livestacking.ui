@@ -290,144 +290,7 @@
            <property name="spacing">
             <number>3</number>
            </property>
-           <item row="0" column="0">
-            <widget class="QLabel" name="StackLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>165</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The directory containing files to stack&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Stack Directory:</string>
-             </property>
-             <property name="buddy">
-              <cstring>Stack</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="7">
-            <widget class="QToolButton" name="MonitorB">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Launch Live Stacker Monitor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset theme="utilities-system-monitor"/>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="NumberSubsLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>165</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>Number of subs successfully processed / failed / total</string>
-             </property>
-             <property name="text">
-              <string>Proc / Fail / Total:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="3" colspan="3" alignment="Qt::AlignRight|Qt::AlignBottom">
-            <widget class="QFrame" name="frame">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::NoFrame</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Plain</enum>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout">
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>20</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="FITSMemoryMonitor" name="MemMonitor" native="true">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>21</height>
-                 </size>
-                </property>
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Memory monitor. Double click to toggle text on / off.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignRight">
-               <widget class="QPushButton" name="SaveB">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>30</height>
-                 </size>
-                </property>
-                <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save Live Stacker parameters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                </property>
-                <property name="text">
-                 <string>Save Settings</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="5" column="4" colspan="2" alignment="Qt::AlignRight">
+           <item row="5" column="5" colspan="2" alignment="Qt::AlignRight">
             <widget class="QPushButton" name="StartB">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -452,6 +315,133 @@
              </property>
              <property name="text">
               <string>Start</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="6">
+            <widget class="QLineEdit" name="Red">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>The directory containing Red files to stack</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="QLabel" name="SubsProcessed">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>75</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Number of subs successfully processed / failed / total</string>
+             </property>
+             <property name="text">
+              <string>0 / 0 / 0</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="8">
+            <widget class="QToolButton" name="MonitorB">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Launch Live Stacker Monitor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="utilities-system-monitor"/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="8">
+            <widget class="QToolButton" name="GreenDirB">
+             <property name="toolTip">
+              <string>Green directory chooser dialog</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="folder-open"/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="9">
+            <widget class="QToolButton" name="StackMultiCB1">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toggle between mono and multi-channel mode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="go-down"/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="8">
+            <widget class="QToolButton" name="StackDirB">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stack directory chooser dialog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset theme="folder-open"/>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="BlueLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>165</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Blue Directory:</string>
+             </property>
+             <property name="buddy">
+              <cstring>Blue</cstring>
              </property>
             </widget>
            </item>
@@ -606,8 +596,30 @@
              </layout>
             </widget>
            </item>
-           <item row="4" column="1" colspan="5">
-            <widget class="QLineEdit" name="Lum">
+           <item row="5" column="0">
+            <widget class="QLabel" name="NumberSubsLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>165</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>Number of subs successfully processed / failed / total</string>
+             </property>
+             <property name="text">
+              <string>Proc / Fail / Total:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1" colspan="6">
+            <widget class="QLineEdit" name="Blue">
              <property name="minimumSize">
               <size>
                <width>100</width>
@@ -615,14 +627,14 @@
               </size>
              </property>
              <property name="toolTip">
-              <string>The directory containing Lum files to stack</string>
+              <string>The directory containing Blue files to stack</string>
              </property>
              <property name="clearButtonEnabled">
               <bool>true</bool>
              </property>
             </widget>
            </item>
-           <item row="6" column="7" alignment="Qt::AlignBottom">
+           <item row="6" column="8" alignment="Qt::AlignBottom">
             <widget class="QToolButton" name="HelpB">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -641,87 +653,78 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="8">
-            <widget class="QToolButton" name="StackMultiCB2">
-             <property name="toolTip">
-              <string>Toggle between mono and multi-channel mode</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset theme="go-up"/>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" colspan="5">
-            <widget class="QLineEdit" name="Stack">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The directory containing files to stack&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="clearButtonEnabled">
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1" colspan="5">
-            <widget class="QLineEdit" name="Blue">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>The directory containing Blue files to stack</string>
-             </property>
-             <property name="clearButtonEnabled">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="7">
-            <widget class="QToolButton" name="BlueDirB">
-             <property name="toolTip">
-              <string>Blue directory chooser dialog</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset theme="folder-open"/>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1" colspan="2">
-            <widget class="QLabel" name="SubsProcessed">
+           <item row="6" column="4" colspan="3" alignment="Qt::AlignRight|Qt::AlignBottom">
+            <widget class="QFrame" name="frame">
              <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="minimumSize">
-              <size>
-               <width>75</width>
-               <height>0</height>
-              </size>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
              </property>
-             <property name="toolTip">
-              <string>Number of subs successfully processed / failed / total</string>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
              </property>
-             <property name="text">
-              <string>0 / 0 / 0</string>
-             </property>
+             <layout class="QVBoxLayout" name="verticalLayout">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>20</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="FITSMemoryMonitor" name="MemMonitor" native="true">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>21</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Memory monitor. Double click to toggle text on / off.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignRight">
+               <widget class="QPushButton" name="SaveB">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>30</height>
+                 </size>
+                </property>
+                <property name="toolTip">
+                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save Live Stacker parameters&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                </property>
+                <property name="text">
+                 <string>Save Settings</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
-           <item row="1" column="7">
+           <item row="1" column="8">
             <widget class="QToolButton" name="RedDirB">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Red directory chooser dialog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -734,10 +737,26 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="7">
-            <widget class="QToolButton" name="GreenDirB">
+           <item row="4" column="1" colspan="6">
+            <widget class="QLineEdit" name="Lum">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="toolTip">
-              <string>Green directory chooser dialog</string>
+              <string>The directory containing Lum files to stack</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="8">
+            <widget class="QToolButton" name="LumDirB">
+             <property name="toolTip">
+              <string>Lum (optional) directory chooser dialog</string>
              </property>
              <property name="text">
               <string/>
@@ -747,22 +766,95 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="8">
-            <widget class="QToolButton" name="StackMultiCB1">
+           <item row="2" column="1" colspan="6">
+            <widget class="QLineEdit" name="Green">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>The directory containing Green files to stack</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="GreenLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="minimumSize">
+              <size>
+               <width>165</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Green Directory:</string>
+             </property>
+             <property name="buddy">
+              <cstring>Green</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="StackLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>165</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Toggle between mono and multi-channel mode&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The directory containing files to stack&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Stack Directory:</string>
+             </property>
+             <property name="buddy">
+              <cstring>Stack</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="9">
+            <widget class="QToolButton" name="StackMultiCB2">
+             <property name="toolTip">
+              <string>Toggle between mono and multi-channel mode</string>
              </property>
              <property name="text">
               <string/>
              </property>
              <property name="icon">
-              <iconset theme="go-down"/>
+              <iconset theme="go-up"/>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" colspan="6">
+            <widget class="QLineEdit" name="Stack">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The directory containing files to stack&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -791,80 +883,10 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1" colspan="5">
-            <widget class="QLineEdit" name="Red">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>0</height>
-              </size>
-             </property>
+           <item row="3" column="8">
+            <widget class="QToolButton" name="BlueDirB">
              <property name="toolTip">
-              <string>The directory containing Red files to stack</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="BlueLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>165</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Blue Directory:</string>
-             </property>
-             <property name="buddy">
-              <cstring>Blue</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="7">
-            <widget class="QToolButton" name="LumDirB">
-             <property name="toolTip">
-              <string>Lum (optional) directory chooser dialog</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset theme="folder-open"/>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1" colspan="5">
-            <widget class="QLineEdit" name="Green">
-             <property name="minimumSize">
-              <size>
-               <width>100</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="toolTip">
-              <string>The directory containing Green files to stack</string>
-             </property>
-             <property name="clearButtonEnabled">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="7">
-            <widget class="QToolButton" name="StackDirB">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stack directory chooser dialog&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Blue directory chooser dialog</string>
              </property>
              <property name="text">
               <string/>
@@ -896,25 +918,16 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="GreenLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>165</width>
-               <height>0</height>
-              </size>
+           <item row="5" column="4">
+            <widget class="QToolButton" name="WebcastB">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start / Stop Webcasting stacked images&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
-              <string>Green Directory:</string>
+              <string>...</string>
              </property>
-             <property name="buddy">
-              <cstring>Green</cstring>
+             <property name="icon">
+              <iconset theme="network-wireless"/>
              </property>
             </widget>
            </item>

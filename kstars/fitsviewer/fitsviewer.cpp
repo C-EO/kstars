@@ -62,7 +62,7 @@ FITSViewer::FITSViewer(QWidget *parent, Mode mode) : KXmlGuiWindow(parent), m_Mo
     // Since QSharedPointer is managing it, do not delete automatically.
     setAttribute(Qt::WA_DeleteOnClose, false);
 
-    fitsTabWidget   = new QTabWidget(this);
+    fitsTabWidget = new QTabWidget(this);
     undoGroup = new QUndoGroup(this);
 
     lastURL = QUrl(QDir::homePath());
@@ -1161,6 +1161,7 @@ void FITSViewer::stack()
         }
         m_StackBusy = false;
     });
+
     tab->initStack(topDir, FITS_LIVESTACKING, FITS_NONE);
 #endif // defined(HAVE_CFITSIO) && defined(HAVE_WCSLIB) && defined(HAVE_OPENCV)
 }
@@ -1214,6 +1215,15 @@ void FITSViewer::stackCancelled(const int tabUID)
     int tabIndex = fitsTabWidget->indexOf(tab);
     if (tabIndex >= 0)
         fitsTabWidget->setTabText(tabIndex, tab->getTabTitle());
+}
+
+// Create singleton webcast object shared amongst all LiveStackers in the FITSViewer
+LiveStackWebcast* FITSViewer::getLiveStackWebcast()
+{
+    if (!m_LiveStackWebcast)
+        m_LiveStackWebcast = new LiveStackWebcast(this);
+
+    return m_LiveStackWebcast;
 }
 
 void FITSViewer::saveFile()

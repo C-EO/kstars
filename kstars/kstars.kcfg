@@ -1944,6 +1944,26 @@
       <label>Live Stacking Monitor highlighting.</label>
       <default>true</default>
    </entry>
+   <entry name="fitsLSWebcastTitle" type="String">
+       <label>Live Stacking Webcast title</label>
+       <default>My LiveStack Webcast</default>
+   </entry>
+   <entry name="fitsLSWebcastLogoL" type="String">
+       <label>Live Stacking Webcast left logo pathname</label>
+       <default></default>
+   </entry>
+   <entry name="fitsLSWebcastLogoR" type="String">
+       <label>Live Stacking Webcast right logo pathname</label>
+       <default></default>
+   </entry>
+   <entry name="fitsLSWebcastPort" type="UInt">
+      <label>Live Stacking Webcast port number</label>
+      <default>8080</default>
+   </entry>
+   <entry name="fitsLSWebcastThrottle" type="UInt">
+      <label>Live Stacking Webcast throttle in milliseconds</label>
+      <default>5000</default>
+   </entry>
    </group>
    <group name="WISettings">
       <entry name="BortleClass" type="UInt">
