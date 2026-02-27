@@ -2496,6 +2496,7 @@ bool FITSData::saveXISFImage(const QString &newFilename)
         if (m_Statistics.channels > 1)
             image.setColorSpace(LibXISF::Image::RGB);
 
+        bool scaleRequired = false;
         switch (m_FITSBITPIX)
         {
             case BYTE_IMG:
@@ -2509,6 +2510,8 @@ bool FITSData::saveXISFImage(const QString &newFilename)
                 break;
             case FLOAT_IMG:
                 image.setSampleFormat(LibXISF::Image::Float32);
+                if (m_Mode == FITS_LIVESTACKING)
+                    scaleRequired = true;
                 break;
             default:
                 m_LastError = i18n("Bit depth %1 is not supported.", m_FITSBITPIX);
@@ -2520,6 +2523,29 @@ bool FITSData::saveXISFImage(const QString &newFilename)
         for (auto &fitsKeyword : m_HeaderRecords)
             image.addFITSKeyword({fitsKeyword.key.toUtf8().data(), fitsKeyword.value.toString().toUtf8().data(), fitsKeyword.comment.toUtf8().data()});
 
+        if (scaleRequired)
+        {
+            // The convention that PixInsight follows is that float data is normalised 0 - 1.0
+            // Normalization on the XISF copy, not the stack buffer
+            float* xisfPixels = reinterpret_cast<float*>(image.imageData());
+
+            size_t totalSamples = static_cast<size_t>(m_Statistics.samples_per_channel) * m_Statistics.channels;
+
+            // Determine scaling factor
+            float scaleFactor;
+            if (m_StackStatistics.stats.bytesPerPixel == 2)
+                scaleFactor = 65535.0f;
+            else if (m_StackStatistics.stats.bytesPerPixel == 1)
+                scaleFactor = 255.0f;
+            else
+                scaleFactor = 1.0f;
+
+            for (int i = 0; i < m_Statistics.channels; i++)
+                scaleFactor = std::max(scaleFactor, static_cast<float>(m_Statistics.max[i]));
+
+            for (size_t i = 0; i < totalSamples; i++)
+                xisfPixels[i] /= scaleFactor;
+        }
         xisfWriter.writeImage(image);
         xisfWriter.save(newFilename.toLocal8Bit().data());
         m_Filename = newFilename;
