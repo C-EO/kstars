@@ -57,6 +57,8 @@ windows_qt610:
   allow_failure: true # TODO: REMOVE WHEN STELLARSOLVER QT6 IS INCLUDED IN CI IMAGE
   rules:
     - !reference [.standard-build-recipes, rules]
+  needs:
+    - suse_tumbleweed_qt610 # Wait for a success of the fast job
 
 suse_tumbleweed_qt515:
   variables:
@@ -243,7 +245,7 @@ ubuntu_qt5:
     - suse_tumbleweed_qt610
   script:
     - cd kstars-build
-    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=OFF -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_WITH_QT6=OFF ..
+    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=ON -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_WITH_QT6=OFF ..
     - ninja -j8 all install
 
 ubuntu_qt6:
@@ -254,9 +256,11 @@ ubuntu_qt6:
   allow_failure: true # TODO: REMOVE WHEN STABLE AGAIN
   needs:
     - suse_tumbleweed_qt610
+  rules:
+    - when: never # DISABLED, since we use tumbleweed_qt6 for Qt6 compile checks
   script:
     - cd kstars-build
-    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=ON -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_WITH_QT6=ON ..
+    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=OFF -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_WITH_QT6=ON ..
     - ninja -j8 all install
 
 # Run the full validation in one step, stable tests that must not fail
@@ -267,16 +271,16 @@ build-and-test-stable:
   stage: test
   extends: .custom_build
   image:
-    name: sternejaeger/kstars-ci:qt6
+    name: sternejaeger/kstars-ci:qt5
   allow_failure: true # TODO: REMOVE WHEN STABLE AGAIN
   needs:
-    - ubuntu_qt6
+    - ubuntu_qt5
   timeout: 3 hours
   variables:
     BUILD_TESTING: "ON"
   script:
     - cd kstars-build
-    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=ON -DBUILD_TESTING=ON -DBUILD_WITH_QT6=ON ..
+    - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=ON -DBUILD_TESTING=ON -DBUILD_WITH_QT6=OFF ..
     - ninja -j8 all install
     - rm -rf Testing
     - mkdir -p /var/run/dbus
