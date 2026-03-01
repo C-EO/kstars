@@ -32,6 +32,7 @@ include:
 # since ci-utilities/run-ci-build.py turns it on
 
 suse_tumbleweed_qt610:
+  allow_failure: true # Necessary since INDI interface changed
   script:
     - git config --global --add safe.directory $CI_PROJECT_DIR
     - >-
