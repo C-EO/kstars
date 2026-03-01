@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-28 02:10+0000\n"
+"POT-Creation-Date: 2026-03-01 02:10+0000\n"
 "PO-Revision-Date: 2019-08-26 20:34+0200\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -609,7 +609,7 @@ msgstr "Zrušiť"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1282 ekos/manager.cpp:1297 ekos/manager.cpp:1313
+#: ekos/manager.cpp:1284 ekos/manager.cpp:1299 ekos/manager.cpp:1315
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -5478,7 +5478,7 @@ msgstr "Vypočítať ZU"
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2179
+#: ekos/manager.cpp:2181
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, kde-format
 msgid "Camera"
@@ -6803,7 +6803,7 @@ msgstr "Automatické navádzanie spustené."
 
 #: ekos/align/align.cpp:2752 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2127 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2129 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
 #: ekos/scheduler/schedulerprocess.cpp:3377
 #, kde-format
@@ -10939,7 +10939,7 @@ msgstr "Automatické spustenie"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2231 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2233 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, kde-format
 msgid "Align"
@@ -10951,7 +10951,7 @@ msgstr "Zarovnať"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2421 ekos/manager.ui:778
+#: ekos/manager.cpp:2423 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, kde-format
 msgid "Mount"
@@ -11050,7 +11050,7 @@ msgstr "Nepodarilo sa odstrániť súbor: %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2275 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2277 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -11062,7 +11062,7 @@ msgstr "Zameranie"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2496
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2498
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -13379,7 +13379,7 @@ msgstr "<html><head/><body><p>Preemptívne hodiny vypnutia</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2546
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2548
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -16985,7 +16985,7 @@ msgid "Does %1 have a shutter?"
 msgstr ""
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:473
+#: ekos/capture/sequencejobstate.cpp:477
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Tmavá expozícia"
@@ -18350,19 +18350,19 @@ msgstr "Prebieha"
 msgid "Complete"
 msgstr "Dokončené"
 
-#: ekos/capture/sequencejobstate.cpp:460
+#: ekos/capture/sequencejobstate.cpp:464
 #, fuzzy, kde-format
 #| msgid "Specify the source the flat field evenly illuminated light source"
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Určite zdroj plochého poľa rovnomerne osvetlený svetelným zdrojom"
 
-#: ekos/capture/sequencejobstate.cpp:461
+#: ekos/capture/sequencejobstate.cpp:465
 #, fuzzy, kde-format
 #| msgid "Dark Frame"
 msgid "Flat Frame"
 msgstr "Tmavá snímka"
 
-#: ekos/capture/sequencejobstate.cpp:472
+#: ekos/capture/sequencejobstate.cpp:476
 #, fuzzy, kde-format
 #| msgid ""
 #| "If the guider camera if not equipped with a shutter, cover the telescope "
@@ -18372,136 +18372,136 @@ msgstr ""
 "Ak navádzacia kamera nie je vybavená uzávierkou, zakryť teleskop alebo "
 "kameru, za účelom získania tmavej expozície."
 
-#: ekos/capture/sequencejobstate.cpp:510 ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
 #, fuzzy, kde-format
 #| msgid "Parking telescope..."
 msgid "Unparking dust cap..."
 msgstr "Parkovanie teleskopu..."
 
-#: ekos/capture/sequencejobstate.cpp:510
+#: ekos/capture/sequencejobstate.cpp:514
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Parkovanie prachového krytu..."
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
 #, kde-format
 msgid "Turn light box light on..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
-#: ekos/capture/sequencejobstate.cpp:705
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:709
 #, kde-format
 msgid "Turn light box light off..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:541 ekos/capture/sequencejobstate.cpp:619
+#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Parkovanie montáže zlyhalo, prerušujem..."
 
-#: ekos/capture/sequencejobstate.cpp:550
+#: ekos/capture/sequencejobstate.cpp:554
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Odparkovanie montáže..."
 
-#: ekos/capture/sequencejobstate.cpp:559
+#: ekos/capture/sequencejobstate.cpp:563
 #, kde-format
 msgid "Mount unparked."
 msgstr "Montáž odparkovaná."
 
-#: ekos/capture/sequencejobstate.cpp:572
+#: ekos/capture/sequencejobstate.cpp:576
 #, fuzzy, kde-format
 #| msgid "Mount slewing to wall position..."
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "Posúvanie montáže na polohu steny..."
 
-#: ekos/capture/sequencejobstate.cpp:584
+#: ekos/capture/sequencejobstate.cpp:588
 #, fuzzy, kde-format
 #| msgid "Slew to wall position complete."
 msgid "Slew to wall position complete, stop tracking."
 msgstr "Otočenie na polohu steny hotové."
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:592
 #, fuzzy, kde-format
 #| msgid "Slew to wall position complete."
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Otočenie na polohu steny hotové."
 
-#: ekos/capture/sequencejobstate.cpp:628
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Parkovanie montáže pred zachytením kalibračných snímok..."
 
-#: ekos/capture/sequencejobstate.cpp:647
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Parkovanie kupoly zlyhalo, prerušujem..."
 
-#: ekos/capture/sequencejobstate.cpp:657
+#: ekos/capture/sequencejobstate.cpp:661
 #, fuzzy, kde-format
 #| msgid "Parking mount prior to calibration frames capture..."
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Parkovanie montáže pred zachytením kalibračných snímok..."
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:968
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "Light box light turned on."
 msgstr "filter %1 je pripojený."
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:971
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "Light box light turned off."
 msgstr "filter %1 je pripojený."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:974
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Light"
 msgid "Light box busy."
 msgstr "Svetlo"
 
-#: ekos/capture/sequencejobstate.cpp:970
+#: ekos/capture/sequencejobstate.cpp:977
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Light"
 msgid "Light box error."
 msgstr "Svetlo"
 
-#: ekos/capture/sequencejobstate.cpp:994
+#: ekos/capture/sequencejobstate.cpp:1001
 #, fuzzy, kde-format
 #| msgid "Dust cap parked."
 msgid "Dust cap error occurred."
 msgstr "Prachová čiapka zaparkovaná."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1007
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "Dust cap is idle."
 msgstr "filter %1 je pripojený."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1010
 #, fuzzy, kde-format
 #| msgid "Dust cap parked."
 msgid "Dust cap is parked."
 msgstr "Prachová čiapka zaparkovaná."
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1013
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
 msgid "Dust cap is parking..."
 msgstr "Dome Creek"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1016
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
 msgid "Dust cap is unparking..."
 msgstr "Dome Creek"
 
-#: ekos/capture/sequencejobstate.cpp:1012
+#: ekos/capture/sequencejobstate.cpp:1019
 #, fuzzy, kde-format
 #| msgctxt "City in British Columbia Canada"
 #| msgid "Dome Creek"
@@ -25183,40 +25183,40 @@ msgstr "INDI Server"
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "Pripojenie na vzdialený INDI server na %1 s portom %2..."
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Zlyhalo spustenie profilu na vzdialenom web správcovi INDI."
 
-#: ekos/manager.cpp:1161
+#: ekos/manager.cpp:1162
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "Spúšťam profil na vzdialenom webovom správcovi INDI..."
 
-#: ekos/manager.cpp:1174
+#: ekos/manager.cpp:1175
 #, fuzzy, kde-format
 #| msgid "Starting profile on remote INDI Web Manager..."
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "Spúšťam profil na vzdialenom webovom správcovi INDI..."
 
-#: ekos/manager.cpp:1193
+#: ekos/manager.cpp:1194
 #, fuzzy, kde-format
 #| msgid "Warning: INDI Web Manager is not online."
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "Upozornenie: webový správca INDI nie je online."
 
-#: ekos/manager.cpp:1234
+#: ekos/manager.cpp:1235
 #, fuzzy, kde-format
 #| msgid "INDI services started on port %1. Please connect devices."
 msgid "INDI services started on port %1."
 msgstr "Služby INDI spustené na porte %1. Prosím, pripojte zariadenia."
 
-#: ekos/manager.cpp:1237
+#: ekos/manager.cpp:1238
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr "Služby INDI spustené na porte %1. Prosím, pripojte zariadenia."
 
-#: ekos/manager.cpp:1242
+#: ekos/manager.cpp:1243
 #, fuzzy, kde-format
 #| msgid ""
 #| "INDI services started. Connection to remote INDI server is successful. "
@@ -25228,31 +25228,31 @@ msgstr ""
 "Služby INDI spustené. Pripojenie ku vzdialenému INDI serveru je úspešné. "
 "Čakanie na zariadenia..."
 
-#: ekos/manager.cpp:1273
+#: ekos/manager.cpp:1275
 #, fuzzy, kde-format
 #| msgid "Failed to connect to remote INDI server!"
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Zlyhalo pripojenie na vzdialený INDI server!"
 
-#: ekos/manager.cpp:1275
+#: ekos/manager.cpp:1277
 #, fuzzy, kde-format
 #| msgid "Failed to connect to remote INDI server!"
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Zlyhalo pripojenie na vzdialený INDI server!"
 
-#: ekos/manager.cpp:1288
+#: ekos/manager.cpp:1290
 #, fuzzy, kde-format
 #| msgid "Connected to "
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "Pripojený k "
 
-#: ekos/manager.cpp:1290
+#: ekos/manager.cpp:1292
 #, fuzzy, kde-format
 #| msgid "Failed to connect to remote INDI server!"
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "Zlyhalo pripojenie na vzdialený INDI server!"
 
-#: ekos/manager.cpp:1353
+#: ekos/manager.cpp:1355
 #, fuzzy, kde-format
 #| msgid ""
 #| "Unable to establish:\n"
@@ -25265,7 +25265,7 @@ msgstr ""
 "%1\n"
 "Uistite sa, že zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1355
+#: ekos/manager.cpp:1357
 #, fuzzy, kde-format
 #| msgid ""
 #| "Unable to establish:\n"
@@ -25280,7 +25280,7 @@ msgstr ""
 "%1\n"
 "Uistite sa, že zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1383
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -25291,13 +25291,13 @@ msgstr ""
 "%1\n"
 "Uistite sa, že zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1387 ekos/manager.cpp:1395 ekos/manager.cpp:1428
-#: ekos/manager.cpp:1436
+#: ekos/manager.cpp:1389 ekos/manager.cpp:1397 ekos/manager.cpp:1430
+#: ekos/manager.cpp:1438
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Chyba spustenia Ekos"
 
-#: ekos/manager.cpp:1391
+#: ekos/manager.cpp:1393
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -25308,7 +25308,7 @@ msgstr ""
 "%1\n"
 "Uistite sa, že každé zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1424
+#: ekos/manager.cpp:1426
 #, fuzzy, kde-format
 #| msgid ""
 #| "Unable to establish:\n"
@@ -25323,7 +25323,7 @@ msgstr ""
 "%1\n"
 "Uistite sa, že zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1432
+#: ekos/manager.cpp:1434
 #, fuzzy, kde-format
 #| msgid ""
 #| "Unable to establish the following devices:\n"
@@ -25338,33 +25338,33 @@ msgstr ""
 "%1\n"
 "Uistite sa, že každé zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1490
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "Pripájanie zariadení INDI..."
 
-#: ekos/manager.cpp:1509
+#: ekos/manager.cpp:1511
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "Odpájanie zariadení INDI..."
 
-#: ekos/manager.cpp:1549
+#: ekos/manager.cpp:1551
 #, kde-format
 msgid "INDI services stopped."
 msgstr "Služby INDI zastavené."
 
-#: ekos/manager.cpp:1615
+#: ekos/manager.cpp:1617
 #, fuzzy, kde-format
 #| msgid "Remote devices established. Please connect devices."
 msgid "Remote devices established."
 msgstr "Vzdialené zariadenia zistené. Prosím, pripojte zariadenia."
 
-#: ekos/manager.cpp:1618
+#: ekos/manager.cpp:1620
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "Vzdialené zariadenia zistené. Prosím, pripojte zariadenia."
 
-#: ekos/manager.cpp:1682
+#: ekos/manager.cpp:1684
 #, fuzzy, kde-format
 #| msgid ""
 #| "Unable to establish:\n"
@@ -25378,124 +25378,124 @@ msgstr ""
 "%1\n"
 "Uistite sa, že zariadenie je pripojené a zapnuté."
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1691
 #, fuzzy, kde-format
 #| msgid "Disconnected"
 msgid "%1 is disconnected."
 msgstr "%1 je odpojené"
 
-#: ekos/manager.cpp:1710 ekos/manager.cpp:1719 ekos/manager.cpp:1752
+#: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
 #: indi/indistd.cpp:718
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 je pripojený."
 
-#: ekos/manager.cpp:1727
+#: ekos/manager.cpp:1729
 #, kde-format
 msgid "%1 filter is online."
 msgstr "filter %1 je pripojený."
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1738
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "%1 focuser is online."
 msgstr "filter %1 je pripojený."
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1745
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Rotator %1 is online."
 msgstr "%1 je pripojený."
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1761
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "%1 Weather is online."
 msgstr "filter %1 je pripojený."
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1768
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "%1 GPS is online."
 msgstr "%1 je pripojený."
 
-#: ekos/manager.cpp:1775
+#: ekos/manager.cpp:1777
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "%1 Dust cap is online."
 msgstr "filter %1 je pripojený."
 
-#: ekos/manager.cpp:1782
+#: ekos/manager.cpp:1784
 #, fuzzy, kde-format
 #| msgid "%1 filter is online."
 msgid "%1 Light box is online."
 msgstr "filter %1 je pripojený."
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1942
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 je  v režime offline."
 
-#: ekos/manager.cpp:2563
+#: ekos/manager.cpp:2565
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "Port navádzača z %1 je pripravený."
 
-#: ekos/manager.cpp:2752
+#: ekos/manager.cpp:2754
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Naozaj chcete vymazať profil?"
 
-#: ekos/manager.cpp:2753
+#: ekos/manager.cpp:2755
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Potvrdiť vymazanie"
 
-#: ekos/manager.cpp:2805
+#: ekos/manager.cpp:2807
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "Umiestnenie aktualizované na %1."
 
-#: ekos/manager.cpp:2807
+#: ekos/manager.cpp:2809
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "Zlyhala aktualizácia umiestnenia na %1. Mesto nenájdené."
 
-#: ekos/manager.cpp:3080
+#: ekos/manager.cpp:3082
 #, fuzzy, kde-format
 #| msgid "Post-alignment focusing for %1 ..."
 msgid "Enabling debug logging for %1..."
 msgstr "Zaostrenie po zameraní na %1..."
 
-#: ekos/manager.cpp:3088
+#: ekos/manager.cpp:3090
 #, fuzzy, kde-format
 #| msgid "Post-alignment focusing for %1 ..."
 msgid "Disabling debug logging for %1..."
 msgstr "Zaostrenie po zameraní na %1..."
 
-#: ekos/manager.cpp:3116
+#: ekos/manager.cpp:3118
 #, fuzzy, kde-format
 #| msgid "Post-alignment focusing for %1 ..."
 msgid "Re-enabling debug logging for %1..."
 msgstr "Zaostrenie po zameraní na %1..."
 
-#: ekos/manager.cpp:3128
+#: ekos/manager.cpp:3130
 #, fuzzy, kde-format
 #| msgid "Post-alignment focusing for %1 ..."
 msgid "Re-disabling debug logging for %1..."
 msgstr "Zaostrenie po zameraní na %1..."
 
-#: ekos/manager.cpp:3857
+#: ekos/manager.cpp:3859
 #, kde-format
 msgid "Preview source set to external"
 msgstr ""
 
-#: ekos/manager.cpp:3864
+#: ekos/manager.cpp:3866
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr ""
 
-#: ekos/manager.cpp:3871
+#: ekos/manager.cpp:3873
 #, fuzzy, kde-format
 #| msgid "Receive external guide frames"
 msgid "Received external preview file"
@@ -37304,7 +37304,7 @@ msgstr "Nastaviť polohu"
 msgid "Data file saved to %1"
 msgstr "Dátový súbor uložený do %1"
 
-#: indi/indiwebmanager.cpp:320
+#: indi/indiwebmanager.cpp:329
 #, fuzzy, kde-format
 #| msgid "Failed to connect to remote INDI server!"
 msgid "Driver %1 failed to start on the remote INDI server."

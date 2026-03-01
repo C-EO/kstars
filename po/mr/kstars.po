@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-28 02:10+0000\n"
+"POT-Creation-Date: 2026-03-01 02:10+0000\n"
 "PO-Revision-Date: 2013-03-28 14:37+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -608,7 +608,7 @@ msgstr "रद्द करा"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1282 ekos/manager.cpp:1297 ekos/manager.cpp:1313
+#: ekos/manager.cpp:1284 ekos/manager.cpp:1299 ekos/manager.cpp:1315
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -5331,7 +5331,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2179
+#: ekos/manager.cpp:2181
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, fuzzy, kde-format
 msgid "Camera"
@@ -6533,7 +6533,7 @@ msgstr "मोजणी"
 
 #: ekos/align/align.cpp:2752 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2127 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2129 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
 #: ekos/scheduler/schedulerprocess.cpp:3377
 #, kde-format
@@ -10403,7 +10403,7 @@ msgstr "स्वयंचलित"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2231 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2233 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, fuzzy, kde-format
 msgid "Align"
@@ -10415,7 +10415,7 @@ msgstr "जुळवा (&A)"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2421 ekos/manager.ui:778
+#: ekos/manager.cpp:2423 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, fuzzy, kde-format
 #| msgid "Count"
@@ -10509,7 +10509,7 @@ msgstr "फाईल %1 उघडू शकत नाही"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2275 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2277 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10521,7 +10521,7 @@ msgstr "केंद्र"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2496
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2498
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -12683,7 +12683,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2546
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2548
 #: ekos/observatory/observatory.ui:14
 #, fuzzy, kde-format
 #| msgid "Server"
@@ -16081,7 +16081,7 @@ msgid "Does %1 have a shutter?"
 msgstr ""
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:473
+#: ekos/capture/sequencejobstate.cpp:477
 #, kde-format
 msgid "Dark Exposure"
 msgstr ""
@@ -17355,148 +17355,148 @@ msgstr "प्रगतीपथावर आहे/चालू आहे"
 msgid "Complete"
 msgstr "पूर्ण"
 
-#: ekos/capture/sequencejobstate.cpp:460
+#: ekos/capture/sequencejobstate.cpp:464
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:461
+#: ekos/capture/sequencejobstate.cpp:465
 #, fuzzy, kde-format
 msgid "Flat Frame"
 msgstr "फ्रेम"
 
-#: ekos/capture/sequencejobstate.cpp:472
+#: ekos/capture/sequencejobstate.cpp:476
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:510 ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
 #, fuzzy, kde-format
 msgid "Unparking dust cap..."
 msgstr "छापा (&P)..."
 
-#: ekos/capture/sequencejobstate.cpp:510
+#: ekos/capture/sequencejobstate.cpp:514
 #, fuzzy, kde-format
 msgid "Parking dust cap..."
 msgstr "छापा (&P)..."
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
 #, kde-format
 msgid "Turn light box light on..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
-#: ekos/capture/sequencejobstate.cpp:705
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:709
 #, kde-format
 msgid "Turn light box light off..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:541 ekos/capture/sequencejobstate.cpp:619
+#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
 #, fuzzy, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "छापा (&P)..."
 
-#: ekos/capture/sequencejobstate.cpp:550
+#: ekos/capture/sequencejobstate.cpp:554
 #, fuzzy, kde-format
 #| msgid "Upload"
 msgid "Unparking mount..."
 msgstr "अपलोड"
 
-#: ekos/capture/sequencejobstate.cpp:559
+#: ekos/capture/sequencejobstate.cpp:563
 #, fuzzy, kde-format
 #| msgid "Count"
 msgid "Mount unparked."
 msgstr "मोजणी"
 
-#: ekos/capture/sequencejobstate.cpp:572
+#: ekos/capture/sequencejobstate.cpp:576
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:584
+#: ekos/capture/sequencejobstate.cpp:588
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Slew to wall position complete, stop tracking."
 msgstr "पूर्ण"
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:592
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "पूर्ण"
 
-#: ekos/capture/sequencejobstate.cpp:628
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:647
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:657
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:968
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Light box light turned on."
 msgstr "पूर्ण"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:971
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Light box light turned off."
 msgstr "पूर्ण"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:974
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Light"
 msgid "Light box busy."
 msgstr "हलके"
 
-#: ekos/capture/sequencejobstate.cpp:970
+#: ekos/capture/sequencejobstate.cpp:977
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Light"
 msgid "Light box error."
 msgstr "हलके"
 
-#: ekos/capture/sequencejobstate.cpp:994
+#: ekos/capture/sequencejobstate.cpp:1001
 #, fuzzy, kde-format
 #| msgid "Count"
 msgid "Dust cap error occurred."
 msgstr "मोजणी"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1007
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Dust cap is idle."
 msgstr "पूर्ण"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1010
 #, fuzzy, kde-format
 #| msgid "Count"
 msgid "Dust cap is parked."
 msgstr "मोजणी"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1013
 #, fuzzy, kde-format
 #| msgid "Count"
 msgid "Dust cap is parking..."
 msgstr "मोजणी"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1016
 #, fuzzy, kde-format
 #| msgid "Count"
 msgid "Dust cap is unparking..."
 msgstr "मोजणी"
 
-#: ekos/capture/sequencejobstate.cpp:1012
+#: ekos/capture/sequencejobstate.cpp:1019
 #, fuzzy, kde-format
 #| msgid "Count"
 msgid "Dust cap status unknown."
@@ -23737,76 +23737,76 @@ msgstr "सर्व्हर"
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr ""
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr ""
 
-#: ekos/manager.cpp:1161
+#: ekos/manager.cpp:1162
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr ""
 
-#: ekos/manager.cpp:1174
+#: ekos/manager.cpp:1175
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr ""
 
-#: ekos/manager.cpp:1193
+#: ekos/manager.cpp:1194
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "Site Name"
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "स्थळ नाव"
 
-#: ekos/manager.cpp:1234
+#: ekos/manager.cpp:1235
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr ""
 
-#: ekos/manager.cpp:1237
+#: ekos/manager.cpp:1238
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr ""
 
-#: ekos/manager.cpp:1242
+#: ekos/manager.cpp:1243
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
 "Waiting for devices..."
 msgstr ""
 
-#: ekos/manager.cpp:1273
+#: ekos/manager.cpp:1275
 #, fuzzy, kde-format
 #| msgid "Connect"
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "जोडा"
 
-#: ekos/manager.cpp:1275
+#: ekos/manager.cpp:1277
 #, fuzzy, kde-format
 #| msgid "Connect"
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "जोडा"
 
-#: ekos/manager.cpp:1288
+#: ekos/manager.cpp:1290
 #, fuzzy, kde-format
 #| msgid "Connect"
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "जोडा"
 
-#: ekos/manager.cpp:1290
+#: ekos/manager.cpp:1292
 #, fuzzy, kde-format
 #| msgid "Connect"
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "जोडा"
 
-#: ekos/manager.cpp:1353
+#: ekos/manager.cpp:1355
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1355
+#: ekos/manager.cpp:1357
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -23814,7 +23814,7 @@ msgid ""
 "Please ensure each device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1383
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -23822,13 +23822,13 @@ msgid ""
 "Please ensure the device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1387 ekos/manager.cpp:1395 ekos/manager.cpp:1428
-#: ekos/manager.cpp:1436
+#: ekos/manager.cpp:1389 ekos/manager.cpp:1397 ekos/manager.cpp:1430
+#: ekos/manager.cpp:1438
 #, kde-format
 msgid "Ekos startup error"
 msgstr ""
 
-#: ekos/manager.cpp:1391
+#: ekos/manager.cpp:1393
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -23836,7 +23836,7 @@ msgid ""
 "Please ensure each device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1424
+#: ekos/manager.cpp:1426
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -23844,7 +23844,7 @@ msgid ""
 "Please ensure the device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1432
+#: ekos/manager.cpp:1434
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -23852,153 +23852,153 @@ msgid ""
 "Please ensure each device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1490
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr ""
 
-#: ekos/manager.cpp:1509
+#: ekos/manager.cpp:1511
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr ""
 
-#: ekos/manager.cpp:1549
+#: ekos/manager.cpp:1551
 #, kde-format
 msgid "INDI services stopped."
 msgstr ""
 
-#: ekos/manager.cpp:1615
+#: ekos/manager.cpp:1617
 #, fuzzy, kde-format
 msgid "Remote devices established."
 msgstr "साधने"
 
-#: ekos/manager.cpp:1618
+#: ekos/manager.cpp:1620
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr ""
 
-#: ekos/manager.cpp:1682
+#: ekos/manager.cpp:1684
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
 "Please ensure the device is connected and powered on."
 msgstr ""
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1691
 #, fuzzy, kde-format
 #| msgid "Disconnect"
 msgid "%1 is disconnected."
 msgstr "जुळवणी तोडा"
 
-#: ekos/manager.cpp:1710 ekos/manager.cpp:1719 ekos/manager.cpp:1752
+#: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
 #: indi/indistd.cpp:718
 #, kde-format
 msgid "%1 is online."
 msgstr ""
 
-#: ekos/manager.cpp:1727
+#: ekos/manager.cpp:1729
 #, kde-format
 msgid "%1 filter is online."
 msgstr ""
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1738
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "%1 focuser is online."
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1745
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Rotator %1 is online."
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1761
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "%1 Weather is online."
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1768
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "%1 GPS is online."
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:1775
+#: ekos/manager.cpp:1777
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "%1 Dust cap is online."
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:1782
+#: ekos/manager.cpp:1784
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "%1 Light box is online."
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1942
 #, kde-format
 msgid "%1 is offline."
 msgstr ""
 
-#: ekos/manager.cpp:2563
+#: ekos/manager.cpp:2565
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr ""
 
-#: ekos/manager.cpp:2752
+#: ekos/manager.cpp:2754
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr ""
 
-#: ekos/manager.cpp:2753
+#: ekos/manager.cpp:2755
 #, fuzzy, kde-format
 #| msgid "Complete"
 msgid "Confirm Delete"
 msgstr "पूर्ण"
 
-#: ekos/manager.cpp:2805
+#: ekos/manager.cpp:2807
 #, kde-format
 msgid "Site location updated to %1."
 msgstr ""
 
-#: ekos/manager.cpp:2807
+#: ekos/manager.cpp:2809
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr ""
 
-#: ekos/manager.cpp:3080
+#: ekos/manager.cpp:3082
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3088
+#: ekos/manager.cpp:3090
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3116
+#: ekos/manager.cpp:3118
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3128
+#: ekos/manager.cpp:3130
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:3857
+#: ekos/manager.cpp:3859
 #, kde-format
 msgid "Preview source set to external"
 msgstr ""
 
-#: ekos/manager.cpp:3864
+#: ekos/manager.cpp:3866
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr ""
 
-#: ekos/manager.cpp:3871
+#: ekos/manager.cpp:3873
 #, kde-format
 msgid "Received external preview file"
 msgstr ""
@@ -34999,7 +34999,7 @@ msgstr "स्थान :"
 msgid "Data file saved to %1"
 msgstr ""
 
-#: indi/indiwebmanager.cpp:320
+#: indi/indiwebmanager.cpp:329
 #, kde-format
 msgid "Driver %1 failed to start on the remote INDI server."
 msgstr ""

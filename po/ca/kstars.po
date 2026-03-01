@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-28 02:10+0000\n"
-"PO-Revision-Date: 2026-02-23 12:43+0100\n"
+"POT-Creation-Date: 2026-03-01 02:10+0000\n"
+"PO-Revision-Date: 2026-02-28 11:50+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -599,7 +599,7 @@ msgstr "Cancel·la"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1282 ekos/manager.cpp:1297 ekos/manager.cpp:1313
+#: ekos/manager.cpp:1284 ekos/manager.cpp:1299 ekos/manager.cpp:1315
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -5349,7 +5349,7 @@ msgstr "Calcula el CDV"
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2179
+#: ekos/manager.cpp:2181
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, kde-format
 msgid "Camera"
@@ -6653,7 +6653,7 @@ msgstr "S'ha interromput el solucionador."
 
 #: ekos/align/align.cpp:2752 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2127 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2129 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
 #: ekos/scheduler/schedulerprocess.cpp:3377
 #, kde-format
@@ -10839,7 +10839,7 @@ msgstr "inicia l'EKOS"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2231 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2233 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, kde-format
 msgid "Align"
@@ -10851,7 +10851,7 @@ msgstr "Alinea"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2421 ekos/manager.ui:778
+#: ekos/manager.cpp:2423 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, kde-format
 msgid "Mount"
@@ -10942,7 +10942,7 @@ msgstr "No s'ha pogut mostrar el fitxer temporal d'imatge: %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2275 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2277 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10954,7 +10954,7 @@ msgstr "Enfocament"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2496
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2498
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -13256,7 +13256,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2546
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2548
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -16888,7 +16888,7 @@ msgid "Does %1 have a shutter?"
 msgstr "El %1 té un obturador?"
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:473
+#: ekos/capture/sequencejobstate.cpp:477
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Exposició fosca"
@@ -18234,146 +18234,146 @@ msgstr "En curs"
 msgid "Complete"
 msgstr "Finalitzat"
 
-#: ekos/capture/sequencejobstate.cpp:460
+#: ekos/capture/sequencejobstate.cpp:464
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Cobreix el telescopi amb una font de llum il·luminada uniformement."
 
-#: ekos/capture/sequencejobstate.cpp:461
+#: ekos/capture/sequencejobstate.cpp:465
 #, kde-format
 msgid "Flat Frame"
 msgstr "Fotograma pla"
 
-#: ekos/capture/sequencejobstate.cpp:472
+#: ekos/capture/sequencejobstate.cpp:476
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Cobreix el telescopi per tal de prendre una exposició fosca."
 
-#: ekos/capture/sequencejobstate.cpp:510 ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "S'està desaparcant la tapa per la pols..."
 
-#: ekos/capture/sequencejobstate.cpp:510
+#: ekos/capture/sequencejobstate.cpp:514
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "S'està aparcant la tapa per la pols..."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Encén el llum de la caixa de llum..."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
-#: ekos/capture/sequencejobstate.cpp:705
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:709
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Apaga el llum de la caixa de llum..."
 
-#: ekos/capture/sequencejobstate.cpp:541 ekos/capture/sequencejobstate.cpp:619
+#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Ha fallat l'aparcament de la muntura. S'interromp..."
 
-#: ekos/capture/sequencejobstate.cpp:550
+#: ekos/capture/sequencejobstate.cpp:554
 #, kde-format
 msgid "Unparking mount..."
 msgstr "S'està desaparcant la muntura..."
 
-#: ekos/capture/sequencejobstate.cpp:559
+#: ekos/capture/sequencejobstate.cpp:563
 #, kde-format
 msgid "Mount unparked."
 msgstr "La muntura està desaparcada."
 
-#: ekos/capture/sequencejobstate.cpp:572
+#: ekos/capture/sequencejobstate.cpp:576
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr ""
 "S'està orientant la muntura cap a la posició de la paret (az =%1 alt =%2)"
 
-#: ekos/capture/sequencejobstate.cpp:584
+#: ekos/capture/sequencejobstate.cpp:588
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr ""
 "S'ha completat l'orientació cap a la posició de la paret, s'atura el "
 "seguiment."
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:592
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr ""
 "S'ha completat l'orientació cap a la posició de la paret, s'ha aturat el "
 "seguiment."
 
-#: ekos/capture/sequencejobstate.cpp:628
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr ""
 "S'està aparcant la muntura abans de capturar els fotogrames de calibratge..."
 
-#: ekos/capture/sequencejobstate.cpp:647
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Ha fallat l'aparcament de la cúpula. S'interromp..."
 
-#: ekos/capture/sequencejobstate.cpp:657
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr ""
 "S'està aparcant la cúpula abans de capturar els fotogrames de calibratge..."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:968
 #, kde-format
 msgid "Light box light turned on."
 msgstr "El llum de la caixa de llum està encès."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:971
 #, kde-format
 msgid "Light box light turned off."
 msgstr "El llum de la caixa de llum està apagat."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:974
 #, kde-format
 msgid "Light box busy."
 msgstr "Caixa de llum ocupada."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:970
+#: ekos/capture/sequencejobstate.cpp:977
 #, kde-format
 msgid "Light box error."
 msgstr "Error de la caixa de llum."
 
-#: ekos/capture/sequencejobstate.cpp:994
+#: ekos/capture/sequencejobstate.cpp:1001
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Hi ha hagut un error a la tapa per la pols."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1007
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "La tapa per la pols està en espera."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1010
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "La tapa per la pols està aparcada."
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1013
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "La tapa per la pols s'està aparcant..."
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1016
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "La tapa per la pols s'està desaparcant..."
 
-#: ekos/capture/sequencejobstate.cpp:1012
+#: ekos/capture/sequencejobstate.cpp:1019
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Estat desconegut de la tapa per la pols."
@@ -25245,38 +25245,38 @@ msgstr "Servidor INDI"
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "S'està connectant amb el servidor INDI %1 al port %2..."
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Ha fallat en iniciar el perfil en el Gestor web remot de l'INDI."
 
-#: ekos/manager.cpp:1161
+#: ekos/manager.cpp:1162
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "S'està iniciant el perfil en el Gestor web remot de l'INDI..."
 
-#: ekos/manager.cpp:1174
+#: ekos/manager.cpp:1175
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "S'està establint la comunicació amb el Gestor web remot de l'INDI..."
 
-#: ekos/manager.cpp:1193
+#: ekos/manager.cpp:1194
 #, kde-format
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "Error: El Gestor web remot de l'INDI no està connectat a %1:%2"
 
-#: ekos/manager.cpp:1234
+#: ekos/manager.cpp:1235
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr "S'han iniciat els serveis INDI al port %1."
 
-#: ekos/manager.cpp:1237
+#: ekos/manager.cpp:1238
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr ""
 "S'han iniciat els serveis INDI al port %1. Podeu connectar els dispositius."
 
-#: ekos/manager.cpp:1242
+#: ekos/manager.cpp:1243
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
@@ -25285,27 +25285,27 @@ msgstr ""
 "S'han iniciat els serveis INDI. La connexió amb el servidor INDI remot %1:%2 "
 "ha tingut èxit. En espera dels dispositius..."
 
-#: ekos/manager.cpp:1273
+#: ekos/manager.cpp:1275
 #, kde-format
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Ha fallat en connectar amb el servidor INDI remot %1:%2"
 
-#: ekos/manager.cpp:1275
+#: ekos/manager.cpp:1277
 #, kde-format
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Ha fallat en connectar amb el servidor INDI remot %1:%2"
 
-#: ekos/manager.cpp:1288
+#: ekos/manager.cpp:1290
 #, kde-format
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "S'ha perdut la connexió amb el servidor INDI local %1:%2"
 
-#: ekos/manager.cpp:1290
+#: ekos/manager.cpp:1292
 #, kde-format
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "S'ha perdut la connexió amb el servidor INDI remot %1:%2"
 
-#: ekos/manager.cpp:1353
+#: ekos/manager.cpp:1355
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
@@ -25313,7 +25313,7 @@ msgstr ""
 "Ha fallat en connectar a %1. Assegureu-vos que el dispositiu està connectat "
 "i engegat."
 
-#: ekos/manager.cpp:1355
+#: ekos/manager.cpp:1357
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -25324,7 +25324,7 @@ msgstr ""
 "%1\n"
 "Assegureu-vos que el dispositiu està connectat i engegat."
 
-#: ekos/manager.cpp:1383
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -25335,13 +25335,13 @@ msgstr ""
 "%1\n"
 "Assegureu-vos que el dispositiu està connectat i engegat."
 
-#: ekos/manager.cpp:1387 ekos/manager.cpp:1395 ekos/manager.cpp:1428
-#: ekos/manager.cpp:1436
+#: ekos/manager.cpp:1389 ekos/manager.cpp:1397 ekos/manager.cpp:1430
+#: ekos/manager.cpp:1438
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Error d'inici a l'Ekos"
 
-#: ekos/manager.cpp:1391
+#: ekos/manager.cpp:1393
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -25352,7 +25352,7 @@ msgstr ""
 "%1\n"
 "Si us plau, assegureu-vos que el dispositiu està connectat i en funcionament."
 
-#: ekos/manager.cpp:1424
+#: ekos/manager.cpp:1426
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -25363,7 +25363,7 @@ msgstr ""
 "%1\n"
 "Assegureu-vos que el dispositiu està connectat i engegat."
 
-#: ekos/manager.cpp:1432
+#: ekos/manager.cpp:1434
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -25374,33 +25374,33 @@ msgstr ""
 "%1\n"
 "Si us plau, assegureu-vos que el dispositiu està connectat i en funcionament."
 
-#: ekos/manager.cpp:1490
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "Els dispositius INDI s'estan connectant..."
 
-#: ekos/manager.cpp:1509
+#: ekos/manager.cpp:1511
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "S'estan desconnectant els dispositius INDI..."
 
-#: ekos/manager.cpp:1549
+#: ekos/manager.cpp:1551
 #, kde-format
 msgid "INDI services stopped."
 msgstr "S'han aturat els serveis INDI."
 
-#: ekos/manager.cpp:1615
+#: ekos/manager.cpp:1617
 #, kde-format
 msgid "Remote devices established."
 msgstr "S'han establert els dispositius remots."
 
-#: ekos/manager.cpp:1618
+#: ekos/manager.cpp:1620
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr ""
 "S'han establert els dispositius remots. Podeu connectar els dispositius."
 
-#: ekos/manager.cpp:1682
+#: ekos/manager.cpp:1684
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
@@ -25409,116 +25409,116 @@ msgstr ""
 "Ha fallat en connectar a %1.\n"
 "Assegureu-vos que el dispositiu està connectat i engegat."
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1691
 #, kde-format
 msgid "%1 is disconnected."
 msgstr "El %1 està desconnectat."
 
-#: ekos/manager.cpp:1710 ekos/manager.cpp:1719 ekos/manager.cpp:1752
+#: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
 #: indi/indistd.cpp:718
 #, kde-format
 msgid "%1 is online."
 msgstr "El %1 està en línia."
 
-#: ekos/manager.cpp:1727
+#: ekos/manager.cpp:1729
 #, kde-format
 msgid "%1 filter is online."
 msgstr "El filtre del %1 està en línia."
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1738
 #, kde-format
 msgid "%1 focuser is online."
 msgstr "L'enfocador del %1 està en línia."
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1745
 #, kde-format
 msgid "Rotator %1 is online."
 msgstr "El rotor %1 està en línia."
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1761
 #, kde-format
 msgid "%1 Weather is online."
 msgstr "La meteorologia de %1 està en línia."
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1768
 #, kde-format
 msgid "%1 GPS is online."
 msgstr "El GPS %1 està en línia."
 
-#: ekos/manager.cpp:1775
+#: ekos/manager.cpp:1777
 #, kde-format
 msgid "%1 Dust cap is online."
 msgstr "La tapa per la pols %1 està en línia."
 
 # skip-rule: kct-box
-#: ekos/manager.cpp:1782
+#: ekos/manager.cpp:1784
 #, kde-format
 msgid "%1 Light box is online."
 msgstr "La caixa de llum %1 està en línia."
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1942
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 està fora de línia."
 
-#: ekos/manager.cpp:2563
+#: ekos/manager.cpp:2565
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "El port del sistema de guiatge del %1 està a punt."
 
-#: ekos/manager.cpp:2752
+#: ekos/manager.cpp:2754
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Segur que voleu eliminar el perfil?"
 
-#: ekos/manager.cpp:2753
+#: ekos/manager.cpp:2755
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Confirmació de la supressió"
 
-#: ekos/manager.cpp:2805
+#: ekos/manager.cpp:2807
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "L'emplaçament del lloc s'ha actualitzat a %1."
 
-#: ekos/manager.cpp:2807
+#: ekos/manager.cpp:2809
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr ""
 "Ha fallat en actualitzar l'emplaçament del lloc a %1. No s'ha trobat la "
 "ciutat."
 
-#: ekos/manager.cpp:3080
+#: ekos/manager.cpp:3082
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "S'activa el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3088
+#: ekos/manager.cpp:3090
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "Es desactiva el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3116
+#: ekos/manager.cpp:3118
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "Es torna a activar el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3128
+#: ekos/manager.cpp:3130
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "Es torna a desactivar el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3857
+#: ekos/manager.cpp:3859
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Font de vista prèvia definida a externa"
 
-#: ekos/manager.cpp:3864
+#: ekos/manager.cpp:3866
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Font de vista prèvia restablerta a interna"
 
-#: ekos/manager.cpp:3871
+#: ekos/manager.cpp:3873
 #, kde-format
 msgid "Received external preview file"
 msgstr "S'ha rebut un fitxer extern de vista prèvia"
@@ -33242,58 +33242,49 @@ msgid "Weight used in stacking"
 msgstr "Ponderació utilitzada a l'apilament"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "LiveStack Webcast Controller"
-msgstr "Procés propi de l'apilador en directe"
+msgstr "Controlador de difusió web de l'apilador en directe"
 
 #: fitsviewer/fitsstackwebcast.cpp:48
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select LHS Logo"
-msgstr "Selecció d'estrella"
+msgstr "Selecció de logotip LHS"
 
 #: fitsviewer/fitsstackwebcast.cpp:58
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select RHS Logo"
-msgstr "Selecció d'estrella"
+msgstr "Selecció de logotip RHS"
 
 #: fitsviewer/fitsstackwebcast.cpp:81
-#, fuzzy, kde-format
-#| msgid "Failed to start guider."
+#, kde-format
 msgid "Failed to start: Port %1 may be in use."
-msgstr "Ha fallat en iniciar el sistema de guiatge."
+msgstr "Ha fallat en iniciar: el port %1 podria estar en ús."
 
 #: fitsviewer/fitsstackwebcast.cpp:385
-#, fuzzy, kde-format
-#| msgid "Solving..."
+#, kde-format
 msgid "Resolving..."
-msgstr "S'està solucionant..."
+msgstr "S'està resolent..."
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "Tipus desconegut"
+msgstr "Dispositiu desconegut"
 
 #: fitsviewer/fitsstackwebcast.cpp:443
-#, fuzzy, kde-format
-#| msgid "Stopped"
+#, kde-format
 msgid "Webcast Stopped"
-msgstr "Aturada"
+msgstr "Difusió web aturada"
 
 #: fitsviewer/fitsstackwebcast.cpp:508
-#, fuzzy, kde-format
-#| msgid "Unknown"
+#, kde-format
 msgid "Unknown OS"
-msgstr "Desconeguda"
+msgstr "SO desconegut"
 
 #: fitsviewer/fitsstackwebcast.cpp:509
-#, fuzzy, kde-format
-#| msgid "Unknown error"
+#, kde-format
 msgid "Unknown Browser"
-msgstr "Error desconegut"
+msgstr "Navegador desconegut"
 
 #: fitsviewer/fitsstretchui.cpp:241
 #, kde-format
@@ -34344,12 +34335,13 @@ msgstr "Directori de Lum:"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, WebcastB)
 #: fitsviewer/livestacking.ui:924
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Sharpen sigma.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start / Stop Webcasting stacked images</p></body></"
 "html>"
-msgstr "<html><head/><body><p>Sigma d'agudització.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Inicia / Atura la difusió web de les imatges apilades</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QToolButton, WebcastB)
 #. i18n: ectx: property (text), widget (QToolButton, previousYear)
@@ -35056,39 +35048,34 @@ msgstr " Ressaltat"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, FitsStackWebcast)
 #: fitsviewer/livestackwebcast.ui:14
-#, fuzzy, kde-format
-#| msgid "KStars Live Stacker"
+#, kde-format
 msgid "KStars Live Stacker Webcast"
-msgstr "Apilador en directe del KStars"
+msgstr "Difusió web de l'apilador en directe del KStars"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoRBtn)
 #: fitsviewer/livestackwebcast.ui:20
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Left-to-Right Tilt Slider</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Right) file chooser.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Control lliscant de la inclinació esquerra-dreta</p></"
-"body></html>"
+"<html><head/><body><p>Selector del fitxer de logotip (dret)</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, qrLabel)
 #: fitsviewer/livestackwebcast.ui:39
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the QR code here</p></body></"
 "html>"
 msgstr ""
-"<html><head/><body><p>Escala l'eix de valors a l'interval actual de valors.</"
+"<html><head/><body><p>Inicieu la difusió web per a veure aquí el codi QR</"
 "p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoLBtn)
 #: fitsviewer/livestackwebcast.ui:55
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Left) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>Mida del pas:</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Selector del fitxer de logotip (esquerre)</p></body></"
+"html>"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, throttle)
 #. i18n: ectx: property (toolTip), widget (QLabel, throttleLabel)
@@ -35099,6 +35086,10 @@ msgid ""
 "bandwidth. Set the number of seconds per update. More frequent updates are "
 "discarded. Set 0 for no throttle.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Accelera les actualitzacions per a conservar la CPU i "
+"l'amplada de banda de la xarxa. Estableix el nombre de segons per "
+"actualització. Es descarten les actualitzacions més freqüents. Establiu 0 "
+"per a no accelerar.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, portLabel)
 #. i18n: ectx: property (toolTip), widget (QSpinBox, port)
@@ -35109,86 +35100,83 @@ msgid ""
 "unless you have something else using this port in which case pick 8081, etc."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Port a utilitzar per a la difusió web. Normalment, el "
+"8080 estarà bé tret que tingui alguna cosa més utilitzant aquest port. Si és "
+"aquest cas, trieu el 8081, etc.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:109
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Left) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Allunyament de l'eix X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logotip (esquerre) de l'esdeveniment de difusió web.</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:112
 #, kde-format
 msgid "Logo L:"
-msgstr ""
+msgstr "Logo E:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:155
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Start the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Mida del pas:</p></body></html>"
+msgstr "<html><head/><body><p>Inici de la difusió web</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:158
-#, fuzzy, kde-format
-#| msgid "Start Scan"
+#, kde-format
 msgid "Start Webcast"
-msgstr "Inicia l'exploració"
+msgstr "Inicia la difusió web"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:171
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Stop the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Mida del pas:</p></body></html>"
+msgstr "<html><head/><body><p>Aturada de la difusió web</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:174
-#, fuzzy, kde-format
-#| msgid "Stop capturing"
+#, kde-format
 msgid "Stop Webcast"
-msgstr "Atura la captura"
+msgstr "Atura la difusió web"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, resetBtn)
 #: fitsviewer/livestackwebcast.ui:187
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Reset the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Mida del pas:</p></body></html>"
+msgstr "<html><head/><body><p>Reinici de la difusió web</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Check to display the Petzval surface.</p></body></"
-#| "html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Toggle display of webcast subcribers</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Marqueu-ho per a mostrar la superfície de Petzval.</"
-"p></body></html>"
+"<html><head/><body><p>Commuta la visualització de subscriptors de la difusió "
+"web.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:206
 #, kde-format
 msgid "Subscribers"
-msgstr ""
+msgstr "Subscriptors"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoRPathDisplay)
 #: fitsviewer/livestackwebcast.ui:222
 #, kde-format
 msgid "Logo (Right) for the webcast event."
-msgstr ""
+msgstr "Logotip (dret) de l'esdeveniment de difusió web."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:235
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Title for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Apropament de l'eix X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Títol de l'esdeveniment de difusió web.</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:238 printing/pwizchartconfig.ui:141
@@ -35198,72 +35186,64 @@ msgstr "Títol:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, urlLabel)
 #: fitsviewer/livestackwebcast.ui:254
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the URL and port here</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Escala l'eix de valors a l'interval actual de valors.</"
-"p></body></html>"
+"<html><head/><body><p>Inicieu la difusió web per a veure aquí l'URL i el "
+"port</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoLPathDisplay)
 #: fitsviewer/livestackwebcast.ui:273
 #, kde-format
 msgid "Logo (Left) for the webcast event."
-msgstr ""
+msgstr "Logotip (esquerre) de l'esdeveniment de difusió web."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:280
 #, kde-format
 msgid "Title for the webcast event."
-msgstr ""
+msgstr "Títol de l'esdeveniment de difusió web."
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:283
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "My LiveStacker Webcast"
-msgstr "Procés propi de l'apilador en directe"
+msgstr "La meva difusió web de l'apilador en directe"
 
 #. i18n: ectx: property (text), widget (QLabel, throttleLabel)
 #: fitsviewer/livestackwebcast.ui:293
-#, fuzzy, kde-format
-#| msgid "Comets Update"
+#, kde-format
 msgid "Throttle Updates:"
-msgstr "Actualització dels cometes"
+msgstr "Accelerador d'actualitzacions:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:303
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Right) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Apropament de l'eix X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logotip (dret) de l'esdeveniment de difusió web.</p></"
+"body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:306
 #, kde-format
 msgid "Logo R:"
-msgstr ""
+msgstr "Logo D:"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:362
-#, fuzzy, kde-format
-#| msgctxt "Constellation name (optional)"
-#| msgid "WHIP"
+#, kde-format
 msgid "IP"
-msgstr "FUET"
+msgstr "IP"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "Activa"
+msgstr "Activitat"
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
@@ -37026,7 +37006,7 @@ msgstr "Emplaçament de la muntura"
 msgid "Data file saved to %1"
 msgstr "El fitxer de dades s'ha desat a %1"
 
-#: indi/indiwebmanager.cpp:320
+#: indi/indiwebmanager.cpp:329
 #, kde-format
 msgid "Driver %1 failed to start on the remote INDI server."
 msgstr "El controlador %1 ha fallat en iniciar-se en el servidor INDI remot."
@@ -42604,38 +42584,36 @@ msgstr "Ressaltat del monitor d'apilament en directe."
 
 #. i18n: ectx: label, entry (fitsLSWebcastTitle), group (FITSViewer)
 #: kstars.kcfg:1948
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast title"
-msgstr "Fotograma pla mestre de l'apilament en directe"
+msgstr "Títol de la difusió web de l'apilament en directe"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoL), group (FITSViewer)
 #: kstars.kcfg:1952
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast left logo pathname"
-msgstr "Fotograma pla mestre de l'apilament en directe"
+msgstr ""
+"Nom del camí del logotip esquerre de la difusió web de l'apilament en directe"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoR), group (FITSViewer)
 #: kstars.kcfg:1956
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast right logo pathname"
-msgstr "Fotograma pla mestre de l'apilament en directe"
+msgstr ""
+"Nom del camí del logotip dret de la difusió web de l'apilament en directe"
 
 #. i18n: ectx: label, entry (fitsLSWebcastPort), group (FITSViewer)
 #: kstars.kcfg:1960
-#, fuzzy, kde-format
-#| msgid "Live Stacking master dark"
+#, kde-format
 msgid "Live Stacking Webcast port number"
-msgstr "Fotograma fosc mestre de l'apilament en directe"
+msgstr "Número de port de la difusió web de l'apilament en directe"
 
 #. i18n: ectx: label, entry (fitsLSWebcastThrottle), group (FITSViewer)
 #: kstars.kcfg:1964
-#, fuzzy, kde-format
-#| msgid "Live Stacking sharpen amount"
+#, kde-format
 msgid "Live Stacking Webcast throttle in milliseconds"
-msgstr "Quantitat d'agudització de l'apilament en directe"
+msgstr ""
+"Acceleració en mil·lisegons de la difusió web de l'apilament en directe"
 
 #. i18n: ectx: label, entry (BortleClass), group (WISettings)
 #: kstars.kcfg:1970
@@ -80691,15 +80669,14 @@ msgid "Sub-exposure calculator based on Dr Robin Glover's work"
 msgstr "Calculadora de subexposició basada en la tasca del Dr. Robin Glover"
 
 #: main.cpp:221
-#, fuzzy, kde-format
-#| msgid "Projection"
+#, kde-format
 msgid "Project Nayuki"
-msgstr "Projecció"
+msgstr "Project Nayuki"
 
 #: main.cpp:221
 #, kde-format
 msgid "QR Code generator library (MIT)"
-msgstr ""
+msgstr "Biblioteca del generador de codis QR (MIT)"
 
 #: main.cpp:232
 #, kde-format

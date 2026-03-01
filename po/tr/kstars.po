@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-28 02:10+0000\n"
-"PO-Revision-Date: 2026-02-23 08:08+0300\n"
+"POT-Creation-Date: 2026-03-01 02:10+0000\n"
+"PO-Revision-Date: 2026-02-28 10:43+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -595,7 +595,7 @@ msgstr "İptal"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1282 ekos/manager.cpp:1297 ekos/manager.cpp:1313
+#: ekos/manager.cpp:1284 ekos/manager.cpp:1299 ekos/manager.cpp:1315
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -5317,7 +5317,7 @@ msgstr "Görüş Alanını Hesapla"
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2179
+#: ekos/manager.cpp:2181
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, kde-format
 msgid "Camera"
@@ -6600,7 +6600,7 @@ msgstr "Çözücü iptal edildi."
 
 #: ekos/align/align.cpp:2752 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2127 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2129 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
 #: ekos/scheduler/schedulerprocess.cpp:3377
 #, kde-format
@@ -10712,7 +10712,7 @@ msgstr "Ekos’u başlat"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2231 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2233 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, kde-format
 msgid "Align"
@@ -10724,7 +10724,7 @@ msgstr "Hizala"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2421 ekos/manager.ui:778
+#: ekos/manager.cpp:2423 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, kde-format
 msgid "Mount"
@@ -10815,7 +10815,7 @@ msgstr "Geçici görsel dosyası görüntülenemiyor: %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2275 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2277 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10827,7 +10827,7 @@ msgstr "Odak"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2496
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2498
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -13103,7 +13103,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2546
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2548
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -16667,7 +16667,7 @@ msgid "Does %1 have a shutter?"
 msgstr "%1 üzerinde bir kepenk var mı?"
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:473
+#: ekos/capture/sequencejobstate.cpp:477
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Karanlık Pozlama"
@@ -17992,133 +17992,133 @@ msgstr "Sürüyor"
 msgid "Complete"
 msgstr "Tamamlandı"
 
-#: ekos/capture/sequencejobstate.cpp:460
+#: ekos/capture/sequencejobstate.cpp:464
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Teleskopu eşit olarak aydınlatılmış bir ışık kaynağıyla örtün."
 
-#: ekos/capture/sequencejobstate.cpp:461
+#: ekos/capture/sequencejobstate.cpp:465
 #, kde-format
 msgid "Flat Frame"
 msgstr "Düz Kare"
 
-#: ekos/capture/sequencejobstate.cpp:472
+#: ekos/capture/sequencejobstate.cpp:476
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Karanlık bir poz elde etmek için teleskopun üzerini örtün."
 
-#: ekos/capture/sequencejobstate.cpp:510 ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "Toz kapağı açılıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:510
+#: ekos/capture/sequencejobstate.cpp:514
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Toz kapağı park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Işık kutusu ışığı açılıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
-#: ekos/capture/sequencejobstate.cpp:705
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:709
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Işık kutusu ışığı kapatılıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:541 ekos/capture/sequencejobstate.cpp:619
+#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Kaideyi park başarısız oldu, iptal ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:550
+#: ekos/capture/sequencejobstate.cpp:554
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Kaide parktan çıkarılıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:559
+#: ekos/capture/sequencejobstate.cpp:563
 #, kde-format
 msgid "Mount unparked."
 msgstr "Kaide parktan çıkarıldı."
 
-#: ekos/capture/sequencejobstate.cpp:572
+#: ekos/capture/sequencejobstate.cpp:576
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "Kaide, duvar konumuna çevriliyor (az =%1 yük = %2)…"
 
-#: ekos/capture/sequencejobstate.cpp:584
+#: ekos/capture/sequencejobstate.cpp:588
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr "Duvar konumuna çevirme tamamlandı; izleme durduruldu."
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:592
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Duvar konumuna çevirme tamamlandı; izleme durduruldu."
 
-#: ekos/capture/sequencejobstate.cpp:628
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Kalibrasyon kareleri yakalama öncesinde kaide park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:647
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Kubbeyi park etme başarısız, iptal ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:657
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Kalibrasyon kareleri yakalama öncesinde kubbe park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:968
 #, kde-format
 msgid "Light box light turned on."
 msgstr "Işık kutusu ışığı açıldı."
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:971
 #, kde-format
 msgid "Light box light turned off."
 msgstr "Işık kutusu ışığı kapatıldı."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:974
 #, kde-format
 msgid "Light box busy."
 msgstr "Işık kutusu meşgul."
 
-#: ekos/capture/sequencejobstate.cpp:970
+#: ekos/capture/sequencejobstate.cpp:977
 #, kde-format
 msgid "Light box error."
 msgstr "Işık kutusu hatası."
 
-#: ekos/capture/sequencejobstate.cpp:994
+#: ekos/capture/sequencejobstate.cpp:1001
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Toz kapağı hatası oluştu."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1007
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Toz kapağı boşta."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1010
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Toz kapağı park edilmiş."
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1013
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Toz kapağı park ediliyor…"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1016
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Toz kapağı parktan çıkıyor…"
 
-#: ekos/capture/sequencejobstate.cpp:1012
+#: ekos/capture/sequencejobstate.cpp:1019
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Toz kapağı durumu bilinmiyor."
@@ -24866,38 +24866,38 @@ msgstr "INDI Sunucusu"
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "%2 kapısında %1 konumundaki INDI sunucusuna bağlanılıyor…"
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Uzak INDI Web Sunucusu üzerinde profil başlatılamadı."
 
-#: ekos/manager.cpp:1161
+#: ekos/manager.cpp:1162
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "Uzak INDI Web Sunucusu üzerinde profil başlatılıyor…"
 
-#: ekos/manager.cpp:1174
+#: ekos/manager.cpp:1175
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "Uzak INDI Web Sunucusu ile bağlantı kuruluyor…"
 
-#: ekos/manager.cpp:1193
+#: ekos/manager.cpp:1194
 #, kde-format
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "Uyarı: INDI Web Sunucusu %1:%2 konumunda çevrimiçi değil."
 
-#: ekos/manager.cpp:1234
+#: ekos/manager.cpp:1235
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr "INDI hizmetleri %1 numaralı kapıda başlatıldı."
 
-#: ekos/manager.cpp:1237
+#: ekos/manager.cpp:1238
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr ""
 "INDI hizmetleri %1 numaralı kapıda başlatıldı. Lütfen aygıtları bağlayın."
 
-#: ekos/manager.cpp:1242
+#: ekos/manager.cpp:1243
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
@@ -24906,34 +24906,34 @@ msgstr ""
 "INDI hizmetleri başlatıldı. Uzak INDI sunucusu %1:%2 bağlantısı başarılı. "
 "Aygıtlar bekleniyor…"
 
-#: ekos/manager.cpp:1273
+#: ekos/manager.cpp:1275
 #, kde-format
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Yerel INDI sunucusu %1:%2 bağlantısı yapılamadı"
 
-#: ekos/manager.cpp:1275
+#: ekos/manager.cpp:1277
 #, kde-format
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Uzak INDI sunucusu %1:%2 bağlantısı yapılamadı"
 
-#: ekos/manager.cpp:1288
+#: ekos/manager.cpp:1290
 #, kde-format
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "Yerel INDI sunucusu %1:%2 bağlantısı koptu"
 
-#: ekos/manager.cpp:1290
+#: ekos/manager.cpp:1292
 #, kde-format
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "Uzak INDI sunucusu %1:%2 bağlantısı koptu"
 
-#: ekos/manager.cpp:1353
+#: ekos/manager.cpp:1355
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
 msgstr ""
 "%1 bağlantısı yapılamadı. Lütfen aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1355
+#: ekos/manager.cpp:1357
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -24944,7 +24944,7 @@ msgstr ""
 "%1\n"
 "Her bir aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1383
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -24955,13 +24955,13 @@ msgstr ""
 "%1\n"
 "Lütfen, aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1387 ekos/manager.cpp:1395 ekos/manager.cpp:1428
-#: ekos/manager.cpp:1436
+#: ekos/manager.cpp:1389 ekos/manager.cpp:1397 ekos/manager.cpp:1430
+#: ekos/manager.cpp:1438
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Ekos başlangıç hatası"
 
-#: ekos/manager.cpp:1391
+#: ekos/manager.cpp:1393
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -24972,7 +24972,7 @@ msgstr ""
 "%1\n"
 "Her bir aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1424
+#: ekos/manager.cpp:1426
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -24983,7 +24983,7 @@ msgstr ""
 "%1\n"
 "Aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1432
+#: ekos/manager.cpp:1434
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -24994,32 +24994,32 @@ msgstr ""
 "%1\n"
 "Her bir aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1490
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "INDI aygıtları bağlanıyor…"
 
-#: ekos/manager.cpp:1509
+#: ekos/manager.cpp:1511
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "INDI aygıtları bağlantısı kesiliyor…"
 
-#: ekos/manager.cpp:1549
+#: ekos/manager.cpp:1551
 #, kde-format
 msgid "INDI services stopped."
 msgstr "INDI hizmetleri durduruldu."
 
-#: ekos/manager.cpp:1615
+#: ekos/manager.cpp:1617
 #, kde-format
 msgid "Remote devices established."
 msgstr "Uzak aygıtlar bulundu."
 
-#: ekos/manager.cpp:1618
+#: ekos/manager.cpp:1620
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "Uzak aygıtlar bulundu. Lütfen aygıtları bağlayın."
 
-#: ekos/manager.cpp:1682
+#: ekos/manager.cpp:1684
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
@@ -25028,113 +25028,113 @@ msgstr ""
 "%1 bağlanamadı.\n"
 "Her bir aygıtın bağlı ve açık olduğundan emin olun."
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1691
 #, kde-format
 msgid "%1 is disconnected."
 msgstr "%1 bağlantısı kesildi."
 
-#: ekos/manager.cpp:1710 ekos/manager.cpp:1719 ekos/manager.cpp:1752
+#: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
 #: indi/indistd.cpp:718
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 çevrimiçi."
 
-#: ekos/manager.cpp:1727
+#: ekos/manager.cpp:1729
 #, kde-format
 msgid "%1 filter is online."
 msgstr "%1 süzgeci çevrimiçi."
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1738
 #, kde-format
 msgid "%1 focuser is online."
 msgstr "%1 odaklayıcısı çevrimiçi."
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1745
 #, kde-format
 msgid "Rotator %1 is online."
 msgstr "Döndürücü %1 çevrimiçi."
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1761
 #, kde-format
 msgid "%1 Weather is online."
 msgstr "%1 hava durumu çevrimiçi."
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1768
 #, kde-format
 msgid "%1 GPS is online."
 msgstr "%1 GPS çevrimiçi."
 
-#: ekos/manager.cpp:1775
+#: ekos/manager.cpp:1777
 #, kde-format
 msgid "%1 Dust cap is online."
 msgstr "%1 toz kapağı çevrimiçi."
 
-#: ekos/manager.cpp:1782
+#: ekos/manager.cpp:1784
 #, kde-format
 msgid "%1 Light box is online."
 msgstr "%1 ışık kutusu çevrimiçi."
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1942
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 çevrimdışı."
 
-#: ekos/manager.cpp:2563
+#: ekos/manager.cpp:2565
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "%1 üzerinden kılavuz kapısı hazır."
 
-#: ekos/manager.cpp:2752
+#: ekos/manager.cpp:2754
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Bu profili silmek istediğinizden emin misiniz?"
 
-#: ekos/manager.cpp:2753
+#: ekos/manager.cpp:2755
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Silmeyi Onayla"
 
-#: ekos/manager.cpp:2805
+#: ekos/manager.cpp:2807
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "Site konumu %1 olarak güncellendi."
 
-#: ekos/manager.cpp:2807
+#: ekos/manager.cpp:2809
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "Site konumu %1 olarak güncellenemedi. Şehir bulunamadı."
 
-#: ekos/manager.cpp:3080
+#: ekos/manager.cpp:3082
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "%1 için hata ayıklama günlüğü etkinleştiriliyor…"
 
-#: ekos/manager.cpp:3088
+#: ekos/manager.cpp:3090
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "%1 için hata ayıklama günlüğü devre dışı bırakılıyor…"
 
-#: ekos/manager.cpp:3116
+#: ekos/manager.cpp:3118
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "%1 için hata ayıklama günlüğü yeniden etkinleştiriliyor…"
 
-#: ekos/manager.cpp:3128
+#: ekos/manager.cpp:3130
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "%1 için hata ayıklama günlüğü yeniden devre dışı bırakılıyor…"
 
-#: ekos/manager.cpp:3857
+#: ekos/manager.cpp:3859
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Önizleme kaynağı dış olarak ayarlandı"
 
-#: ekos/manager.cpp:3864
+#: ekos/manager.cpp:3866
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Önizleme kaynağı iç olarak ayarlandı"
 
-#: ekos/manager.cpp:3871
+#: ekos/manager.cpp:3873
 #, kde-format
 msgid "Received external preview file"
 msgstr "Dış önizleme dosyası alındı"
@@ -32765,58 +32765,49 @@ msgid "Weight used in stacking"
 msgstr "Yığmada kullanılan ağırlık"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "LiveStack Webcast Controller"
-msgstr "Canlı Yığıcı öz süreçte"
+msgstr "Canlı Yığıcı Web Yayını Denetimcisi"
 
 #: fitsviewer/fitsstackwebcast.cpp:48
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select LHS Logo"
-msgstr "Yıldız Seç"
+msgstr "Sol Logoyu Seç"
 
 #: fitsviewer/fitsstackwebcast.cpp:58
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select RHS Logo"
-msgstr "Yıldız Seç"
+msgstr "Sağ Logoyu Seç"
 
 #: fitsviewer/fitsstackwebcast.cpp:81
-#, fuzzy, kde-format
-#| msgid "Failed to start guider."
+#, kde-format
 msgid "Failed to start: Port %1 may be in use."
-msgstr "Kılavuz başlatılamadı."
+msgstr "Başlatılamadı: %1 numaralı kapı kullanımda olabilir."
 
 #: fitsviewer/fitsstackwebcast.cpp:385
-#, fuzzy, kde-format
-#| msgid "Solving..."
+#, kde-format
 msgid "Resolving..."
 msgstr "Çözülüyor…"
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "Bilinmeyen Tür"
+msgstr "Bilinmeyen aygıt"
 
 #: fitsviewer/fitsstackwebcast.cpp:443
-#, fuzzy, kde-format
-#| msgid "Stopped"
+#, kde-format
 msgid "Webcast Stopped"
-msgstr "Durduruldu"
+msgstr "Web yayını durduruldu"
 
 #: fitsviewer/fitsstackwebcast.cpp:508
-#, fuzzy, kde-format
-#| msgid "Unknown"
+#, kde-format
 msgid "Unknown OS"
-msgstr "Bilinmiyor"
+msgstr "Bilinmeyen işletim sistemi"
 
 #: fitsviewer/fitsstackwebcast.cpp:509
-#, fuzzy, kde-format
-#| msgid "Unknown error"
+#, kde-format
 msgid "Unknown Browser"
-msgstr "Bilinmeyen hata"
+msgstr "Bilinmeyen tarayıcı"
 
 #: fitsviewer/fitsstretchui.cpp:241
 #, kde-format
@@ -33861,12 +33852,13 @@ msgstr "Parlaklık dizini:"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, WebcastB)
 #: fitsviewer/livestacking.ui:924
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Sharpen sigma.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start / Stop Webcasting stacked images</p></body></"
 "html>"
-msgstr "<html><head/><body><p>Sigmayı keskinleştirin.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Yığılan görselleri web’den yayınlamayı başlat/durdur</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QToolButton, WebcastB)
 #. i18n: ectx: property (text), widget (QToolButton, previousYear)
@@ -34565,37 +34557,31 @@ msgstr "Vurgula"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, FitsStackWebcast)
 #: fitsviewer/livestackwebcast.ui:14
-#, fuzzy, kde-format
-#| msgid "KStars Live Stacker"
+#, kde-format
 msgid "KStars Live Stacker Webcast"
-msgstr "K Yıldızlar Canlı Yığıcı"
+msgstr "K Yıldızlar Canlı Yığıcı Web Yayını"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoRBtn)
 #: fitsviewer/livestackwebcast.ui:20
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Left-to-Right Tilt Slider</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Right) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>Soldan sağa kaydırma sürgüsü</p></body></html>"
+msgstr "<html><head/><body><p>Logo (sağ) dosyası seçicisi</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, qrLabel)
 #: fitsviewer/livestackwebcast.ui:39
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the QR code here</p></body></"
 "html>"
 msgstr ""
-"<html><head/><body><p>Değer eksenini geçerli değer erimine ölçeklendirin.</"
-"p></body></html>"
+"<html><head/><body><p>Kare kodu burada görüntülemek için web yayınını "
+"başlatın.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoLBtn)
 #: fitsviewer/livestackwebcast.ui:55
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Left) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>Adım boyutu:</p></body></html>"
+msgstr "<html><head/><body><p>Logo (sol) dosyası seçicisi</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, throttle)
 #. i18n: ectx: property (toolTip), widget (QLabel, throttleLabel)
@@ -34606,6 +34592,10 @@ msgid ""
 "bandwidth. Set the number of seconds per update. More frequent updates are "
 "discarded. Set 0 for no throttle.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>CPU ve ağ bant genişliğinden tasarruf etmek için "
+"güncellemeleri kısıtlayın. Saniye başlına yapılacak güncelleme sayısını "
+"seçin; bundan daha sık olan güncellemeler yok sayılır. Kısıtlamayı kaldırmak "
+"için 0 olarak ayarlayın.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, portLabel)
 #. i18n: ectx: property (toolTip), widget (QSpinBox, port)
@@ -34616,86 +34606,80 @@ msgid ""
 "unless you have something else using this port in which case pick 8081, etc."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Bu web yayını için kullanılacak kapı. Genellikle 8080 "
+"bu iş için iyidir; ancak bu kapıyı daha önceden kullanan bir şey varsa 8081 "
+"vb. gibi bir kapı seçebilirsiniz.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:109
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Left) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>X ekseni için uzaklaştırın.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Web yayını etkinliği için logo (sol)</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:112
 #, kde-format
 msgid "Logo L:"
-msgstr ""
+msgstr "Sol logo:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:155
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Start the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Adım boyutu:</p></body></html>"
+msgstr "<html><head/><body><p>Web yayınını başlat</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:158
-#, fuzzy, kde-format
-#| msgid "Start Scan"
+#, kde-format
 msgid "Start Webcast"
-msgstr "Taramayı Başlat"
+msgstr "Web Yayınını Başlat"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:171
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Stop the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Adım boyutu:</p></body></html>"
+msgstr "<html><head/><body><p>Web yayınını durdur</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:174
-#, fuzzy, kde-format
-#| msgid "Stop capturing"
+#, kde-format
 msgid "Stop Webcast"
-msgstr "Yakalamayı Durdur"
+msgstr "Web Yayınını Durdur"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, resetBtn)
 #: fitsviewer/livestackwebcast.ui:187
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Reset the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Adım boyutu:</p></body></html>"
+msgstr "<html><head/><body><p>Web yayınını sıfırla</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Check to display the Petzval surface.</p></body></"
-#| "html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Toggle display of webcast subcribers</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Petzval yüzeyini görüntülemek için işaretleyin.</p></"
+"<html><head/><body><p>Web yayını abonelerinin görünürlüğünü aç/kapat</p></"
 "body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:206
 #, kde-format
 msgid "Subscribers"
-msgstr ""
+msgstr "Aboneler"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoRPathDisplay)
 #: fitsviewer/livestackwebcast.ui:222
 #, kde-format
 msgid "Logo (Right) for the webcast event."
-msgstr ""
+msgstr "Web yayını etkinliği için olan logo (sağ)"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:235
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Title for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>X ekseni için yakınlaştırın.</p></body></html>"
+msgstr "<html><head/><body><p>Web yayını etkinliği başlığı</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:238 printing/pwizchartconfig.ui:141
@@ -34705,72 +34689,64 @@ msgstr "Başlık:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, urlLabel)
 #: fitsviewer/livestackwebcast.ui:254
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the URL and port here</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Değer eksenini geçerli değer erimine ölçeklendirin.</"
-"p></body></html>"
+"<html><head/><body><p>URL’yi ve kapıyı burada görüntülemek için web yayınını "
+"başlatın.</p></body></html"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoLPathDisplay)
 #: fitsviewer/livestackwebcast.ui:273
 #, kde-format
 msgid "Logo (Left) for the webcast event."
-msgstr ""
+msgstr "Web yayını etkinliği için olan logo (sol)"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:280
 #, kde-format
 msgid "Title for the webcast event."
-msgstr ""
+msgstr "Web yayını etkinliği başlığı"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:283
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "My LiveStacker Webcast"
-msgstr "Canlı Yığıcı öz süreçte"
+msgstr "Canlı yığıcım web yayını"
 
 #. i18n: ectx: property (text), widget (QLabel, throttleLabel)
 #: fitsviewer/livestackwebcast.ui:293
-#, fuzzy, kde-format
-#| msgid "Comets Update"
+#, kde-format
 msgid "Throttle Updates:"
-msgstr "Kuyruklu Yıldızlar Güncellemesi"
+msgstr "Güncellemeleri kısıtla:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:303
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Right) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>X ekseni için yakınlaştırın.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Web yayını etkinliği için olan logo (sağ)</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:306
 #, kde-format
 msgid "Logo R:"
-msgstr ""
+msgstr "Sağ logo:"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:362
-#, fuzzy, kde-format
-#| msgctxt "Constellation name (optional)"
-#| msgid "WHIP"
+#, kde-format
 msgid "IP"
-msgstr "KAMÇI"
+msgstr "IP"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "Etkinleştir"
+msgstr "Etkinlik"
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
@@ -36503,7 +36479,7 @@ msgstr "Kaide Konumu"
 msgid "Data file saved to %1"
 msgstr "Veri dosyası %1 konumuna kaydedildi"
 
-#: indi/indiwebmanager.cpp:320
+#: indi/indiwebmanager.cpp:329
 #, kde-format
 msgid "Driver %1 failed to start on the remote INDI server."
 msgstr "Uzak INDI sunucusunda %1 sürücüsü başlatılamadı."
@@ -41953,38 +41929,33 @@ msgstr "Canlı Yığma Monitörü vurgulaması"
 
 #. i18n: ectx: label, entry (fitsLSWebcastTitle), group (FITSViewer)
 #: kstars.kcfg:1948
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast title"
-msgstr "Canlı Yığma — ana düz"
+msgstr "Canlı Yığma — Web Yayını Başlığı"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoL), group (FITSViewer)
 #: kstars.kcfg:1952
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast left logo pathname"
-msgstr "Canlı Yığma — ana düz"
+msgstr "Canlı Yığma — Web Yayını Sol Logo Yolu"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoR), group (FITSViewer)
 #: kstars.kcfg:1956
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast right logo pathname"
-msgstr "Canlı Yığma — ana düz"
+msgstr "Canlı Yığma — Web Yayını Sağ Logo Yolu"
 
 #. i18n: ectx: label, entry (fitsLSWebcastPort), group (FITSViewer)
 #: kstars.kcfg:1960
-#, fuzzy, kde-format
-#| msgid "Live Stacking master dark"
+#, kde-format
 msgid "Live Stacking Webcast port number"
-msgstr "Canlı Yığma — ana karanlık"
+msgstr "Canlı Yığma — Kapı Numarası"
 
 #. i18n: ectx: label, entry (fitsLSWebcastThrottle), group (FITSViewer)
 #: kstars.kcfg:1964
-#, fuzzy, kde-format
-#| msgid "Live Stacking sharpen amount"
+#, kde-format
 msgid "Live Stacking Webcast throttle in milliseconds"
-msgstr "Canlı Yığma — keskinleştirme miktarı"
+msgstr "Canlı Yığma — Web Yayını Kısıtlaması (ms)"
 
 #. i18n: ectx: label, entry (BortleClass), group (WISettings)
 #: kstars.kcfg:1970
@@ -79842,15 +79813,14 @@ msgid "Sub-exposure calculator based on Dr Robin Glover's work"
 msgstr "Dr. Robin Glover’in çalışması temelli alt pozlama hesaplayıcısı"
 
 #: main.cpp:221
-#, fuzzy, kde-format
-#| msgid "Projection"
+#, kde-format
 msgid "Project Nayuki"
-msgstr "Projeksiyon"
+msgstr "Nayuki Projesi"
 
 #: main.cpp:221
 #, kde-format
 msgid "QR Code generator library (MIT)"
-msgstr ""
+msgstr "Kare kod üreteci kitaplığı (MIT)"
 
 #: main.cpp:232
 #, kde-format
@@ -84020,7 +83990,7 @@ msgstr "Çoklu Yıldız"
 #: skyobjects/skyobject.cpp:385
 #, kde-format
 msgid "Unknown Type"
-msgstr "Bilinmeyen Tür"
+msgstr "Bilinmeyen tür"
 
 #: skyobjects/skyobject.cpp:399
 #, kde-format

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-28 02:10+0000\n"
+"POT-Creation-Date: 2026-03-01 02:10+0000\n"
 "PO-Revision-Date: 2024-04-22 16:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -582,7 +582,7 @@ msgstr "取消"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1282 ekos/manager.cpp:1297 ekos/manager.cpp:1313
+#: ekos/manager.cpp:1284 ekos/manager.cpp:1299 ekos/manager.cpp:1315
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -5234,7 +5234,7 @@ msgstr "计算视场"
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2179
+#: ekos/manager.cpp:2181
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, kde-format
 msgid "Camera"
@@ -6465,7 +6465,7 @@ msgstr "解析器已中止。"
 
 #: ekos/align/align.cpp:2752 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2127 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2129 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
 #: ekos/scheduler/schedulerprocess.cpp:3377
 #, kde-format
@@ -10417,7 +10417,7 @@ msgstr "启动 Ekos"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2231 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2233 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, kde-format
 msgid "Align"
@@ -10429,7 +10429,7 @@ msgstr "对准"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2421 ekos/manager.ui:778
+#: ekos/manager.cpp:2423 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, kde-format
 msgid "Mount"
@@ -10518,7 +10518,7 @@ msgstr "无法显示临时图像文件： %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2275 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2277 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10530,7 +10530,7 @@ msgstr "对焦"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2496
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2498
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -12691,7 +12691,7 @@ msgstr "<html><head/><body><p>记录 Ekos Observatory 模块活动</p></body></h
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2546
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2548
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -16105,7 +16105,7 @@ msgid "Does %1 have a shutter?"
 msgstr "%1 有快门吗？"
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:473
+#: ekos/capture/sequencejobstate.cpp:477
 #, kde-format
 msgid "Dark Exposure"
 msgstr "暗场曝光"
@@ -17380,133 +17380,133 @@ msgstr "进行中"
 msgid "Complete"
 msgstr "完成"
 
-#: ekos/capture/sequencejobstate.cpp:460
+#: ekos/capture/sequencejobstate.cpp:464
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "以均匀的照明光源覆盖望远镜。"
 
-#: ekos/capture/sequencejobstate.cpp:461
+#: ekos/capture/sequencejobstate.cpp:465
 #, kde-format
 msgid "Flat Frame"
 msgstr "平场"
 
-#: ekos/capture/sequencejobstate.cpp:472
+#: ekos/capture/sequencejobstate.cpp:476
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "盖上望远镜以拍摄暗场。"
 
-#: ekos/capture/sequencejobstate.cpp:510 ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "防尘盖开启中..."
 
-#: ekos/capture/sequencejobstate.cpp:510
+#: ekos/capture/sequencejobstate.cpp:514
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "防尘盖关闭中..."
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "打开 Light box 的灯光..."
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
-#: ekos/capture/sequencejobstate.cpp:705
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:709
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "关闭 Light box 的灯光..."
 
-#: ekos/capture/sequencejobstate.cpp:541 ekos/capture/sequencejobstate.cpp:619
+#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "赤道仪归位失败，终止..."
 
-#: ekos/capture/sequencejobstate.cpp:550
+#: ekos/capture/sequencejobstate.cpp:554
 #, kde-format
 msgid "Unparking mount..."
 msgstr "打开圆顶……"
 
-#: ekos/capture/sequencejobstate.cpp:559
+#: ekos/capture/sequencejobstate.cpp:563
 #, kde-format
 msgid "Mount unparked."
 msgstr "赤道仪启动完毕。"
 
-#: ekos/capture/sequencejobstate.cpp:572
+#: ekos/capture/sequencejobstate.cpp:576
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "支架旋转到 wall position (az =%1 alt =%2)"
 
-#: ekos/capture/sequencejobstate.cpp:584
+#: ekos/capture/sequencejobstate.cpp:588
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr "转到 wall position 已完成，停止跟踪。"
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:592
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "转到 wall position 已完成，停止跟踪。"
 
-#: ekos/capture/sequencejobstate.cpp:628
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "拍摄校准帧前先归位赤道仪..."
 
-#: ekos/capture/sequencejobstate.cpp:647
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "归位圆顶失败，终止..."
 
-#: ekos/capture/sequencejobstate.cpp:657
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "拍摄校准帧前先归位圆顶..."
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:968
 #, kde-format
 msgid "Light box light turned on."
 msgstr "灯箱光源已开启。"
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:971
 #, kde-format
 msgid "Light box light turned off."
 msgstr "灯箱光源已关闭。"
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:974
 #, kde-format
 msgid "Light box busy."
 msgstr "灯箱繁忙。"
 
-#: ekos/capture/sequencejobstate.cpp:970
+#: ekos/capture/sequencejobstate.cpp:977
 #, kde-format
 msgid "Light box error."
 msgstr "灯箱错误。"
 
-#: ekos/capture/sequencejobstate.cpp:994
+#: ekos/capture/sequencejobstate.cpp:1001
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "防尘盖遇到错误。"
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1007
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "防尘盖闲置中。"
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1010
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "防尘盖已归位。"
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1013
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "防尘盖归位中……"
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1016
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "防尘盖取消归位中..."
 
-#: ekos/capture/sequencejobstate.cpp:1012
+#: ekos/capture/sequencejobstate.cpp:1019
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "防尘盖状态未知。"
@@ -23942,70 +23942,70 @@ msgstr "INDI 服务器"
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "正在连接远程 INDI 服务器 %1 的端口 %2 ..."
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "在远程 INDI 网页管理器上启动配置文件失败。"
 
-#: ekos/manager.cpp:1161
+#: ekos/manager.cpp:1162
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "正在远程 INDI 网页管理器启动配置文件..."
 
-#: ekos/manager.cpp:1174
+#: ekos/manager.cpp:1175
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "正在与远程 INDI 网页管理器建立通信..."
 
-#: ekos/manager.cpp:1193
+#: ekos/manager.cpp:1194
 #, kde-format
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "错误：%1:%2 上没有在线的 INDI 网络管理器"
 
-#: ekos/manager.cpp:1234
+#: ekos/manager.cpp:1235
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr "INDI 服务在端口 %1 启动。"
 
-#: ekos/manager.cpp:1237
+#: ekos/manager.cpp:1238
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr "INDI 服务在端口 %1 启动。请连接设备。"
 
-#: ekos/manager.cpp:1242
+#: ekos/manager.cpp:1243
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
 "Waiting for devices..."
 msgstr "INDI 服务已启动。连接到 INDI 远程服务器 %1:%2 成功。等待设备..."
 
-#: ekos/manager.cpp:1273
+#: ekos/manager.cpp:1275
 #, kde-format
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "无法连接到本地 INDI  服务器 %1:%2"
 
-#: ekos/manager.cpp:1275
+#: ekos/manager.cpp:1277
 #, kde-format
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "无法连接到远程 INDI  服务器 %1:%2"
 
-#: ekos/manager.cpp:1288
+#: ekos/manager.cpp:1290
 #, kde-format
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "断开与本地INDI服务器%1:%2 的连接"
 
-#: ekos/manager.cpp:1290
+#: ekos/manager.cpp:1292
 #, kde-format
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "断开与远程服务器 %1:%2 的连接"
 
-#: ekos/manager.cpp:1353
+#: ekos/manager.cpp:1355
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
 msgstr "未能连接到 %1。请确认设备已连接且开启电源。"
 
-#: ekos/manager.cpp:1355
+#: ekos/manager.cpp:1357
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -24016,7 +24016,7 @@ msgstr ""
 "%1\n"
 "请确认每个设备都连上且开启电源。"
 
-#: ekos/manager.cpp:1383
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -24024,13 +24024,13 @@ msgid ""
 "Please ensure the device is connected and powered on."
 msgstr "无法创建：%1 请确保设备已连接并通电。"
 
-#: ekos/manager.cpp:1387 ekos/manager.cpp:1395 ekos/manager.cpp:1428
-#: ekos/manager.cpp:1436
+#: ekos/manager.cpp:1389 ekos/manager.cpp:1397 ekos/manager.cpp:1430
+#: ekos/manager.cpp:1438
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Ekos 启动错误"
 
-#: ekos/manager.cpp:1391
+#: ekos/manager.cpp:1393
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -24038,7 +24038,7 @@ msgid ""
 "Please ensure each device is connected and powered on."
 msgstr "无法创建以下设备：%1 请确保每台设备已连接并通电。"
 
-#: ekos/manager.cpp:1424
+#: ekos/manager.cpp:1426
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -24046,7 +24046,7 @@ msgid ""
 "Please ensure the device is connected and powered on."
 msgstr "无法远程创建：%1 请确保设备已连接并通电。"
 
-#: ekos/manager.cpp:1432
+#: ekos/manager.cpp:1434
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -24054,32 +24054,32 @@ msgid ""
 "Please ensure each device is connected and powered on."
 msgstr "无法远程创建以下设备：%1 请确保每台设备已连接并通电。"
 
-#: ekos/manager.cpp:1490
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "连接 INDI 设备..."
 
-#: ekos/manager.cpp:1509
+#: ekos/manager.cpp:1511
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "断开 INDI 设备..."
 
-#: ekos/manager.cpp:1549
+#: ekos/manager.cpp:1551
 #, kde-format
 msgid "INDI services stopped."
 msgstr "INDI 服务已停止。"
 
-#: ekos/manager.cpp:1615
+#: ekos/manager.cpp:1617
 #, kde-format
 msgid "Remote devices established."
 msgstr "远程设备创建成功。"
 
-#: ekos/manager.cpp:1618
+#: ekos/manager.cpp:1620
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "远程设备已建立。请连接设备。"
 
-#: ekos/manager.cpp:1682
+#: ekos/manager.cpp:1684
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
@@ -24088,113 +24088,113 @@ msgstr ""
 "%1 连接失败。\n"
 "请确保设备已连接并开启。"
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1691
 #, kde-format
 msgid "%1 is disconnected."
 msgstr "%1 已断开连接。"
 
-#: ekos/manager.cpp:1710 ekos/manager.cpp:1719 ekos/manager.cpp:1752
+#: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
 #: indi/indistd.cpp:718
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 在线。"
 
-#: ekos/manager.cpp:1727
+#: ekos/manager.cpp:1729
 #, kde-format
 msgid "%1 filter is online."
 msgstr "%1 滤镜在线。"
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1738
 #, kde-format
 msgid "%1 focuser is online."
 msgstr "%1 调焦器在线。"
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1745
 #, kde-format
 msgid "Rotator %1 is online."
 msgstr "旋像器 %1 在线中。"
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1761
 #, kde-format
 msgid "%1 Weather is online."
 msgstr "%1 Weather 已上线。"
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1768
 #, kde-format
 msgid "%1 GPS is online."
 msgstr "%1 GPS 在线中。"
 
-#: ekos/manager.cpp:1775
+#: ekos/manager.cpp:1777
 #, kde-format
 msgid "%1 Dust cap is online."
 msgstr "%1 防尘盖已上线。"
 
-#: ekos/manager.cpp:1782
+#: ekos/manager.cpp:1784
 #, kde-format
 msgid "%1 Light box is online."
 msgstr "%1 灯箱已上线。"
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1942
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 离线。"
 
-#: ekos/manager.cpp:2563
+#: ekos/manager.cpp:2565
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "端口 %1 的导星器已就绪。"
 
-#: ekos/manager.cpp:2752
+#: ekos/manager.cpp:2754
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "您确定要删除此配置文件吗？"
 
-#: ekos/manager.cpp:2753
+#: ekos/manager.cpp:2755
 #, kde-format
 msgid "Confirm Delete"
 msgstr "确认删除"
 
-#: ekos/manager.cpp:2805
+#: ekos/manager.cpp:2807
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "站址更新至 %1。"
 
-#: ekos/manager.cpp:2807
+#: ekos/manager.cpp:2809
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "更新站址至 %1 失败。未能找到城市。"
 
-#: ekos/manager.cpp:3080
+#: ekos/manager.cpp:3082
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "为%1启用调试日志记录"
 
-#: ekos/manager.cpp:3088
+#: ekos/manager.cpp:3090
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "为%1禁用调试日志"
 
-#: ekos/manager.cpp:3116
+#: ekos/manager.cpp:3118
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "为%1重新启用调试日志"
 
-#: ekos/manager.cpp:3128
+#: ekos/manager.cpp:3130
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "为%1重新禁用调试日志"
 
-#: ekos/manager.cpp:3857
+#: ekos/manager.cpp:3859
 #, kde-format
 msgid "Preview source set to external"
 msgstr "预览源设置为外部"
 
-#: ekos/manager.cpp:3864
+#: ekos/manager.cpp:3866
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "预览源重置为内部"
 
-#: ekos/manager.cpp:3871
+#: ekos/manager.cpp:3873
 #, kde-format
 msgid "Received external preview file"
 msgstr "收到外部预览文件"
@@ -31519,58 +31519,49 @@ msgid "Weight used in stacking"
 msgstr "叠图时使用的权重"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "LiveStack Webcast Controller"
-msgstr "实时堆叠器进程"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:48
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select LHS Logo"
-msgstr "选择星点"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:58
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select RHS Logo"
-msgstr "选择星点"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:81
-#, fuzzy, kde-format
-#| msgid "Failed to start guider."
+#, kde-format
 msgid "Failed to start: Port %1 may be in use."
-msgstr "启动导星失败。"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:385
-#, fuzzy, kde-format
-#| msgid "Solving..."
+#, kde-format
 msgid "Resolving..."
-msgstr "解析中..."
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "未知类型"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:443
-#, fuzzy, kde-format
-#| msgid "Stopped"
+#, kde-format
 msgid "Webcast Stopped"
-msgstr "已终止"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:508
-#, fuzzy, kde-format
-#| msgid "Unknown"
+#, kde-format
 msgid "Unknown OS"
-msgstr "未知算法"
+msgstr ""
 
 #: fitsviewer/fitsstackwebcast.cpp:509
-#, fuzzy, kde-format
-#| msgid "Unknown error"
+#, kde-format
 msgid "Unknown Browser"
-msgstr "未知的错误"
+msgstr ""
 
 #: fitsviewer/fitsstretchui.cpp:241
 #, kde-format
@@ -32580,12 +32571,11 @@ msgstr "亮度通道目录："
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, WebcastB)
 #: fitsviewer/livestacking.ui:924
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Sharpen sigma.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start / Stop Webcasting stacked images</p></body></"
 "html>"
-msgstr "<html><head/><body><p>锐化 Sigma。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QToolButton, WebcastB)
 #. i18n: ectx: property (text), widget (QToolButton, previousYear)
@@ -33252,35 +33242,29 @@ msgstr "突出显示"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, FitsStackWebcast)
 #: fitsviewer/livestackwebcast.ui:14
-#, fuzzy, kde-format
-#| msgid "KStars Live Stacker"
+#, kde-format
 msgid "KStars Live Stacker Webcast"
-msgstr "KStars 实时堆叠器"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoRBtn)
 #: fitsviewer/livestackwebcast.ui:20
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Left-to-Right Tilt Slider</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Right) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>左-右 倾斜滑条</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLabel, qrLabel)
 #: fitsviewer/livestackwebcast.ui:39
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the QR code here</p></body></"
 "html>"
-msgstr "<html><head/><body><p>缩放数值轴对当前值范围。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoLBtn)
 #: fitsviewer/livestackwebcast.ui:55
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Left) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>步长:</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, throttle)
 #. i18n: ectx: property (toolTip), widget (QLabel, throttleLabel)
@@ -33304,11 +33288,10 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:109
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Left) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>缩小 X 轴。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:112
@@ -33318,48 +33301,40 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:155
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Start the webcast</p></body></html>"
-msgstr "<html><head/><body><p>步长:</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:158
-#, fuzzy, kde-format
-#| msgid "Start Scan"
+#, kde-format
 msgid "Start Webcast"
-msgstr "开始扫描"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:171
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Stop the webcast</p></body></html>"
-msgstr "<html><head/><body><p>步长:</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:174
-#, fuzzy, kde-format
-#| msgid "Stop capturing"
+#, kde-format
 msgid "Stop Webcast"
-msgstr "停止拍摄中"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, resetBtn)
 #: fitsviewer/livestackwebcast.ui:187
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Reset the webcast</p></body></html>"
-msgstr "<html><head/><body><p>步长:</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Check to display the Petzval surface.</p></body></"
-#| "html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Toggle display of webcast subcribers</p></body></html>"
-msgstr "<html><head/><body><p>选中以显示 Petzval 曲面。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:206
@@ -33375,10 +33350,9 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:235
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Title for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>放大 X 轴。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:238 printing/pwizchartconfig.ui:141
@@ -33388,14 +33362,11 @@ msgstr "头衔："
 
 #. i18n: ectx: property (toolTip), widget (QLabel, urlLabel)
 #: fitsviewer/livestackwebcast.ui:254
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the URL and port here</p></"
 "body></html>"
-msgstr "<html><head/><body><p>缩放数值轴对当前值范围。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoLPathDisplay)
 #: fitsviewer/livestackwebcast.ui:273
@@ -33411,25 +33382,22 @@ msgstr ""
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:283
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "My LiveStacker Webcast"
-msgstr "实时堆叠器进程"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, throttleLabel)
 #: fitsviewer/livestackwebcast.ui:293
-#, fuzzy, kde-format
-#| msgid "Comets Update"
+#, kde-format
 msgid "Throttle Updates:"
-msgstr "彗星更新"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:303
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Right) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>放大 X 轴。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:306
@@ -33439,19 +33407,15 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:362
-#, fuzzy, kde-format
-#| msgctxt "Constellation name (optional)"
-#| msgid "WHIP"
+#, kde-format
 msgid "IP"
-msgstr "WHIP"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "启动"
+msgstr ""
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
@@ -35136,7 +35100,7 @@ msgstr "支架位置"
 msgid "Data file saved to %1"
 msgstr "数据文件已保存到 %1"
 
-#: indi/indiwebmanager.cpp:320
+#: indi/indiwebmanager.cpp:329
 #, kde-format
 msgid "Driver %1 failed to start on the remote INDI server."
 msgstr "远程 INDI 服务器上的驱动 %1 启动失败。"
@@ -40256,38 +40220,33 @@ msgstr "实时堆叠监视器高亮"
 
 #. i18n: ectx: label, entry (fitsLSWebcastTitle), group (FITSViewer)
 #: kstars.kcfg:1948
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast title"
-msgstr "实时堆叠主平场"
+msgstr ""
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoL), group (FITSViewer)
 #: kstars.kcfg:1952
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast left logo pathname"
-msgstr "实时堆叠主平场"
+msgstr ""
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoR), group (FITSViewer)
 #: kstars.kcfg:1956
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast right logo pathname"
-msgstr "实时堆叠主平场"
+msgstr ""
 
 #. i18n: ectx: label, entry (fitsLSWebcastPort), group (FITSViewer)
 #: kstars.kcfg:1960
-#, fuzzy, kde-format
-#| msgid "Live Stacking master dark"
+#, kde-format
 msgid "Live Stacking Webcast port number"
-msgstr "实时堆叠主暗场"
+msgstr ""
 
 #. i18n: ectx: label, entry (fitsLSWebcastThrottle), group (FITSViewer)
 #: kstars.kcfg:1964
-#, fuzzy, kde-format
-#| msgid "Live Stacking sharpen amount"
+#, kde-format
 msgid "Live Stacking Webcast throttle in milliseconds"
-msgstr "实时堆叠锐化强度"
+msgstr ""
 
 #. i18n: ectx: label, entry (BortleClass), group (WISettings)
 #: kstars.kcfg:1970
@@ -77852,10 +77811,9 @@ msgid "Sub-exposure calculator based on Dr Robin Glover's work"
 msgstr "基于 Robin Glover 博士研究的子曝光计算器"
 
 #: main.cpp:221
-#, fuzzy, kde-format
-#| msgid "Projection"
+#, kde-format
 msgid "Project Nayuki"
-msgstr "投影"
+msgstr ""
 
 #: main.cpp:221
 #, kde-format

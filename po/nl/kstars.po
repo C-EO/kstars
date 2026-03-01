@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-28 02:10+0000\n"
-"PO-Revision-Date: 2026-02-23 11:34+0100\n"
+"POT-Creation-Date: 2026-03-01 02:10+0000\n"
+"PO-Revision-Date: 2026-02-28 12:08+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -595,7 +595,7 @@ msgstr "Annuleren"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1282 ekos/manager.cpp:1297 ekos/manager.cpp:1313
+#: ekos/manager.cpp:1284 ekos/manager.cpp:1299 ekos/manager.cpp:1315
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -5328,7 +5328,7 @@ msgstr "GV berekenen"
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2179
+#: ekos/manager.cpp:2181
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, kde-format
 msgid "Camera"
@@ -6624,7 +6624,7 @@ msgstr "Oplosser afgebroken."
 
 #: ekos/align/align.cpp:2752 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:309 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2127 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1242 ekos/manager.cpp:2129 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
 #: ekos/scheduler/schedulerprocess.cpp:3377
 #, kde-format
@@ -10741,7 +10741,7 @@ msgstr "Ekos starten"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2231 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2233 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, kde-format
 msgid "Align"
@@ -10753,7 +10753,7 @@ msgstr "Uitlijnen"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2421 ekos/manager.ui:778
+#: ekos/manager.cpp:2423 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, kde-format
 msgid "Mount"
@@ -10845,7 +10845,7 @@ msgstr "Kan tijdelijk afbeeldingsbestand niet tonen: %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2275 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2277 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10857,7 +10857,7 @@ msgstr "Scherpstellen"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2496
+#: ekos/guide/guide.cpp:59 ekos/guide/guide.ui:263 ekos/manager.cpp:2498
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -13135,7 +13135,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2546
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2548
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -16704,7 +16704,7 @@ msgid "Does %1 have a shutter?"
 msgstr "Heeft %1 een sluiter?"
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:473
+#: ekos/capture/sequencejobstate.cpp:477
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Dark Exposure"
@@ -18032,133 +18032,133 @@ msgstr "In uitvoering"
 msgid "Complete"
 msgstr "Voltooid"
 
-#: ekos/capture/sequencejobstate.cpp:460
+#: ekos/capture/sequencejobstate.cpp:464
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Dek de telescoop af met een gelijkmatige lichtbron."
 
-#: ekos/capture/sequencejobstate.cpp:461
+#: ekos/capture/sequencejobstate.cpp:465
 #, kde-format
 msgid "Flat Frame"
 msgstr "Flat Frame"
 
-#: ekos/capture/sequencejobstate.cpp:472
+#: ekos/capture/sequencejobstate.cpp:476
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Plaats lenskap op telescoop voor een dark exposure."
 
-#: ekos/capture/sequencejobstate.cpp:510 ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "Stofkap wordt uit parkeerstand gehaald..."
 
-#: ekos/capture/sequencejobstate.cpp:510
+#: ekos/capture/sequencejobstate.cpp:514
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Stofkap wordt geparkeerd..."
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Licht van lichtbox aanzetten..."
 
-#: ekos/capture/sequencejobstate.cpp:522 ekos/capture/sequencejobstate.cpp:601
-#: ekos/capture/sequencejobstate.cpp:705
+#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:709
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Licht van lichtbox uitzetten..."
 
-#: ekos/capture/sequencejobstate.cpp:541 ekos/capture/sequencejobstate.cpp:619
+#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Opstelling parkeren mislukt, wordt afgebroken..."
 
-#: ekos/capture/sequencejobstate.cpp:550
+#: ekos/capture/sequencejobstate.cpp:554
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Opstelling uit parkeerstand halen..."
 
-#: ekos/capture/sequencejobstate.cpp:559
+#: ekos/capture/sequencejobstate.cpp:563
 #, kde-format
 msgid "Mount unparked."
 msgstr "Opstelling is niet in parkeerstand."
 
-#: ekos/capture/sequencejobstate.cpp:572
+#: ekos/capture/sequencejobstate.cpp:576
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "Opstelling terugdraaien naar muurpositie (az =%1 alt =%2)"
 
-#: ekos/capture/sequencejobstate.cpp:584
+#: ekos/capture/sequencejobstate.cpp:588
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr "Naar muurpositie draaien voltooid, volgen stoppen."
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:592
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Naar muurpositie draaien voltooid, volgen is gestopt."
 
-#: ekos/capture/sequencejobstate.cpp:628
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Opstelling parkeren vóór kalibratie opnemen van frames..."
 
-#: ekos/capture/sequencejobstate.cpp:647
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Koepel parkeren mislukt, wordt afgebroken..."
 
-#: ekos/capture/sequencejobstate.cpp:657
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Koepel parkeren vóór kalibratie opnemen van frames..."
 
-#: ekos/capture/sequencejobstate.cpp:961
+#: ekos/capture/sequencejobstate.cpp:968
 #, kde-format
 msgid "Light box light turned on."
 msgstr "Licht van lichtbox aangezet."
 
-#: ekos/capture/sequencejobstate.cpp:964
+#: ekos/capture/sequencejobstate.cpp:971
 #, kde-format
 msgid "Light box light turned off."
 msgstr "Licht van lichtbox uitgezet."
 
-#: ekos/capture/sequencejobstate.cpp:967
+#: ekos/capture/sequencejobstate.cpp:974
 #, kde-format
 msgid "Light box busy."
 msgstr "Lichtbox is bezig."
 
-#: ekos/capture/sequencejobstate.cpp:970
+#: ekos/capture/sequencejobstate.cpp:977
 #, kde-format
 msgid "Light box error."
 msgstr "Fout met lichtbox."
 
-#: ekos/capture/sequencejobstate.cpp:994
+#: ekos/capture/sequencejobstate.cpp:1001
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Stofkapfout gebeurd."
 
-#: ekos/capture/sequencejobstate.cpp:1000
+#: ekos/capture/sequencejobstate.cpp:1007
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Stofkap heeft geen werk."
 
-#: ekos/capture/sequencejobstate.cpp:1003
+#: ekos/capture/sequencejobstate.cpp:1010
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Stofkap in geparkeerd."
 
-#: ekos/capture/sequencejobstate.cpp:1006
+#: ekos/capture/sequencejobstate.cpp:1013
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Stofkap wordt geparkeerd..."
 
-#: ekos/capture/sequencejobstate.cpp:1009
+#: ekos/capture/sequencejobstate.cpp:1016
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Stofkap wordt uit parkeerstand gehaald..."
 
-#: ekos/capture/sequencejobstate.cpp:1012
+#: ekos/capture/sequencejobstate.cpp:1019
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Status van stofkap onbekend."
@@ -24946,37 +24946,37 @@ msgstr "INDI Server"
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "Verbinden met INDI-server op afstand op %1 met poort %2..."
 
-#: ekos/manager.cpp:1157
+#: ekos/manager.cpp:1158
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Profiel aanmaken op Web Manager van INDI op afstand is mislukt!"
 
-#: ekos/manager.cpp:1161
+#: ekos/manager.cpp:1162
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "Profiel aanmaken op Web Manager van INDI op afstand ..."
 
-#: ekos/manager.cpp:1174
+#: ekos/manager.cpp:1175
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "Communicatie tot stand brengen met externe INDI Web Manager..."
 
-#: ekos/manager.cpp:1193
+#: ekos/manager.cpp:1194
 #, kde-format
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "Fout: INDI Web Manager is niet online op %1:%2"
 
-#: ekos/manager.cpp:1234
+#: ekos/manager.cpp:1235
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr "INDI-diensten gestart op poort %1."
 
-#: ekos/manager.cpp:1237
+#: ekos/manager.cpp:1238
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr "INDI is gestart op poort %1. U kunt nu apparaten aankoppelen."
 
-#: ekos/manager.cpp:1242
+#: ekos/manager.cpp:1243
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
@@ -24985,27 +24985,27 @@ msgstr ""
 "INDI-diensten zijn gestart. Verbinden met INDI-server %1:%2 op afstand is "
 "gelukt. Wacht nu op apparaten..."
 
-#: ekos/manager.cpp:1273
+#: ekos/manager.cpp:1275
 #, kde-format
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Verbinden met lokale INDI-server %1:%2 is mislukt."
 
-#: ekos/manager.cpp:1275
+#: ekos/manager.cpp:1277
 #, kde-format
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Verbinden met INDI-server %1:%2 op afstand is mislukt."
 
-#: ekos/manager.cpp:1288
+#: ekos/manager.cpp:1290
 #, kde-format
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "Verbinding met lokale INDI-server %1:%2 verbroken."
 
-#: ekos/manager.cpp:1290
+#: ekos/manager.cpp:1292
 #, kde-format
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "Verbinden met INDI-server %1:%2 op afstand is mislukt."
 
-#: ekos/manager.cpp:1353
+#: ekos/manager.cpp:1355
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
@@ -25013,7 +25013,7 @@ msgstr ""
 "Verbinden naar %1 is mislukt. Controleer of dit apparaat is aangesloten en "
 "aangezet."
 
-#: ekos/manager.cpp:1355
+#: ekos/manager.cpp:1357
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -25024,7 +25024,7 @@ msgstr ""
 "%1\n"
 "Controleer of elk apparaat is aangesloten en aangezet."
 
-#: ekos/manager.cpp:1383
+#: ekos/manager.cpp:1385
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -25035,13 +25035,13 @@ msgstr ""
 "%1\n"
 "Controleer of dit apparaat is aangesloten en aangezet."
 
-#: ekos/manager.cpp:1387 ekos/manager.cpp:1395 ekos/manager.cpp:1428
-#: ekos/manager.cpp:1436
+#: ekos/manager.cpp:1389 ekos/manager.cpp:1397 ekos/manager.cpp:1430
+#: ekos/manager.cpp:1438
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Opstartfout Ekos"
 
-#: ekos/manager.cpp:1391
+#: ekos/manager.cpp:1393
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -25052,7 +25052,7 @@ msgstr ""
 "%1\n"
 "Controleer of elk apparaat is aangesloten en aangezet."
 
-#: ekos/manager.cpp:1424
+#: ekos/manager.cpp:1426
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -25063,7 +25063,7 @@ msgstr ""
 "%1\n"
 "Controleer of dit apparaat is aangesloten en aangezet."
 
-#: ekos/manager.cpp:1432
+#: ekos/manager.cpp:1434
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -25074,32 +25074,32 @@ msgstr ""
 "%1\n"
 "Controleer of elk apparaat is aangesloten en aangezet."
 
-#: ekos/manager.cpp:1490
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "INDI-apparaten worden aangekoppeld..."
 
-#: ekos/manager.cpp:1509
+#: ekos/manager.cpp:1511
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "INDI-apparaten worden afgekoppeld...."
 
-#: ekos/manager.cpp:1549
+#: ekos/manager.cpp:1551
 #, kde-format
 msgid "INDI services stopped."
 msgstr "INDI-diensten zijn gestopt."
 
-#: ekos/manager.cpp:1615
+#: ekos/manager.cpp:1617
 #, kde-format
 msgid "Remote devices established."
 msgstr "Externe apparaten gevonden."
 
-#: ekos/manager.cpp:1618
+#: ekos/manager.cpp:1620
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "Externe apparaten gevonden. Apparaten aankoppelen aub."
 
-#: ekos/manager.cpp:1682
+#: ekos/manager.cpp:1684
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
@@ -25108,113 +25108,113 @@ msgstr ""
 "%1 kon niet verbinden.\n"
 "Controleer of dit apparaat is aangesloten en aangezet."
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1691
 #, kde-format
 msgid "%1 is disconnected."
 msgstr "%1 is niet verbonden."
 
-#: ekos/manager.cpp:1710 ekos/manager.cpp:1719 ekos/manager.cpp:1752
+#: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
 #: indi/indistd.cpp:718
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 is online."
 
-#: ekos/manager.cpp:1727
+#: ekos/manager.cpp:1729
 #, kde-format
 msgid "%1 filter is online."
 msgstr "%1 filter is online."
 
-#: ekos/manager.cpp:1736
+#: ekos/manager.cpp:1738
 #, kde-format
 msgid "%1 focuser is online."
 msgstr "%1 focusser is online."
 
-#: ekos/manager.cpp:1743
+#: ekos/manager.cpp:1745
 #, kde-format
 msgid "Rotator %1 is online."
 msgstr "Rotator %1 is online."
 
-#: ekos/manager.cpp:1759
+#: ekos/manager.cpp:1761
 #, kde-format
 msgid "%1 Weather is online."
 msgstr "%1 weer is online."
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1768
 #, kde-format
 msgid "%1 GPS is online."
 msgstr "%1 GPS is online."
 
-#: ekos/manager.cpp:1775
+#: ekos/manager.cpp:1777
 #, kde-format
 msgid "%1 Dust cap is online."
 msgstr "%1 stofkap is online."
 
-#: ekos/manager.cpp:1782
+#: ekos/manager.cpp:1784
 #, kde-format
 msgid "%1 Light box is online."
 msgstr "%1 lichtbox is online."
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1942
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 is offline."
 
-#: ekos/manager.cpp:2563
+#: ekos/manager.cpp:2565
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "Poort %1 voor volgen is gereed."
 
-#: ekos/manager.cpp:2752
+#: ekos/manager.cpp:2754
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Wilt u het profiel werkelijk wissen??"
 
-#: ekos/manager.cpp:2753
+#: ekos/manager.cpp:2755
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Wissen bevestigen"
 
-#: ekos/manager.cpp:2805
+#: ekos/manager.cpp:2807
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "Locatie bijgewerkt naar %1"
 
-#: ekos/manager.cpp:2807
+#: ekos/manager.cpp:2809
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "Bijwerken locatie naar %1 mislukt. Locatie niet gevonden."
 
-#: ekos/manager.cpp:3080
+#: ekos/manager.cpp:3082
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "Debugs loggen activeren van %1 ..."
 
-#: ekos/manager.cpp:3088
+#: ekos/manager.cpp:3090
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "Debugs loggen afsluiten van %1 ..."
 
-#: ekos/manager.cpp:3116
+#: ekos/manager.cpp:3118
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "Debugs loggen opnieuw activeren van %1 ..."
 
-#: ekos/manager.cpp:3128
+#: ekos/manager.cpp:3130
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "Debugs loggen opnieuw afsluiten van %1 ..."
 
-#: ekos/manager.cpp:3857
+#: ekos/manager.cpp:3859
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Broncode op extern ingesteld bekijken"
 
-#: ekos/manager.cpp:3864
+#: ekos/manager.cpp:3866
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Broncode reset op intern bekijken"
 
-#: ekos/manager.cpp:3871
+#: ekos/manager.cpp:3873
 #, kde-format
 msgid "Received external preview file"
 msgstr "Extern bestand ontvangen om te bekijken"
@@ -32830,58 +32830,49 @@ msgid "Weight used in stacking"
 msgstr "Gewicht gebruikt in stapelen"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "LiveStack Webcast Controller"
-msgstr "Eigen proces van Live stapelaar"
+msgstr "LiveStack Webcast Controller"
 
 #: fitsviewer/fitsstackwebcast.cpp:48
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select LHS Logo"
-msgstr "Ster electeren"
+msgstr "LHS-logo selecteren"
 
 #: fitsviewer/fitsstackwebcast.cpp:58
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select RHS Logo"
-msgstr "Ster electeren"
+msgstr "RSS-logo selecteren"
 
 #: fitsviewer/fitsstackwebcast.cpp:81
-#, fuzzy, kde-format
-#| msgid "Failed to estimate time for %1 observation job."
+#, kde-format
 msgid "Failed to start: Port %1 may be in use."
-msgstr "Schatten tijd nodig voor waarneemtaak %1 is mislukt."
+msgstr "Starten is mislukt:  poort %1 kan in gebruik zijn"
 
 #: fitsviewer/fitsstackwebcast.cpp:385
-#, fuzzy, kde-format
-#| msgid "Solving..."
+#, kde-format
 msgid "Resolving..."
-msgstr "Oplossen..."
+msgstr "Wordt opgelost..."
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "Onbekend type"
+msgstr "Onbekend apparaat"
 
 #: fitsviewer/fitsstackwebcast.cpp:443
-#, fuzzy, kde-format
-#| msgid "Stopped"
+#, kde-format
 msgid "Webcast Stopped"
-msgstr "Gestopt"
+msgstr "Webcast is gestopt"
 
 #: fitsviewer/fitsstackwebcast.cpp:508
-#, fuzzy, kde-format
-#| msgid "Unknown"
+#, kde-format
 msgid "Unknown OS"
-msgstr "Onbekend"
+msgstr "Onbekend besturingssysteem"
 
 #: fitsviewer/fitsstackwebcast.cpp:509
-#, fuzzy, kde-format
-#| msgid "Unknown error"
+#, kde-format
 msgid "Unknown Browser"
-msgstr "Onbekende fout"
+msgstr "Onbekende browser"
 
 #: fitsviewer/fitsstretchui.cpp:241
 #, kde-format
@@ -33919,12 +33910,13 @@ msgstr "Lum-map:"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, WebcastB)
 #: fitsviewer/livestacking.ui:924
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Sharpen sigma.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start / Stop Webcasting stacked images</p></body></"
 "html>"
-msgstr "<html><head/><body><p>Sigma van verscherpen.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Start / Stop webcasting van gestapelde afbeeldingen</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QToolButton, WebcastB)
 #. i18n: ectx: property (text), widget (QToolButton, previousYear)
@@ -34621,39 +34613,31 @@ msgstr " Accentuering"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, FitsStackWebcast)
 #: fitsviewer/livestackwebcast.ui:14
-#, fuzzy, kde-format
-#| msgid "KStars Live Stacker"
+#, kde-format
 msgid "KStars Live Stacker Webcast"
-msgstr "Live stapelaar van KStars"
+msgstr "Webcast van live stapelaar van KStars"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoRBtn)
 #: fitsviewer/livestackwebcast.ui:20
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Left-to-Right Tilt Slider</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Right) file chooser.</p></body></html>"
-msgstr ""
-"<html><head/><body><p>Schuifregelaar voor links-naar-rechts verschuiving</"
-"p></body></html>"
+msgstr "<html><head/><body><p>Logo (rechts) bestandskiezer.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, qrLabel)
 #: fitsviewer/livestackwebcast.ui:39
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the QR code here</p></body></"
 "html>"
 msgstr ""
-"<html><head/><body><p>Aswaarde schalen naar het huidige waardenbereik.</p></"
+"<html><head/><body><p>Start de webcast om de QR-code hier te zien</p></"
 "body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoLBtn)
 #: fitsviewer/livestackwebcast.ui:55
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Left) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>Stapgrootte:</p></body></html>"
+msgstr "<html><head/><body><p>Logo (links) bestandskiezer.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, throttle)
 #. i18n: ectx: property (toolTip), widget (QLabel, throttleLabel)
@@ -34664,6 +34648,9 @@ msgid ""
 "bandwidth. Set the number of seconds per update. More frequent updates are "
 "discarded. Set 0 for no throttle.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Beperk bijwerken om CPU- en netwerkbandbreedte te "
+"besparen. Stel het aantal seconden per update in. Frequentere updates worden "
+"genegeerd. Stel 0 in voor geen beperking.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, portLabel)
 #. i18n: ectx: property (toolTip), widget (QSpinBox, port)
@@ -34674,86 +34661,82 @@ msgid ""
 "unless you have something else using this port in which case pick 8081, etc."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>De poort die u voor de webcast moet gebruiken. Meestal "
+"is 8080 prima. Tenzij er al iets anders op deze poort actief is, kies dan "
+"8081, enzovoort.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:109
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Left) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Langs de X-as uitzoomen.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logo (links) voor het webcastevenement.</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:112
 #, kde-format
 msgid "Logo L:"
-msgstr ""
+msgstr "Logo L:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:155
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Start the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Stapgrootte:</p></body></html>"
+msgstr "<html><head/><body><p>Start de webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:158
-#, fuzzy, kde-format
-#| msgid "Start Scan"
+#, kde-format
 msgid "Start Webcast"
-msgstr "Scan starten"
+msgstr "Webcast starten"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:171
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Stop the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Stapgrootte:</p></body></html>"
+msgstr "<html><head/><body><p>Stop de webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:174
-#, fuzzy, kde-format
-#| msgid "Stop capturing"
+#, kde-format
 msgid "Stop Webcast"
-msgstr "Stop met opnemen"
+msgstr "Webcast stoppen"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, resetBtn)
 #: fitsviewer/livestackwebcast.ui:187
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Reset the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Stapgrootte:</p></body></html>"
+msgstr "<html><head/><body><p>Reset de webcast</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Check to display the Petzval surface.</p></body></"
-#| "html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Toggle display of webcast subcribers</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Dit activeren om het Petzval oppervlak te tonen</p></"
+"<html><head/><body><p>Tonen van inschrijvers van webcast omschakelen</p></"
 "body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:206
 #, kde-format
 msgid "Subscribers"
-msgstr ""
+msgstr "Ingeschrevenen"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoRPathDisplay)
 #: fitsviewer/livestackwebcast.ui:222
 #, kde-format
 msgid "Logo (Right) for the webcast event."
-msgstr ""
+msgstr "Logo (rechts) voor het webcastevenement."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:235
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Title for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Inzoomen langs de X-as</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Titel voor het webcastevenement.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:238 printing/pwizchartconfig.ui:141
@@ -34763,56 +34746,52 @@ msgstr "Titel:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, urlLabel)
 #: fitsviewer/livestackwebcast.ui:254
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the URL and port here</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Aswaarde schalen naar het huidige waardenbereik.</p></"
-"body></html>"
+"<html><head/><body><p>Start de webcast om de URL en poort hier te bekijken</"
+"p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoLPathDisplay)
 #: fitsviewer/livestackwebcast.ui:273
 #, kde-format
 msgid "Logo (Left) for the webcast event."
-msgstr ""
+msgstr "Logo (links) voor het webcastevenement."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:280
 #, kde-format
 msgid "Title for the webcast event."
-msgstr ""
+msgstr "Titel voor het webcastevenement."
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:283
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "My LiveStacker Webcast"
-msgstr "Eigen proces van Live stapelaar"
+msgstr "Webcast Mijn live-stapelaar"
 
 #. i18n: ectx: property (text), widget (QLabel, throttleLabel)
 #: fitsviewer/livestackwebcast.ui:293
-#, fuzzy, kde-format
-#| msgid "Comets Update"
+#, kde-format
 msgid "Throttle Updates:"
-msgstr "Update Kometen"
+msgstr "Bijwerken afknijpen:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:303
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Right) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Inzoomen langs de X-as</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logo (rechts) voor het webcastevenement.</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:306
 #, kde-format
 msgid "Logo R:"
-msgstr ""
+msgstr "Logo R:"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:362
@@ -34822,11 +34801,9 @@ msgstr "IP"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "Activeren"
+msgstr "Activiteit"
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
@@ -36565,7 +36542,7 @@ msgstr "Locatie opstelling"
 msgid "Data file saved to %1"
 msgstr "Gegevensbestand opgeslagen in %1"
 
-#: indi/indiwebmanager.cpp:320
+#: indi/indiwebmanager.cpp:329
 #, kde-format
 msgid "Driver %1 failed to start on the remote INDI server."
 msgstr "Starten van driver %1 op de INDI-server op afstand is mislukt."
@@ -42014,38 +41991,33 @@ msgstr "Accentuering van live stapelaar monitor"
 
 #. i18n: ectx: label, entry (fitsLSWebcastTitle), group (FITSViewer)
 #: kstars.kcfg:1948
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast title"
-msgstr "Live stapelen van hoofdvlak"
+msgstr "Webcasttitel van Live-stapelaar"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoL), group (FITSViewer)
 #: kstars.kcfg:1952
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast left logo pathname"
-msgstr "Live stapelen van hoofdvlak"
+msgstr "Padnaam van linker logo van webcast van live-stapelaar"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoR), group (FITSViewer)
 #: kstars.kcfg:1956
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast right logo pathname"
-msgstr "Live stapelen van hoofdvlak"
+msgstr "Padnaam van rechter logo van webcast van live-stapelaar"
 
 #. i18n: ectx: label, entry (fitsLSWebcastPort), group (FITSViewer)
 #: kstars.kcfg:1960
-#, fuzzy, kde-format
-#| msgid "Live Stacking master dark"
+#, kde-format
 msgid "Live Stacking Webcast port number"
-msgstr "Live stapelen van master donker"
+msgstr "Poortnummer van webcast van Live-stapelaar"
 
 #. i18n: ectx: label, entry (fitsLSWebcastThrottle), group (FITSViewer)
 #: kstars.kcfg:1964
-#, fuzzy, kde-format
-#| msgid "Live Stacking sharpen amount"
+#, kde-format
 msgid "Live Stacking Webcast throttle in milliseconds"
-msgstr "Live stapelen hoeveelheid verscherpen"
+msgstr "Afknijpen in milliseconden van Live-stapelaar van webcast"
 
 #. i18n: ectx: label, entry (BortleClass), group (WISettings)
 #: kstars.kcfg:1970
@@ -79897,15 +79869,14 @@ msgstr ""
 "Rekenmachine voor onderbelichting gebaseerd op werk van Dr Robin Glover"
 
 #: main.cpp:221
-#, fuzzy, kde-format
-#| msgid "Projection"
+#, kde-format
 msgid "Project Nayuki"
-msgstr "Projectie"
+msgstr "Project Nayuki"
 
 #: main.cpp:221
 #, kde-format
 msgid "QR Code generator library (MIT)"
-msgstr ""
+msgstr "QR-codegeneratorbibliotheek (MIT)"
 
 #: main.cpp:232
 #, kde-format
