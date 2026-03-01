@@ -50,6 +50,7 @@ class Weather;
 class AdaptiveOptics;
 class DustCap;
 class LightBox;
+class PAC;
 class Detector;
 class Rotator;
 class Spectrograph;
@@ -215,6 +216,7 @@ class GenericDevice : public GDInterface
         ISD::AdaptiveOptics *getAdaptiveOptics();
         ISD::DustCap *getDustCap();
         ISD::LightBox *getLightBox();
+        ISD::PAC *getPAC();
         ISD::Detector *getDetector();
         ISD::Rotator *getRotator();
         ISD::Spectrograph *getSpectrograph();
@@ -271,6 +273,7 @@ class GenericDevice : public GDInterface
         void newAdaptiveOptics(AdaptiveOptics *device);
         void newDustCap(DustCap *device);
         void newLightBox(LightBox *device);
+        void newPAC(PAC *device);
         void newDetector(Detector *device);
         void newRotator(Rotator *device);
         void newSpectrograph(Spectrograph *device);

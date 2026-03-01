@@ -1,0 +1,12 @@
+# KStars Cline Rules
+
+## General Behavior
+- Always use `read_file` to read source files before editing. Never assume file contents.
+- Always read the relevant header file before editing a `.cpp` file.
+- Prefer small, focused changes. Do not refactor unrelated code while fixing a bug or adding a feature.
+
+## Build System
+- Configure: `cmake -S . -B build -G Ninja`
+- Build: `cmake --build build -j$(nproc)`
+- Build directory is `build/` — never modify files inside it directly.
+- Check the relevant `CMakeLists.txt` before adding new source files.

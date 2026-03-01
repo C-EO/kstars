@@ -98,6 +98,7 @@ if (INDI_FOUND)
         indi/indiweather.cpp
         indi/indidustcap.cpp
         indi/indilightbox.cpp
+        indi/indipac.cpp
         indi/indiauxiliary.cpp
         indi/indidetector.cpp
         indi/indirotator.cpp
@@ -1316,6 +1317,7 @@ IF (NOT ANDROID)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.Weather.xml indi/indiweather.h ISD::Weather)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.DustCap.xml indi/indidustcap.h ISD::DustCap)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.LightBox.xml indi/indilightbox.h ISD::LightBox)
+            qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.PAC.xml indi/indipac.h ISD::PAC)
             # Ekos
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.xml ekos/manager.h Ekos::Manager)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Capture.xml ekos/capture/capture.h Ekos::Capture)
@@ -1333,6 +1335,7 @@ IF (NOT ANDROID)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.Weather.xml indi/indiweather.h ISD::Weather)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.DustCap.xml indi/indidustcap.h ISD::DustCap)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.LightBox.xml indi/indilightbox.h ISD::LightBox)
+            qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.PAC.xml indi/indipac.h ISD::PAC)
             # Ekos
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.xml ekos/manager.h Ekos::Manager)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Capture.xml ekos/capture/capture.h Ekos::Capture)

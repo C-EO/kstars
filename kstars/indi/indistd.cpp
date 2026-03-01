@@ -30,6 +30,7 @@
 #include "indiadaptiveoptics.h"
 #include "indidustcap.h"
 #include "indilightbox.h"
+#include "indipac.h"
 #include "indidetector.h"
 #include "indirotator.h"
 #include "indispectrograph.h"
@@ -1193,6 +1194,13 @@ ISD::Auxiliary *GenericDevice::getAuxiliary()
     return nullptr;
 }
 
+ISD::PAC *GenericDevice::getPAC()
+{
+    if (m_ConcreteDevices.contains(INDI::BaseDevice::PAC_INTERFACE))
+        return dynamic_cast<ISD::PAC * >(m_ConcreteDevices[INDI::BaseDevice::PAC_INTERFACE].get());
+    return nullptr;
+}
+
 bool GenericDevice::generateDevices()
 {
     auto generated = false;
@@ -1640,6 +1648,34 @@ bool GenericDevice::generateDevices()
                 {
                     aux->setProperty("dispatched", true);
                     emit newAuxiliary(aux);
+                }
+            });
+        }
+    }
+
+    // Polar Alignment Corrector (PAC)
+    if (m_DriverInterface & INDI::BaseDevice::PAC_INTERFACE &&
+            m_ConcreteDevices[INDI::BaseDevice::PAC_INTERFACE].isNull())
+    {
+        auto pac = new ISD::PAC(this);
+        pac->setObjectName("PAC:" + objectName());
+        generated = true;
+        m_ConcreteDevices[INDI::BaseDevice::PAC_INTERFACE].reset(pac);
+        pac->registeProperties();
+        if (m_Connected)
+        {
+            pac->processProperties();
+            pac->setProperty("dispatched", true);
+            emit newPAC(pac);
+        }
+        else
+        {
+            connect(pac, &ISD::ConcreteDevice::ready, this, [this, pac]()
+            {
+                if (!pac->property("dispatched").isValid())
+                {
+                    pac->setProperty("dispatched", true);
+                    emit newPAC(pac);
                 }
             });
         }
