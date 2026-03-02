@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-01 02:10+0000\n"
-"PO-Revision-Date: 2026-02-22 11:14+0100\n"
+"POT-Creation-Date: 2026-03-02 02:09+0000\n"
+"PO-Revision-Date: 2026-02-28 19:52+0100\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -611,8 +611,8 @@ msgstr "Annulla"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 kstarsactions.cpp:506
-#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 indi/indipac.cpp:17
+#: kstarsactions.cpp:506 kstarsactions.cpp:514 kstarsactions.cpp:524
 #: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
@@ -2091,7 +2091,7 @@ msgstr "Stato:"
 #: ekos/scheduler/scheduler.ui:1362
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1015
 #: indi/indidome.cpp:21 indi/indidustcap.cpp:17 indi/indimount.cpp:30
-#: indi/indimount.cpp:1581
+#: indi/indimount.cpp:1581 indi/indipac.cpp:17
 #, kde-format, kde-kuit-format
 msgid "Idle"
 msgstr "Inattiva"
@@ -16856,7 +16856,7 @@ msgid "Does %1 have a shutter?"
 msgstr "%1 ha un otturatore?"
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:477
+#: ekos/capture/sequencejobstate.cpp:487
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Esposizione scura"
@@ -18204,141 +18204,137 @@ msgstr "In corso"
 msgid "Complete"
 msgstr "Completata"
 
-#: ekos/capture/sequencejobstate.cpp:464
+#: ekos/capture/sequencejobstate.cpp:474
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr ""
 "Copri il telescopio con una sorgente luminosa illuminata uniformemente."
 
-#: ekos/capture/sequencejobstate.cpp:465
+#: ekos/capture/sequencejobstate.cpp:475
 #, kde-format
 msgid "Flat Frame"
 msgstr "Flat frame"
 
-#: ekos/capture/sequencejobstate.cpp:476
+#: ekos/capture/sequencejobstate.cpp:486
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Copri il telescopio per eseguire un'esposizione per dark frame."
 
-#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
+#: ekos/capture/sequencejobstate.cpp:524 ekos/capture/sequencejobstate.cpp:733
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "Sparcheggio parapolvere..."
 
-#: ekos/capture/sequencejobstate.cpp:514
+#: ekos/capture/sequencejobstate.cpp:524
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Parcheggio para polvere..."
 
-#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Accendi la luce della scatola luminosa..."
 
-#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
-#: ekos/capture/sequencejobstate.cpp:709
+#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
+#: ekos/capture/sequencejobstate.cpp:719
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Spegni la luce della scatola luminosa..."
 
-#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
+#: ekos/capture/sequencejobstate.cpp:555 ekos/capture/sequencejobstate.cpp:633
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Parcheggio della montatura non riuscito, interruzione..."
 
-#: ekos/capture/sequencejobstate.cpp:554
+#: ekos/capture/sequencejobstate.cpp:564
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Sparcheggio della montatura..."
 
-#: ekos/capture/sequencejobstate.cpp:563
+#: ekos/capture/sequencejobstate.cpp:573
 #, kde-format
 msgid "Mount unparked."
 msgstr "Montatura sparcheggiata."
 
-#: ekos/capture/sequencejobstate.cpp:576
+#: ekos/capture/sequencejobstate.cpp:586
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "Rotazione montatura alla posizione del muro (az =%1 alt =%2)"
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:598
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr ""
 "Rotazione alla posizione del muro completata, interruzione dell'inseguimento."
 
-#: ekos/capture/sequencejobstate.cpp:592
+#: ekos/capture/sequencejobstate.cpp:602
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Rotazione alla posizione del muro completata, inseguimento fermato."
 
-#: ekos/capture/sequencejobstate.cpp:632
+#: ekos/capture/sequencejobstate.cpp:642
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr ""
 "Parcheggio della montatura prima di calibrare la cattura dei fotogrammi..."
 
-#: ekos/capture/sequencejobstate.cpp:651
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Parcheggio della cupola non riuscito. Interruzione..."
 
-#: ekos/capture/sequencejobstate.cpp:661
+#: ekos/capture/sequencejobstate.cpp:671
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr ""
 "Parcheggio della cupola prima di calibrare la cattura dei fotogrammi..."
 
-#: ekos/capture/sequencejobstate.cpp:968
-#, fuzzy, kde-format
-#| msgid "Turn light box light on..."
+#: ekos/capture/sequencejobstate.cpp:978
+#, kde-format
 msgid "Light box light turned on."
-msgstr "Accendi la luce della scatola luminosa..."
+msgstr "La luce della scatola luminosa è accesa."
 
-#: ekos/capture/sequencejobstate.cpp:971
-#, fuzzy, kde-format
-#| msgid "Turn light box light off..."
+#: ekos/capture/sequencejobstate.cpp:981
+#, kde-format
 msgid "Light box light turned off."
-msgstr "Spegni la luce della scatola luminosa..."
+msgstr "La luce della scatola luminosa è spenta."
 
-#: ekos/capture/sequencejobstate.cpp:974
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:984
+#, kde-format
 msgid "Light box busy."
-msgstr "Scatola luminosa accesa."
+msgstr "Scatola luminosa occupata."
 
-#: ekos/capture/sequencejobstate.cpp:977
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:987
+#, kde-format
 msgid "Light box error."
-msgstr "Scatola luminosa accesa."
+msgstr "Errore della scatola luminosa."
 
-#: ekos/capture/sequencejobstate.cpp:1001
+#: ekos/capture/sequencejobstate.cpp:1011
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Si è verificato un errore del parapolvere."
 
-#: ekos/capture/sequencejobstate.cpp:1007
+#: ekos/capture/sequencejobstate.cpp:1017
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Il parapolvere è inattivo."
 
-#: ekos/capture/sequencejobstate.cpp:1010
+#: ekos/capture/sequencejobstate.cpp:1020
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Il parapolvere è parcheggiato."
 
-#: ekos/capture/sequencejobstate.cpp:1013
+#: ekos/capture/sequencejobstate.cpp:1023
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Il parapolvere si sta parcheggiando..."
 
-#: ekos/capture/sequencejobstate.cpp:1016
+#: ekos/capture/sequencejobstate.cpp:1026
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Il parapolvere si sta sparcheggiando..."
 
-#: ekos/capture/sequencejobstate.cpp:1019
+#: ekos/capture/sequencejobstate.cpp:1029
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Lo stato del parapolvere è sconosciuto."
@@ -25373,7 +25369,7 @@ msgid "%1 is disconnected."
 msgstr "%1 è disconnesso."
 
 #: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
-#: indi/indistd.cpp:718
+#: indi/indistd.cpp:719
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 è in linea."
@@ -33199,58 +33195,49 @@ msgid "Weight used in stacking"
 msgstr "Peso utilizzato nello stacking"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "LiveStack Webcast Controller"
-msgstr "Processo separato di Live Stacker"
+msgstr "Controllore webcast di LiveStack"
 
 #: fitsviewer/fitsstackwebcast.cpp:48
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select LHS Logo"
-msgstr "Seleziona stella"
+msgstr "Seleziona logo LHS"
 
 #: fitsviewer/fitsstackwebcast.cpp:58
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select RHS Logo"
-msgstr "Seleziona stella"
+msgstr "Seleziona logo RHS"
 
 #: fitsviewer/fitsstackwebcast.cpp:81
-#, fuzzy, kde-format
-#| msgid "Failed to save telescope information."
+#, kde-format
 msgid "Failed to start: Port %1 may be in use."
-msgstr "Impossibile salvare le informazioni del telescopio."
+msgstr "Avvio non riuscito: la porta %1 potrebbe essere in uso."
 
 #: fitsviewer/fitsstackwebcast.cpp:385
-#, fuzzy, kde-format
-#| msgid "Solving..."
+#, kde-format
 msgid "Resolving..."
-msgstr "Risoluzione..."
+msgstr "Risoluzione in corso..."
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "Tipo sconosciuto"
+msgstr "Dispositivo sconosciuto"
 
 #: fitsviewer/fitsstackwebcast.cpp:443
-#, fuzzy, kde-format
-#| msgid "Stopped"
+#, kde-format
 msgid "Webcast Stopped"
-msgstr "Interrotto"
+msgstr "Webcast interrotto"
 
 #: fitsviewer/fitsstackwebcast.cpp:508
-#, fuzzy, kde-format
-#| msgid "Unknown"
+#, kde-format
 msgid "Unknown OS"
-msgstr "Sconosciuto"
+msgstr "Sistema operativo sconosciuto"
 
 #: fitsviewer/fitsstackwebcast.cpp:509
-#, fuzzy, kde-format
-#| msgid "Unknown error"
+#, kde-format
 msgid "Unknown Browser"
-msgstr "Errore sconosciuto"
+msgstr "Browser sconosciuto"
 
 #: fitsviewer/fitsstretchui.cpp:241
 #, kde-format
@@ -34298,14 +34285,13 @@ msgstr "Cartella Lum:"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, WebcastB)
 #: fitsviewer/livestacking.ui:924
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Sharpen sigma.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start / Stop Webcasting stacked images</p></body></"
 "html>"
 msgstr ""
-"<html><head/><body><p>Deviazione standard (sigma) della nitidezza.</p></"
-"body></html>"
+"<html><head/><body><p>Avvia / interrompi il webcast delle immagini "
+"sovrapposte</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QToolButton, WebcastB)
 #. i18n: ectx: property (text), widget (QToolButton, previousYear)
@@ -35003,38 +34989,32 @@ msgstr " Evidenziazione"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, FitsStackWebcast)
 #: fitsviewer/livestackwebcast.ui:14
-#, fuzzy, kde-format
-#| msgid "KStars Live Stacker"
+#, kde-format
 msgid "KStars Live Stacker Webcast"
-msgstr "Live Stacker di KStars"
+msgstr "Webcast Live Stacker di KStars"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoRBtn)
 #: fitsviewer/livestackwebcast.ui:20
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Left-to-Right Tilt Slider</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Right) file chooser.</p></body></html>"
-msgstr ""
-"<html><head/><body><p>Cursore inclinazione sinistra-destra</p></body></html>"
+msgstr "<html><head/><body><p>Scelta file del logo (destra).</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, qrLabel)
 #: fitsviewer/livestackwebcast.ui:39
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the QR code here</p></body></"
 "html>"
 msgstr ""
-"<html><head/><body><p>Scala il valore dell'asse all'intervallo corrente di "
-"valori.</p></body></html>"
+"<html><head/><body><p>Avvia il webcast per visualizzare il codice QR qui</"
+"p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoLBtn)
 #: fitsviewer/livestackwebcast.ui:55
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Left) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>Dimensione del passo:</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Scelta file del logo (sinistra).</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, throttle)
 #. i18n: ectx: property (toolTip), widget (QLabel, throttleLabel)
@@ -35045,6 +35025,10 @@ msgid ""
 "bandwidth. Set the number of seconds per update. More frequent updates are "
 "discarded. Set 0 for no throttle.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Riduci gli aggiornamenti per risparmiare CPU e banda "
+"di rete. Imposta il numero di secondi per aggiornare. Gli aggiornamenti più "
+"frequenti vengono scartati. Imposta a 0 per nessuna riduzione.</p></body></"
+"html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, portLabel)
 #. i18n: ectx: property (toolTip), widget (QSpinBox, port)
@@ -35055,86 +35039,81 @@ msgid ""
 "unless you have something else using this port in which case pick 8081, etc."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Porta da utilizzare per il webcast. In genere va bene "
+"la 8080, a meno che non ci sia qualcos'altro che la sta utilizzando, in tal "
+"caso scegli la 8081, ecc.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:109
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Left) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Rimpicciolimento per l'asse X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logo (a sinistra) per l'evento webcast.</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:112
 #, kde-format
 msgid "Logo L:"
-msgstr ""
+msgstr "Logo S:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:155
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Start the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Dimensione del passo:</p></body></html>"
+msgstr "<html><head/><body><p>Avvia il webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:158
-#, fuzzy, kde-format
-#| msgid "Start Scan"
+#, kde-format
 msgid "Start Webcast"
-msgstr "Avvia scansione"
+msgstr "Avvia webcast"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:171
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Stop the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Dimensione del passo:</p></body></html>"
+msgstr "<html><head/><body><p>Interrompi il webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:174
-#, fuzzy, kde-format
-#| msgid "Stop capturing"
+#, kde-format
 msgid "Stop Webcast"
-msgstr "Ferma l'acquisizione"
+msgstr "Interrompi webcast"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, resetBtn)
 #: fitsviewer/livestackwebcast.ui:187
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Reset the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Dimensione del passo:</p></body></html>"
+msgstr "<html><head/><body><p>Azzera il webcast</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Check to display the Petzval surface.</p></body></"
-#| "html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Toggle display of webcast subcribers</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Spunta per visualizzare la superficie Petzval.</p></"
-"body></html>"
+"<html><head/><body><p>Attiva/disattiva la visualizzazione degli iscritti al "
+"webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:206
 #, kde-format
 msgid "Subscribers"
-msgstr ""
+msgstr "Iscritti"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoRPathDisplay)
 #: fitsviewer/livestackwebcast.ui:222
 #, kde-format
 msgid "Logo (Right) for the webcast event."
-msgstr ""
+msgstr "Logo (a destra) per l'evento webcast."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:235
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Title for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Ingrandimento per l'asse X.</p></body></html>"
+msgstr "<html><head/><body><p>Titolo dell'evento webcast.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:238 printing/pwizchartconfig.ui:141
@@ -35144,72 +35123,63 @@ msgstr "Titolo:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, urlLabel)
 #: fitsviewer/livestackwebcast.ui:254
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the URL and port here</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Scala il valore dell'asse all'intervallo corrente di "
-"valori.</p></body></html>"
+"<html><head/><body><p>Avvia il webcast per visualizzare qui l'URL e la "
+"porta</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoLPathDisplay)
 #: fitsviewer/livestackwebcast.ui:273
 #, kde-format
 msgid "Logo (Left) for the webcast event."
-msgstr ""
+msgstr "Logo (a sinistra) per l'evento webcast."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:280
 #, kde-format
 msgid "Title for the webcast event."
-msgstr ""
+msgstr "Titolo dell'evento webcast."
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:283
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "My LiveStacker Webcast"
-msgstr "Processo separato di Live Stacker"
+msgstr "Webcast di Live Stacker personale"
 
 #. i18n: ectx: property (text), widget (QLabel, throttleLabel)
 #: fitsviewer/livestackwebcast.ui:293
-#, fuzzy, kde-format
-#| msgid "Comets Update"
+#, kde-format
 msgid "Throttle Updates:"
-msgstr "Aggiornamento delle comete"
+msgstr "Riduci aggiornamenti:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:303
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Right) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Ingrandimento per l'asse X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logo (a destra) per l'evento webcast.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:306
 #, kde-format
 msgid "Logo R:"
-msgstr ""
+msgstr "Logo D:"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:362
-#, fuzzy, kde-format
-#| msgctxt "Constellation name (optional)"
-#| msgid "WHIP"
+#, kde-format
 msgid "IP"
-msgstr "FRUSTA"
+msgstr "IP"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "Attiva"
+msgstr "Attività"
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
@@ -36923,6 +36893,36 @@ msgstr "L'altezza richiesta è sotto l'orizzonte. Vuoi davvero procedere?"
 msgid "Telescope Motion"
 msgstr "Movimento telescopio"
 
+#: indi/indipac.cpp:17
+#, fuzzy, kde-format
+#| msgid "Connection"
+msgid "Correcting"
+msgstr "Connessione"
+
+#: indi/indipac.cpp:17
+#, fuzzy, kde-format
+#| msgid "Connected"
+msgid "Corrected"
+msgstr "Connesso"
+
+#: indi/indipac.cpp:44
+#, fuzzy, kde-format
+#| msgid "Job '%1' alignment is complete."
+msgid "Polar alignment correction completed"
+msgstr "L'allineamento del processo «%1» è completo."
+
+#: indi/indipac.cpp:50
+#, fuzzy, kde-format
+#| msgid "Mount homing in progress"
+msgid "Polar alignment correction in progress"
+msgstr "Ritorno alla posizione Home della montatura in corso"
+
+#: indi/indipac.cpp:56
+#, fuzzy, kde-format
+#| msgid "Point calculation error."
+msgid "Polar alignment correction error"
+msgstr "Errore del punto di calibrazione."
+
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, kde-format
 msgid "Time"
@@ -36947,17 +36947,17 @@ msgstr ""
 msgid "Upload"
 msgstr "Invia"
 
-#: indi/indistd.cpp:408
+#: indi/indistd.cpp:409
 #, kde-format
 msgid "GPS Location"
 msgstr "Posizione GPS"
 
-#: indi/indistd.cpp:410
+#: indi/indistd.cpp:411
 #, kde-format
 msgid "Mount Location"
 msgstr "Posizione di montaggio"
 
-#: indi/indistd.cpp:657
+#: indi/indistd.cpp:658
 #, kde-format
 msgid "Data file saved to %1"
 msgstr "File di dati salvato in %1"
@@ -42469,38 +42469,33 @@ msgstr "Live Stacking - evidenziazione"
 
 #. i18n: ectx: label, entry (fitsLSWebcastTitle), group (FITSViewer)
 #: kstars.kcfg:1948
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast title"
-msgstr "Live Stacking - master flat"
+msgstr "Live Stacking - titolo webcast"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoL), group (FITSViewer)
 #: kstars.kcfg:1952
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast left logo pathname"
-msgstr "Live Stacking - master flat"
+msgstr "Live Stacking - nome percorso logo a sinistra del webcast"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoR), group (FITSViewer)
 #: kstars.kcfg:1956
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast right logo pathname"
-msgstr "Live Stacking - master flat"
+msgstr "Live Stacking - nome percorso logo a destra del webcast"
 
 #. i18n: ectx: label, entry (fitsLSWebcastPort), group (FITSViewer)
 #: kstars.kcfg:1960
-#, fuzzy, kde-format
-#| msgid "Live Stacking master dark"
+#, kde-format
 msgid "Live Stacking Webcast port number"
-msgstr "Live Stacking - master dark"
+msgstr "Live Stacking - numero porta del webcast"
 
 #. i18n: ectx: label, entry (fitsLSWebcastThrottle), group (FITSViewer)
 #: kstars.kcfg:1964
-#, fuzzy, kde-format
-#| msgid "Live Stacking sharpen amount"
+#, kde-format
 msgid "Live Stacking Webcast throttle in milliseconds"
-msgstr "Live Stacking - quantità di aumento nitidezza"
+msgstr "Live Stacking - riduzione webcast in millisecondi"
 
 #. i18n: ectx: label, entry (BortleClass), group (WISettings)
 #: kstars.kcfg:1970
@@ -80482,15 +80477,14 @@ msgstr ""
 "Calcolatore di sottoesposizione basato sul lavoro del dott. Robin Glover"
 
 #: main.cpp:221
-#, fuzzy, kde-format
-#| msgid "Projection"
+#, kde-format
 msgid "Project Nayuki"
-msgstr "Proiezione"
+msgstr "Progetto Nayuki"
 
 #: main.cpp:221
 #, kde-format
 msgid "QR Code generator library (MIT)"
-msgstr ""
+msgstr "Libreria di generazione codici QR (MIT)"
 
 #: main.cpp:232
 #, kde-format

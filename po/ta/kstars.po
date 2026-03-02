@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-01 02:10+0000\n"
+"POT-Creation-Date: 2026-03-02 02:09+0000\n"
 "PO-Revision-Date: 2021-01-18 19:03+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -655,8 +655,8 @@ msgstr "கேன்ஸ்"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 kstarsactions.cpp:506
-#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 indi/indipac.cpp:17
+#: kstarsactions.cpp:506 kstarsactions.cpp:514 kstarsactions.cpp:524
 #: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
@@ -2219,7 +2219,7 @@ msgstr "நிலை"
 #: ekos/scheduler/scheduler.ui:1362
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1015
 #: indi/indidome.cpp:21 indi/indidustcap.cpp:17 indi/indimount.cpp:30
-#: indi/indimount.cpp:1581
+#: indi/indimount.cpp:1581 indi/indipac.cpp:17
 #, kde-format, kde-kuit-format
 msgid "Idle"
 msgstr ""
@@ -16602,7 +16602,7 @@ msgid "Does %1 have a shutter?"
 msgstr ""
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:477
+#: ekos/capture/sequencejobstate.cpp:487
 #, fuzzy, kde-format
 #| msgid "Exposure:"
 msgid "Dark Exposure"
@@ -17902,154 +17902,154 @@ msgstr "இயக்கம்"
 msgid "Complete"
 msgstr "முடிந்தது"
 
-#: ekos/capture/sequencejobstate.cpp:464
+#: ekos/capture/sequencejobstate.cpp:474
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:465
+#: ekos/capture/sequencejobstate.cpp:475
 #, fuzzy, kde-format
 #| msgid "Dark Flat Frames"
 msgid "Flat Frame"
 msgstr "நட்சத்திரப் பெயர்"
 
-#: ekos/capture/sequencejobstate.cpp:476
+#: ekos/capture/sequencejobstate.cpp:486
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
+#: ekos/capture/sequencejobstate.cpp:524 ekos/capture/sequencejobstate.cpp:733
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Unparking dust cap..."
 msgstr "தொலை நோக்கி"
 
-#: ekos/capture/sequencejobstate.cpp:514
+#: ekos/capture/sequencejobstate.cpp:524
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Parking dust cap..."
 msgstr "தொலை நோக்கி"
 
-#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
 #, kde-format
 msgid "Turn light box light on..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
-#: ekos/capture/sequencejobstate.cpp:709
+#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
+#: ekos/capture/sequencejobstate.cpp:719
 #, kde-format
 msgid "Turn light box light off..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
+#: ekos/capture/sequencejobstate.cpp:555 ekos/capture/sequencejobstate.cpp:633
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Parking mount failed, aborting..."
 msgstr "தொலை நோக்கி"
 
-#: ekos/capture/sequencejobstate.cpp:554
+#: ekos/capture/sequencejobstate.cpp:564
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Unparking mount..."
 msgstr "தொலை நோக்கி"
 
-#: ekos/capture/sequencejobstate.cpp:563
+#: ekos/capture/sequencejobstate.cpp:573
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Mount Ekar"
 msgid "Mount unparked."
 msgstr "மௌண்ட் இகார்"
 
-#: ekos/capture/sequencejobstate.cpp:576
+#: ekos/capture/sequencejobstate.cpp:586
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:598
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Caliente"
 msgid "Slew to wall position complete, stop tracking."
 msgstr "காலியென்ட்"
 
-#: ekos/capture/sequencejobstate.cpp:592
+#: ekos/capture/sequencejobstate.cpp:602
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Caliente"
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "காலியென்ட்"
 
-#: ekos/capture/sequencejobstate.cpp:632
+#: ekos/capture/sequencejobstate.cpp:642
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Farmington"
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "ஃபார்மிங்டன்"
 
-#: ekos/capture/sequencejobstate.cpp:651
+#: ekos/capture/sequencejobstate.cpp:661
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Parking dome failed, aborting..."
 msgstr "தொலை நோக்கி"
 
-#: ekos/capture/sequencejobstate.cpp:661
+#: ekos/capture/sequencejobstate.cpp:671
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Farmington"
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "ஃபார்மிங்டன்"
 
-#: ekos/capture/sequencejobstate.cpp:968
+#: ekos/capture/sequencejobstate.cpp:978
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Light box light turned on."
 msgstr "%1 இணைப்பில் உள்ளது"
 
-#: ekos/capture/sequencejobstate.cpp:971
+#: ekos/capture/sequencejobstate.cpp:981
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Light box light turned off."
 msgstr "%1 இணைப்பில் உள்ளது"
 
-#: ekos/capture/sequencejobstate.cpp:974
+#: ekos/capture/sequencejobstate.cpp:984
 #, fuzzy, kde-format
 #| msgid "Height:"
 msgid "Light box busy."
 msgstr "உயரம்:"
 
-#: ekos/capture/sequencejobstate.cpp:977
+#: ekos/capture/sequencejobstate.cpp:987
 #, fuzzy, kde-format
 #| msgid "Height:"
 msgid "Light box error."
 msgstr "உயரம்:"
 
-#: ekos/capture/sequencejobstate.cpp:1001
+#: ekos/capture/sequencejobstate.cpp:1011
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "கூஸ்கிரீக்"
 
-#: ekos/capture/sequencejobstate.cpp:1007
+#: ekos/capture/sequencejobstate.cpp:1017
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Dust cap is idle."
 msgstr "%1 இணைப்பில் உள்ளது"
 
-#: ekos/capture/sequencejobstate.cpp:1010
+#: ekos/capture/sequencejobstate.cpp:1020
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "கூஸ்கிரீக்"
 
-#: ekos/capture/sequencejobstate.cpp:1013
+#: ekos/capture/sequencejobstate.cpp:1023
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "கூஸ்கிரீக்"
 
-#: ekos/capture/sequencejobstate.cpp:1016
+#: ekos/capture/sequencejobstate.cpp:1026
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "கூஸ்கிரீக்"
 
-#: ekos/capture/sequencejobstate.cpp:1019
+#: ekos/capture/sequencejobstate.cpp:1029
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "கூஸ்கிரீக்"
@@ -24558,7 +24558,7 @@ msgid "%1 is disconnected."
 msgstr "தொடர்பறு"
 
 #: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
-#: indi/indistd.cpp:718
+#: indi/indistd.cpp:719
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 இணைப்பில் உள்ளது"
@@ -35881,6 +35881,38 @@ msgstr ""
 msgid "Telescope Motion"
 msgstr "தொலை நோக்கி துறை:"
 
+#: indi/indipac.cpp:17
+#, fuzzy, kde-format
+#| msgid "Connection"
+msgid "Correcting"
+msgstr "இணைப்பு"
+
+#: indi/indipac.cpp:17
+#, fuzzy, kde-format
+#| msgid "Connect"
+msgid "Corrected"
+msgstr "இணை "
+
+#: indi/indipac.cpp:44
+#, fuzzy, kde-format
+#| msgctxt "City name (optional, probably does not need a translation)"
+#| msgid "Caliente"
+msgid "Polar alignment correction completed"
+msgstr "காலியென்ட்"
+
+#: indi/indipac.cpp:50
+#, fuzzy, kde-format
+#| msgid "Radiotelescope"
+msgid "Polar alignment correction in progress"
+msgstr "தொலை நோக்கி"
+
+#: indi/indipac.cpp:56
+#, fuzzy, kde-format
+#| msgctxt "City name (optional, probably does not need a translation)"
+#| msgid "Caliente"
+msgid "Polar alignment correction error"
+msgstr "காலியென்ட்"
+
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, kde-format
 msgid "Time"
@@ -35903,19 +35935,19 @@ msgstr ""
 msgid "Upload"
 msgstr "உப்சாலா"
 
-#: indi/indistd.cpp:408
+#: indi/indistd.cpp:409
 #, fuzzy, kde-format
 #| msgid "Set Location..."
 msgid "GPS Location"
 msgstr "இடத்தை அமைக்கவும்"
 
-#: indi/indistd.cpp:410
+#: indi/indistd.cpp:411
 #, fuzzy, kde-format
 #| msgid "Set Location..."
 msgid "Mount Location"
 msgstr "இடத்தை அமைக்கவும்"
 
-#: indi/indistd.cpp:657
+#: indi/indistd.cpp:658
 #, kde-format
 msgid "Data file saved to %1"
 msgstr "%1யில் தரவு கோப்பில் சேமிக்கப்பட்டது"

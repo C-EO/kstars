@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-01 02:10+0000\n"
+"POT-Creation-Date: 2026-03-02 02:09+0000\n"
 "PO-Revision-Date: 2007-06-25 11:21+0300\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
@@ -606,8 +606,8 @@ msgstr "Скасаваць"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:952
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:962
 #: fitsviewer/solveInfo.ui:86 indi/indidome.cpp:23 indi/indidustcap.cpp:18
-#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 kstarsactions.cpp:506
-#: kstarsactions.cpp:514 kstarsactions.cpp:524
+#: indi/indilightbox.cpp:20 indi/indimount.cpp:32 indi/indipac.cpp:17
+#: kstarsactions.cpp:506 kstarsactions.cpp:514 kstarsactions.cpp:524
 #: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Error"
@@ -2061,7 +2061,7 @@ msgstr "Статус"
 #: ekos/scheduler/scheduler.ui:1362
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:1015
 #: indi/indidome.cpp:21 indi/indidustcap.cpp:17 indi/indimount.cpp:30
-#: indi/indimount.cpp:1581
+#: indi/indimount.cpp:1581 indi/indipac.cpp:17
 #, kde-format, kde-kuit-format
 msgid "Idle"
 msgstr ""
@@ -15858,7 +15858,7 @@ msgid "Does %1 have a shutter?"
 msgstr ""
 
 #: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:477
+#: ekos/capture/sequencejobstate.cpp:487
 #, fuzzy, kde-format
 #| msgid "Custom"
 msgid "Dark Exposure"
@@ -17101,133 +17101,133 @@ msgstr "Працэс"
 msgid "Complete"
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:464
+#: ekos/capture/sequencejobstate.cpp:474
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:465
+#: ekos/capture/sequencejobstate.cpp:475
 #, fuzzy, kde-format
 msgid "Flat Frame"
 msgstr "Метка:"
 
-#: ekos/capture/sequencejobstate.cpp:476
+#: ekos/capture/sequencejobstate.cpp:486
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:514 ekos/capture/sequencejobstate.cpp:723
+#: ekos/capture/sequencejobstate.cpp:524 ekos/capture/sequencejobstate.cpp:733
 #, fuzzy, kde-format
 msgid "Unparking dust cap..."
 msgstr "Скінуць вылучэнне"
 
-#: ekos/capture/sequencejobstate.cpp:514
+#: ekos/capture/sequencejobstate.cpp:524
 #, fuzzy, kde-format
 msgid "Parking dust cap..."
 msgstr "Скінуць вылучэнне"
 
-#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
+#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
 #, kde-format
 msgid "Turn light box light on..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:526 ekos/capture/sequencejobstate.cpp:605
-#: ekos/capture/sequencejobstate.cpp:709
+#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
+#: ekos/capture/sequencejobstate.cpp:719
 #, kde-format
 msgid "Turn light box light off..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:545 ekos/capture/sequencejobstate.cpp:623
+#: ekos/capture/sequencejobstate.cpp:555 ekos/capture/sequencejobstate.cpp:633
 #, fuzzy, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Скінуць вылучэнне"
 
-#: ekos/capture/sequencejobstate.cpp:554
+#: ekos/capture/sequencejobstate.cpp:564
 #, fuzzy, kde-format
 msgid "Unparking mount..."
 msgstr "Скінуць вылучэнне"
 
-#: ekos/capture/sequencejobstate.cpp:563
+#: ekos/capture/sequencejobstate.cpp:573
 #, fuzzy, kde-format
 msgid "Mount unparked."
 msgstr "Лінейны"
 
-#: ekos/capture/sequencejobstate.cpp:576
+#: ekos/capture/sequencejobstate.cpp:586
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:588
+#: ekos/capture/sequencejobstate.cpp:598
 #, fuzzy, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr "Кліент"
 
-#: ekos/capture/sequencejobstate.cpp:592
+#: ekos/capture/sequencejobstate.cpp:602
 #, fuzzy, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Кліент"
 
-#: ekos/capture/sequencejobstate.cpp:632
+#: ekos/capture/sequencejobstate.cpp:642
 #, fuzzy, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Пачатак:"
 
-#: ekos/capture/sequencejobstate.cpp:651
+#: ekos/capture/sequencejobstate.cpp:661
 #, fuzzy, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Скінуць вылучэнне"
 
-#: ekos/capture/sequencejobstate.cpp:661
+#: ekos/capture/sequencejobstate.cpp:671
 #, fuzzy, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Пачатак:"
 
-#: ekos/capture/sequencejobstate.cpp:968
+#: ekos/capture/sequencejobstate.cpp:978
 #, fuzzy, kde-format
 msgid "Light box light turned on."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:971
+#: ekos/capture/sequencejobstate.cpp:981
 #, fuzzy, kde-format
 msgid "Light box light turned off."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:974
+#: ekos/capture/sequencejobstate.cpp:984
 #, fuzzy, kde-format
 msgid "Light box busy."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:977
+#: ekos/capture/sequencejobstate.cpp:987
 #, fuzzy, kde-format
 msgid "Light box error."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:1001
+#: ekos/capture/sequencejobstate.cpp:1011
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1007
+#: ekos/capture/sequencejobstate.cpp:1017
 #, fuzzy, kde-format
 msgid "Dust cap is idle."
 msgstr "выкананае"
 
-#: ekos/capture/sequencejobstate.cpp:1010
+#: ekos/capture/sequencejobstate.cpp:1020
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1013
+#: ekos/capture/sequencejobstate.cpp:1023
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1016
+#: ekos/capture/sequencejobstate.cpp:1026
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Ачысціць спіс"
 
-#: ekos/capture/sequencejobstate.cpp:1019
+#: ekos/capture/sequencejobstate.cpp:1029
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "Ачысціць спіс"
@@ -23481,7 +23481,7 @@ msgid "%1 is disconnected."
 msgstr "Адлучыцца"
 
 #: ekos/manager.cpp:1712 ekos/manager.cpp:1721 ekos/manager.cpp:1754
-#: indi/indistd.cpp:718
+#: indi/indistd.cpp:719
 #, kde-format
 msgid "%1 is online."
 msgstr ""
@@ -34354,6 +34354,31 @@ msgstr ""
 msgid "Telescope Motion"
 msgstr "Скінуць вылучэнне"
 
+#: indi/indipac.cpp:17
+#, fuzzy, kde-format
+msgid "Correcting"
+msgstr "Злучэнне"
+
+#: indi/indipac.cpp:17
+#, fuzzy, kde-format
+msgid "Corrected"
+msgstr "Злучыцца"
+
+#: indi/indipac.cpp:44
+#, fuzzy, kde-format
+msgid "Polar alignment correction completed"
+msgstr "Кліент"
+
+#: indi/indipac.cpp:50
+#, fuzzy, kde-format
+msgid "Polar alignment correction in progress"
+msgstr "Скінуць вылучэнне"
+
+#: indi/indipac.cpp:56
+#, fuzzy, kde-format
+msgid "Polar alignment correction error"
+msgstr "Кліент"
+
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, fuzzy, kde-format
 msgid "Time"
@@ -34376,17 +34401,17 @@ msgstr ""
 msgid "Upload"
 msgstr "Зацягнуць"
 
-#: indi/indistd.cpp:408
+#: indi/indistd.cpp:409
 #, fuzzy, kde-format
 msgid "GPS Location"
 msgstr "Адрас:"
 
-#: indi/indistd.cpp:410
+#: indi/indistd.cpp:411
 #, fuzzy, kde-format
 msgid "Mount Location"
 msgstr "Адрас:"
 
-#: indi/indistd.cpp:657
+#: indi/indistd.cpp:658
 #, fuzzy, kde-format
 #| msgid "File saved."
 msgid "Data file saved to %1"
