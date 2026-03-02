@@ -456,11 +456,11 @@ void Observatory::setShutterStatus(ISD::Dome::ShutterStatus status)
 
         case ISD::Dome::SHUTTER_CLOSED:
             buttonPressed(shutterClosed, i18n("Closed"));
-            activateButton(shutterOpen, i18n("Open"));
+            activateButton(shutterOpen, i18nc("Shutter action", "Open"));
             appendLogText(i18n("Shutter is closed."));
             break;
         case ISD::Dome::SHUTTER_CLOSING:
-            toggleButtons(shutterClosed, i18n("Closing"), shutterOpen, i18n("Open"));
+            toggleButtons(shutterClosed, i18n("Closing"), shutterOpen, i18nc("Shutter action", "Open"));
             appendLogText(i18n("Shutter is closing..."));
             break;
         default:
@@ -577,7 +577,7 @@ void Observatory::enableMotionControl(bool enabled)
     // special case for rolloff roofs
     if (m_Dome->isRolloffRoof())
     {
-        motionCWButton->setText(i18n("Open"));
+        motionCWButton->setText(i18nc("Rolloff roof action", "Open"));
         motionCWButton->setToolTip(QString());
         motionCCWButton->setText(i18n("Close"));
         motionCCWButton->setToolTip(QString());

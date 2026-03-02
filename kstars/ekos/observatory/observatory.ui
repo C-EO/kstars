@@ -670,7 +670,7 @@ font-weight:bold;
 }</string>
             </property>
             <property name="text">
-             <string>Open</string>
+             <string comment="opens dome shutter">Open</string>
             </property>
             <property name="checkable">
              <bool>false</bool>

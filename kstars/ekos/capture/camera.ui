@@ -255,7 +255,7 @@
           </size>
          </property>
          <property name="title">
-          <string>Capture Settings</string>
+          <string comment="camera capture settings section title">Capture Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,0,1,0,1">
           <property name="leftMargin">

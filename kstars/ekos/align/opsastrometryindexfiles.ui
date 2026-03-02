@@ -273,7 +273,7 @@ background:  url(:/icons/astrometry-required.svg) no-repeat left top;
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;This button will open the Astrometry Index File folder on your filesystem so that you can see where it is located and copy files into it if needed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="text">
-          <string>Open</string>
+          <string comment="opens astrometry index file directory">Open</string>
          </property>
         </widget>
        </item>
