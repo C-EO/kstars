@@ -23,53 +23,52 @@ is used by build scripts in the CI infrastructure.
 
 The KStars repository is configured to build its code in the following situations:
 - When a Merge Request is pushed by a contributor
-- When a Merge Request is merged to the main branch
+- When code is merged to the default branch (`master`)
+- When a scheduled pipeline is run
 
 The details of the configuration are implemented in `.gitlab-ci.yml`.
 Check the (KStars | Build | Pipeline editor | Visualize)[https://invent.kde.org/education/kstars/-/ci/editor?branch_name=master&tab=1]
 for a high-level visualisation of jobs.
 
-Merge requests are built and tested for several platforms. As of 2024/05, the same build sequence is applied to the main branch
-when merging.
+Merge requests are built and tested for several platforms. The same build sequence is applied to the default branch when merging.
 
 ### Linux build
 
-The Linux regular KDE Invent pipeline runs on an image of OpenSUSE Tumbleweed with Qt5.15 and CLang.
+The Linux regular KDE Invent pipeline runs on an image of OpenSUSE Tumbleweed with Qt6.
 
-This is the `suse_tumbleweed_qt515` job.
+This is the `suse_tumbleweed_qt610` job.
+The legacy `suse_tumbleweed_qt515` job is present but currently disabled (`when: never`).
 
 ### Windows build
 
-The Windows regular KDE Invent pipeline runs on an image of Windows with Qt5.15 and MsVC 2019.
+The Windows regular KDE Invent pipeline runs with the Qt6 Windows templates.
 
-The job is named `windows_qt515` in `.gitlab-ci.yml`.
+The job is named `windows_qt610` in `.gitlab-ci.yml`.
 
 ### Android build
 
 The Android regular KDE Invent pipeline cannot be operated anymore with Qt5.
-Only Qt6 is now supported, and KStars/Ekos needs to be ported on this platform for the build to eventually succeed.
+Android CI is currently not active in `.gitlab-ci.yml`.
 
-The job is named `android_qt515` in `.gitlab-ci.yml`.
-
-### Custom build on Ubuntu22
+### Custom build on Ubuntu24
 
 Historically, there has been a need for end-to-end tests of Ekos to stabilise and secure behaviour against INDI drivers.
-A custom build image was built from `docker/Dockerfile`, based on Ubuntu, supporting installation of external
+A custom build image is built from `docker/Dockerfile`, currently based on Ubuntu 24.04, supporting installation of external
 dependencies *at the time of the build*. While inherently unstable due to the lack of versioning of those dependencies,
 this allowed testing against nightly builds, mainly INDI nightly builds.
 
-The jobs are named `build` and `build-and-test-stable` in `.gitlab-ci.yml`. They are separate builds but use caching
+The active jobs are named `ubuntu_qt5` and `build-and-test-stable` in `.gitlab-ci.yml`. They are separate builds but use caching
 to speed up the second build. Although this separation is unnecessary, this allows contributors to retrieve build artifacts
 while the tests, quite lengthy, run in the background.
 
-As of 2025/03, that build runs outside of the KDE Invent infrastructure on an aging system available from a volunteer contributor in best-effort.
+A `ubuntu_qt6` custom recipe is also present but currently disabled (`when: never`).
 
 ### CppCheck
 
 Tool `cppcheck` runs and provides insight on code quality as a test report.
 Its [documentation](https://cppcheck.sourceforge.io) lists the multiple situations that are detected.
 
-The job is named `cppcheck` in `.gitlab-ci.yml`.
+There is currently no `cppcheck` job in `.gitlab-ci.yml`.
 
 ## Continuous Deployment
 
@@ -87,16 +86,17 @@ in order to produce the final packaged application.
 The (CI Notary service)[https://invent.kde.org/sysadmin/ci-notary-service] is then used to sign binaries for use on various delivery platforms.
 
 The branch used for deployment is first registered in https://invent.kde.org/sysadmin/ci-utilities/ in `signing/buildpublisher-projects.yaml`
-then in the other YAML databases for specific distributions. The three following builds simply execute the `application/kstars` recipe in their own environment:
+then in the other YAML databases for specific distributions. The following builds execute the deployment recipes in their own environments:
 
 ### Linux deployment
 
-The Linux deployment build generates an AppImage in an image of SUSE Linux Enterprise Server 15 using Craft recipes. There is no
-particular registration to make in https://invent.kde.org/sysadmin/ci-utilities/. Flatpaks are built independently and not covered here.
+The Linux deployment build currently runs Flatpak publishing jobs (`flatpak-amd64` and `flatpak-arm64`) in `.gitlab-ci.yml`.
+Craft-based Linux AppImage deployment is not currently configured in this pipeline.
 
 ### Windows deployment
 
-The Windows deployment build generates an AppImage in a Windows-based infrastructure using Craft recipes.
+The Windows deployment build runs in a Windows-based infrastructure using Craft recipes.
+The related jobs are `craft_windows_qt6_x86_64` and `microsoftstore_qt6`.
 
 The branch used for deployment is registered in https://invent.kde.org/sysadmin/ci-utilities/ in `signing/windowsbinariessigner-projects.yaml`
 and `signing/microsoftstorepublisher-projects.yaml`.
@@ -105,7 +105,8 @@ The pipeline runs the signature procedure suitable for binaries to be deployed t
 
 ### MacOS build and deployment
 
-The MacOS deployment build generates an AppImage in an Apple-based infrastructure using Craft recipes.
+The MacOS deployment build runs in an Apple-based infrastructure using Craft recipes.
+The related jobs are `craft_macos_qt6_x86_64` and `craft_macos_qt6_arm64`.
 
 The branch used for deployment is registered in https://invent.kde.org/sysadmin/ci-utilities/ in `signing/macappsigner-projects.yaml`
 and `signing/macappnotarizer-projects.yaml`.
