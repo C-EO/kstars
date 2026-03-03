@@ -51,8 +51,11 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QSpinBox" name="kcfg_SchedulerWeatherGracePeriod">
+         <property name="toolTip">
+          <string>Wait this many minutes for the weather to improve before giving up. Set to 0 to wait indefinitely (scheduler keeps monitoring until weather improves).</string>
+         </property>
          <property name="minimum">
-          <number>1</number>
+          <number>0</number>
          </property>
          <property name="maximum">
           <number>1440</number>

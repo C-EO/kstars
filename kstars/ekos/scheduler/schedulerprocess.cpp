@@ -536,7 +536,25 @@ void SchedulerProcess::wakeUpScheduler()
             }
             else
             {
-                // Grace period has expired and weather is still bad - complete shutdown
+                // Grace period has expired and weather is still bad
+                if (Options::schedulerWeatherGracePeriod() == 0)
+                {
+                    // Grace period of 0 means "wait indefinitely" - never give up, keep monitoring
+                    // Equipment is already parked/shutdown from the initial soft-shutdown.
+                    // Recovery is event-driven: setWeatherStatus() will trigger RUN_WAKEUP in 10ms when weather improves.
+                    appendLogText(i18n("Weather grace period is set to indefinite wait. Weather is still not OK, continuing to monitor..."));
+                    moduleState()->setWeatherGracePeriodActive(false);
+                    moduleState()->disablePreemptiveShutdown();
+                    moduleState()->setWeatherShutdownMonitoring(true);
+                    moduleState()->setShutdownState(SHUTDOWN_IDLE);
+                    // Keep the scheduler's timer alive with a safety-net interval.
+                    // Real recovery happens event-driven via setWeatherStatus() → RUN_WAKEUP in 10ms.
+                    moduleState()->setupNextIteration(RUN_WAKEUP, 5 * 60 * 1000);
+                    emit schedulerSleeping(false, true);
+                    return;
+                }
+
+                // Grace period > 0 and expired — proceed with full shutdown
                 appendLogText(i18n("Weather grace period has expired with safety status still %1. Proceeding to complete shutdown.",
                                    (weatherStatus == ISD::Weather::WEATHER_WARNING) ? i18n("Warning") : i18n("Alert")));
 
@@ -1731,7 +1749,12 @@ bool SchedulerProcess::completeShutdown()
         appendLogText(i18n("Entering weather monitoring mode. Waiting for weather to improve..."));
         // Reset shutdown state to prevent repeated calls to completeShutdown()
         moduleState()->setShutdownState(SHUTDOWN_IDLE);
-        moduleState()->setupNextIteration(RUN_WAKEUP, Options::schedulerWeatherGracePeriod() * 60000);
+        // Use a minimum 5-minute safety-net interval when grace period is 0 (indefinite wait).
+        // Primary recovery is event-driven via setWeatherStatus() which triggers RUN_WAKEUP in 10ms.
+        const int monitoringInterval = Options::schedulerWeatherGracePeriod() > 0
+                                       ? static_cast<int>(Options::schedulerWeatherGracePeriod() * 60000)
+                                       : 5 * 60 * 1000;
+        moduleState()->setupNextIteration(RUN_WAKEUP, monitoringInterval);
         emit schedulerSleeping(false, true);
         return true;
     }
@@ -2220,7 +2243,12 @@ bool SchedulerProcess::checkStatus()
         // If we're in weather shutdown monitoring mode, keep sleeping (weather status change will wake us)
         if (moduleState()->weatherShutdownMonitoring())
         {
-            moduleState()->setupNextIteration(RUN_WAKEUP, Options::schedulerWeatherGracePeriod() * 60000);
+            // Use a minimum 5-minute safety-net interval when grace period is 0 (indefinite wait).
+            // Primary recovery is event-driven via setWeatherStatus() which triggers RUN_WAKEUP in 10ms.
+            const int monitoringInterval = Options::schedulerWeatherGracePeriod() > 0
+                                           ? static_cast<int>(Options::schedulerWeatherGracePeriod() * 60000)
+                                           : 5 * 60 * 1000;
+            moduleState()->setupNextIteration(RUN_WAKEUP, monitoringInterval);
             emit schedulerSleeping(false, true);
             moduleState()->setActiveJob(nullptr);
             return false;
@@ -3913,8 +3941,11 @@ void SchedulerProcess::startShutdownDueToWeather()
         moduleState()->setWeatherGracePeriodActive(true);
         moduleState()->enablePreemptiveShutdown(wakeupTime);
 
-        appendLogText(i18n("Observatory scheduled for soft shutdown until safety improves or until %1.",
-                           wakeupTime.toString()));
+        if (Options::schedulerWeatherGracePeriod() == 0)
+            appendLogText(i18n("Observatory scheduled for soft shutdown. Monitoring weather indefinitely until safety improves."));
+        else
+            appendLogText(i18n("Observatory scheduled for soft shutdown until safety improves or until %1.",
+                               wakeupTime.toString()));
 
         // Schedule wakeup after grace period expires
         int const gracePeriodSeconds = Options::schedulerWeatherGracePeriod() * 60;
