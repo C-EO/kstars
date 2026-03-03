@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-02 02:09+0000\n"
-"PO-Revision-Date: 2026-02-28 07:27-0300\n"
+"PO-Revision-Date: 2026-03-02 09:03-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -36690,34 +36690,29 @@ msgid "Telescope Motion"
 msgstr "Movimento do telescópio"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connection"
+#, kde-format
 msgid "Correcting"
-msgstr "Conexão"
+msgstr "Corrigindo"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connected"
+#, kde-format
 msgid "Corrected"
-msgstr "Conectado"
+msgstr "Corrigido"
 
 #: indi/indipac.cpp:44
-#, fuzzy, kde-format
-#| msgid "Job '%1' alignment is complete."
+#, kde-format
 msgid "Polar alignment correction completed"
-msgstr "O alinhamento da tarefa '%1' está completo."
+msgstr "Correção de alinhamento polar concluída"
 
 #: indi/indipac.cpp:50
-#, fuzzy, kde-format
-#| msgid "Mount homing in progress"
+#, kde-format
 msgid "Polar alignment correction in progress"
-msgstr "Montagem automatizada em progresso"
+msgstr "Correção do alinhamento polar em andamento"
 
 #: indi/indipac.cpp:56
-#, fuzzy, kde-format
-#| msgid "Point calculation error."
+#, kde-format
 msgid "Polar alignment correction error"
-msgstr "Erro de cálculo do ponto."
+msgstr "Erro de correção de alinhamento polar"
 
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, kde-format

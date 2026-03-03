@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-02 02:09+0000\n"
-"PO-Revision-Date: 2026-02-28 10:43+0300\n"
+"PO-Revision-Date: 2026-03-02 10:16+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -36441,34 +36441,29 @@ msgid "Telescope Motion"
 msgstr "Teleskop Haraketi"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connection"
+#, kde-format
 msgid "Correcting"
-msgstr "Bağlantı"
+msgstr "Düzeltiliyor…"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connected"
+#, kde-format
 msgid "Corrected"
-msgstr "Bağlı"
+msgstr "Düzeltildi."
 
 #: indi/indipac.cpp:44
-#, fuzzy, kde-format
-#| msgid "Job '%1' alignment is complete."
+#, kde-format
 msgid "Polar alignment correction completed"
-msgstr "“%1” işinin hizalaması tamamlandı."
+msgstr "Kutup hizalaması düzeltmesi tamamlandı."
 
 #: indi/indipac.cpp:50
-#, fuzzy, kde-format
-#| msgid "Mount homing in progress"
+#, kde-format
 msgid "Polar alignment correction in progress"
-msgstr "Kaidenin ana konuma dönüşü sürüyor…"
+msgstr "Kutup hizalaması düzeltmesi sürüyor…"
 
 #: indi/indipac.cpp:56
-#, fuzzy, kde-format
-#| msgid "Point calculation error."
+#, kde-format
 msgid "Polar alignment correction error"
-msgstr "Nokta hesaplama hatası."
+msgstr "Kutup hizalaması düzeltmesi hatası"
 
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, kde-format

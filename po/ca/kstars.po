@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-02 02:09+0000\n"
-"PO-Revision-Date: 2026-02-28 11:50+0100\n"
+"PO-Revision-Date: 2026-03-02 12:15+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 # Diccionari de termes astronòmics:
 # https://www.ub.edu/ubterm/cerca-termes/?cerca=&obra-cerca=68&categoria-
@@ -36969,34 +36969,29 @@ msgid "Telescope Motion"
 msgstr "Moviment del telescopi"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connection"
+#, kde-format
 msgid "Correcting"
-msgstr "Connexió"
+msgstr "S'està corregint"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connected"
+#, kde-format
 msgid "Corrected"
-msgstr "Connectat"
+msgstr "S'ha corregit"
 
 #: indi/indipac.cpp:44
-#, fuzzy, kde-format
-#| msgid "Job '%1' alignment is complete."
+#, kde-format
 msgid "Polar alignment correction completed"
-msgstr "L'alineació de la tasca «%1» s'ha completat."
+msgstr "S'ha completat la correcció de l'alineació de la polar"
 
 #: indi/indipac.cpp:50
-#, fuzzy, kde-format
-#| msgid "Mount homing in progress"
+#, kde-format
 msgid "Polar alignment correction in progress"
-msgstr "Posicionament inicial de la muntura en curs"
+msgstr "La correcció de l'alineació de la polar està en curs"
 
 #: indi/indipac.cpp:56
-#, fuzzy, kde-format
-#| msgid "Point calculation error."
+#, kde-format
 msgid "Polar alignment correction error"
-msgstr "Error en calcular el punt."
+msgstr "Error en la correcció de l'alineació de la polar"
 
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, kde-format

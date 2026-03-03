@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-02 02:09+0000\n"
-"PO-Revision-Date: 2026-02-28 09:55+0100\n"
+"PO-Revision-Date: 2026-03-02 06:47+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -36456,34 +36456,29 @@ msgid "Telescope Motion"
 msgstr "Premikanje teleskopa"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connection"
+#, kde-format
 msgid "Correcting"
-msgstr "Povezava"
+msgstr "Povezovanje"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connected"
+#, kde-format
 msgid "Corrected"
 msgstr "Povezano"
 
 #: indi/indipac.cpp:44
-#, fuzzy, kde-format
-#| msgid "Job '%1' alignment is complete."
+#, kde-format
 msgid "Polar alignment correction completed"
-msgstr "Opravilo poravnave '%1' je zaključeno."
+msgstr "Popravek polarne poravnave je končan"
 
 #: indi/indipac.cpp:50
-#, fuzzy, kde-format
-#| msgid "Mount homing in progress"
+#, kde-format
 msgid "Polar alignment correction in progress"
-msgstr "Udomljenje montaže je v teku"
+msgstr "Popravek polarne poravnave v teku"
 
 #: indi/indipac.cpp:56
-#, fuzzy, kde-format
-#| msgid "Point calculation error."
+#, kde-format
 msgid "Polar alignment correction error"
-msgstr "Napaka pri izračunavanju točke."
+msgstr "Napaka popravka polarne poravnave"
 
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:100
 #, kde-format
@@ -43755,7 +43750,7 @@ msgstr "Hitrost nastavitve montaže v orodju Polar Alignment Assistant Tool."
 #: kstars.kcfg:3008
 #, kde-format
 msgid "Rotate mount by this many degrees during polar alignment."
-msgstr "Med polarno poravnavo zavrtite montažo za toliko stopinj."
+msgstr "Med polarno poravnavo zavrti montažo za toliko stopinj."
 
 #. i18n: ectx: label, entry (PAHRefreshAlgorithm), group (Align)
 #: kstars.kcfg:3012

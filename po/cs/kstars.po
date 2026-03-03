@@ -30202,10 +30202,9 @@ msgid "Resolving..."
 msgstr "Zpracovávám..."
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "Neznámý typ"
+msgstr "Neznámé zařízení"
 
 #: fitsviewer/fitsstackwebcast.cpp:443
 #, fuzzy, kde-format
@@ -32044,15 +32043,13 @@ msgstr ""
 #: fitsviewer/livestackwebcast.ui:362
 #, kde-format
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "Aktivovat"
+msgstr "Aktivita"
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
