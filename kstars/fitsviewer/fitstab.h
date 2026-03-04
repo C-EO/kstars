@@ -183,6 +183,18 @@ class FITSTab : public QWidget
         void extractImage();
         void liveStack();
 
+        /**
+         * @brief Start live stacking programmatically, bypassing the UI input fields.
+         * Updates the GUI (directory field, Start/Stop button, stats) to reflect the
+         * running state and then starts the stacking pipeline with the given parameters.
+         */
+        void startProgrammatically(const QString &dir, const LiveStackData &params);
+
+        /**
+         * @brief Stop live stacking programmatically, updating the GUI button state.
+         */
+        void stopProgrammatically();
+
     protected:
         virtual void closeEvent(QCloseEvent *ev) override;
 

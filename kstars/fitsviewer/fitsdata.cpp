@@ -558,6 +558,15 @@ LiveStackChannel FITSData::channelForStack(const QSharedPointer<FITSStack> &stac
 // Called when user requested to cancel the in-flight stacking operation
 void FITSData::cancelStack()
 {
+    // Guard against cancelStack() being called before loadStack() was ever called
+    // (e.g. LIVESTACKER_STOP arriving before LIVESTACKER_START). Both m_StackDirWatcher
+    // and m_CurrentStack are only initialized inside loadStack(), so they may be null.
+    if (!m_StackDirWatcher || !m_CurrentStack)
+    {
+        qCDebug(KSTARS_FITS) << "cancelStack() called but stacking was never started — ignoring.";
+        return;
+    }
+
     // Stop watching the stack directory so no new files will be processed...
     disconnect(m_StackDirWatcher.get(), &FITSDirWatcher::newFilesDetected, this, &FITSData::newStackSubs);
     m_StackDirWatcher->stopWatching();
@@ -1133,10 +1142,32 @@ bool FITSData::processNextSub(LiveStackFile &sub)
             bool plateSolving = (m_LiveStackData.alignMethod == LiveStackAlignMethod::PLATE_SOLVE);
             if (plateSolving && m_StackSubIndex <= 0)
             {
-                // 1st time solving, or solving had a problem so use WCS from sub header
-                if ((ok = stackLoadWCS()))
+                // 1st time solving, or solving had a problem so use WCS from sub header.
+                // stackLoadWCS() only provides an optional position hint for the plate solver;
+                // its failure (e.g. fresh sub with no WCS in header) must NOT prevent addSub().
+                if (stackLoadWCS())
                     setStackSubSolution(m_StackWCSHandle->crval[0], m_StackWCSHandle->crval[1],
                                         std::fabs(m_StackWCSHandle->cdelt[0]) * 3600.0, -1, -1);
+                else
+                {
+                    // Fall back to the simpler RA/DEC/SCALE keywords that Ekos capture writes
+                    // into every sub. These are not full WCS but give the plate solver enough of
+                    // a positional/scale hint to avoid a blind (zero-hint) solve, which will
+                    // always fail because useScale(true, 0, 0) matches no index file at all.
+                    QVariant raVal, decVal, scaleVal;
+                    const bool hasRA  = getRecordValue("RA",    raVal,    true);
+                    const bool hasDec = getRecordValue("DEC",   decVal,   true);
+                    const bool hasSc  = getRecordValue("SCALE", scaleVal, true);
+                    if (hasRA && hasDec)
+                    {
+                        const double ra  = raVal.toDouble();
+                        const double dec = decVal.toDouble();
+                        const double sc  = hasSc ? scaleVal.toDouble() : 0.0;
+                        setStackSubSolution(ra, dec, sc, -1, -1);
+                        qCDebug(KSTARS_FITS) << QString("WCS hint from header keywords: RA=%1 DEC=%2 pixscale=%3")
+                                             .arg(ra).arg(dec).arg(sc);
+                    }
+                }
             }
 
             if (ok)
@@ -4907,7 +4938,27 @@ bool FITSData::loadWCS()
     QByteArray header_str;
     int status = 0;
     int nkeyrec = 0, nreject = 0;
+
+    // Determine whether the underlying FITS file is writable.  When fptr was
+    // opened READONLY (the normal case for FITSViewer and platesolve), any
+    // preceding injectWCS() call will have updated m_HeaderRecords but skipped
+    // the CFITSIO fits_update_key() calls to avoid corrupting CFITSIO's internal
+    // header-end state.  In that case we must build the WCS header from
+    // m_HeaderRecords rather than from fits_hdr2str(), because the on-disk
+    // header does not contain the freshly-injected WCS keywords yet.
+    // For READWRITE files (e.g. a file saved by FITSData::saveImage()) the
+    // keywords have already been flushed to the file so fits_hdr2str() is used
+    // as before.
+    bool useFptr = false;
     if (fptr)
+    {
+        int fileMode = READONLY;
+        int modeStatus = 0;
+        fits_file_mode(fptr, &fileMode, &modeStatus);
+        useFptr = (modeStatus == 0 && fileMode == READWRITE);
+    }
+
+    if (useFptr)
     {
         char *header = nullptr;
         if (fits_hdr2str(fptr, 1, nullptr, 0, &header, &nkeyrec, &status))
@@ -4923,13 +4974,28 @@ bool FITSData::loadWCS()
     }
     else
     {
+        // Build the WCS header from m_HeaderRecords.
+        // wcspih() requires string values to be single-quoted (FITS convention),
+        // so we add quotes around string-type WCS keywords that need them.
+        static const QSet<QString> wcsStringKeys = { "CTYPE1", "CTYPE2", "RADECSYS",
+                                                     "OBJCTRA", "OBJCTDEC"
+                                                   };
         nkeyrec = 1;
-        for(auto &fitsKeyword : m_HeaderRecords)
+        for (auto &fitsKeyword : m_HeaderRecords)
         {
             QByteArray rec;
             rec.append(fitsKeyword.key.leftJustified(8, ' ').toLatin1());
             rec.append("= ");
-            rec.append(fitsKeyword.value.toByteArray());
+
+            QString valueStr = fitsKeyword.value.toString();
+            if (wcsStringKeys.contains(fitsKeyword.key))
+            {
+                // Add single quotes if not already present
+                if (!valueStr.startsWith('\'') || !valueStr.endsWith('\''))
+                    valueStr = '\'' + valueStr + '\'';
+            }
+
+            rec.append(valueStr.toLatin1());
             rec.append(" / ");
             rec.append(fitsKeyword.comment.toLatin1());
             header_str.append(rec.leftJustified(80, ' ', true));
@@ -7428,52 +7494,67 @@ void FITSData::injectWCS(double orientation, double ra, double dec, double pixsc
 
     if (fptr)
     {
-        char radec[16];
-        strcpy(radec, dms(ra).toHMSString(true, false, ' ').toStdString().c_str());
-        fits_update_key(fptr, TSTRING, "OBJCTRA", radec, "Object RA", &status);
-        strcpy(radec, dms(dec).toDMSString(true, true, false, ' ').toStdString().c_str());
-        fits_update_key(fptr, TSTRING, "OBJCTDEC", radec, "Object DEC", &status);
-        int epoch = 2000;
+        // Only write WCS keywords to the FITS file when it is open for writing.
+        // Calling fits_update_key() on a READONLY fptr causes CFITSIO to update
+        // its internal in-memory header-end pointer (headend / keysexist) to
+        // reflect the newly added keywords, but the subsequent disk-flush fails
+        // silently.  The internal state then disagrees with the on-disk file:
+        // ffghsp() reports N+16 keywords while the file has only N.  The next
+        // fits_hdr2str() call (in loadWCS) then iterates beyond the header and
+        // reads raw image pixel data into the fixed-size keybuf[162], whose
+        // strcat() overflows under __strcat_chk.
+        int fileMode = READONLY;
+        int modeStatus = 0;
+        fits_file_mode(fptr, &fileMode, &modeStatus);
+        if (modeStatus == 0 && fileMode == READWRITE)
+        {
+            char radec[16];
+            strcpy(radec, dms(ra).toHMSString(true, false, ' ').toStdString().c_str());
+            fits_update_key(fptr, TSTRING, "OBJCTRA", radec, "Object RA", &status);
+            strcpy(radec, dms(dec).toDMSString(true, true, false, ' ').toStdString().c_str());
+            fits_update_key(fptr, TSTRING, "OBJCTDEC", radec, "Object DEC", &status);
+            int epoch = 2000;
 
-        fits_update_key(fptr, TINT, "EQUINOX", &epoch, "Equinox", &status);
+            fits_update_key(fptr, TINT, "EQUINOX", &epoch, "Equinox", &status);
 
-        fits_update_key(fptr, TDOUBLE, "CRVAL1", &ra, "CRVAL1", &status);
-        fits_update_key(fptr, TDOUBLE, "CRVAL2", &dec, "CRVAL2", &status);
+            fits_update_key(fptr, TDOUBLE, "CRVAL1", &ra, "CRVAL1", &status);
+            fits_update_key(fptr, TDOUBLE, "CRVAL2", &dec, "CRVAL2", &status);
 
-        char radecsys[8] = "FK5";
-        char ctype1[16]  = "RA---TAN";
-        char ctype2[16]  = "DEC--TAN";
+            char radecsys[8] = "FK5";
+            char ctype1[16]  = "RA---TAN";
+            char ctype2[16]  = "DEC--TAN";
 
-        fits_update_key(fptr, TSTRING, "RADECSYS", radecsys, "RADECSYS", &status);
-        fits_update_key(fptr, TSTRING, "CTYPE1", ctype1, "CTYPE1", &status);
-        fits_update_key(fptr, TSTRING, "CTYPE2", ctype2, "CTYPE2", &status);
+            fits_update_key(fptr, TSTRING, "RADECSYS", radecsys, "RADECSYS", &status);
+            fits_update_key(fptr, TSTRING, "CTYPE1", ctype1, "CTYPE1", &status);
+            fits_update_key(fptr, TSTRING, "CTYPE2", ctype2, "CTYPE2", &status);
 
-        double crpix1 = width() / 2.0;
-        double crpix2 = height() / 2.0;
+            double crpix1 = width() / 2.0;
+            double crpix2 = height() / 2.0;
 
-        fits_update_key(fptr, TDOUBLE, "CRPIX1", &crpix1, "CRPIX1", &status);
-        fits_update_key(fptr, TDOUBLE, "CRPIX2", &crpix2, "CRPIX2", &status);
+            fits_update_key(fptr, TDOUBLE, "CRPIX1", &crpix1, "CRPIX1", &status);
+            fits_update_key(fptr, TDOUBLE, "CRPIX2", &crpix2, "CRPIX2", &status);
 
-        // Arcsecs per Pixel
-        double secpix1 = eastToTheRight ? pixscale : -pixscale;
-        double secpix2 = pixscale;
+            // Arcsecs per Pixel
+            double secpix1 = eastToTheRight ? pixscale : -pixscale;
+            double secpix2 = pixscale;
 
-        fits_update_key(fptr, TDOUBLE, "SECPIX1", &secpix1, "SECPIX1", &status);
-        fits_update_key(fptr, TDOUBLE, "SECPIX2", &secpix2, "SECPIX2", &status);
+            fits_update_key(fptr, TDOUBLE, "SECPIX1", &secpix1, "SECPIX1", &status);
+            fits_update_key(fptr, TDOUBLE, "SECPIX2", &secpix2, "SECPIX2", &status);
 
-        double degpix1 = secpix1 / 3600.0;
-        double degpix2 = secpix2 / 3600.0;
+            double degpix1 = secpix1 / 3600.0;
+            double degpix2 = secpix2 / 3600.0;
 
-        fits_update_key(fptr, TDOUBLE, "CDELT1", &degpix1, "CDELT1", &status);
-        fits_update_key(fptr, TDOUBLE, "CDELT2", &degpix2, "CDELT2", &status);
+            fits_update_key(fptr, TDOUBLE, "CDELT1", &degpix1, "CDELT1", &status);
+            fits_update_key(fptr, TDOUBLE, "CDELT2", &degpix2, "CDELT2", &status);
 
-        // Rotation is CW, we need to convert it to CCW per CROTA1 definition
-        double rotation = 360 - orientation;
-        if (rotation > 360)
-            rotation -= 360;
+            // Rotation is CW, we need to convert it to CCW per CROTA1 definition
+            double rotation = 360 - orientation;
+            if (rotation > 360)
+                rotation -= 360;
 
-        fits_update_key(fptr, TDOUBLE, "CROTA1", &rotation, "CROTA1", &status);
-        fits_update_key(fptr, TDOUBLE, "CROTA2", &rotation, "CROTA2", &status);
+            fits_update_key(fptr, TDOUBLE, "CROTA1", &rotation, "CROTA1", &status);
+            fits_update_key(fptr, TDOUBLE, "CROTA2", &rotation, "CROTA2", &status);
+        }
     }
 
     emit headerChanged();

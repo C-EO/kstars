@@ -710,6 +710,12 @@ void Media::registerCameras()
     process->disconnect(this);
     connect(process, &Ekos::CameraProcess::newView, this, [this](const QSharedPointer<FITSView> &view)
     {
+        // Skip raw capture frames while the native KStars livestacker is running.
+        // The stacked result is sent separately by PictureMonitor when it is written
+        // to the output directory, so forwarding the raw sub here would produce the
+        // confusing alternating pattern: regular → stacked → regular → stacked → ...
+        if (m_liveStackingActive)
+            return;
         sendView(view, view->imageData()->objectName());
     });
 }

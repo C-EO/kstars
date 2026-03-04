@@ -54,6 +54,12 @@ class Media : public QObject
         // Capture
         void sendVideoFrame(const QSharedPointer<QImage> &frame);
 
+        // LiveStacking
+        void setLiveStackingActive(bool active)
+        {
+            m_liveStackingActive = active;
+        }
+
         // Correction Vector
         void setCorrectionVector(QLineF correctionVector)
         {
@@ -90,7 +96,11 @@ class Media : public QObject
         QStringList temporaryFiles;
         QLineF correctionVector;
 
-        bool m_sendBlobs { true};
+        bool m_sendBlobs { true };
+        // When the native KStars livestacker is active, raw capture frames are
+        // suppressed so only the stacked results (delivered via PictureMonitor)
+        // reach the App.
+        bool m_liveStackingActive { false };
 
         // Image width for high-bandwidth setting
         static const uint16_t HB_IMAGE_WIDTH = 1920;

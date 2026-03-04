@@ -14,6 +14,7 @@
 #include "ekos/ekos.h"
 #include "ekos/align/polaralignmentassistant.h"
 #include "ekos/manager.h"
+#include "ekos/capture/sequencejob.h"
 #include "catalogsdb.h"
 #include "nodemanager.h"
 #include <QQueue>
@@ -69,6 +70,8 @@ class Message : public QObject
         void globalLogoutTriggered(const QUrl &url);
         void optionsUpdated();
         void resetPolarView();
+        // Emitted when the native KStars livestacker starts (true) or stops (false)
+        void liveStackingActiveChanged(bool active);
 
     public slots:
         // Connection
@@ -217,6 +220,9 @@ class Message : public QObject
         void processLiveStackerCommands(const QString &command, const QJsonObject &payload);
         void sendLiveStackerProgress(bool ok, int sub, int total, double meanSNR, double minSNR, double maxSNR);
         void sendLiveStackerComplete();
+        // Slot called for each captured frame when livestacking in looping mode.
+        // Saves the full-resolution FITSData to stackingDirectory so the native LiveStacker can pick it up.
+        void saveLiveStackerFrame(const QSharedPointer<Ekos::SequenceJob> &job, const QSharedPointer<FITSData> &data);
 
         void dispatchDebounceQueue();
 
@@ -272,6 +278,8 @@ class Message : public QObject
         // LiveStacker
         QSharedPointer<FITSViewer> m_LiveStackerViewer;
         QVariantMap m_LiveStackerSettings;
+        // True while livestacking in looping mode — each preview frame is saved to stackingDirectory
+        bool m_LiveStackerLooping {false};
 
         typedef enum
         {

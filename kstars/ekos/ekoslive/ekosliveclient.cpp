@@ -162,6 +162,10 @@ Client::Client(Ekos::Manager *manager) : QDialog(manager), m_Manager(manager)
     connect(m_Media, &Media::disconnected, this, &Client::onDisconnected); // Assuming Media also needs disconnect handling
     connect(m_Media, &Media::globalLogoutTriggered, this, &Client::processGlobalLogoutTrigger); // Connect Media's signal
 
+    // When the native livestacker starts/stops, suppress raw capture frames so
+    // the App only receives the stacked results (delivered via PictureMonitor).
+    connect(m_Message, &Message::liveStackingActiveChanged, m_Media, &Media::setLiveStackingActive);
+
     m_Cloud = new Cloud(m_Manager, m_NodeManagers);
     connect(m_Cloud, &Cloud::connected, this, &Client::onConnected);
     connect(m_Cloud, &Cloud::disconnected, this, &Client::onDisconnected); // Assuming Cloud also needs disconnect handling

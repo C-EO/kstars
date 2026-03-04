@@ -499,6 +499,13 @@ void FITSView::loadStack(const QStringList &inDir, const LiveStackData &params)
     QString noImage = ":/images/noimage.png";
     fitsWatcher.setFuture(m_ImageData->loadFromFile(noImage));
 
+    // Wait for the noimage.png placeholder to finish loading before starting the
+    // actual stacking pipeline. loadStack() may synchronously trigger stackReady()
+    // (when existing subs are present) which calls fitsWatcher.setFuture(loadStackBuffer()),
+    // launching a second background thread that writes fptr while the noimage.png thread
+    // is still inside calculateStats() — a race that corrupts fptr and crashes cfitsio.
+    fitsWatcher.waitForFinished();
+
     m_ImageData->loadStack(inDir, params);
 #else
     Q_UNUSED(inDir);

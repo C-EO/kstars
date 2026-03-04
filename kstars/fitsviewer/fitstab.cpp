@@ -351,6 +351,26 @@ void FITSTab::processData()
     //        m_HistogramEditor->createNonLinearHistogram();
 
     stretchUI->generateHistogram();
+
+    // If the FITS header contains plate-solve hints, pre-populate the PlateSolve widget.
+    // SCALE keyword: pixel scale in arcseconds per pixel (double).
+    // RA keyword:    J2000 Right Ascension in degrees (double).
+    // DEC keyword:   J2000 Declination in degrees (double).
+    QVariant scaleVal;
+    if (imageData->getRecordValue("SCALE", scaleVal) && scaleVal.toDouble() > 0)
+    {
+        m_PlateSolve->setScale(scaleVal.toDouble());
+        m_PlateSolve->setScaleUnits(SSolver::ARCSEC_PER_PIX);
+        m_PlateSolve->setUseScale(true);
+    }
+
+    QVariant raVal, decVal;
+    if (imageData->getRecordValue("RA", raVal) && imageData->getRecordValue("DEC", decVal))
+    {
+        const SkyPoint point(dms(raVal.toDouble()), dms(decVal.toDouble()));
+        m_PlateSolve->setPosition(point);
+        m_PlateSolve->setUsePosition(true);
+    }
 }
 
 bool FITSTab::loadData(const QSharedPointer<FITSData> &data, FITSMode mode, FITSScale filter)
@@ -1892,4 +1912,50 @@ void FITSTab::resetStack(const bool cancelled)
         m_LiveStackingUI.StartB->setEnabled(true);
         m_LiveStackingUI.PostProcGroupBox->setEnabled(true);
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
+void FITSTab::startProgrammatically(const QString &dir, const LiveStackData &params)
+{
+    // Update the stacking directory field in the GUI so it is visible to the user
+    m_LiveStackingUI.Stack->setText(dir);
+    m_liveStackDir.clear();
+    m_liveStackDir.push_back(dir);
+    m_StackDefTabName = dir;
+
+    m_StackStarted   = true;
+    m_StackCancelled = false;
+
+    // Flip the Start/Stop button into "running" state
+    m_LiveStackingUI.StartB->setText(TEXT_STOP.toString());
+    m_LiveStackingUI.StartB->setEnabled(true);
+    m_LiveStackingUI.PostProcGroupBox->setEnabled(false);
+
+    // Reset per-session counters and stat displays
+    m_StackSubsTotal     = 0;
+    m_StackSubsProcessed = 0;
+    m_StackSubsFailed    = 0;
+    m_LiveStackingUI.SubsProcessed->setText("0 / 0 / 0");
+    m_LiveStackingUI.SubsSNR->setText("0 / 0 / 0");
+    m_LiveStackingUI.ImageSNR->setText("0");
+
+    // Notify the viewer so its status bar shows "Stacking..."
+    if (viewer)
+        viewer->restack(getUID());
+
+    // Start the actual stacking pipeline
+    m_View->loadStack(m_liveStackDir, params);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
+void FITSTab::stopProgrammatically()
+{
+    m_LiveStackingUI.StartB->setText(TEXT_STOPPING.toString());
+    m_LiveStackingUI.StartB->setEnabled(false);
+    m_LiveStackingUI.PostProcGroupBox->setEnabled(false);
+    m_View->cancelStack();
 }

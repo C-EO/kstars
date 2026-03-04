@@ -17,6 +17,7 @@
 #include "ekos/auxiliary/opticaltrainmanager.h"
 #include "ekos/auxiliary/profilesettings.h"
 #include "ekos/capture/capture.h"
+#include "ekos/capture/cameraprocess.h"
 #include "ekos/focus/focusmodule.h"
 #include "ekos/guide/guide.h"
 #include "ekos/mount/mount.h"
@@ -3143,8 +3144,9 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
     }
     else if (command == commands[LIVESTACKER_SET_ALL_SETTINGS])
     {
-        // Store settings for later use when starting
-        m_LiveStackerSettings = payload["settings"].toVariant().toMap();
+        // Store settings for later use when starting.
+        // The payload is a flat object (not nested under a "settings" key).
+        m_LiveStackerSettings = payload.toVariantMap();
         sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "settings_applied"}});
     }
     else if (command == commands[LIVESTACKER_GET_ALL_SETTINGS])
@@ -3160,8 +3162,19 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
             return;
         }
 
-        QSharedPointer<FITSView> currentView;
-        if (!m_LiveStackerViewer->getCurrentView(currentView) || !currentView)
+        // The FITSView is created synchronously during FITSTab::setupView() / FITSView::initStack(),
+        // but the tab is only added to the QTabWidget after the async "noimage.png" load completes.
+        // So getCurrentView() (which uses currentIndex()) would return false here. Instead, access
+        // the first (and only) tab's view directly since it is always constructed synchronously.
+        auto viewerTabs = m_LiveStackerViewer->tabs();
+        if (viewerTabs.isEmpty() || viewerTabs.first().isNull())
+        {
+            sendResponse(commands[NEW_LIVESTACKER_STATE],
+            QJsonObject{{"state", "error"}, {"message", "No active view"}});
+            return;
+        }
+        QSharedPointer<FITSView> currentView = viewerTabs.first()->getView();
+        if (!currentView)
         {
             sendResponse(commands[NEW_LIVESTACKER_STATE],
             QJsonObject{{"state", "error"}, {"message", "No active view"}});
@@ -3208,30 +3221,67 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
         // this outputDirectory offline for new stacked frames.
         params.outputDirectory = m_LiveStackerSettings.value("outputDirectory").toString();
 
-        // Start stacking by loading the directory
-        QStringList paths{directory};
-        currentView->loadStack(paths, params);
+        // Start stacking via FITSTab so the GUI is fully updated (directory
+        // field, Start/Stop button, counters) before the pipeline begins.
+        viewerTabs.first()->startProgrammatically(directory, params);
 
-        // Connect signals for progress updates
+        // Connect progress signals from the underlying FITSView.
         connect(currentView.get(), &FITSView::stackUpdateStats, this, &Message::sendLiveStackerProgress);
         connect(currentView.get(), &FITSView::resetStack, this, &Message::sendLiveStackerComplete);
 
+        // In looping (framing) mode, JOBTYPE_PREVIEW frames are never saved to disk because KStars
+        // forces UPLOAD_CLIENT for preview jobs. Connect to CameraProcess::newImage so every captured
+        // frame (full-resolution FITSData) is saved to stackingDirectory where the LiveStacker picks it up.
+        if (m_LiveStackerSettings.value("looping", false).toBool() && m_Manager->captureModule())
+        {
+            m_LiveStackerLooping = true;
+            connect(m_Manager->captureModule()->mainCamera()->process().get(),
+                    &Ekos::CameraProcess::newImage,
+                    this,
+                    &Message::saveLiveStackerFrame,
+                    Qt::UniqueConnection);
+        }
+
+        emit liveStackingActiveChanged(true);
         sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "started"}});
     }
     else if (command == commands[LIVESTACKER_STOP])
     {
+        // Disconnect the looping frame-save slot if it was connected.
+        if (m_LiveStackerLooping && m_Manager->captureModule())
+        {
+            disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
+                       &Ekos::CameraProcess::newImage,
+                       this,
+                       &Message::saveLiveStackerFrame);
+            m_LiveStackerLooping = false;
+        }
+
         if (m_LiveStackerViewer)
         {
-            QSharedPointer<FITSView> currentView;
-            if (m_LiveStackerViewer->getCurrentView(currentView) && currentView)
-            {
-                currentView->cancelStack();
-            }
+            // Use tabs().first() directly for the same reason as LIVESTACKER_START:
+            // the tab may not yet be registered in the QTabWidget index when stop is
+            // called quickly after start (before the first frame is processed).
+            auto viewerTabs = m_LiveStackerViewer->tabs();
+            if (!viewerTabs.isEmpty() && !viewerTabs.first().isNull())
+                viewerTabs.first()->stopProgrammatically();
+            emit liveStackingActiveChanged(false);
             sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "stopped"}});
         }
     }
     else if (command == commands[LIVESTACKER_CLOSE])
     {
+        // Disconnect the looping frame-save slot if it was connected.
+        if (m_LiveStackerLooping && m_Manager->captureModule())
+        {
+            disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
+                       &Ekos::CameraProcess::newImage,
+                       this,
+                       &Message::saveLiveStackerFrame);
+            m_LiveStackerLooping = false;
+        }
+
+        emit liveStackingActiveChanged(false);
         if (m_LiveStackerViewer)
         {
             m_LiveStackerViewer->close();
@@ -3270,6 +3320,31 @@ void Message::sendLiveStackerComplete()
         {"state", "complete"}
     };
     sendResponse(commands[NEW_LIVESTACKER_STATE], state);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+/// Called for every JOBTYPE_PREVIEW (looping/framing) frame while livestacking is active.
+/// Saves the full-resolution FITSData to stackingDirectory so the native LiveStacker
+/// filesystem watcher picks it up automatically.
+///////////////////////////////////////////////////////////////////////////////////////////
+void Message::saveLiveStackerFrame(const QSharedPointer<Ekos::SequenceJob> &job, const QSharedPointer<FITSData> &data)
+{
+    Q_UNUSED(job)
+
+    if (!m_LiveStackerLooping || !data)
+        return;
+
+    const QString dir = m_LiveStackerSettings.value("stackingDirectory").toString();
+    if (dir.isEmpty())
+        return;
+
+    // Use millisecond timestamp to guarantee a unique, naturally-ordered filename.
+    const QString filename = QDir(dir).filePath(
+                                 QString("frame_%1.fits").arg(QDateTime::currentMSecsSinceEpoch())
+                             );
+
+    if (!data->saveImage(filename))
+        qCWarning(KSTARS_EKOS) << "LiveStacker looping: failed to save frame to" << filename;
 }
 
 }

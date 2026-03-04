@@ -1847,7 +1847,7 @@ bool FITSViewer::getView(int fitsUID, QSharedPointer<FITSView> &view)
 
 bool FITSViewer::getCurrentView(QSharedPointer<FITSView> &view)
 {
-    if (m_Tabs.empty() || fitsTabWidget->currentIndex() >= m_Tabs.count())
+    if (m_Tabs.empty() || fitsTabWidget->currentIndex() < 0 || fitsTabWidget->currentIndex() >= m_Tabs.count())
         return false;
 
     view = m_Tabs[fitsTabWidget->currentIndex()]->getView();

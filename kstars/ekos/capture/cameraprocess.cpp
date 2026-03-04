@@ -1263,7 +1263,10 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
 
     // JM 2020-06-17: Emit newImage for LOCAL images (stored on remote host)
     //if (m_Camera->getUploadMode() == ISD::Camera::UPLOAD_LOCAL)
-    emit newImage(thejob, state()->imageData());
+    // When looping/framing, continueFramingAction() is called immediately after and emits its
+    // own newImage — skip here to avoid firing the signal twice for the same frame.
+    if (!state()->isLooping())
+        emit newImage(thejob, state()->imageData());
 
     // Check if we need to execute post capture script first
     if (runCaptureScript(SCRIPT_POST_CAPTURE) == IPS_BUSY)
