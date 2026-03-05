@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-04 02:06+0000\n"
-"PO-Revision-Date: 2026-03-02 09:03-0300\n"
+"PO-Revision-Date: 2026-03-04 06:16-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -9030,8 +9030,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, openIndexFileDirectory)
 #: ekos/align/opsastrometryindexfiles.ui:276
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "opens astrometry index file directory"
 msgid "Open"
 msgstr "Abrir"
@@ -14943,8 +14942,7 @@ msgstr "Redefinir os valores de tamanho e quadro do CCD para os valores padrão"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CaptureSettingsGroup)
 #: ekos/capture/camera.ui:258
-#, fuzzy, kde-format
-#| msgid "Capture Settings"
+#, kde-format
 msgctxt "camera capture settings section title"
 msgid "Capture Settings"
 msgstr "Configurações de captura"
@@ -26234,8 +26232,7 @@ msgid "Shutter is opening..."
 msgstr "Obturador abrindo..."
 
 #: ekos/observatory/observatory.cpp:459 ekos/observatory/observatory.cpp:463
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "Shutter action"
 msgid "Open"
 msgstr "Abrir"
@@ -26251,8 +26248,7 @@ msgid "Shutter is closing..."
 msgstr "Obturador fechando..."
 
 #: ekos/observatory/observatory.cpp:580
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "Rolloff roof action"
 msgid "Open"
 msgstr "Abrir"
@@ -26435,8 +26431,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, shutterOpen)
 #: ekos/observatory/observatory.ui:673
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "opens dome shutter"
 msgid "Open"
 msgstr "Abrir"
@@ -28838,12 +28833,14 @@ msgstr "Período de carência do clima"
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_SchedulerWeatherGracePeriod)
 #. i18n: ectx: label, entry (SchedulerWeatherGracePeriod), group (Scheduler)
 #: ekos/scheduler/opsweathersettings.ui:55 kstars.kcfg:3540
-#, fuzzy, kde-format
-#| msgid "Wait this many minutes for the weather to improve before giving up."
+#, kde-format
 msgid ""
 "Wait this many minutes for the weather to improve before giving up. Set to 0 "
 "to wait indefinitely (scheduler keeps monitoring until weather improves)."
-msgstr "Espere esse tempo todo para que o tempo melhore antes de desistir."
+msgstr ""
+"Espere esse tempo todo para que o tempo melhore antes de desistir. Defina "
+"como 0 para aguardar indefinidamente (o agendador continua monitorando até "
+"que o tempo melhore)."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, label)
 #: ekos/scheduler/opsweathersettings.ui:96
@@ -30088,6 +30085,9 @@ msgid ""
 "Weather grace period is set to indefinite wait. Weather is still not OK, "
 "continuing to monitor..."
 msgstr ""
+"O período de tolerância devido às condições climáticas foi definido como "
+"espera indefinida. As condições climáticas ainda não estão favoráveis; "
+"continuando a monitorar..."
 
 #: ekos/scheduler/schedulerprocess.cpp:558
 #, kde-format
@@ -30816,15 +30816,13 @@ msgstr ""
 "em %1 segundos."
 
 #: ekos/scheduler/schedulerprocess.cpp:3945
-#, fuzzy, kde-format
-#| msgid ""
-#| "Observatory scheduled for soft shutdown until safety improves or until %1."
+#, kde-format
 msgid ""
 "Observatory scheduled for soft shutdown. Monitoring weather indefinitely "
 "until safety improves."
 msgstr ""
-"Observatório programado para desligamento suave até que a segurança melhore "
-"ou até %1."
+"O observatório está programado para um desligamento gradual. O monitoramento "
+"meteorológico continuará por tempo indeterminado até que a segurança melhore."
 
 #: ekos/scheduler/schedulerprocess.cpp:3947
 #, kde-format
