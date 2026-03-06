@@ -276,7 +276,7 @@ class Message : public QObject
         CatalogsDB::DBManager m_DSOManager;
 
         // LiveStacker
-        QSharedPointer<FITSViewer> m_LiveStackerViewer;
+        QSharedPointer < FITSViewer > m_LiveStackerViewer;
         QVariantMap m_LiveStackerSettings;
         // True while livestacking in looping mode — each preview frame is saved to stackingDirectory
         bool m_LiveStackerLooping {false};

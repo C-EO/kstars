@@ -286,35 +286,50 @@ int getCVDebayerCode(const OpenCVAlgo algo, const OpenCVParams params)
     switch (algo)
     {
         case OpenCVAlgo::VNG:
-        switch (effectivePattern)
-        {
-            case BayerPattern::RGGB: return cv::COLOR_BayerRGGB2RGB_VNG;
-            case BayerPattern::GRBG: return cv::COLOR_BayerGRBG2RGB_VNG;
-            case BayerPattern::GBRG: return cv::COLOR_BayerGBRG2RGB_VNG;
-            case BayerPattern::BGGR: return cv::COLOR_BayerBGGR2RGB_VNG;
-            default:                 return cv::COLOR_BayerRGGB2RGB_VNG;
-        }
+            switch (effectivePattern)
+            {
+                case BayerPattern::RGGB:
+                    return cv::COLOR_BayerRGGB2RGB_VNG;
+                case BayerPattern::GRBG:
+                    return cv::COLOR_BayerGRBG2RGB_VNG;
+                case BayerPattern::GBRG:
+                    return cv::COLOR_BayerGBRG2RGB_VNG;
+                case BayerPattern::BGGR:
+                    return cv::COLOR_BayerBGGR2RGB_VNG;
+                default:
+                    return cv::COLOR_BayerRGGB2RGB_VNG;
+            }
 
         case OpenCVAlgo::EA:
-        switch (effectivePattern)
-        {
-            case BayerPattern::RGGB: return cv::COLOR_BayerRGGB2RGB_EA;
-            case BayerPattern::GRBG: return cv::COLOR_BayerGRBG2RGB_EA;
-            case BayerPattern::GBRG: return cv::COLOR_BayerGBRG2RGB_EA;
-            case BayerPattern::BGGR: return cv::COLOR_BayerBGGR2RGB_EA;
-            default:                 return cv::COLOR_BayerRGGB2RGB_EA;
-        }
+            switch (effectivePattern)
+            {
+                case BayerPattern::RGGB:
+                    return cv::COLOR_BayerRGGB2RGB_EA;
+                case BayerPattern::GRBG:
+                    return cv::COLOR_BayerGRBG2RGB_EA;
+                case BayerPattern::GBRG:
+                    return cv::COLOR_BayerGBRG2RGB_EA;
+                case BayerPattern::BGGR:
+                    return cv::COLOR_BayerBGGR2RGB_EA;
+                default:
+                    return cv::COLOR_BayerRGGB2RGB_EA;
+            }
 
         default:
-        // Standard Bilinear
-        switch (effectivePattern)
-        {
-            case BayerPattern::RGGB: return cv::COLOR_BayerRGGB2RGB;
-            case BayerPattern::GRBG: return cv::COLOR_BayerGRBG2RGB;
-            case BayerPattern::GBRG: return cv::COLOR_BayerGBRG2RGB;
-            case BayerPattern::BGGR: return cv::COLOR_BayerBGGR2RGB;
-            default:                 return cv::COLOR_BayerRGGB2RGB;
-        }
+            // Standard Bilinear
+            switch (effectivePattern)
+            {
+                case BayerPattern::RGGB:
+                    return cv::COLOR_BayerRGGB2RGB;
+                case BayerPattern::GRBG:
+                    return cv::COLOR_BayerGRBG2RGB;
+                case BayerPattern::GBRG:
+                    return cv::COLOR_BayerGBRG2RGB;
+                case BayerPattern::BGGR:
+                    return cv::COLOR_BayerBGGR2RGB;
+                default:
+                    return cv::COLOR_BayerRGGB2RGB;
+            }
     }
 }
 
