@@ -223,6 +223,9 @@ class Message : public QObject
         // Slot called for each captured frame when livestacking in looping mode.
         // Saves the full-resolution FITSData to stackingDirectory so the native LiveStacker can pick it up.
         void saveLiveStackerFrame(const QSharedPointer<Ekos::SequenceJob> &job, const QSharedPointer<FITSData> &data);
+        // Slot called for each captured frame when livestacking in active-sequence mode.
+        // Detects target or filter changes and restarts the stacker for the new job.
+        void onLiveStackerJobChanged(const QSharedPointer<Ekos::SequenceJob> &job, const QSharedPointer<FITSData> &data);
 
         void dispatchDebounceQueue();
 
@@ -280,6 +283,10 @@ class Message : public QObject
         QVariantMap m_LiveStackerSettings;
         // True while livestacking in looping mode — each preview frame is saved to stackingDirectory
         bool m_LiveStackerLooping {false};
+        // Track the target and filter currently being stacked so we can detect job changes
+        // in active-sequence mode and restart the stacker for the new job.
+        QString m_LiveStackerCurrentTarget;
+        QString m_LiveStackerCurrentFilter;
 
         typedef enum
         {

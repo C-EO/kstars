@@ -898,10 +898,16 @@ void Message::processAlignCommands(const QString &command, const QJsonObject &pa
                                QString("XXXXXXloadslew.%1").arg(payload["ext"].toString("fits"));
             QTemporaryFile file(filename);
             file.setAutoRemove(false);
-            file.open();
-            file.write(QByteArray::fromBase64(payload["data"].toString().toLatin1()));
-            file.close();
-            align->loadAndSlew(file.fileName());
+            if (file.open())
+            {
+                file.write(QByteArray::fromBase64(payload["data"].toString().toLatin1()));
+                file.close();
+                align->loadAndSlew(file.fileName());
+            }
+            else
+            {
+                qCWarning(KSTARS_EKOS) << "ALIGN_LOAD_AND_SLEW: failed to open temporary file" << filename;
+            }
         }
     }
     else if (command == commands[ALIGN_MANUAL_ROTATOR_TOGGLE])
@@ -3190,6 +3196,40 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
             return;
         }
 
+        // For active-sequence mode (non-looping), the server passes the base capture directory
+        // (fileDirectoryT). However, KStars's PlaceholderPath saves images to a subdirectory
+        // structured as <base>/<target>/<type>/<filter>/. Resolve the actual subdirectory from
+        // the active job's SJ_Signature so the stacker watches where frames actually land.
+        const bool isLooping = m_LiveStackerSettings.value("looping", false).toBool();
+        if (!isLooping)
+        {
+            auto capture = m_Manager->captureModule();
+            if (capture)
+            {
+                auto activeJob = capture->mainCamera()->activeJob();
+                if (activeJob)
+                {
+                    const QString sig = activeJob->getCoreProperty(Ekos::SequenceJob::SJ_Signature).toString();
+                    if (!sig.isEmpty())
+                    {
+                        const QString resolvedDir = QFileInfo(sig).absoluteDir().path();
+                        if (!resolvedDir.isEmpty())
+                        {
+                            qCInfo(KSTARS_EKOS) << "LiveStacker: resolved stacking directory from job signature:"
+                                                << directory << "→" << resolvedDir;
+                            directory = resolvedDir;
+                            // Keep settings in sync so onLiveStackerJobChanged restart uses correct dir
+                            m_LiveStackerSettings["stackingDirectory"] = resolvedDir;
+                        }
+                    }
+                    // Seed the job-change tracker so the first arriving frame does not
+                    // trigger a spurious restart.
+                    m_LiveStackerCurrentTarget = activeJob->getCoreProperty(Ekos::SequenceJob::SJ_TargetName).toString();
+                    m_LiveStackerCurrentFilter = activeJob->getCoreProperty(Ekos::SequenceJob::SJ_Filter).toString();
+                }
+            }
+        }
+
         // Build LiveStackData from settings
         LiveStackData params;
         params.calcSNR = m_LiveStackerSettings.value("calcSNR", true).toBool();
@@ -3229,17 +3269,33 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
         connect(currentView.get(), &FITSView::stackUpdateStats, this, &Message::sendLiveStackerProgress);
         connect(currentView.get(), &FITSView::resetStack, this, &Message::sendLiveStackerComplete);
 
-        // In looping (framing) mode, JOBTYPE_PREVIEW frames are never saved to disk because KStars
-        // forces UPLOAD_CLIENT for preview jobs. Connect to CameraProcess::newImage so every captured
-        // frame (full-resolution FITSData) is saved to stackingDirectory where the LiveStacker picks it up.
-        if (m_LiveStackerSettings.value("looping", false).toBool() && m_Manager->captureModule())
+        if (m_Manager->captureModule())
         {
-            m_LiveStackerLooping = true;
-            connect(m_Manager->captureModule()->mainCamera()->process().get(),
-                    &Ekos::CameraProcess::newImage,
-                    this,
-                    &Message::saveLiveStackerFrame,
-                    Qt::UniqueConnection);
+            if (isLooping)
+            {
+                // In looping (framing) mode, JOBTYPE_PREVIEW frames are never saved to disk because
+                // KStars forces UPLOAD_CLIENT for preview jobs. Connect to CameraProcess::newImage so
+                // every captured frame (full-resolution FITSData) is saved to stackingDirectory where
+                // the LiveStacker filesystem watcher picks it up automatically.
+                m_LiveStackerLooping = true;
+                connect(m_Manager->captureModule()->mainCamera()->process().get(),
+                        &Ekos::CameraProcess::newImage,
+                        this,
+                        &Message::saveLiveStackerFrame,
+                        Qt::UniqueConnection);
+            }
+            else
+            {
+                // In active-sequence mode, connect to newImage to detect when the target or filter
+                // changes (new sequence job) and restart the stacker so it watches the correct
+                // subdirectory for the new job. Stacking H_Alpha on OIII or mixing targets would
+                // produce scientifically meaningless results.
+                connect(m_Manager->captureModule()->mainCamera()->process().get(),
+                        &Ekos::CameraProcess::newImage,
+                        this,
+                        &Message::onLiveStackerJobChanged,
+                        Qt::UniqueConnection);
+            }
         }
 
         emit liveStackingActiveChanged(true);
@@ -3247,15 +3303,28 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
     }
     else if (command == commands[LIVESTACKER_STOP])
     {
-        // Disconnect the looping frame-save slot if it was connected.
-        if (m_LiveStackerLooping && m_Manager->captureModule())
+        if (m_Manager->captureModule())
         {
-            disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
-                       &Ekos::CameraProcess::newImage,
-                       this,
-                       &Message::saveLiveStackerFrame);
-            m_LiveStackerLooping = false;
+            // Disconnect the looping frame-save slot if it was connected.
+            if (m_LiveStackerLooping)
+            {
+                disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
+                           &Ekos::CameraProcess::newImage,
+                           this,
+                           &Message::saveLiveStackerFrame);
+                m_LiveStackerLooping = false;
+            }
+            else
+            {
+                // Disconnect the sequence-mode job-change slot.
+                disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
+                           &Ekos::CameraProcess::newImage,
+                           this,
+                           &Message::onLiveStackerJobChanged);
+            }
         }
+        m_LiveStackerCurrentTarget.clear();
+        m_LiveStackerCurrentFilter.clear();
 
         if (m_LiveStackerViewer)
         {
@@ -3271,15 +3340,26 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
     }
     else if (command == commands[LIVESTACKER_CLOSE])
     {
-        // Disconnect the looping frame-save slot if it was connected.
-        if (m_LiveStackerLooping && m_Manager->captureModule())
+        if (m_Manager->captureModule())
         {
-            disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
-                       &Ekos::CameraProcess::newImage,
-                       this,
-                       &Message::saveLiveStackerFrame);
-            m_LiveStackerLooping = false;
+            if (m_LiveStackerLooping)
+            {
+                disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
+                           &Ekos::CameraProcess::newImage,
+                           this,
+                           &Message::saveLiveStackerFrame);
+                m_LiveStackerLooping = false;
+            }
+            else
+            {
+                disconnect(m_Manager->captureModule()->mainCamera()->process().get(),
+                           &Ekos::CameraProcess::newImage,
+                           this,
+                           &Message::onLiveStackerJobChanged);
+            }
         }
+        m_LiveStackerCurrentTarget.clear();
+        m_LiveStackerCurrentFilter.clear();
 
         emit liveStackingActiveChanged(false);
         if (m_LiveStackerViewer)
@@ -3345,6 +3425,116 @@ void Message::saveLiveStackerFrame(const QSharedPointer<Ekos::SequenceJob> &job,
 
     if (!data->saveImage(filename))
         qCWarning(KSTARS_EKOS) << "LiveStacker looping: failed to save frame to" << filename;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+/// Called for each captured frame in active-sequence live-stacking mode.
+/// Compares the incoming job's target and filter against what the stacker is currently
+/// monitoring. If either changed (i.e. a new sequence job started), the stacker is
+/// stopped, its input directory is updated to the new job's actual save path (derived
+/// from SJ_Signature), and then the stacker is restarted. The output directory remains
+/// unchanged so the EkosLive server-side PictureMonitor keeps watching without any
+/// server-side changes.
+///////////////////////////////////////////////////////////////////////////////////////////
+void Message::onLiveStackerJobChanged(const QSharedPointer<Ekos::SequenceJob> &job,
+                                      const QSharedPointer<FITSData> &data)
+{
+    Q_UNUSED(data)
+
+    if (!m_LiveStackerViewer || !job)
+        return;
+
+    const QString newTarget = job->getCoreProperty(Ekos::SequenceJob::SJ_TargetName).toString();
+    const QString newFilter = job->getCoreProperty(Ekos::SequenceJob::SJ_Filter).toString();
+
+    // Same job — nothing to do
+    if (newTarget == m_LiveStackerCurrentTarget && newFilter == m_LiveStackerCurrentFilter)
+        return;
+
+    qCInfo(KSTARS_EKOS) << "LiveStacker: sequence job changed from"
+                        << m_LiveStackerCurrentTarget << "/" << m_LiveStackerCurrentFilter
+                        << "to" << newTarget << "/" << newFilter << "— restarting stacker";
+
+    // Resolve the new job's actual save directory from its SJ_Signature.
+    // SJ_Signature is the filename template used by PlaceholderPath; its directory
+    // component gives us the subdirectory where the new job's frames are saved.
+    const QString sig = job->getCoreProperty(Ekos::SequenceJob::SJ_Signature).toString();
+    if (sig.isEmpty())
+    {
+        qCWarning(KSTARS_EKOS) << "LiveStacker: cannot restart — new job has no SJ_Signature";
+        return;
+    }
+
+    const QString newDirectory = QFileInfo(sig).absoluteDir().path();
+    if (newDirectory.isEmpty())
+    {
+        qCWarning(KSTARS_EKOS) << "LiveStacker: cannot restart — resolved directory is empty for sig:" << sig;
+        return;
+    }
+
+    // Update tracking state
+    m_LiveStackerCurrentTarget = newTarget;
+    m_LiveStackerCurrentFilter = newFilter;
+
+    // Access the live stacker tab (always the first tab)
+    auto viewerTabs = m_LiveStackerViewer->tabs();
+    if (viewerTabs.isEmpty() || viewerTabs.first().isNull())
+        return;
+
+    // Stop the current stack cleanly
+    viewerTabs.first()->stopProgrammatically();
+
+    // Update the stacking input directory in our settings so that subsequent
+    // calls (e.g. another job change) use the latest directory as the base.
+    m_LiveStackerSettings["stackingDirectory"] = newDirectory;
+
+    // Rebuild params from the stored settings (same as in LIVESTACKER_START)
+    LiveStackData params;
+    params.calcSNR           = m_LiveStackerSettings.value("calcSNR", true).toBool();
+    params.alignMethod       = static_cast<LiveStackAlignMethod>(m_LiveStackerSettings.value("alignMethod", 0).toInt());
+    params.stackingMethod    = static_cast<LiveStackStackingMethod>(m_LiveStackerSettings.value("stackingMethod", 0).toInt());
+    params.downscale         = static_cast<LiveStackDownscale>(m_LiveStackerSettings.value("downscale", 0).toInt());
+    params.numInMem          = m_LiveStackerSettings.value("numInMem", 10).toInt();
+    params.weighting         = static_cast<LiveStackFrameWeighting>(m_LiveStackerSettings.value("weighting", 0).toInt());
+    params.lowSigma          = m_LiveStackerSettings.value("lowSigma", 2.0).toDouble();
+    params.highSigma         = m_LiveStackerSettings.value("highSigma", 3.0).toDouble();
+    params.postProcessing.postProcess = m_LiveStackerSettings.value("postProcess", false).toBool();
+    params.postProcessing.sharpenAmt  = m_LiveStackerSettings.value("sharpenAmt", 0.0).toDouble();
+    params.postProcessing.denoiseAmt  = m_LiveStackerSettings.value("denoiseAmt", 0.0).toDouble();
+    params.postProcessing.deconvAmt   = m_LiveStackerSettings.value("deconvAmt", 0.0).toDouble();
+
+    const QString masterDark = m_LiveStackerSettings.value("masterDarkPath").toString();
+    const QString masterFlat = m_LiveStackerSettings.value("masterFlatPath").toString();
+    if (!masterDark.isEmpty())
+        params.masterDark = QVector<QString> {masterDark};
+    if (!masterFlat.isEmpty())
+        params.masterFlat = QVector<QString> {masterFlat};
+
+    // The output directory stays the same — the EkosLive server continues
+    // watching it for new stacked frames without requiring any server restart.
+    params.outputDirectory = m_LiveStackerSettings.value("outputDirectory").toString();
+
+    // Restart the stacker watching the new job's directory
+    viewerTabs.first()->startProgrammatically(newDirectory, params);
+
+    // Reconnect the per-frame progress/completion signals on the new view
+    QSharedPointer<FITSView> currentView = viewerTabs.first()->getView();
+    if (currentView)
+    {
+        connect(currentView.get(), &FITSView::stackUpdateStats,
+                this, &Message::sendLiveStackerProgress, Qt::UniqueConnection);
+        connect(currentView.get(), &FITSView::resetStack,
+                this, &Message::sendLiveStackerComplete, Qt::UniqueConnection);
+    }
+
+    // Notify the server/app so it can clear its stacked-image buffer and show
+    // a "new target" banner to the user.
+    sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject
+    {
+        {"state",   "restarted"},
+        {"target",  newTarget},
+        {"filter",  newFilter}
+    });
 }
 
 }
