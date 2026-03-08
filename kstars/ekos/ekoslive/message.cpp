@@ -1902,26 +1902,26 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
 
         switch (objectType)
         {
-                // Stars
+            // Stars
             case SkyObject::STAR:
             case SkyObject::CATALOG_STAR:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::STAR));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::CATALOG_STAR));
                 break;
-                // Planets & Moon
+            // Planets & Moon
             case SkyObject::PLANET:
             case SkyObject::MOON:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::PLANET));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::MOON));
                 break;
-                // Comets & Asteroids
+            // Comets & Asteroids
             case SkyObject::COMET:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::COMET));
                 break;
             case SkyObject::ASTEROID:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::ASTEROID));
                 break;
-                // Clusters
+            // Clusters
             case SkyObject::OPEN_CLUSTER:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::OPEN_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
@@ -1930,7 +1930,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GLOBULAR_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
                 break;
-                // Nebuale
+            // Nebuale
             case SkyObject::GASEOUS_NEBULA:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GASEOUS_NEBULA, objectMaxMagnitude));
                 isDSO = true;
@@ -3150,10 +3150,12 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
     }
     else if (command == commands[LIVESTACKER_SET_ALL_SETTINGS])
     {
-        // Store settings for later use when starting.
-        // The payload is a flat object (not nested under a "settings" key).
-        m_LiveStackerSettings = payload.toVariantMap();
-        sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "settings_applied"}});
+        // Merge incoming key:value pairs into the existing settings map so that
+        // a partial update does not wipe keys not included in this payload.
+        for (auto it = payload.constBegin(); it != payload.constEnd(); ++it)
+            m_LiveStackerSettings[it.key()] = it.value().toVariant();
+        // Return the full (merged) settings so the caller has the complete picture.
+        sendResponse(commands[LIVESTACKER_GET_ALL_SETTINGS], QJsonObject::fromVariantMap(m_LiveStackerSettings));
     }
     else if (command == commands[LIVESTACKER_GET_ALL_SETTINGS])
     {
@@ -3367,7 +3369,6 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
             m_LiveStackerViewer->close();
             m_LiveStackerViewer = nullptr;
         }
-        m_LiveStackerSettings.clear();
         sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "closed"}});
     }
 }
