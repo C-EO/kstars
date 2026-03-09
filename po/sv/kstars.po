@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-08 02:16+0000\n"
+"POT-Creation-Date: 2026-03-09 02:08+0000\n"
 "PO-Revision-Date: 2025-10-27 22:18+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -3229,7 +3229,7 @@ msgstr "Redigera"
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, FitsSolverRALabel)
 #: dialogs/catalogobjectlistmodel.cpp:67 ekos/align/align.ui:909
-#: ekos/align/opsastrometry.ui:409 ekos/guide/guide.ui:431
+#: ekos/align/opsastrometry.ui:409 ekos/guide/guide.ui:435
 #: ekos/guide/opscalibration.ui:235 ekos/guide/opsguide.ui:218
 #: ekos/scheduler/scheduler.ui:606 fitsviewer/platesolve.ui:200
 #: fitsviewer/solveInfo.ui:66 skycomponents/imageoverlaycomponent.cpp:66
@@ -3900,8 +3900,8 @@ msgstr "0,0 pc"
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:898
 #: ekos/capture/sequenceeditor.cpp:141 ekos/capture/sequenceeditor.cpp:144
 #: ekos/focus/focus.cpp:457 ekos/focus/focus.ui:1054 ekos/focus/focus.ui:1068
-#: ekos/focus/focus.ui:1082 ekos/guide/guide.cpp:701 ekos/guide/guide.ui:603
-#: ekos/guide/guide.ui:727 indi/streamform.ui:418 oal/equipmentwriter.ui:1157
+#: ekos/focus/focus.ui:1082 ekos/guide/guide.cpp:701 ekos/guide/guide.ui:607
+#: ekos/guide/guide.ui:731 indi/streamform.ui:418 oal/equipmentwriter.ui:1157
 #, kde-format
 msgid "--"
 msgstr "--"
@@ -7132,7 +7132,7 @@ msgstr "Förstärkning:"
 #. i18n: ectx: property (text), widget (QLabel, label_18)
 #. i18n: ectx: property (text), widget (QLabel, focusBinningLabel)
 #. i18n: ectx: property (text), widget (QLabel, label_8)
-#: ekos/align/align.ui:561 ekos/focus/focus.ui:561 ekos/guide/guide.ui:408
+#: ekos/align/align.ui:561 ekos/focus/focus.ui:561 ekos/guide/guide.ui:412
 #, kde-format
 msgid "Bin:"
 msgstr "Del:"
@@ -7295,7 +7295,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #. i18n: ectx: property (text), widget (QLabel, FitsSolverDECLabel)
 #: ekos/align/align.ui:914 ekos/align/opsastrometry.ui:389
-#: ekos/guide/guide.ui:349 ekos/guide/guide.ui:1297
+#: ekos/guide/guide.ui:349 ekos/guide/guide.ui:1301
 #: ekos/guide/opscalibration.ui:300 ekos/guide/opsguide.ui:208
 #: ekos/scheduler/scheduler.ui:626 fitsviewer/platesolve.ui:245
 #: skycomponents/imageoverlaycomponent.cpp:66
@@ -8917,7 +8917,7 @@ msgstr "Lägg till en katalog där indexfiler är lagrade"
 #: ekos/align/opsastrometryindexfiles.ui:256 ekos/analyze/analyze.ui:328
 #: ekos/auxiliary/stellarsolverprofileeditor.ui:213
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:565
-#: ekos/guide/guide.ui:311 ekos/guide/guide.ui:463
+#: ekos/guide/guide.ui:311 ekos/guide/guide.ui:467
 #: kstarslite/qml/indi/modules/MotionControl.qml:294
 #, kde-format, kde-kuit-format
 msgid "+"
@@ -8936,7 +8936,7 @@ msgstr "Ta bort en indexfilplats"
 #. i18n: ectx: property (text), widget (QCheckBox, southDECGuideEnabled)
 #: ekos/align/opsastrometryindexfiles.ui:266 ekos/analyze/analyze.ui:376
 #: ekos/auxiliary/stellarsolverprofileeditor.ui:235 ekos/guide/guide.ui:321
-#: ekos/guide/guide.ui:473 kstarslite/qml/indi/modules/MotionControl.qml:264
+#: ekos/guide/guide.ui:477 kstarslite/qml/indi/modules/MotionControl.qml:264
 #, kde-format, kde-kuit-format
 msgid "-"
 msgstr "-"
@@ -13515,7 +13515,7 @@ msgstr "Anslut"
 #. i18n: ectx: property (text), widget (QPushButton, disconnectB)
 #. i18n: ectx: property (text), widget (QPushButton, disconnectHostB)
 #: ekos/auxiliary/portselector.cpp:191 ekos/ekoslive/ekosliveclient.cpp:355
-#: ekos/guide/guide.ui:398 ekos/manager.ui:579 indi/drivermanager.ui:368
+#: ekos/guide/guide.ui:402 ekos/manager.ui:579 indi/drivermanager.ui:368
 #: kstarslite/qml/indi/INDIControlPanel.qml:212
 #, kde-format, kde-kuit-format
 msgid "Disconnect"
@@ -14088,7 +14088,7 @@ msgstr "Antal trösklar som intensitetsintervallet delas upp i."
 
 #. i18n: ectx: property (text), widget (QLineEdit, deblend_thresh)
 #. i18n: ectx: property (text), item, widget (QComboBox, guideSquareSize)
-#: ekos/auxiliary/stellarsolverprofileeditor.ui:472 ekos/guide/guide.ui:528
+#: ekos/auxiliary/stellarsolverprofileeditor.ui:472 ekos/guide/guide.ui:532
 #, kde-format
 msgid "32"
 msgstr "32"
@@ -15129,7 +15129,7 @@ msgstr "Fördröjning i sekunder innan en bild tas"
 
 #. i18n: ectx: property (text), widget (QLabel, textLabel1_8)
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: ekos/capture/camera.ui:1619 ekos/guide/guide.ui:418
+#: ekos/capture/camera.ui:1619 ekos/guide/guide.ui:422
 #, kde-format
 msgid "Delay:"
 msgstr "Fördröjning:"
@@ -16930,7 +16930,7 @@ msgstr "Himmelskvalitet"
 #. i18n: ectx: property (toolTip), widget (QLabel, l_FbyD)
 #. i18n: ectx: property (text), widget (QLabel, label51_2)
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:105
-#: ekos/guide/guide.ui:734 oal/equipmentwriter.ui:608
+#: ekos/guide/guide.ui:738 oal/equipmentwriter.ui:608
 #, kde-format
 msgid "Focal Ratio"
 msgstr "Brännvidd"
@@ -22735,20 +22735,8 @@ msgstr "Anslut till externt guidningsprogram."
 msgid "Guide Declination Axis"
 msgstr "Guidningens deklinationsaxel"
 
-#. i18n: ectx: property (toolTip), widget (QPushButton, externalDisconnectB)
-#: ekos/guide/guide.ui:395
-#, kde-format
-msgid "Disconnect from external guiding application."
-msgstr "Koppla ner från externt guidningsprogram."
-
-#. i18n: ectx: property (toolTip), widget (QLabel, label_8)
-#: ekos/guide/guide.ui:405
-#, kde-format
-msgid "Apply filter to image after capture to enhance it"
-msgstr "Filtrera bild efter den tagits för att förbättra den"
-
-#. i18n: ectx: property (toolTip), widget (QLabel, label_4)
-#: ekos/guide/guide.ui:415
+#. i18n: ectx: property (toolTip), widget (QComboBox, guideBinning)
+#: ekos/guide/guide.ui:389
 #, kde-format
 msgid ""
 "Guide camera binning. It is recommended to set binning to 2x2 or higher."
@@ -22756,20 +22744,26 @@ msgstr ""
 "Guidningskamerans indelning. Det rekommenderas att ställa in indelningen "
 "till 2x2 eller större."
 
+#. i18n: ectx: property (toolTip), widget (QPushButton, externalDisconnectB)
+#: ekos/guide/guide.ui:399
+#, kde-format
+msgid "Disconnect from external guiding application."
+msgstr "Koppla ner från externt guidningsprogram."
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, rAGuideEnabled)
-#: ekos/guide/guide.ui:425
+#: ekos/guide/guide.ui:429
 #, kde-format
 msgid "Guide Right Ascention Axis"
 msgstr "Guidningens rektascensionsaxel"
 
 #. i18n: ectx: property (text), widget (QLabel, l_9)
-#: ekos/guide/guide.ui:438
+#: ekos/guide/guide.ui:442
 #, kde-format
 msgid "Directions:"
 msgstr "Riktningar:"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, guideDelay)
-#: ekos/guide/guide.ui:445
+#: ekos/guide/guide.ui:449
 #, kde-format
 msgid "Delay next guide exposure this many seconds after a pulse is sent"
 msgstr ""
@@ -22777,25 +22771,25 @@ msgstr ""
 "skickats"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, northDECGuideEnabled)
-#: ekos/guide/guide.ui:460
+#: ekos/guide/guide.ui:464
 #, kde-format
 msgid "North Direction Guiding"
 msgstr "Guidning i nordlig riktning"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, southDECGuideEnabled)
-#: ekos/guide/guide.ui:470
+#: ekos/guide/guide.ui:474
 #, kde-format
 msgid "South Direction Guiding"
 msgstr "Guidning i sydlig riktning"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, manualPulseB)
-#: ekos/guide/guide.ui:482
+#: ekos/guide/guide.ui:486
 #, kde-format
 msgid "Manual Pulse..."
 msgstr "Manuell puls..."
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, guideSquareSize)
-#: ekos/guide/guide.ui:514
+#: ekos/guide/guide.ui:518
 #, kde-format
 msgid ""
 "Guide star tracking box size. Box size must be set in accordance to the "
@@ -22805,152 +22799,152 @@ msgstr ""
 "enlighet med den valda stjärnans storlek."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, guideSquareSize)
-#: ekos/guide/guide.ui:518
+#: ekos/guide/guide.ui:522
 #, kde-format
 msgid "8"
 msgstr "8"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, guideSquareSize)
-#: ekos/guide/guide.ui:523
+#: ekos/guide/guide.ui:527
 #, kde-format
 msgid "16"
 msgstr "16"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, guideSquareSize)
-#: ekos/guide/guide.ui:533
+#: ekos/guide/guide.ui:537
 #, kde-format
 msgid "64"
 msgstr "64"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, guideSquareSize)
-#: ekos/guide/guide.ui:538
+#: ekos/guide/guide.ui:542
 #, kde-format
 msgid "128"
 msgstr "128"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, guideShowFrame)
-#: ekos/guide/guide.ui:549
+#: ekos/guide/guide.ui:553
 #, kde-format
 msgid "Toggle the Guider Image..."
 msgstr "Ändra guidningsbild..."
 
 #. i18n: ectx: property (title), widget (QGroupBox, infoGroupScope)
-#: ekos/guide/guide.ui:579
+#: ekos/guide/guide.ui:583
 #, kde-format
 msgid "Scope / Lens Info"
 msgstr "Teleskop- och linsinformation"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_FOV)
-#: ekos/guide/guide.ui:600
+#: ekos/guide/guide.ui:604
 #, kde-format
 msgid "Field of View (arcmin)"
 msgstr "Synfält (bågminuter)"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_Aperture)
-#: ekos/guide/guide.ui:654
+#: ekos/guide/guide.ui:658
 #, kde-format
 msgid "Aperture (mm)"
 msgstr "Öppningsdiameter (mm)"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_Focal)
-#: ekos/guide/guide.ui:708
+#: ekos/guide/guide.ui:712
 #, kde-format
 msgid "Focal Length (mm)"
 msgstr "Brännvidd (mm)"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_Reducer)
-#: ekos/guide/guide.ui:724
+#: ekos/guide/guide.ui:728
 #, kde-format
 msgid "Reducer"
 msgstr "Reduceringslins"
 
 #. i18n: ectx: property (title), widget (QGroupBox, infoGroup)
-#: ekos/guide/guide.ui:772
+#: ekos/guide/guide.ui:776
 #, kde-format
 msgid "Guide Info"
 msgstr "Guidningsinformation"
 
 #. i18n: ectx: property (text), widget (QLabel, l_17)
-#: ekos/guide/guide.ui:798
+#: ekos/guide/guide.ui:802
 #, kde-format
 msgid "Pulse length (ms):"
 msgstr "Pulslängd (ms):"
 
 #. i18n: ectx: property (text), widget (QLabel, l_16)
-#: ekos/guide/guide.ui:805
+#: ekos/guide/guide.ui:809
 #, kde-format
 msgid "Guiding delta \":"
 msgstr "Guidningsdelta \":"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_PulseRA)
-#: ekos/guide/guide.ui:817
+#: ekos/guide/guide.ui:821
 #, kde-format
 msgid "Generated RA pulse"
 msgstr "Skapad RA-puls"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_PulseDEC)
-#: ekos/guide/guide.ui:830
+#: ekos/guide/guide.ui:834
 #, kde-format
 msgid "Generated DEC pulse"
 msgstr "Skapad DEK-puls"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_DeltaRA)
-#: ekos/guide/guide.ui:850
+#: ekos/guide/guide.ui:854
 #, kde-format
 msgid "Immediate Guiding RA deviation in arcseconds"
 msgstr "Omedelbar guidningsavvikelse för RA i bågsekunder"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_DeltaDEC)
-#: ekos/guide/guide.ui:863
+#: ekos/guide/guide.ui:867
 #, kde-format
 msgid "Immediate Guiding DEC deviation in arcseconds"
 msgstr "Omedelbar guidningsavvikelse för DEK i bågsekunder"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_17b)
-#: ekos/guide/guide.ui:878
+#: ekos/guide/guide.ui:882
 #, kde-format
 msgid "Guiding RMS error"
 msgstr "Guidningens kvadratiska medelvärdesfel"
 
 #. i18n: ectx: property (text), widget (QLabel, l_17b)
-#: ekos/guide/guide.ui:881
+#: ekos/guide/guide.ui:885
 #, kde-format
 msgid "RMS\" (RA/DEC):"
 msgstr "Kvadratiska medelvärdesfel\" (RA/DEK):"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_ErrRA)
-#: ekos/guide/guide.ui:893
+#: ekos/guide/guide.ui:897
 #, kde-format
 msgid "Guiding RA RMS error"
 msgstr "Guidningens kvadratiska medelvärdesfel för RA"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, l_ErrDEC)
-#: ekos/guide/guide.ui:906
+#: ekos/guide/guide.ui:910
 #, kde-format
 msgid "Guiding DEC RMS error"
 msgstr "Guidningens kvadratiska medelvärdesfel för Dek"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: ekos/guide/guide.ui:921
+#: ekos/guide/guide.ui:925
 #, kde-format
 msgid "Total RMS\":"
 msgstr "Totalt kvadratiska medelvärdesfel\":"
 
 #. i18n: ectx: property (text), widget (QLabel, l_TotalRMS)
 #. i18n: ectx: property (text), widget (QLabel, l_SNR)
-#: ekos/guide/guide.ui:931 ekos/guide/guide.ui:951
+#: ekos/guide/guide.ui:935 ekos/guide/guide.ui:955
 #, kde-format
 msgid "xxx"
 msgstr "xxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7b)
-#: ekos/guide/guide.ui:941
+#: ekos/guide/guide.ui:945
 #, kde-format
 msgid "Guide SNR:"
 msgstr "Guidningens signal-brusförhållande:"
 
 #. i18n: ectx: property (toolTip), widget (QSlider, correctionSlider)
-#: ekos/guide/guide.ui:1123
+#: ekos/guide/guide.ui:1127
 #, kde-format
 msgid ""
 "<html><head/><body><p>Drag the slider to adjust the scale of the Corrections "
@@ -22961,19 +22955,19 @@ msgstr ""
 "p></body></html>"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_2)
-#: ekos/guide/guide.ui:1170
+#: ekos/guide/guide.ui:1174
 #, kde-format
 msgid "Mount Drift"
 msgstr "Stativavdrift"
 
 #. i18n: ectx: attribute (title), widget (QWidget, tab_3)
-#: ekos/guide/guide.ui:1205
+#: ekos/guide/guide.ui:1209
 #, kde-format
 msgid "Calibration Plot"
 msgstr "Kalibreringsdiagram"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, rADisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1261
+#: ekos/guide/guide.ui:1265
 #, kde-format
 msgid ""
 "<html><head/><body><p>Display the RA graph in the Drift Graphics plot.</p></"
@@ -22983,13 +22977,13 @@ msgstr ""
 "body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rADisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1264
+#: ekos/guide/guide.ui:1268
 #, kde-format
 msgid "RA "
 msgstr "RA "
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, rACorrDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1274
+#: ekos/guide/guide.ui:1278
 #, kde-format
 msgid ""
 "<html><head/><body><p>Display the RA Corrections graph in the Drift Graphics "
@@ -23000,13 +22994,13 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, rACorrDisplayedOnGuideGraph)
 #. i18n: ectx: property (text), widget (QCheckBox, dECorrDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1277 ekos/guide/guide.ui:1310
+#: ekos/guide/guide.ui:1281 ekos/guide/guide.ui:1314
 #, kde-format
 msgid "Corr"
 msgstr "Korr"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dEDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1294
+#: ekos/guide/guide.ui:1298
 #, kde-format
 msgid ""
 "<html><head/><body><p>Display DEC graph in the Drift Graphics plot.</p></"
@@ -23016,7 +23010,7 @@ msgstr ""
 "body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, dECorrDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1307
+#: ekos/guide/guide.ui:1311
 #, kde-format
 msgid ""
 "<html><head/><body><p>Display the DEC Corrections graph in the Drift "
@@ -23026,7 +23020,7 @@ msgstr ""
 "diagram.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, sNRDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1327
+#: ekos/guide/guide.ui:1331
 #, kde-format
 msgid ""
 "<html><head/><body><p>Display SNR graph in the Drift Graphics plot.</p></"
@@ -23036,13 +23030,13 @@ msgstr ""
 "</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, sNRDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1330
+#: ekos/guide/guide.ui:1334
 #, kde-format
 msgid "SNR"
 msgstr "Signal-brusförhållande"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, rMSDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1340
+#: ekos/guide/guide.ui:1344
 #, kde-format
 msgid ""
 "<html><head/><body><p>Display RMS graph in the Drift Graphics plot.</p></"
@@ -23052,31 +23046,31 @@ msgstr ""
 "avdriftsgrafikdiagrammet.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, rMSDisplayedOnGuideGraph)
-#: ekos/guide/guide.ui:1343
+#: ekos/guide/guide.ui:1347
 #, kde-format
 msgid "RMS"
 msgstr "Kvadratiska medelvärdesfel"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, guideZoomInXB)
-#: ekos/guide/guide.ui:1383
+#: ekos/guide/guide.ui:1387
 #, kde-format
 msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
 msgstr "<html><head/><body><p>Zooma in för X-axeln.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, guideZoomOutXB)
-#: ekos/guide/guide.ui:1411
+#: ekos/guide/guide.ui:1415
 #, kde-format
 msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
 msgstr "<html><head/><body><p>Zooma ut för X-axeln.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, label_10)
-#: ekos/guide/guide.ui:1437
+#: ekos/guide/guide.ui:1441
 #, kde-format
 msgid "Trace:"
 msgstr "Spår:"
 
 #. i18n: ectx: property (toolTip), widget (QSlider, guideSlider)
-#: ekos/guide/guide.ui:1444
+#: ekos/guide/guide.ui:1448
 #, kde-format
 msgid ""
 "<html><head/><body><p>Drag the slider to scroll through guide history while "
@@ -23090,7 +23084,7 @@ msgstr ""
 "guidningsinformationen och flytta diagrammet automatiskt.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, latestCheck)
-#: ekos/guide/guide.ui:1460
+#: ekos/guide/guide.ui:1464
 #, kde-format
 msgid ""
 "<html><head/><body><p>Check to display the latest guide data and autoscroll "
@@ -23100,13 +23094,13 @@ msgstr ""
 "flytta diagrammet automatiskt.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, latestCheck)
-#: ekos/guide/guide.ui:1463
+#: ekos/guide/guide.ui:1467
 #, kde-format
 msgid "Max "
 msgstr "Maximum "
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, guideAutoScaleGraphB)
-#: ekos/guide/guide.ui:1483
+#: ekos/guide/guide.ui:1487
 #, kde-format
 msgid ""
 "<html><head/><body><p>Autoscale both Guide Graphs to their default scale. If "
@@ -23120,7 +23114,7 @@ msgstr ""
 "avdriftsgrafik).</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, guideSaveDataB)
-#: ekos/guide/guide.ui:1505
+#: ekos/guide/guide.ui:1509
 #, kde-format
 msgid ""
 "<html><head/><body><p>Export the guide data from the current session to a "
@@ -23130,7 +23124,7 @@ msgstr ""
 "till en CSV-fil läsbar av ett kalkylprogram.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, guideDataClearB)
-#: ekos/guide/guide.ui:1527
+#: ekos/guide/guide.ui:1531
 #, kde-format
 msgid ""
 "<html><head/><body><p>Clear all the recent guide data.</p></body></html>"
@@ -23139,7 +23133,7 @@ msgstr ""
 "html>"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, guiderAccuracyThreshold)
-#: ekos/guide/guide.ui:1543
+#: ekos/guide/guide.ui:1547
 #, kde-format
 msgid ""
 "<html><head/><body><p>Set the desired guiding accuracy in the Drift Plot. "
@@ -92376,6 +92370,9 @@ msgstr "Bakgrundsfärg:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Ställ in bakgrundsfärgen."
+
+#~ msgid "Apply filter to image after capture to enhance it"
+#~ msgstr "Filtrera bild efter den tagits för att förbättra den"
 
 #~ msgctxt "@title:window"
 #~ msgid "KStars Live Stacker (BETA)"
