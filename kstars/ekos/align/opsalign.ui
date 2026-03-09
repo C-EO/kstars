@@ -374,6 +374,109 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBoxAutoPAC">
+     <property name="title">
+      <string>Automatic Polar Alignment</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_AutoPAC">
+      <property name="leftMargin">
+       <number>3</number>
+      </property>
+      <property name="topMargin">
+       <number>3</number>
+      </property>
+      <property name="rightMargin">
+       <number>3</number>
+      </property>
+      <property name="bottomMargin">
+       <number>3</number>
+      </property>
+      <item row="0" column="0" colspan="3">
+       <widget class="QCheckBox" name="kcfg_PAHAutoPACCorrection">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled and a PAC (Polar Alignment Corrector) device is connected, the system will automatically send correction commands to the PAC during the refresh phase instead of requiring manual knob adjustments.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Enable Automatic PAC Correction</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelSuccessThreshold">
+        <property name="toolTip">
+         <string>If the total polar alignment error drops to or below this threshold, the alignment is considered successful and the process stops.</string>
+        </property>
+        <property name="text">
+         <string>Success Threshold:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="kcfg_PAHSuccessThreshold">
+        <property name="toolTip">
+         <string>Polar alignment success threshold in arcminutes. If the total error is at or below this value, alignment is considered successful.</string>
+        </property>
+        <property name="minimum">
+         <double>0.100000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>60.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>30.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="labelSuccessThresholdUnit">
+        <property name="text">
+         <string>arcmin</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelCorrectionTimeout">
+        <property name="toolTip">
+         <string>If the system cannot reach the desired threshold within this period, it aborts the automatic correction.</string>
+        </property>
+        <property name="text">
+         <string>Correction Timeout:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="kcfg_PAHCorrectionTimeout">
+        <property name="toolTip">
+         <string>Timeout in seconds for automatic polar alignment correction.</string>
+        </property>
+        <property name="minimum">
+         <number>30</number>
+        </property>
+        <property name="maximum">
+         <number>3600</number>
+        </property>
+        <property name="singleStep">
+         <number>30</number>
+        </property>
+        <property name="value">
+         <number>300</number>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QLabel" name="labelCorrectionTimeoutUnit">
+        <property name="text">
+         <string>sec</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Orientation::Vertical</enum>

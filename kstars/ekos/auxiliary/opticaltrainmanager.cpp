@@ -806,6 +806,7 @@ QString OpticalTrainManager::findTrainContainingDevice(const QString &name, Role
             case Dome:
             case Weather:
             case GPS:
+            case PAC:
                 // for those not part of an image train: do nothing
                 break;
         }
@@ -929,6 +930,17 @@ bool OpticalTrainManager::getGenericDevice(const QString &train, Role role, QSha
                 case GPS:
                 {
                     auto devices = INDIListener::devicesByInterface(INDI::BaseDevice::GPS_INTERFACE);
+                    if (!devices.empty())
+                    {
+                        generic = devices[0];
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                case PAC:
+                {
+                    auto devices = INDIListener::devicesByInterface(INDI::BaseDevice::PAC_INTERFACE);
                     if (!devices.empty())
                     {
                         generic = devices[0];

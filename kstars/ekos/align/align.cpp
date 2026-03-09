@@ -768,6 +768,12 @@ bool Align::setDome(ISD::Dome *device)
     return true;
 }
 
+bool Align::setPAC(ISD::PAC *device)
+{
+    RUN_PAH(setCurrentPAC(device));
+    return true;
+}
+
 bool Align::setDustCap(ISD::DustCap *device)
 {
     if (m_DustCap && m_DustCap == device)
@@ -1603,6 +1609,15 @@ bool Align::captureAndSolve(bool initialCall)
 
     if (targetChip->isCapturing())
     {
+        // In PAH refresh mode the active capture will complete on its own and
+        // drive the next processPAHRefresh() → captureAndSolve() cycle automatically.
+        // Starting a retry timer here would create a ghost concurrent capture that
+        // races with the solver result, producing spurious "camera busy" errors.
+        if (matchPAHStage(PAA::PAH_REFRESH))
+        {
+            qCWarning(KSTARS_EKOS_ALIGN) << "PAH Refresh: capture requested while camera is still exposing – skipping retry timer.";
+            return true;
+        }
         appendLogText(i18n("Cannot capture while camera exposure is in progress. Retrying in %1 seconds...",
                            CAPTURE_RETRY_DELAY / 1000));
         m_CaptureTimer.start(CAPTURE_RETRY_DELAY);
@@ -4350,6 +4365,8 @@ void Align::refreshOpticalTrain()
 
         auto dustcap = OpticalTrainManager::Instance()->getDustCap(name);
         setDustCap(dustcap);
+
+        // PAC is now set via Manager::syncGenericDevice() -> Align::setPAC()
 
         // Load train settings
         OpticalTrainSettings::Instance()->setOpticalTrainID(id);

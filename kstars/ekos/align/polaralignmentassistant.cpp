@@ -221,11 +221,14 @@ void PolarAlignmentAssistant::solverDone(bool timedOut, bool success, const FITS
             // because wcsToPixel in updateTriangle() depends on the injectWCS being finished.
             m_AlignView->injectWCS(solution.orientation, ra, dec, solution.pixscale, eastToTheRight, false);
             updatePlateSolveTriangle(m_ImageData);
+            // Apply automatic PAC correction if enabled, or trigger the next capture.
+            checkAndApplyAutoCorrection(azError, altError);
+            return;
         }
         else
             emit newLog(QString("Could not estimate mount rotation"));
     }
-    // Start the next refresh capture.
+    // Start the next refresh capture (error estimation was not available).
     emit captureAndSolve();
 }
 
@@ -857,6 +860,10 @@ void PolarAlignmentAssistant::stopPAHProcess()
                &Ekos::PolarAlignmentAssistant::setPAHCorrectionOffset);
     disconnect(m_AlignView.get(), &AlignView::newCorrectionVector, this, &Ekos::PolarAlignmentAssistant::newCorrectionVector);
 
+    // Reset auto-correction state on stop.
+    m_AutoCorrectionActive = false;
+    m_CorrectionTimerStarted = false;
+
     if (Options::pAHAutoPark())
     {
         m_CurrentTelescope->park();
@@ -1061,6 +1068,10 @@ void PolarAlignmentAssistant::startPAHRefreshProcess()
     refreshIteration = 0;
     imageNumber = 0;
     m_NumHealpixFailures = 0;
+
+    // Reset automatic PAC correction state for new refresh session.
+    m_CorrectionTimerStarted = false;
+    m_AutoCorrectionActive = false;
 
     setPAHStage(PAH_REFRESH);
     polarAlignWidget->updatePAHStage(m_PAHStage);
@@ -1299,6 +1310,105 @@ void PolarAlignmentAssistant::setPAHRefreshAlgorithm(RefreshAlgorithm value)
     else
         m_AlignView->setCorrectionParams(correctionFrom, correctionTo, correctionAltTo);
 
+}
+
+void PolarAlignmentAssistant::setCurrentPAC(ISD::PAC *pac)
+{
+    if (m_PAC == pac)
+        return;
+
+    // Disconnect from the old device if any.
+    if (m_PAC)
+        disconnect(m_PAC, &ISD::PAC::newStatus, this, &PolarAlignmentAssistant::onPACStatusChanged);
+
+    m_PAC = pac;
+
+    // Connect to the new device if valid.
+    if (m_PAC)
+    {
+        connect(m_PAC, &ISD::PAC::newStatus, this, &PolarAlignmentAssistant::onPACStatusChanged,
+                Qt::UniqueConnection);
+        emit newLog(i18n("PAC: Polar Alignment Corrector connected."));
+    }
+}
+
+void PolarAlignmentAssistant::onPACStatusChanged(ISD::PAC::Status status)
+{
+    if (m_PAHStage != PAH_REFRESH)
+        return;
+
+    switch (status)
+    {
+        case ISD::PAC::PAC_CORRECTING:
+            // Axes are moving – log progress and wait for PAC_CORRECTED or PAC_ERROR.
+            emit newLog(i18n("PAC: Correction in progress – adjusting azimuth and altitude axes..."));
+            break;
+
+        case ISD::PAC::PAC_CORRECTED:
+            m_AutoCorrectionActive = false;
+            emit newLog(i18n("PAC: Correction applied. Capturing next image to verify alignment..."));
+            emit captureAndSolve();
+            break;
+
+        case ISD::PAC::PAC_ERROR:
+            m_AutoCorrectionActive = false;
+            emit newLog(i18n("PAC: Correction failed. Stopping polar alignment."));
+            stopPAHProcess();
+            break;
+
+        default:
+            break;
+    }
+}
+
+void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double altError)
+{
+    // If automatic PAC correction is not enabled, just request the next capture.
+    if (!Options::pAHAutoPACCorrection() || m_PAC == nullptr)
+    {
+        emit captureAndSolve();
+        return;
+    }
+
+    // Start the timeout clock on the very first correction attempt.
+    if (!m_CorrectionTimerStarted)
+    {
+        m_CorrectionTimer.start();
+        m_CorrectionTimerStarted = true;
+    }
+
+    // Total error in arcminutes.
+    const double totalErrorArcMin = hypot(azError, altError) * 60.0;
+
+    // Check success threshold.
+    if (totalErrorArcMin <= Options::pAHSuccessThreshold())
+    {
+        emit newLog(i18n("PAC: Polar alignment successful! Total error %1' is within threshold %2'.",
+                         QString::number(totalErrorArcMin, 'f', 1),
+                         QString::number(Options::pAHSuccessThreshold(), 'f', 1)));
+        stopPAHProcess();
+        return;
+    }
+
+    // Check correction timeout.
+    const int timeoutMs = Options::pAHCorrectionTimeout() * 1000;
+    if (m_CorrectionTimer.elapsed() >= timeoutMs)
+    {
+        emit newLog(i18n("PAC: Correction timeout (%1s) reached. Total error is %2'. Stopping.",
+                         Options::pAHCorrectionTimeout(),
+                         QString::number(totalErrorArcMin, 'f', 1)));
+        stopPAHProcess();
+        return;
+    }
+
+    // Command the PAC to apply the correction.
+    m_AutoCorrectionActive = true;
+    emit newLog(i18n("PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'",
+                     QString::number(azError * 60.0, 'f', 1),
+                     QString::number(altError * 60.0, 'f', 1),
+                     QString::number(totalErrorArcMin, 'f', 1)));
+    m_PAC->startCorrection(azError, altError);
+    // The next captureAndSolve() will be emitted by onPACStatusChanged() when PAC_CORRECTED fires.
 }
 
 }

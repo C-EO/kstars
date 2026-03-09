@@ -3026,6 +3026,18 @@
          <label>Polar Alignment Assistant exposure duration in seconds.</label>
          <default>2</default>
       </entry>
+      <entry name="PAHAutoPACCorrection" type="Bool">
+         <label>Enable automatic polar alignment correction using PAC device.</label>
+         <default>true</default>
+      </entry>
+      <entry name="PAHSuccessThreshold" type="Double">
+         <label>Polar alignment success threshold in arcminutes. If total error is at or below this value, alignment is considered successful.</label>
+         <default>30.0</default>
+      </entry>
+      <entry name="PAHCorrectionTimeout" type="UInt">
+         <label>Timeout in seconds for automatic polar alignment correction. If the system cannot reach the desired threshold within this period, it aborts.</label>
+         <default>300</default>
+      </entry>
    </group>
    <group name="Guide">
       <entry name="GuideExposure" type="Double">

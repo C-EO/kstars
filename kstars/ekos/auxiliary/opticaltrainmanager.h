@@ -52,7 +52,8 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
             // Non-train specific
             Dome,
             Weather,
-            GPS
+            GPS,
+            PAC
         } Role;
 
         void setProfile(const QSharedPointer<ProfileInfo> &profile);

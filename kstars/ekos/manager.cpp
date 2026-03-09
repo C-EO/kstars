@@ -1584,6 +1584,7 @@ void Manager::processNewDevice(const QSharedPointer<ISD::GenericDevice> &device)
     connect(device.get(), &ISD::GenericDevice::newFocuser, this, &Ekos::Manager::addFocuser, Qt::UniqueConnection);
     connect(device.get(), &ISD::GenericDevice::newDome, this, &Ekos::Manager::addDome, Qt::UniqueConnection);
     connect(device.get(), &ISD::GenericDevice::newRotator, this, &Ekos::Manager::addRotator, Qt::UniqueConnection);
+    connect(device.get(), &ISD::GenericDevice::newPAC, this, &Ekos::Manager::addPAC, Qt::UniqueConnection);
     connect(device.get(), &ISD::GenericDevice::newWeather, this, &Ekos::Manager::addWeather, Qt::UniqueConnection);
     connect(device.get(), &ISD::GenericDevice::newDustCap, this, &Ekos::Manager::addDustCap, Qt::UniqueConnection);
     connect(device.get(), &ISD::GenericDevice::newLightBox, this, &Ekos::Manager::addLightBox, Qt::UniqueConnection);
@@ -1770,6 +1771,13 @@ void Manager::addGPS(ISD::GPS * device)
     emit newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
+void Manager::addPAC(ISD::PAC * device)
+{
+    appendLogText(i18n("%1 PAC is online.", device->getDeviceName()));
+
+    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+}
+
 void Manager::addDustCap(ISD::DustCap * device)
 {
     OpticalTrainManager::Instance()->syncDevices();
@@ -1786,68 +1794,52 @@ void Manager::addLightBox(ISD::LightBox * device)
     emit newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
-void Manager::syncGenericDevice(const QSharedPointer<ISD::GenericDevice> &device)
+void Manager::bindDeviceToModules(const QSharedPointer<ISD::GenericDevice> &device)
 {
-    if (m_syncedDevices.contains(device->getDeviceName()))
-    {
-        return;
-    }
+    qCDebug(KSTARS_EKOS) << "Binding device to modules:" << device->getDeviceName();
 
-    qCDebug(KSTARS_EKOS) << "Syncing Generic Device" << device->getDeviceName();
-    m_syncedDevices.insert(device->getDeviceName());
-
-    createModules(device);
+    // This function ONLY performs device-to-module binding.
+    // Module creation is handled separately by createModulesForDevice().
+    // It is safe to call multiple times — all setters are idempotent and the
+    // downstream "add" functions guard against duplicate entries.
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Cameras
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     auto camera = device->getCamera();
-    if (camera)
+    if (camera && focusProcess)
     {
-        // Focus Module
-        if (focusProcess)
+        if (camera->hasCooler())
         {
-            if (camera->hasCooler())
-            {
-                QSharedPointer<ISD::GenericDevice> generic;
-                if (INDIListener::findDevice(camera->getDeviceName(), generic))
-                    focusModule()->addTemperatureSource(generic);
-            }
+            QSharedPointer<ISD::GenericDevice> generic;
+            if (INDIListener::findDevice(camera->getDeviceName(), generic))
+                focusModule()->addTemperatureSource(generic);
         }
-
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Mount
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     auto mount = device->getMount();
-    if (mount)
+    if (mount && mountProcess)
     {
-        if (mountProcess)
+        QSharedPointer<ISD::GenericDevice> generic;
+        if (INDIListener::findDevice(mount->getDeviceName(), generic))
         {
-            QSharedPointer<ISD::GenericDevice> generic;
-            if (INDIListener::findDevice(mount->getDeviceName(), generic))
-            {
-                mountModule()->addTimeSource(generic);
-                mountModule()->addLocationSource(generic);
-            }
+            mountModule()->addTimeSource(generic);
+            mountModule()->addLocationSource(generic);
         }
-
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// Focuser
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     auto focuser = device->getFocuser();
-    if (focuser)
+    if (focuser && focusProcess)
     {
-        if (focusProcess)
-        {
-            // Temperature sources.
-            QSharedPointer<ISD::GenericDevice> generic;
-            if (INDIListener::findDevice(focuser->getDeviceName(), generic))
-                focusModule()->addTemperatureSource(generic);
-        }
+        QSharedPointer<ISD::GenericDevice> generic;
+        if (INDIListener::findDevice(focuser->getDeviceName(), generic))
+            focusModule()->addTemperatureSource(generic);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1893,19 +1885,22 @@ void Manager::syncGenericDevice(const QSharedPointer<ISD::GenericDevice> &device
     /// GPS
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     auto gps = device->getGPS();
-    if (gps)
+    if (gps && mountProcess)
     {
-        if (mountProcess)
+        QSharedPointer<ISD::GenericDevice> generic;
+        if (INDIListener::findDevice(gps->getDeviceName(), generic))
         {
-            QSharedPointer<ISD::GenericDevice> generic;
-            if (INDIListener::findDevice(gps->getDeviceName(), generic))
-            {
-                mountModule()->addTimeSource(generic);
-                mountModule()->addLocationSource(generic);
-            }
+            mountModule()->addTimeSource(generic);
+            mountModule()->addLocationSource(generic);
         }
-
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// PAC (Polar Alignment Corrector)
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    auto pac = device->getPAC();
+    if (pac && alignProcess)
+        alignProcess->setPAC(pac);
 }
 
 void Manager::removeDevice(const QSharedPointer<ISD::GenericDevice> &device)
@@ -2054,6 +2049,16 @@ void Manager::processNewProperty(INDI::Property prop)
                 alignModule()->setAstrometryDevice(oneDevice);
                 break;
             }
+        }
+
+        // initAlign() may have just created the align module outside the normal
+        // setDeviceReady() flow.  Sweep all already-connected devices through
+        // bindDeviceToModules() so that PAC, Dome, etc. get properly assigned
+        // to the new module.
+        for (auto &oneDevice : INDIListener::devices())
+        {
+            if (oneDevice->isConnected() && oneDevice->isReady())
+                bindDeviceToModules(oneDevice);
         }
 
         return;
@@ -3654,7 +3659,7 @@ void Manager::activateModule(const QString &name, bool popup)
     }
 }
 
-void Manager::createModules(const QSharedPointer<ISD::GenericDevice> &device)
+void Manager::createModulesForDevice(const QSharedPointer<ISD::GenericDevice> &device)
 {
     if (device->isConnected())
     {
@@ -3707,6 +3712,10 @@ void Manager::createModules(const QSharedPointer<ISD::GenericDevice> &device)
         if (device->getDriverInterface() & INDI::BaseDevice::GPS_INTERFACE)
         {
             initMount();
+        }
+        if (device->getDriverInterface() & INDI::BaseDevice::PAC_INTERFACE)
+        {
+            initAlign();
         }
     }
 }
@@ -3775,15 +3784,27 @@ void Manager::setDeviceReady()
     // If port selector is active, then do not show optical train dialog unless it is dismissed first.
     if (m_DriverDevicesCount <= 0 && (m_CurrentProfile->portSelector == false || !m_PortSelector))
     {
+        // Phase 1: Create Ekos modules for any newly-ready device.
+        // m_syncedDevices guards this so each device only triggers module creation once.
         for (auto &oneDevice : INDIListener::devices())
         {
-            // Sync all devices that are connected and ready. The syncGenericDevice function
-            // itself will ensure that each device is only processed once.
-            if (oneDevice->isConnected() && oneDevice->isReady())
+            if (oneDevice->isConnected() && oneDevice->isReady() &&
+                    !m_syncedDevices.contains(oneDevice->getDeviceName()))
             {
-                syncGenericDevice(oneDevice);
+                m_syncedDevices.insert(oneDevice->getDeviceName());
+                createModulesForDevice(oneDevice);
             }
         }
+
+        // Phase 2: Bind every ready device to every now-existing module.
+        // bindDeviceToModules() is safe to call multiple times — setters are
+        // idempotent and adders guard against duplicate entries.
+        for (auto &oneDevice : INDIListener::devices())
+        {
+            if (oneDevice->isConnected() && oneDevice->isReady())
+                bindDeviceToModules(oneDevice);
+        }
+
         // Set the profile for OpticalTrainManager only once after all devices have been processed.
         OpticalTrainManager::Instance()->setProfile(m_CurrentProfile);
     }

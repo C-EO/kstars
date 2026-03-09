@@ -13,6 +13,9 @@
 #include "polaralign.h"
 #include "align.h"
 #include "indi/indimount.h"
+#include "indi/indipac.h"
+
+#include <QElapsedTimer>
 
 class AlignView;
 class QProgressIndicator;
@@ -91,6 +94,8 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
         {
             m_CurrentTelescope = scope;
         }
+        // Set the PAC device for automatic polar alignment correction.
+        void setCurrentPAC(ISD::PAC *pac);
         // Sync mount slew speed and available rates from the telescope object
         void syncMountSpeed(const QString &speed);
         // Enable PAA if the FOV is sufficient
@@ -206,6 +211,14 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
         // Report that the align view was updated.
         void newFrame(const QSharedPointer<FITSView> &view);
 
+    private slots:
+        /**
+         * @brief onPACStatusChanged Handle PAC device status changes.
+         * When the PAC reports PAC_CORRECTED, the next capture-and-solve cycle is triggered.
+         * @param status New PAC status
+         */
+        void onPACStatusChanged(ISD::PAC::Status status);
+
     private:
         void updateDisplay(Stage stage, const QString &message);
         void drawArrows(double altError, double azError);
@@ -214,6 +227,15 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
         void solverDone(bool timedOut, bool success, const FITSImage::Solution &solution, double elapsedSeconds);
         void startSolver();
         void updatePlateSolveTriangle(const QSharedPointer<FITSData> &image);
+
+        /**
+         * @brief checkAndApplyAutoCorrection Check polar alignment errors and, if automatic PAC correction
+         * is enabled, either command the PAC to correct or stop the process on success/timeout.
+         * If auto-correction is disabled or no PAC device is present, this simply emits captureAndSolve().
+         * @param azError Azimuth error in degrees
+         * @param altError Altitude error in degrees
+         */
+        void checkAndApplyAutoCorrection(double azError, double altError);
 
         // Polar Alignment Helper
         Stage m_PAHStage { PAH_IDLE };
@@ -281,5 +303,15 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
         int m_IndexToUse { -1 };
         int m_HealpixToUse { -1 };
         int m_NumHealpixFailures { 0 };
+
+        // PAC (Polar Alignment Corrector) support
+        // Reference to the connected PAC device (may be nullptr if not connected).
+        ISD::PAC *m_PAC { nullptr };
+        // True when the PAC has been commanded to correct and we are waiting for it to finish.
+        bool m_AutoCorrectionActive { false };
+        // True once the correction timer has been started for the current refresh session.
+        bool m_CorrectionTimerStarted { false };
+        // Elapsed-time tracker to enforce the correction timeout.
+        QElapsedTimer m_CorrectionTimer;
 };
 }

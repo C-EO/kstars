@@ -468,13 +468,26 @@ class Manager : public QDialog, public Ui::Manager
         void addLightBox(ISD::LightBox *device);
         void addGuider(ISD::Guider *device);
         void addGPS(ISD::GPS *device);
+        void addPAC(ISD::PAC *device);
 
         /**
-         * @brief syncGenericDevice Check if this device needs to be added to any Ekos module.
+         * @brief createModulesForDevice Inspect the device's interface flags and create any Ekos
+         *        modules that are needed.  Called exactly once per device (guarded by m_syncedDevices).
+         *        Does zero device-to-module binding — that is done by bindDeviceToModules().
          * @param device pointer to generic device.
          */
-        void syncGenericDevice(const QSharedPointer<ISD::GenericDevice> &device);
-        void createModules(const QSharedPointer<ISD::GenericDevice> &device);
+        void createModulesForDevice(const QSharedPointer<ISD::GenericDevice> &device);
+
+        /**
+         * @brief bindDeviceToModules Bind an already-connected device to every Ekos module that
+         *        currently exists and is interested in it (PAC → Align, Dome → Capture/Align/Observatory,
+         *        GPS → Mount, Weather → Observatory/Focus, camera cooler / focuser → Focus, etc.).
+         *        Safe to call any number of times — all setters are idempotent and all adders guard
+         *        against duplicates in the downstream module code.
+         *        Does zero module creation — that is done by createModulesForDevice().
+         * @param device pointer to generic device.
+         */
+        void bindDeviceToModules(const QSharedPointer<ISD::GenericDevice> &device);
 
         // Profiles
         void addProfile();

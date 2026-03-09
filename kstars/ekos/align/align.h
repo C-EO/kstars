@@ -229,6 +229,7 @@ class Align : public QWidget, public Ui::Align
              * @return True if added successfully, false if duplicate or failed to add.
              */
         bool setDome(ISD::Dome *device);
+        bool setPAC(ISD::PAC *device);
 
         /**
          * @brief setDustCap Set the dustcap device for the align module.
