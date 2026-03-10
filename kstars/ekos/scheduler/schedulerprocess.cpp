@@ -835,16 +835,17 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
                           "Parking the mount until the job is ready.",
                           job->getName(), job->getStartupTime().toString()));
 
-        // Use queue manager to park mount programmatically
-        if (m_queueManager && m_queueManager->addMountParkTask())
+        // Use queue manager to park mount programmatically (only if startup queue is enabled)
+        if (Options::schedulerStartupEnabled() && m_queueManager && m_queueManager->addMountParkTask())
         {
             // Park task added successfully, let queue manager handle it
             return false;
         }
         else
         {
-            // Failed to add park task, continue without parking
-            appendLogText(i18n("Warning: Failed to add mount park task."));
+            // Queue disabled or unavailable - park directly via DBus
+            qCInfo(KSTARS_EKOS_SCHEDULER) << "Startup queue disabled or unavailable, parking mount directly via DBus.";
+            mountInterface()->call(QDBus::AutoDetect, "park");
             return false;
         }
     }
@@ -884,17 +885,19 @@ void SchedulerProcess::startSlew()
 {
     Q_ASSERT_X(nullptr != activeJob(), __FUNCTION__, "Job starting slewing must be valid");
 
-    // If the mount was parked by a pause or the end-user, unpark using queue manager
+    // If the mount was parked by a pause or the end-user, unpark before slewing
     if (isMountParked())
     {
-        if (m_queueManager && m_queueManager->addMountUnparkTask())
+        if (Options::schedulerStartupEnabled() && m_queueManager && m_queueManager->addMountUnparkTask())
         {
             appendLogText(i18n("Mount is parked, adding unpark task before slewing."));
             return;
         }
         else
         {
-            appendLogText(i18n("Warning: Failed to add mount unpark task, attempting to slew anyway."));
+            // Queue disabled or unavailable - unpark directly via DBus
+            qCInfo(KSTARS_EKOS_SCHEDULER) << "Startup queue disabled or unavailable, unparking mount directly via DBus.";
+            mountInterface()->call(QDBus::AutoDetect, "unpark");
         }
     }
 
@@ -4046,15 +4049,15 @@ bool SchedulerProcess::isMountParked()
         // Deduce state of mount - see getParkingStatus in mount.cpp
         switch (static_cast<ISD::ParkStatus>(parkingStatus.toInt()))
         {
-                //            case Mount::PARKING_OK:     // INDI switch ok, and parked
-                //            case Mount::PARKING_IDLE:   // INDI switch idle, and parked
+            //            case Mount::PARKING_OK:     // INDI switch ok, and parked
+            //            case Mount::PARKING_IDLE:   // INDI switch idle, and parked
             case ISD::PARK_PARKED:
                 return true;
 
-                //            case Mount::UNPARKING_OK:   // INDI switch idle or ok, and unparked
-                //            case Mount::PARKING_ERROR:  // INDI switch error
-                //            case Mount::PARKING_BUSY:   // INDI switch busy
-                //            case Mount::UNPARKING_BUSY: // INDI switch busy
+            //            case Mount::UNPARKING_OK:   // INDI switch idle or ok, and unparked
+            //            case Mount::PARKING_ERROR:  // INDI switch error
+            //            case Mount::PARKING_BUSY:   // INDI switch busy
+            //            case Mount::UNPARKING_BUSY: // INDI switch busy
             default:
                 return false;
         }
