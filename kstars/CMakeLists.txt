@@ -1584,15 +1584,17 @@ else ()
 endif ()
 
 if(APPLE)
-    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files)
+    if(EXISTS "${CMAKE_BINARY_DIR}/kstars-mac-files/.git")
         message(STATUS "Updating KStars Mac Files")
         execute_process(COMMAND "git" "pull"
-            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files")
-    else(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files)
+            WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/kstars-mac-files")
+    elseif(EXISTS "${CMAKE_BINARY_DIR}/kstars-mac-files")
+        message(STATUS "Using existing KStars Mac Files")
+    else()
         message(STATUS "Downloading KStars Mac Files")
         execute_process(COMMAND "git" "clone" "https://github.com/rlancaste/kstars-mac-files.git"
-            WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
-    endif(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files)
+            WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
+    endif()
 
     set(KSTARS_APP "${CMAKE_BINARY_DIR}/bin/KStars.app")
     message(STATUS "Copying needed files into KStars App Directory: ${KSTARS_APP}")
@@ -1611,13 +1613,13 @@ if(APPLE)
         "${CMAKE_CURRENT_SOURCE_DIR}/data/qml"
         DESTINATION "${KSTARS_APP}/Contents/Resources/kstars/")
     file(COPY
-        "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/icons"
+        "${CMAKE_BINARY_DIR}/kstars-mac-files/icons"
         DESTINATION "${KSTARS_APP}/Contents/Resources/")
     file(COPY
-        "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/dbus"
+        "${CMAKE_BINARY_DIR}/kstars-mac-files/dbus"
         DESTINATION "${KSTARS_APP}/Contents/Plugins/")
     file(COPY
-        "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/gsc"
+        "${CMAKE_BINARY_DIR}/kstars-mac-files/gsc"
         DESTINATION "${KSTARS_APP}/Contents/MacOS/")
     if(NOT BUILD_WITH_QT6)
       file(COPY
@@ -1701,24 +1703,24 @@ if(APPLE)
         file(COPY ${CAMLIBS} DESTINATION "${KSTARS_APP}/Contents/Resources/DriverSupport/gphoto/CAMLIBS/")
     endif(NOT INDI_SERVER)
     if(NOT BUILD_WITH_QT6)
-      execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/phonon/FrameworksForVLC.zip"
+      execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_BINARY_DIR}/kstars-mac-files/phonon/FrameworksForVLC.zip"
           WORKING_DIRECTORY "${KSTARS_APP}/Contents/")
-      execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/phonon/backend.zip"
+      execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_BINARY_DIR}/kstars-mac-files/phonon/backend.zip"
           WORKING_DIRECTORY "${KSTARS_APP}/Contents/Plugins/")
-      execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/phonon/vlc.zip"
+      execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_BINARY_DIR}/kstars-mac-files/phonon/vlc.zip"
           WORKING_DIRECTORY "${KSTARS_APP}/Contents/Plugins/")
     endif(NOT BUILD_WITH_QT6)
-    execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/xplanet-data.zip"
+    execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_BINARY_DIR}/kstars-mac-files/xplanet-data.zip"
         WORKING_DIRECTORY "${KSTARS_APP}/Contents/Resources/kstars/")
-    execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/sounds.zip"
+    execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_BINARY_DIR}/kstars-mac-files/sounds.zip"
         WORKING_DIRECTORY "${KSTARS_APP}/Contents/Resources/")
-    execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/locale.zip"
+    execute_process(COMMAND "${CMAKE_COMMAND}" "-E" "tar" "xvz" "${CMAKE_BINARY_DIR}/kstars-mac-files/locale.zip"
         WORKING_DIRECTORY "${KSTARS_APP}/Contents/Resources/")
     set(KSTARS_VERSION "${KStars_VERSION_MAJOR}.${KStars_VERSION_MINOR}.${KStars_VERSION_REVISION}")
     execute_process(COMMAND date "+%Y" OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE THIS-YEAR)
     set_target_properties(kstars PROPERTIES
         MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/kstars-mac-files/macosbundle.plist.in"
+        MACOSX_BUNDLE_INFO_PLIST "${CMAKE_BINARY_DIR}/kstars-mac-files/macosbundle.plist.in"
     )
     # This last one is for editing purposes. Craft puts KStars.app in ${CMAKE_BINARY_DIR}/bin
     # and building without craft places it in ${CMAKE_BINARY_DIR}/kstars
