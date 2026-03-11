@@ -1166,6 +1166,11 @@
          <default>6</default>
          <max>10</max>
       </entry>
+      <entry name="DomeSlitInverted" type="bool">
+         <label>Mode for filling dome slit</label>
+         <whatsthis>If disabled false dome slit is filled. If enabled true dome slit is open and the sky filled.</whatsthis>
+         <default>false</default>
+      </entry>
       <entry name="AngularRulerColor" type="String">
          <label>Color of angular distance ruler</label>
          <whatsthis>The color for the angular-distance measurement ruler.</whatsthis>

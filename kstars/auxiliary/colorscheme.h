@@ -126,6 +126,12 @@ class ColorScheme
             return StarColorIntensity;
         }
 
+        /** @return the Dome slit inverted mode */
+        bool domeSlitInverted() const
+        {
+            return DomeSlitInverted;
+        }
+
         /**
          * Set the star color mode used by the color scheme
          * @p mode the star color mode to use
@@ -151,6 +157,12 @@ class ColorScheme
          */
         void setDarkPalette(bool enable);
 
+        /**
+         * @brief setDomeSlitMode Set whether the Dome slit is filled or open
+         * @param enable true to draw the Dome Slit open. Disable false to draw the Dome Slit closed.
+         */
+        void setDomeSlitInverted(bool enable);
+
     private:
         /** Append items to all string lists. */
         void appendItem(const QString &key, const QString &name, const QString &def);
@@ -158,6 +170,7 @@ class ColorScheme
         int StarColorMode { 0 };
         int StarColorIntensity { 0 };
         int DarkPalette { 0 };
+        bool DomeSlitInverted = false;
         QString FileName;
         QStringList KeyName, Name, Default;
         QMap<QString, QString> Palette;

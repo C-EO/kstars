@@ -90,6 +90,10 @@ OpsColors::OpsColors() : QFrame(KStars::Instance())
     kcfg_StarColorMode->addItem(i18nc("show stars as white circles", "Solid White"));
     kcfg_StarColorMode->addItem(i18nc("show stars as colored circles", "Solid Colors"));
     kcfg_StarColorMode->setCurrentIndex(KStarsData::Instance()->colorScheme()->starColorMode());
+    if (KStarsData::Instance()->colorScheme()->domeSlitInverted() == true)
+        kcfg_DomeSlitInverted->setCheckState(Qt::Checked);
+    else
+        kcfg_DomeSlitInverted->setCheckState(Qt::Unchecked);
 
     if (KStarsData::Instance()->colorScheme()->starColorMode() != 0) //mode is not "Real Colors"
         kcfg_StarColorIntensity->setEnabled(false);
@@ -103,6 +107,7 @@ OpsColors::OpsColors() : QFrame(KStars::Instance())
     connect(AddPreset, SIGNAL(clicked()), this, SLOT(slotAddPreset()));
     connect(RemovePreset, SIGNAL(clicked()), this, SLOT(slotRemovePreset()));
     connect(SavePreset, SIGNAL(clicked()), this, SLOT(slotSavePreset()));
+    connect(kcfg_DomeSlitInverted, SIGNAL(toggled(bool)), this, SLOT(slotDomeSlitInverted(bool)));
 
     RemovePreset->setEnabled(false);
     SavePreset->setEnabled(false);
@@ -325,4 +330,9 @@ void OpsColors::slotStarColorMode(int i)
 void OpsColors::slotStarColorIntensity(int i)
 {
     KStarsData::Instance()->colorScheme()->setStarColorIntensity(i);
+}
+
+void OpsColors::slotDomeSlitInverted(bool b)
+{
+    KStarsData::Instance()->colorScheme()->setDomeSlitInverted(b);
 }

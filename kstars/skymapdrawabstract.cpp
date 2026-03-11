@@ -116,109 +116,187 @@ void SkyMapDrawAbstract::drawDomeSlits(QPainter &psky)
     psky.setPen(Qt::NoPen);
     psky.setBrush(domeColor);
 
+    // When invertSlit is false (default), the slot region is filled —
+    // visually suggesting the slot opening as a highlighted area.
+    // When invertSlit is true, the region outside the slot is filled —
+    // correctly conveying that everything outside the slot is obscured.
+    bool invertSlit = m_KStarsData->colorScheme()->domeSlitInverted();
+
+    const double zoomFactor = m_SkyMap->m_proj->viewParams().zoomFactor;
+
     for (auto &oneDevice : INDIListener::devices())
     {
-        if (!(oneDevice->getDriverInterface() & INDI::BaseDevice::DOME_INTERFACE) || oneDevice->isConnected() == false)
+        if (!(oneDevice->getDriverInterface() & INDI::BaseDevice::DOME_INTERFACE)
+                || oneDevice->isConnected() == false)
             continue;
 
         auto dome = oneDevice->getDome();
         if (!dome)
             continue;
 
-        // Get dome measurements and position
-        double shutterWidth = dome->getShutterWidth();
-        double azimuth = dome->position();
+        const double shutterWidth      = dome->getShutterWidth();
+        const double radius            = dome->getDomeRadius();
+        const double azimuth           = dome->position();
+        const double halfShutterWidth  = shutterWidth / 2.0;
 
-        if (shutterWidth <= 0)
+        if (shutterWidth <= 0 || radius <= 0)
             continue;
 
-        // Calculate angular width in degrees
-        double radius = dome->getDomeRadius();
-        if (radius <= 0)
-            continue;
+        // NOTE: The telescope may be displaced from dome centre via
+        // getNorthDisplacement(), getEastDisplacement(), getUpDisplacement(),
+        // getOTAOffset(). These are not yet accounted for here.
 
-        // Calculate circumference
-        double circumference = 2 * M_PI * radius;
-        // Convert shutter width to degrees
-        double angularWidth = (shutterWidth / circumference) * 360.0;
-        double halfWidth = angularWidth / 2.0;
+        // Zenith top offset: adjusts where the top chord of the slot sits.
+        // Positive: chord below the zenith (slot doesn't fully reach zenith)
+        // Zero:     chord flush with the zenith
+        // Negative: chord past the zenith on the far side (slot extends over
+        //           the zenith, as seen with a deeply open shutter)
+        const double zenithTopOffsetDeg = 0.0;
+        const double zenithTopOffsetPx  = zenithTopOffsetDeg * M_PI / 180.0 * zoomFactor;
 
-        // Create path for the slit
-        QPainterPath path;
-        // Points along each edge
+        // Screen positions of zenith and horizon along the slot centreline.
+        // Valid even when off-screen; clipPoly handles final clipping.
+        SkyPoint zenithPoint;
+        zenithPoint.setAz(dms(azimuth));
+        zenithPoint.setAlt(dms(90.0));
+        zenithPoint.HorizontalToEquatorialNow();
+        QPointF screenZenith = m_SkyMap->m_proj->toScreen(&zenithPoint, true, nullptr);
+
+        SkyPoint horizonPoint;
+        horizonPoint.setAz(dms(azimuth));
+        horizonPoint.setAlt(dms(0.0));
+        horizonPoint.HorizontalToEquatorialNow();
+        QPointF screenHorizon = m_SkyMap->m_proj->toScreen(&horizonPoint, true, nullptr);
+
+        const double horizonToZenithPx = std::hypot(
+                                             screenZenith.x() - screenHorizon.x(),
+                                             screenZenith.y() - screenHorizon.y());
+
+        // Z coordinate of the chord on the dome sphere, derived from the
+        // pixel offset. Unclamped — exceeds radius for negative offsets.
+        const double chordZUnclamped = (horizonToZenithPx > 1.0)
+                                       ? radius * (1.0 - zenithTopOffsetPx / horizonToZenithPx)
+                                       : radius;
+
+        // When chordZUnclamped > radius the chord is on the far side of the
+        // zenith. chordZ mirrors the altitude about the zenith in that case.
+        const bool   pastZenith = (chordZUnclamped > radius);
+        const double chordZ     = pastZenith
+                                  ? 2.0 * radius - chordZUnclamped
+                                  : qBound(0.0, chordZUnclamped, radius);
+
+        // Z at the chord corner of each edge, kept a small epsilon away from
+        // the az_offset=±90° singularity that occurs when Y reaches zero.
+        const double edgeYEpsilon = radius * 0.01;
+        const double chordEdgeZ   = sqrt(qMax(0.0, chordZ * chordZ
+                                              - halfShutterWidth * halfShutterWidth
+                                              - edgeYEpsilon * edgeYEpsilon));
+
         const int steps = 50;
-        // Extra points for smooth top curve
-        const int topSteps = 20;
 
-        // Create points along left edge from horizon to 90 degrees
-        bool started = false;
-        for (int i = 0; i <= steps; i++)
+        // Convert a 3D dome surface point to screen coordinates via alt/az.
+        // The dome interior and celestial sphere are geometrically identical
+        // from the observer's viewpoint, so the sky projector gives correct
+        // perspective including edge curvature.
+        //
+        // Dome-local coordinates (origin = observer at dome centre):
+        //   X = across slot (East = positive, metres)
+        //   Y = along centreline in horizon plane (metres); negative Y means
+        //       the point is on the far side of the zenith
+        //   Z = up (metres),  X² + Y² + Z² = radius²
+        //
+        // When Y < 0, atan2(X, Y) produces az_offset in (90°, 270°),
+        // correctly mapping far-side points past the zenith.
+        auto domePointToScreen = [&](double X, double Y, double Z) -> QPointF
         {
-            double alt = (90.0 * i) / steps;
+            double alt_deg       = asin(qBound(-1.0, Z / radius, 1.0)) * 180.0 / M_PI;
+            double az_offset_deg = atan2(X, Y) * 180.0 / M_PI;
+            SkyPoint p;
+            p.setAlt(dms(alt_deg));
+            p.setAz(dms(azimuth + az_offset_deg));
+            p.HorizontalToEquatorialNow();
+            return m_SkyMap->m_proj->toScreen(&p, true, nullptr);
+        };
 
-            SkyPoint point;
-            point.setAz(dms(azimuth - halfWidth));
-            point.setAlt(dms(alt));
-            point.HorizontalToEquatorialNow();
+        // Y coordinate of a slot edge point at height Z on the dome sphere.
+        auto slotEdgeY = [&](double Z) -> double
+        {
+            return sqrt(qMax(0.0, radius * radius
+                             - halfShutterWidth * halfShutterWidth - Z * Z));
+        };
 
-            bool visible;
-            QPointF screen = m_SkyMap->m_proj->toScreen(&point, true, &visible);
-            if (visible)
+        // Generate screen points along one slot edge from horizon to chord corner.
+        // points.first() = horizon,  points.last() = chord corner.
+        // For the past-zenith case the edge arcs over the zenith: Y is positive
+        // on the near side, zero at the zenith, negative on the far side.
+        auto makeEdge = [&](double X) -> QVector<QPointF>
+        {
+            QVector<QPointF> pts;
+            pts.reserve(pastZenith ? steps * 2 + 2 : steps + 1);
+
+            // Near side: Z from 0 to chordEdgeZ, Y positive
+            for (int i = 0; i <= steps; i++)
             {
-                if (!started)
+                double Z = (chordEdgeZ * i) / steps;
+                pts.append(domePointToScreen(X, slotEdgeY(Z), Z));
+            }
+
+            if (pastZenith)
+            {
+                // Arc over zenith: Z rises to radius then falls back to chordEdgeZ.
+                // Y transitions positive -> 0 at zenith -> negative.
+                for (int i = 1; i <= steps; i++)
                 {
-                    path.moveTo(screen);
-                    started = true;
-                }
-                else
-                {
-                    path.lineTo(screen);
+                    double t = double(i) / steps;
+                    double Z, Y;
+                    if (t < 0.5)
+                    {
+                        Z = chordEdgeZ + (radius - chordEdgeZ) * (2.0 * t);
+                        Y = slotEdgeY(Z);        // near side
+                    }
+                    else if (t > 0.5)
+                    {
+                        Z = radius - (radius - chordEdgeZ) * (2.0 * t - 1.0);
+                        Y = -slotEdgeY(Z);       // far side
+                    }
+                    else                         // t == 0.5: zenith
+                    {
+                        Z = radius;
+                        Y = 0.0;
+                    }
+                    pts.append(domePointToScreen(X, Y, Z));
                 }
             }
-        }
 
-        // Create smooth curve at the top
-        for (int i = 0; i <= topSteps; i++)
-        {
-            double fraction = double(i) / topSteps;
-            double az = azimuth - halfWidth + angularWidth * fraction;
+            return pts;
+        };
 
-            SkyPoint point;
-            point.setAz(dms(az));
-            point.setAlt(dms(90.0));
-            point.HorizontalToEquatorialNow();
+        QVector<QPointF> leftEdge  = makeEdge(-halfShutterWidth);
+        QVector<QPointF> rightEdge = makeEdge( halfShutterWidth);
 
-            bool visible;
-            QPointF screen = m_SkyMap->m_proj->toScreen(&point, true, &visible);
-            if (visible)
-                path.lineTo(screen);
-        }
+        // Closed path: left edge forward, chord, right edge reversed.
+        QPainterPath path;
+        path.moveTo(leftEdge.first());
+        for (int i = 1; i < leftEdge.size(); i++)
+            path.lineTo(leftEdge[i]);
 
-        // Create points along right edge from 90 degrees back to horizon
-        for (int i = steps; i >= 0; i--)
-        {
-            double alt = (90.0 * i) / steps;
+        // Chord: both terminal points share Z=chordEdgeZ
+        path.lineTo(rightEdge.last());
 
-            SkyPoint point;
-            point.setAz(dms(azimuth + halfWidth));
-            point.setAlt(dms(alt));
-            point.HorizontalToEquatorialNow();
+        for (int i = rightEdge.size() - 2; i >= 0; i--)
+            path.lineTo(rightEdge[i]);
 
-            bool visible;
-            QPointF screen = m_SkyMap->m_proj->toScreen(&point, true, &visible);
-            if (visible)
-                path.lineTo(screen);
-        }
-
-        // Close the path
         path.closeSubpath();
 
-        // Draw the filled slit
-        psky.fillPath(path, domeColor);
+        QPainterPath clipPath;
+        clipPath.addPolygon(m_SkyMap->m_proj->clipPoly());
+        clipPath.closeSubpath();
+
+        psky.fillPath(invertSlit ? clipPath.subtracted(path) : path.intersected(clipPath),
+                      domeColor);
     }
 #endif
 }
-
 void SkyMapDrawAbstract::drawAngleRuler(QPainter &p)
 {
     //FIXME use sky painter.

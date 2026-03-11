@@ -392,3 +392,9 @@ void ColorScheme::setStarColorModeIntensity(int mode, int intens)
     SkyQPainter::initStarImages();
 #endif
 }
+
+void ColorScheme::setDomeSlitInverted(bool mode)
+{
+    DomeSlitInverted = mode;
+    Options::setDomeSlitInverted(mode);
+}

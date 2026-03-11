@@ -44,6 +44,7 @@ class OpsColors : public QFrame, public Ui::OpsColors
         void slotRemovePreset();
         void slotStarColorMode(int);
         void slotStarColorIntensity(int);
+        void slotDomeSlitInverted(bool);
         void slotChangeTheme(QListWidgetItem *item);
 
     private:
