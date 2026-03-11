@@ -426,6 +426,57 @@ bool syncProfile(const QSharedPointer<ProfileInfo> &pi)
     return getWebManagerResponse(QNetworkAccessManager::PostOperation, url, nullptr, &data);
 }
 
+bool getProfiles(const QSharedPointer<ProfileInfo> &pi, QJsonArray &profiles)
+{
+    QUrl url(QString("http://%1:%2/api/profiles").arg(pi->host).arg(QString::number(pi->INDIWebManagerPort)));
+    QJsonDocument json;
+
+    if (getWebManagerResponse(QNetworkAccessManager::GetOperation, url, &json))
+    {
+        profiles = json.array();
+        return true;
+    }
+
+    return false;
+}
+
+bool getProfileInfo(const QSharedPointer<ProfileInfo> &pi, const QString &profileName, QJsonObject &info)
+{
+    QUrl url(QString("http://%1:%2/api/profiles/%3").arg(pi->host).arg(QString::number(pi->INDIWebManagerPort)).arg(
+                 profileName));
+    QJsonDocument json;
+
+    if (getWebManagerResponse(QNetworkAccessManager::GetOperation, url, &json))
+    {
+        info = json.object();
+        return true;
+    }
+
+    return false;
+}
+
+bool getProfileDriverLabels(const QSharedPointer<ProfileInfo> &pi, const QString &profileName, QJsonArray &labels)
+{
+    QUrl url(QString("http://%1:%2/api/profiles/%3/labels").arg(pi->host).arg(
+                 QString::number(pi->INDIWebManagerPort)).arg(profileName));
+    QJsonDocument json;
+
+    if (getWebManagerResponse(QNetworkAccessManager::GetOperation, url, &json))
+    {
+        labels = json.array();
+        return true;
+    }
+
+    return false;
+}
+
+bool deleteProfile(const QSharedPointer<ProfileInfo> &pi, const QString &profileName)
+{
+    QUrl url(QString("http://%1:%2/api/profiles/%3")
+             .arg(pi->host).arg(QString::number(pi->INDIWebManagerPort)).arg(profileName));
+    return getWebManagerResponse(QNetworkAccessManager::DeleteOperation, url, nullptr);
+}
+
 bool startProfile(const QSharedPointer<ProfileInfo> &pi)
 {
     // First make sure profile is created and synced on web manager

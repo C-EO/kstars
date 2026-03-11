@@ -8,6 +8,8 @@
 
 #include <QNetworkAccessManager>
 #include <QFuture>
+#include <QJsonArray>
+#include <QJsonObject>
 
 class QByteArray;
 class QJsonDocument;
@@ -28,6 +30,16 @@ bool areDriversRunning(const QSharedPointer<ProfileInfo> &pi);
 bool startProfile(const QSharedPointer<ProfileInfo> &pi);
 bool stopProfile(const QSharedPointer<ProfileInfo> &pi);
 bool restartDriver(const QSharedPointer<ProfileInfo> &pi, const QString &label);
+bool getProfiles(const QSharedPointer<ProfileInfo> &pi, QJsonArray &profiles);
+bool getProfileInfo(const QSharedPointer<ProfileInfo> &pi, const QString &profileName, QJsonObject &info);
+bool getProfileDriverLabels(const QSharedPointer<ProfileInfo> &pi, const QString &profileName, QJsonArray &labels);
+/**
+ * @brief deleteProfile Delete a profile from the INDI Web Manager.
+ * @param pi Profile used to reach the Web Manager (provides host and port).
+ * @param profileName Name of the profile to delete.
+ * @return True on success.
+ */
+bool deleteProfile(const QSharedPointer<ProfileInfo> &pi, const QString &profileName);
 }
 
 namespace AsyncWebManager

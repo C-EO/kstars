@@ -532,6 +532,13 @@ class Manager : public QDialog, public Ui::Manager
 
         void loadDrivers();
         void loadProfiles();
+        /**
+         * @brief syncProfilesFromWebManager Fetch all profiles from the INDI Web Manager and import
+         *        any that do not already exist in the local KStars database. Profiles that exist in
+         *        KStars (matched by name) are never overwritten — KStars takes precedence.
+         * @param pi The profile used to reach the Web Manager (provides host and port info).
+         */
+        void syncProfilesFromWebManager(const QSharedPointer<ProfileInfo> &pi);
         int addModuleTab(EkosModule module, QWidget *tab, const QIcon &icon);
 
         /**
