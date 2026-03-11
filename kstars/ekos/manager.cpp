@@ -364,6 +364,19 @@ Manager::Manager(QWidget * parent) : QDialog(parent), m_networkManager(this)
                 }
             }
         }
+
+        // Also probe the default local Web Manager endpoint (localhost:8624) so that
+        // a fresh KStars with only the "Simulators" profile can still auto-import
+        // profiles from a locally running INDI Web Manager.
+        // syncProfilesFromWebManager() is fully async and silently no-ops if nothing
+        // is listening on that port.
+        if (!syncedManagers.contains("localhost:8624"))
+        {
+            QSharedPointer<ProfileInfo> localPI(new ProfileInfo(-1, "local-wm"));
+            localPI->host               = "localhost";
+            localPI->INDIWebManagerPort = 8624;
+            syncProfilesFromWebManager(localPI);
+        }
     }
 
     // INDI Control Panel and Ekos Options
@@ -807,7 +820,7 @@ void Manager::syncProfilesFromWebManager(const QSharedPointer<ProfileInfo> &pi)
                                   .toJson(QJsonDocument::Compact);
                 }
 
-                // 2b: GET /api/profiles/<name>/labels
+                // 2b: GET /api/profiles/<name>/labels  — local driver labels
                 const QUrl labelsUrl(
                     QString("http://%1:%2/api/profiles/%3/labels")
                     .arg(wmHost).arg(wmPort).arg(profileName));
@@ -832,73 +845,105 @@ void Manager::syncProfilesFromWebManager(const QSharedPointer<ProfileInfo> &pi)
                         }
                     }
 
-                    // 3: Import profile — runs on the main thread (this is a
-                    //    signal/slot callback, not a worker thread).
-                    //
-                    // Re-query the DB right before inserting so that a concurrent
-                    // callback (from another web manager sync) cannot create a
-                    // duplicate entry for the same profile name.
+                    // 2c: GET /api/profiles/<name>/remote  — remote driver string
+                    //     Returns: {"drivers": "device@host:port,device2@host:port2"}
+                    const QUrl remoteUrl(
+                        QString("http://%1:%2/api/profiles/%3/remote")
+                        .arg(wmHost).arg(wmPort).arg(profileName));
+                    QNetworkReply *remoteReply =
+                        m_networkManager.get(QNetworkRequest(remoteUrl));
+
+                    connect(remoteReply, &QNetworkReply::finished, this,
+                            [this, remoteReply, wmHost, wmPort, profileName,
+                             port, autoConn, driverSrc, scripts,
+                             driverLabels, remaining, anyAdded]()
                     {
-                        QList<QSharedPointer<ProfileInfo>> currentProfiles;
-                        KStarsData::Instance()->userdb()->GetAllProfiles(currentProfiles);
-                        const bool alreadyExists = std::any_of(
-                                                       currentProfiles.cbegin(), currentProfiles.cend(),
-                                                       [&profileName](const QSharedPointer<ProfileInfo> &p)
+                        remoteReply->deleteLater();
+
+                        QString remoteDrivers;
+                        if (remoteReply->error() == QNetworkReply::NoError)
                         {
-                            return p->name == profileName;
-                        });
-                        if (alreadyExists)
-                        {
-                            qCDebug(KSTARS_EKOS)
-                                    << "Web Manager sync: profile" << profileName
-                                    << "already exists — skipping duplicate import";
-                            if (--(*remaining) == 0 && *anyAdded)
-                                loadProfiles();
-                            return;
+                            const QJsonObject obj =
+                                QJsonDocument::fromJson(remoteReply->readAll()).object();
+                            // Response: {"drivers": "@host:port"} or empty/null
+                            const QString val = obj["drivers"].toString().trimmed();
+                            if (!val.isEmpty())
+                                remoteDrivers = val;
                         }
-                    }
 
-                    const int newId =
-                        KStarsData::Instance()->userdb()->AddProfile(profileName);
-                    if (newId >= 0)
-                    {
-                        QSharedPointer<ProfileInfo> newPI(
-                            new ProfileInfo(newId, profileName));
-                        newPI->host               = wmHost;
-                        newPI->port               = port;
-                        newPI->INDIWebManagerPort  = wmPort;
-                        newPI->driverSource        = driverSrc;
-                        newPI->scripts             = scripts;
-                        newPI->autoConnect         = autoConn;
-
-                        for (const QString &label : driverLabels)
+                        // 3: Import profile — runs on the main thread (this is a
+                        //    signal/slot callback, not a worker thread).
+                        //
+                        // Re-query the DB right before inserting so that a concurrent
+                        // callback (from another web manager sync) cannot create a
+                        // duplicate entry for the same profile name.
                         {
-                            auto drv =
-                                DriverManager::Instance()->findDriverByLabel(label);
-                            if (!drv.isNull())
-                                newPI->addDriver(drv->getType(), label);
-                            else
+                            QList<QSharedPointer<ProfileInfo>> currentProfiles;
+                            KStarsData::Instance()->userdb()->GetAllProfiles(currentProfiles);
+                            const bool alreadyExists = std::any_of(
+                                                           currentProfiles.cbegin(), currentProfiles.cend(),
+                                                           [&profileName](const QSharedPointer<ProfileInfo> &p)
+                            {
+                                return p->name == profileName;
+                            });
+                            if (alreadyExists)
+                            {
                                 qCDebug(KSTARS_EKOS)
-                                        << "Web Manager sync: label" << label
-                                        << "not found locally for profile"
-                                        << profileName << "— skipping";
+                                        << "Web Manager sync: profile" << profileName
+                                        << "already exists — skipping duplicate import";
+                                if (--(*remaining) == 0 && *anyAdded)
+                                    loadProfiles();
+                                return;
+                            }
                         }
 
-                        KStarsData::Instance()->userdb()->SaveProfile(newPI);
-                        appendLogText(
-                            i18n("Imported profile '%1' from INDI Web Manager.",
-                                 profileName));
-                        *anyAdded = true;
-                    }
-                    else
-                    {
-                        qCWarning(KSTARS_EKOS)
-                                << "Web Manager sync: failed to create profile" << profileName;
-                    }
+                        const int newId =
+                            KStarsData::Instance()->userdb()->AddProfile(profileName);
+                        if (newId >= 0)
+                        {
+                            QSharedPointer<ProfileInfo> newPI(
+                                new ProfileInfo(newId, profileName));
+                            newPI->host              = wmHost;
+                            newPI->port              = port;
+                            newPI->INDIWebManagerPort = wmPort;
+                            newPI->driverSource       = driverSrc;
+                            newPI->scripts            = scripts;
+                            newPI->autoConnect        = autoConn;
 
-                    // Reload the profile combo once every import attempt is done.
-                    if (--(*remaining) == 0 && *anyAdded)
-                        loadProfiles();
+                            // Local drivers (matched by label)
+                            for (const QString &label : driverLabels)
+                            {
+                                auto drv =
+                                    DriverManager::Instance()->findDriverByLabel(label);
+                                if (!drv.isNull())
+                                    newPI->addDriver(drv->getType(), label);
+                                else
+                                    qCDebug(KSTARS_EKOS)
+                                            << "Web Manager sync: label" << label
+                                            << "not found locally for profile"
+                                            << profileName << "— skipping";
+                            }
+
+                            // Remote drivers: comma-separated "device@host:port" specs
+                            if (!remoteDrivers.isEmpty())
+                                newPI->remotedrivers = remoteDrivers;
+
+                            KStarsData::Instance()->userdb()->SaveProfile(newPI);
+                            appendLogText(
+                                i18n("Imported profile '%1' from INDI Web Manager.",
+                                     profileName));
+                            *anyAdded = true;
+                        }
+                        else
+                        {
+                            qCWarning(KSTARS_EKOS)
+                                    << "Web Manager sync: failed to create profile" << profileName;
+                        }
+
+                        // Reload the profile combo once every import attempt is done.
+                        if (--(*remaining) == 0 && *anyAdded)
+                            loadProfiles();
+                    }); // remoteReply finished
                 }); // labelsReply finished
             }); // infoReply finished
         } // for each profile name
