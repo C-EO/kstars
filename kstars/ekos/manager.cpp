@@ -1598,6 +1598,10 @@ void Manager::checkINDITimeout()
                 disconnectedDevices << oneDevice->getDeviceName();
         }
 
+        // If all devices are connected, nothing to report
+        if (disconnectedDevices.isEmpty())
+            return;
+
         QString message;
 
         if (disconnectedDevices.count() == 1)
