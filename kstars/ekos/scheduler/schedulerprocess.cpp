@@ -836,18 +836,30 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
                           job->getName(), job->getStartupTime().toString()));
 
         // Use queue manager to park mount programmatically (only if startup queue is enabled)
-        if (Options::schedulerStartupEnabled() && m_queueManager && m_queueManager->addMountParkTask())
+        if (Options::schedulerStartupEnabled() && m_queueManager && m_queueExecutor)
         {
-            // Park task added successfully, let queue manager handle it
-            return false;
+            // Only add a new park task if the executor is not already running one
+            if (!m_queueExecutor->isRunning() && m_queueManager->addMountParkTask())
+            {
+                qCInfo(KSTARS_EKOS_SCHEDULER) << "Park task added, starting queue executor.";
+                m_queueExecutor->start();
+            }
+            // else: park task already in progress, fall through to sleep below
         }
         else
         {
             // Queue disabled or unavailable - park directly via DBus
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Startup queue disabled or unavailable, parking mount directly via DBus.";
             mountInterface()->call(QDBus::AutoDetect, "park");
-            return false;
         }
+
+        // Sleep until the job is due regardless of whether the park task is new or already in progress.
+        // Without this the scheduler busy-loops every second instead of sleeping.
+        moduleState()->setupNextIteration(RUN_WAKEUP,
+                                          std::lround(((nextObservationTime + 1) * 1000)
+                                                  / KStarsData::Instance()->clock()->scale()));
+        emit schedulerSleeping(false, true);
+        return true;
     }
     else if (nextObservationTime > Options::leadTime() * 60)
     {
@@ -888,9 +900,17 @@ void SchedulerProcess::startSlew()
     // If the mount was parked by a pause or the end-user, unpark before slewing
     if (isMountParked())
     {
-        if (Options::schedulerStartupEnabled() && m_queueManager && m_queueManager->addMountUnparkTask())
+        if (Options::schedulerStartupEnabled() && m_queueManager && m_queueExecutor)
         {
-            appendLogText(i18n("Mount is parked, adding unpark task before slewing."));
+            // Guard: if an unpark task is already running, wait for it to complete
+            if (m_queueExecutor->isRunning())
+                return;
+
+            if (m_queueManager->addMountUnparkTask())
+            {
+                appendLogText(i18n("Mount is parked, adding unpark task before slewing."));
+                m_queueExecutor->start();  // actually run the unpark task
+            }
             return;
         }
         else
