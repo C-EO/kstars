@@ -230,6 +230,22 @@ flatpak-arm64:
     - !reference [.custom-build-recipes, rules]
   before_script:
     - du -hs "${CCACHE_DIR}" || mkdir -p "${CCACHE_DIR}"
+    - |
+      # Ubuntu interim releases move off the primary mirrors after EOL.
+      if [ -r /etc/os-release ]; then
+        . /etc/os-release
+        if [ "${ID:-}" = "ubuntu" ] && [ "${VERSION_CODENAME:-}" = "oracular" ]; then
+          find /etc/apt -type f \( -name '*.list' -o -name '*.sources' \) -print0 | \
+            xargs -0 sed -i \
+              -e 's|http://archive.ubuntu.com/ubuntu|http://old-releases.ubuntu.com/ubuntu|g' \
+              -e 's|http://security.ubuntu.com/ubuntu|http://old-releases.ubuntu.com/ubuntu|g' \
+              -e 's|http://ports.ubuntu.com/ubuntu-ports|http://old-releases.ubuntu.com/ubuntu|g'
+        fi
+      fi
+    - add-apt-repository --remove ppa:mutlaqja/ppa
+    - add-apt-repository ppa:mutlaqja/ppa
+    - apt update
+    - apt -y --no-install-recommends install libindi1 libindi-dev libindi-data indi-bin xplanet gsc phd2 libstellarsolver libstellarsolver-dev libcurl4-openssl-dev
     - mkdir -p kstars-build
   after_script:
     - ccache -s

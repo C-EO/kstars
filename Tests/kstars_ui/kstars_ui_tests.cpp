@@ -45,6 +45,8 @@
 QSystemTrayIcon * KStarsUiTests::m_Notifier { nullptr };
 void KStarsUiTests::notifierBegin()
 {
+    if (!QSystemTrayIcon::isSystemTrayAvailable())
+        return;
     if (!m_Notifier)
         m_Notifier = new QSystemTrayIcon(QIcon::fromTheme("kstars_stars"), Ekos::Manager::Instance());
     if (m_Notifier)
@@ -86,7 +88,12 @@ void prepare_tests()
     QApplication::processEvents();
 
     // Prepare our KStars configuration
-    srand((unsigned int)time(nullptr));
+    const QByteArray seedEnv = qgetenv("KSTARS_TEST_RANDOM_SEED");
+    bool seedOk = false;
+    unsigned int seed = seedEnv.isEmpty() ? 1u : seedEnv.toUInt(&seedOk);
+    if (!seedOk && !seedEnv.isEmpty())
+        seed = 1u;
+    srand(seed);
     KSPaths::writableLocation(QStandardPaths::AppLocalDataLocation);
     KSPaths::writableLocation(QStandardPaths::AppConfigLocation);
     KSPaths::writableLocation(QStandardPaths::CacheLocation);

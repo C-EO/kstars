@@ -9,6 +9,15 @@
 #include <QString>
 #include <QMap>
 #include <chrono>
+#include <indiversion.h>
+
+#define KSTARS_INDI_VERSION_AT_LEAST(major, minor, release) \
+    ((INDI_VERSION_MAJOR > (major)) || \
+     (INDI_VERSION_MAJOR == (major) && INDI_VERSION_MINOR > (minor)) || \
+     (INDI_VERSION_MAJOR == (major) && INDI_VERSION_MINOR == (minor) && INDI_VERSION_RELEASE >= (release)))
+
+// PAC_INTERFACE was introduced in libindi 2.2.0.
+#define KSTARS_HAS_INDI_PAC_INTERFACE KSTARS_INDI_VERSION_AT_LEAST(2, 2, 0)
 /*!
 \page INDI "INDI Overview"
 \tableofcontents

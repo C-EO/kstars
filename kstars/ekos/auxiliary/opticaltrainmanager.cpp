@@ -13,6 +13,7 @@
 #include "kstars.h"
 #include "indi/indilistener.h"
 #include "indi/indipropertyexporter.h"
+#include "indi/indicommon.h"
 #include "ekos/auxiliary/profilesettings.h"
 #include "oal/equipmentwriter.h"
 
@@ -940,6 +941,7 @@ bool OpticalTrainManager::getGenericDevice(const QString &train, Role role, QSha
                 }
                 case PAC:
                 {
+#if KSTARS_HAS_INDI_PAC_INTERFACE
                     auto devices = INDIListener::devicesByInterface(INDI::BaseDevice::PAC_INTERFACE);
                     if (!devices.empty())
                     {
@@ -948,6 +950,9 @@ bool OpticalTrainManager::getGenericDevice(const QString &train, Role role, QSha
                     }
                     else
                         return false;
+#else
+                    return false;
+#endif
                 }
                 default:
                     break;

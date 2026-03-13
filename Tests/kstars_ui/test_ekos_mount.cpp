@@ -18,14 +18,79 @@
 #include "test_ekos_simulator.h"
 #include "ekos/mount/mount.h"
 
+#include <QLineEdit>
+#include <QMetaObject>
+
+namespace
+{
+bool g_mountTestDisabled = false;
+QString g_mountTestDisabledReason;
+
+QAbstractButton *asButton(QObject *object)
+{
+    return qobject_cast<QAbstractButton *>(object);
+}
+
+QLineEdit *asLineEdit(QObject *object)
+{
+    return qobject_cast<QLineEdit *>(object);
+}
+
+void clickControl(QObject *object)
+{
+    if (auto button = asButton(object))
+        QTest::mouseClick(button, Qt::LeftButton);
+    else
+        object->setProperty("checked", true);
+    QTest::qWait(20);
+}
+
+void clickButton(QObject *object)
+{
+    if (auto button = asButton(object))
+        QTest::mouseClick(button, Qt::LeftButton);
+    else
+        QMetaObject::invokeMethod(object, "click", Qt::DirectConnection);
+    QTest::qWait(20);
+}
+
+void setLineEditText(QObject *object, const QString &value)
+{
+    if (auto lineEdit = asLineEdit(object))
+    {
+        lineEdit->setText(value);
+        QMetaObject::invokeMethod(lineEdit, "editingFinished", Qt::DirectConnection);
+    }
+    else
+    {
+        object->setProperty("text", value);
+    }
+    QTest::qWait(20);
+}
+}
+
+#define SKIP_IF_MOUNT_TEST_DISABLED() \
+    do \
+    { \
+        if (g_mountTestDisabled) \
+            QSKIP(qPrintable(g_mountTestDisabledReason)); \
+    } while (false)
+
 TestEkosMount::TestEkosMount(QObject *parent) : QObject(parent)
 {
 }
 
 void TestEkosMount::initTestCase()
 {
-    if (!qgetenv("CI").isEmpty())
-        QSKIP("Skipping mount control test until QML/GL mixed window issue is resolved under EGLFS.");
+    if (qEnvironmentVariableIsSet("CI") || !kstarsTestRequiresActiveWindow())
+    {
+        g_mountTestDisabled = true;
+        g_mountTestDisabledReason = qEnvironmentVariableIsSet("CI")
+                                    ? QStringLiteral("Mount control tests are skipped in CI because the active-window/GL setup is not reliable there.")
+                                    : QStringLiteral("Mount control tests require an active window and cannot run headless/offscreen.");
+        QWARN(qPrintable(g_mountTestDisabledReason));
+        return;
+    }
 
     KVERIFY_EKOS_IS_HIDDEN();
     KTRY_OPEN_EKOS();
@@ -47,58 +112,78 @@ void TestEkosMount::initTestCase()
     KTRY_MOUNT_GADGET(QPushButton, mountToolBoxB);
     KTRY_MOUNT_CLICK(mountToolBoxB);
 
-    // Get Mount Control widget
-    QTRY_VERIFY_WITH_TIMEOUT([&]
+    // Get Mount Control window object
+    auto findMountControl = []() -> QWidget *
     {
-        for (QWidget *w : qApp->topLevelWidgets())
+        for (QWidget *widget : QApplication::topLevelWidgets())
         {
-            if (w && w->windowTitle().startsWith("Mount Control"))
+            if (!widget)
+                continue;
+            const QString title = widget->windowTitle();
+            if (widget->objectName() == QStringLiteral("MountControlPanel") ||
+                    title == QStringLiteral("Mount Control Panel") ||
+                    title == QStringLiteral("Mount Control"))
             {
-                mountControl = w;
-                return true;
+                return widget;
             }
         }
-        return false;
-    }(), 5000);
+        return nullptr;
+    };
 
-    raLabel = mountControl->findChild<QLabel *>("targetRALabel");
+    QTRY_VERIFY_WITH_TIMEOUT((mountControl = findMountControl()) != nullptr, 5000);
+    QTRY_VERIFY_WITH_TIMEOUT(mountControl->isVisible(), 1000);
+
+    // get access to Mount Control widgets
+
+    auto findObject = [&](const char *primary, const char *fallback) -> QObject *
+    {
+        QObject *object = mountControl->findChild<QObject*>(primary);
+        if (!object && fallback)
+            object = mountControl->findChild<QObject * >(fallback);
+        return object;
+    };
+
+    raLabel = findObject("targetRALabel", "targetRALabelObject");
     QVERIFY(raLabel != nullptr);
-    deLabel = mountControl->findChild<QLabel *>("targetDECLabel");
+    deLabel = findObject("targetDECLabel", "targetDELabelObject");
     QVERIFY(deLabel != nullptr);
 
-    coordRaDe = mountControl->findChild<QRadioButton*>("equatorialCheckObject");
+    coordRaDe = mountControl->findChild<QObject*>("equatorialCheckObject");
     QVERIFY(coordRaDe != nullptr);
-    coordAzAl = mountControl->findChild<QRadioButton*>("horizontalCheckObject");
+    coordAzAl = mountControl->findChild<QObject*>("horizontalCheckObject");
     QVERIFY(coordAzAl != nullptr);
-    coordHaDe = mountControl->findChild<QRadioButton*>("haEquatorialCheckObject");
+    coordHaDe = mountControl->findChild<QObject*>("haEquatorialCheckObject");
     QVERIFY(coordHaDe != nullptr);
 
-    raText = mountControl->findChild<dmsBox*>("targetRATextObject");
+    raText = mountControl->findChild<QObject*>("targetRATextObject");
     QVERIFY(raText != nullptr);
-    deText = mountControl->findChild<dmsBox*>("targetDETextObject");
+    deText = mountControl->findChild<QObject*>("targetDETextObject");
     QVERIFY(deText != nullptr);
 
-    raValue = mountControl->findChild<QLabel*>("raValueObject");
+    raValue = mountControl->findChild<QObject*>("raValueObject");
     QVERIFY(raValue != nullptr);
-    deValue = mountControl->findChild<QLabel*>("deValueObject");
+    deValue = mountControl->findChild<QObject*>("deValueObject");
     QVERIFY(deValue != nullptr);
-    azValue = mountControl->findChild<QLabel*>("azValueObject");
+    azValue = mountControl->findChild<QObject*>("azValueObject");
     QVERIFY(azValue != nullptr);
-    altValue = mountControl->findChild<QLabel*>("altValueObject");
+    altValue = mountControl->findChild<QObject*>("altValueObject");
     QVERIFY(altValue != nullptr);
-    haValue = mountControl->findChild<QLabel*>("haValueObject");
+    haValue = mountControl->findChild<QObject*>("haValueObject");
     QVERIFY(haValue != nullptr);
-    zaValue = mountControl->findChild<QLabel*>("zaValueObject");
+    zaValue = mountControl->findChild<QObject*>("zaValueObject");
     QVERIFY(zaValue != nullptr);
-    gotoButton = mountControl->findChild<QPushButton*>("gotoButtonObject");
+    gotoButton = mountControl->findChild<QObject*>("gotoButtonObject");
     QVERIFY(gotoButton != nullptr);
-    syncButton = mountControl->findChild<QPushButton*>("syncButtonObject");
+    syncButton = mountControl->findChild<QObject*>("syncButtonObject");
     QVERIFY(syncButton != nullptr);
 
 }
 
 void TestEkosMount::cleanupTestCase()
 {
+    if (g_mountTestDisabled)
+        return;
+
     KTRY_EKOS_STOP_SIMULATORS();
     KTRY_CLOSE_EKOS();
     KVERIFY_EKOS_IS_HIDDEN();
@@ -117,6 +202,7 @@ void TestEkosMount::testMountCtrlCoordLabels()
 #if QT_VERSION < 0x050900
     QSKIP("Skipping fixture-based test on old QT version.");
 #else
+    SKIP_IF_MOUNT_TEST_DISABLED();
     // Test proper setting of input coord label widget according to
     // type radio button selection
 
@@ -126,38 +212,39 @@ void TestEkosMount::testMountCtrlCoordLabels()
 
     return;
     // check transition RA/DE -> AZ/ALT
-    coordAzAl->click();
+    coordAzAl->setProperty("checked", true);
     QTRY_COMPARE_WITH_TIMEOUT(raLabel->property("text"), QVariant("AZ:"), 1000);
     QTRY_COMPARE_WITH_TIMEOUT(deLabel->property("text"), QVariant("AL:"), 1000);
 
     // check transition AZ/ALT -> HA/DE
-    coordHaDe->click();
+    coordHaDe->setProperty("checked", true);
     QTRY_COMPARE_WITH_TIMEOUT(raLabel->property("text"), QVariant("HA:"), 1000);
     QTRY_COMPARE_WITH_TIMEOUT(deLabel->property("text"), QVariant("DE:"), 1000);
 
     // check transition HA/DE -> RA/DE
-    coordRaDe->click();
+    coordRaDe->setProperty("checked", true);
     QTRY_COMPARE_WITH_TIMEOUT(raLabel->property("text"), QVariant("RA:"), 1000);
     QTRY_COMPARE_WITH_TIMEOUT(deLabel->property("text"), QVariant("DE:"), 1000);
 
     // check transition RA/DE -> HA/DE
-    coordHaDe->click();
+    coordHaDe->setProperty("checked", true);
     QTRY_COMPARE_WITH_TIMEOUT(raLabel->property("text"), QVariant("HA:"), 1000);
     QTRY_COMPARE_WITH_TIMEOUT(deLabel->property("text"), QVariant("DE:"), 1000);
 
     // check transition HA/DE -> AZ/AL
-    coordAzAl->click();
+    coordAzAl->setProperty("checked", true);
     QTRY_COMPARE_WITH_TIMEOUT(raLabel->property("text"), QVariant("AZ:"), 1000);
     QTRY_COMPARE_WITH_TIMEOUT(deLabel->property("text"), QVariant("AL:"), 1000);
 
     // check transition AZ/AL -> RA/DE
-    coordRaDe->click();
+    coordRaDe->setProperty("checked", true);
     QTRY_COMPARE_WITH_TIMEOUT(raLabel->property("text"), QVariant("RA:"), 1000);
     QTRY_COMPARE_WITH_TIMEOUT(deLabel->property("text"), QVariant("DE:"), 1000);
 }
 
 void TestEkosMount::testMountCtrlCoordConversion()
 {
+    SKIP_IF_MOUNT_TEST_DISABLED();
     //  Test coord calculator with cyclic transform chain driven by
     //  cyclic changes of selection of coord type radiobutton
 
@@ -179,83 +266,74 @@ void TestEkosMount::testMountCtrlCoordConversion()
                 KStars::Instance()->data()->clock()->setUTC(JD);
 
         // set coord input text boxes to random coord
-        coordRaDe->click();
-        raText->setFocus();
-        raText->setText(RA.toHMSString());
-        deText->setFocus();
-        deText->setText(Dec.toDMSString());
-        deText->clearFocus();
-        KTELL("Using RA = " + RA.toHMSString() + " Dec = " + Dec.toDMSString());
+        clickControl(coordRaDe);
+        setLineEditText(raText, RA.toHMSString());
+        setLineEditText(deText, Dec.toDMSString());
 
         // forward chain RA/Dec -> Az/Alt -> HA/Dec -> RA/Dec
 
-        // RA/Dec -> Alt/Az
-        QString RAText = raText->text();
-        QString DEText = raText->text();
-        coordAzAl->click();
+        // RA/Dec -> Az/Alt
+        QVariant RAText = raText->property("text");
+        QVariant DEText = deText->property("text");
+        clickControl(coordAzAl);
         QTest::qWait(20);
-        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->text(), 1000);
-        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->text(), 1000);
-        KTELL("Recalculated Alt = " + raText->text() + " Az = " + deText->text());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
-        // Alt/Az -> HA/Dec
-        RAText = raText->text();
-        DEText = raText->text();
-        coordHaDe->click();
+        // Az/Alt -> HA/Dec
+        RAText = raText->property("text");
+        DEText = deText->property("text");
+        clickControl(coordHaDe);
         QTest::qWait(20);
-        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->text(), 1000);
-        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->text(), 1000);
-        KTELL("Recalculated Ha = " + raText->text() + " Dec = " + deText->text());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
         // HA/Dec -> RA/Dec
-        coordRaDe->click();
+        clickControl(coordRaDe);
         QTest::qWait(20);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raText->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raText->property("text").toString(),
                                       false).Hours()) < hourPrecision, 1000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deText->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deText->property("text").toString(),
                                       true).Degrees()) < degreePrecision, 1000);
-        KTELL("Back to RA = " + raText->text() + " Dec = " + deText->text());
 
         // backward chain RA/Dec -> HA/Dec -> Az/Alt -> RA/Dec
 
         // RA/Dec -> HA/Dec
-        RAText = raText->text();
-        DEText = raText->text();
-        coordHaDe->click();
+        RAText = raText->property("text");
+        DEText = deText->property("text");
+        clickControl(coordHaDe);
         QTest::qWait(20);
-        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->text(), 1000);
-        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->text(), 1000);
-        KTELL("Recalculated Ha = " + raText->text() + " Dec = " + deText->text());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
         // HA/Dec -> Az/Alt
-        RAText = raText->text();
-        DEText = raText->text();
-        coordAzAl->click();
-        QTest::qWait(2000);
-        KTELL("Recalculated Alt = " + raText->text() + " Az = " + deText->text());
-        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->text(), 1000);
-        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->text(), 1000);
+        RAText = raText->property("text");
+        DEText = deText->property("text");
+        clickControl(coordAzAl);
+        QTest::qWait(20);
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
         // Az/Alt -> RA/Dec
-        RAText = raText->text();
-        DEText = raText->text();
-        coordRaDe->click();
+        RAText = raText->property("text");
+        DEText = deText->property("text");
+        clickControl(coordRaDe);
         QTest::qWait(20);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raText->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raText->property("text").toString(),
                                       false).Hours()) < hourPrecision, 1000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deText->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deText->property("text").toString(),
                                       true).Degrees()) < degreePrecision, 1000);
-        KTELL("Back to RA = " + raText->text() + " Dec = " + deText->text());
     }
 }
 
 void TestEkosMount::testMountCtrlGoto()
 {
+    SKIP_IF_MOUNT_TEST_DISABLED();
     int i;
 
     // montecarlo test of GOTO with RA/Dec coordinate
     srand(1);
-    coordRaDe->click();
+    clickControl(coordRaDe);
     for (i = 0; i < 3; i++)
     {
         // random coordinates above horizon
@@ -278,26 +356,24 @@ void TestEkosMount::testMountCtrlGoto()
 
         // set coord input text boxes to random coord
         QTest::qWait(20);
-        QString RAText = raText->text();
-        QString DEText = raText->text();
-        raText->setFocus();
-        raText->setText(RA.toHMSString());
-        deText->setFocus();
-        deText->setText(Dec.toDMSString());
-        deText->clearFocus();
+        QVariant RAText = raText->property("text");
+        QVariant DEText = deText->property("text");
+        setLineEditText(raText, RA.toHMSString());
+        setLineEditText(deText, Dec.toDMSString());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
-        // Goto
-        gotoButton->click();
-
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raValue->text(),
+        // check GOTO RA/Dec
+        clickButton(gotoButton);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raValue->property("text").toString(),
                                       false).Hours()) < hourPrecision, 30000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->property("text").toString(),
                                       true).Degrees()) < degreePrecision, 30000);
     }
 
     // montecarlo test of GOTO with Az/alt coordinate
     srand(1);
-    coordAzAl->click();
+    clickControl(coordAzAl);
     for (i = 0; i < 3; i++)
     {
         // random coordinates above horizon
@@ -305,25 +381,21 @@ void TestEkosMount::testMountCtrlGoto()
         dms Alt(rand() * 89.0 / RAND_MAX + 1.0);
 
         // set coord input text boxes to random coord
-        QString RAText = raText->text();
-        QString DEText = raText->text();
-        raText->setFocus();
-        raText->setText(Alt.toDMSString());
-        deText->setFocus();
-        deText->setText(Az.toDMSString());
-        deText->clearFocus();
-        QTest::qWait(100);
-        // Goto
-        KTELL("Using ALT = " + Alt.toDMSString() + "AZ = " + Az.toDMSString());
-        gotoButton->click();
+        QTest::qWait(20);
+        setLineEditText(raText, Alt.toDMSString());
+        setLineEditText(deText, Az.toDMSString());
 
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Az.Degrees() - dms::fromString(azValue->text(), true).Degrees()) +
-                                 fabs(Alt.Degrees() - dms::fromString(altValue->text(), true).Degrees()) < degreePrecision * 7200.0, 30000);
+        // check GOTO Az/Alt
+        clickButton(gotoButton);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Az.Degrees() -  dms::fromString(azValue->property("text").toString(),
+                                      true).Degrees()) < degreePrecision * 120.0, 30000);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Alt.Degrees() -  dms::fromString(altValue->property("text").toString(),
+                                      true).Degrees()) < degreePrecision * 120.0, 30000);
     }
 
     // montecarlo test of GOTO with HA/Dec coordinate
     srand(1);
-    coordHaDe->click();
+    clickControl(coordHaDe);
     for (i = 0; i < 3; i++)
     {
         // random coordinates above horizon
@@ -342,38 +414,36 @@ void TestEkosMount::testMountCtrlGoto()
 
         // set coord input text boxes to random coord
         QTest::qWait(20);
-        QString RAText = raText->text();
-        QString DEText = raText->text();
+        QVariant RAText = raText->property("text");
+        QVariant DEText = deText->property("text");
         QChar sgn('+');
         if (HA.Hours() > 12.0)
         {
             HA.setH(24.0 - HA.Hours());
             sgn = '-';
         }
-        raText->setFocus();
-        raText->setText(QString("%1%2").arg(sgn).arg(HA.toHMSString()));
-        deText->setFocus();
-        deText->setText(Dec.toDMSString());
-        deText->clearFocus();
+        setLineEditText(raText, QString("%1%2").arg(sgn).arg(HA.toHMSString()));
+        setLineEditText(deText, Dec.toDMSString());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
-        // Goto
-        gotoButton->click();
-        KTELL("Using ALT = " + Alt.toDMSString() + "AZ = " + Az.toDMSString());
-
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(HA.Hours() -  dms::fromString(haValue->text(),
+        // check GOTO RA/Dec
+        clickButton(gotoButton);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(HA.Hours() -  dms::fromString(haValue->property("text").toString(),
                                       false).Hours()) < hourPrecision * 120, 30000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->property("text").toString(),
                                       true).Degrees()) < degreePrecision, 30000);
     }
 }
 
 void TestEkosMount::testMountCtrlSync()
 {
+    SKIP_IF_MOUNT_TEST_DISABLED();
     int i;
 
     // montecarlo test of SYNC with RA/Dec coordinate
     srand(1);
-    coordRaDe->click();
+    clickControl(coordRaDe);
     for (i = 0; i < 3; i++)
     {
         // random coordinates above horizon
@@ -395,27 +465,25 @@ void TestEkosMount::testMountCtrlSync()
         dms Dec = sp.dec();
 
         // set coord input text boxes to random coord
-        QString RAText = raText->text();
-        QString DEText = raText->text();
-        raText->setFocus();
-        raText->setText(RA.toHMSString());
-        deText->setFocus();
-        deText->setText(Dec.toDMSString());
-        deText->clearFocus();
+        QTest::qWait(20);
+        QVariant RAText = raText->property("text");
+        QVariant DEText = deText->property("text");
+        setLineEditText(raText, RA.toHMSString());
+        setLineEditText(deText, Dec.toDMSString());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
         // check SYNC RA/Dec
-        dms ra = dms::fromString(raText->text(), false);
-        auto de = dms::fromString(deText->text(), true);
-        syncButton->click();
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raValue->text(),
+        clickButton(syncButton);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(RA.Hours() -  dms::fromString(raValue->property("text").toString(),
                                       false).Hours()) < hourPrecision, 30000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->property("text").toString(),
                                       true).Degrees()) < degreePrecision, 30000);
     }
 
     // montecarlo test of SYNC with Az/alt coordinate
     srand(1);
-    coordAzAl->click();
+    clickControl(coordAzAl);
     for (i = 0; i < 3; i++)
     {
         // random coordinates above horizon
@@ -425,25 +493,20 @@ void TestEkosMount::testMountCtrlSync()
 
         // set coord input text boxes to random coord
         QTest::qWait(20);
-        raText->setFocus();
-        raText->setText(Alt.toDMSString());
-        deText->setFocus();
-        deText->setText(Az.toDMSString());
-        deText->clearFocus();
+        setLineEditText(raText, Alt.toDMSString());
+        setLineEditText(deText, Az.toDMSString());
 
         // check SYNC Az/Alt
-        syncButton->click();
-        QTest::qWait(1000);
-        KTELL("Synched to Alt = " + altValue->text() + " Az = " + azValue->text());
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Az.Degrees() -  dms::fromString(azValue->text(),
+        clickButton(syncButton);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Az.Degrees() -  dms::fromString(azValue->property("text").toString(),
                                       true).Degrees()) < degreePrecision * 20, 20000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Alt.Degrees() -  dms::fromString(altValue->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Alt.Degrees() -  dms::fromString(altValue->property("text").toString(),
                                       true).Degrees()) < degreePrecision * 20, 20000);
     }
 
     // montecarlo test of SYNC with HA/Dec coordinate
     srand(1);
-    coordHaDe->click();
+    clickControl(coordHaDe);
     for (i = 0; i < 3; i++)
     {
         // random coordinates above horizon
@@ -462,26 +525,24 @@ void TestEkosMount::testMountCtrlSync()
 
         // set coord input text boxes to random coord
         QTest::qWait(20);
+        QVariant RAText = raText->property("text");
+        QVariant DEText = deText->property("text");
         QChar sgn('+');
         if (HA.Hours() > 12.0)
         {
             HA.setH(24.0 - HA.Hours());
             sgn = '-';
         }
-        KTELL("Using HA = " + sgn + HA.toHMSString() + " Dec = " + Dec.toDMSString());
-        raText->setFocus();
-        raText->setText(QString("%1%2").arg(sgn).arg(HA.toHMSString()));
-        deText->setFocus();
-        deText->setText(Dec.toDMSString());
-        deText->clearFocus();
+        setLineEditText(raText, QString("%1%2").arg(sgn).arg(HA.toHMSString()));
+        setLineEditText(deText, Dec.toDMSString());
+        QTRY_VERIFY_WITH_TIMEOUT(RAText != raText->property("text"), 1000);
+        QTRY_VERIFY_WITH_TIMEOUT(DEText != deText->property("text"), 1000);
 
         // check SYNC RA/Dec
-        syncButton->click();
-        QTest::qWait(1000);
-        KTELL("Synched to HA = " + haValue->text() + " Dec = " + deValue->text());
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(HA.Hours() -  dms::fromString(haValue->text(),
+        clickButton(syncButton);
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(HA.Hours() -  dms::fromString(haValue->property("text").toString(),
                                       false).Hours()) < hourPrecision * 2, 30000);
-        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->text(),
+        QTRY_VERIFY_WITH_TIMEOUT(fabs(Dec.Degrees() -  dms::fromString(deValue->property("text").toString(),
                                       true).Degrees()) < degreePrecision, 30000);
     }
 

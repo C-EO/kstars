@@ -23,6 +23,7 @@
 #include "ekos/scheduler/scheduler.h"
 
 #include <QObject>
+#include <QElapsedTimer>
 
 #pragma once
 
@@ -71,37 +72,37 @@ do {\
   * @brief Subroutine version of QTRY_TIMEOUT_DEBUG_IMPL
   * @return false if expression equals false, otherwise continuing
   */
-#if QT_VERSION < QT_VERSION_CHECK(6, 9, 3)
 #define KTRY_TIMEOUT_DEBUG_IMPL_SUB(expr, timeoutValue, step)\
     if (!(expr)) { \
-        QTRY_LOOP_IMPL((expr), (2 * timeoutValue), step);\
+        const int kstars_timeoutMsLocal = static_cast<int>(timeoutValue); \
+        const int kstars_stepMsLocal = static_cast<int>(step) > 0 ? static_cast<int>(step) : 1; \
+        QElapsedTimer kstars_timer; \
+        kstars_timer.start(); \
+        while (!(expr) && kstars_timer.elapsed() < (2 * kstars_timeoutMsLocal)) \
+            QTest::qWait(kstars_stepMsLocal); \
         if (expr) { \
             QString msg = QString::fromUtf8("QTestLib: This test case check (\"%1\") failed because the requested timeout (%2 ms) was too short, %3 ms would have been sufficient this time."); \
-            msg = msg.arg(QString::fromUtf8(#expr)).arg(timeoutValue + qt_test_i); \
+            msg = msg.arg(QString::fromUtf8(#expr)) \
+                     .arg(static_cast<qlonglong>(kstars_timeoutMsLocal)) \
+                     .arg(static_cast<qlonglong>(kstars_timeoutMsLocal + kstars_timer.elapsed())); \
             KVERIFY2_SUB(false, qPrintable(msg)); \
         } \
     }
-#else
-#define KTRY_TIMEOUT_DEBUG_IMPL_SUB(expr, timeoutValue, step)\
-    if (!(expr)) { \
-        QTRY_LOOP_IMPL((expr), (2 * timeoutValue), step);\
-        if (expr) { \
-            QString msg = QString::fromUtf8("QTestLib: This test case check (\"%1\") failed because the requested timeout (%2 ms) was too short, %3 ms would have been sufficient this time."); \
-            msg = msg.arg(QString::fromUtf8(#expr)).arg(timeoutValue + static_cast<int>(qt_test_i.count())); \
-            KVERIFY2_SUB(false, qPrintable(msg)); \
-        } \
-    }
-#endif
 
 /**
   * @brief Subroutine version of QTRY_IMPL
   * @return false if expression equals false, otherwise continuing
   */
-#define KTRY_IMPL_SUB(expr, timeout)\
-    const int qt_test_step = 50; \
-    const int qt_test_timeoutValue = timeout; \
-    QTRY_LOOP_IMPL((expr), qt_test_timeoutValue, qt_test_step); \
-    KTRY_TIMEOUT_DEBUG_IMPL_SUB((expr), qt_test_timeoutValue, qt_test_step)\
+#define KTRY_IMPL_SUB(expr, timeoutAsGiven)\
+    const int kstars_timeoutMs = static_cast<int>(timeoutAsGiven); \
+    const int kstars_stepMs = kstars_timeoutMs < 350 ? (kstars_timeoutMs / 7 + 1) : 50; \
+    { \
+        QElapsedTimer kstars_timer; \
+        kstars_timer.start(); \
+        while (!(expr) && kstars_timer.elapsed() < kstars_timeoutMs) \
+            QTest::qWait(kstars_stepMs); \
+    } \
+    KTRY_TIMEOUT_DEBUG_IMPL_SUB((expr), kstars_timeoutMs, kstars_stepMs)\
 
 /**
   * @brief Subroutine version of QTRY_VERIFY_WITH_TIMEOUT
@@ -168,11 +169,10 @@ do {\
  * @warning Fails the test if the button is not currently enabled.
  */
 #define KTRY_CLICK(module, button) do { \
-    QTimer::singleShot(100, Ekos::Manager::Instance(), [&]() { \
-        KTRY_GADGET(module, QPushButton, button); \
-        QVERIFY2(button->isEnabled(), QString("QPushButton '%1' is disabled and cannot be clicked").arg(#button).toStdString().c_str()); \
-        QTest::mouseClick(button, Qt::LeftButton); }); \
-    QTest::qWait(200); } while(false)
+    KTRY_GADGET(module, QPushButton, button); \
+    QTRY_VERIFY_WITH_TIMEOUT(button->isEnabled(), 5000); \
+    QTest::mouseClick(button, Qt::LeftButton); \
+    QTest::qWait(50); } while(false)
 
 /** @brief Helper to click a button from a certain module view (subroutine version for KTRY_CLICK).
  * @param module KStars module that holds the checkbox
@@ -180,12 +180,10 @@ do {\
  * @warning Fails the test if the button is not currently enabled.
  */
 #define KTRY_CLICK_SUB(module, button) do { \
-    bool success = false; \
-    QTimer::singleShot(100, Ekos::Manager::Instance(), [&]() { \
-        KTRY_GADGET(module, QPushButton, button); \
-        QVERIFY2(button->isEnabled(), QString("QPushButton '%1' is disabled and cannot be clicked").arg(#button).toStdString().c_str()); \
-        QTest::mouseClick(button, Qt::LeftButton); success = true;}); \
-        KTRY_VERIFY_WITH_TIMEOUT_SUB(success, 1000);} while(false)
+    KTRY_GADGET_SUB(module, QPushButton, button); \
+    KTRY_VERIFY_WITH_TIMEOUT_SUB(button->isEnabled(), 5000); \
+    QTest::mouseClick(button, Qt::LeftButton); \
+    QTest::qWait(50); } while(false)
 
 /** @brief Helper to set a checkbox and verify whether it succeeded
  * @param module KStars module that holds the checkbox

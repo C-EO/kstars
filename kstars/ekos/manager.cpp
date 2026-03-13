@@ -44,6 +44,7 @@
 #include "indi/indigps.h"
 #include "indi/indiguider.h"
 #include "indi/indirotator.h"
+#include "indi/indicommon.h"
 #include "skymapcomposite.h"
 #include "mosaiccomponent.h"
 #include "mosaictiles.h"
@@ -3992,10 +3993,12 @@ void Manager::createModulesForDevice(const QSharedPointer<ISD::GenericDevice> &d
         {
             initMount();
         }
+#if KSTARS_HAS_INDI_PAC_INTERFACE
         if (device->getDriverInterface() & INDI::BaseDevice::PAC_INTERFACE)
         {
             initAlign();
         }
+#endif
     }
 }
 

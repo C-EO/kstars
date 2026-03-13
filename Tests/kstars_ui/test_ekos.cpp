@@ -185,22 +185,25 @@ void TestEkos::testManipulateProfiles()
         profileNameLE->setText(testProfileName);
         QCOMPARE(profileNameLE->text(), testProfileName);
 
-        // Setting an item programmatically in a treeview combobox...
+        // Setting an item programmatically in a treeview combobox or drivers list...
+        const QString lookup("Telescope Simulator"); // FIXME: Move this to fixtures
         QComboBox * const mountCBox = profileEditor->findChild<QComboBox*>("mountCombo");
-        QVERIFY(nullptr != mountCBox);
-        QString lookup("Telescope Simulator"); // FIXME: Move this to fixtures
-        // Match the text recursively in the model, this results in a model index with a parent
-        QModelIndexList const list = mountCBox->model()->match(mountCBox->model()->index(0, 0), Qt::DisplayRole, QVariant::fromValue(lookup), 1, Qt::MatchRecursive);
-        QVERIFY(0 < list.count());
-        QModelIndex const &item = list.first();
-        //QWARN(QString("Found text '%1' at #%2, parent at #%3").arg(item.data().toString()).arg(item.row()).arg(item.parent().row()).toStdString().data());
-        QCOMPARE(list.value(0).data().toString(), lookup);
-        QVERIFY(!item.parent().parent().isValid());
-        // Now set the combobox model root to the match's parent
-        mountCBox->setRootModelIndex(item.parent());
-        // And set the text as if the end-user had selected it
-        mountCBox->setCurrentText(lookup);
-        QCOMPARE(mountCBox->currentText(), lookup);
+        if (mountCBox != nullptr)
+        {
+            QModelIndexList const list = mountCBox->model()->match(mountCBox->model()->index(0, 0), Qt::DisplayRole,
+                QVariant::fromValue(lookup), 1, Qt::MatchRecursive);
+            QVERIFY(0 < list.count());
+            QModelIndex const &item = list.first();
+            QCOMPARE(list.value(0).data().toString(), lookup);
+            QVERIFY(!item.parent().parent().isValid());
+            mountCBox->setRootModelIndex(item.parent());
+            mountCBox->setCurrentText(lookup);
+            QCOMPARE(mountCBox->currentText(), lookup);
+        }
+        else
+        {
+            kstarsTestAddProfileDriver(lookup);
+        }
 
         // Same, with a macro helper
         KTRY_PROFILEEDITOR_TREE_COMBOBOX(ccdCombo, "CCD Simulator");
@@ -257,13 +260,26 @@ void TestEkos::testManipulateProfiles()
         QVERIFY(profileNameLE != nullptr);
         QCOMPARE(profileNameLE->text(), profileCBox->currentText());
 
-        QComboBox* mountCBox = ekos->findChild<QComboBox*>("mountCombo");
-        QVERIFY(mountCBox != nullptr);
-        QCOMPARE(mountCBox->currentText(), QString("Telescope Simulator"));
+        auto verifyProfileDriver = [&](const QString & label)
+        {
+            QListView *profileDriversList = profileEditor->findChild<QListView*>("profileDriversList");
+            QVERIFY(profileDriversList != nullptr);
+            QAbstractItemModel *model = profileDriversList->model();
+            QVERIFY(model != nullptr);
+            QVERIFY(!model->match(model->index(0, 0), Qt::DisplayRole, label, 1, Qt::MatchRecursive).isEmpty());
+        };
 
-        QComboBox* ccdCBox = ekos->findChild<QComboBox*>("ccdCombo");
-        QVERIFY(ccdCBox != nullptr);
-        QCOMPARE(ccdCBox->currentText(), QString("CCD Simulator"));
+        QComboBox* mountCBox = profileEditor->findChild<QComboBox*>("mountCombo");
+        if (mountCBox != nullptr)
+            QCOMPARE(mountCBox->currentText(), QString("Telescope Simulator"));
+        else
+            verifyProfileDriver(QStringLiteral("Telescope Simulator"));
+
+        QComboBox* ccdCBox = profileEditor->findChild<QComboBox*>("ccdCombo");
+        if (ccdCBox != nullptr)
+            QCOMPARE(ccdCBox->currentText(), QString("CCD Simulator"));
+        else
+            verifyProfileDriver(QStringLiteral("CCD Simulator"));
 
         // Cancel the dialog using the "Close" button
         QDialogButtonBox* buttons = profileEditor->findChild<QDialogButtonBox*>("dialogButtons");

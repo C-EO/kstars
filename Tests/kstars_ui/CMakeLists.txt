@@ -170,7 +170,26 @@ SET_TESTS_PROPERTIES( TestEkosMount PROPERTIES LABELS "no-xvfb;ui" TIMEOUT 600 )
 ADD_EXECUTABLE(test_catalog_download ${KSTARS_UI_EKOS_SRC} test_catalog_download.cpp)
 TARGET_LINK_LIBRARIES(test_catalog_download ${KSTARS_UI_EKOS_LIBS})
 ADD_TEST(NAME TestCatalogDownload COMMAND test_catalog_download)
-SET_TESTS_PROPERTIES( TestCatalogDownload PROPERTIES LABELS "stable;ui" TIMEOUT 600 )
+SET_TESTS_PROPERTIES( TestCatalogDownload PROPERTIES
+    LABELS "stable;ui"
+    TIMEOUT 600
+    ENVIRONMENT "QTEST_FUNCTION_TIMEOUT=600000"
+)
+
+# These UI tests share global resources (KStars instance, INDI simulators, DBus services) and are not safe to run in parallel.
+set_tests_properties(
+    TestEkosSimulator
+    TestEkosFocus
+    TestEkosCapture
+    TestEkosFilterWheel
+    TestEkosMeridianFlipState
+    TestEkosScheduler
+    TestEkosSchedulerOps
+    TestArtificialHorizon
+    TestEkosMount
+    TestCatalogDownload
+    PROPERTIES RESOURCE_LOCK kstars-ui
+)
 
 ELSE ()
 

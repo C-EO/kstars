@@ -353,6 +353,9 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug" AND NOT WIN32)
   add_definitions(-DQT_STRICT_ITERATORS)
 endif()
 add_definitions(-DQT_NO_CAST_TO_ASCII)
+if (BUILD_TESTING)
+  add_definitions(-DKSTARS_BUILD_TESTING=1)
+endif()
 
 # Needed for htmesh, and libraw
 kde_enable_exceptions()

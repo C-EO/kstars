@@ -148,7 +148,7 @@ class PolarAlign
         // Internal utility used by the public pixelError, which iterates at different
         // resolutions passed in to this method. As the resolution can be coarse, actualPixel
         // is the one used (as opposed to pixel2) for the error returned.
-        void pixelError(const QSharedPointer<FITSData> &image, const QPointF &pixel, const QPointF &pixel2,
+        bool pixelError(const QSharedPointer<FITSData> &image, const QPointF &pixel, const QPointF &pixel2,
                         double minAz, double maxAz, double azInc,
                         double minAlt, double maxAlt, double altInc,
                         double *azError, double *altError, QPointF *actualPixel);
