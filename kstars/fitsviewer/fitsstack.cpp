@@ -511,8 +511,7 @@ bool FITSStack::stack()
                     m_StackImageData[i].status = ALIGNMENT_FAILED;
                 else
                 {
-                    // JEE cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
-                    //                    m_StackImageData[i].image.size(), cv::INTER_LANCZOS4);
+                    // Use LINEAR interpolation. LANCZOS4 theoretically should be better but gives edge artifacts
                     cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
                                         m_StackImageData[i].image.size(), cv::INTER_LINEAR);
                     m_StackImageData[i].image = warpedImage;
@@ -617,8 +616,7 @@ bool FITSStack::stackn()
                     m_StackImageData[i].status = ALIGNMENT_FAILED;
                 else
                 {
-                    // JEE cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
-                    //                    m_StackImageData[i].image.size(), cv::INTER_LANCZOS4);
+                    // Use LINEAR interpolation. LANCZOS4 theoretically should be better but gives edge artifacts
                     cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
                                         m_StackImageData[i].image.size(), cv::INTER_LINEAR);
                     m_StackImageData[i].image = warpedImage;
@@ -968,7 +966,7 @@ bool FITSStack::stackSubs(const bool initial, float &totalWeight, cv::Mat &hitMa
             else
                 stack *= totalWeight;
 
-            // JEE Stacking loop
+            // Stacking loop
             for (int sub = start; sub < m_StackImageData.size(); sub++)
             {
                 cv::Mat &currentSub = m_StackImageData[sub].image;
@@ -1058,7 +1056,7 @@ QVector<float> FITSStack::getWeights()
     return weights;
 }
 
-// JEE
+// Control routine to normalize subs before stacking
 void FITSStack::normalizeSubs(const bool initial, const QVector<float> &weights, cv::Mat &hitMap, cv::Mat &stack)
 {
     try
@@ -1071,26 +1069,11 @@ void FITSStack::normalizeSubs(const bool initial, const QVector<float> &weights,
             start = 1;
             stack = m_StackImageData[0].image.clone();
 
-            // Initialise the hitMap
-            hitMap = cv::Mat::zeros(stack.size(), CV_32F);
-
-            // Get the mask for the master
+            // Get the mask for the stack
             cv::Mat mask = getBinaryMask(stack);
-            //cv::Mat mask8U;
-            //mask.convertTo(mask8U, CV_8U, 255.0);
 
-            // Erode the master ensuring "Active Area" is identical for all frames.
-            // JEEcv::erode(mask8U, mask8U, element);
-
-            // Apply the erosion to the Master image
-            //std::vector<cv::Mat> channels;
-            //cv::split(stack, channels);
-            //for(auto &ch : channels)
-            //    ch.setTo(cv::Scalar(0), ~mask8U);
-            //cv::merge(channels, stack);
-
-            // Update hitMap using the eroded mask
-            //mask8U.convertTo(mask, CV_32F, 1.0 / 255.0);
+            // Update hitMap using the mask - note no need to use erosion because the alignment master isn't warped
+            hitMap = cv::Mat::zeros(stack.size(), CV_32F);
             cv::multiply(mask, weights[0], mask);
             cv::add(hitMap, mask, hitMap);
         }
@@ -1131,7 +1114,7 @@ void FITSStack::normalizeSubs(const bool initial, const QVector<float> &weights,
     }
 }
 
-// JEE
+// Generate a binary mask, 1 where there's data and 0 otherwise
 cv::Mat FITSStack::getBinaryMask(const cv::Mat &img)
 {
     try
@@ -1139,7 +1122,6 @@ cv::Mat FITSStack::getBinaryMask(const cv::Mat &img)
         cv::Mat mask;
         if (img.channels() > 1)
             cv::cvtColor(img, mask, cv::COLOR_BGR2GRAY);
-            // JEE cv::extractChannel(img, mask, 1); // Use green channel
         else
             mask = img.clone();
 
@@ -1154,7 +1136,7 @@ cv::Mat FITSStack::getBinaryMask(const cv::Mat &img)
     }
 }
 
-// JEE Normalize the brightness of the sub to the master
+// Normalize the brightness of the sub to the master
 void FITSStack::linearNormalization(cv::Mat &sub, const cv::Mat &subMask, const cv::Mat &ref, const cv::Mat &refMask)
 {
     try
@@ -1171,7 +1153,7 @@ void FITSStack::linearNormalization(cv::Mat &sub, const cv::Mat &subMask, const 
         if (cv::countNonZero(overlapMask) < (sub.total() * 0.05))
             return;
 
-        // --- CHANNEL PROCESSING ---
+        // Process per channel
         int channels = sub.channels();
         std::vector<cv::Mat> subChannels, refChannels;
         cv::split(sub, subChannels);
@@ -1191,12 +1173,11 @@ void FITSStack::linearNormalization(cv::Mat &sub, const cv::Mat &subMask, const 
 
             scale = std::max(0.1f, std::min(scale, 10.0f));
             float offset = static_cast<float>(muRef[0] - (scale * muSub[0]));
-            qCDebug(KSTARS_FITS) << QString("Normalisation: scale=%1 offset=%2").arg(scale).arg(offset);
 
             // Apply transformation (New = Old * scale + offset)
             subChannels[i].convertTo(subChannels[i], -1, scale, offset);
 
-            // Clean the "Rotation Wedges" using the 1-channel 8U sub mask
+            // Clean the edges using the 1-channel 8U sub mask
             // This prevents the offset from turning black edges gray.
             subChannels[i].setTo(cv::Scalar(0), ~subMask);
         }
