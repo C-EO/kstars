@@ -1419,9 +1419,9 @@ void FITSStack::stackSigmaClipPixel(int x, const std::vector<const float *> &ima
         if (m_StackData.stackingMethod == LiveStackStackingMethod::WINDSOR)
         {
             float median = Mathematics::RobustStatistics::ComputeLocation(
-                Mathematics::RobustStatistics::LOCATION_MEDIAN, validValues);
+                               Mathematics::RobustStatistics::LOCATION_MEDIAN, validValues);
             auto const stddev = std::sqrt(Mathematics::RobustStatistics::ComputeScale(
-                Mathematics::RobustStatistics::SCALE_VARIANCE, validValues));
+                                              Mathematics::RobustStatistics::SCALE_VARIANCE, validValues));
 
             float lower = std::max(0.0f, static_cast<float>(median - (stddev * m_StackData.windsorCutoff)));
             float upper = median + (stddev * m_StackData.windsorCutoff);
@@ -1434,7 +1434,7 @@ void FITSStack::stackSigmaClipPixel(int x, const std::vector<const float *> &ima
         }
 
         float median = Mathematics::RobustStatistics::ComputeLocation(
-            Mathematics::RobustStatistics::LOCATION_MEDIAN, validValues);
+                           Mathematics::RobustStatistics::LOCATION_MEDIAN, validValues);
 
         float sum = 0.0, weightSum = 0.0, lower = -1.0, upper = -1.0;
 
@@ -1443,7 +1443,7 @@ void FITSStack::stackSigmaClipPixel(int x, const std::vector<const float *> &ima
         else
         {
             auto const stddev = std::sqrt(Mathematics::RobustStatistics::ComputeScale(
-                Mathematics::RobustStatistics::SCALE_VARIANCE, validValues));
+                                              Mathematics::RobustStatistics::SCALE_VARIANCE, validValues));
 
             lower = std::max(0.0f, static_cast<float>(median - (stddev * m_StackData.lowSigma)));
             upper = median + (stddev * m_StackData.highSigma);

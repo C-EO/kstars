@@ -331,18 +331,18 @@ static const QMap<LiveStackDownscale, QString> LiveStackDownscaleNames
 
 enum class LiveStackFrameWeighting { EQUAL, HFR, NUM_STARS };
 static const QMap<LiveStackFrameWeighting, QString> LiveStackFrameWeightingNames
-    {
-        { LiveStackFrameWeighting::EQUAL, "Equal" },
-        { LiveStackFrameWeighting::HFR, "HFR" },
-        { LiveStackFrameWeighting::NUM_STARS, "Num Stars" }
-    };
+{
+    { LiveStackFrameWeighting::EQUAL, "Equal" },
+    { LiveStackFrameWeighting::HFR, "HFR" },
+    { LiveStackFrameWeighting::NUM_STARS, "Num Stars" }
+};
 
 enum class LiveStackNormalization { NONE, LINEAR };
 static const QMap<LiveStackNormalization, QString> LiveStackNormalizationNames
-    {
-        { LiveStackNormalization::NONE, "None" },
-        { LiveStackNormalization::LINEAR, "Linear" }
-    };
+{
+    { LiveStackNormalization::NONE, "None" },
+    { LiveStackNormalization::LINEAR, "Linear" }
+};
 
 enum class LiveStackStackingMethod { MEAN, SIGMA, WINDSOR, IMAGEMM };
 static const QMap<LiveStackStackingMethod, QString> LiveStackStackingMethodNames
