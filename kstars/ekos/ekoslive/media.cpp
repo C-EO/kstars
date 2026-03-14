@@ -451,7 +451,7 @@ void Media::upload(const QSharedPointer<FITSView> &view, const QString &uuid)
     meta = meta.leftJustified(METADATA_PACKET, 0);
     buffer.write(meta);
 
-    auto fastImage = (!Options::ekosLiveHighBandwidth() || uuid[0] == '+');
+    auto fastImage = uuid[0] == '+';
     auto scaleWidth = fastImage ? HB_IMAGE_WIDTH / 2 : HB_IMAGE_WIDTH;
 
     // For low bandwidth images
@@ -525,7 +525,7 @@ void Media::upload(const QSharedPointer<FITSData> &data, const QImage &image, co
     meta = meta.leftJustified(METADATA_PACKET, 0);
     buffer.write(meta);
 
-    auto fastImage = (!Options::ekosLiveHighBandwidth() || uuid[0] == '+');
+    auto fastImage = uuid[0] == '+';
     auto scaleWidth = fastImage ? HB_IMAGE_WIDTH / 2 : HB_IMAGE_WIDTH;
 
     // For low bandwidth images
@@ -650,7 +650,7 @@ void Media::sendVideoFrame(const QSharedPointer<QImage> &frame)
             !frame)
         return;
 
-    int32_t width = Options::ekosLiveHighBandwidth() ? HB_VIDEO_WIDTH : HB_VIDEO_WIDTH / 2;
+    int32_t width = HB_VIDEO_WIDTH;
     QByteArray image;
     QBuffer buffer(&image);
     buffer.open(QIODevice::WriteOnly);
