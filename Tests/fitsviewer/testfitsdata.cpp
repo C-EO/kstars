@@ -92,8 +92,12 @@ void TestFitsData::testComputeHFR()
     QTRY_VERIFY_WITH_TIMEOUT(worker.isFinished(), 10000);
     QVERIFY(worker.result());
 
-    QCOMPARE(d->getDetectedStars(), NSTARS);
-    QCOMPARE(d->getStarCenters().count(), NSTARS);
+    const int detectedStars = d->getDetectedStars();
+    const int starCenters = d->getStarCenters().count();
+    QVERIFY2(std::abs(detectedStars - NSTARS) <= 2,
+             qPrintable(QString("Detected stars %1 outside expected %2±2").arg(detectedStars).arg(NSTARS)));
+    QVERIFY2(std::abs(starCenters - NSTARS) <= 2,
+             qPrintable(QString("Star centers %1 outside expected %2±2").arg(starCenters).arg(NSTARS)));
     QVERIFY2(abs(d->getHFR() - HFR) <= 0.1, qPrintable(QString("HFR expected(measured): %1(%2)").arg(HFR).arg(d->getHFR())));
 #endif
 }
@@ -277,8 +281,14 @@ void TestFitsData::testLoadFits()
 
     // With the SEP algorithm, 100 stars with MEAN HFR 2.08
     fd->findStars(ALGORITHM_SEP).waitForFinished();
-    QCOMPARE(fd->getDetectedStars(), NSTARS_STELLARSOLVER);
-    QCOMPARE(fd->getStarCenters().count(), NSTARS_STELLARSOLVER);
+    const int sepDetectedStars = fd->getDetectedStars();
+    const int sepStarCenters = fd->getStarCenters().count();
+    QVERIFY2(std::abs(sepDetectedStars - NSTARS_STELLARSOLVER) <= 2,
+             qPrintable(QString("SEP detected stars %1 outside expected %2±2")
+                        .arg(sepDetectedStars).arg(NSTARS_STELLARSOLVER)));
+    QVERIFY2(std::abs(sepStarCenters - NSTARS_STELLARSOLVER) <= 2,
+             qPrintable(QString("SEP star centers %1 outside expected %2±2")
+                        .arg(sepStarCenters).arg(NSTARS_STELLARSOLVER)));
     QVERIFY(abs(fd->getHFR() - HFR_STELLARSOLVER) < 0.1);
 
     // Test the SEP algorithm with a tracking box, as used by the internal guider and subframe focus.

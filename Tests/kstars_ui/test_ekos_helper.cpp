@@ -18,6 +18,30 @@
 #include "ekos/scheduler/scheduler.h"
 #include "ekos/auxiliary/filtermanager.h"
 #include "kstarsdata.h"
+#include "../testhelpers.h"
+
+#include <QDir>
+
+namespace
+{
+void setTreeviewCombo(QComboBox *combo, const QString &label)
+{
+    QVERIFY2(combo != nullptr, "Profile combo box is missing.");
+    QAbstractItemModel *model = combo->model();
+    QVERIFY2(model != nullptr, "Profile combo model is missing.");
+
+    const QModelIndexList matches = model->match(model->index(0, 0), Qt::DisplayRole,
+                                    QVariant::fromValue(label), 1, Qt::MatchRecursive);
+    QVERIFY2(!matches.isEmpty(), QString("Profile entry '%1' not found").arg(label).toStdString().c_str());
+
+    const QModelIndex &item = matches.first();
+    QCOMPARE(matches.value(0).data().toString(), label);
+    QVERIFY(!item.parent().parent().isValid());
+    combo->setRootModelIndex(item.parent());
+    combo->setCurrentText(label);
+    QCOMPARE(combo->currentText(), label);
+}
+}
 
 TestEkosHelper::TestEkosHelper(QString guider)
 {
@@ -91,61 +115,69 @@ void TestEkosHelper::fillProfile(bool *isDone)
     qCInfo(KSTARS_EKOS_TEST) << "Fill profile: starting...";
     ProfileEditor* profileEditor = Ekos::Manager::Instance()->findChild<ProfileEditor*>("profileEditorDialog");
 
+    auto selectProfileDevice = [&](const QString & label, const char *comboName, const QString & logLabel)
+    {
+        QComboBox *combo = profileEditor->findChild<QComboBox*>(comboName);
+        if (combo != nullptr)
+        {
+            setTreeviewCombo(combo, label);
+        }
+        else
+        {
+            kstarsTestAddProfileDriver(label);
+        }
+        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: " << logLabel << " selected.";
+    };
+
     // Select the mount device
     if (m_MountDevice != "")
     {
-        addDriverToProfile(m_MountDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Mount selected.";
+        selectProfileDevice(m_MountDevice, "mountCombo", "Mount");
     }
 
     // Select the CCD device
     if (m_CCDDevice != "")
     {
-        addDriverToProfile(m_CCDDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: CCD selected.";
+        selectProfileDevice(m_CCDDevice, "ccdCombo", "CCD");
     }
 
     // Select the focuser device
     if (m_FocuserDevice != "")
     {
-        addDriverToProfile(m_FocuserDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Focuser selected.";
+        selectProfileDevice(m_FocuserDevice, "focuserCombo", "Focuser");
     }
 
     // Select the guider device, if not empty and different from CCD
     if (m_GuiderDevice != "" && m_GuiderDevice != m_CCDDevice)
     {
-        addDriverToProfile(m_GuiderDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Guider selected.";
+        selectProfileDevice(m_GuiderDevice, "guiderCombo", "Guider");
     }
 
     // Select the light panel device for flats capturing
     if (m_LightPanelDevice != "")
     {
-        addDriverToProfile(m_LightPanelDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Light panel selected.";
+        selectProfileDevice(m_LightPanelDevice, "aux1Combo", "Light panel");
     }
 
     // Select the dome device
     if (m_DomeDevice != "")
     {
-        addDriverToProfile(m_DomeDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Dome selected.";
+        selectProfileDevice(m_DomeDevice, "domeCombo", "Dome");
     }
 
     // Select the rotator device
     if (m_RotatorDevice != "")
     {
-        addDriverToProfile(m_RotatorDevice);
-        qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Rotator selected.";
+        selectProfileDevice(m_RotatorDevice, "aux2Combo", "Rotator");
     }
 
-    // wait a short time to make the setup visible
-    QTest::qWait(1000);
     // Save the profile using the "Save" button
     QDialogButtonBox* buttons = profileEditor->findChild<QDialogButtonBox*>("dialogButtons");
     QVERIFY(nullptr != buttons);
-    QTest::mouseClick(buttons->button(QDialogButtonBox::Save), Qt::LeftButton);
+    auto *saveButton = buttons->button(QDialogButtonBox::Save);
+    QVERIFY(nullptr != saveButton);
+    QTRY_VERIFY_WITH_TIMEOUT(saveButton->isEnabled(), 5000);
+    QTest::mouseClick(saveButton, Qt::LeftButton);
 
     qCInfo(KSTARS_EKOS_TEST) << "Fill profile: Selections saved.";
 
@@ -157,6 +189,18 @@ bool TestEkosHelper::setupEkosProfile(QString name, bool isPHD2)
     qCInfo(KSTARS_EKOS_TEST) << "Setting up Ekos profile...";
     bool isDone = false;
     Ekos::Manager * const ekos = Ekos::Manager::Instance();
+    QTimer closeDialog;
+    closeDialog.setSingleShot(true);
+    closeDialog.setInterval(10000);
+    connect(&closeDialog, &QTimer::timeout, this, [ &, ekos]
+    {
+        ProfileEditor* profileEditor = ekos->findChild<ProfileEditor*>("profileEditorDialog");
+        if (profileEditor != nullptr)
+        {
+            profileEditor->reject();
+            qWarning(KSTARS_EKOS_TEST) << "Editing profile aborted.";
+        }
+    });
     // check if the profile with the given name exists
     KTRY_GADGET_SUB(ekos, QComboBox, profileCombo);
     if (profileCombo->findText(name) >= 0)
@@ -172,6 +216,9 @@ bool TestEkosHelper::setupEkosProfile(QString name, bool isPHD2)
             // start with a delay of 1 sec a new thread that edits the profile
             QTimer::singleShot(1000, ekos, [&] {fillProfile(&isDone);});
             KTRY_CLICK_SUB(ekos, editProfileB);
+            closeDialog.start();
+            KTRY_VERIFY_WITH_TIMEOUT_SUB(isDone, 15000);
+            closeDialog.stop();
         }
         else
         {
@@ -187,26 +234,10 @@ bool TestEkosHelper::setupEkosProfile(QString name, bool isPHD2)
         QTimer::singleShot(1000, ekos, [&] {createEkosProfile(name, isPHD2, &isDone);});
         // create new profile addProfileB
         KTRY_CLICK_SUB(ekos, addProfileB);
+        closeDialog.start();
+        KTRY_VERIFY_WITH_TIMEOUT_SUB(isDone, 15000);
+        closeDialog.stop();
     }
-
-    // Cancel the profile editor if test did not close the editor dialog within 10 sec
-    QTimer * closeDialog = new QTimer(this);
-    closeDialog->setSingleShot(true);
-    closeDialog->setInterval(10000);
-    ekos->connect(closeDialog, &QTimer::timeout, this, [&]
-    {
-        ProfileEditor* profileEditor = ekos->findChild<ProfileEditor*>("profileEditorDialog");
-        if (profileEditor != nullptr)
-        {
-            profileEditor->reject();
-            qWarning(KSTARS_EKOS_TEST) << "Editing profile aborted.";
-        }
-    });
-
-
-    // Click handler returned, stop the timer closing the dialog on failure
-    closeDialog->stop();
-    delete closeDialog;
 
     // Verification of the first test step
     return isDone;
@@ -385,11 +416,11 @@ void TestEkosHelper::preparePHD2()
     QString const phd2_config_name = ".PHDGuidingV2";
     QString const phd2_config_bak_name = ".PHDGuidingV2.bak";
     QString const phd2_config_orig_name = ".PHDGuidingV2_mf";
-    QStandardPaths::setTestModeEnabled(false);
-    QFileInfo phd2_config_home(QStandardPaths::writableLocation(QStandardPaths::HomeLocation), phd2_config_name);
-    QFileInfo phd2_config_home_bak(QStandardPaths::writableLocation(QStandardPaths::HomeLocation), phd2_config_bak_name);
+    const QString phd2_home = KTest::homePath();
+    QDir(phd2_home).mkpath("kstars_ui");
+    QFileInfo phd2_config_home(QDir(phd2_home).filePath(phd2_config_name));
+    QFileInfo phd2_config_home_bak(QDir(phd2_home).filePath(phd2_config_bak_name));
     QFileInfo phd2_config_orig(phd2_config_orig_name);
-    QStandardPaths::setTestModeEnabled(true);
     QWARN(QString("Writing PHD configuration file to '%1'").arg(phd2_config_home.filePath()).toStdString().c_str());
     if (phd2_config_home.exists())
     {
@@ -400,16 +431,26 @@ void TestEkosHelper::preparePHD2()
         QVERIFY(QFile::rename(phd2_config_home.filePath(), phd2_config_home_bak.filePath()));
     }
     QVERIFY2(phd2_config_orig.exists(), phd2_config_orig_name.toLocal8Bit() + " not found in current directory!");
-    QVERIFY(QFile::copy(phd2_config_orig_name, phd2_config_home.filePath()));
+    QFile configSource(phd2_config_orig.filePath());
+    QVERIFY2(configSource.open(QIODevice::ReadOnly | QIODevice::Text),
+             qPrintable(QString("Unable to read %1: %2").arg(phd2_config_orig.filePath(), configSource.errorString())));
+    QString configContents = QString::fromUtf8(configSource.readAll());
+    configSource.close();
+    configContents.replace(QStringLiteral("@TEST_HOME@"), KTest::homePath());
+    QFile configDest(phd2_config_home.filePath());
+    QVERIFY2(configDest.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate),
+             qPrintable(QString("Unable to write %1: %2").arg(phd2_config_home.filePath(), configDest.errorString())));
+    QVERIFY(configDest.write(configContents.toUtf8()) >= 0);
+    configDest.close();
 }
 
 void TestEkosHelper::cleanupPHD2()
 {
     QString const phd2_config = ".PHDGuidingV2";
     QString const phd2_config_bak = ".PHDGuidingV2.bak";
-    QStandardPaths::setTestModeEnabled(false);
-    QFileInfo phd2_config_home(QStandardPaths::writableLocation(QStandardPaths::HomeLocation), phd2_config);
-    QFileInfo phd2_config_home_bak(QStandardPaths::writableLocation(QStandardPaths::HomeLocation), phd2_config_bak);
+    const QString phd2_home = KTest::homePath();
+    QFileInfo phd2_config_home(QDir(phd2_home).filePath(phd2_config));
+    QFileInfo phd2_config_home_bak(QDir(phd2_home).filePath(phd2_config_bak));
     // remove PHD2 test config
     if (phd2_config_home.exists())
         QVERIFY(QFile::remove(phd2_config_home.filePath()));

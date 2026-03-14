@@ -18,6 +18,7 @@
 #include <QObject>
 #include <QPushButton>
 #include <QComboBox>
+#include <QAbstractButton>
 #include <QDoubleSpinBox>
 #include <QSpinBox>
 #include <QCheckBox>
@@ -128,10 +129,10 @@ class TestEkosMount : public QObject
     private:
         Ekos::Manager *ekos;
         QWidget *mountControl;
-        QLabel *raLabel, *deLabel, *raValue, *deValue, *azValue, *altValue, *haValue, *zaValue;
-        QRadioButton *coordRaDe, *coordAzAl, *coordHaDe;
-        dmsBox  *raText, *deText;
-        QPushButton *gotoButton, *syncButton;
+        QObject *raLabel, *deLabel, *raText, *deText,
+                *coordRaDe, *coordAzAl, *coordHaDe,
+                *raValue, *deValue, *azValue, *altValue, *haValue, *zaValue,
+                *gotoButton, *syncButton;
         double degreePrecision = 2 * 1.0 / 3600.0;
         double hourPrecision = 2 * 15.0 / 3600.0;
 

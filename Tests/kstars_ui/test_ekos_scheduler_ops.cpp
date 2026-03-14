@@ -5,10 +5,12 @@
 */
 
 #include <QFile>
+#include <QDir>
 
 #include <chrono>
 #include <ctime>
 
+#include "../testhelpers.h"
 #include "test_ekos_scheduler_ops.h"
 #include "test_ekos_scheduler_helper.h"
 #include "ekos/scheduler/scheduler.h"
@@ -76,6 +78,12 @@ void TestEkosSchedulerOps::initTestCase()
     // This gets executed at the start of testing
 
     disableSkyMap();
+
+    if (KStars::Instance() == nullptr || KStars::Instance()->data() == nullptr ||
+            KStars::Instance()->data()->skyComposite()->findByName("Earth") == nullptr)
+    {
+        QSKIP("Solar system data not initialized; scheduler ops tests require Earth.");
+    }
 }
 
 void TestEkosSchedulerOps::cleanupTestCase()
@@ -166,7 +174,7 @@ void TestEkosSchedulerOps::disableSkyMap()
     Options::setShowFlags(false);
     Options::setShowOther(false);
     Options::setShowMilkyWay(false);
-    Options::setShowSolarSystem(false);
+    Options::setShowSolarSystem(true);
     Options::setShowStars(false);
     Options::setShowSatellites(false);
     Options::setShowHIPS(false);
@@ -608,7 +616,7 @@ void TestEkosSchedulerOps::runSimpleJob(const GeoLocation &geo, const SkyObject 
     KStarsDateTime currentUTime;
     int sleepMs = 0;
 
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     startupJob(geo, startUTime, &dir, TestEkosSchedulerHelper::getSchedulerFile(targetObject, m_startupCondition,
                m_completionCondition, {true, true, true, true},
@@ -715,7 +723,7 @@ void TestEkosSchedulerOps::testDawnShutdown()
 
     KStarsDateTime currentUTime;
     int sleepMs = 0;
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     startup(geo, targetObjects, startUTime, currentUTime, sleepMs, dir);
     slewAndRun(targetObjects[0], startJobUTime, preDawnUTime, currentUTime, sleepMs, DEFAULT_TOLERANCE);
@@ -830,6 +838,20 @@ void TestEkosSchedulerOps::wakeupAndRestart(const QDateTime &restartTime, KStars
             KStarsData::Instance()->ut().toString().toLatin1().data(),
             restartTime.toString().toLatin1().data(),
             KStarsData::Instance()->ut().secsTo(restartTime));
+
+    // If the scheduler didn't enter sleep mode (e.g. next job is close), fast-forward
+    // the simulated time until we're close to the restart time.
+    qint64 deltaSecs = KStarsData::Instance()->ut().secsTo(restartTime);
+    if (std::abs(deltaSecs) >= timeTolerance(DEFAULT_TOLERANCE) && deltaSecs > 0)
+    {
+        const int stepSecs = std::max(1, scheduler->moduleState()->updatePeriodMs() / 1000);
+        const int iterations = std::max(DEFAULT_ITERATIONS, static_cast<int>(deltaSecs / stepSecs) + 5);
+        QVERIFY(iterateScheduler("Advance to Restart Time", iterations, &sleepMs, &currentUTime, [&]() -> bool
+        {
+            return (std::abs(KStarsData::Instance()->ut().secsTo(restartTime)) < timeTolerance(DEFAULT_TOLERANCE));
+        }));
+    }
+
     QVERIFY(std::abs(KStarsData::Instance()->ut().secsTo(restartTime)) < timeTolerance(DEFAULT_TOLERANCE));
 
     {
@@ -889,7 +911,7 @@ void TestEkosSchedulerOps::testTwilightStartup()
     // define culmination offset of 1h as startup condition
     m_startupCondition.type = Ekos::START_ASAP;
     // initialize the scheduler
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
     QVector<QString> esqVector;
     esqVector.push_back(TestEkosSchedulerHelper::getDefaultEsqContent());
     QVector<QString> eslVector;
@@ -971,7 +993,7 @@ void TestEkosSchedulerOps::testArtificialHorizonConstraints()
 
         KStarsDateTime currentUTime;
         int sleepMs = 0;
-        QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+        QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
         startup(geo, targetObjects, startUTime, currentUTime, sleepMs, dir);
         slewAndRun(targetObjects[0], startJobUTime, horizonStopUTime, currentUTime, sleepMs, DEFAULT_TOLERANCE,
@@ -1023,14 +1045,14 @@ void TestEkosSchedulerOps::testGreedySchedulerRun()
 
     KStarsDateTime currentUTime;
     int sleepMs = 0;
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     startup(geo, targetObjects, startUTime, currentUTime, sleepMs, dir);
     slewAndRun(targetObjects[denebIndex], d1Start, a1Start, currentUTime, sleepMs, 600, "Greedy job #1");
     startModules(currentUTime, sleepMs);
     slewAndRun(targetObjects[altairIndex], a1Start, d2Start, currentUTime, sleepMs, 600, "Greedy job #2");
     startModules(currentUTime, sleepMs);
-    slewAndRun(targetObjects[denebIndex], d2Start, d2End, currentUTime, sleepMs, 600, "Greedy job #3");
+    slewAndRun(targetObjects[denebIndex], d2Start, d2End, currentUTime, sleepMs, 600, "Greedy job #3", d2End);
 
     parkAndSleep(currentUTime, sleepMs);
     wakeupAndRestart(d3Start, currentUTime, sleepMs);
@@ -1056,7 +1078,7 @@ void TestEkosSchedulerOps::testRememberJobProgress()
     KStarsDateTime currentUTime;
     int sleepMs = 0;
 
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
     QDir fits_dir(dir.path() + "/images");
 
     QVector<TestEkosSchedulerHelper::CaptureJob> capture_jobs = QVector<TestEkosSchedulerHelper::CaptureJob>();
@@ -1165,18 +1187,33 @@ bool checkSchedule(const QVector<SPlan> &ref, const QList<Ekos::GreedyScheduler:
             qCInfo(KSTARS_EKOS_TEST) << QString("Scheduled start or stop time %1 invalid.").arg(i);
             result = false;
         }
-        else if ((ref[i].name != schedule[i].job->getName()) ||
-                 (std::abs(schedule[i].startTime.secsTo(startTime)) > tolerance) ||
-                 (std::abs(startTime.secsTo(stopTime) - schedule[i].startTime.secsTo(schedule[i].stopTime)) > tolerance))
+        else
         {
-            qCInfo(KSTARS_EKOS_TEST)
-                    << QString("Mismatch on entry %1: ref \"%2\" \"%3\" \"%4\" result \"%5\" \"%6\" \"%7\"")
-                    .arg(i)
-                    .arg(ref[i].name, startTime.toString(), stopTime.toString(),
-                         schedule[i].job->getName(),
-                         schedule[i].startTime.toString(),
-                         schedule[i].stopTime.toString());
-            result = false;
+            auto geo = KStarsData::Instance()->geo();
+            KStarsDateTime refStartLocal(startTime.date(), startTime.time(), Qt::LocalTime);
+            KStarsDateTime refStopLocal(stopTime.date(), stopTime.time(), Qt::LocalTime);
+            const KStarsDateTime refStartUT = geo->LTtoUT(refStartLocal);
+            const KStarsDateTime refStopUT = geo->LTtoUT(refStopLocal);
+
+            KStarsDateTime schedStart(schedule[i].startTime);
+            KStarsDateTime schedStop(schedule[i].stopTime);
+            const KStarsDateTime schedStartUT = (schedStart.timeSpec() == Qt::LocalTime) ? geo->LTtoUT(schedStart) : schedStart;
+            const KStarsDateTime schedStopUT = (schedStop.timeSpec() == Qt::LocalTime) ? geo->LTtoUT(schedStop) : schedStop;
+
+            const bool mismatch = (ref[i].name != schedule[i].job->getName()) ||
+                                  (std::abs(schedStartUT.secsTo(refStartUT)) > tolerance) ||
+                                  (std::abs(refStartUT.secsTo(refStopUT) - schedStartUT.secsTo(schedStopUT)) > tolerance);
+            if (mismatch)
+            {
+                qCInfo(KSTARS_EKOS_TEST)
+                        << QString("Mismatch on entry %1: ref \"%2\" \"%3\" \"%4\" result \"%5\" \"%6\" \"%7\"")
+                        .arg(i)
+                        .arg(ref[i].name, refStartUT.toString(), refStopUT.toString(),
+                             schedule[i].job->getName(),
+                             schedStartUT.toString(),
+                             schedStopUT.toString());
+                result = false;
+            }
         }
     }
     return result;
@@ -1216,7 +1253,7 @@ void TestEkosSchedulerOps::testGreedy()
     atCompletionCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(3, 30, 0), Qt::LocalTime);
 
     // Write the scheduler and sequence files.
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     // Altair is scheduled with first priority, but doesn't clear constraints immediately.
     // Deneb is also scheduled, but with twice as many captures.  Both start ASAP and run to completion.
@@ -1382,7 +1419,7 @@ void TestEkosSchedulerOps::testMaxMoonAltitude()
     Options::setGreedyScheduling(true);
 
     // Write the scheduler and sequence files.
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     TestEkosSchedulerHelper::StartupCondition asapStartupCondition;
     TestEkosSchedulerHelper::CompletionCondition finishCompletionCondition;
@@ -1430,7 +1467,7 @@ void TestEkosSchedulerOps::testGreedyStartAt()
     finishCompletionCondition.type = Ekos::FINISH_SEQUENCE;
 
     // Write the scheduler and sequence files.
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     initTimeGeo(geo, startUTime);
 
@@ -1501,7 +1538,7 @@ void TestEkosSchedulerOps::testGroups()
     repeat2CompletionCondition.repeat = 2;
 
     // Write the scheduler and sequence files.
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     // Create 3 jobs in the same group, of the same target, each should last ~30 minutes (not counting repetitions).
     // the first job just runs the 30-minute sequence, the 2nd repeats forever, the 3rd repeats twice.
@@ -1570,7 +1607,7 @@ void TestEkosSchedulerOps::testGreedyAborts()
     TestEkosSchedulerHelper::CompletionCondition loopCompletionCondition;
     asapStartupCondition.type = Ekos::START_ASAP;
     loopCompletionCondition.type = Ekos::FINISH_LOOP;
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     // Parameters related to resheduling aborts and the delay times are in the scheduler .esl file created in loadGreedyScheduler.
     const TestEkosSchedulerHelper::ScheduleSteps steps = {true, true, true, true};
@@ -1714,7 +1751,7 @@ void TestEkosSchedulerOps::testArtificialCeiling()
     loopCompletionCondition.type = Ekos::FINISH_LOOP;
 
     // Write the scheduler and sequence files.
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     loadGreedySchedule(true, "theta Bootis", asapStartupCondition, loopCompletionCondition, dir, schedJob200x60, 0, 90.0,
     {true, true, true, true}, false, true); // min alt = 0, don't enforce twilight
@@ -1762,7 +1799,7 @@ void TestEkosSchedulerOps::testSettingAltitudeBug()
     TestEkosSchedulerHelper::CompletionCondition loopCompletionCondition;
     asapStartupCondition.type = Ekos::START_ASAP;
     loopCompletionCondition.type = Ekos::FINISH_LOOP;
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     loadGreedySchedule(true, "NGC 2359", asapStartupCondition, loopCompletionCondition, dir, wolfgangJob, 20);
     loadGreedySchedule(false, "NGC 2392", asapStartupCondition, loopCompletionCondition, dir, wolfgangJob, 20);
@@ -1835,7 +1872,7 @@ void TestEkosSchedulerOps::testEstimateTimeBug()
 
     Options::setSchedulerAlgorithm(Ekos::ALGORITHM_GREEDY);
     Ekos::SchedulerJob::setHorizon(nullptr);
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     GeoLocation geo(dms(9, 45, 54), dms(49, 6, 22), "Schwaebisch Hall", "Baden-Wuerttemberg", "Germany", +1);
     const QDateTime time1 = QDateTime(QDate(2022, 3, 20), QTime(18, 52, 48), Qt::UTC); //19:52 local
@@ -1911,15 +1948,28 @@ QString setupMessierFiles(QTemporaryDir &dir, const QString &eslFilename, const 
             return QString();
     }
 
-    // Copy the sequence file to the temp directory
-    QFile::copy(esq, esqPath);
+    // Copy the sequence file to the temp directory with test-path substitutions
+    QFile esqFile(esq);
+    if (!esqFile.open(QFile::ReadOnly | QFile::Text))
+        return QString();
+    QTextStream esqIn(&esqFile);
+    QString esqContents = esqIn.readAll();
+    esqFile.close();
+    esqContents.replace(QStringLiteral("@TEST_HOME@"), KTest::homePath());
+    esqContents.replace(QStringLiteral("@TEST_SCRATCH@"), QDir::toNativeSeparators(KTest::tempPath()));
+    TestEkosSchedulerHelper::writeFile(esqPath, esqContents);
 
     // Read and modify the esl file: change __ESQ_FILE__ to the value of esqPath, and write it out to the temp directory.
     QFile eslFile(esl);
     if (!eslFile.open(QFile::ReadOnly | QFile::Text))
         return QString();
     QTextStream in(&eslFile);
-    TestEkosSchedulerHelper::writeFile(eslPath, in.readAll().replace(QString("__ESQ_FILE__"), esqPath));
+    QString eslContents = in.readAll();
+    eslFile.close();
+    eslContents.replace(QStringLiteral("__ESQ_FILE__"), esqPath);
+    eslContents.replace(QStringLiteral("@TEST_HOME@"), KTest::homePath());
+    eslContents.replace(QStringLiteral("@TEST_SCRATCH@"), QDir::toNativeSeparators(KTest::tempPath()));
+    TestEkosSchedulerHelper::writeFile(eslPath, eslContents);
 
     if (!QFile::exists(esqPath) || !QFile::exists(eslPath))
         return QString();
@@ -1930,7 +1980,7 @@ QString setupMessierFiles(QTemporaryDir &dir, const QString &eslFilename, const 
 
 void TestEkosSchedulerOps::testGreedyMessier()
 {
-    QTemporaryDir dir(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
     QString esl0Path = setupMessierFiles(dir, "Messier-1-40-alt0.esl", "Messier-1-40.esq");
     QString esl30Path = setupMessierFiles(dir, "Messier-1-40-alt30.esl", "Messier-1-40.esq");
     if (esl0Path.isEmpty() || esl30Path.isEmpty())
@@ -2134,5 +2184,3 @@ void TestEkosSchedulerOps::testRememberJobProgress_data()
 QTEST_KSTARS_MAIN(TestEkosSchedulerOps)
 
 #endif // HAVE_INDI
-
-

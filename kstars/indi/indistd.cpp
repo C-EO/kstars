@@ -1196,8 +1196,10 @@ ISD::Auxiliary *GenericDevice::getAuxiliary()
 
 ISD::PAC *GenericDevice::getPAC()
 {
+#if KSTARS_HAS_INDI_PAC_INTERFACE
     if (m_ConcreteDevices.contains(INDI::BaseDevice::PAC_INTERFACE))
         return dynamic_cast<ISD::PAC * >(m_ConcreteDevices[INDI::BaseDevice::PAC_INTERFACE].get());
+#endif
     return nullptr;
 }
 
@@ -1653,6 +1655,7 @@ bool GenericDevice::generateDevices()
         }
     }
 
+#if KSTARS_HAS_INDI_PAC_INTERFACE
     // Polar Alignment Corrector (PAC)
     if (m_DriverInterface & INDI::BaseDevice::PAC_INTERFACE &&
             m_ConcreteDevices[INDI::BaseDevice::PAC_INTERFACE].isNull())
@@ -1680,6 +1683,7 @@ bool GenericDevice::generateDevices()
             });
         }
     }
+#endif
 
     return generated;
 }

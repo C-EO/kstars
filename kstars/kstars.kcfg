@@ -2069,13 +2069,7 @@
        <entry name="EkosLiveSound" type="Bool">
           <default>true</default>
        </entry>
-       <entry name="EkosLiveHighBandwidth" type="Bool">
-          <default>true</default>
-       </entry>
        <entry name="EkosLiveNotifications" type="Bool">
-          <default>true</default>
-       </entry>
-       <entry name="EkosLiveImageTransfer" type="Bool">
           <default>true</default>
        </entry>
        <entry name="EkosLiveCloud" type="Bool">

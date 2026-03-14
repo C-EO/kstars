@@ -8,6 +8,9 @@ include_directories(
     ${kstars_SOURCE_DIR}/datahandlers
     )
 
+# Provide the source tree to the test helpers so they can locate and install runtime data files.
+add_compile_definitions(KSTARS_TEST_SOURCEDIR="${kstars_SOURCE_DIR}")
+
 if(StellarSolver_FOUND)
 include_directories(${STELLARSOLVER_INCLUDE_DIR})
 endif(StellarSolver_FOUND)

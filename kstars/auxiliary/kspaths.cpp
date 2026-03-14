@@ -6,6 +6,28 @@
 #include "auxiliary/kspaths.h"
 #include <QFileInfo>
 #include <QCoreApplication>
+#include <QDir>
+
+namespace
+{
+bool isTestDataLocation(QStandardPaths::StandardLocation location)
+{
+    switch (location)
+    {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        case QStandardPaths::DataLocation:
+#else
+        case QStandardPaths::AppLocalDataLocation:
+#endif
+        case QStandardPaths::AppDataLocation:
+        case QStandardPaths::GenericDataLocation:
+            return true;
+
+        default:
+            return false;
+    }
+}
+}
 
 QString KSPaths::locate(QStandardPaths::StandardLocation location, const QString &fileName,
                         QStandardPaths::LocateOptions options)
@@ -38,6 +60,19 @@ QString KSPaths::locate(QStandardPaths::StandardLocation location, const QString
             default:
                 break;
         }
+
+#if defined(KSTARS_BUILD_TESTING)
+        if (findings.isEmpty() && isTestDataLocation(location))
+        {
+            const QByteArray testDataDir = qgetenv("KSTARS_TEST_DATADIR");
+            if (!testDataDir.isEmpty())
+            {
+                const QString candidate = QDir(QString::fromUtf8(testDataDir)).filePath(fileName);
+                if (QFileInfo::exists(candidate))
+                    return candidate;
+            }
+        }
+#endif
     }
 
 #ifdef ANDROID
@@ -77,12 +112,26 @@ QStringList KSPaths::locateAll(QStandardPaths::StandardLocation location, const 
                 break;
 
             case QStandardPaths::AppConfigLocation:
+            case QStandardPaths::GenericConfigLocation:
                 findings = QStandardPaths::locateAll(QStandardPaths::GenericConfigLocation, QDir("kstars").filePath(fileName), options);
                 break;
 
             default:
                 break;
         }
+
+#if defined(KSTARS_BUILD_TESTING)
+        if (findings.isEmpty() && isTestDataLocation(location))
+        {
+            const QByteArray testDataDir = qgetenv("KSTARS_TEST_DATADIR");
+            if (!testDataDir.isEmpty())
+            {
+                const QString candidate = QDir(QString::fromUtf8(testDataDir)).filePath(fileName);
+                if (QFileInfo::exists(candidate))
+                    return { candidate };
+            }
+        }
+#endif
     }
 
 #ifdef ANDROID

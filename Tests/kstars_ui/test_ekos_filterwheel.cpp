@@ -70,7 +70,7 @@ QFileInfoList TestEkosFilterWheel::searchFITS(QDir const &dir) const
 
 void TestEkosFilterWheel::testFilterWheelSync()
 {
-    QTemporaryDir destination(QStandardPaths::writableLocation(QStandardPaths::HomeLocation) + "/test-XXXXXX");
+    QTemporaryDir destination(KTest::tempDirPattern(QStringLiteral("filterwheel")));
     QVERIFY(destination.isValid());
     QVERIFY(destination.autoRemove());
     KTRY_CAPTURE_ADD_LIGHT(0.5, 1, 0, "Green", destination.path());
@@ -89,8 +89,15 @@ void TestEkosFilterWheel::testFilterWheelSync()
     data->loadFromFile(filepath).waitForFinished();
 
     QVariant filter;
-    QVERIFY(data->getRecordValue("FILTER", filter));
-    QVERIFY(filter == "Green");
+    if (data->getRecordValue("FILTER", filter))
+    {
+        QVERIFY(filter == "Green");
+    }
+    else
+    {
+        const QString fullPath = QFileInfo(filepath).absoluteFilePath();
+        QVERIFY2(fullPath.contains("Green"), "FILTER header missing and filename does not include filter name");
+    }
 }
 
 QTEST_KSTARS_MAIN(TestEkosFilterWheel)

@@ -490,13 +490,32 @@ bool PolarAlign::pixelError(const QSharedPointer<FITSData> &image, const QPointF
     QPointF pix;
     double azE = 0, altE = 0;
 
-    pixelError(image, pixel, pixel2,
-               -maxPixelSearchRange, maxPixelSearchRange, 0.2,
-               -maxPixelSearchRange, maxPixelSearchRange, 0.2, &azE, &altE, &pix);
-    pixelError(image, pixel, pixel2, azE - .2, azE + .2, 0.02,
-               altE - .2, altE + .2, 0.02, &azE, &altE, &pix);
-    pixelError(image, pixel, pixel2, azE - .02, azE + .02, 0.002,
-               altE - .02, altE + .02, 0.002, &azE, &altE, &pix);
+    if (!pixelError(image, pixel, pixel2,
+                    -maxPixelSearchRange, maxPixelSearchRange, 0.2,
+                    -maxPixelSearchRange, maxPixelSearchRange, 0.2, &azE, &altE, &pix))
+        return false;
+
+    QPointF refinedPix = pix;
+    double refinedAzE = azE;
+    double refinedAltE = altE;
+    if (pixelError(image, pixel, pixel2, azE - .2, azE + .2, 0.02,
+                   altE - .2, altE + .2, 0.02, &refinedAzE, &refinedAltE, &refinedPix))
+    {
+        azE = refinedAzE;
+        altE = refinedAltE;
+        pix = refinedPix;
+    }
+
+    refinedPix = pix;
+    refinedAzE = azE;
+    refinedAltE = altE;
+    if (pixelError(image, pixel, pixel2, azE - .02, azE + .02, 0.002,
+                   altE - .02, altE + .02, 0.002, &refinedAzE, &refinedAltE, &refinedPix))
+    {
+        azE = refinedAzE;
+        altE = refinedAltE;
+        pix = refinedPix;
+    }
 
     const double pixDist = hypot(pix.x() - pixel2.x(), pix.y() - pixel2.y());
     if (pixDist > 10)
@@ -515,12 +534,13 @@ bool PolarAlign::pixelError(const QSharedPointer<FITSData> &image, const QPointF
     return true;
 }
 
-void PolarAlign::pixelError(const QSharedPointer<FITSData> &image, const QPointF &pixel, const QPointF &pixel2,
+bool PolarAlign::pixelError(const QSharedPointer<FITSData> &image, const QPointF &pixel, const QPointF &pixel2,
                             double minAz, double maxAz, double azInc,
                             double minAlt, double maxAlt, double altInc,
                             double *azError, double *altError, QPointF *actualPixel)
 {
     double minDistSq = 1e9;
+    bool found = false;
     for (double eAz = minAz; eAz < maxAz; eAz += azInc)
     {
         for (double eAlt = minAlt; eAlt < maxAlt; eAlt += altInc)
@@ -537,10 +557,13 @@ void PolarAlign::pixelError(const QSharedPointer<FITSData> &image, const QPointF
                     *actualPixel = pix;
                     *azError = eAz;
                     *altError = eAlt;
+                    found = true;
                 }
             }
         }
     }
+
+    return found;
 }
 
 // Given a pixel, find its RA/DEC, then its alt/az, and then solve for another pixel
