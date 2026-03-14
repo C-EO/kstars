@@ -391,10 +391,11 @@ class FITSStack : public QObject
          * @brief Stack the passed in vector of subs
          * @param initial stack (or incremental)
          * @param totalWeight is the weight of the current stack if this is an incremental stack
+         * @param hitMap is a pixel weighting used by normalization
          * @param stack is returned to the caller
          * @return success (or not)
          */
-        bool stackSubs(const bool initial, float &totalWeight, cv::Mat &stack);
+        bool stackSubs(const bool initial, float &totalWeight, cv::Mat &hitMap, cv::Mat &stack);
 
         /**
          * @brief Stack the passed in vector of subs using Sigma Clipping
@@ -564,6 +565,31 @@ class FITSStack : public QObject
         QVector<float> getWeights();
 
         /**
+         * @brief normalize brightness of subs to be stacked
+         * @param initial stack (or incremental)
+         * @param weights of subs
+         * @param hitMap of subs
+         * @param stack is returned to the caller
+         */
+        void normalizeSubs(const bool initial, const QVector<float> &weights, cv::Mat &hitMap, cv::Mat &stack);
+
+        /**
+         * @brief Return a binary mask for the passed in sub
+         * @param sub
+         * @return binary mask
+         */
+        cv::Mat getBinaryMask(const cv::Mat &sub);
+
+        /**
+         * @brief Normalizes a sub to match the brightness and contrast of the reference.
+         * @param sub The incoming frame (already aligned to the master).
+         * @param subMask The mask for the sub CV_8U
+         * @param ref Reference image to normalize to
+         * @param refMask The mask for the ref image CV_8U
+         */
+        void linearNormalization(cv::Mat &sub, const cv::Mat &subMask, const cv::Mat &ref, const cv::Mat &refMask);
+
+        /**
          * @brief Return the Signal-To-Noise ratio of the passed in image
          * @param image
          * @return SNR (0.0 on failure)
@@ -590,15 +616,17 @@ class FITSStack : public QObject
          * @brief Called to transition initial stack data to running stack
          * @param numSubs in the initial stack
          * @param totalWeight of subs processed so far
+         * @param hitMap is a pixel weighting used by normalization
          */
-        void setupRunningStack(const int numSubs, const float totalWeight);
+        void setupRunningStack(const int numSubs, const float totalWeight, const cv::Mat &hitMap);
 
         /**
          * @brief Called to update running stack data
          * @param numSubs processed so far
          * @param totalWeight of subs processed so far
+         * @param hitMap is a pixel weighting used by normalization
          */
-        void updateRunningStack(const int numSubs, const float totalWeight);
+        void updateRunningStack(const int numSubs, const float totalWeight, const cv::Mat &hitMap);
 
         /**
          * @brief Tidy up initial stack data, e.g. free heap
@@ -634,10 +662,11 @@ class FITSStack : public QObject
             double ref_hfr;
             int ref_numStars;
             float totalWeight;
+            cv::Mat hitMap;
             ImageMMState imageMMState;
             QVector < StackImageData > runningSubs;
         };
-        RunningStackImageData m_RunningStackImageData { 0, -1.0, 0, 0.0, {}, {} };
+        RunningStackImageData m_RunningStackImageData { 0, -1.0, 0, 0.0, {}, {}, {} };
 
         // SNR of subs
         double m_MeanSubSNR { 0 };

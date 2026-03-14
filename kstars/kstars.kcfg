@@ -1863,6 +1863,10 @@
       <whatsthis>Live Stacking sub weighting</whatsthis>
       <default>0</default>
    </entry>
+   <entry name="fitsLSNormalization" type="UInt">
+      <whatsthis>Live Stacking normalization</whatsthis>
+      <default>0</default>
+   </entry>
    <entry name="fitsLSStackingMethod" type="UInt">
       <whatsthis>Live Stacking stacking method</whatsthis>
       <default>0</default>

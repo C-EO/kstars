@@ -511,8 +511,10 @@ bool FITSStack::stack()
                     m_StackImageData[i].status = ALIGNMENT_FAILED;
                 else
                 {
+                    // JEE cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
+                    //                    m_StackImageData[i].image.size(), cv::INTER_LANCZOS4);
                     cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
-                                        m_StackImageData[i].image.size(), cv::INTER_LANCZOS4);
+                                        m_StackImageData[i].image.size(), cv::INTER_LINEAR);
                     m_StackImageData[i].image = warpedImage;
                     m_StackImageData[i].isAligned = true;
                 }
@@ -532,7 +534,8 @@ bool FITSStack::stack()
         }
         // Stack the aligned subs
         float totalWeight = 0.0;
-        stackSubs(true, totalWeight, m_StackedImage32F);
+        cv::Mat hitMap;
+        stackSubs(true, totalWeight, hitMap, m_StackedImage32F);
 
         if (m_StackData.numInMem <= m_StackImageData.size())
         {
@@ -540,7 +543,7 @@ bool FITSStack::stack()
             cv::Mat finalImage = postProcessImage(m_StackedImage32F);
             finalImage.copyTo(m_StackedImageFinal);
             // Move to incremental stacking as new subs arrive
-            setupRunningStack(m_StackImageData.size(), totalWeight);
+            setupRunningStack(m_StackImageData.size(), totalWeight, hitMap);
         }
         else
             // Still more subs to stack so skip post-processing which is time consuming
@@ -614,8 +617,10 @@ bool FITSStack::stackn()
                     m_StackImageData[i].status = ALIGNMENT_FAILED;
                 else
                 {
+                    // JEE cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
+                    //                    m_StackImageData[i].image.size(), cv::INTER_LANCZOS4);
                     cv::warpPerspective(m_StackImageData[i].image, warpedImage, warp,
-                                        m_StackImageData[i].image.size(), cv::INTER_LANCZOS4);
+                                        m_StackImageData[i].image.size(), cv::INTER_LINEAR);
                     m_StackImageData[i].image = warpedImage;
                     m_StackImageData[i].isAligned = true;
                 }
@@ -635,7 +640,8 @@ bool FITSStack::stackn()
         }
         // Stack the aligned subs
         float totalWeight = m_RunningStackImageData.totalWeight;
-        if (stackSubs(false, totalWeight, m_StackedImage32F))
+        cv::Mat hitMap = m_RunningStackImageData.hitMap;
+        if (stackSubs(false, totalWeight, hitMap, m_StackedImage32F))
         {
             // Perform any post stacking processing such as sharpening / denoising
             cv::Mat finalImage = postProcessImage(m_StackedImage32F);
@@ -643,7 +649,7 @@ bool FITSStack::stackn()
             finalImage.copyTo(m_StackedImageFinal);
         }
 
-        updateRunningStack(m_StackImageData.size(), totalWeight);
+        updateRunningStack(m_StackImageData.size(), totalWeight, hitMap);
         qCDebug(KSTARS_FITS) << QString("Stacked %1 subs in %2 ms").arg(numSubs).arg(timer.elapsed());
     }
     catch (const cv::Exception &ex)
@@ -899,7 +905,7 @@ bool FITSStack::correctSub(const LiveStackFile &subFile, cv::Mat &sub)
 }
 
 // Stack the vector of subs
-bool FITSStack::stackSubs(const bool initial, float &totalWeight, cv::Mat &stack)
+bool FITSStack::stackSubs(const bool initial, float &totalWeight, cv::Mat &hitMap, cv::Mat &stack)
 {
     bool ok = false;
     QVector<float> weights;
@@ -916,6 +922,13 @@ bool FITSStack::stackSubs(const bool initial, float &totalWeight, cv::Mat &stack
             return false;
 
         weights = getWeights();
+        cv::Mat origHitMap;
+
+        if (m_StackData.normalization == LiveStackNormalization::LINEAR)
+        {
+            origHitMap = hitMap.clone();
+            normalizeSubs(initial, weights, hitMap, stack);
+        }
 
         if (m_StackData.stackingMethod == LiveStackStackingMethod::SIGMA ||
                 m_StackData.stackingMethod == LiveStackStackingMethod::WINDSOR)
@@ -933,39 +946,58 @@ bool FITSStack::stackSubs(const bool initial, float &totalWeight, cv::Mat &stack
             else
                 stack = stacknSubsImageMM(weights, m_StackData);
         }
-        else
+        else // Average stacking
         {
             // Add the pixels weighted per sub based on user setting. Then divide by the total weight
             // If its an initial stack then just use the subs, if not then include the existing partial stack
-            int start;
+            int start = 0;
             if (initial)
             {
-                totalWeight = weights[0];
-                stack = m_StackImageData[0].image;
                 start = 1;
+                totalWeight = weights[0];
+                stack = m_StackImageData[0].image.clone();
+            }
+            else if (m_StackData.normalization == LiveStackNormalization::LINEAR && !origHitMap.empty())
+            {
+                std::vector<cv::Mat> chs;
+                cv::split(stack, chs);
+                for (auto &c : chs)
+                    cv::multiply(c, origHitMap, c, 1.0, CV_32F);
+                cv::merge(chs, stack);
             }
             else
-            {
-                totalWeight = m_RunningStackImageData.totalWeight;
-                stack = m_StackedImage32F * totalWeight;
-                start = 0;
-            }
+                stack *= totalWeight;
 
-            cv::Mat temp;
+            // JEE Stacking loop
             for (int sub = start; sub < m_StackImageData.size(); sub++)
             {
+                cv::Mat &currentSub = m_StackImageData[sub].image;
+                float w = weights[sub];
+
+                // Add the sub to the stack
                 if (m_StackData.weighting == LiveStackFrameWeighting::EQUAL)
-                    // No need to multiply by 1 for equal weighting
-                    cv::add(stack, m_StackImageData[sub].image, stack);
+                    cv::add(stack, currentSub, stack);
                 else
                 {
-                    cv::multiply(m_StackImageData[sub].image, weights[sub], temp, 1.0, m_CVType);
+                    cv::Mat temp;
+                    cv::multiply(currentSub, w, temp, 1.0, CV_32F);
                     cv::add(stack, temp, stack);
                 }
-                //stack += m_StackImageData[sub].image * weights[sub];
-                totalWeight += weights[sub];
+                totalWeight += w;
             }
-            cv::multiply(stack, 1.0 / totalWeight, stack, 1.0, m_CVType);
+
+            // Rescale the new stack
+            if (m_StackData.normalization == LiveStackNormalization::LINEAR && !hitMap.empty())
+            {
+                std::vector<cv::Mat> channels;
+                cv::split(stack, channels);
+                for (auto &ch : channels)
+                    cv::divide(ch, hitMap, ch);
+                cv::merge(channels, stack);
+            }
+            else if (totalWeight > 0.0)
+                // Global average
+                cv::multiply(stack, 1.0 / totalWeight, stack, 1.0, m_CVType);
         }
         ok = true;
     }
@@ -1026,6 +1058,156 @@ QVector<float> FITSStack::getWeights()
     return weights;
 }
 
+// JEE
+void FITSStack::normalizeSubs(const bool initial, const QVector<float> &weights, cv::Mat &hitMap, cv::Mat &stack)
+{
+    try
+    {
+        cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+
+        int start = 0;
+        if (initial)
+        {
+            start = 1;
+            stack = m_StackImageData[0].image.clone();
+
+            // Initialise the hitMap
+            hitMap = cv::Mat::zeros(stack.size(), CV_32F);
+
+            // Get the mask for the master
+            cv::Mat mask = getBinaryMask(stack);
+            //cv::Mat mask8U;
+            //mask.convertTo(mask8U, CV_8U, 255.0);
+
+            // Erode the master ensuring "Active Area" is identical for all frames.
+            // JEEcv::erode(mask8U, mask8U, element);
+
+            // Apply the erosion to the Master image
+            //std::vector<cv::Mat> channels;
+            //cv::split(stack, channels);
+            //for(auto &ch : channels)
+            //    ch.setTo(cv::Scalar(0), ~mask8U);
+            //cv::merge(channels, stack);
+
+            // Update hitMap using the eroded mask
+            //mask8U.convertTo(mask, CV_32F, 1.0 / 255.0);
+            cv::multiply(mask, weights[0], mask);
+            cv::add(hitMap, mask, hitMap);
+        }
+
+        // Get the mask for the stack - we'll use stack starting with alignment master
+        cv::Mat stackMask = getBinaryMask(stack);
+
+        // Convert mask to CV_8U for later processing
+        stackMask.convertTo(stackMask, CV_8U, 255.0);
+
+        for (int sub = start; sub < m_StackImageData.size(); sub++)
+        {
+            // Generate the mask (slightly shrunken to hide edge artifacts)
+            cv::Mat subMask = getBinaryMask(m_StackImageData[sub].image);
+
+            // Convert mask to CV_8U for later processing
+            cv::Mat subMask8U;
+            subMask.convertTo(subMask8U, CV_8U, 255.0);
+
+            // Erode the mask by 1-2 pixels to remove interpolation edges
+            // This removes the horizontal/vertical lines at the boundaries
+            cv::Mat element = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
+            cv::erode(subMask8U, subMask8U, element);
+
+            // Normalize the current image
+            linearNormalization(m_StackImageData[sub].image, subMask8U, stack, stackMask);
+
+            // Update the hitMap
+            subMask8U.convertTo(subMask, CV_32F, 1.0 / 255.0);
+            cv::multiply(subMask, weights[sub], subMask);
+            cv::add(hitMap, subMask, hitMap);
+        }
+        return;
+    }
+    catch (const cv::Exception &ex)
+    {
+        qCDebug(KSTARS_FITS) << QString("openCV exception %1 called from %2").arg(ex.what()).arg(__FUNCTION__);
+    }
+}
+
+// JEE
+cv::Mat FITSStack::getBinaryMask(const cv::Mat &img)
+{
+    try
+    {
+        cv::Mat mask;
+        if (img.channels() > 1)
+            cv::cvtColor(img, mask, cv::COLOR_BGR2GRAY);
+            // JEE cv::extractChannel(img, mask, 1); // Use green channel
+        else
+            mask = img.clone();
+
+        // 1. Threshold to find data area
+        cv::threshold(mask, mask, 0.00001, 1.0, cv::THRESH_BINARY);
+        return mask;
+    }
+    catch (const cv::Exception &ex)
+    {
+        qCDebug(KSTARS_FITS) << QString("openCV exception %1 called from %2").arg(ex.what()).arg(__FUNCTION__);
+        return cv::Mat();
+    }
+}
+
+// JEE Normalize the brightness of the sub to the master
+void FITSStack::linearNormalization(cv::Mat &sub, const cv::Mat &subMask, const cv::Mat &ref, const cv::Mat &refMask)
+{
+    try
+    {
+        if (sub.empty() || ref.empty() || sub.size() != ref.size())
+            return;
+
+        cv::Mat overlapMask;
+
+        // Calculate mask overlap
+        cv::bitwise_and(subMask, refMask, overlapMask);
+
+        // Safety: If overlap is less than 5% of the sensor, normalization is unreliable.
+        if (cv::countNonZero(overlapMask) < (sub.total() * 0.05))
+            return;
+
+        // --- CHANNEL PROCESSING ---
+        int channels = sub.channels();
+        std::vector<cv::Mat> subChannels, refChannels;
+        cv::split(sub, subChannels);
+        cv::split(ref, refChannels);
+
+        for (int i = 0; i < channels; i++)
+        {
+            cv::Scalar muSub, sigSub, muRef, sigRef;
+
+            // Calculate Mean/StdDev using the 1-channel 8U overlap mask
+            cv::meanStdDev(subChannels[i], muSub, sigSub, overlapMask);
+            cv::meanStdDev(refChannels[i], muRef, sigRef, overlapMask);
+
+            float scale = 1.0f;
+            if (sigSub[0] > 0.0001f)
+                scale = static_cast<float>(sigRef[0] / sigSub[0]);
+
+            scale = std::max(0.1f, std::min(scale, 10.0f));
+            float offset = static_cast<float>(muRef[0] - (scale * muSub[0]));
+            qCDebug(KSTARS_FITS) << QString("Normalisation: scale=%1 offset=%2").arg(scale).arg(offset);
+
+            // Apply transformation (New = Old * scale + offset)
+            subChannels[i].convertTo(subChannels[i], -1, scale, offset);
+
+            // Clean the "Rotation Wedges" using the 1-channel 8U sub mask
+            // This prevents the offset from turning black edges gray.
+            subChannels[i].setTo(cv::Scalar(0), ~subMask);
+        }
+        cv::merge(subChannels, sub);
+    }
+    catch (const cv::Exception &ex)
+    {
+        qCDebug(KSTARS_FITS) << QString("openCV exception %1 called from %2").arg(ex.what()).arg(__FUNCTION__);
+    }
+}
+
 // Function to stack subs using standard or Windsorized Sigma Clipping
 // Uses parallel processing to increase speed
 cv::Mat FITSStack::stackSubsSigmaClipping(const QVector<float> &weights)
@@ -1044,7 +1226,7 @@ cv::Mat FITSStack::stackSubsSigmaClipping(const QVector<float> &weights)
         int rows = m_StackImageData[0].image.rows;
         int cols = m_StackImageData[0].image.cols;
         int numImages = m_StackImageData.size();
-        cv::Mat finalImage = cv::Mat::zeros(rows, cols, m_CVType);
+        cv::Mat finalImage = cv::Mat::zeros(rows, cols, CV_32FC(m_Channels));
         float *finalImagePtr;
 
         // Setup structure for each channel for future sigma clipping
@@ -1224,59 +1406,75 @@ void FITSStack::stackSigmaClipPixel(int x, const std::vector<const float *> &ima
                                     const QVector<cv::Vec4f *> &sigmaClipPtr, const QVector<float> &weights)
 {
     int numImages = imagesPtrs.size();
-    std::vector<float> values(numImages);
+
     for (int ch = 0; ch < m_Channels; ch++)
     {
+        std::vector<float> validValues;
+        std::vector<float> validWeights;
+        validValues.reserve(numImages);
+        validWeights.reserve(numImages);
+
         for (int image = 0; image < numImages; image++)
-            values[image] = imagesPtrs[image][x * m_Channels + ch];
-
-        float pixelValue = 0.0;
-
-        if (m_StackData.stackingMethod == LiveStackStackingMethod::WINDSOR)
         {
-            // Winsorize the data
-            float median = Mathematics::RobustStatistics::ComputeLocation(
-                               Mathematics::RobustStatistics::LOCATION_MEDIAN, values);
-            auto const stddev = std::sqrt(Mathematics::RobustStatistics::ComputeScale(
-                                              Mathematics::RobustStatistics::SCALE_VARIANCE, values));
-
-            float lower = std::max(0.0, median - (stddev * m_StackData.windsorCutoff));
-            float upper = median + (stddev * m_StackData.windsorCutoff);
-
-            for (unsigned int i = 0; i < values.size(); i++)
+            float val = imagesPtrs[image][x * m_Channels + ch];
+            if (val > 0.0001f) // Only collect real data
             {
-                if (values[i] < lower)
-                    values[i] = lower;
-                else if (values[i] > upper)
-                    values[i] = upper;
+                validValues.push_back(val);
+                validWeights.push_back(weights[image]);
             }
         }
 
-        // Now process the data
+        // Handle cases with no data (or only 1-2 frames of data)
+        if (validValues.empty())
+        {
+            finalImagePtr[x * m_Channels + ch] = 0.0f;
+            sigmaClipPtr[ch][x] = cv::Vec4f(0, 0, 0, 0);
+            continue;
+        }
+
+        float pixelValue = 0.0;
+
+        // Use our filtered 'validValues' for all statistical math
+        if (m_StackData.stackingMethod == LiveStackStackingMethod::WINDSOR)
+        {
+            float median = Mathematics::RobustStatistics::ComputeLocation(
+                Mathematics::RobustStatistics::LOCATION_MEDIAN, validValues);
+            auto const stddev = std::sqrt(Mathematics::RobustStatistics::ComputeScale(
+                Mathematics::RobustStatistics::SCALE_VARIANCE, validValues));
+
+            float lower = std::max(0.0f, static_cast<float>(median - (stddev * m_StackData.windsorCutoff)));
+            float upper = median + (stddev * m_StackData.windsorCutoff);
+
+            for (size_t i = 0; i < validValues.size(); i++)
+            {
+                if (validValues[i] < lower) validValues[i] = lower;
+                else if (validValues[i] > upper) validValues[i] = upper;
+            }
+        }
+
         float median = Mathematics::RobustStatistics::ComputeLocation(
-                           Mathematics::RobustStatistics::LOCATION_MEDIAN, values);
+            Mathematics::RobustStatistics::LOCATION_MEDIAN, validValues);
 
         float sum = 0.0, weightSum = 0.0, lower = -1.0, upper = -1.0;
-        if (values.size() <= 3)
-            // For small samples just use median
+
+        if (validValues.size() <= 3)
             pixelValue = median;
         else
         {
-            // Sigma clipping
             auto const stddev = std::sqrt(Mathematics::RobustStatistics::ComputeScale(
-                                              Mathematics::RobustStatistics::SCALE_VARIANCE, values));
+                Mathematics::RobustStatistics::SCALE_VARIANCE, validValues));
 
-            // Get the lower and upper bounds
-            lower = std::max(0.0, median - (stddev * m_StackData.lowSigma));
+            lower = std::max(0.0f, static_cast<float>(median - (stddev * m_StackData.lowSigma)));
             upper = median + (stddev * m_StackData.highSigma);
 
-            for (unsigned int i = 0; i < values.size(); i++)
+            for (size_t i = 0; i < validValues.size(); i++)
             {
-                if (values[i] < lower || values[i] > upper)
+                // Reject outliers (planes, satellites, hot pixels)
+                if (validValues[i] < lower || validValues[i] > upper)
                     continue;
 
-                sum += values[i] * weights[i];
-                weightSum += weights[i];
+                sum += validValues[i] * validWeights[i];
+                weightSum += validWeights[i];
             }
 
             if (weightSum > 0.0)
@@ -1285,7 +1483,7 @@ void FITSStack::stackSigmaClipPixel(int x, const std::vector<const float *> &ima
                 pixelValue = median;
         }
 
-        // Store intermediate calcs from this process
+        // Store intermediate results for incremental stacking (stacknSubs)
         cv::Vec4f sigmaClip;
         sigmaClip[0] = lower;
         sigmaClip[1] = upper;
@@ -1293,7 +1491,7 @@ void FITSStack::stackSigmaClipPixel(int x, const std::vector<const float *> &ima
         sigmaClip[3] = weightSum;
         sigmaClipPtr[ch][x] = sigmaClip;
 
-        // Update the pixel/channel with the calculated value
+        // Store the result in our 32-bit float buffer
         finalImagePtr[x * m_Channels + ch] = pixelValue;
     }
 }
@@ -1361,20 +1559,29 @@ cv::Mat FITSStack::stacknSubsSigmaClipping(const QVector<float> &weights)
                     for (int image = 0; image < numImages; image++)
                     {
                         float pixel = imagesPtrs[image][x * m_Channels + ch];
-                        if (lower < 0.0 || (pixel >= lower && pixel <= upper))
+                        if (pixel > 0.0001f)
                         {
-                            sum += pixel * weights[image];
-                            weightSum += weights[image];
+                            if (lower < 0.0 || (pixel >= lower && pixel <= upper))
+                            {
+                                sum += pixel * weights[image];
+                                weightSum += weights[image];
+                            }
                         }
                     }
 
                     // Update image pixel with new value
-                    finalImagePtr[x * m_Channels + ch] = sum / weightSum;
+                    if (weightSum > 0.0f)
+                    {
+                        finalImagePtr[x * m_Channels + ch] = sum / weightSum;
 
-                    // Save the new intermediate results for next time
-                    sigmaClip[2] = sum;
-                    sigmaClip[3] = weightSum;
-                    sigmaClipPtr[ch][x] = sigmaClip;
+                        // Save the new intermediate results for next time
+                        sigmaClip[2] = sum;
+                        sigmaClip[3] = weightSum;
+                        sigmaClipPtr[ch][x] = sigmaClip;
+                    }
+                    else
+                        // If no data exists for this pixel, keep it black
+                        finalImagePtr[x * m_Channels + ch] = 0.0f;
                 }
             }
         }
@@ -2487,13 +2694,15 @@ void FITSStack::redoPostProcessStack(const LiveStackPPData &ppParams)
 
 // We're done with the original stack so tidy up and keep data necessary to add individual
 // subs to the interim stack as they arrive
-void FITSStack::setupRunningStack(const int numSubs, const float totalWeight)
+void FITSStack::setupRunningStack(const int numSubs, const float totalWeight, const cv::Mat &hitMap)
 {
     setInitalStackDone(true);
     m_RunningStackImageData.numSubs = numSubs;
     m_RunningStackImageData.ref_hfr = 0;
     m_RunningStackImageData.ref_numStars = 0;
     m_RunningStackImageData.totalWeight = totalWeight;
+    if (m_StackData.normalization == LiveStackNormalization::LINEAR && !hitMap.empty())
+        m_RunningStackImageData.hitMap = hitMap.clone();
 
     // Initialize latent for incremental ImageMM
     if (!m_StackedImage32F.empty())
@@ -2522,13 +2731,15 @@ void FITSStack::setupRunningStack(const int numSubs, const float totalWeight)
     tidyUpInitalStack();
 }
 
-void FITSStack::updateRunningStack(const int numSubs, const float totalWeight)
+void FITSStack::updateRunningStack(const int numSubs, const float totalWeight, const cv::Mat &hitMap)
 {
     try
     {
         // Update running stack metadata
         m_RunningStackImageData.numSubs += numSubs;
         m_RunningStackImageData.totalWeight = totalWeight;
+        if (m_StackData.normalization == LiveStackNormalization::LINEAR && !hitMap.empty())
+            m_RunningStackImageData.hitMap = hitMap.clone();
 
         if (m_StackData.stackingMethod == LiveStackStackingMethod::IMAGEMM)
         {
@@ -2589,4 +2800,5 @@ void FITSStack::tidyUpInitalStack()
 void FITSStack::tidyUpRunningStack()
 {
     m_RunningStackImageData.imageMMState = {};
+    m_RunningStackImageData.hitMap.release();
 }

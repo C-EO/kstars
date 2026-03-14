@@ -1066,6 +1066,7 @@ void FITSTab::initSettings()
     m_LiveStackingUI.NumInMem->setValue(Options::fitsLSNumInMem());
     m_LiveStackingUI.LSDownscale->setCurrentIndex(Options::fitsLSDownscale());
     m_LiveStackingUI.Weighting->setCurrentIndex(Options::fitsLSWeighting());
+    m_LiveStackingUI.Normalization->setCurrentIndex(Options::fitsLSNormalization());
     m_LiveStackingUI.StackingMethod->setCurrentIndex(Options::fitsLSStackingMethod());
     m_LiveStackingUI.LowSigma->setValue(Options::fitsLSLowSigma());
     m_LiveStackingUI.HighSigma->setValue(Options::fitsLSHighSigma());
@@ -1097,6 +1098,7 @@ void FITSTab::saveSettings()
     Options::setFitsLSNumInMem(m_LiveStackingUI.NumInMem->value());
     Options::setFitsLSDownscale(m_LiveStackingUI.LSDownscale->currentIndex());
     Options::setFitsLSWeighting(m_LiveStackingUI.Weighting->currentIndex());
+    Options::setFitsLSNormalization(m_LiveStackingUI.Normalization->currentIndex());
     Options::setFitsLSStackingMethod(m_LiveStackingUI.StackingMethod->currentIndex());
     Options::setFitsLSLowSigma(m_LiveStackingUI.LowSigma->value());
     Options::setFitsLSHighSigma(m_LiveStackingUI.HighSigma->value());
@@ -1152,6 +1154,7 @@ LiveStackData FITSTab::getAllSettings()
     data.numInMem = m_LiveStackingUI.NumInMem->value();
     data.downscale = static_cast<LiveStackDownscale>(m_LiveStackingUI.LSDownscale->currentIndex());
     data.weighting = static_cast<LiveStackFrameWeighting>(m_LiveStackingUI.Weighting->currentIndex());
+    data.normalization = static_cast<LiveStackNormalization>(m_LiveStackingUI.Normalization->currentIndex());
     data.stackingMethod = static_cast<LiveStackStackingMethod>(m_LiveStackingUI.StackingMethod->currentIndex());
     data.lowSigma = m_LiveStackingUI.LowSigma->value();
     data.highSigma = m_LiveStackingUI.HighSigma->value();
@@ -1740,6 +1743,7 @@ void FITSTab::liveStack()
                 << " | Cold Pixels: " << (lsd.coldPixels ? "On" : "Off")
                 << " | Downscale: " << LiveStackDownscaleNames.value(lsd.downscale)
                 << " | Weighting: " << LiveStackFrameWeightingNames.value(lsd.weighting)
+                << " | Normalization: " << LiveStackNormalizationNames.value(lsd.normalization)
                 << " | StackMethod: " << LiveStackStackingMethodNames.value(lsd.stackingMethod)
                 << " | Sigma(low/high): " << lsd.lowSigma << "/" << lsd.highSigma
                 << " | WindsorCutoff: " << lsd.windsorCutoff
