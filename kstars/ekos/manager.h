@@ -100,6 +100,7 @@ class Manager : public QDialog, public Ui::Manager
             Guide,
             Observatory,
         };
+
     public:
         static Manager *Instance();
         static void release();
@@ -150,9 +151,14 @@ class Manager : public QDialog, public Ui::Manager
         bool getFilterManager(QSharedPointer<FilterManager> &fm);
 
         // Rotator Control
-        void createRotatorController(ISD::Rotator *device);
-        bool getRotatorController(const QString &Name, QSharedPointer<RotatorSettings> &rs);
-        bool existRotatorController();
+        void createRotatorController(ISD::Rotator *device, const QString test);
+        bool getRotatorController(const QString &Name, QSharedPointer<RotatorSettings> &rs,
+                                  const QString test);
+        bool associateRotatorController(const QString &Name, const QString CameraName);
+        bool setRotatorOffset(const QString CameraName, const double Offset);
+        bool existRotatorController(const QString CameraName);
+
+        void signalPAtoGuider(const double PAAngle);
 
         QString getCurrentJobName();
         void announceEvent(const QString &message, KSNotification::EventSource source, KSNotification::EventType event);
@@ -626,8 +632,8 @@ class Manager : public QDialog, public Ui::Manager
         std::unique_ptr<Selector::Dialog> m_PortSelector;
         QTimer m_PortSelectorTimer;
 
-        QMap<QString, QSharedPointer<FilterManager >> m_FilterManagers;
-        QMap<QString, QSharedPointer<RotatorSettings >> m_RotatorControllers;
+        QMap<QString, QSharedPointer<FilterManager>> m_FilterManagers;
+        QMap<QString, QSharedPointer<RotatorSettings>> m_RotatorControllers;
 
         // Logs
         QPointer<OpsLogs> opsLogs;

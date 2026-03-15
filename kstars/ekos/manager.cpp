@@ -1024,6 +1024,7 @@ void Manager::reset()
     for (auto &oneController : m_RotatorControllers)
         oneController.reset();
     m_RotatorControllers.clear();
+    RotatorUtils::Instance()->clearMap();
 
     DarkLibrary::Release();
     m_PortSelector.reset();
@@ -3540,7 +3541,7 @@ void Manager::connectModules()
         connect(alignModule(), &Ekos::Align::newStatus, captureModule(), &Ekos::Capture::setAlignStatus,
                 Qt::UniqueConnection);
         // Solver data
-        connect(alignModule(), &Ekos::Align::newSolverResults, captureModule(),  &Ekos::Capture::setAlignResults,
+        connect(alignModule(), &Ekos::Align::rotateMainCam, captureModule(),  &Ekos::Capture::setAlignResults,
                 Qt::UniqueConnection);
         // Capture Status
         connect(captureModule(), &Ekos::Capture::newStatus, alignModule(), &Ekos::Align::setCaptureStatus,
@@ -3623,6 +3624,14 @@ void Manager::connectModules()
     if (mountProcess && guideProcess)
     {
         connect(mountModule(), &Ekos::Mount::pierSideChanged, guideModule(), &Ekos::Guide::setPierSide,
+                Qt::UniqueConnection);
+    }
+
+    // Align <---> Guide connections
+    if (alignProcess && guideProcess)
+    {
+        // Originally this was a lambda function, but "UniqueConnection" did not work!
+        connect(alignModule(), &Ekos::Align::setGuideCamRotation, this, &Manager::signalPAtoGuider,
                 Qt::UniqueConnection);
     }
 
@@ -3775,6 +3784,12 @@ void Manager::connectModules()
         connect(mountModule()->getMeridianFlipState().get(), &Ekos::MeridianFlipState::newMountMFStatus,
                 analyzeProcess.get(), &Ekos::Analyze::mountFlipStatus, Qt::UniqueConnection);
     }
+}
+
+void Manager::signalPAtoGuider(const double PAAngle)
+{
+    ISD::Camera *CamDevice = guideModule()->getCameraDevice();
+    emit guideModule()->getGuiderInstance()->setGuiderRotation(CamDevice, PAAngle);
 }
 
 void Manager::setEkosLiveConnected(bool enabled)
@@ -4126,30 +4141,58 @@ bool Manager::getFilterManager(QSharedPointer<FilterManager> &fm)
     return false;
 }
 
-void Manager::createRotatorController(ISD::Rotator *device)
+/******************************************************************************
+Currently only one rotator is supported!
+******************************************************************************/
+
+// Camera Module (cameraprocess)
+void Manager::createRotatorController(ISD::Rotator *RotatorDevice,
+                                      const QString CameraName)
 {
-    auto Name = device->getDeviceName();
-    if (m_RotatorControllers.contains(Name) == false)
+    auto RotatorName = RotatorDevice->getDeviceName();
+    if (!m_RotatorControllers.contains(RotatorName))
     {
         QSharedPointer<RotatorSettings> newRC(new RotatorSettings(nullptr));
         // Properties are fetched in RotatorSettings::initRotator!
-        m_RotatorControllers[Name] = newRC;
+        RotatorUtils::Instance()->
+        addRecord(CameraName, RotatorUtils::MAIN_CAM, RotatorName);
+        m_RotatorControllers[RotatorName] = newRC;
     }
 }
 
-bool Manager::getRotatorController(const QString &Name, QSharedPointer<RotatorSettings> &rs)
+// Camera Module (device) & Align Module
+bool Manager::getRotatorController(const QString &RotatorName,
+                                   QSharedPointer<RotatorSettings> &rs,
+                                   const QString CameraName)
 {
-    if (m_RotatorControllers.contains(Name))
+    if (m_RotatorControllers.contains(RotatorName))
     {
-        rs = m_RotatorControllers[Name];
-        return true;
+        if (RotatorUtils::Instance()->
+                checkRecord(CameraName, RotatorUtils::MAIN_CAM, RotatorName))
+        {
+            rs = m_RotatorControllers[RotatorName];
+            return true;
+        }
     }
     return false;
 }
 
-bool Manager::existRotatorController()
+// Guide Module
+bool Manager::associateRotatorController(const QString &RotatorName,
+        const QString CameraName)
 {
-    return (!m_RotatorControllers.empty());
+    if (m_RotatorControllers.contains(RotatorName))
+    {
+        if (RotatorUtils::Instance()->
+                addRecord(CameraName, RotatorUtils::GUIDE_CAM, RotatorName))
+            return true;
+    }
+    return false;
+}
+
+bool Manager::existRotatorController(const QString CameraName)
+{
+    return !RotatorUtils::Instance()->getRotatorName(CameraName).isEmpty();
 }
 
 void Manager::setFITSfromFile(bool previewFromFile)
@@ -4157,14 +4200,16 @@ void Manager::setFITSfromFile(bool previewFromFile)
     if (previewFromFile && !FITSfromFile)
     {
         // Prevent preview from Capture module
-        QObject::disconnect(captureModule(), &Ekos::Capture::newImage, this, &Ekos::Manager::updateCaptureProgress);
+        QObject::disconnect(captureModule(), &Ekos::Capture::newImage,
+                            this, &Ekos::Manager::updateCaptureProgress);
         FITSfromFile = previewFromFile;
         appendLogText(i18n("Preview source set to external"));
     }
     else if (!previewFromFile && FITSfromFile)
     {
         // Reset preview from Capture module
-        QObject::connect(captureModule(), &Ekos::Capture::newImage, this, &Ekos::Manager::updateCaptureProgress);
+        QObject::connect(captureModule(), &Ekos::Capture::newImage,
+                         this, &Ekos::Manager::updateCaptureProgress);
         FITSfromFile = previewFromFile;
         appendLogText(i18n("Preview source reset to internal"));
     }

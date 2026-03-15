@@ -218,10 +218,10 @@ void CaptureDeviceAdaptor::setRotator(ISD::Rotator *device)
                 Qt::UniqueConnection);
         connectRotator(currentSequenceJobState.data());
 
-        emit newRotator(device->getDeviceName());
+        emit newRotator(device->getDeviceName(), m_ActiveCamera->getDeviceName());
     }
     else
-        emit newRotator(""); // no real rotator present, so check if user wants to use "manual rotator"
+        emit newRotator("", QString()); // no real rotator present, so check if user wants to use "manual rotator"
 
 }
 

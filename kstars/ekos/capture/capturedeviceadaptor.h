@@ -293,11 +293,15 @@ class CaptureDeviceAdaptor: public QObject
          * @brief newRotator A new rotator has been set
          * @param name device name (empty if none)
          */
-        void newRotator(QString name);
+        void newRotator(QString Name, const QString CameraName);
         /**
          * @brief Update for the rotator's angle
          */
         void newRotatorAngle(double value, IPState state);
+        /**
+         * @brief Update rotation for calibration in internal guider
+         */
+        void newPA(const double Angle, const bool FlipRotationDone);
         /**
          * @brief Update for the rotator reverse status
          */

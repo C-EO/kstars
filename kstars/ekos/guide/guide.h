@@ -84,15 +84,13 @@ class Guide : public QWidget, public Ui::Guide
 
         /** DBUS interface function.
              * select the CCD device from the available CCD drivers.
-             * @param device The CCD device name
-             * @return Returns true if CCD device is found and set, false otherwise.
+             * @return Returns the CCD device name
              */
         Q_SCRIPTABLE QString camera();
 
         /** DBUS interface function.
-             * select the ST4 device from the available ST4 drivers.
-             * @param device The ST4 device name
-             * @return Returns true if ST4 device is found and set, false otherwise.
+             * select the ST4 device from the available ST4 drivers
+             * @return Returns the ST4 device name
              */
         Q_SCRIPTABLE QString guider();
 
@@ -151,6 +149,13 @@ class Guide : public QWidget, public Ui::Guide
         bool setMount(ISD::Mount *device);
 
         /**
+         * @brief Register associated rotator
+         * @param device pointer to Rotator device, name of coupled camera
+         * @return True if association was successful, false otherwise.
+        */
+        void setRotator(ISD::Rotator * Device, const QString CameraName);
+
+        /**
          * @brief Add new Guider
          * @param device pointer to Guider device.
          * @return True if added successfully, false if duplicate or failed to add.
@@ -170,6 +175,13 @@ class Guide : public QWidget, public Ui::Guide
         bool isDithering();
         void syncTelescopeInfo();
         void syncCameraInfo();
+
+        ISD::Camera *getCameraDevice()
+        {
+            return m_Camera;
+        }
+
+        void setWCSEnabled(ISD::Camera *CameraDevice, bool enable);
 
         /**
              * @brief clearLog As the name suggests

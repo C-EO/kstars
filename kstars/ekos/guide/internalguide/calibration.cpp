@@ -7,6 +7,8 @@
 #include "calibration.h"
 #include "Options.h"
 #include "ekos_guide_debug.h"
+#include "ekos/auxiliary/rotatorutils.h"
+#include "ksutils.h"
 #include <QDateTime>
 #include "indi/indimount.h"
 
@@ -21,11 +23,11 @@ Calibration::Calibration()
 // Set angle
 void Calibration::setAngle(double rotationAngle)
 {
-    angle = rotationAngle;
+    m_Current.Angle = rotationAngle;
     // Matrix is set a priori to NEGATIVE angle, because we want a CCW rotation in the
-    // left hand system of the sensor coordinate system.
+    // right hand system of the sensor coordinate system.
     // Rotation is used in guidestars::computeStarDrift() and guidestars::getDrift()
-    ROT_Z = GuiderUtils::RotateZ(-M_PI * angle / 180.0);
+    ROT_Z = GuiderUtils::RotateZ(-M_PI * m_Current.Angle / 180.0);
 }
 
 void Calibration::setParameters(double ccd_pix_width, double ccd_pix_height,
@@ -34,32 +36,30 @@ void Calibration::setParameters(double ccd_pix_width, double ccd_pix_height,
                                 ISD::Mount::PierSide currentPierSide,
                                 const dms &mountRa, const dms &mountDec)
 {
-    focalMm             = focalLengthMm;
-    ccd_pixel_width     = ccd_pix_width;
-    ccd_pixel_height    = ccd_pix_height;
-    calibrationRA       = mountRa;
-    calibrationDEC      = mountDec;
-    subBinX             = binX;
-    subBinY             = binY;
-    subBinXused         = subBinX;
-    subBinYused         = subBinY;
-    calibrationPierSide = currentPierSide;
+    m_Current.FocalLength = focalLengthMm;
+    m_Current.CCDPixelWidth = ccd_pix_width;
+    m_Current.CCDPixelHeight = ccd_pix_height;
+    m_Current.MountRA = mountRa;
+    m_Current.MountDEC = mountDec;
+    m_Current.SubBinX = binX;
+    m_Current.SubBinY = binY;
+    m_Current.PierSide = currentPierSide;
 }
 
 void Calibration::setBinningUsed(int x, int y)
 {
-    subBinXused         = x;
-    subBinYused         = y;
+    m_Current.SubBinX = x;
+    m_Current.SubBinY = y;
 }
 
 void Calibration::setRaPulseMsPerArcsecond(double rate)
 {
-    raPulseMsPerArcsecond = rate;
+    m_Current.PulseRA = rate;
 }
 
 void Calibration::setDecPulseMsPerArcsecond(double rate)
 {
-    decPulseMsPerArcsecond = rate;
+    m_Current.PulseDEC = rate;
 }
 
 GuiderUtils::Vector Calibration::convertToArcseconds(const GuiderUtils::Vector &input) const
@@ -106,7 +106,7 @@ void Calibration::rotateToRaDec(double dx, double dy,
 
 double Calibration::binFactor() const
 {
-    return static_cast<double>(subBinXused) / static_cast<double>(subBinX);
+    return static_cast<double>(m_Current.SubBinX) / static_cast<double>(m_Calibration.SubBinX);
 }
 
 double Calibration::inverseBinFactor() const
@@ -117,32 +117,32 @@ double Calibration::inverseBinFactor() const
 double Calibration::xArcsecondsPerPixel() const
 {
     // arcs = 3600*180/pi * (pix*ccd_pix_sz) / focal_len
-    return binFactor() * (206264.806 * ccd_pixel_width * subBinX) / focalMm;
+    return binFactor() * (206264.806 * m_Current.CCDPixelWidth * m_Calibration.SubBinX) / m_Current.FocalLength;
 }
 
 double Calibration::yArcsecondsPerPixel() const
 {
-    return binFactor() * (206264.806 * ccd_pixel_height * subBinY) / focalMm;
+    return binFactor() * (206264.806 * m_Current.CCDPixelHeight * m_Calibration.SubBinY) / m_Current.FocalLength;
 }
 
 double Calibration::xPixelsPerArcsecond() const
 {
-    return inverseBinFactor() * (focalMm / (206264.806 * ccd_pixel_width * subBinX));
+    return inverseBinFactor() * (m_Current.FocalLength / (206264.806 * m_Current.CCDPixelWidth * m_Calibration.SubBinX));
 }
 
 double Calibration::yPixelsPerArcsecond() const
 {
-    return inverseBinFactor() * (focalMm / (206264.806 * ccd_pixel_height * subBinY));
+    return inverseBinFactor() * (m_Current.FocalLength / (206264.806 * m_Current.CCDPixelHeight * m_Calibration.SubBinY));
 }
 
 double Calibration::raPulseMillisecondsPerArcsecond() const
 {
-    return raPulseMsPerArcsecond;
+    return m_Current.PulseRA;
 }
 
 double Calibration::decPulseMillisecondsPerArcsecond() const
 {
-    return decPulseMsPerArcsecond;
+    return m_Current.PulseDEC;
 }
 
 double Calibration::calculateRotation(double x, double y)
@@ -193,10 +193,10 @@ bool Calibration::calculate1D(double dx, double dy, int RATotalPulse)
         return false;
 
     setAngle(phi);
-    calibrationAngle = phi;
-    calibrationAngleRA = phi;
-    calibrationAngleDEC = -1;
-    decSwap = calibrationDecSwap = false;
+    m_Current.Angle = phi;
+    m_Current.AngleRA = phi;
+    m_Current.AngleDEC = -1;
+    m_Current.DecSwap = false;
 
     if (RATotalPulse > 0)
         setRaPulseMsPerArcsecond(RATotalPulse / arcSeconds);
@@ -207,25 +207,21 @@ bool Calibration::calculate1D(double dx, double dy, int RATotalPulse)
                 << "Calibration computed unreasonable pulse-milliseconds-per-arcsecond: "
                 << raPulseMillisecondsPerArcsecond() << " & " << decPulseMillisecondsPerArcsecond();
     }
-
-    initialized = true;
+    m_initialized = true;
     return true;
 }
 
 bool Calibration::calculate2D(
     double start_ra_x, double start_ra_y, double end_ra_x, double end_ra_y,
     double start_dec_x, double start_dec_y, double end_dec_x, double end_dec_y,
-    bool *reverse_dec_dir, int RATotalPulse, int DETotalPulse)
+    bool *invertedDECAxis, bool *reflectedImage, int RATotalPulse, int DETotalPulse)
 {
-    return calculate2D((end_ra_x - start_ra_x),
-                       (end_ra_y - start_ra_y),
-                       (end_dec_x - start_dec_x),
-                       (end_dec_y - start_dec_y),
-                       reverse_dec_dir, RATotalPulse, DETotalPulse);
+    return calculate2D((end_ra_x - start_ra_x), (end_ra_y - start_ra_y),
+                       (end_dec_x - start_dec_x), (end_dec_y - start_dec_y),
+                       invertedDECAxis, reflectedImage, RATotalPulse, DETotalPulse);
 }
-bool Calibration::calculate2D(
-    double ra_dx, double ra_dy, double dec_dx, double dec_dy,
-    bool *reverse_dec_dir, int RATotalPulse, int DETotalPulse)
+bool Calibration::calculate2D(double ra_dx, double ra_dy, double dec_dx, double dec_dy,
+                              bool *invertedDECAxis, bool *reflectedImage, int RATotalPulse, int DETotalPulse)
 {
     const double raArcsecondsdX = ra_dx * xArcsecondsPerPixel();
     const double raArcsecondsdY = ra_dy * yArcsecondsPerPixel();
@@ -248,6 +244,8 @@ bool Calibration::calculate2D(
     GuiderUtils::Vector ra_vect  = GuiderUtils::Normalize(GuiderUtils::Vector(raArcsecondsdX, raArcsecondsdY, 0));
     GuiderUtils::Vector dec_vect = GuiderUtils::Normalize(GuiderUtils::Vector(decArcsecondsdX, decArcsecondsdY, 0));
 
+    // The following rotation senses are meant in respect to the right hand system of the
+    // sensor coordinate system.
     GuiderUtils::Vector dec_vect_rotated_CCW = dec_vect * GuiderUtils::RotateZ(M_PI / 2);
     GuiderUtils::Vector dec_vect_rotated_CW = dec_vect * GuiderUtils::RotateZ(-M_PI / 2);
 
@@ -265,8 +263,8 @@ bool Calibration::calculate2D(
         return false;
 
     // Store the calibration angles.
-    calibrationAngleRA = phi_ra;
-    calibrationAngleDEC = phi_dec;
+    m_Current.AngleRA = phi_ra;
+    m_Current.AngleDEC = phi_dec;
 
     if (ra_dec_is_CW_system)
         phi_dec += 90;
@@ -292,15 +290,27 @@ bool Calibration::calculate2D(
         phi += 360.0;
 
     // setAngle sets the angle we'll use when guiding.
-    // calibrationAngle is the saved angle to be stored.
+    // [m_Current.Angle] is the saved angle to be stored.
     // They're the same now, but if we flip pier sides, angle may change.
     setAngle(phi);
-    calibrationAngle = phi;
+    m_Current.Angle = phi;
 
-    // check DEC: Make standard CCW coordinate system
-    if (reverse_dec_dir)
-        *reverse_dec_dir = decSwap = ra_dec_is_CW_system;
-    calibrationDecSwap = decSwap;
+    // check inverted DEC
+    if (ra_dec_is_CW_system) // If a CW-system is present ...
+    {
+        if (RotatorUtils::Instance()->getGuideImageParity() == FITSImage::NEGATIVE)
+            // .. and the image has negative (normal) parity then
+            // the mount does not invert DEC (after pier side change):
+            // DecSwap is set as to invert DEC pulses for correct guiding
+            *invertedDECAxis = m_Current.DecSwap = true;
+        else if (RotatorUtils::Instance()->getGuideImageParity() == FITSImage::POSITIVE)
+            // ... and the image has positiv parity the guide camera returns
+            // a vertically reflected image (typically with OAG/ONAG)
+            *reflectedImage = true;
+        else
+            // In case of problems with RotatorUtils or for testcalibrationprocess.cpp
+            m_Current.DecSwap = true;
+    }
 
     if (RATotalPulse > 0)
         setRaPulseMsPerArcsecond(RATotalPulse / raArcseconds);
@@ -320,7 +330,7 @@ bool Calibration::calculate2D(
     qCDebug(KSTARS_EKOS_GUIDE) << QString("Set RA ms/as = %1ms / %2as = %3. DEC: %4ms / %5px = %6.")
                                .arg(RATotalPulse).arg(raArcseconds).arg(raPulseMillisecondsPerArcsecond())
                                .arg(DETotalPulse).arg(decArcseconds).arg(decPulseMillisecondsPerArcsecond());
-    initialized = true;
+    m_initialized = true;
     return true;
 }
 
@@ -333,31 +343,12 @@ void Calibration::computeDrift(const GuiderUtils::Vector &detection, const Guide
     *decDrift = drift.y;
 }
 
-// Not sure why we allow this.
 void Calibration::setDeclinationSwapEnabled(bool value)
 {
-    qCDebug(KSTARS_EKOS_GUIDE) << QString("decSwap set to %1, was %2, cal %3")
-                               .arg(value ? "T" : "F")
-                               .arg(decSwap ? "T" : "F")
-                               .arg(calibrationDecSwap ? "T" : "F");
-    decSwap = value;
-}
-
-QString Calibration::serialize() const
-{
-    QDateTime now = QDateTime::currentDateTime();
-    QString dateStr = now.toString("yyyy-MM-dd hh:mm:ss");
-    QString raStr = std::isnan(calibrationRA.Degrees()) ? "" : calibrationRA.toDMSString(false, true, true);
-    QString decStr = std::isnan(calibrationDEC.Degrees()) ? "" : calibrationDEC.toHMSString(true, true);
-    QString s =
-        QString("%16,bx=%1,by=%2,pw=%3,ph=%4,fl=%5,ang=%6,angR=%7,angD=%8,"
-            "ramspas=%9,decmspas=%10,swap=%11,ra=%12,dec=%13,side=%14,when=%15,calEnd")
-        .arg(subBinX).arg(subBinY).arg(ccd_pixel_width).arg(ccd_pixel_height)
-        .arg(focalMm).arg(calibrationAngle).arg(calibrationAngleRA)
-        .arg(calibrationAngleDEC).arg(raPulseMsPerArcsecond)
-        .arg(decPulseMsPerArcsecond).arg(calibrationDecSwap ? 1 : 0)
-        .arg(raStr).arg(decStr).arg(static_cast<int>(calibrationPierSide)).arg(dateStr).arg(CAL_VERSION);
-    return s;
+    m_Current.DecSwap = value;
+    qCDebug(KSTARS_EKOS_GUIDE) << QString("DECSwap: Set to %1 (%2 in calibration)")
+                               .arg(m_Current.DecSwap ? "On" : "Off")
+                               .arg(m_Calibration.DecSwap ? "On" : "Off");
 }
 
 namespace
@@ -386,6 +377,66 @@ bool parseInt(const QString &ref, const QString &id, int *result)
 }
 }  // namespace
 
+void Calibration::save()
+{
+    QString encoding = serialize();
+    Options::setSerializedCalibration(encoding);
+    m_Calibration = m_Current;
+    qCDebug(KSTARS_EKOS_GUIDE) << QString("Saved calibration: %1").arg(encoding);
+
+}
+
+QString Calibration::serialize() const
+{
+    QDateTime now = QDateTime::currentDateTime();
+    QString dateStr = now.toString("yyyy-MM-dd hh:mm:ss");
+    QString raStr = std::isnan(m_Current.MountRA.Degrees()) ? "" : m_Current.MountRA.toDMSString(false, true, true);
+    QString decStr = std::isnan(m_Current.MountDEC.Degrees()) ? "" : m_Current.MountDEC.toHMSString(true, true);
+    QString s =
+        QString("%16,bx=%1,by=%2,pw=%3,ph=%4,fl=%5,ang=%6,angR=%7,angD=%8,"
+            "ramspas=%9,decmspas=%10,swap=%11,ra=%12,dec=%13,side=%14,when=%15,calEnd")
+        .arg(m_Current.SubBinX).arg(m_Current.SubBinY).arg(m_Current.CCDPixelWidth).arg(m_Current.CCDPixelHeight)
+        .arg(m_Current.FocalLength).arg(m_Current.Angle).arg(m_Current.AngleRA)
+        .arg(m_Current.AngleDEC).arg(m_Current.PulseRA)
+        .arg(m_Current.PulseDEC).arg(m_Current.DecSwap ? 1 : 0)
+        .arg(raStr).arg(decStr).arg(static_cast<int>(m_Current.PierSide)).arg(dateStr).arg(CAL_VERSION);
+    return s;
+}
+
+bool Calibration::restore(ISD::Mount::PierSide PierSide, const dms Declination)
+{
+    return restore(Options::serializedCalibration(), PierSide, Declination);
+}
+
+bool Calibration::restore(const QString &encoding, ISD::Mount::PierSide CurrentPierside,
+                          const dms CurrentDeclination)
+{
+    // Fail if we couldn't read the calibration.
+    if (!restore(encoding))
+    {
+        qCDebug(KSTARS_EKOS_GUIDE) << "Could not restore calibration--couldn't read.";
+        return false;
+    }
+    // We don't restore calibrations where either the calibration or the current pier side
+    // is unknown.
+    if (m_Calibration.PierSide == ISD::Mount::PIER_UNKNOWN ||
+            CurrentPierside == ISD::Mount::PIER_UNKNOWN)
+    {
+        qCDebug(KSTARS_EKOS_GUIDE) << "Could not restore calibration--pier side unknown.";
+        return false;
+    }
+
+    if (std::isnan(CurrentDeclination.Degrees()))
+    {
+        return false;
+    }
+    // Accept calibration values
+    m_Current = m_Calibration;
+    setAngle(m_Current.Angle);
+    m_initialized = true;
+    return true;
+}
+
 bool Calibration::restore(const QString &encoding)
 {
     QStringList items = encoding.split(',');
@@ -399,82 +450,63 @@ bool Calibration::restore(const QString &encoding)
     }
     else if (items[i] == CAL_VERSION) fixOldCalibration = false;
     else return false;
-
-    if (!parseInt(items[++i], "bx=", &subBinX)) return false;
-    if (!parseInt(items[++i], "by=", &subBinY)) return false;
-    if (!parseDouble(items[++i], "pw=", &ccd_pixel_width)) return false;
-    if (!parseDouble(items[++i], "ph=", &ccd_pixel_height)) return false;
-    if (!parseDouble(items[++i], "fl=", &focalMm)) return false;
-    if (!parseDouble(items[++i], "ang=", &calibrationAngle)) return false;
-    setAngle(calibrationAngle);
-    if (!parseDouble(items[++i], "angR=", &calibrationAngleRA)) return false;
-    if (!parseDouble(items[++i], "angD=", &calibrationAngleDEC)) return false;
-
+    if (!parseInt(items[++i], "bx=", &m_Calibration.SubBinX)) return false;
+    if (!parseInt(items[++i], "by=", &m_Calibration.SubBinY)) return false;
+    if (!parseDouble(items[++i], "pw=", &m_Calibration.CCDPixelWidth)) return false;
+    if (!parseDouble(items[++i], "ph=", &m_Calibration.CCDPixelHeight)) return false;
+    if (!parseDouble(items[++i], "fl=", &m_Calibration.FocalLength)) return false;
+    // Mutable parameters
+    if (!parseDouble(items[++i], "ang=", &m_Calibration.Angle)) return false;
+    if (!parseDouble(items[++i], "angR=", &m_Calibration.AngleRA)) return false;
+    if (!parseDouble(items[++i], "angD=", &m_Calibration.AngleDEC)) return false;
     // Switched from storing raPulseMsPerPixel to ...PerArcsecond and similar for DEC.
     // The below allows back-compatibility for older stored calibrations.
-    if (!parseDouble(items[++i], "ramspas=", &raPulseMsPerArcsecond))
+    if (!parseDouble(items[++i], "ramspas=", &m_Calibration.PulseRA))
     {
         // Try the old version
         double raPulseMsPerPixel;
         if (parseDouble(items[i], "ramspp=", &raPulseMsPerPixel) && (xArcsecondsPerPixel() > 0))
         {
             // The previous calibration only worked on square pixels.
-            raPulseMsPerArcsecond = raPulseMsPerPixel / xArcsecondsPerPixel();
+            m_Calibration.PulseRA = raPulseMsPerPixel / xArcsecondsPerPixel();
         }
         else return false;
     }
-    if (!parseDouble(items[++i], "decmspas=", &decPulseMsPerArcsecond))
+    if (!parseDouble(items[++i], "decmspas=", &m_Calibration.PulseDEC))
     {
         // Try the old version
         double decPulseMsPerPixel;
         if (parseDouble(items[i], "decmspp=", &decPulseMsPerPixel) && (yArcsecondsPerPixel() > 0))
         {
             // The previous calibration only worked on square pixels.
-            decPulseMsPerArcsecond = decPulseMsPerPixel / yArcsecondsPerPixel();
+            m_Calibration.PulseDEC = decPulseMsPerPixel / yArcsecondsPerPixel();
         }
         else return false;
     }
-
     int tempInt;
     if (!parseInt(items[++i], "swap=", &tempInt)) return false;
-    decSwap = static_cast<bool>(tempInt);
+    m_Calibration.DecSwap = static_cast<bool>(tempInt);
     if (fixOldCalibration)
     {
         qCDebug(KSTARS_EKOS_GUIDE) << QString("Modifying v1.0 calibration");
-        decSwap = !decSwap;
+        m_Calibration.DecSwap = !m_Calibration.DecSwap;
     }
-    calibrationDecSwap = decSwap;
     QString tempStr;
     if (!parseString(items[++i], "ra=", &tempStr)) return false;
     dms nullDms;
-    calibrationRA = tempStr.size() == 0 ? nullDms : dms::fromString(tempStr, true);
+    m_Calibration.MountRA = tempStr.size() == 0 ? nullDms : dms::fromString(tempStr, true);
     if (!parseString(items[++i], "dec=", &tempStr)) return false;
-    calibrationDEC = tempStr.size() == 0 ? nullDms : dms::fromString(tempStr, false);
+    m_Calibration.MountDEC = tempStr.size() == 0 ? nullDms : dms::fromString(tempStr, false);
+    m_Calibration.MountDEC.reduceToRange(dms::MINUSPI_TO_PI); // Correction for negative DEC!
     if (!parseInt(items[++i], "side=", &tempInt)) return false;
-    calibrationPierSide = static_cast<ISD::Mount::PierSide>(tempInt);
+    m_Calibration.PierSide = static_cast<ISD::Mount::PierSide>(tempInt);
     if (!parseString(items[++i], "when=", &tempStr)) return false;
     // Don't keep the time. It's just for reference.
     if (items[++i] != "calEnd") return false;
-    initialized = true;
     return true;
 }
 
-void Calibration::save() const
-{
-    QString encoding = serialize();
-    Options::setSerializedCalibration(encoding);
-    qCDebug(KSTARS_EKOS_GUIDE) << QString("Saved calibration: %1").arg(encoding);
-}
-
-bool Calibration::restore(ISD::Mount::PierSide currentPierSide,
-                          bool reverseDecOnPierChange, int currentBinX, int currentBinY,
-                          const dms *declination)
-{
-    return restore(Options::serializedCalibration(), currentPierSide,
-                   reverseDecOnPierChange, currentBinX, currentBinY, declination);
-}
-
-double Calibration::correctRA(double raMsPerArcsec, const dms &calibrationDec, const dms &currentDec)
+double Calibration::correctRAPulse(double raMsPerArcsec, const dms calibrationDec, const dms currentDec)
 {
     constexpr double MAX_DEC = 60.0;
     // Don't use uninitialized dms values.
@@ -506,56 +538,67 @@ double Calibration::correctRA(double raMsPerArcsec, const dms &calibrationDec, c
     return adjustedMsPerArcsecond;
 }
 
-bool Calibration::restore(const QString &encoding, ISD::Mount::PierSide currentPierSide,
-                          bool reverseDecOnPierChange, int currentBinX, int currentBinY,
-                          const dms *currentDeclination)
+double Calibration::getDiffDEC(const dms currentDEC)
 {
-    // Fail if we couldn't read the calibration.
-    if (!restore(encoding))
+    return dms(m_Calibration.AngleDEC).deltaAngle(dms(currentDEC)).Degrees();
+}
+
+void Calibration::setPierside(const ISD::Mount::PierSide CurrentPierside)
+{
+    m_Current.PierSide = CurrentPierside;
+}
+
+void Calibration::updateRADECAngle(double CamRotation)
+{
+    setAngle(CamRotation);
+    double DiffRotation = dms(CamRotation).deltaAngle(dms(m_Calibration.Angle)).Degrees();
+    m_Current.AngleDEC = KSUtils::range360(m_Calibration.AngleDEC + DiffRotation);
+    m_Current.AngleRA = KSUtils::range360(m_Calibration.AngleRA + DiffRotation);
+}
+
+void Calibration::updateRAPulse(const dms currentDEC)
+{
+    m_Current.PulseRA = correctRAPulse(m_Calibration.PulseRA, m_Calibration.MountDEC, currentDEC);
+}
+
+// TODO: Integrate handling for AltAz!!
+// After a flip a subsequent alignment shall be compulsory!
+void Calibration::updatePierside(ISD::Mount::PierSide *Pierside, double *Rotation,
+                                 FRType *FlipRotReady, const bool NoRotatorDevice)
+{
+    // updatePerside() is always called from internalguider.cpp with PIER_UNKOWN
+    if (*Pierside == ISD::Mount::PIER_UNKNOWN)
+        // RotatorUtils is always activated in Camera::setRotator(), so pierside should be catched
+        *Pierside = RotatorUtils::Instance()->getMountPierside();
+
+    if (m_Current.PierSide != *Pierside)
     {
-        qCDebug(KSTARS_EKOS_GUIDE) << "Could not restore calibration--couldn't read.";
-        return false;
+        m_Current.PierSide = *Pierside;
+        // With an active rotator device:
+        // After a flip and a subsequent align "m_Current.Angle" is already set to the rotated
+        // camera PA via newPA() in [Align], hence there is nothing to do.
+        if (NoRotatorDevice)
+        {
+            // With "ManualRotator" or with no rotator(Options::astrometryUseRotator() = false):
+            // ManualRotator is bound to [Capture] and [Align] (both technically and logically),
+            // while there is no association with [Guide].
+            // Because there is no rotator in [Guide] "FlipRotReady->Done" is always false.
+            if (!FlipRotReady->Done)
+                *Rotation = KSUtils::range360(*Rotation + 180);
+            else if (FlipRotReady->Pierside != *Pierside)
+                *Rotation = KSUtils::range360(*Rotation + 180);
+        }
     }
-    // We don't restore calibrations where either the calibration or the current pier side
-    // is unknown.
-    if (calibrationPierSide == ISD::Mount::PIER_UNKNOWN ||
-            currentPierSide == ISD::Mount::PIER_UNKNOWN)
-    {
-        qCDebug(KSTARS_EKOS_GUIDE) << "Could not restore calibration--pier side unknown.";
-        return false;
-    }
+    FlipRotReady->Done = false;
+}
 
-    if (currentDeclination != nullptr)
-        raPulseMsPerArcsecond = correctRA(raPulseMsPerArcsecond, calibrationDEC, *currentDeclination);
+void Calibration::updateDECSwap(ISD::Mount::PierSide CurrentPierside)
+{
+    m_Current.DecSwap = (CurrentPierside == m_Calibration.PierSide) ? m_Calibration.DecSwap : !m_Calibration.DecSwap;
+}
 
-    subBinXused = currentBinX;
-    subBinYused = currentBinY;
-
-    // Succeed if the calibration was on the same side of the pier as we're currently using.
-    if (currentPierSide == calibrationPierSide)
-    {
-        qCDebug(KSTARS_EKOS_GUIDE) << "Restored calibration--same pier side. Encoding:" << encoding;
-        return true;
-    }
-
-    // Otherwise, swap the angles and succeed.
-    angle = angle + 180.0;
-    while (angle >= 360.0)
-        angle = angle - 360.0;
-    while (angle < 0.0)
-        angle = angle + 360.0;
-    // Although angle is already set, we do this to set the rotation matrix.
-    setAngle(angle);
-
-    // Note the negation in testing the option.
-    // Since above the angle rotated by 180 degrees, both RA and DEC have already reversed.
-    // If the user says not to reverse DEC, then we re-reverse by setting decSwap.
-    // Doing it this way makes the option consistent with other programs the user may be familiar with (PHD2).
-    if (!reverseDecOnPierChange)
-        decSwap = !calibrationDecSwap;
-
-    qCDebug(KSTARS_EKOS_GUIDE)
-            << QString("Restored calibration--flipped angles. Angle %1, swap %2 ms/as: %3 %4. Encoding: %5")
-            .arg(angle).arg(decSwap ? "T" : "F").arg(raPulseMsPerArcsecond).arg(decPulseMsPerArcsecond).arg(encoding);
-    return true;
+void Calibration::updateBinXY(int CurrentBinX, int CurrentBinY)
+{
+    m_Current.SubBinX = CurrentBinX;
+    m_Current.SubBinY = CurrentBinY;
 }

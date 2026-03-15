@@ -9,6 +9,7 @@
 #include "internalguider.h"
 
 #include "ekos_guide_debug.h"
+#include "ekos/manager.h"
 #include "gmath.h"
 #include "Options.h"
 #include "auxiliary/kspaths.h"
@@ -17,9 +18,12 @@
 #include "guidealgorithms.h"
 #include "ksnotification.h"
 #include "ekos/auxiliary/stellarsolverprofileeditor.h"
+#include "ekos/auxiliary/rotatorutils.h"
 #include "fitsviewer/fitsdata.h"
 #include "../guideview.h"
 #include "ekos/guide/opsguide.h"
+#include "indi/driverinfo.h"
+#include "indi/clientmanager.h"
 
 #include <KMessageBox>
 
@@ -41,6 +45,9 @@ InternalGuider::InternalGuider()
     pmath.reset(new cgmath());
     connect(pmath.get(), &cgmath::newStarPosition, this, &InternalGuider::newStarPosition);
     connect(pmath.get(), &cgmath::guideStats, this, &InternalGuider::guideStats);
+
+    // Connections for recalculation of guide parameters (only for internal guider)
+    connect(this, &Ekos::GuideInterface::setGuiderRotation, this, &InternalGuider::setGuiderRotation);
 
     state = GUIDE_IDLE;
     m_DitherOrigin = QVector3D(0, 0, 0);
@@ -646,6 +653,120 @@ void InternalGuider::setDitherSettled()
     }
 }
 
+void InternalGuider::setGuiderRotation(ISD::Camera *CamDevice, const double PAAngle)
+{
+    QString CameraName = CamDevice->getDeviceName();
+    QString RotatorName = RotatorUtils::Instance()->getRotatorName(CameraName);
+    //  Set rotation for guide simulator ...
+    if (CameraName == "Guide Simulator")
+    {
+        // ... if there is no rotator device AND guider is coupled to "manual rotator".
+        if (RotatorName.isEmpty() && Options::guideManualRotator())
+        {
+            auto SimulationProperties = CamDevice->getNumber("SIMULATOR_SETTINGS");
+            if (SimulationProperties)
+            {
+                auto RotationOffsetAngle = SimulationProperties.findWidgetByName("SIM_ROTATION");
+                if (RotationOffsetAngle)
+                {
+                    // The "SIM_ROTATION" property is responsible for a correctly rotated
+                    // simulated image. Because with "manual rotator" the virtual rotator
+                    // angle is fixed to 0° the camera PA is equal to the offset.
+                    // (->guide_simulator.cpp in INDILib)
+                    auto clientManager = CamDevice->getDriverInfo()->getClientManager();
+                    RotationOffsetAngle->setValue(PAAngle);
+                    clientManager->sendNewProperty(SimulationProperties);
+                }
+            }
+        }
+    }
+    // Adapt guiding parameters, so as to enable reusing calibration after a rotation of the
+    // guide camera, if there is a rotator device OR guider is coupled to "manual rotator" ...
+    if (!RotatorName.isEmpty() || Options::guideManualRotator())
+    {
+        // The rotation matrix is calculated by the full-circle-angle ("rotation")
+        m_CamRotation.Angle = KSUtils::range360(PAAngle);
+        m_CamRotation.Set = true;
+        m_FlipRotation = { .Done = true, .Pierside = pierSide };
+        if (!(CalState == CALIBRATION_OK && adaptGuideParameters()))
+            CalState = CALIBRATION_UNDEFINED;
+        // WCS property ROTATION for guide camera shall hold the "orientation" (astrometry.net)
+        // in contrast to the "rotation" (KStars). (->align.cpp.)
+        // WCS is enabled in Guide::setCamera for Options::reuseGuideCalibration = true.
+        auto OrientationProperty = CamDevice->getNumber("CCD_ROTATION");
+        if (OrientationProperty)
+        {
+            auto OrientationAngle = OrientationProperty.findWidgetByName("CCD_ROTATION_VALUE");
+            if (OrientationAngle)
+            {
+                auto clientManager = CamDevice->getDriverInfo()->getClientManager();
+                OrientationAngle->setValue(KSUtils::positionAngleToRotation(PAAngle));
+                clientManager->sendNewProperty(OrientationProperty);
+            }
+
+        }
+        else
+            emit newLog(i18n("Internal guider could not find WCS rotation property of %1...", CameraName));
+    }
+    else
+    {
+        // ... or adapt pierside if there is no rotator OR guider is NOT coupled.
+        m_FlipRotation = { .Done = false, .Pierside = pierSide };
+        if (!(CalState == CALIBRATION_OK && adaptGuideParameters()))
+            CalState = CALIBRATION_UNDEFINED;
+    }
+
+}
+
+// TODO: Integrate handling for AltAz!!
+bool InternalGuider:: adaptGuideParameters()
+{
+    // adapt BinXY -----------------------------------------------------------------
+    pmath->getMutableCalibration()->updateBinXY(subBinX, subBinY);
+    // adapt pierside and camera flip rotation--------------------------------------
+    QString CameraName = Ekos::Manager::Instance()->guideModule()->camera();
+    bool NoRotatorDevice = !Ekos::Manager::Instance()->existRotatorController(CameraName);
+    // Unfortunately "pierSide" is updated to slow for EQ german mount, so ...
+    ISD::Mount::PierSide NewPierside = ISD::Mount::PIER_UNKNOWN;
+    pmath->getMutableCalibration()->
+    updatePierside(&NewPierside, &m_CamRotation.Angle, &m_FlipRotation, NoRotatorDevice);
+    if (NewPierside == ISD::Mount::PIER_UNKNOWN)
+    {
+        emit newLog(i18n("Error while updating pierside for camera rotation: Pierside unkown!"));
+        return false;
+    }
+    emit newLog(i18n("Pierside is now ") +
+                ((NewPierside == ISD::Mount::PIER_WEST) ? i18n("West") : i18n("East")));
+    // adapt DEC swap -------------------------------------------------------------
+    if (!Options::reverseDecOnPierSideChange()) // -> (*)
+    {
+        pmath->getMutableCalibration()->updateDECSwap(NewPierside);
+        emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
+    }
+    emit newLog(i18n("%1 rotation is now %2 (calibration with %3)",
+                     CameraName, QString::number(m_CamRotation.Angle, 'f', 2),
+                     QString::number(m_CalRotationAngle, 'f', 2)));
+    // adapt camera rotation angle -------------------------------------------------
+    pmath->getMutableCalibration()->updateRADECAngle(m_CamRotation.Angle);
+
+    // adapt RA pulse length -------------------------------------------------------
+    pmath->getMutableCalibration()->updateRAPulse(mountDEC);
+    emit newLog(i18n("RApulse now %1ms/arcsec calculated for DEC = %2",
+                     QString::number(pmath->getCalibration().raPulseMillisecondsPerArcsecond(), 'f', 2),
+                     mountDEC.toDMSString(true)));
+    displayRADEC(QString("Camera Rotation = %1").arg(m_CamRotation.Angle, 0, 'f', 1),
+                 pmath->getCalibration().getRAAngle(),
+                 pmath->getCalibration().getDECAngle());
+    return true;
+}
+// (*) [reverseDecOnPierChange] describes a feature of the mount. If after a flip
+// the mount returns a reversed DEC direction (for coordinate and pulse) the option
+// has to be set to true and there is no DecSwap needed (i.e. DecSwap remains false).
+// Otherwise internalguider must reverse DEC direction and the option has to be set
+// to false which in turn reverts the DecSwap of the calibration in case the current pierside differs
+// from the one used for calibration.
+// Doing it this way makes the option consistent with other programs the user may be familiar with (PHD2).
+
 bool InternalGuider::calibrate()
 {
     bool ccdInfo = true, scopeInfo = true;
@@ -689,13 +810,23 @@ bool InternalGuider::calibrate()
         return true;
     }
 
-    if (restoreCalibration())
+    if ((CalState != CALIBRATION_OK) && restoreGuideParameters())
     {
-        calibrationProcess.reset();
-        emit newStatus(Ekos::GUIDE_CALIBRATION_SUCCESS);
+
+        reset();
+        m_CalRotationAngle = pmath->getCalibration().getAngle();
+        // Set inverted DEC pulses for vertically reflected image (with OAG/ONAG)
+        // emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
+        if (!m_CamRotation.Set) // not already set in newPositionAngle()
+            m_CamRotation = { .Set = true, .Angle = m_CalRotationAngle };
         KSNotification::event(QLatin1String("CalibrationRestored"),
                               i18n("Guiding calibration restored"), KSNotification::Guide);
-        reset();
+        CalState = CALIBRATION_OK;
+    }
+    if (CalState == CALIBRATION_OK)
+    {
+        adaptGuideParameters();
+        emit newStatus(Ekos::GUIDE_CALIBRATION_SUCCESS);
         return true;
     }
 
@@ -746,7 +877,8 @@ void InternalGuider::iterateCalibration()
 
         if (pmath->isStarLost())
         {
-            emit newLog(i18n("Lost track of the guide star. Try increasing the square size or reducing pulse duration."));
+            emit newLog(i18n("Lost track of the guide star."
+                             "Try increasing binning, square size or reducing pulse duration."));
             emit newStatus(Ekos::GUIDE_CALIBRATION_ERROR);
             emit calibrationUpdate(GuideInterface::CALIBRATION_MESSAGE_ONLY,
                                    i18n("Guide Star lost."));
@@ -792,10 +924,13 @@ void InternalGuider::iterateCalibration()
     }
     else if (status == GUIDE_CALIBRATION_SUCCESS)
     {
+        m_CalRotationAngle = pmath->getCalibration().getAngle();
+        pmath->setTargetPosition(calibrationStartX, calibrationStartY);
+        // Set inverted DEC pulses for vertically reflected image (e.g. OAG)
+        // emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
         KSNotification::event(QLatin1String("CalibrationSuccessful"),
                               i18n("Guiding calibration completed successfully"), KSNotification::Guide);
-        emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
-        pmath->setTargetPosition(calibrationStartX, calibrationStartY);
+        CalState = CALIBRATION_OK;
         reset();
     }
 }
@@ -823,6 +958,23 @@ void InternalGuider::setImageData(const QSharedPointer<FITSData> &data)
     }
 }
 
+void InternalGuider::displayRADEC(const QString message,
+                                  const double RotationRA,
+                                  const double RotationDEC)
+{
+    ROT_Z_RA = GuiderUtils::RotateZ(M_PI * RotationRA / 180.0);
+    ROT_Z_DEC = GuiderUtils::RotateZ(M_PI * RotationDEC / 180.0);
+    GuiderUtils::Vector Base, Rotated;
+    Base.x = 10;
+    Base.y = 0;
+    Rotated = Base * ROT_Z_RA;
+    emit calibrationUpdate(GuideInterface::RA_OUT_OK, "", Rotated.x, Rotated.y);
+    Rotated = Base * ROT_Z_DEC;
+    emit calibrationUpdate(GuideInterface::DEC_OUT_OK,
+                           i18n(message.toLatin1().data()), Rotated.x, Rotated.y);
+
+}
+
 void InternalGuider::reset()
 {
     qCDebug(KSTARS_EKOS_GUIDE) << "Resetting internal guider...";
@@ -839,18 +991,19 @@ bool InternalGuider::clearCalibration()
 {
     Options::setSerializedCalibration("");
     pmath->getMutableCalibration()->reset();
+    m_CamRotation = { .Set = false, .Angle = 0 };
+    CalState = CALIBRATION_UNDEFINED;
+    emit newStatus(GUIDE_IDLE);
     return true;
 }
 
-bool InternalGuider::restoreCalibration()
+bool InternalGuider::restoreGuideParameters()
 {
-    bool success = Options::reuseGuideCalibration() &&
-                   pmath->getMutableCalibration()->restore(
-                       pierSide, Options::reverseDecOnPierSideChange(),
-                       subBinX, subBinY, &mountDEC);
-    if (success)
-        emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
-    return success;
+    bool OK = false;
+    if (Options::reuseGuideCalibration() &&
+            pmath->getMutableCalibration()->restore(pierSide, mountDEC))
+        OK = true;
+    return OK;
 }
 
 void InternalGuider::setStarPosition(QVector3D &starCenter)
@@ -1367,4 +1520,5 @@ const Calibration &InternalGuider::getCalibration() const
 {
     return pmath->getCalibration();
 }
+
 }

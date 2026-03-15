@@ -2169,7 +2169,7 @@
          <default>1</default>
       </entry>
       <entry name="PAOffset" type="Double">
-         <label>Position angle offset</label>
+         <label>Position angle offset of capture camera</label>
          <default>0</default>
       </entry>
       <entry name="PAPierSide" type="UInt">
@@ -3067,6 +3067,10 @@
          <label>Which Algorithm to use to compute guiding pulses for DEC (0 standard, 1 Hysteresis, 2 Linear).</label>
          <default>0</default>
       </entry>
+      <entry name="PAOffsetGuide" type="Double">
+         <label>Position angle offset of guide camera</label>
+         <default>0</default>
+      </entry>
       <entry name="PHD2Host" type="String">
          <label>Host name of external PHD2 service</label>
          <default>localhost</default>
@@ -3386,6 +3390,14 @@
       </entry>
       <entry name="ReverseDecOnPierSideChange" type="Bool">
          <label>Reverse DEC on pier-side change when reusing calibration.</label>
+         <default>false</default>
+      </entry>
+      <entry name="GuideReflectFrames" type="Bool">
+         <label>Guide frames are reflected vertically before passing them to the guider process.</label>
+         <default>false</default>
+      </entry>
+      <entry name="GuideManualRotator" type="Bool">
+         <label>Guide camera is rotated together with main camera in "Manual Rotator" mode.</label>
          <default>false</default>
       </entry>
       <entry name="GuideCalibrationBacklash" type="Bool">

@@ -150,7 +150,7 @@ class CameraProcess : public QObject
          * @param device pointer to rotator INDI device
          * @return True if added successfully, false if duplicate or failed to add.
          */
-        bool setRotator(ISD::Rotator * device);
+        bool setRotator(ISD::Rotator * device, const QString CameraName);
 
         /**
          * @brief setDustCap Connect to the given dust cap device (and deconnect
