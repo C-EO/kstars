@@ -1672,6 +1672,13 @@ bool SchedulerProcess::checkINDIState()
             {
                 appendLogText(i18n("INDI devices ready. Proceeding to post-startup phase..."));
                 moduleState()->setStartupState(STARTUP_POST_DEVICES);
+                // Return false so the scheduler re-enters checkStartupState() on the next tick
+                // and properly executes the STARTUP_POST_DEVICES phase (post-startup queue)
+                // before proceeding to executeJob(). Without this, the race between
+                // checkINDIState() setting STARTUP_POST_DEVICES and checkStartupState() seeing it
+                // causes the post-startup queue (e.g. unpark mount) to be skipped when Ekos/INDI
+                // is already running from the previous night.
+                return false;
             }
 
             return true;
@@ -3240,6 +3247,18 @@ void SchedulerProcess::queueItemFailed(QueueItem *item, const QString &error)
         moduleState()->setShutdownState(SHUTDOWN_ERROR);
         return;
     }
+
+    // Fallback: task failed during active job execution (e.g., an inline unpark task added by
+    // startSlew() when the post-startup queue was skipped). Without this, the executor stops
+    // running (isRunning() == false), isMountParked() still returns true, and the scheduler
+    // re-adds a new unpark task on every tick — creating an infinite 1-second retry loop.
+    // Aborting the job lets the scheduler re-evaluate and retry after the configured delay.
+    if (activeJob())
+    {
+        appendLogText(i18n("Warning: task failed during job '%1': %2. Marking job aborted.", activeJob()->getName(), error));
+        activeJob()->setState(SCHEDJOB_ABORTED);
+        findNextJob();
+    }
 }
 
 bool SchedulerProcess::appendEkosScheduleList(const QString &fileURL)
@@ -4074,15 +4093,15 @@ bool SchedulerProcess::isMountParked()
         // Deduce state of mount - see getParkingStatus in mount.cpp
         switch (static_cast<ISD::ParkStatus>(parkingStatus.toInt()))
         {
-                //            case Mount::PARKING_OK:     // INDI switch ok, and parked
-                //            case Mount::PARKING_IDLE:   // INDI switch idle, and parked
+            //            case Mount::PARKING_OK:     // INDI switch ok, and parked
+            //            case Mount::PARKING_IDLE:   // INDI switch idle, and parked
             case ISD::PARK_PARKED:
                 return true;
 
-                //            case Mount::UNPARKING_OK:   // INDI switch idle or ok, and unparked
-                //            case Mount::PARKING_ERROR:  // INDI switch error
-                //            case Mount::PARKING_BUSY:   // INDI switch busy
-                //            case Mount::UNPARKING_BUSY: // INDI switch busy
+            //            case Mount::UNPARKING_OK:   // INDI switch idle or ok, and unparked
+            //            case Mount::PARKING_ERROR:  // INDI switch error
+            //            case Mount::PARKING_BUSY:   // INDI switch busy
+            //            case Mount::UNPARKING_BUSY: // INDI switch busy
             default:
                 return false;
         }
