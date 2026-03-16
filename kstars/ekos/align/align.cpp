@@ -3474,7 +3474,7 @@ void Align::setWCSEnabled(bool enable)
     }
     else
     {
-        appendLogText(i18n("%+: World Coordinate System (WCS) is disabled.", Align::camera()));
+        appendLogText(i18n("%1: World Coordinate System (WCS) is disabled.", Align::camera()));
         wcs_disable->setState(ISS_ON);
         m_wcsSynced    = false;
     }

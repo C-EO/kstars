@@ -732,7 +732,7 @@ bool InternalGuider:: adaptGuideParameters()
     updatePierside(&NewPierside, &m_CamRotation.Angle, &m_FlipRotation, NoRotatorDevice);
     if (NewPierside == ISD::Mount::PIER_UNKNOWN)
     {
-        emit newLog(i18n("Error while updating pierside for camera rotation: Pierside unkown!"));
+        emit newLog(i18n("Error while updating pierside for camera rotation: Pierside unknown!"));
         return false;
     }
     emit newLog(i18n("Pierside is now ") +
@@ -877,7 +877,7 @@ void InternalGuider::iterateCalibration()
 
         if (pmath->isStarLost())
         {
-            emit newLog(i18n("Lost track of the guide star."
+            emit newLog(i18n("Lost track of the guide star. "
                              "Try increasing binning, square size or reducing pulse duration."));
             emit newStatus(Ekos::GUIDE_CALIBRATION_ERROR);
             emit calibrationUpdate(GuideInterface::CALIBRATION_MESSAGE_ONLY,

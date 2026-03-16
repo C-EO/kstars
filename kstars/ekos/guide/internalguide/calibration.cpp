@@ -566,7 +566,7 @@ void Calibration::updateRAPulse(const dms currentDEC)
 void Calibration::updatePierside(ISD::Mount::PierSide *Pierside, double *Rotation,
                                  FRType *FlipRotReady, const bool NoRotatorDevice)
 {
-    // updatePerside() is always called from internalguider.cpp with PIER_UNKOWN
+    // updatePerside() is always called from internalguider.cpp with PIER_UNKNOWN
     if (*Pierside == ISD::Mount::PIER_UNKNOWN)
         // RotatorUtils is always activated in Camera::setRotator(), so pierside should be catched
         *Pierside = RotatorUtils::Instance()->getMountPierside();
