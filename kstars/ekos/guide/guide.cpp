@@ -1612,7 +1612,11 @@ bool Guide::dither()
     ditherLabel->setText("Dither");
     ditherLabel->setFont(QFont(font().family(), 10));
 
-    if (guiderType == GUIDE_INTERNAL && !Options::ditherWithOnePulse())
+    // In streaming mode the frame pipeline is always running — captureOneFrame() is a no-op
+    // and processData() discards every frame while state == GUIDE_DITHERING, so the
+    // capture()-then-wait-for-setCaptureComplete() path used below would stall forever.
+    // Send the dither command directly, exactly like one-pulse dither does.
+    if (guiderType == GUIDE_INTERNAL && !Options::ditherWithOnePulse() && !m_StreamingGuide)
     {
         if (m_State != GUIDE_GUIDING)
             capture();
