@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
 "PO-Revision-Date: 2025-09-14 15:11+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -6749,10 +6749,10 @@ msgstr ""
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "Световната координатна система (WCS) е активирана."
 
-#: ekos/align/align.cpp:3477
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 #| msgid "World Coordinate System (WCS) is disabled."
-msgid "%+: World Coordinate System (WCS) is disabled."
+msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "Световната координатна система (WCS) е деактивирана."
 
 #: ekos/align/align.cpp:3496
@@ -22910,12 +22910,6 @@ msgstr ""
 "PHD2 Guide Star Image (Водеща звезда), като използвате полето за отметка "
 "SubFrame (Подкадър)."
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "Световната координатна система (WCS) е деактивирана."
-
 #: ekos/guide/guide.cpp:631
 #, fuzzy, kde-format
 #| msgid "Connection to the guide CCD is lost."
@@ -22977,114 +22971,114 @@ msgid "The mount is parked. Unpark to start guiding."
 msgstr ""
 "Монтировката е паркирана. Отпаркирайте, за да започнете да направлявате."
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr "Открита е промяна на страната на статива. Изчистване на калибрирането."
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, kde-format
 msgid "Mount is moving. Resetting calibration..."
 msgstr "Монтировката се движи. Нулиране на калибрирането..."
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, kde-format
 msgid "Mount is parking. Aborting guide..."
 msgstr "Монтировката се паркира. Прекъсване на гидирането..."
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, kde-format
 msgid "Mount is slewing. Aborting guide..."
 msgstr "Монтировката се завъртва. Прекъсване на гидирането..."
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, kde-format
 msgid "Calibration is cleared."
 msgstr "Калибрирането е изчистено."
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr "Свързан външен гид модул."
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr "Външният гид модул е изключен."
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, kde-format
 msgid "Calibration completed."
 msgstr "Калибрирането е завършено."
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, kde-format
 msgid "Calibration started."
 msgstr "Калибрирането започна."
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, kde-format
 msgid "Guiding resumed."
 msgstr "Гидирането е подновено."
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, kde-format
 msgid "Autoguiding running."
 msgstr "Автонасочването работи."
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, kde-format
 msgid "Autoguiding aborted."
 msgstr "Автоматичното насочване е прекъснато."
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, kde-format
 msgid "Guiding suspended."
 msgstr "Гидирането е преустановено."
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, kde-format
 msgid "Manual dithering in progress."
 msgstr "Извършва се ръчно дитъринг."
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, kde-format
 msgid "Dithering in progress."
 msgstr "Извършва се дитъринг."
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
 msgstr[0] "Пост-дитериране се установява за %1 секунда..."
 msgstr[1] "Установяване след дитер за %1 секунди..."
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, kde-format
 msgid "Dithering failed."
 msgstr "Неуспешно дитериране."
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, kde-format
 msgid "Dithering completed successfully."
 msgstr "Дитърингът завърши успешно."
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, kde-format
 msgid "%1x%1 guide binning is not supported."
 msgstr "%1x%1 биниране на гидиране не се поддържа."
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr "Експозицията е неуспешна. Рестартиране на експозицията..."
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr "Не може да промени видът на гидирането, докато то е активно."
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
@@ -23093,37 +23087,37 @@ msgstr ""
 "Предупреждение: Разрешено е нулиране на водещото калибриране. Препоръчва се "
 "тази опция да бъде изключена за PHD2."
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, kde-format
 msgid "Calibration failed to start."
 msgstr "Неуспешно стартиране на калибрирането."
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, kde-format
 msgid "Auto star selected."
 msgstr "Избрана е автоматична звезда."
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, kde-format
 msgid "Failed to select an auto star."
 msgstr "Неуспешно избиране на автоматична звезда."
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr "Избор на водеща звезда за калибриране."
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, kde-format
 msgid "dx (pixels)"
 msgstr "dx (пиксела)"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, kde-format
 msgid "dy (pixels)"
 msgstr "dy (пиксела)"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
@@ -23133,7 +23127,7 @@ msgstr ""
 "изображения.  Но все пак ще виждате изображението на водещата звезда, когато "
 "насочвате."
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -23145,7 +23139,7 @@ msgstr ""
 "за да активирате заснемането на изображения.  Можете да го активирате отново "
 "преди гидирането"
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr "Не може да се промени активният оптична система, докато PHD2 е свързан"
@@ -23889,7 +23883,7 @@ msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, kde-format
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:738
@@ -23930,8 +23924,8 @@ msgstr "Калибрирането на водачите е възстанове
 #| "Lost track of the guide star. Try increasing the square size or reducing "
 #| "pulse duration."
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
 "Загубих следите на водещата звезда. Опитайте да увеличите размера на "
 "квадрата или да намалите продължителността на импулса."
@@ -93765,6 +93759,11 @@ msgstr "Цвят на фона:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Задаване на цвета на фона."
+
+#, fuzzy
+#~| msgid "World Coordinate System (WCS) is disabled."
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "Световната координатна система (WCS) е деактивирана."
 
 #~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
 #~ msgstr "DEC посоката е обърната (RA-DEC вече е стандартна система CCW)."

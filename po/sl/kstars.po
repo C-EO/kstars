@@ -38,8 +38,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
-"PO-Revision-Date: 2026-03-15 08:44+0100\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
+"PO-Revision-Date: 2026-03-16 07:15+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -6444,18 +6444,14 @@ msgid "Image received."
 msgstr "Slika prejeta."
 
 #: ekos/align/align.cpp:1965
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
 "the list."
 msgstr ""
 "V vašem sistemu v navedenih imenikih indeksnih datotek ni bilo najdenih "
-"nobenih indeksnih datotek.  Prenesite nekaj indeksnih datotek ali dodajte "
+"nobenih indeksnih datotek. Prenesite nekaj indeksnih datotek ali dodajte "
 "pravilen imenik na seznam."
 
 #: ekos/align/align.cpp:2022
@@ -6534,10 +6530,9 @@ msgid "Target is within %1 degrees of solution coordinates."
 msgstr "Cilj je znotraj %1 stopinj koordinat rešitve."
 
 #: ekos/align/align.cpp:2363
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "%1 position angle is %2 degrees."
-msgstr "Položajni kot kamere je %1 stopinj."
+msgstr "%1 položajni kot je %2 stopinj."
 
 #: ekos/align/align.cpp:2400 ekos/align/align.cpp:2558
 #, kde-format
@@ -6562,7 +6557,7 @@ msgstr "Cilj je znotraj sprejemljivega območja."
 #: ekos/align/align.cpp:2504
 #, kde-format
 msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
-msgstr ""
+msgstr "Glavni PA: %1, Glavni odmik: %2, Odmik vodila: %3"
 
 #: ekos/align/align.cpp:2540
 #, kde-format
@@ -6602,16 +6597,14 @@ msgstr ""
 "informacije o napaki."
 
 #: ekos/align/align.cpp:2657
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting %1 position angle to %2 degrees ..."
-msgstr "Nastavljanje položajnega kota na %1 stopinj …"
+msgstr "Nastavljanje %1 položajnega kota na %2 stopinj …"
 
 #: ekos/align/align.cpp:2669
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "%1 position angle is within acceptable range."
-msgstr "Kot položaja kamere je v sprejemljivem območju."
+msgstr "%1 kot položaja je v sprejemljivem območju."
 
 #: ekos/align/align.cpp:2683
 #, kde-format
@@ -6742,18 +6735,17 @@ msgstr "Naloži sliko"
 #, kde-format
 msgid "Warning: Camera module & Align module have to use the same train!"
 msgstr ""
+"Opozorilo: Modul kamere in modul poravnave morata uporabljati isti vlak!"
 
 #: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
-msgstr "Svetovni koordinatni sistem (WCS) je omogočen."
+msgstr "%1: Svetovni koordinatni sistem (WCS) je omogočen."
 
-#: ekos/align/align.cpp:3477
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%+: World Coordinate System (WCS) is disabled."
-msgstr "Svetovni koordinatni sistem (WCS) je onemogočen."
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
+#, kde-format
+msgid "%1: World Coordinate System (WCS) is disabled."
+msgstr "%1: Svetovni koordinatni sistem (WCS) je onemogočen."
 
 #: ekos/align/align.cpp:3496
 #, kde-format
@@ -22548,12 +22540,6 @@ msgstr ""
 "želiteuporabiti polne okvirje zunanjih vodil ali samo prejeti sliko PHD2 "
 "vodilne zvezdez uporabo potrditvenega polja podposnetka."
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "Svetovni koordinatni sistem (WCS) je onemogočen."
-
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
@@ -22610,82 +22596,82 @@ msgstr "Ni zaznanega nobenega vodnika. Preveri vodnik (guide-via) v optiki."
 msgid "The mount is parked. Unpark to start guiding."
 msgstr "Montaža je parkirana. Odparkiraj jo, da se začne z vodenjem."
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr "Zaznana je sprememba strani stojala. Čiščenje umerjanja."
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, kde-format
 msgid "Mount is moving. Resetting calibration..."
 msgstr "Stativ se premika. Ponastavljanje umerjanja…"
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, kde-format
 msgid "Mount is parking. Aborting guide..."
 msgstr "Montaža se parkira. Prekinjanje vodenja..."
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, kde-format
 msgid "Mount is slewing. Aborting guide..."
 msgstr "Montaža se obrača. Prekinjanje vodenja..."
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, kde-format
 msgid "Calibration is cleared."
 msgstr "Umerjanje je počiščeno."
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr "Zunanji vodnik povezan."
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr "Prekinjena povezava z zunanjim vodnikom."
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, kde-format
 msgid "Calibration completed."
 msgstr "Umerjanje zaključeno."
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, kde-format
 msgid "Calibration started."
 msgstr "Umerjanje začeto."
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, kde-format
 msgid "Guiding resumed."
 msgstr "Vodenje se nadaljuje."
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, kde-format
 msgid "Autoguiding running."
 msgstr "Samodejno vodenje teče."
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, kde-format
 msgid "Autoguiding aborted."
 msgstr "Samodejno vodenje prekinjeno."
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, kde-format
 msgid "Guiding suspended."
 msgstr "Vodenje v pripravljenosti."
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, kde-format
 msgid "Manual dithering in progress."
 msgstr "Ročno stresanje v teku."
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, kde-format
 msgid "Dithering in progress."
 msgstr "Stresanje v teku."
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
@@ -22694,32 +22680,32 @@ msgstr[1] "Umirjanje po stresanju za %1 sekundo…"
 msgstr[2] "Umirjanje po stresanju za %1 sekundi…"
 msgstr[3] "Umirjanje po stresanju za %1 sekunde…"
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, kde-format
 msgid "Dithering failed."
 msgstr "Stresanje ni uspelo."
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, kde-format
 msgid "Dithering completed successfully."
 msgstr "Stresanje se je uspešno zaključilo."
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, kde-format
 msgid "%1x%1 guide binning is not supported."
 msgstr "Združevanje vodil %1x%1 ni podprto."
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr "Osvetljevanje ni uspelo. Ponovno zaganjanje osvetljevanja …"
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr "Ni mogoče spremeniti vrste vodnika med dejavnostjo."
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
@@ -22728,37 +22714,37 @@ msgstr ""
 "Opozorilo: Ponovno nastavljanje umerjanja vodnika je omogočeno. "
 "Priporočljivo je to možnost izklopiti za PHD2."
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, kde-format
 msgid "Calibration failed to start."
 msgstr "Umerjanja ni uspelo zagnati."
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, kde-format
 msgid "Auto star selected."
 msgstr "Izbrana samodejno zaznana zvezda."
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, kde-format
 msgid "Failed to select an auto star."
 msgstr "Izbor samodejno zaznane zvezde ni uspel."
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr "Izberite vodilno zvezdo za umerjanje."
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, kde-format
 msgid "dx (pixels)"
 msgstr "dx (sl. točk)"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, kde-format
 msgid "dy (pixels)"
 msgstr "dy (sl. točk)"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
@@ -22767,7 +22753,7 @@ msgstr ""
 "Kamera PHD2 za Ekos ni na voljo, zato zajetih slik ne morete videti.  Toda "
 "še vedno boste videli sliko vodilne zvezde, ko boste vodili."
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22778,7 +22764,7 @@ msgstr ""
 "neodkljukana. Zdaj počistite to polje, da omogočite zajem slik. Lahko ga "
 "ponovno omogočite pred vodenjem"
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr "Ni mogoče zamenjati aktivnega optike, medtem ko je povezana s PHD2"
@@ -23499,6 +23485,8 @@ msgid ""
 "Vertically reflected image detected: Try to check option 'Use reflected "
 "guide frames' in [Guide Options/Calibration]"
 msgstr ""
+"Zaznana navpično odsevna slika: Poskusite v [Možnosti vodila/Kalibracija] "
+"označiti možnost 'Uporabi odsevne vodilne okvirje'."
 
 #: ekos/guide/internalguide/gmath.cpp:511
 #, kde-format
@@ -23522,12 +23510,12 @@ msgstr "Opozorilo: Ročno stresanje ni uspelo."
 #: ekos/guide/internalguide/internalguider.cpp:709
 #, kde-format
 msgid "Internal guider could not find WCS rotation property of %1..."
-msgstr ""
+msgstr "Notranji vodnik ni mogel najti lastnosti vrtenja WCS %1..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unknown!"
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Napaka pri posodabljanju rotacije kamere na strani stojala: Neznana stran "
 "stojala!"
@@ -23535,13 +23523,12 @@ msgstr ""
 #: ekos/guide/internalguide/internalguider.cpp:738
 #, kde-format
 msgid "Pierside is now "
-msgstr ""
+msgstr "Stran stojala je zdaj"
 
 #: ekos/guide/internalguide/internalguider.cpp:746
-#, fuzzy, kde-format
-#| msgid "Camera rotation is now %1 (Original calibration with %2)"
+#, kde-format
 msgid "%1 rotation is now %2 (calibration with %3)"
-msgstr "Rotacija kamere je zdaj %1 (prvotna kalibracija z %2)"
+msgstr "%1 rotacija je zdaj %2 (prvotna kalibracija z %3)"
 
 #: ekos/guide/internalguide/internalguider.cpp:754
 #, kde-format
@@ -23566,11 +23553,11 @@ msgstr "Umerjanje vodenja je obnovljeno"
 #: ekos/guide/internalguide/internalguider.cpp:880
 #, fuzzy, kde-format
 #| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#| "Lost track of the guide star.Try increasing binning, square size or "
+#| "reducing pulse duration."
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
 "Sled za vodilno zvezdo je izgubljena. Poskusite povečati velikost kvadrata "
 "ali skrajšati trajanje pulza."
@@ -23761,15 +23748,12 @@ msgstr "Položaj Y vodilne zvezde"
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:286
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>The Master Dark to use to calibrate lights.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>These are the current calibration parameters.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Master Flat za uporabo kalibriranja luči.</p></body></"
+"<html><head/><body><p>To so trenutni parametri kalibriranja.</p></body></"
 "html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationsValues)
@@ -23792,10 +23776,9 @@ msgstr "xxxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/opscalibration.ui:323
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "DEC Rotation"
-msgstr "Vrtenje"
+msgstr "Rotacija DEC"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, label_11)
@@ -23806,10 +23789,9 @@ msgstr "ms/ločne sekunde"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/guide/opscalibration.ui:344
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "RA Pulse"
-msgstr "Impulz:"
+msgstr "Impulz RA"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, dec_cal_degrees_unit)
@@ -23825,24 +23807,21 @@ msgstr "°"
 
 #. i18n: ectx: property (text), widget (QLabel, racal)
 #: ekos/guide/opscalibration.ui:415
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "RA Rotation"
-msgstr "Vrtenje"
+msgstr "Rotacija RA"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/guide/opscalibration.ui:444
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "DEC Pulse"
-msgstr "Impulz:"
+msgstr "Impulz DEC"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/guide/opscalibration.ui:468
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "Rotation Offset"
-msgstr "Vrtenje"
+msgstr "Odmik rotacije"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideCalibrationBacklash)
 #: ekos/guide/opscalibration.ui:524
@@ -23862,12 +23841,7 @@ msgstr "Odstrani zračnost DEC pri umerjanju vodnika"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:543
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -23875,16 +23849,14 @@ msgid ""
 "body></html>"
 msgstr ""
 "<html><head/><body><p>Če je odkljukano,  vedno znova kalibriraj, ko se je "
-"vodenje začelo. To pogosto ni potrebno, kadar je opravljeno kakovostna "
-"kalibracija in kamera vodila ni bila zavrtena ali ponovno nameščena.</p></"
-"body></html>"
+"vodenje začelo. To pogosto ni potrebno, kadar je opravljena kakovostna "
+"kalibracija in vodilo kamere ni bilo ponovno nameščeno.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:549
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset guide calibration after each mount slew"
-msgstr "Ponovno nastavi kalibracijo vodnika po vsakem obratu montaže"
+msgstr "Ponovno nastavi kalibracijo vodila po vsakem obratu montaže"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:562
@@ -23908,28 +23880,21 @@ msgstr "Obrni impulze vodila DEC pri menjavi strani stojala"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:584
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
 "works on opposite sides of the meridian if the pier-side can be "
 "automatically determined from your mount.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Shranite in poskusite ponovno uporabiti kalibracije. "
-"To deluje le na nasprotnih straneh meridiana, če je stran stojala mogoče "
-"samodejno določiti z vaše montaže. Za poskus tega ne smete izbrati možnosti "
-"\"Ponastavi vodilo ob obratu\" zgoraj.</p></body></html>"
+"To deluje celo na nasprotnih straneh meridiana, če je stran stojala mogoče "
+"samodejno določiti iz vaše montaže.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:587
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible"
-msgstr "Shrani in ponovno uporabi kalibracijo vodnika, kadar je to mogoče."
+msgstr "Shrani in ponovno uporabi kalibracijo vodila, kadar je to mogoče"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:611
@@ -23940,13 +23905,15 @@ msgid ""
 "drift in case of mirrored captures (e.g. with an OAG or ONAG-train).</p></"
 "body></html>"
 msgstr ""
+"<html><head/><body><p>Preden slike vodil posredujete procesu vodenja, jih "
+"zrcaljite na osi x.<br/>To zagotavlja pravilno analizo premika montaže v "
+"primeru zrcaljenih zajemanj (npr. z vlakom OAG ali ONAG).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:614
-#, fuzzy, kde-format
-#| msgid "Delete focus frames?"
+#, kde-format
 msgid "Use reflected guide frames"
-msgstr "Naj zbrišem okvirje fokusiranja?"
+msgstr "Uporabi odsevne okvirje vodil"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:627
@@ -23958,12 +23925,17 @@ msgid ""
 ">Please note that an active option &quot;Automatic and Manual Rotator "
 "Control&quot; in Rotator Settings is a precondition.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Označite to možnost, če želite ponovno uporabiti "
+"kalibracijo vodila, vendar ni rotacijske naprave in se vodilna kamera ročno "
+"vrti skupaj s slikovno kamero (npr. z vlakom OAG). <br/>Upoštevajte, da je "
+"predpogoj aktivna možnost &quot;Samodejno in ročno upravljanje "
+"rotatorja&quot; v nastavitvah rotatorja.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:630
 #, kde-format
 msgid "Couple guide camera on \"Manual Rotator\""
-msgstr ""
+msgstr "Uparite kamere na \"ročnem rotatorju\""
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
@@ -30719,6 +30691,8 @@ msgstr "Post-zaustavitvena čakalna vrsta ni uspela: %1"
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
+"Opozorilo: naloga ni uspela med opravilom '%1': %2. Označevanje opravila kot "
+"prekinjenega."
 
 #: ekos/scheduler/schedulerprocess.cpp:3324
 #, kde-format
@@ -42559,10 +42533,9 @@ msgstr "Množitelj položajnega kota"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of capture camera"
-msgstr "Odmik kota položaja"
+msgstr "Odmik kota položaja kamere zajema"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -44256,10 +44229,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PAOffsetGuide), group (Guide)
 #: kstars.kcfg:3071
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of guide camera"
-msgstr "Odmik kota položaja"
+msgstr "Odmik kota položaja vodilne kamere"
 
 #. i18n: ectx: label, entry (PHD2Host), group (Guide)
 #: kstars.kcfg:3075
@@ -44643,6 +44615,7 @@ msgid ""
 "Guide frames are reflected vertically before passing them to the guider "
 "process."
 msgstr ""
+"Okvirji vodila se zrcalijo navpično pred posredovanjem procesu vodenja."
 
 #. i18n: ectx: label, entry (GuideManualRotator), group (Scheduler)
 #: kstars.kcfg:3400
@@ -44650,6 +44623,7 @@ msgstr ""
 msgid ""
 "Guide camera is rotated together with main camera in \"Manual Rotator\" mode."
 msgstr ""
+"Vodilna kamera se v načinu \"Ročni rotator\" vrti skupaj z glavno kamero."
 
 #. i18n: ectx: label, entry (GuideCalibrationBacklash), group (Scheduler)
 #: kstars.kcfg:3404
@@ -92584,6 +92558,9 @@ msgstr "Barva ozadja:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Nastavite barvo ozadja."
+
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "%+: Svetovni koordinatni sistem (WCS) je onemogočen."
 
 #~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
 #~ msgstr "Smer DEC obrnjena (RA-DEC je zdaj standardni sistem CCW)."

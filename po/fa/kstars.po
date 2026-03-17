@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
 "PO-Revision-Date: 2024-08-14 00:39+0330\n"
 "Last-Translator: Mohi Mirdamadi <mohi.pub@gmail.com>\n"
 "Language-Team: fa\n"
@@ -7200,10 +7200,10 @@ msgstr ""
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "برگزیدن سیستم مختصات برای پرونده خروجی"
 
-#: ekos/align/align.cpp:3477
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 #| msgid "Select Coordinate System for Output File"
-msgid "%+: World Coordinate System (WCS) is disabled."
+msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "برگزیدن سیستم مختصات برای پرونده خروجی"
 
 #: ekos/align/align.cpp:3496
@@ -22663,12 +22663,6 @@ msgid ""
 "using the SubFrame checkbox."
 msgstr ""
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "Select Coordinate System for Output File"
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "برگزیدن سیستم مختصات برای پرونده خروجی"
-
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
@@ -22731,178 +22725,178 @@ msgstr ""
 msgid "The mount is parked. Unpark to start guiding."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Mount Ekar"
 msgid "Mount is moving. Resetting calibration..."
 msgstr "مونت اکار"
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Mount Ekar"
 msgid "Mount is parking. Aborting guide..."
 msgstr "مونت اکار"
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, fuzzy, kde-format
 #| msgid "Date && Location"
 msgid "Mount is slewing. Aborting guide..."
 msgstr "تاریخ و محل"
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "Calibration is cleared."
 msgstr "کارخواه"
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "Calibration completed."
 msgstr "کارخواه"
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "Calibration started."
 msgstr "کارخواه"
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, fuzzy, kde-format
 msgid "Guiding resumed."
 msgstr "بارگذاری اشیاء آسمان"
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, fuzzy, kde-format
 msgid "Autoguiding running."
 msgstr "بارگذاری اشیاء آسمان"
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, fuzzy, kde-format
 msgid "Autoguiding aborted."
 msgstr "بارگذاری اشیاء آسمان"
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, fuzzy, kde-format
 msgid "Guiding suspended."
 msgstr "بارگذاری اشیاء آسمان"
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Goose Creek"
 msgid "Manual dithering in progress."
 msgstr "گوس کریک"
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Goose Creek"
 msgid "Dithering in progress."
 msgstr "گوس کریک"
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, fuzzy, kde-format
 #| msgctxt "Advanced URLs: description or category"
 #| msgid "Other"
 msgid "Dithering failed."
 msgstr "دیگر"
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, fuzzy, kde-format
 #| msgid "Select Input Coordinates"
 msgid "Dithering completed successfully."
 msgstr "برگزیدن مختصات ورودی"
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "%1x%1 guide binning is not supported."
 msgstr "تلسکوپ رادیویی"
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
 "this option off for PHD2."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "Calibration failed to start."
 msgstr "کارخواه"
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, fuzzy, kde-format
 #| msgid "No object selected."
 msgid "Auto star selected."
 msgstr "بدون شیء برگزیده."
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "Failed to select an auto star."
 msgstr "خرابی در بارگذاری تصویر"
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, fuzzy, kde-format
 #| msgid "Select a Star"
 msgid "Select a guide star to calibrate."
 msgstr "برگزیدن یک ستاره"
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, fuzzy, kde-format
 msgid "dx (pixels)"
 msgstr " تصویردانه"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, fuzzy, kde-format
 msgid "dy (pixels)"
 msgstr " تصویردانه"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
 "images.  But you will still see the Guide Star Image when you guide."
 msgstr ""
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22910,7 +22904,7 @@ msgid ""
 "enable it before Guiding"
 msgstr ""
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr ""
@@ -23631,7 +23625,7 @@ msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, kde-format
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:738
@@ -23669,8 +23663,8 @@ msgstr "کارخواه"
 #: ekos/guide/internalguide/internalguider.cpp:880
 #, kde-format
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:884
@@ -100262,6 +100256,11 @@ msgstr "کم رنگ شدن دنباله‌ها نسبت به رنگ زمینه"
 #| msgid "The color for the sky background."
 msgid "Set the color for the background."
 msgstr "رنگ برای زمینه آسمان."
+
+#, fuzzy
+#~| msgid "Select Coordinate System for Output File"
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "برگزیدن سیستم مختصات برای پرونده خروجی"
 
 #, fuzzy
 #~| msgid "Client"

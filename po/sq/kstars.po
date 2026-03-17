@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeedu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
 "PO-Revision-Date: 2021-03-25 15:08-0400\n"
 "Last-Translator: Agron Selimaj <as9902613@gmail.com>\n"
 "Language-Team: kdeshqip\n"
@@ -6827,10 +6827,10 @@ msgstr ""
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "Rrjeti i Koordinatave"
 
-#: ekos/align/align.cpp:3477
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 #| msgid "Coordinate Grid"
-msgid "%+: World Coordinate System (WCS) is disabled."
+msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "Rrjeti i Koordinatave"
 
 #: ekos/align/align.cpp:3496
@@ -22059,12 +22059,6 @@ msgid ""
 "using the SubFrame checkbox."
 msgstr ""
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "Coordinate Grid"
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "Rrjeti i Koordinatave"
-
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
@@ -22124,177 +22118,177 @@ msgstr ""
 msgid "The mount is parked. Unpark to start guiding."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, fuzzy, kde-format
 #| msgid "Coordinates"
 msgid "Mount is moving. Resetting calibration..."
 msgstr "Koordinatat"
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, fuzzy, kde-format
 #| msgid "Coordinates"
 msgid "Mount is parking. Aborting guide..."
 msgstr "Koordinatat"
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, fuzzy, kde-format
 #| msgctxt "Image/info menu item (should be translated)"
 #| msgid "Daily Solar Images"
 msgid "Mount is slewing. Aborting guide..."
 msgstr "Imazhe të Përditshme Diellore"
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, fuzzy, kde-format
 #| msgid "Declination"
 msgid "Calibration is cleared."
 msgstr "Këndi"
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, fuzzy, kde-format
 #| msgid "Declination"
 msgid "Calibration completed."
 msgstr "Këndi"
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, fuzzy, kde-format
 #| msgid "Declination"
 msgid "Calibration started."
 msgstr "Këndi"
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, fuzzy, kde-format
 #| msgid "Guides"
 msgid "Guiding resumed."
 msgstr "Guidat"
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, fuzzy, kde-format
 #| msgid "Guides"
 msgid "Autoguiding running."
 msgstr "Guidat"
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, fuzzy, kde-format
 #| msgid "Guides"
 msgid "Autoguiding aborted."
 msgstr "Guidat"
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, fuzzy, kde-format
 #| msgid "Guides"
 msgid "Guiding suspended."
 msgstr "Guidat"
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, fuzzy, kde-format
 #| msgid "Coordinates"
 msgid "Manual dithering in progress."
 msgstr "Koordinatat"
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, fuzzy, kde-format
 #| msgid "Coordinates"
 msgid "Dithering in progress."
 msgstr "Koordinatat"
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, fuzzy, kde-format
 #| msgid "Coordinates"
 msgid "Dithering failed."
 msgstr "Koordinatat"
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, fuzzy, kde-format
 #| msgid "Coordinates"
 msgid "Dithering completed successfully."
 msgstr "Koordinatat"
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, fuzzy, kde-format
 #| msgid "Telescope"
 msgid "%1x%1 guide binning is not supported."
 msgstr "Teleskopi"
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
 "this option off for PHD2."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, fuzzy, kde-format
 #| msgid "Declination"
 msgid "Calibration failed to start."
 msgstr "Këndi"
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, fuzzy, kde-format
 #| msgid "Info Box Selected"
 msgid "Auto star selected."
 msgstr "Kutia e Informacionit u Zgjodh"
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, fuzzy, kde-format
 #| msgid "Failed to open INDI Driver file: %1"
 msgid "Failed to select an auto star."
 msgstr "Dështuam në hapjen e skedarit të driverave INDI: %1"
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr ""
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, kde-format
 msgid "dx (pixels)"
 msgstr ""
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, kde-format
 msgid "dy (pixels)"
 msgstr ""
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
 "images.  But you will still see the Guide Star Image when you guide."
 msgstr ""
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22302,7 +22296,7 @@ msgid ""
 "enable it before Guiding"
 msgstr ""
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr ""
@@ -23018,7 +23012,7 @@ msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, kde-format
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:738
@@ -23056,8 +23050,8 @@ msgstr "Këndi"
 #: ekos/guide/internalguide/internalguider.cpp:880
 #, kde-format
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:884
@@ -92252,6 +92246,11 @@ msgstr ""
 #, kde-format
 msgid "Set the color for the background."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Coordinate Grid"
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "Rrjeti i Koordinatave"
 
 #, fuzzy
 #~| msgid "Declination"

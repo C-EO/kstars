@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
 "PO-Revision-Date: 2020-05-14 11:43+0300\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -6816,10 +6816,10 @@ msgstr ""
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "Maailma koordinaatsüsteem (WCS) on keelatud."
 
-#: ekos/align/align.cpp:3477
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 #| msgid "World Coordinate System (WCS) is disabled."
-msgid "%+: World Coordinate System (WCS) is disabled."
+msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "Maailma koordinaatsüsteem (WCS) on keelatud."
 
 #: ekos/align/align.cpp:3496
@@ -22571,12 +22571,6 @@ msgid ""
 "using the SubFrame checkbox."
 msgstr ""
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "Maailma koordinaatsüsteem (WCS) on keelatud."
-
 #: ekos/guide/guide.cpp:631
 #, fuzzy, kde-format
 #| msgid "Connection to the guide CCD is lost."
@@ -22637,162 +22631,162 @@ msgstr ""
 msgid "The mount is parked. Unpark to start guiding."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, kde-format
 msgid "Mount is moving. Resetting calibration..."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, kde-format
 msgid "Mount is parking. Aborting guide..."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, kde-format
 msgid "Mount is slewing. Aborting guide..."
 msgstr ""
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, kde-format
 msgid "Calibration is cleared."
 msgstr "Kalibreerimine on puhastatud."
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr "Väline gideerija ühendatud."
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr "Väline gideerija lahutatud."
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, kde-format
 msgid "Calibration completed."
 msgstr "Kalibreerimine on tehtud."
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, kde-format
 msgid "Calibration started."
 msgstr "Kalibreerimine alustatud."
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, kde-format
 msgid "Guiding resumed."
 msgstr "Gideerimisega alustati uuesti."
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, fuzzy, kde-format
 #| msgid "Autoguiding resumed."
 msgid "Autoguiding running."
 msgstr "Automaatgideerimisega alustati uuesti."
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, kde-format
 msgid "Autoguiding aborted."
 msgstr "Automaatne gideerimine katkestatud."
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, kde-format
 msgid "Guiding suspended."
 msgstr "Gideerimine peatati."
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, kde-format
 msgid "Manual dithering in progress."
 msgstr "Käsitsi pseudotoonimine käib."
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, kde-format
 msgid "Dithering in progress."
 msgstr "Pseudotoonimine käib."
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, kde-format
 msgid "Dithering failed."
 msgstr "Pseudotoonimine nurjus."
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, kde-format
 msgid "Dithering completed successfully."
 msgstr "Pseudotoonimine lõpetati edukalt."
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, fuzzy, kde-format
 #| msgid "Bit depth %1 is not supported."
 msgid "%1x%1 guide binning is not supported."
 msgstr "Bitisügavus %1 ei ole toetatud."
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr "Säritamine nurjus. Säritamine taaskäivitatakse..."
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr "Gideerija tüüpi ei saa muuta, kui see on tegevuses."
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
 "this option off for PHD2."
 msgstr ""
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, kde-format
 msgid "Calibration failed to start."
 msgstr "Kalibreerimise alustamine nurjus."
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, kde-format
 msgid "Auto star selected."
 msgstr "Juhttäht on valitud"
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, kde-format
 msgid "Failed to select an auto star."
 msgstr "Juhttähe valimine nurjus"
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr "Juhttähe valimine kalibreerimiseks."
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, fuzzy, kde-format
 #| msgid "x (pixels)"
 msgid "dx (pixels)"
 msgstr "x (pikslit)"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, fuzzy, kde-format
 #| msgid "y (pixels)"
 msgid "dy (pixels)"
 msgstr "y (pikslit)"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
 "images.  But you will still see the Guide Star Image when you guide."
 msgstr ""
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22800,7 +22794,7 @@ msgid ""
 "enable it before Guiding"
 msgstr ""
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr ""
@@ -23535,7 +23529,7 @@ msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, kde-format
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:738
@@ -23575,8 +23569,8 @@ msgstr "Gideerimise kalibreerimine nurjus vigadega"
 #| "Lost track of the guide star. Try increasing the square size or reducing "
 #| "pulse duration."
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
 "Kaotati silmist juhttäht. Püüa suurendada ruudu suurust või vähendada "
 "impulsi kestust."
@@ -92761,6 +92755,11 @@ msgstr "Taustavärv:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Värvi määramine taustaks."
+
+#, fuzzy
+#~| msgid "World Coordinate System (WCS) is disabled."
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "Maailma koordinaatsüsteem (WCS) on keelatud."
 
 #, fuzzy
 #~| msgid "Calibrated"

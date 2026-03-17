@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
 "PO-Revision-Date: 2026-03-14 11:39+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -6658,10 +6658,10 @@ msgstr ""
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "نظام الإحداثيات العالمي (WCS) مُمكَّن."
 
-#: ekos/align/align.cpp:3477
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 #| msgid "World Coordinate System (WCS) is disabled."
-msgid "%+: World Coordinate System (WCS) is disabled."
+msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "نظام الإحداثيات العالمي (WCS) معطَّل."
 
 #: ekos/align/align.cpp:3496
@@ -22166,12 +22166,6 @@ msgstr ""
 "الخارجية الكاملة أو تستقبل صورة نجم دليل PHD2 فقط عبر مربع علامة «الإطار "
 "الفرعي»."
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "نظام الإحداثيات العالمي (WCS) معطَّل."
-
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
@@ -22227,82 +22221,82 @@ msgstr "لم يُكتشف أي دليل. تحقق من «دليل عبر» في 
 msgid "The mount is parked. Unpark to start guiding."
 msgstr "الحامل متوقف. أزل الإيقاف لبدء الدليل."
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr "اكتشف تغيير جانب الركيزة. أزل المعايرة."
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, kde-format
 msgid "Mount is moving. Resetting calibration..."
 msgstr "الحامل يتحرك. أعد تعيين المعايرة..."
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, kde-format
 msgid "Mount is parking. Aborting guide..."
 msgstr "الحامل يتوقف. أجهِض الدليل..."
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, kde-format
 msgid "Mount is slewing. Aborting guide..."
 msgstr "الحامل يجول. أجهِض الدليل..."
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, kde-format
 msgid "Calibration is cleared."
 msgstr "أُزيلت المعايرة."
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr "اتصل الدليل الخارجي."
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr "فُصل الدليل الخارجي."
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, kde-format
 msgid "Calibration completed."
 msgstr "اكتملت المعايرة."
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, kde-format
 msgid "Calibration started."
 msgstr "بدأت المعايرة."
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, kde-format
 msgid "Guiding resumed."
 msgstr "اِستأنِف التوجيه."
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, kde-format
 msgid "Autoguiding running."
 msgstr "الدليل الآلي يجري."
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, kde-format
 msgid "Autoguiding aborted."
 msgstr "أُجهِض الدليل الآلي."
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, kde-format
 msgid "Guiding suspended."
 msgstr "عُلِّق الدليل."
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, kde-format
 msgid "Manual dithering in progress."
 msgstr "التنخيل اليدوي قيد التقدم."
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, kde-format
 msgid "Dithering in progress."
 msgstr "التنخيل قيد التقدم."
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
@@ -22313,32 +22307,32 @@ msgstr[3] "استقرار بعد التنخيل لـ %1 ثوانٍ..."
 msgstr[4] "استقرار بعد التنخيل لـ %1 ثوانٍ..."
 msgstr[5] "استقرار بعد التنخيل لـ %1 ثوانٍ..."
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, kde-format
 msgid "Dithering failed."
 msgstr "فشل التنخيل."
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, kde-format
 msgid "Dithering completed successfully."
 msgstr "اكتمل التنخيل بنجاح."
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, kde-format
 msgid "%1x%1 guide binning is not supported."
 msgstr "تجميع دليل %1x%1 غير مدعوم."
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr "فشل التعريض. أعد بدء التعريض..."
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr "لا تغيّر نوع الدليل أثناء نشاطه."
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
@@ -22346,37 +22340,37 @@ msgid ""
 msgstr ""
 "تحذير: «إعادة تعيين معايرة الدليل» مُفعَّل. ينصح بإيقاف هذا الخيار لـ PHD2."
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, kde-format
 msgid "Calibration failed to start."
 msgstr "فشلت المعايرة في البدء."
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, kde-format
 msgid "Auto star selected."
 msgstr "اختار نجم آلي."
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, kde-format
 msgid "Failed to select an auto star."
 msgstr "فشل في اختيار نجم آلي."
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr "اختر نجم دليل لمعايرته."
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, kde-format
 msgid "dx (pixels)"
 msgstr "dx (بكسلات)"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, kde-format
 msgid "dy (pixels)"
 msgstr "dy (بكسلات)"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
@@ -22385,7 +22379,7 @@ msgstr ""
 "كاميرا PHD2 غير متاحة لـ إيكوس، لذا لا ترى الصور المُلتقطة. ولكنك ستظل ترى "
 "صورة نجم الدليل عندما توجِّه."
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22395,7 +22389,7 @@ msgstr ""
 "لاستقبال صور PHD2 بخلاف صورة نجم الدليل، يجب إلغاء تحديد «الإطار الفرعي».  "
 "أزل تحديده الآن لتمكين التقاطات صورك.  يمكنك إعادة تمكينه قبل الدليل"
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr "لا تغيّر النسق البصري النشط أثناء اتصال PHD2"
@@ -23156,7 +23150,7 @@ msgstr ""
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, fuzzy, kde-format
 #| msgid "Error while updating pierside for camera rotation: Pierside unknown!"
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr "خطأ أثناء تحديث جانب الركيزة لتدوير الكاميرا: جانب الركيزة غير معروف!"
 
 #: ekos/guide/internalguide/internalguider.cpp:738
@@ -23197,8 +23191,8 @@ msgstr "استعاد معايرة الدليل"
 #| "Lost track of the guide star. Try increasing the square size or reducing "
 #| "pulse duration."
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr "فقد تعقب النجم الدليل. حاول زيادة حجم المربع أو تقليل مدة النبضة."
 
 #: ekos/guide/internalguide/internalguider.cpp:884
@@ -91472,6 +91466,11 @@ msgstr "لون الخلفية:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "اضبط لون الخلفية."
+
+#, fuzzy
+#~| msgid "World Coordinate System (WCS) is disabled."
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "نظام الإحداثيات العالمي (WCS) معطَّل."
 
 #~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
 #~ msgstr ""

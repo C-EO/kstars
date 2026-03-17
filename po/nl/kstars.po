@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
-"PO-Revision-Date: 2026-03-15 14:17+0100\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
+"PO-Revision-Date: 2026-03-16 14:32+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -6440,18 +6440,14 @@ msgid "Image received."
 msgstr "Afbeelding ontvangen."
 
 #: ekos/align/align.cpp:1965
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
 "the list."
 msgstr ""
 "Geen indexbestanden gevonden op uw systeem in de gespecificeerde mappen met "
-"indexbestanden.  Download enige indexbestanden of voeg de juiste map toe aan "
+"indexbestanden. Download enige indexbestanden of voeg de juiste map toe aan "
 "de lijst."
 
 #: ekos/align/align.cpp:2022
@@ -6529,10 +6525,9 @@ msgid "Target is within %1 degrees of solution coordinates."
 msgstr "Doel is binnen %1 boogseconden van de oplossingscoördinaten."
 
 #: ekos/align/align.cpp:2363
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "%1 position angle is %2 degrees."
-msgstr "Positiehoek van camera is op %1 graden."
+msgstr "%1 positiehoek van camera is op %2 graden."
 
 #: ekos/align/align.cpp:2400 ekos/align/align.cpp:2558
 #, kde-format
@@ -6558,7 +6553,7 @@ msgstr "Doel is binnen acceptabel bereik."
 #: ekos/align/align.cpp:2504
 #, kde-format
 msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
-msgstr ""
+msgstr "Hoofd-PA: %1, Hoofd-offset: %2, opstellings-offset: %3"
 
 #: ekos/align/align.cpp:2540
 #, kde-format
@@ -6601,16 +6596,14 @@ msgstr ""
 "informatie over het mislukken te krijgen."
 
 #: ekos/align/align.cpp:2657
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting %1 position angle to %2 degrees ..."
-msgstr "Positiehoek van camera wordt ingesteld op %1 graden ..."
+msgstr "Positiehoek %1 wordt ingesteld op %2 graden ..."
 
 #: ekos/align/align.cpp:2669
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "%1 position angle is within acceptable range."
-msgstr "Positiehoek van camera is binnen acceptabele reeks."
+msgstr "%1 positiehoek is binnen een acceptabele reeks."
 
 #: ekos/align/align.cpp:2683
 #, kde-format
@@ -6741,18 +6734,17 @@ msgstr "Afbeelding Inlezen"
 #, kde-format
 msgid "Warning: Camera module & Align module have to use the same train!"
 msgstr ""
+"Waarschuwing: Camera module & uitlijnmodule moeten dezelfde trein gebruiken!"
 
 #: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
-msgstr "World Coordinate System (WCS) is ingeschakeld."
+msgstr "%1: World Coordinate System (WCS) is ingeschakeld."
 
-#: ekos/align/align.cpp:3477
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%+: World Coordinate System (WCS) is disabled."
-msgstr "World Coordinate System (WCS) is uitgezet."
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
+#, kde-format
+msgid "%1: World Coordinate System (WCS) is disabled."
+msgstr "%1: World Coordinate System (WCS) is uitgeschakeld."
 
 #: ekos/align/align.cpp:3496
 #, kde-format
@@ -22598,12 +22590,6 @@ msgstr ""
 "volledige externe volgframes wilt gebruiken, of alleen de afbeelding van de "
 "volg-ster voor PHD2, met behulp van het keuzevakje voor Subframe."
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "World Coordinate System (WCS) is uitgezet."
-
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
@@ -22661,115 +22647,115 @@ msgstr ""
 "De opstelling is geparkeerd. Haal die uit de parkeerstand en start het "
 "volgen."
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr ""
 "Pier-kant (kijkrichting) wijziging gedetecteerd. Calibratie wordt gewist."
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, kde-format
 msgid "Mount is moving. Resetting calibration..."
 msgstr "Opstelling beweegt. Reset van kalibratie..."
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, kde-format
 msgid "Mount is parking. Aborting guide..."
 msgstr "Opstelling wordt geparkeerd. Volgen wordt afgebroken..."
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, kde-format
 msgid "Mount is slewing. Aborting guide..."
 msgstr "Opstelling draait. Volgen gestopt..."
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, kde-format
 msgid "Calibration is cleared."
 msgstr "Kalibreren gewist."
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr "Verbonden met externe volger."
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr "Niet verbonden met externe volger."
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, kde-format
 msgid "Calibration completed."
 msgstr "Kalibratie voltooid."
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, kde-format
 msgid "Calibration started."
 msgstr "Kalibreren gestart."
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, kde-format
 msgid "Guiding resumed."
 msgstr "Volgen hervat"
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, kde-format
 msgid "Autoguiding running."
 msgstr "Automatisch volgen is actief."
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, kde-format
 msgid "Autoguiding aborted."
 msgstr "Autovolgen afgebroken."
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, kde-format
 msgid "Guiding suspended."
 msgstr "Volgen onderbroken."
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, kde-format
 msgid "Manual dithering in progress."
 msgstr "Er wordt met de hand geditherd."
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, kde-format
 msgid "Dithering in progress."
 msgstr "Er wordt geditherd."
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
 msgstr[0] "Instellen gedurende %1 seconde na ditheren..."
 msgstr[1] "Instellen gedurende %1 seconden na ditheren..."
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, kde-format
 msgid "Dithering failed."
 msgstr "Ditheren is mislukt."
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, kde-format
 msgid "Dithering completed successfully."
 msgstr "Ditheren met succes voltooid."
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, kde-format
 msgid "%1x%1 guide binning is not supported."
 msgstr "Binning bij volgen met %1x%1 wordt niet ondersteund."
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr "Belichten is mislukt. Belichten wordt herhaald..."
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr "Kan actief volgtype niet wijzigen."
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
@@ -22778,37 +22764,37 @@ msgstr ""
 "Waarschuwing: Reset van volgkalibratie is aan. U kunt deze optie beter "
 "uitzetten voor PHD2."
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, kde-format
 msgid "Calibration failed to start."
 msgstr "Kalibratie kon niet worden gestart."
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, kde-format
 msgid "Auto star selected."
 msgstr "Autoster geselecteerd."
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, kde-format
 msgid "Failed to select an auto star."
 msgstr "Autoster selecteren is mislukt.."
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr "Selecteer een te kalibreren volgster."
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, kde-format
 msgid "dx (pixels)"
 msgstr "dx (pixels)"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, kde-format
 msgid "dy (pixels)"
 msgstr "dy (pixels)"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
@@ -22818,7 +22804,7 @@ msgstr ""
 "afbeeldingen niet bekijken. Maar desondanks kunt u de afbeelding van de volg-"
 "ster zien bij het volgen."
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22829,7 +22815,7 @@ msgstr ""
 "als SubFrame niet is gekozen. Na dit uitschakelen kunt opnames maken. "
 "Voordat u gaat volgen kunt u dit weer aanzetten."
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr "Kan actieve optische trein niet wijzigen terwijl PHD2 is verbonden"
@@ -23544,6 +23530,8 @@ msgid ""
 "Vertically reflected image detected: Try to check option 'Use reflected "
 "guide frames' in [Guide Options/Calibration]"
 msgstr ""
+"Verticaal gespiegeld beeld gedetecteerd: Probeer de optie 'Gespiegelde "
+"volgframes gebruiken' te activeren in [Volgopties/Kalibratie]."
 
 #: ekos/guide/internalguide/gmath.cpp:511
 #, kde-format
@@ -23567,25 +23555,24 @@ msgstr "Waarschuwing: handmatig ditheren is mislukt."
 #: ekos/guide/internalguide/internalguider.cpp:709
 #, kde-format
 msgid "Internal guider could not find WCS rotation property of %1..."
-msgstr ""
+msgstr "De interne volger kon de WCS-rotatie-eigenschap van %1 niet vinden..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unknown!"
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Fout bij bijwerken van de richting voor camera draaiing: richting onbekend!"
 
 #: ekos/guide/internalguide/internalguider.cpp:738
 #, kde-format
 msgid "Pierside is now "
-msgstr ""
+msgstr "Richting is nu bekend"
 
 #: ekos/guide/internalguide/internalguider.cpp:746
-#, fuzzy, kde-format
-#| msgid "Camera rotation is now %1 (Original calibration with %2)"
+#, kde-format
 msgid "%1 rotation is now %2 (calibration with %3)"
-msgstr "Camera draaiing is nu %1 (oorspronkelijke kalibratie met %2)"
+msgstr "%1 draaiing is nu %2 (oorspronkelijke kalibratie met %3)"
 
 #: ekos/guide/internalguide/internalguider.cpp:754
 #, kde-format
@@ -23610,14 +23597,14 @@ msgstr "Kalibratie volgen hersteld"
 #: ekos/guide/internalguide/internalguider.cpp:880
 #, fuzzy, kde-format
 #| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#| "Lost track of the guide star.Try increasing binning, square size or "
+#| "reducing pulse duration."
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
-"Volgster volgen verloren. Probeer de grootte van het vierkant te vergroten "
-"of de pulsduur te verminderen."
+"Volgster volgen verloren. Probeer de binning, grootte van het vierkant te "
+"vergroten of de pulsduur te verminderen."
 
 #: ekos/guide/internalguide/internalguider.cpp:884
 #, kde-format
@@ -23807,16 +23794,13 @@ msgstr "Y-positie van de volgster"
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:286
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>The Master Dark to use to calibrate lights.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>These are the current calibration parameters.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>De te gebruiken Master Dark voor het kalibreren van "
-"lichten.</p></body></html>"
+"<html><head/><body><p>Dit zijn de huidige kalibratieparameters.</p></body></"
+"html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:289
@@ -23838,10 +23822,9 @@ msgstr "xxxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/opscalibration.ui:323
-#, fuzzy, kde-format
-#| msgid "CCD Rotation"
+#, kde-format
 msgid "DEC Rotation"
-msgstr "CCD-rotatie"
+msgstr "DEC-rotatie"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, label_11)
@@ -23852,10 +23835,9 @@ msgstr "ms/arcsec"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/guide/opscalibration.ui:344
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "RA Pulse"
-msgstr "Puls:"
+msgstr "RK-puls"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, dec_cal_degrees_unit)
@@ -23871,24 +23853,21 @@ msgstr "°"
 
 #. i18n: ectx: property (text), widget (QLabel, racal)
 #: ekos/guide/opscalibration.ui:415
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "RA Rotation"
-msgstr "Rotatie"
+msgstr "RK-rotatie"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/guide/opscalibration.ui:444
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "DEC Pulse"
-msgstr "Puls:"
+msgstr "DEC-puls:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/guide/opscalibration.ui:468
-#, fuzzy, kde-format
-#| msgid "Rotator angle offset"
+#, kde-format
 msgid "Rotation Offset"
-msgstr "Offset hoek rotator"
+msgstr "Rotatie-offset"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideCalibrationBacklash)
 #: ekos/guide/opscalibration.ui:524
@@ -23908,12 +23887,7 @@ msgstr "Speling DEC wissen in kalibratie volger"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:543
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -23922,13 +23896,12 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Indien geactiveerd,  altijd opnieuw kalibreren wanneer "
 "volgen is gestart. Dit is vaak niet nodig wanneer een goede kwaliteit "
-"kalibratie eerder is gedaan en de volgcamera niet is gedraaid opnieuw "
-"geïnstalleerd.</p></body></html>"
+"kalibratie eerder is gedaan en de volgcamera niet opnieuw geïnstalleerd is.</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:549
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset guide calibration after each mount slew"
 msgstr "Na elke beweging van de opstelling volgkalibratie resetten"
 
@@ -23954,12 +23927,7 @@ msgstr "Opstelling draait DEC pulsen om na wisselen van de zijde"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:584
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -23967,14 +23935,11 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Calibraties opslaan en proberen her te gebruiken. Dit "
 "werkt zelfs aan beide zijden van de meridiaan als de zijde automatisch "
-"bepaald kan worden uit uw opstelling. De bovenstaande optie \"Reset volgen "
-"bij verplaatsen\" moet niet geactiveerd zijn om dit te proberen.</p></body></"
-"html>"
+"bepaald kan worden uit uw opstelling.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:587
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible"
 msgstr "Volgkalibratie waar mogelijk opslaan en hergebruiken."
 
@@ -23987,13 +23952,16 @@ msgid ""
 "drift in case of mirrored captures (e.g. with an OAG or ONAG-train).</p></"
 "body></html>"
 msgstr ""
+"<html><head/><body><p>Spiegel de volgbeelden op de x-as voordat u ze "
+"doorgeeft aan het volgproces.<br/>Dit zorgt voor een correcte analyse van de "
+"opstellingsafwijking in geval van gespiegelde opnames (bijv. met een OAG- of "
+"ONAG-trein).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:614
-#, fuzzy, kde-format
-#| msgid "Select guide camera."
+#, kde-format
 msgid "Use reflected guide frames"
-msgstr "Selecteer volgcamera."
+msgstr "Gebruikt gespiegelde volgframes."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:627
@@ -24005,12 +23973,17 @@ msgid ""
 ">Please note that an active option &quot;Automatic and Manual Rotator "
 "Control&quot; in Rotator Settings is a precondition.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Activeer deze optie als u de volgkalibratie wilt "
+"hergebruiken, maar er geen rotator is en de volgcamera handmatig wordt "
+"gedraaid samen met de beeldvormingscamera (bijv. met een OAG-trein).<br/>Let "
+"op: een actieve optie \"Automatische en handmatige rotatiebediening\" in de "
+"rotatie-instellingen is een voorwaarde.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:630
 #, kde-format
 msgid "Couple guide camera on \"Manual Rotator\""
-msgstr ""
+msgstr "Koppel volgcamera op \"Handmatige Rotator\""
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
@@ -30770,6 +30743,8 @@ msgstr "Wachtrij ná afsluiten is mislukt: %1"
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
+"Waarschuwing: taak mislukt tijdens job '%1': %2. Taak wordt als afgebroken "
+"gemarkeerd."
 
 #: ekos/scheduler/schedulerprocess.cpp:3324
 #, kde-format
@@ -42725,10 +42700,9 @@ msgstr "Vermenigvuldigingsfactor positiehoek"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of capture camera"
-msgstr "Offset positiehoek"
+msgstr "Positiehoekoffset van opnamecamera"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -44440,10 +44414,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PAOffsetGuide), group (Guide)
 #: kstars.kcfg:3071
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of guide camera"
-msgstr "Offset positiehoek"
+msgstr "Positiehoekoffset van volgcamera"
 
 #. i18n: ectx: label, entry (PHD2Host), group (Guide)
 #: kstars.kcfg:3075
@@ -44829,6 +44802,8 @@ msgid ""
 "Guide frames are reflected vertically before passing them to the guider "
 "process."
 msgstr ""
+"Volgframes worden verticaal gespiegeld voordat ze naar het volgproces worden "
+"gestuurd."
 
 #. i18n: ectx: label, entry (GuideManualRotator), group (Scheduler)
 #: kstars.kcfg:3400
@@ -44836,6 +44811,8 @@ msgstr ""
 msgid ""
 "Guide camera is rotated together with main camera in \"Manual Rotator\" mode."
 msgstr ""
+"In de modus \"Handmatige rotatie\" wordt de volgcamera samen met de "
+"hoofdcamera gedraaid."
 
 #. i18n: ectx: label, entry (GuideCalibrationBacklash), group (Scheduler)
 #: kstars.kcfg:3404
@@ -92962,6 +92939,10 @@ msgstr "Achtergrondkleur:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Instellen van de kleur van de achtergrond."
+
+#~| msgid "World Coordinate System (WCS) is disabled."
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr "%+: World Coordinate System (WCS) is uitgeschakeld."
 
 #~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
 #~ msgstr "Richting van DEC omgekeerd (RA-DEC is nu standaard CCW-systeem)."

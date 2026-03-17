@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-16 02:04+0000\n"
-"PO-Revision-Date: 2026-03-15 06:42-0300\n"
+"POT-Creation-Date: 2026-03-17 02:06+0000\n"
+"PO-Revision-Date: 2026-03-16 08:47-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -6465,11 +6465,7 @@ msgid "Image received."
 msgstr "Imagem recebida."
 
 #: ekos/align/align.cpp:1965
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
@@ -6497,12 +6493,12 @@ msgstr "Resolvendo com limite dinâmico cego..."
 #: ekos/align/align.cpp:2066
 #, kde-format
 msgid "Loaded image does not have pierside information"
-msgstr "A imagem carregada não possui informações sobre o pierside"
+msgstr "A imagem carregada não possui informações sobre o lado do píer"
 
 #: ekos/align/align.cpp:2071
 #, kde-format
 msgid "Loaded image was taken on pierside %1"
-msgstr "A imagem carregada foi tirada no pierside %1"
+msgstr "A imagem carregada foi tirada no lado do píer %1"
 
 #: ekos/align/align.cpp:2147
 #, kde-format
@@ -6554,10 +6550,9 @@ msgid "Target is within %1 degrees of solution coordinates."
 msgstr "O alvo está dentro dos %1 graus das coordenadas da solução."
 
 #: ekos/align/align.cpp:2363
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "%1 position angle is %2 degrees."
-msgstr "O ângulo de posição da câmera é de %1 graus."
+msgstr "O ângulo de posição de %1 é de %2 graus."
 
 #: ekos/align/align.cpp:2400 ekos/align/align.cpp:2558
 #, kde-format
@@ -6582,7 +6577,7 @@ msgstr "O alvo está dentro do intervalo aceitável."
 #: ekos/align/align.cpp:2504
 #, kde-format
 msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
-msgstr ""
+msgstr "PA principal: %1, Deslocamento principal: %2, Deslocamento guia: %3"
 
 #: ekos/align/align.cpp:2540
 #, kde-format
@@ -6628,16 +6623,14 @@ msgstr ""
 "obter informações detalhadas sobre a falha."
 
 #: ekos/align/align.cpp:2657
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting %1 position angle to %2 degrees ..."
-msgstr "Definindo o ângulo de posição da câmera para %1 graus ..."
+msgstr "Definindo o ângulo de posição %1 para %2 graus ..."
 
 #: ekos/align/align.cpp:2669
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "%1 position angle is within acceptable range."
-msgstr "O ângulo de posição da câmera está dentro da faixa aceitável."
+msgstr "O ângulo de posição de %1 está dentro da faixa aceitável."
 
 #: ekos/align/align.cpp:2683
 #, kde-format
@@ -6769,19 +6762,20 @@ msgstr "Carregar imagem"
 #, kde-format
 msgid "Warning: Camera module & Align module have to use the same train!"
 msgstr ""
+"Atenção: O módulo de câmera e o módulo de alinhamento precisam usar o mesmo "
+"trem!"
 
 #: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
-msgstr "O Sistema Mundial de Coordenadas (WCS, sigla em inglês) está ativado."
-
-#: ekos/align/align.cpp:3477
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%+: World Coordinate System (WCS) is disabled."
 msgstr ""
-"O Sistema Mundial de Coordenadas (WCS, sigla em inglês) está desativado."
+"%1: o Sistema Mundial de Coordenadas (WCS, sigla em inglês) está ativado."
+
+#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
+#, kde-format
+msgid "%1: World Coordinate System (WCS) is disabled."
+msgstr ""
+"%1: o Sistema Mundial de Coordenadas (WCS, sigla em inglês) está desativado."
 
 #: ekos/align/align.cpp:3496
 #, kde-format
@@ -8311,8 +8305,8 @@ msgid ""
 msgstr ""
 "<html><head/><body><p><span style=\" font-weight:600;\">Política de "
 "inversão</span> determina como o rotador reage após uma inversão ou se o "
-"resultado de uma imagem de referência resolvida relata um pierside diferente "
-"em relação ao pierside da montagem real.</p></body></html>"
+"resultado de uma imagem de referência resolvida relata um lado do píer "
+"diferente em relação ao pierside da montagem real.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/align/opsalign.ui:339
@@ -15646,8 +15640,8 @@ msgstr ""
 "por exemplo: 'Claro', 'Viés', 'Escuro', 'Plano'...</li><li style=\" margin-"
 "top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-"
 "indent:0; text-indent:0px;\">Espaço reservado<span style=\" font-weight:704;"
-"\"> %e</span> ou <span style=\" font-weight:704;\">%exposure</span>: "
-"Aduração da exposição em segundos, com '_secs' como sufixo.</li><ul style="
+"\"> %e</span> ou <span style=\" font-weight:704;\">%exposure</span>: A "
+"duração da exposição em segundos, com '_secs' como sufixo.</li><ul style="
 "\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -"
 "qt-list-indent: 1;\"><li style=\" margin-top:0px; margin-bottom:0px; margin-"
 "left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Espaço "
@@ -22716,13 +22710,6 @@ msgstr ""
 "deseja usar os quadros-guia externos completos ou apenas receber a imagem da "
 "estrela-guia do PHD2 usando a caixa de seleção de sub-quadro."
 
-#: ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
-msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr ""
-"O Sistema Mundial de Coordenadas (WCS, sigla em inglês) está desativado."
-
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
@@ -22779,114 +22766,114 @@ msgstr "Nenhum guia detectado. Verifique a guia nos trens ópticos."
 msgid "The mount is parked. Unpark to start guiding."
 msgstr "A montagem está bloqueada. Desbloqueie para começar a guiar."
 
-#: ekos/guide/guide.cpp:1687
+#: ekos/guide/guide.cpp:1691
 #, kde-format
 msgid "Pier side change detected. Clearing calibration."
 msgstr "Alteração no lado do píer detectada. Limpando a calibração."
 
-#: ekos/guide/guide.cpp:1701
+#: ekos/guide/guide.cpp:1705
 #, kde-format
 msgid "Mount is moving. Resetting calibration..."
 msgstr "A montagem está se movendo. Redefinindo a calibração..."
 
-#: ekos/guide/guide.cpp:1718
+#: ekos/guide/guide.cpp:1722
 #, kde-format
 msgid "Mount is parking. Aborting guide..."
 msgstr "O monte está bloqueada. Cancelando o guia..."
 
-#: ekos/guide/guide.cpp:1720
+#: ekos/guide/guide.cpp:1724
 #, kde-format
 msgid "Mount is slewing. Aborting guide..."
 msgstr "A montagem está girando. Cancelando o guia..."
 
-#: ekos/guide/guide.cpp:1789
+#: ekos/guide/guide.cpp:1793
 #, kde-format
 msgid "Calibration is cleared."
 msgstr "A calibração foi apagada."
 
-#: ekos/guide/guide.cpp:1815
+#: ekos/guide/guide.cpp:1819
 #, kde-format
 msgid "External guider connected."
 msgstr "Guiador externo conectado."
 
-#: ekos/guide/guide.cpp:1833
+#: ekos/guide/guide.cpp:1837
 #, kde-format
 msgid "External guider disconnected."
 msgstr "Guiador externo desconectado."
 
-#: ekos/guide/guide.cpp:1850
+#: ekos/guide/guide.cpp:1854
 #, kde-format
 msgid "Calibration completed."
 msgstr "Calibração concluída."
 
-#: ekos/guide/guide.cpp:1876
+#: ekos/guide/guide.cpp:1880
 #, kde-format
 msgid "Calibration started."
 msgstr "Calibração iniciada."
 
-#: ekos/guide/guide.cpp:1892
+#: ekos/guide/guide.cpp:1896
 #, kde-format
 msgid "Guiding resumed."
 msgstr "A guia foi retomada."
 
-#: ekos/guide/guide.cpp:1896
+#: ekos/guide/guide.cpp:1900
 #, kde-format
 msgid "Autoguiding running."
 msgstr "Guiamento automático em execução."
 
-#: ekos/guide/guide.cpp:1918
+#: ekos/guide/guide.cpp:1922
 #, kde-format
 msgid "Autoguiding aborted."
 msgstr "Guiamento automático cancelado."
 
-#: ekos/guide/guide.cpp:1926
+#: ekos/guide/guide.cpp:1930
 #, kde-format
 msgid "Guiding suspended."
 msgstr "A guia foi suspensa."
 
-#: ekos/guide/guide.cpp:1935
+#: ekos/guide/guide.cpp:1939
 #, kde-format
 msgid "Manual dithering in progress."
 msgstr "Pontilhamento manual em progresso."
 
-#: ekos/guide/guide.cpp:1939
+#: ekos/guide/guide.cpp:1943
 #, kde-format
 msgid "Dithering in progress."
 msgstr "Pontilhamento em progresso."
 
-#: ekos/guide/guide.cpp:1943
+#: ekos/guide/guide.cpp:1947
 #, kde-format
 msgid "Post-dither settling for %1 second..."
 msgid_plural "Post-dither settling for %1 seconds..."
 msgstr[0] "Assentamento aós pontilhamento por %1 segundo..."
 msgstr[1] "Assentamento aós pontilhamento por %1 segundos..."
 
-#: ekos/guide/guide.cpp:1948
+#: ekos/guide/guide.cpp:1952
 #, kde-format
 msgid "Dithering failed."
 msgstr "Pontilhamento falhou."
 
-#: ekos/guide/guide.cpp:1959
+#: ekos/guide/guide.cpp:1963
 #, kde-format
 msgid "Dithering completed successfully."
 msgstr "O pontilhamento foi concluído com sucesso."
 
-#: ekos/guide/guide.cpp:2008
+#: ekos/guide/guide.cpp:2012
 #, kde-format
 msgid "%1x%1 guide binning is not supported."
 msgstr "A compartimentação de guias %1x%1 não é suportada."
 
-#: ekos/guide/guide.cpp:2030
+#: ekos/guide/guide.cpp:2034
 #, kde-format
 msgid "Exposure failed. Restarting exposure..."
 msgstr "A exposição falhou. Reiniciando a exposição..."
 
-#: ekos/guide/guide.cpp:2156
+#: ekos/guide/guide.cpp:2160
 #, kde-format
 msgid "Cannot change guider type while active."
 msgstr "Não é possível alterar o tipo de guia enquanto estiver ativo."
 
-#: ekos/guide/guide.cpp:2255
+#: ekos/guide/guide.cpp:2259
 #, kde-format
 msgid ""
 "Warning: Reset Guiding Calibration is enabled. It is recommended to turn "
@@ -22895,37 +22882,37 @@ msgstr ""
 "Aviso: A opção \"Redefinir calibração de guia\" está habilitada. Recomenda-"
 "se desativar esta opção para o PHD2."
 
-#: ekos/guide/guide.cpp:2664
+#: ekos/guide/guide.cpp:2668
 #, kde-format
 msgid "Calibration failed to start."
 msgstr "A calibração falhou ao iniciar."
 
-#: ekos/guide/guide.cpp:2815
+#: ekos/guide/guide.cpp:2819
 #, kde-format
 msgid "Auto star selected."
 msgstr "Estrela automática selecionada."
 
-#: ekos/guide/guide.cpp:2819
+#: ekos/guide/guide.cpp:2823
 #, kde-format
 msgid "Failed to select an auto star."
 msgstr "Falha ao selecionar uma estrela automática."
 
-#: ekos/guide/guide.cpp:2828
+#: ekos/guide/guide.cpp:2832
 #, kde-format
 msgid "Select a guide star to calibrate."
 msgstr "Selecione uma estrela guia para calibrar."
 
-#: ekos/guide/guide.cpp:3090
+#: ekos/guide/guide.cpp:3094
 #, kde-format
 msgid "dx (pixels)"
 msgstr "dx (pixels)"
 
-#: ekos/guide/guide.cpp:3091
+#: ekos/guide/guide.cpp:3095
 #, kde-format
 msgid "dy (pixels)"
 msgstr "dy (pixels)"
 
-#: ekos/guide/guide.cpp:3234 ekos/guide/guide.cpp:3368
+#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
 #, kde-format
 msgid ""
 "The PHD2 camera is not available to Ekos, so you cannot see the captured "
@@ -22934,7 +22921,7 @@ msgstr ""
 "A câmera PHD2 não está disponível para o Ekos, então você não poderá ver as "
 "imagens capturadas. Mas você ainda verá a Imagem da estrela guia ao se guiar."
 
-#: ekos/guide/guide.cpp:3238 ekos/guide/guide.cpp:3372
+#: ekos/guide/guide.cpp:3242 ekos/guide/guide.cpp:3376
 #, kde-format
 msgid ""
 "To receive PHD2 images other than the Guide Star Image, SubFrame must be "
@@ -22945,7 +22932,7 @@ msgstr ""
 "quadro deve estar desmarcada. Desmarque-a agora para habilitar suas capturas "
 "de imagem. Você pode reativá-la antes da imagem da estrela guia."
 
-#: ekos/guide/guide.cpp:3551
+#: ekos/guide/guide.cpp:3555
 #, kde-format
 msgid "Cannot change active optical train while PHD2 is connected"
 msgstr ""
@@ -23666,6 +23653,8 @@ msgid ""
 "Vertically reflected image detected: Try to check option 'Use reflected "
 "guide frames' in [Guide Options/Calibration]"
 msgstr ""
+"Imagem refletida verticalmente detectada: Tente verificar a opção 'Usar "
+"quadros de guia refletidos' em [Opções de guia/Calibração]"
 
 #: ekos/guide/internalguide/gmath.cpp:511
 #, kde-format
@@ -23690,24 +23679,24 @@ msgstr "Aviso: Falha no pontilhamento manual."
 #, kde-format
 msgid "Internal guider could not find WCS rotation property of %1..."
 msgstr ""
+"O guia interno não conseguiu encontrar a propriedade de rotação WCS de %1..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unknown!"
-msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
-"Erro ao atualizar o píer para rotação da câmera: Lado do pier desconhecido!"
+"Erro ao atualizar o píer para rotação da câmera: Lado do píer desconhecido!"
 
 #: ekos/guide/internalguide/internalguider.cpp:738
 #, kde-format
 msgid "Pierside is now "
-msgstr ""
+msgstr "O lado do píer é agora "
 
 #: ekos/guide/internalguide/internalguider.cpp:746
-#, fuzzy, kde-format
-#| msgid "Camera rotation is now %1 (Original calibration with %2)"
+#, kde-format
 msgid "%1 rotation is now %2 (calibration with %3)"
-msgstr "A rotação da câmera agora é %1 (calibração original com %2)"
+msgstr "A rotação de %1 agora é %2 (calibração original com %3)"
 
 #: ekos/guide/internalguide/internalguider.cpp:754
 #, kde-format
@@ -23733,14 +23722,14 @@ msgstr "A calibração da guia foi restaurada"
 #: ekos/guide/internalguide/internalguider.cpp:880
 #, fuzzy, kde-format
 #| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#| "Lost track of the guide star.Try increasing binning, square size or "
+#| "reducing pulse duration."
 msgid ""
-"Lost track of the guide star.Try increasing binning, square size or reducing "
-"pulse duration."
+"Lost track of the guide star. Try increasing binning, square size or "
+"reducing pulse duration."
 msgstr ""
-"O trajeto da estrela-guia foi perdido. Tente aumentar o tamanho do quadrado "
-"ou reduzir a duração do impulso."
+"O trajeto da estrela-guia foi perdido. Tente aumentar o binning, o tamanho "
+"do quadrado ou reduzir a duração do impulso."
 
 #: ekos/guide/internalguide/internalguider.cpp:884
 #, kde-format
@@ -23930,15 +23919,12 @@ msgstr "Posição Y da estrela guia"
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:286
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>The Master Dark to use to calibrate lights.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>These are the current calibration parameters.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>O escuro mestre para usar para calibrar luzes.</p></"
+"<html><head/><body><p>Estes são os parâmetros de calibração atuais.</p></"
 "body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationsValues)
@@ -23961,10 +23947,9 @@ msgstr "xxxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/opscalibration.ui:323
-#, fuzzy, kde-format
-#| msgid "Rotation:"
+#, kde-format
 msgid "DEC Rotation"
-msgstr "Rotação:"
+msgstr "Rotação DEC"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, label_11)
@@ -23975,10 +23960,9 @@ msgstr "ms/arcseg"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/guide/opscalibration.ui:344
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "RA Pulse"
-msgstr "Pulso:"
+msgstr "Pulso AR"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, dec_cal_degrees_unit)
@@ -23994,24 +23978,21 @@ msgstr "°"
 
 #. i18n: ectx: property (text), widget (QLabel, racal)
 #: ekos/guide/opscalibration.ui:415
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "RA Rotation"
-msgstr "Rotação"
+msgstr "Rotação AR"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/guide/opscalibration.ui:444
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "DEC Pulse"
-msgstr "Pulso:"
+msgstr "Pulso DEC"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/guide/opscalibration.ui:468
-#, fuzzy, kde-format
-#| msgid "Position Angle"
+#, kde-format
 msgid "Rotation Offset"
-msgstr "Ângulo da posição"
+msgstr "Deslocamento da rotação"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideCalibrationBacklash)
 #: ekos/guide/opscalibration.ui:524
@@ -24031,12 +24012,7 @@ msgstr "Remover folga DEC na calibração da guia"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:543
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -24045,13 +24021,12 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Se marcado, sempre recalibra ao iniciar a guia. Isso "
 "geralmente não é necessário quando uma calibração de boa qualidade foi "
-"realizada anteriormente e a câmera guia não foi rotacionada ou reinstalada.</"
-"p></body></html>"
+"realizada anteriormente e a câmera guia não foi reinstalada.</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:549
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset guide calibration after each mount slew"
 msgstr "Redefinir a calibração da guia após cada movimento de montagem"
 
@@ -24073,33 +24048,25 @@ msgstr ""
 #: ekos/guide/opscalibration.ui:568
 #, kde-format
 msgid "Mount reverses DEC pulses after changing pierside"
-msgstr "Montagem inverte pulsos DEC após mudança de lado do pier"
+msgstr "Montagem inverte pulsos DEC após mudança de lado do píer"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:584
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
 "works on opposite sides of the meridian if the pier-side can be "
 "automatically determined from your mount.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Armazena e tenta reutilizar calibrações. Isso só "
-"funciona em lados opostos do meridiano se o lado do píer puder ser "
-"determinado automaticamente a partir da sua montagem. A opção \"Redefinir "
-"guia em movimento\" acima deve estar desmarcada para que isso seja tentado.</"
-"p></body></html>"
+"<html><head/><body><p>Armazena e tenta reutilizar calibrações. Isso funciona "
+"mesmo em lados opostos do meridiano se o lado do píer puder ser determinado "
+"automaticamente pela sua montagem.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:587
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible"
-msgstr "Armazenar e reutilizar a guia de calibração quando possível."
+msgstr "Armazenar e reutilizar a guia de calibração quando possível"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:611
@@ -24110,13 +24077,16 @@ msgid ""
 "drift in case of mirrored captures (e.g. with an OAG or ONAG-train).</p></"
 "body></html>"
 msgstr ""
+"<html><head/><body><p>Reflita as imagens de guia no eixo x antes de passá-"
+"las para o processo de guiagem.<br/>Isso garante uma análise correta da "
+"deriva da montagem em caso de capturas espelhadas (por exemplo, com um trem "
+"OAG ou ONAG).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:614
-#, fuzzy, kde-format
-#| msgid "2. Select guide star"
+#, kde-format
 msgid "Use reflected guide frames"
-msgstr "2. Selecionar a estrela-guia"
+msgstr "Usar quadros-guia refletidos"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:627
@@ -24128,12 +24098,17 @@ msgid ""
 ">Please note that an active option &quot;Automatic and Manual Rotator "
 "Control&quot; in Rotator Settings is a precondition.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Marque esta opção se desejar reutilizar a calibração "
+"do guia, mas não houver um dispositivo rotador e a câmera guia for girada "
+"manualmente juntamente com a câmera de imagem (por exemplo, com um trem "
+"OAG). <br/>Observe que a opção \"Controle automático e manual do rotador\" "
+"ativa nas configurações do rotador é uma condição prévia.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:630
 #, kde-format
 msgid "Couple guide camera on \"Manual Rotator\""
-msgstr ""
+msgstr "Acoplar câmera guia ao \"Rotador manual\""
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
@@ -30931,6 +30906,8 @@ msgstr "Fila de pós-desligamento falhou: %1"
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
+"Aviso: a tarefa falhou durante o trabalho '%1': %2. Marcando o trabalho como "
+"cancelado."
 
 #: ekos/scheduler/schedulerprocess.cpp:3324
 #, kde-format
@@ -42928,10 +42905,9 @@ msgstr "Multiplicador do ângulo de posição"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of capture camera"
-msgstr "Deslocamento do ângulo de posição"
+msgstr "Deslocamento do ângulo de posição da câmera de captura"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -44670,10 +44646,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PAOffsetGuide), group (Guide)
 #: kstars.kcfg:3071
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of guide camera"
-msgstr "Deslocamento do ângulo de posição"
+msgstr "Deslocamento do ângulo de posição da câmera guia"
 
 #. i18n: ectx: label, entry (PHD2Host), group (Guide)
 #: kstars.kcfg:3075
@@ -45066,6 +45041,8 @@ msgid ""
 "Guide frames are reflected vertically before passing them to the guider "
 "process."
 msgstr ""
+"Os quadros-guia são refletidos verticalmente antes de serem passados ​​para o "
+"processo de guiagem."
 
 #. i18n: ectx: label, entry (GuideManualRotator), group (Scheduler)
 #: kstars.kcfg:3400
@@ -45073,6 +45050,8 @@ msgstr ""
 msgid ""
 "Guide camera is rotated together with main camera in \"Manual Rotator\" mode."
 msgstr ""
+"No modo \"Rotador manual\", a câmera guia gira juntamente com a câmera "
+"principal."
 
 #. i18n: ectx: label, entry (GuideCalibrationBacklash), group (Scheduler)
 #: kstars.kcfg:3404
@@ -45642,7 +45621,7 @@ msgstr "Exibir altitude no gráfico de estatísticas do Analyze."
 #: kstars.kcfg:3707
 #, kde-format
 msgid "Display PierSide on the Analyze Statistics Plot."
-msgstr "Exibir PierSide no gráfico de estatísticas do Analyze."
+msgstr "Exibir lado do píer no gráfico de estatísticas do Analyze."
 
 #. i18n: ectx: label, entry (AnalyzeStatsYAxis), group (Analyze)
 #: kstars.kcfg:3711
@@ -93196,6 +93175,12 @@ msgstr "Cor do plano de fundo:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Definir a cor do fundo."
+
+#~| msgid "World Coordinate System (WCS) is disabled."
+#~ msgid "%+: World Coordinate System (WCS) is disabled."
+#~ msgstr ""
+#~ "%+: o Sistema Mundial de Coordenadas (WCS, sigla em inglês) está "
+#~ "desativado."
 
 #~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
 #~ msgstr "Direção DEC invertida (AR-DEC agora é sistema CCW padrão)."
