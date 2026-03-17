@@ -809,12 +809,13 @@ void Manager::syncProfilesFromWebManager(const QSharedPointer<ProfileInfo> &pi)
                 QString   driverSrc = "system";
                 QByteArray scripts;
 
+
                 if (infoReply->error() == QNetworkReply::NoError)
                 {
                     const QJsonObject info =
                         QJsonDocument::fromJson(infoReply->readAll()).object();
                     port      = info["port"].toInt(7624);
-                    autoConn  = info["autoconnect"].toInt(0) != 0;
+                    autoConn  = info["autoconnect"].toInt(1) == 1;
                     driverSrc = info["driver_source"].toString("system");
                     if (info.contains("scripts") && info["scripts"].isArray())
                         scripts = QJsonDocument(info["scripts"].toArray())
@@ -847,7 +848,7 @@ void Manager::syncProfilesFromWebManager(const QSharedPointer<ProfileInfo> &pi)
                     }
 
                     // 2c: GET /api/profiles/<name>/remote  — remote driver string
-                    //     Returns: {"drivers": "device@host:port,device2@host:port2"}
+                    //     Returns a JSON-encoded string: "device@host:port,device2@host:port2"
                     const QUrl remoteUrl(
                         QString("http://%1:%2/api/profiles/%3/remote")
                         .arg(wmHost).arg(wmPort).arg(profileName));
@@ -864,12 +865,11 @@ void Manager::syncProfilesFromWebManager(const QSharedPointer<ProfileInfo> &pi)
                         QString remoteDrivers;
                         if (remoteReply->error() == QNetworkReply::NoError)
                         {
-                            const QJsonObject obj =
-                                QJsonDocument::fromJson(remoteReply->readAll()).object();
-                            // Response: {"drivers": "@host:port"} or empty/null
-                            const QString val = obj["drivers"].toString().trimmed();
-                            if (!val.isEmpty())
-                                remoteDrivers = val;
+                            remoteDrivers = QString::fromUtf8(remoteReply->readAll()).trimmed();
+                            // The web manager returns the driver string JSON-encoded (with surrounding quotes).
+                            // Strip them to get the plain comma-separated driver string.
+                            if (remoteDrivers.startsWith('"') && remoteDrivers.endsWith('"') && remoteDrivers.length() >= 2)
+                                remoteDrivers = remoteDrivers.mid(1, remoteDrivers.length() - 2);
                         }
 
                         // 3: Import profile — runs on the main thread (this is a
