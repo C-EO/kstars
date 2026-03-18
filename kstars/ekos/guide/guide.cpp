@@ -1218,11 +1218,13 @@ void Guide::reconnectDriver(const QString &camera, QVariantMap settings)
 
 void Guide::processData(const QSharedPointer<FITSData> &data)
 {
-    // In streaming guide mode, discard frames that arrive during dithering or settle.
-    // The settle timer is purely time-based; we don't need to feed stream frames into it.
-    if (m_StreamingGuide &&
-            (m_State == GUIDE_DITHERING || m_State == GUIDE_DITHERING_SETTLE ||
-             m_State == GUIDE_MANUAL_DITHERING))
+    // In streaming guide mode, only discard frames during the post-dither settle phase —
+    // that is purely time-based and no frame processing is needed.
+    // Active dithering states (GUIDE_DITHERING, GUIDE_MANUAL_DITHERING) must let frames
+    // through so that setCaptureComplete() can call m_GuiderInstance->dither() for each
+    // convergence iteration.  Rate-limiting during individual pulses is handled by the
+    // m_streamingPulseGuard check below.
+    if (m_StreamingGuide && m_State == GUIDE_DITHERING_SETTLE)
         return;
 
     // In streaming mode, discard frames that arrive while a guide pulse is still in-flight.
@@ -1612,10 +1614,12 @@ bool Guide::dither()
     ditherLabel->setText("Dither");
     ditherLabel->setFont(QFont(font().family(), 10));
 
-    // In streaming mode the frame pipeline is always running — captureOneFrame() is a no-op
-    // and processData() discards every frame while state == GUIDE_DITHERING, so the
-    // capture()-then-wait-for-setCaptureComplete() path used below would stall forever.
-    // Send the dither command directly, exactly like one-pulse dither does.
+    // In streaming mode captureOneFrame() is a no-op — there is no discrete capture to
+    // start.  The capture()-then-wait-for-setCaptureComplete() path below therefore never
+    // delivers a frame to kick off the first InternalGuider::dither() call and would stall.
+    // Instead, call m_GuiderInstance->dither() directly so it can process the most recently
+    // received stream frame immediately and drive subsequent iterations through
+    // setCaptureComplete() as each new frame arrives.
     if (guiderType == GUIDE_INTERNAL && !Options::ditherWithOnePulse() && !m_StreamingGuide)
     {
         if (m_State != GUIDE_GUIDING)
