@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-17 02:06+0000\n"
-"PO-Revision-Date: 2026-03-15 16:59+0100\n"
+"PO-Revision-Date: 2026-03-17 11:54+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -5736,7 +5736,7 @@ msgstr "La rotació es porta a terme respecte al pol celeste."
 #: dialogs/newfov.ui:1150
 #, kde-format
 msgid "Lock to Celestial Pole"
-msgstr "Bloqueja al pol celeste"
+msgstr "Bloqueja en el pol celeste"
 
 # skip-rule: punctuation-period-no
 #. i18n: ectx: property (toolTip), widget (KColorButton, ColorButton)
@@ -6521,19 +6521,15 @@ msgid "Image received."
 msgstr "S'ha rebut la imatge."
 
 #: ekos/align/align.cpp:1965
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
 "the list."
 msgstr ""
 "No s'ha trobat cap fitxer d'índex en les carpetes de fitxers d'índex "
-"especificades. Baixeu els fitxers d'índex o afegiu la carpeta correcta a la "
-"llista."
+"especificades. Baixeu alguns fitxers d'índex o afegiu la carpeta correcta a "
+"la llista."
 
 #: ekos/align/align.cpp:2022
 #, kde-format
@@ -6613,10 +6609,9 @@ msgid "Target is within %1 degrees of solution coordinates."
 msgstr "L'objectiu es troba a %1 graus de les coordenades de la solució."
 
 #: ekos/align/align.cpp:2363
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "%1 position angle is %2 degrees."
-msgstr "L'angle de posició de la càmera és de %1 graus."
+msgstr "L'angle de posició %1 és de %2 graus."
 
 #: ekos/align/align.cpp:2400 ekos/align/align.cpp:2558
 #, kde-format
@@ -6643,6 +6638,7 @@ msgstr "L'objectiu es troba dins d'un l'interval acceptable."
 #, kde-format
 msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
 msgstr ""
+"AP principal: %1, desplaçament principal: %2, desplaçament del guiatge: %3"
 
 #: ekos/align/align.cpp:2540
 #, kde-format
@@ -6686,17 +6682,14 @@ msgstr ""
 "obtindre informació detallada de la fallada."
 
 #: ekos/align/align.cpp:2657
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting %1 position angle to %2 degrees ..."
-msgstr "L'angle de posició de la càmera s'establix a %1 graus…"
+msgstr "L'angle de posició %1 s'establix a %2 graus…"
 
 #: ekos/align/align.cpp:2669
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "%1 position angle is within acceptable range."
-msgstr ""
-"L'angle de posició de la càmera es troba dins d'un interval acceptable."
+msgstr "L'angle de posició %1 es troba dins d'un interval acceptable."
 
 #: ekos/align/align.cpp:2683
 #, kde-format
@@ -6828,21 +6821,21 @@ msgstr "Carregueu una imatge"
 #, kde-format
 msgid "Warning: Camera module & Align module have to use the same train!"
 msgstr ""
+"Avís: el mòdul «Càmera» i el mòdul «Alinea» cal que facen servir el mateix "
+"tren!"
 
 #: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr ""
-"El sistema de coordenades mundial (World Coordinate System -WCS-) està "
+"%1: El sistema de coordenades mundial (World Coordinate System -WCS-) està "
 "activat."
 
 #: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr ""
-"El sistema de coordenades mundial (World Coordinate System -WCS-) està "
+"%1: El sistema de coordenades mundial (World Coordinate System -WCS-) està "
 "desactivat."
 
 #: ekos/align/align.cpp:3496
@@ -10312,7 +10305,7 @@ msgstr "Espereu fins que la muntura complete la rotació a AR (%1) Dec (%2)"
 #: ekos/align/polaralignmentassistant.cpp:935
 #, kde-format
 msgid "PAA: Failed to findCorrectedPixel."
-msgstr "AAP: Ha fallat a «findCorrectedPixel»."
+msgstr "AAP: Ha fallat en «findCorrectedPixel»."
 
 #: ekos/align/polaralignmentassistant.cpp:961
 #, kde-format
@@ -11732,7 +11725,7 @@ msgid ""
 "the guide images).</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Traça la llum de fons del cel (calculada pel SEP a "
-"partir de les imatges guia).</p></body></html>"
+"partir de les imatges de guiatge).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, skyBgCB)
 #: ekos/analyze/analyze.ui:808
@@ -11749,8 +11742,9 @@ msgid ""
 "click to update axis.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>El nivell de llum de fons del cel (calculat pel SEP a "
-"partir de les imatges guia). Cliqueu ací per a veure este eix en els valors "
-"de l'eix esquerre. Feu doble clic per a actualitzar l'eix.</p></body></html>"
+"partir de les imatges de guiatge). Cliqueu ací per a veure este eix en els "
+"valors de l'eix esquerre. Feu doble clic per a actualitzar l'eix.</p></"
+"body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, numStarsCB)
 #: ekos/analyze/analyze.ui:843
@@ -11760,7 +11754,7 @@ msgid ""
 "</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Traça el nombre d'estreles detectades en les imatges "
-"guia.</p></body></html>"
+"de guiatge.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, numStarsCB)
 #. i18n: ectx: property (text), widget (QCheckBox, numCaptureStarsCB)
@@ -11784,9 +11778,9 @@ msgid ""
 "Click here to view this axis on left-axis values. Double click to update "
 "axis.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>El nombre d'estreles detectades en les imatges guia. "
-"Cliqueu ací per a veure este eix en els valors de l'eix esquerre. Feu doble "
-"clic per a actualitzar l'eix.</p></body></html>"
+"<html><head/><body><p>El nombre d'estreles detectades en les imatges de "
+"guiatge. Cliqueu ací per a veure este eix en els valors de l'eix esquerre. "
+"Feu doble clic per a actualitzar l'eix.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, snrCB)
 #: ekos/analyze/analyze.ui:890
@@ -13833,17 +13827,17 @@ msgstr ""
 "correcció del guiatge, el millor és seleccionar-lo de manera que els polsos "
 "s'envien directament cap a la muntura. Esta és l'opció recomanada.</"
 "p><p><span style=\"font-weight:600;\">ST4</span>: Si utilitzeu un cable ST4 "
-"entre la càmera guia i la muntura, haureu de seleccionar la càmera guia com "
-"a Sistema de guiatge.</p><p><span style=\"font-weight:600;\">Sistema de "
-"guiatge dedicat</span>: Si utilitzeu un dispositiu en la interfície del "
-"sistema de guiatge dedicat (com Shoestring GPUSB), llavors seleccioneu-lo "
-"com a Sistema de guiatge.</p></body></html>"
+"entre la càmera de guiatge i la muntura, haureu de seleccionar la «Càmera de "
+"guiatge» com a «Sistema de guiatge».</p><p><span style=\"font-weight:600;"
+"\">Sistema de guiatge dedicat</span>: Si utilitzeu un dispositiu en la "
+"interfície del sistema de guiatge dedicat (com Shoestring GPUSB), llavors "
+"seleccioneu-lo com a «Sistema de guiatge».</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, guiderLabel)
 #: ekos/auxiliary/opticaltrains.ui:301
 #, kde-format
 msgid "Guide via:"
-msgstr "Sistema de guiatge mitjançant:"
+msgstr "Guiatge mitjançant:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, focusLabel)
 #: ekos/auxiliary/opticaltrains.ui:321
@@ -16828,8 +16822,7 @@ msgstr ""
 msgid ""
 "Warning: Guide deviation is selected but autoguide process was not started."
 msgstr ""
-"Avís: S'ha seleccionat la desviació del guiatge, però el procés de guiatge "
-"automàtic no s'ha iniciat."
+"Warning: Guide deviation is selected but autoguide process was not started."
 
 #: ekos/capture/camerastate.cpp:214
 #, kde-format
@@ -18924,13 +18917,13 @@ msgstr "ID de la màquina:"
 #: ekos/ekoslive/ekoslivedialog.ui:14
 #, kde-format
 msgid "Ekos Live"
-msgstr "Ekos Live"
+msgstr "EkosLive"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: ekos/ekoslive/ekoslivedialog.ui:58
 #, kde-format
 msgid "Ekos Live Service"
-msgstr "Servei Ekos Live"
+msgstr "Servei EkosLive"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/ekoslive/ekoslivedialog.ui:82
@@ -23059,7 +23052,7 @@ msgid ""
 "PHD2: Please set camera and telescope parameters in PHD2, Pixel Scale is "
 "invalid."
 msgstr ""
-"PHD2: Establiu els paràmetres de la càmera i del telescopi a PHD2, l'escala "
+"PHD2: Establiu els paràmetres de la càmera i del telescopi en PHD2, l'escala "
 "de píxels no és vàlida."
 
 #: ekos/guide/externalguide/phd2.cpp:981
@@ -23120,7 +23113,8 @@ msgid ""
 "Image will be received, but the full external guide frames cannot."
 msgstr ""
 "Càmera actual de PHD2: %1, no està connectada amb Ekos. Es rebrà la Imatge "
-"de l'estrela guia de PHD2, però no els fotogrames externs complets de guia."
+"de l'estrela guia de PHD2, però no els fotogrames de guiatge externs "
+"complets."
 
 #: ekos/guide/guide.cpp:450
 #, kde-format
@@ -23130,13 +23124,13 @@ msgid ""
 "using the SubFrame checkbox."
 msgstr ""
 "Càmera actual de PHD2: %1, està connectada amb Ekos. Podeu seleccionar si "
-"utilitzar els fotogrames externs complets o només rebre la imatge de "
-"l'estrela guia de PHD2 utilitzant la casella de selecció «Submarc»."
+"utilitzar els fotogrames de guiatge externs complets o només rebre la imatge "
+"de l'estrela guia de PHD2 utilitzant la casella de selecció «Submarc»."
 
 #: ekos/guide/guide.cpp:631
 #, kde-format
 msgid "Connection to the guide camera is lost."
-msgstr "S'ha perdut la connexió amb la càmera guia."
+msgstr "S'ha perdut la connexió amb la càmera de guiatge."
 
 #: ekos/guide/guide.cpp:963
 #, kde-format
@@ -23433,7 +23427,7 @@ msgid ""
 "</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Activa el flux de dades del guiatge. Quan es marca, i "
-"la càmera admet la transmissió de vídeo, el mòdul guiatge captura els "
+"la càmera admet la transmissió de vídeo, el mòdul «Guia» captura els "
 "fotogrames a través d'un flux de vídeo continu en lloc d'exposicions "
 "individuals. Açò reduïx significativament la sobrecàrrega per fotograma i "
 "permet freqüències de guiatge més altes (p. ex., de 2 fins als 5 Hz) "
@@ -23486,8 +23480,8 @@ msgstr "Eix de la declinació del guiatge."
 msgid ""
 "Guide camera binning. It is recommended to set binning to 2x2 or higher."
 msgstr ""
-"Agrupament en la càmera guia. Es recomana establir un agrupament («binning») "
-"de 2x2 o superior."
+"Agrupament en la càmera de guiatge. Es recomana establir un agrupament de "
+"2x2 o superior."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, externalDisconnectB)
 #: ekos/guide/guide.ui:399
@@ -23513,7 +23507,7 @@ msgstr "Direccions:"
 #, kde-format
 msgid "Delay next guide exposure this many seconds after a pulse is sent"
 msgstr ""
-"Retarda l'exposició següent de la guia este nombre de segons després "
+"Retarda l'exposició següent del guiatge este nombre de segons després "
 "d'enviar un pols."
 
 # skip-rule: punctuation-period-no
@@ -23647,14 +23641,14 @@ msgstr "Pols generat de la Dec."
 #: ekos/guide/guide.ui:854
 #, kde-format
 msgid "Immediate Guiding RA deviation in arcseconds"
-msgstr "Desviació AR de guiatge immediat, en segons d'arc."
+msgstr "Desviació de l'AR del guiatge immediat, en segons d'arc."
 
 # skip-rule: punctuation-period-no
 #. i18n: ectx: property (toolTip), widget (QLabel, l_DeltaDEC)
 #: ekos/guide/guide.ui:867
 #, kde-format
 msgid "Immediate Guiding DEC deviation in arcseconds"
-msgstr "Desviació de la Dec de guiatge immediat, en segons d'arc."
+msgstr "Desviació de la Dec del guiatge immediat, en segons d'arc."
 
 # skip-rule: punctuation-period-no
 #. i18n: ectx: property (toolTip), widget (QLabel, l_17b)
@@ -23674,14 +23668,14 @@ msgstr "RMS\" (AR/Dec):"
 #: ekos/guide/guide.ui:897
 #, kde-format
 msgid "Guiding RA RMS error"
-msgstr "Error RMS del guiatge en l'AR."
+msgstr "Error RMS en l'AR del guiatge."
 
 # skip-rule: punctuation-period-no
 #. i18n: ectx: property (toolTip), widget (QLabel, l_ErrDEC)
 #: ekos/guide/guide.ui:910
 #, kde-format
 msgid "Guiding DEC RMS error"
-msgstr "Error RMS del guiatge en la Dec."
+msgstr "Error RMS en la Dec del guiatge."
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/guide.ui:925
@@ -24037,11 +24031,11 @@ msgid_plural ""
 "GUIDE_RA: Scope cannot reach the start point after %1 iterations. Possible "
 "mount or backlash problems..."
 msgstr[0] ""
-"Guia AR: L'instrument de visió no ha pogut assolir el punt inicial després "
-"d'%1 iteració. Possible problema de la muntura o del rebot…"
+"AR del guiatge: L'instrument de visió no ha pogut assolir el punt inicial "
+"després d'%1 iteració. Possible problema de la muntura o del rebot…"
 msgstr[1] ""
-"Guia AR: L'instrument de visió no ha pogut assolir el punt inicial després "
-"de %1 iteracions. Possible problema de la muntura o del rebot…"
+"AR del guiatge: L'instrument de visió no ha pogut assolir el punt inicial "
+"després de %1 iteracions. Possible problema de la muntura o del rebot…"
 
 #: ekos/guide/internalguide/calibrationprocess.cpp:359
 #, kde-format
@@ -24087,12 +24081,12 @@ msgid_plural ""
 "GUIDE DEC: Scope cannot reach the start point after %1 iterations.\n"
 "Possible mount or backlash problems..."
 msgstr[0] ""
-"Guia Dec: L'instrument de visió no ha pogut assolir el punt inicial després "
-"d'%1 iteració.\n"
+"Dec del guiatge: L'instrument de visió no ha pogut assolir el punt inicial "
+"després d'%1 iteració.\n"
 "Possible problema de la muntura o del rebot…"
 msgstr[1] ""
-"Guia Dec: L'instrument de visió no ha pogut assolir el punt inicial després "
-"de %1 iteracions.\n"
+"Dec del guiatge: L'instrument de visió no ha pogut assolir el punt inicial "
+"després de %1 iteracions.\n"
 "Possible problema de la muntura o del rebot…"
 
 #: ekos/guide/internalguide/calibrationprocess.cpp:599
@@ -24101,6 +24095,9 @@ msgid ""
 "Vertically reflected image detected: Try to check option 'Use reflected "
 "guide frames' in [Guide Options/Calibration]"
 msgstr ""
+"S'ha detectat una imatge reflectida verticalment: proveu marcant l'opció "
+"«Utilitza els fotogrames de guiatge reflectits» en «Opcions del guiatge -> "
+"Calibratge»."
 
 #: ekos/guide/internalguide/gmath.cpp:511
 #, kde-format
@@ -24125,26 +24122,30 @@ msgstr "Avís: Ha fallat el tramat manual."
 #, kde-format
 msgid "Internal guider could not find WCS rotation property of %1..."
 msgstr ""
+"El sistema de guiatge intern no ha pogut trobar la propietat de gir del WCS "
+"%1…"
 
 #: ekos/guide/internalguide/internalguider.cpp:735
 #, kde-format
 msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
+"S'ha produït un error mentre s'actualitzava el costat del moll segons el gir "
+"de la càmera: costat del moll desconegut!"
 
 #: ekos/guide/internalguide/internalguider.cpp:738
 #, kde-format
 msgid "Pierside is now "
-msgstr ""
+msgstr "Ara el costat del moll està "
 
 #: ekos/guide/internalguide/internalguider.cpp:746
 #, kde-format
 msgid "%1 rotation is now %2 (calibration with %3)"
-msgstr ""
+msgstr "El gir de %1 ara és %2 (calibratge original amb %3)"
 
 #: ekos/guide/internalguide/internalguider.cpp:754
 #, kde-format
 msgid "RApulse now %1ms/arcsec calculated for DEC = %2"
-msgstr ""
+msgstr "Pols RA ara és %1 ms/seg. d'arc calculat per a la Dec = %2"
 
 #: ekos/guide/internalguide/internalguider.cpp:792
 #, kde-format
@@ -24163,16 +24164,13 @@ msgid "Guiding calibration restored"
 msgstr "S'ha restaurat el calibratge del guiatge"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."
 msgstr ""
-"S'ha perdut la traça de l'estrela guia. Proveu augmentant la mida del "
-"requadro o reduint la duració del pols."
+"S'ha perdut la traça de l'estrela guia. Proveu augmentant l'agrupament, la "
+"mida del requadro o de reduint la duració del pols."
 
 #: ekos/guide/internalguide/internalguider.cpp:884
 #, kde-format
@@ -24367,16 +24365,13 @@ msgstr "Posició Y de l'estrela guia."
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:286
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>The Master Dark to use to calibrate lights.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>These are the current calibration parameters.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>El fotograma fosc mestre que s'utilitzarà per a "
-"calibrar els de llums.</p></body></html>"
+"<html><head/><body><p>Estos són els paràmetres actuals del calibratge.</p></"
+"body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:289
@@ -24398,24 +24393,22 @@ msgstr "xxxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/opscalibration.ui:323
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "DEC Rotation"
-msgstr "Rotació"
+msgstr "Rotació Dec"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, label_11)
 #: ekos/guide/opscalibration.ui:330 ekos/guide/opscalibration.ui:337
 #, kde-format
 msgid "ms/arcsec"
-msgstr "ms/arcsec"
+msgstr "ms/seg. d'arc"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/guide/opscalibration.ui:344
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "RA Pulse"
-msgstr "Pols:"
+msgstr "Pols AR"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, dec_cal_degrees_unit)
@@ -24431,24 +24424,21 @@ msgstr "°"
 
 #. i18n: ectx: property (text), widget (QLabel, racal)
 #: ekos/guide/opscalibration.ui:415
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "RA Rotation"
-msgstr "Rotació"
+msgstr "Rotació AR"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/guide/opscalibration.ui:444
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "DEC Pulse"
-msgstr "Pols:"
+msgstr "Pols Dec"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/guide/opscalibration.ui:468
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "Rotation Offset"
-msgstr "Rotació"
+msgstr "Desplaçament de la rotació"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideCalibrationBacklash)
 #: ekos/guide/opscalibration.ui:524
@@ -24464,16 +24454,11 @@ msgstr ""
 #: ekos/guide/opscalibration.ui:530
 #, kde-format
 msgid "Remove DEC backlash in guide calibration"
-msgstr "Elimina el rebot de la Dec en calibrar el sistema de guiatge"
+msgstr "Elimina el rebot de la Dec en calibrar el guiatge"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:543
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -24482,13 +24467,12 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Si està marcada, sempre es tornarà a calibrar quan "
 "s'inicie el guiatge. Sovint no cal fer-ho perquè abans s'ha efectuat un "
-"calibratge de bona qualitat i la càmera guia no s'ha girat o reinstal·lat.</"
+"calibratge de bona qualitat i la càmera de guiatge no s'ha reinstal·lat.</"
 "p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:549
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset guide calibration after each mount slew"
 msgstr ""
 "Reinicia el calibratge del guiatge després de cada orientació de la muntura"
@@ -24510,39 +24494,30 @@ msgstr ""
 # Pier side = https://www.gralak.com/apdriver/help/pier_side.htm
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:568
-#, fuzzy, kde-format
-#| msgid ""
-#| "Reverse DEC guide pulses when changing pier-side and reusing calibration."
+#, kde-format
 msgid "Mount reverses DEC pulses after changing pierside"
 msgstr ""
-"Invertix els polsos de guiatge Dec en canviar el costat del moll i "
-"reutilitzar el calibratge."
+"La muntura invertix els polsos Dec després de canviar el costat del moll"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:584
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
 "works on opposite sides of the meridian if the pier-side can be "
 "automatically determined from your mount.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Açò només funciona en els costats oposats del meridià "
-"si es pot determinar automàticament el costat del moll a partir de la "
-"muntura. L'opció «Reinicialitza el guiatge en orientar» de dalt haurà "
-"d'estar desmarcada perquè s'intente.</p></body></html>"
+"<html><head/><body><p>Emmagatzema i intenta tornar a utilitzar les "
+"calibracions. Açò fins i tot funciona en els costats oposats del meridià si "
+"es pot determinar automàticament el costat del moll a partir de la muntura.</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:587
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible"
 msgstr ""
-"Si és possible, emmagatzema i torna a utilitzar el calibratge del guiatge."
+"Emmagatzema i torna a utilitzar el calibratge del guiatge, si és possible"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:611
@@ -24553,14 +24528,17 @@ msgid ""
 "drift in case of mirrored captures (e.g. with an OAG or ONAG-train).</p></"
 "body></html>"
 msgstr ""
+"<html><head/><body><p>Reflectix les imatges de guiatge en l'eix x abans de "
+"passar-les al procés del sistema de guiatge.<br/>Açò assegura una anàlisi "
+"correcta de la deriva de la muntura en cas de captures reflectides (p. ex., "
+"amb un OAG o un tren ONAG).</p></body></html>"
 
 # skip-rule: punctuation-period-no
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:614
-#, fuzzy, kde-format
-#| msgid "Delete focus frames?"
+#, kde-format
 msgid "Use reflected guide frames"
-msgstr "Voleu suprimir els fotogrames d'enfocament?"
+msgstr "Utilitza els fotogrames de guiatge reflectits"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:627
@@ -24572,20 +24550,26 @@ msgid ""
 ">Please note that an active option &quot;Automatic and Manual Rotator "
 "Control&quot; in Rotator Settings is a precondition.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Marqueu esta opció si voleu tornar a utilitzar el "
+"calibratge del guiatge, però no hi ha cap dispositiu de rotor i la càmera de "
+"guiatge es gira manualment juntament amb la càmera d'obtenció d'imatges (p. "
+"ex., amb un tren OAG). <br/>Cal tindre en compte que cal marcar l'opció "
+"«Control automàtic i manual del rotor» a «Configureu el rotor» com una "
+"condició prèvia.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:630
 #, kde-format
 msgid "Couple guide camera on \"Manual Rotator\""
-msgstr ""
+msgstr "Acobla la càmera de guiatge en el «Rotor manual»"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
 #, kde-format
 msgid "Number of pixels to move the guiding square in a random direction."
 msgstr ""
-"El nombre de píxels per a moure el requadro del sistema de guiatge en una "
-"direcció aleatòria."
+"El nombre de píxels per a moure el requadro de guiatge en una direcció "
+"aleatòria."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, label_4)
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_DitherSettle)
@@ -24626,8 +24610,8 @@ msgstr ""
 #, kde-format
 msgid "Move locked guiding square location after frame capture"
 msgstr ""
-"Mou cap a la ubicació blocada del requadro del sistema de guiatge després de "
-"la captura del fotograma."
+"Mou cap a la ubicació blocada del requadro de guiatge després de la captura "
+"del fotograma."
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherThreshold)
 #: ekos/guide/opsdither.ui:116
@@ -24774,12 +24758,12 @@ msgstr ""
 "document/7105398\"><span style=\"text-decoration:underline; color:#007af4;"
 "\">The Gaussian Process Guider (El sistema de guiatge de procés gaussià)</"
 "span></a>, <span style=\"font-style:italic;\">(c) 2014-2017 Max Planck "
-"Society</span>, només s'utilitza per al sistema de guiatge de l'AR. La "
-"majoria de paràmetres <br/>poden tindre els seus valors predeterminats. "
-"<span style=\"font-weight:600; color:#8ae234;\">Activa GPG</span> amb la "
-"casella de selecció següent. Es pot utilitzar amb qualsevol algorisme de "
-"detecció d'estreles guia,<br/>però s'ha provat i es recomana amb el <span "
-"style=\"font-weight:600; color:#8ae234;\">SEP amb múltiples estreles</span>. "
+"Society</span>, només s'utilitza per al guiatge de l'AR. La majoria de "
+"paràmetres <br/>poden tindre els seus valors predeterminats. <span style="
+"\"font-weight:600; color:#8ae234;\">Activa GPG</span> amb la casella de "
+"selecció següent. Es pot utilitzar amb qualsevol algorisme de detecció "
+"d'estreles guia,<br/>però s'ha provat i es recomana amb el <span style="
+"\"font-weight:600; color:#8ae234;\">SEP amb múltiples estreles</span>. "
 "Combina una correcció reactiva<br/>i la seua agressivitat està controlada "
 "pel <span style=\"font-weight:600; color:#8ae234;\">Guany del control</span> "
 "i el <span style=\"font-weight:600; color:#8ae234;\">Moviment mínim</span>, "
@@ -24811,11 +24795,12 @@ msgid ""
 "exposure and dark guiding interval."
 msgstr ""
 "Temps màxim entre l'emissió de les correccions predictives mentre es "
-"capturen les imatges guia. Este podria ser de l'ordre d'1 segon o menys, amb "
-"l'exposició de guia molt més llarga. Els valors exactes i la relació entre "
-"ells dependrà en gran manera de la muntura i de les condicions ambientals. "
-"Però en general, com pitjor siga l'error periòdic de la muntura, més gran "
-"serà la relació entre l'exposició del guiatge i l'interval del guiatge fosc."
+"capturen les imatges de guiatge. Este podria ser de l'ordre d'1 segon o "
+"menys, amb l'exposició de guia molt més llarga. Els valors exactes i la "
+"relació entre ells dependrà en gran manera de la muntura i de les condicions "
+"ambientals. Però en general, com pitjor siga l'error periòdic de la muntura, "
+"més gran serà la relació entre l'exposició del guiatge i l'interval del "
+"guiatge fosc."
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: ekos/guide/opsgpg.ui:122
@@ -24861,7 +24846,7 @@ msgstr "Guany de la predicció"
 msgid "Enable predictive corrections during acquisition of guide camera images"
 msgstr ""
 "Activa les correccions predictives durant l'adquisició d'imatges de la "
-"càmera guia."
+"càmera de guiatge."
 
 #. i18n: ectx: property (text), widget (QLabel, label_gpgsDarkGuiding)
 #: ekos/guide/opsgpg.ui:159
@@ -25177,7 +25162,7 @@ msgstr "Nombre de períodes per a estimar els períodes"
 #: ekos/guide/opsguide.cpp:52
 #, kde-format
 msgid "Guide Options Profile Editor"
-msgstr "Editor de perfils de les opcions del sistema de guiatge"
+msgstr "Editor de perfils de les opcions del guiatge"
 
 #. i18n: ectx: property (title), widget (QGroupBox, controlGroup)
 #: ekos/guide/opsguide.ui:32
@@ -25392,7 +25377,7 @@ msgid ""
 "algorithm.)</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Afig un factor de correcció basat en la mitjana de les "
-"últimes 50 desviacions de la guia. Per exemple, si la desviació és negativa "
+"últimes 50 desviacions del guiatge. Per exemple, si la desviació és negativa "
 "amb coherència, açò ho intentarà compensar. És millor començar per 0,0 "
 "(sense efecte) i només utilitzar-ho si cal. (Només s'aplica a l'algorisme "
 "estàndard).</p></body></html>"
@@ -25587,7 +25572,7 @@ msgid ""
 "by inventing a guide star position from the multi-star references.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Si està marcada, s'intentarà ser més resilient a les "
+"<html><head/><body><p>Si està marcada, s'intentarà ser més resilient en les "
 "estreles dobles inventant una posició de l'estrela guia a partir de les "
 "referències amb múltiples estreles.</p></body></html>"
 
@@ -25834,7 +25819,7 @@ msgstr "S'està connectant amb el servidor INDI %1 en el port %2…"
 #: ekos/manager.cpp:1409
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
-msgstr "Ha fallat mentre s'iniciava el perfil al gestor web remot d'INDI."
+msgstr "Ha fallat mentre s'iniciava el perfil en el gestor web remot d'INDI."
 
 #: ekos/manager.cpp:1413
 #, kde-format
@@ -26172,7 +26157,7 @@ msgstr "2. Inicieu i pareu Ekos"
 #: ekos/manager.ui:392
 #, kde-format
 msgid "Ekos Live..."
-msgstr "Ekos Live…"
+msgstr "EkosLive…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, indiControlPanelB)
 #: ekos/manager.ui:420 kstarsinit.cpp:550
@@ -31483,6 +31468,8 @@ msgstr "Ha fallat la cua posterior al tancament: %1"
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
+"Avís: La tasca ha fallat durant el treball «%1»: %2. El treball es marca com "
+"a interromput."
 
 #: ekos/scheduler/schedulerprocess.cpp:3324
 #, kde-format
@@ -31947,12 +31934,12 @@ msgstr "No hi ha cap tren òptic per al perfil: %1"
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:280
 #, kde-format
 msgid "No cached devices for profile: %1"
-msgstr "No hi ha cap dispositiu a la memòria cau per al perfil: %1"
+msgstr "No hi ha cap dispositiu en la memòria cau per al perfil: %1"
 
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:316
 #, kde-format
 msgid "No compatible devices in profile"
-msgstr "No hi ha cap dispositiu compatible al perfil"
+msgstr "No hi ha cap dispositiu compatible en el perfil"
 
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:489
 #, kde-format
@@ -32197,7 +32184,7 @@ msgstr "No s'ha trobat cap tren òptic"
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:533
 #, kde-format
 msgid "Using cached devices from profile: %1"
-msgstr "S'utilitzen els dispositius a la memòria cau del perfil: %1"
+msgstr "S'utilitzen els dispositius en la memòria cau del perfil: %1"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:538
 #, kde-format
@@ -33928,7 +33915,7 @@ msgstr ""
 #, kde-format
 msgctxt "Tooltip for Stacking Weight column"
 msgid "Weight used in stacking"
-msgstr "Ponderació emprada a l'apilament"
+msgstr "Ponderació emprada en l'apilament"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
 #, kde-format
@@ -34850,8 +34837,8 @@ msgid ""
 "<html><head/><body><p>Check to enable SNR calculations on individual subs "
 "and the final image.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Trieu-la per a activar els càlculs de la SNR a les "
-"subsolucions i a la imatge final.</p></body></html>"
+"<html><head/><body><p>Trieu-la per a activar els càlculs de la SNR en les "
+"subsolucions i en la imatge final.</p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalcSNR)
 #: fitsviewer/livestacking.ui:472
@@ -35214,10 +35201,10 @@ msgid ""
 "Update</p><p>n = update PSF every n iterations</p><p><br/></p><p>Can cause "
 "star ringing if applied too frequently.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Adapta el PSF utilitzat a l'algorisme ImageMM.</p><p>0 "
-"= sense actualització del PSF</p><p>n = actualitza el PSF cada n iteracions</"
-"p><p><br/></p><p>Pot provocar l'anellament de les estreles si s'aplica amb "
-"massa freqüència.</p></body></html>"
+"<html><head/><body><p>Adapta el PSF utilitzat en l'algorisme ImageMM.</"
+"p><p>0 = sense actualització del PSF</p><p>n = actualitza el PSF cada n "
+"iteracions</p><p><br/></p><p>Pot provocar l'anellament de les estreles si "
+"s'aplica amb massa freqüència.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, PSFUpdateLabel)
 #: fitsviewer/livestacking.ui:1179
@@ -35298,7 +35285,7 @@ msgid ""
 "Update</p><p>n = update PSF every n iterations</p><p><br/></p><p>Can cause "
 "star ringing if applied too frequently.</p><p><br/></p></body></html>"
 msgstr ""
-"<html><head/><body><p>Adapta el PSF utilitzat a l'algorisme ImageMM.</"
+"<html><head/><body><p>Adapta el PSF utilitzat en l'algorisme ImageMM.</"
 "p><p><br/></p><p>0 = sense actualització del PSF</p><p>n = actualitza el PSF "
 "cada n iteracions</p><p><br/></p><p>Pot provocar l'anellament de les "
 "estreles si s'aplica amb massa freqüència.</p><p><br/></p></body></html>"
@@ -37772,7 +37759,8 @@ msgstr "El fitxer de dades s'ha guardat a %1"
 #: indi/indiwebmanager.cpp:329
 #, kde-format
 msgid "Driver %1 failed to start on the remote INDI server."
-msgstr "El controlador %1 ha fallat mentre s'iniciava al servidor INDI remot."
+msgstr ""
+"El controlador %1 ha fallat mentre s'iniciava en el servidor INDI remot."
 
 #: indi/opsindi.cpp:38
 #, kde-format
@@ -42977,29 +42965,30 @@ msgstr "Registre d'activitat del mòdul «Observatori» d'Ekos."
 #: kstars.kcfg:1673
 #, kde-format
 msgid "Debayer engine to use on images."
-msgstr "Motor per a la reconstrucció de Bayer que s'utilitzarà a les imatges."
+msgstr "Motor per a la reconstrucció de Bayer que s'utilitzarà en les imatges."
 
 #. i18n: ectx: label, entry (ImageDebayerAlgo), group (General)
 #: kstars.kcfg:1677
 #, kde-format
 msgid "Debayer algo to use on images."
 msgstr ""
-"Algorisme per a la reconstrucció des de Bayer que s'utilitzarà a les imatges."
+"Algorisme per a la reconstrucció des de Bayer que s'utilitzarà en les "
+"imatges."
 
 #. i18n: ectx: label, entry (StackDebayerEngine), group (General)
 #: kstars.kcfg:1681
 #, kde-format
 msgid "Debayer engine to use on live stack subs."
 msgstr ""
-"Motor per a la reconstrucció de Bayer que s'utilitzarà a les subsolucions de "
-"l'«Apilador en directe»."
+"Motor per a la reconstrucció de Bayer que s'utilitzarà en les subsolucions "
+"de l'«Apilador en directe»."
 
 #. i18n: ectx: label, entry (StackDebayerAlgo), group (General)
 #: kstars.kcfg:1685
 #, kde-format
 msgid "Debayer algo to use on live stack subs."
 msgstr ""
-"Algorisme per a la reconstrucció de Bayer que s'utilitzarà a les "
+"Algorisme per a la reconstrucció de Bayer que s'utilitzarà en les "
 "subsolucions de l'«Apilador en directe»."
 
 #. i18n: ectx: label, entry (FITSWindowGeometry), group (FITSViewer)
@@ -43263,19 +43252,19 @@ msgstr ""
 #: kstars.kcfg:1831
 #, kde-format
 msgid "Live Stacking calculate SNR switch"
-msgstr "Commutador del càlcul de la SNR a l'«Apilament en directe»"
+msgstr "Commutador del càlcul de la SNR en l'«Apilament en directe»"
 
 #. i18n: ectx: whatsthis, entry (fitsLSMasterDark), group (FITSViewer)
 #: kstars.kcfg:1835
 #, kde-format
 msgid "Live Stacking master dark"
-msgstr "Fotograma fosc mestre a l'«Apilament en directe»"
+msgstr "Fotograma fosc mestre en l'«Apilament en directe»"
 
 #. i18n: ectx: whatsthis, entry (fitsLSMasterFlat), group (FITSViewer)
 #: kstars.kcfg:1839
 #, kde-format
 msgid "Live Stacking master flat"
-msgstr "Fotograma pla mestre a l'«Apilament en directe»"
+msgstr "Fotograma pla mestre en l'«Apilament en directe»"
 
 #. i18n: ectx: whatsthis, entry (fitsLSHotPixels), group (FITSViewer)
 #: kstars.kcfg:1843
@@ -43293,7 +43282,7 @@ msgstr "L'apilament en directe elimina els píxels freds."
 #: kstars.kcfg:1851
 #, kde-format
 msgid "Live Stacking alignment method"
-msgstr "Mètode d'alineació a l'«Apilament en directe»."
+msgstr "Mètode d'alineació en l'«Apilament en directe»."
 
 #. i18n: ectx: label, entry (fitsLSNumInMem), group (FITSViewer)
 #: kstars.kcfg:1855
@@ -43307,13 +43296,13 @@ msgstr ""
 #: kstars.kcfg:1859
 #, kde-format
 msgid "Live Stacking downscale factor"
-msgstr "Factor de reducció de l'escala a l'«Apilament en directe»"
+msgstr "Factor de reducció de l'escala en l'«Apilament en directe»"
 
 #. i18n: ectx: whatsthis, entry (fitsLSWeighting), group (FITSViewer)
 #: kstars.kcfg:1863
 #, kde-format
 msgid "Live Stacking sub weighting"
-msgstr "Ponderació de les subsolucions a l'«Apilament en directe»"
+msgstr "Ponderació de les subsolucions en l'«Apilament en directe»"
 
 #. i18n: ectx: whatsthis, entry (fitsLSNormalization), group (FITSViewer)
 #: kstars.kcfg:1867
@@ -43325,7 +43314,7 @@ msgstr "Normalització de l'«Apilament en directe»"
 #: kstars.kcfg:1871
 #, kde-format
 msgid "Live Stacking stacking method"
-msgstr "Mètode d'apilament a l'«Apilament en directe»"
+msgstr "Mètode d'apilament en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSLowSigma), group (FITSViewer)
 #: kstars.kcfg:1875
@@ -43338,86 +43327,89 @@ msgstr ""
 #: kstars.kcfg:1879
 #, kde-format
 msgid "Live Stacking high sigma pixel rejection criteria"
-msgstr "Criteri de rebuig dels píxels de sigma alta a l'«Apilament en directe»"
+msgstr ""
+"Criteri de rebuig dels píxels de sigma alta en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSWinsorCutoff), group (FITSViewer)
 #: kstars.kcfg:1883
 #, kde-format
 msgid "Live Stacking sigma clipping windzor cutoff"
-msgstr "Retall winsor del retallat de la sigma a l'«Apilament en directe»"
+msgstr "Retall winsor del retallat de la sigma en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSIterations), group (FITSViewer)
 #: kstars.kcfg:1887
 #, kde-format
 msgid "Live Stacking Iterations to use in ImageMM stacking"
 msgstr ""
-"Iteracions a l'«Apilament en directe» que s'utilitzaran a l'apilament ImageMM"
+"Iteracions en l'«Apilament en directe» que s'utilitzaran en l'apilament "
+"ImageMM"
 
 #. i18n: ectx: label, entry (fitsLSKappa), group (FITSViewer)
 #: kstars.kcfg:1891
 #, kde-format
 msgid "Live Stacking ImageMM kappa"
-msgstr "Kappa de l'ImageMM a l'«Apilament en directe»"
+msgstr "Kappa de l'ImageMM en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSAlpha), group (FITSViewer)
 #: kstars.kcfg:1895
 #, kde-format
 msgid "Live Stacking ImageMM alpha"
-msgstr "Alfa de l'ImageMM a l'«Apilament en directe»"
+msgstr "Alfa de l'ImageMM en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSSigma), group (FITSViewer)
 #: kstars.kcfg:1899
 #, kde-format
 msgid "Live Stacking ImageMM sigma"
-msgstr "Sigma de l'ImageMM a l'«Apilament en directe»"
+msgstr "Sigma de l'ImageMM en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsPSFUpdate), group (FITSViewer)
 #: kstars.kcfg:1903
 #, kde-format
 msgid "Live Stacking ImageMM PSF Update interval"
-msgstr "Interval d'actualització de l'ImageMM a l'«Apilament en directe»"
+msgstr "Interval d'actualització de l'ImageMM en l'«Apilament en directe»"
 
 #. i18n: ectx: whatsthis, entry (fitsLSPostProc), group (FITSViewer)
 #: kstars.kcfg:1907
 #, kde-format
 msgid "Live Stacking Post Processing switch"
-msgstr "Commutador del postprocessament a l'«Apilament en directe»"
+msgstr "Commutador del postprocessament en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSDeconvAmt), group (FITSViewer)
 #: kstars.kcfg:1911
 #, kde-format
 msgid "Live Stacking deconvolution amount"
-msgstr "Quantitat de desconvolució a l'«Apilament en directe»"
+msgstr "Quantitat de desconvolució en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSPSFSigma), group (FITSViewer)
 #: kstars.kcfg:1915
 #, kde-format
 msgid "Live Stacking PSF sigma to apply in deconvolution"
-msgstr "Sigma PSF que s'aplicarà a la desconvolució a l'«Apilament en directe»"
+msgstr ""
+"Sigma PSF que s'aplicarà en la desconvolució de l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSDenoiseAmt), group (FITSViewer)
 #: kstars.kcfg:1919
 #, kde-format
 msgid "Live Stacking denoise amount"
-msgstr "Quantitat de reducció del soroll a l'«Apilament en directe»"
+msgstr "Quantitat de reducció del soroll en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSSharpenAmt), group (FITSViewer)
 #: kstars.kcfg:1923
 #, kde-format
 msgid "Live Stacking sharpen amount"
-msgstr "Quantitat d'agudització a l'«Apilament en directe»"
+msgstr "Quantitat d'agudització en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSSharpenKernal), group (FITSViewer)
 #: kstars.kcfg:1927
 #, kde-format
 msgid "Live Stacking sharpening kernel size"
-msgstr "Mida del nucli d'agudització a l'«Apilament en directe»"
+msgstr "Mida del nucli d'agudització en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSSharpenSigma), group (FITSViewer)
 #: kstars.kcfg:1931
 #, kde-format
 msgid "Live Stacking sharpening sigma"
-msgstr "Sigma d'agudització a l'«Apilament en directe»"
+msgstr "Sigma d'agudització en l'«Apilament en directe»"
 
 #. i18n: ectx: label, entry (fitsLSMWindowGeometry), group (FITSViewer)
 #: kstars.kcfg:1935
@@ -43583,13 +43575,13 @@ msgstr ""
 #: kstars.kcfg:2047
 #, kde-format
 msgid "Remember Ekos Live credentials."
-msgstr "Recorda les credencials d'Ekos Live."
+msgstr "Recorda les credencials d'EkosLive."
 
 #. i18n: ectx: label, entry (AutoStartEkosLive), group (EkosLive)
 #: kstars.kcfg:2051
 #, kde-format
 msgid "Start Ekos Live on KStars startup."
-msgstr "Inicia Ekos Live quan s'inicie KStars."
+msgstr "Inicia EkosLive quan s'inicie KStars."
 
 #. i18n: ectx: label, entry (EkosLiveUsername), group (EkosLive)
 #: kstars.kcfg:2055
@@ -43773,10 +43765,9 @@ msgstr "Multiplicador de l'angle de posició"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of capture camera"
-msgstr "Desplaçament de l'angle de posició"
+msgstr "Desplaçament de l'angle de posició de la càmera de captura"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -45528,8 +45519,9 @@ msgid ""
 "Which Algorithm to use track guide square (0 smart, 1 SEP, 2 fast, 3 "
 "threshold, 4 no threshold, 5 SEP multistar)."
 msgstr ""
-"Quin algorisme utilitzarà el requadro guia de seguiment (0 Intel·ligent, 1 "
-"SEP, 2 Ràpid, 3 Llindar, 4 Sense llindar i 5 SEP amb múltiples estreles)."
+"Quin algorisme utilitzarà el requadro de guiatge de seguiment (0 "
+"Intel·ligent, 1 SEP, 2 Ràpid, 3 Llindar, 4 Sense llindar i 5 SEP amb "
+"múltiples estreles)."
 
 #. i18n: ectx: label, entry (RAGuidePulseAlgorithm), group (Guide)
 #: kstars.kcfg:3063
@@ -45553,10 +45545,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PAOffsetGuide), group (Guide)
 #: kstars.kcfg:3071
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of guide camera"
-msgstr "Desplaçament de l'angle de posició"
+msgstr "Desplaçament de l'angle de posició de la càmera de guiatge"
 
 #. i18n: ectx: label, entry (PHD2Host), group (Guide)
 #: kstars.kcfg:3075
@@ -45596,7 +45587,7 @@ msgstr ""
 #: kstars.kcfg:3099
 #, kde-format
 msgid "Guide square size selection in pixels."
-msgstr "Se selecciona la mida del requadro guia, en píxels."
+msgstr "Se selecciona la mida del requadro de guiatge, en píxels."
 
 #. i18n: ectx: label, entry (GuideBinning), group (Guide)
 #: kstars.kcfg:3103
@@ -45614,7 +45605,7 @@ msgstr "Tria automàticament l'estrela de calibratge i realitza el calibratge."
 #: kstars.kcfg:3111
 #, kde-format
 msgid "Display guiding frames."
-msgstr "Mostra els fotogrames del sistema de guiatge."
+msgstr "Mostra els fotogrames de guiatge."
 
 #. i18n: ectx: label, entry (AutoModeIterations), group (Guide)
 #: kstars.kcfg:3119
@@ -45700,7 +45691,7 @@ msgstr "Pren un fotograma fosc per a les imatges del guiador automàtic."
 #: kstars.kcfg:3167
 #, kde-format
 msgid "Subframe guide image around selected region"
-msgstr "Submarc de la imatge guia al voltant de la regió seleccionada"
+msgstr "Submarc de la imatge de guiatge al voltant de la regió seleccionada"
 
 #. i18n: ectx: label, entry (DitherPixels), group (Guide)
 #: kstars.kcfg:3171
@@ -45966,6 +45957,8 @@ msgid ""
 "Guide frames are reflected vertically before passing them to the guider "
 "process."
 msgstr ""
+"Els fotogrames de guiatge es reflectixen verticalment abans de passar-los al "
+"procés del sistema de guiatge."
 
 #. i18n: ectx: label, entry (GuideManualRotator), group (Scheduler)
 #: kstars.kcfg:3400
@@ -45973,6 +45966,8 @@ msgstr ""
 msgid ""
 "Guide camera is rotated together with main camera in \"Manual Rotator\" mode."
 msgstr ""
+"La càmera de guiatge gira juntament amb la càmera principal en el mode "
+"«Rotor manual»."
 
 #. i18n: ectx: label, entry (GuideCalibrationBacklash), group (Scheduler)
 #: kstars.kcfg:3404
@@ -81363,7 +81358,7 @@ msgstr "Robert Lancaster"
 #: main.cpp:159
 #, kde-format
 msgid "FITSViewer & Ekos Improvements. KStars OSX Port"
-msgstr "Millores al «Visor de FITS» i Ekos. Adaptació de KStars a OSX"
+msgstr "Millores en el «Visor de FITS» i Ekos. Adaptació de KStars a OSX"
 
 #: main.cpp:161
 #, kde-format
@@ -81552,7 +81547,7 @@ msgstr "Utkarsh Simha"
 #, kde-format
 msgid "Improvements to observation plan execution, star hopper etc."
 msgstr ""
-"Millores a l'execució del pla d'observació, saltador entre estreles, etc."
+"Millores en l'execució del pla d'observació, saltador entre estreles, etc."
 
 #: main.cpp:209
 #, kde-format
@@ -81624,7 +81619,7 @@ msgstr "Tony Schriber"
 #: main.cpp:219
 #, kde-format
 msgid "Rotator Dialog improvements"
-msgstr "Millores al diàleg del rotor"
+msgstr "Millores en el diàleg del rotor"
 
 #: main.cpp:220
 #, kde-format
@@ -83729,7 +83724,7 @@ msgstr ""
 #: options/opsimageoverlay.ui:74
 #, kde-format
 msgid "Center SkyMap on selection"
-msgstr "Centra el mapa celeste a la selecció"
+msgstr "Centra el mapa celeste en la selecció"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowImageOverlaysBelowCatalogs)
 #: options/opsimageoverlay.ui:84
@@ -94471,21 +94466,3 @@ msgstr "Color de fons:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Establix el color de fons."
-
-#, fuzzy
-#~| msgid "World Coordinate System (WCS) is disabled."
-#~ msgid "%+: World Coordinate System (WCS) is disabled."
-#~ msgstr ""
-#~ "El sistema de coordenades mundial (World Coordinate System -WCS-) està "
-#~ "desactivat."
-
-#~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
-#~ msgstr ""
-#~ "Direcció de la Dec invertida (AR-Dec ara és el sistema estàndard en "
-#~ "sentit antihorari)."
-
-#~ msgid "Calibrated Values"
-#~ msgstr "Valors calibrats"
-
-#~ msgid "degrees (swapped)"
-#~ msgstr "graus (intercanviats)"

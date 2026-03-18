@@ -6291,18 +6291,12 @@ msgid "Image received."
 msgstr "图像已接收。"
 
 #: ekos/align/align.cpp:1965
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
 "the list."
 msgstr ""
-"未在您系统的索引文件目录中找到索引文件。请下载索引文件或将正确的目录添加到列"
-"表中。"
 
 #: ekos/align/align.cpp:2022
 #, kde-format
@@ -6376,10 +6370,9 @@ msgid "Target is within %1 degrees of solution coordinates."
 msgstr "目标在解析坐标 %1 度范围内。"
 
 #: ekos/align/align.cpp:2363
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "%1 position angle is %2 degrees."
-msgstr "相机位置角是 %1 度。"
+msgstr ""
 
 #: ekos/align/align.cpp:2400 ekos/align/align.cpp:2558
 #, kde-format
@@ -6442,16 +6435,14 @@ msgstr ""
 "件。 在设置标签页 -> 日志中启用校准日志以获取关于失败的详细信息。"
 
 #: ekos/align/align.cpp:2657
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting %1 position angle to %2 degrees ..."
-msgstr "设置相机位置角为 %1 度..."
+msgstr ""
 
 #: ekos/align/align.cpp:2669
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "%1 position angle is within acceptable range."
-msgstr "相机位置角在可接受范围内。"
+msgstr ""
 
 #: ekos/align/align.cpp:2683
 #, kde-format
@@ -6577,16 +6568,14 @@ msgid "Warning: Camera module & Align module have to use the same train!"
 msgstr ""
 
 #: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
-msgstr "世界坐标系统（WCS）已启用。"
+msgstr ""
 
 #: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "世界坐标系统（WCS）被禁用。"
+msgstr ""
 
 #: ekos/align/align.cpp:3496
 #, kde-format
@@ -22684,14 +22673,11 @@ msgid "Guiding calibration restored"
 msgstr "已复用导星校准"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."
-msgstr "导星丢失跟踪。尝试增大方框尺寸或缩短脉冲时长。"
+msgstr ""
 
 #: ekos/guide/internalguide/internalguider.cpp:884
 #, kde-format
@@ -22875,14 +22861,11 @@ msgstr "被导星的 Y 坐标"
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:286
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>The Master Dark to use to calibrate lights.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>These are the current calibration parameters.</p></"
 "body></html>"
-msgstr "<html><head/><body><p>用于校准亮度通道的主暗场。</p></body></html>"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:289
@@ -22904,10 +22887,9 @@ msgstr "xxxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/opscalibration.ui:323
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "DEC Rotation"
-msgstr "旋转角"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, label_11)
@@ -22918,10 +22900,9 @@ msgstr "毫秒/角秒"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/guide/opscalibration.ui:344
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "RA Pulse"
-msgstr "脉冲："
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, dec_cal_degrees_unit)
@@ -22937,24 +22918,21 @@ msgstr "°"
 
 #. i18n: ectx: property (text), widget (QLabel, racal)
 #: ekos/guide/opscalibration.ui:415
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "RA Rotation"
-msgstr "旋转角"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/guide/opscalibration.ui:444
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "DEC Pulse"
-msgstr "脉冲："
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/guide/opscalibration.ui:468
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "Rotation Offset"
-msgstr "旋转角"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideCalibrationBacklash)
 #: ekos/guide/opscalibration.ui:524
@@ -22972,27 +22950,19 @@ msgstr "导星校准时移除赤纬回差"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:543
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
 "previously been done and the guide camera has not been re-installed.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>如果选中，在开始导星时总是重新校准。如果以往进行过良好"
-"的校准，且导星相机没有旋转或重新安装，这常常是不必要的。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:549
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset guide calibration after each mount slew"
-msgstr "每次赤道仪转动操作后，复位导星校准"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:562
@@ -23009,35 +22979,24 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:568
-#, fuzzy, kde-format
-#| msgid ""
-#| "Reverse DEC guide pulses when changing pier-side and reusing calibration."
+#, kde-format
 msgid "Mount reverses DEC pulses after changing pierside"
-msgstr "当改变镜筒朝向且复用校准数据时，反转赤经导星脉冲。"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:584
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
 "works on opposite sides of the meridian if the pier-side can be "
 "automatically determined from your mount.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>存储并尝试复用校准结果。如果赤道仪能自动确认镜筒朝向，"
-"将能工作在当前子午圈的另一侧。 如需进行尝试，必须取消选中上面的“转动后复位导"
-"星”选项。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:587
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible"
-msgstr "如可能，保存并复用导星校准数据。"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:611
@@ -23051,10 +23010,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:614
-#, fuzzy, kde-format
-#| msgid "Delete focus frames?"
+#, kde-format
 msgid "Use reflected guide frames"
-msgstr "删除对焦帧吗？"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:627
@@ -40892,10 +40850,9 @@ msgstr "方位角乘系数"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of capture camera"
-msgstr "方位角偏移量"
+msgstr ""
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -42462,10 +42419,9 @@ msgstr "赤纬导星脉冲计算算法 (0 标准算法，1 滞回算法，2 线�
 
 #. i18n: ectx: label, entry (PAOffsetGuide), group (Guide)
 #: kstars.kcfg:3071
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of guide camera"
-msgstr "方位角偏移量"
+msgstr ""
 
 #. i18n: ectx: label, entry (PHD2Host), group (Guide)
 #: kstars.kcfg:3075
@@ -89902,17 +89858,3 @@ msgstr "背景颜色："
 #, kde-format
 msgid "Set the color for the background."
 msgstr "设置背景颜色。"
-
-#, fuzzy
-#~| msgid "World Coordinate System (WCS) is disabled."
-#~ msgid "%+: World Coordinate System (WCS) is disabled."
-#~ msgstr "世界坐标系统（WCS）被禁用。"
-
-#~ msgid "DEC direction reversed (RA-DEC is now standard CCW-system)."
-#~ msgstr "赤纬方向反向（赤经-赤纬现在是一个标准的逆时针系统）。"
-
-#~ msgid "Calibrated Values"
-#~ msgstr "校准值："
-
-#~ msgid "degrees (swapped)"
-#~ msgstr "度 (交换后)"

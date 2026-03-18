@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-17 02:06+0000\n"
-"PO-Revision-Date: 2026-03-17 01:06+0100\n"
+"PO-Revision-Date: 2026-03-18 00:48+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -23820,8 +23820,7 @@ msgstr ""
 "de %1…"
 
 #: ekos/guide/internalguide/internalguider.cpp:735
-#, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#, kde-format
 msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Ha ocurrido un error al actualizar el lado de columna para la rotación de la "
@@ -23860,10 +23859,7 @@ msgid "Guiding calibration restored"
 msgstr "La calibración de guiado se ha restaurado"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star.Try increasing binning, square size or "
-#| "reducing pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."
@@ -93549,8 +93545,3 @@ msgstr "Color del fondo:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Establecer el color para el fondo."
-
-#, fuzzy
-#~| msgid "World Coordinate System (WCS) is disabled."
-#~ msgid "%+: World Coordinate System (WCS) is disabled."
-#~ msgstr "%1: El sistema de coordenadas mundial (WCS) está desactivado."

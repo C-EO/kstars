@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-17 02:06+0000\n"
-"PO-Revision-Date: 2026-03-16 08:47-0300\n"
+"PO-Revision-Date: 2026-03-17 08:10-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -23682,8 +23682,7 @@ msgstr ""
 "O guia interno não conseguiu encontrar a propriedade de rotação WCS de %1..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
-#, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#, kde-format
 msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Erro ao atualizar o píer para rotação da câmera: Lado do píer desconhecido!"
@@ -23720,10 +23719,7 @@ msgid "Guiding calibration restored"
 msgstr "A calibração da guia foi restaurada"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star.Try increasing binning, square size or "
-#| "reducing pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."

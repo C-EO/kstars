@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-17 02:06+0000\n"
-"PO-Revision-Date: 2026-03-03 11:11+0100\n"
+"PO-Revision-Date: 2026-03-14 17:58+0100\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -8375,10 +8375,9 @@ msgstr "Mantieni angolo di posizione"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxAutoPAC)
 #: ekos/align/opsalign.ui:379
-#, fuzzy, kde-format
-#| msgid "Legacy Polar Alignment Tool"
+#, kde-format
 msgid "Automatic Polar Alignment"
-msgstr "Vecchio strumento per l'allineamento polare"
+msgstr "Allineamento polare automatico"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:397
@@ -8389,13 +8388,17 @@ msgid ""
 "to the PAC during the refresh phase instead of requiring manual knob "
 "adjustments.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Quando l'opzione è abilitata e un dispositivo PAC "
+"(Polar Alignment Corrector, correttore di allineamento polare) è collegato, "
+"il sistema invia automaticamente i comandi di correzione al PAC durante la "
+"fase di aggiornamento, anziché richiedere la regolazione manuale tramite "
+"manopola.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:400
-#, fuzzy, kde-format
-#| msgid "Final declination:"
+#, kde-format
 msgid "Enable Automatic PAC Correction"
-msgstr "Declinazione finale:"
+msgstr "Abilita la correzione PAC automatica"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:407
@@ -8404,13 +8407,14 @@ msgid ""
 "If the total polar alignment error drops to or below this threshold, the "
 "alignment is considered successful and the process stops."
 msgstr ""
+"Se l'errore di allineamento polare totale arriva o scende sotto questa "
+"soglia,  l'allineamento è considerato riuscito e il processo si interrompe."
 
 #. i18n: ectx: property (text), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:410
-#, fuzzy, kde-format
-#| msgid "Threshold:"
+#, kde-format
 msgid "Success Threshold:"
-msgstr "Soglia:"
+msgstr "Soglia di riuscita:"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_PAHSuccessThreshold)
 #: ekos/align/opsalign.ui:417
@@ -8419,6 +8423,9 @@ msgid ""
 "Polar alignment success threshold in arcminutes. If the total error is at or "
 "below this value, alignment is considered successful."
 msgstr ""
+"La soglia di riuscita dell'allineamento polare in minuti d'arco. Se l'errore "
+"totale coincide o sta sotto questo valore, l'allineamento è considerato "
+"riuscito."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelCorrectionTimeout)
 #: ekos/align/opsalign.ui:443
@@ -8427,22 +8434,22 @@ msgid ""
 "If the system cannot reach the desired threshold within this period, it "
 "aborts the automatic correction."
 msgstr ""
+"Il sistema interrompe la correzione automatica, se non riesce a raggiungere "
+"la soglia desiderata entro questo periodo."
 
 #. i18n: ectx: property (text), widget (QLabel, labelCorrectionTimeout)
 #: ekos/align/opsalign.ui:446
-#, fuzzy, kde-format
-#| msgid "Motion Timeout:"
+#, kde-format
 msgid "Correction Timeout:"
-msgstr "Tempo massimo del movimento:"
+msgstr "Tempo massimo correzione:"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_PAHCorrectionTimeout)
 #: ekos/align/opsalign.ui:453
-#, fuzzy, kde-format
-#| msgid "Timeout in seconds to wait for astrometry solver to complete."
+#, kde-format
 msgid "Timeout in seconds for automatic polar alignment correction."
 msgstr ""
-"Tempo massimo in secondi per attendere il completamento del risolutore "
-"astrometrico."
+"Tempo massimo in secondi per la correzione dell'allineamento polare "
+"automatico."
 
 #. i18n: ectx: property (text), widget (QLabel, labelCorrectionTimeoutUnit)
 #. i18n: ectx: property (text), widget (QLabel, secLabel)
@@ -9140,8 +9147,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, openIndexFileDirectory)
 #: ekos/align/opsastrometryindexfiles.ui:276
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "opens astrometry index file directory"
 msgid "Open"
 msgstr "Apri"
@@ -10368,42 +10374,47 @@ msgstr ""
 "l'aggiornamento è iniziato"
 
 #: ekos/align/polaralignmentassistant.cpp:1331
-#, fuzzy, kde-format
-#| msgid "Polar alignment correction completed"
+#, kde-format
 msgid "PAC: Polar Alignment Corrector connected."
-msgstr "Correzione dell'allineamento polare completata"
+msgstr "PAC: correttore allineamento polare collegato."
 
 #: ekos/align/polaralignmentassistant.cpp:1344
 #, kde-format
 msgid "PAC: Correction in progress – adjusting azimuth and altitude axes..."
 msgstr ""
+"PAC: correzione in esecuzione – regolazione degli assi di azimut e altezza..."
 
 #: ekos/align/polaralignmentassistant.cpp:1349
 #, kde-format
 msgid "PAC: Correction applied. Capturing next image to verify alignment..."
 msgstr ""
+"PAC: correzione applicata. Acquisizione della prossima immagine per "
+"verificare l'allineamento..."
 
 #: ekos/align/polaralignmentassistant.cpp:1355
-#, fuzzy, kde-format
-#| msgid "Mount rotation direction during polar alignment."
+#, kde-format
 msgid "PAC: Correction failed. Stopping polar alignment."
-msgstr "Direzione di rotazione della montatura durante l'allineamento polare."
+msgstr "PAC: correzione non riuscita. Interruzione dell'allineamento polare."
 
 #: ekos/align/polaralignmentassistant.cpp:1386
 #, kde-format
 msgid ""
 "PAC: Polar alignment successful! Total error %1' is within threshold %2'."
 msgstr ""
+"PAC: allineamento polare riuscito! L'errore totale %1' si trova entro la "
+"soglia %2'."
 
 #: ekos/align/polaralignmentassistant.cpp:1397
 #, kde-format
 msgid "PAC: Correction timeout (%1s) reached. Total error is %2'. Stopping."
 msgstr ""
+"PAC: tempo massimo (%1s) di correzione scaduto. L'errore totale è %2'. "
+"Interruzione in corso."
 
 #: ekos/align/polaralignmentassistant.cpp:1406
 #, kde-format
 msgid "PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'"
-msgstr ""
+msgstr "PAC: invio comando al correttore – Az: %1'  Alt: %2'  Totale: %3'"
 
 #. i18n: ectx: property (toolTip), widget (QStackedWidget, PAHWidgets)
 #: ekos/align/polaralignmentassistant.ui:44
@@ -15125,8 +15136,7 @@ msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, CaptureSettingsGroup)
 #: ekos/capture/camera.ui:258
-#, fuzzy, kde-format
-#| msgid "Capture Settings"
+#, kde-format
 msgctxt "camera capture settings section title"
 msgid "Capture Settings"
 msgstr "Impostazioni di acquisizione"
@@ -22832,16 +22842,14 @@ msgid "Connection to the guide camera is lost."
 msgstr "La connessione alla fotocamera guida è stata persa."
 
 #: ekos/guide/guide.cpp:963
-#, fuzzy, kde-format
-#| msgid "PHD2: Guiding started."
+#, kde-format
 msgid "Guide streaming started."
-msgstr "PHD2: guida avviata."
+msgstr "Flusso guida avviato."
 
 #: ekos/guide/guide.cpp:983
-#, fuzzy, kde-format
-#| msgid "Framing stopped"
+#, kde-format
 msgid "Guide streaming stopped."
-msgstr "Inquadratura fermata"
+msgstr "Flusso guida interrotto."
 
 #: ekos/guide/guide.cpp:1131
 #, kde-format
@@ -23125,14 +23133,19 @@ msgid ""
 "Hz) required by harmonic drives. Not compatible with dark-frame subtraction."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Abilita la modalità di flusso della guida. Se spuntata "
+"e la fotocamera supporta il flusso (streaming) video, il modulo della guida "
+"acquisisce i fotogrammi tramite un flusso video continuo, anziché "
+"esposizioni singole. Questa opzione riduce in modo significativo gli aumenti "
+"di risorse per fotogramma e abilita frequenze di guida più elevate (per es. "
+"2–5 Hz) richieste dagli harmonic drive. Non compatibile con la sottrazione "
+"dei dark frame.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, guideStreamingEnabled)
 #: ekos/guide/guide.ui:242
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Stream On"
+#, kde-format
 msgid "Stream"
-msgstr "Stream acceso"
+msgstr "Flusso"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, manualDitherB)
 #: ekos/guide/guide.ui:274
@@ -25443,10 +25456,9 @@ msgid "Extension '%1': %2"
 msgstr "Estensione «%1»: %2"
 
 #: ekos/manager.cpp:934
-#, fuzzy, kde-format
-#| msgid "Starting profile on remote INDI Web Manager..."
+#, kde-format
 msgid "Imported profile '%1' from INDI Web Manager."
-msgstr "Avvio del profilo su INDI Web Manager remoto..."
+msgstr "Profilo «%1» importato dall'INDI Web Manager."
 
 #: ekos/manager.cpp:1089
 #, kde-format
@@ -25698,10 +25710,9 @@ msgid "%1 GPS is online."
 msgstr "Il GPS %1 è in linea."
 
 #: ekos/manager.cpp:2031
-#, fuzzy, kde-format
-#| msgid "%1 GPS is online."
+#, kde-format
 msgid "%1 PAC is online."
-msgstr "Il GPS %1 è in linea."
+msgstr "Il PAC %1 è in linea."
 
 #: ekos/manager.cpp:2040
 #, kde-format
@@ -26685,8 +26696,7 @@ msgid "Shutter is opening..."
 msgstr "L'otturatore si sta aprendo..."
 
 #: ekos/observatory/observatory.cpp:459 ekos/observatory/observatory.cpp:463
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "Shutter action"
 msgid "Open"
 msgstr "Apri"
@@ -26702,8 +26712,7 @@ msgid "Shutter is closing..."
 msgstr "L'otturatore si sta chiudendo..."
 
 #: ekos/observatory/observatory.cpp:580
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "Rolloff roof action"
 msgid "Open"
 msgstr "Apri"
@@ -26886,8 +26895,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, shutterOpen)
 #: ekos/observatory/observatory.ui:673
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "opens dome shutter"
 msgid "Open"
 msgstr "Apri"
@@ -29304,13 +29312,14 @@ msgstr "Ritardo meteo"
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_SchedulerWeatherGracePeriod)
 #. i18n: ectx: label, entry (SchedulerWeatherGracePeriod), group (Scheduler)
 #: ekos/scheduler/opsweathersettings.ui:55 kstars.kcfg:3567
-#, fuzzy, kde-format
-#| msgid "Wait this many minutes for the weather to improve before giving up."
+#, kde-format
 msgid ""
 "Wait this many minutes for the weather to improve before giving up. Set to 0 "
 "to wait indefinitely (scheduler keeps monitoring until weather improves)."
 msgstr ""
-"Attendi il miglioramento del tempo per questi minuti prima di rinunciare."
+"Attendi il miglioramento del tempo per questi minuti prima di rinunciare. "
+"Imposta a 0 per attendere in modo indefinito (il pianificatore continua a "
+"monitorare fino a quando il meteo migliora)."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, label)
 #: ekos/scheduler/opsweathersettings.ui:96
@@ -30564,6 +30573,8 @@ msgid ""
 "Weather grace period is set to indefinite wait. Weather is still not OK, "
 "continuing to monitor..."
 msgstr ""
+"Il ritardo meteo è impostato ad attesa indefinita. Se il meteo non è ancora "
+"migliorato, si continua a monitorare..."
 
 #: ekos/scheduler/schedulerprocess.cpp:558
 #, kde-format
@@ -31305,15 +31316,13 @@ msgstr ""
 "in %1 secondi."
 
 #: ekos/scheduler/schedulerprocess.cpp:3992
-#, fuzzy, kde-format
-#| msgid ""
-#| "Observatory scheduled for soft shutdown until safety improves or until %1."
+#, kde-format
 msgid ""
 "Observatory scheduled for soft shutdown. Monitoring weather indefinitely "
 "until safety improves."
 msgstr ""
-"Osservatorio programmato per lo spegnimento lento fino a che non migliorano "
-"la sicurezza o fino a %1."
+"Osservatorio programmato per lo spegnimento lento. Monitoraggio indefinito "
+"del meteo fino a quando la sicurezza non migliora."
 
 #: ekos/scheduler/schedulerprocess.cpp:3994
 #, kde-format
@@ -41140,10 +41149,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (DomeSlitInverted), group (Colors)
 #: kstars.kcfg:1170
-#, fuzzy, kde-format
-#| msgid "Mode for rendering stars"
+#, kde-format
 msgid "Mode for filling dome slit"
-msgstr "Modalità di disegno delle stelle"
+msgstr "Modalità per il riempimento della fessura cupola"
 
 #. i18n: ectx: whatsthis, entry (DomeSlitInverted), group (Colors)
 #: kstars.kcfg:1171
@@ -41152,6 +41160,8 @@ msgid ""
 "If disabled false dome slit is filled. If enabled true dome slit is open and "
 "the sky filled."
 msgstr ""
+"Se disabilitata, la falsa fessura cupola viene riempita. Se abilitata, la "
+"vera fessura cupola viene aperta e il cielo riempito."
 
 #. i18n: ectx: label, entry (AngularRulerColor), group (Colors)
 #: kstars.kcfg:1175
@@ -44845,10 +44855,11 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PAHAutoPACCorrection), group (Align)
 #: kstars.kcfg:3033
-#, fuzzy, kde-format
-#| msgid "Polar alignment correction in progress"
+#, kde-format
 msgid "Enable automatic polar alignment correction using PAC device."
-msgstr "Correzione dell'allineamento polare in corso"
+msgstr ""
+"Abilita la correzione dell'allineamento polare automatico tramite il "
+"dispositivo PAC."
 
 #. i18n: ectx: label, entry (PAHSuccessThreshold), group (Align)
 #: kstars.kcfg:3037
@@ -44857,6 +44868,9 @@ msgid ""
 "Polar alignment success threshold in arcminutes. If total error is at or "
 "below this value, alignment is considered successful."
 msgstr ""
+"La soglia di riuscita dell'allineamento polare in minuti d'arco. Se l'errore "
+"totale coincide o sta sotto questo valore, l'allineamento è considerato "
+"riuscito."
 
 #. i18n: ectx: label, entry (PAHCorrectionTimeout), group (Align)
 #: kstars.kcfg:3041
@@ -44865,6 +44879,9 @@ msgid ""
 "Timeout in seconds for automatic polar alignment correction. If the system "
 "cannot reach the desired threshold within this period, it aborts."
 msgstr ""
+"Tempo massimo in secondi per la correzione dell'allineamento polare "
+"automatico. Se il sistema non riesce a raggiungere la soglia voluta entro "
+"questo periodo, si interrompe."
 
 #. i18n: ectx: label, entry (GuideExposure), group (Guide)
 #: kstars.kcfg:3047
@@ -82359,10 +82376,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DomeSlitInverted)
 #: options/opscolors.ui:188
-#, fuzzy, kde-format
-#| msgid "Dome Slit"
+#, kde-format
 msgid "Dome Slit Inverted"
-msgstr "Fessura cupola"
+msgstr "Fessura cupola invertita"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: options/opscolors.ui:203

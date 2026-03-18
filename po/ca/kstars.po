@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-17 02:06+0000\n"
-"PO-Revision-Date: 2026-03-16 11:37+0100\n"
+"PO-Revision-Date: 2026-03-17 11:08+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 # Diccionari de termes astronòmics:
 # https://www.ub.edu/ubterm/cerca-termes/?cerca=&obra-cerca=68&categoria-
@@ -23852,8 +23852,7 @@ msgstr ""
 "%1..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
-#, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#, kde-format
 msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Error en actualitzar el costat del moll segons el gir de la càmera: costat "
@@ -23892,10 +23891,7 @@ msgid "Guiding calibration restored"
 msgstr "S'ha restaurat el calibratge del guiatge"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star.Try increasing binning, square size or "
-#| "reducing pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."

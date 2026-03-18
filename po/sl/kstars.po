@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-17 02:06+0000\n"
-"PO-Revision-Date: 2026-03-16 07:15+0100\n"
+"PO-Revision-Date: 2026-03-17 06:24+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -11698,7 +11698,7 @@ msgid ""
 "<html><head/><body><p>Plot the mount's pier side (left) -> where the mount "
 "is pointing.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Izrisuj stran stojala montaže (levo)  -> kamor je "
+"<html><head/><body><p>Izrisuj stran stojala montaže (levo) -> kamor je "
 "usmerjena montaža.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, pierSideCB)
@@ -15572,7 +15572,7 @@ msgstr ""
 "Vrednost ISO (samo za DSLR-je).</li></ul><li style=\" margin-top:0px; margin-"
 "bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
 "indent:0px;\">Nadomestno besedilo <span style=\" font-weight:600;\">%P</"
-"span> ali <span style=\" font-weight:600;\">%pierside</span>: Stran nosilca "
+"span> ali <span style=\" font-weight:600;\">%pierside</span>: Stran stojala "
 "trenutne montaže.</li><ul style=\"margin-top: 0px; margin-bottom: 0px; "
 "margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" "
 "margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-"
@@ -17914,7 +17914,7 @@ msgstr ""
 "reševanja referenčne slike poroča drugačno stran stojala od dejanske strani "
 "stojala.</p><p>Pravila zrcaljenja lahko spremenite v <span style=\" font-"
 "weight:600;\">Možnosti poravnave</span><span style=\" font-size:12pt;\"> pod "
-"»Nastavitve rotatorja«.</span></p></body></html>"
+"&quot;Nastavitve rotatorja&quot;.</span></p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: ekos/capture/rotatorsettings.ui:336
@@ -23513,8 +23513,7 @@ msgid "Internal guider could not find WCS rotation property of %1..."
 msgstr "Notranji vodnik ni mogel najti lastnosti vrtenja WCS %1..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
-#, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unkown!"
+#, kde-format
 msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Napaka pri posodabljanju rotacije kamere na strani stojala: Neznana stran "
@@ -23523,7 +23522,7 @@ msgstr ""
 #: ekos/guide/internalguide/internalguider.cpp:738
 #, kde-format
 msgid "Pierside is now "
-msgstr "Stran stojala je zdaj"
+msgstr "Stran stojala je zdaj "
 
 #: ekos/guide/internalguide/internalguider.cpp:746
 #, kde-format
@@ -23551,10 +23550,7 @@ msgid "Guiding calibration restored"
 msgstr "Umerjanje vodenja je obnovljeno"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star.Try increasing binning, square size or "
-#| "reducing pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."
@@ -44605,8 +44601,7 @@ msgstr "Vodnik lahko ponovno uporabi kalibracijo vodenja, če je na voljo."
 #: kstars.kcfg:3392
 #, kde-format
 msgid "Reverse DEC on pier-side change when reusing calibration."
-msgstr ""
-"Obrni DEC pri spremembi strani podnožja pri ponovni uporabi kalibracije."
+msgstr "Obrni DEC pri spremembi strani stojala ob ponovni uporabi kalibracije."
 
 #. i18n: ectx: label, entry (GuideReflectFrames), group (Scheduler)
 #: kstars.kcfg:3396
