@@ -638,6 +638,7 @@ void SchedulerProcess::start()
         j->setState(SCHEDJOB_IDLE);
         emit updateJobTable(j);
     }
+
     moduleState()->init();
     iterate();
 }
@@ -1878,6 +1879,15 @@ bool SchedulerProcess::checkStartupState()
     if (moduleState()->schedulerState() == SCHEDULER_PAUSED)
         return false;
 
+    const bool observatoryStarted = moduleState()->ekosCommunicationStatus() == Ekos::Success &&
+                                    moduleState()->isINDIConnected();
+
+    // STARTUP_COMPLETE only remains valid while the observatory is still up. If Ekos/INDI was
+    // stopped outside the scheduler, re-enter the startup state machine from IDLE so pre-startup
+    // tasks are executed again.
+    if (moduleState()->startupState() == STARTUP_COMPLETE && !observatoryStarted)
+        moduleState()->setStartupState(STARTUP_IDLE);
+
     switch (moduleState()->startupState())
     {
         case STARTUP_IDLE:
@@ -1978,6 +1988,17 @@ bool SchedulerProcess::checkShutdownState()
 {
     if (moduleState()->schedulerState() == SCHEDULER_PAUSED)
         return false;
+
+    const bool observatoryStarted = moduleState()->ekosCommunicationStatus() == Ekos::Success ||
+                                    moduleState()->isINDIConnected() ||
+                                    moduleState()->ekosState() != EKOS_IDLE ||
+                                    moduleState()->indiState() != INDI_IDLE;
+
+    // SHUTDOWN_COMPLETE only remains valid while the observatory is still down. If Ekos or INDI
+    // is running again, re-enter shutdown from IDLE so the pre-shutdown queue runs against the
+    // live setup before any disconnect/stop steps.
+    if (moduleState()->shutdownState() == SHUTDOWN_COMPLETE && observatoryStarted)
+        moduleState()->setShutdownState(SHUTDOWN_IDLE);
 
     switch (moduleState()->shutdownState())
     {
@@ -4034,8 +4055,6 @@ void SchedulerProcess::checkShutdownProcedure()
         QTimer::singleShot(1000, this, &SchedulerProcess::checkShutdownProcedure);
 
 }
-
-
 
 SkyPoint SchedulerProcess::mountCoords()
 {

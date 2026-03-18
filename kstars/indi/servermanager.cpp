@@ -369,7 +369,7 @@ void ServerManager::stopDriver(const QSharedPointer<DriverInfo> &driver)
     }
 
     // Post Startdown Script?
-    auto StoppedScript = startupShutdownRule["Stoppedcript"].toString();
+    auto StoppedScript = startupShutdownRule["StoppedScript"].toString();
     if (!StoppedScript.isEmpty())
     {
         QProcess script;
