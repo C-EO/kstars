@@ -604,11 +604,25 @@ void GaussianProcessGuider::inject_data_point(double timestamp, double input, do
 
 double GaussianProcessGuider::EstimatePeriodLength(const Eigen::VectorXd &time, const Eigen::VectorXd &data)
 {
+    // Need at least 2 points to compute a meaningful spectrum. With fewer points the FFT
+    // zero-padding ratio is too large and compute_spectrum would return an empty result.
+    if (data.rows() < 2)
+    {
+        return GetGPHyperparameters()[PKPeriodLength]; // return current period length unchanged
+    }
+
     // compute Hamming window to reduce spectral leakage
     Eigen::VectorXd windowed_data = data.array() * math_tools::hamming_window(data.rows()).array();
 
     // compute the spectrum
     std::pair<Eigen::VectorXd, Eigen::VectorXd> result = math_tools::compute_spectrum(windowed_data, FFT_SIZE);
+
+    // Guard: compute_spectrum returns empty vectors when there are too few data points
+    // relative to the FFT size (low_index >= N/2). Fall back to the current period length.
+    if (result.first.size() == 0 || result.second.size() == 0)
+    {
+        return GetGPHyperparameters()[PKPeriodLength];
+    }
 
     Eigen::ArrayXd amplitudes = result.first;
     Eigen::ArrayXd frequencies = result.second;

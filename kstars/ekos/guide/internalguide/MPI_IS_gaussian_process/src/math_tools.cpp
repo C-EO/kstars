@@ -176,9 +176,17 @@ std::pair<Eigen::VectorXd, Eigen::VectorXd> compute_spectrum(Eigen::VectorXd &da
     // the low_index is the lowest useful frequency, depending on the number of actual datapoints
     int low_index = static_cast<int>(std::ceil(static_cast<double>(N) / static_cast<double>(N_data)));
 
+    // Guard: if there are too few actual data points relative to FFT size, the segment would have
+    // zero or negative size (low_index >= N/2), which causes an Eigen assertion failure.
+    int segment_size = N / 2 - low_index + 1;
+    if (segment_size <= 0)
+    {
+        return std::make_pair(Eigen::VectorXd(), Eigen::VectorXd());
+    }
+
     // prepare amplitudes and frequencies, don't return frequencies introduced by padding
-    Eigen::VectorXd spectrum = result.segment(low_index, N / 2 - low_index + 1).array().abs().pow(2);
-    Eigen::VectorXd frequencies = Eigen::VectorXd::LinSpaced(N / 2 - low_index + 1, low_index, N / 2);
+    Eigen::VectorXd spectrum = result.segment(low_index, segment_size).array().abs().pow(2);
+    Eigen::VectorXd frequencies = Eigen::VectorXd::LinSpaced(segment_size, low_index, N / 2);
     frequencies /= N;
 
     return std::make_pair(spectrum, frequencies);
