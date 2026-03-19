@@ -330,8 +330,9 @@ Task *QueueManager::createTaskFromTemplate(const QString &templateId, const QMap
     // Create a new task instance
     Task *task = new Task(this);
 
-    // Instantiate the task from template with "Mount" device and provided parameters
-    if (!task->instantiateFromTemplate(tmpl, "Mount", parameters))
+    // Pass an empty device name so QueueExecutor will dynamically discover
+    // the correct INDI device by its interface type at runtime (same as collection files).
+    if (!task->instantiateFromTemplate(tmpl, "", parameters))
     {
         delete task;
         return nullptr;
