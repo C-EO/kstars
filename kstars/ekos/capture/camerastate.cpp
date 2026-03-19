@@ -832,6 +832,21 @@ bool CameraState::startFocusIfRequired()
 
     RefocusState::RefocusReason reason = m_refocusState->checkFocusRequired();
 
+    // Post meridian flip we need to reset filter _before_ running in-sequence focusing
+    // as it could have changed for whatever reason (e.g. alignment used a different filter).
+    // Then when focus process begins with the _target_ filter in place, it should take all the necessary actions to make it
+    // work for the next set of captures. This is direct reset to the filter device, not via Filter Manager.
+    if (getMeridianFlipState()->getMeridianFlipStage() != MeridianFlipState::MF_NONE)
+    {
+        int targetFilterPosition = m_activeJob->getTargetFilter();
+        if (targetFilterPosition > 0 && targetFilterPosition != getCurrentFilterPosition())
+        {
+            qCDebug(KSTARS_EKOS_CAPTURE) << "Post-MF focus: Resetting filter from position" << getCurrentFilterPosition()
+                                         << "to target position" << targetFilterPosition;
+            emit newFilterPosition(targetFilterPosition);
+        }
+    }
+
     // no focusing necessary
     if (reason == RefocusState::REFOCUS_NONE)
     {
@@ -847,21 +862,6 @@ bool CameraState::startFocusIfRequired()
         qCDebug(KSTARS_EKOS_CAPTURE) << "Post-MF focus: Starting post-meridian flip autofocus";
 
     m_refocusState->setRefocusAfterMeridianFlip(false);
-
-    // Post meridian flip we need to reset filter _before_ running in-sequence focusing
-    // as it could have changed for whatever reason (e.g. alignment used a different filter).
-    // Then when focus process begins with the _target_ filter in place, it should take all the necessary actions to make it
-    // work for the next set of captures. This is direct reset to the filter device, not via Filter Manager.
-    if (getMeridianFlipState()->getMeridianFlipStage() != MeridianFlipState::MF_NONE)
-    {
-        int targetFilterPosition = m_activeJob->getTargetFilter();
-        if (targetFilterPosition > 0 && targetFilterPosition != getCurrentFilterPosition())
-        {
-            qCDebug(KSTARS_EKOS_CAPTURE) << "Post-MF focus: Resetting filter from position" << getCurrentFilterPosition()
-                                         << "to target position" << targetFilterPosition;
-            emit newFilterPosition(targetFilterPosition);
-        }
-    }
 
     emit abortFastExposure();
     updateFocusState(FOCUS_PROGRESS);
