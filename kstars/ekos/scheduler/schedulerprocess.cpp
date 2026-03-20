@@ -3230,8 +3230,16 @@ void SchedulerProcess::queueExecutionCompleted()
             moduleState()->setStartupState(STARTUP_POST_DEVICES);
         }
         else
+        {
             // Pre-shutdown complete, now proceed to stop Ekos/INDI
             moduleState()->setShutdownState(SHUTDOWN_STOPPING_EKOS);
+            // Switch the scheduler timer to RUN_SHUTDOWN so checkShutdownState() is called
+            // repeatedly until Ekos/INDI are fully stopped. This is critical for preemptive
+            // shutdown (sleep/weather) where the timer is in RUN_WAKEUP mode and would
+            // otherwise never process SHUTDOWN_STOPPING_EKOS. In a normal shutdown the timer
+            // is already RUN_SHUTDOWN, so this is effectively a no-op.
+            moduleState()->setupNextIteration(RUN_SHUTDOWN);
+        }
         return;
     }
 
@@ -4112,15 +4120,15 @@ bool SchedulerProcess::isMountParked()
         // Deduce state of mount - see getParkingStatus in mount.cpp
         switch (static_cast<ISD::ParkStatus>(parkingStatus.toInt()))
         {
-                //            case Mount::PARKING_OK:     // INDI switch ok, and parked
-                //            case Mount::PARKING_IDLE:   // INDI switch idle, and parked
+            //            case Mount::PARKING_OK:     // INDI switch ok, and parked
+            //            case Mount::PARKING_IDLE:   // INDI switch idle, and parked
             case ISD::PARK_PARKED:
                 return true;
 
-                //            case Mount::UNPARKING_OK:   // INDI switch idle or ok, and unparked
-                //            case Mount::PARKING_ERROR:  // INDI switch error
-                //            case Mount::PARKING_BUSY:   // INDI switch busy
-                //            case Mount::UNPARKING_BUSY: // INDI switch busy
+            //            case Mount::UNPARKING_OK:   // INDI switch idle or ok, and unparked
+            //            case Mount::PARKING_ERROR:  // INDI switch error
+            //            case Mount::PARKING_BUSY:   // INDI switch busy
+            //            case Mount::UNPARKING_BUSY: // INDI switch busy
             default:
                 return false;
         }
