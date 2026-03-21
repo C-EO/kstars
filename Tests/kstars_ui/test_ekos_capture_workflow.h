@@ -150,22 +150,19 @@ class TestEkosCaptureWorkflow : public QObject
 
         /**
          * @brief Regression test for the bug where an in-sequence HFR check switches
-         *        the filter wheel to the Focus module's lock filter (e.g. Luminance) but
-         *        never restores it to the original capture filter (e.g. Red/SII/OIII)
-         *        when the check passes.
+         *        the filter wheel to the Focus module's lock filter (Luminance) but
+         *        never restores it to the original capture filter (Red) after the
+         *        check passes.
          *
          * Steps:
-         * 1. All filters are configured with lock = Luminance (via prepareFocusModule).
-         * 2. Autofocus runs on Luminance, establishing a baseline HFR.
-         * 3. Capture starts with the "Red" filter → filter wheel moves to Red.
-         * 4. checkFocus() is invoked directly (simulating the Capture module's
-         *    in-sequence HFR verification after dithering).
-         * 5. The HFR check correctly switches to Luminance (the lock filter) for the
-         *    check image.
-         * 6. After FOCUS_COMPLETE the filter wheel must be restored to Red.
-         *
-         * Without the fix step 6 fails: the wheel stays on Luminance and the next
-         * 300-second sub is a bright Luminance frame mislabelled as "Red".
+         * 1. Enable in-sequence HFR with a small threshold (0.1 %) so the check
+         *    fires after the first captured frame.
+         * 2. Run autofocus with the Luminance filter (prepareFocusModule already
+         *    set focusFilter = "Luminance" and locked every filter to "Luminance").
+         * 3. Add a two-frame Red capture sequence (5 s each).
+         * 4. Run the capture sequence and wait for CAPTURE_COMPLETE.
+         * 5. Assert that the physical filter wheel is on Red (success), not
+         *    Luminance (fail — demonstrates the unrestored-filter bug).
          */
         void testCaptureHFRCheckFilterRestoration();
 

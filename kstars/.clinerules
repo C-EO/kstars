@@ -61,3 +61,54 @@ void TestFoo::cleanupTestCase()
 - Do **not** modify `KSPlanetBase::updateCoords`, `KSSun`, `KSMoon`, or other production classes to remove their `KStarsData` dependency just to make a test pass.  
   The proper fix is always to initialize `KStarsData` in the test.
 - Do **not** use `QTEST_GUILESS_MAIN` for tests that call any code path involving planet position updates or `KStarsData`-dependent singletons.
+
+## UI / End-to-End Tests (Tests/kstars_ui/)
+
+### Simulate a Real User Session — No Shortcuts
+
+UI tests in `Tests/kstars_ui/` exist to verify behaviour **as seen by an end user running a full Ekos profile**.  
+Every test must exercise the complete production code path through the UI, not call internal C++ methods directly to simulate what the UI would do.
+
+**Mandatory rules:**
+
+1. **Start a full profile.**  
+   Always call `prepareTestCase()` (or the equivalent helper chain: `startEkosProfile()` → `prepareOpticalTrains()` → `prepareMountModule()` → `prepareFocusModule()` → `prepareCaptureModule()` → …).  
+   Never skip profile startup to "save time".
+
+2. **Drive the UI, not the internals.**  
+   Use the KTRY_* / QTRY_* macros (`KTRY_CLICK`, `KTRY_SET_COMBO`, `KTRY_SET_CHECKBOX`, `KTRY_CAPTURE_ADD_LIGHT`, …) to interact with widgets exactly as a user would.  
+   Do **not** call module methods (e.g. `focuser->checkFocus(...)`, `capture->startCapture()`, `filtermanager->setFilterPosition(...)`) directly as a substitute for clicking a button or starting a sequence through the UI.
+
+3. **Use the capture workflow to trigger focus checks.**  
+   To test in-sequence HFR, refocus-on-temperature, or filter-restoration behaviour:
+   - Enable the relevant checkbox in the Capture module UI (`enforceAutofocusHFR`, `enforceRefocusEveryN`, …).
+   - Add a capture sequence via `KTRY_CAPTURE_ADD_LIGHT` / `KTRY_CAPTURE_ADD_FRAME`.
+   - Start capture with `KTRY_CLICK(capture, startB)` and wait for the expected state queue.
+   - Never call `checkFocus()`, `startFocusing()`, or similar internal slots directly to bypass this flow.
+
+4. **Run autofocus through `executeFocusing()`.**  
+   When a baseline HFR or a focuser position is required before capture, call `m_CaptureHelper->executeFocusing()`.  
+   Do **not** fabricate a fake baseline by directly setting internal focus variables.
+
+5. **Assert through observable state, not internal state.**  
+   Verify results via `filtermanager->getFilterPosition()`, capture state queues (`expectedCaptureStates`, `expectedFocusStates`), or UI widget values — not by reading private member variables of production classes.
+
+6. **Reproduce the exact user-facing bug path.**  
+   If a bug was reported as "capture sequence ran with filter X but images came out as filter Y", the test must:
+   - Configure the same sequence and settings a user would set.
+   - Run the full sequence.
+   - Assert the observable output (filter position, saved FITS header, state transitions).  
+   A test that reproduces the _symptom_ via an API shortcut (e.g. calling `checkFocus` with a magic HFR value) is **not** an acceptable regression test.
+
+**Examples of shortcuts that are NOT allowed:**
+```cpp
+// ✗ Wrong: calls internal slot directly, bypasses the capture workflow
+focuser->checkFocus(99.0);
+
+// ✗ Wrong: manually repositions the filter wheel instead of letting capture do it
+filtermanager->setFilterPosition(redFilterPos, Ekos::FilterManager::CHANGE_POLICY);
+
+// ✓ Correct: start the full capture sequence and let it trigger the HFR check
+KTRY_CLICK(capture, startB);
+KVERIFY_EMPTY_QUEUE_WITH_TIMEOUT(m_CaptureHelper->expectedCaptureStates, 120000);
+```

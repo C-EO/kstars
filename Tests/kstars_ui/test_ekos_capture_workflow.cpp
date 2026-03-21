@@ -17,6 +17,7 @@
 #include "ekos/capture/capturetypes.h"
 #include "ekos/capture/capture.h"
 #include "ekos/focus/focusmodule.h"
+#include "ekos/auxiliary/filtermanager.h"
 
 #define SHUTTER_UNKNOWN -1
 #define SHUTTER_NO       0
@@ -88,79 +89,59 @@ void TestEkosCaptureWorkflow::testCaptureRefocusHFR()
 
 void TestEkosCaptureWorkflow::testCaptureHFRCheckFilterRestoration()
 {
-    // Regression test for the bug where an in-sequence HFR check (checkFocus) switches
-    // the filter wheel to the Focus module's lock filter (e.g. Luminance) for the check
-    // image but never restores the original capture filter (e.g. Red) afterwards.
+    // Regression test: the in-sequence HFR check switches the physical filter wheel
+    // from the capture filter (e.g. Red) to the Focus module's lock filter (Luminance)
+    // but never restores it — every frame after the check is exposed through Luminance
+    // while the FITS header says "Red".
     //
-    // Root cause: Focus::capture() looked up the lock filter of focusFilter ("Luminance")
-    // instead of the lock filter of the current physical capture filter ("Red").
-    // Luminance has no lock filter, so fallbackFilterPending was never set and the filter
-    // was left on Luminance after the check.  This caused the next science sub to be
-    // captured through the wrong (Luminance) filter while its FITS header still said "Red".
+    // ── Test flow ─────────────────────────────────────────────────────────────
+    //   1. Enable in-sequence HFR with a small threshold (0.1 %) so the check fires
+    //      after the first captured frame.
+    //   2. Run autofocus with the Luminance filter (prepareFocusModule already set
+    //      focusFilter = "Luminance" and locked every filter to "Luminance").
+    //   3. Add a two-frame Red capture sequence (5 s each).
+    //   4. Start the capture sequence and wait for CAPTURE_COMPLETE.
+    //   5. Assert that the physical filter wheel is on Red, not Luminance.
     //
-    // With the fix, Focus::capture() checks the lock filter of the currently active
-    // physical filter (Red → lock = Luminance), performs the HFR check on Luminance,
-    // then restores Red via the existing fallbackFilterPending mechanism in settle().
+    // ── Pass/fail criterion ───────────────────────────────────────────────────
+    //   WITHOUT fix  → filter stays on Luminance after the HFR check → TEST FAILS
+    //   WITH fix     → filter is restored to Red after the HFR check  → TEST PASSES
+
     m_CaptureHelper->m_FocuserDevice = "Focuser Simulator";
+    // default initialization; prepareFocusModule() sets focusFilter = "Luminance"
+    // and locks every filter (including "Red") to "Luminance".
     QVERIFY(prepareTestCase());
-    // NOTE: prepareTestCase() calls prepareFocusModule() which already:
-    //   • sets focusFilter combo to "Luminance"
-    //   • locks every filter (including "Red") to "Luminance"
-    // This matches exactly the user's HOS/narrowband setup.
 
-    Ekos::Manager *manager    = Ekos::Manager::Instance();
-    Ekos::Capture *capture    = manager->captureModule();
-    auto focuser              = manager->focusModule()->mainFocuser();
-    auto filtermanager        = focuser->filterManager();
+    Ekos::Manager *manager = Ekos::Manager::Instance();
+    Ekos::Capture *capture = manager->captureModule();
 
-    // Disable automatic in-sequence HFR / time-based refocus — we call checkFocus()
-    // manually below so that the test is deterministic.
+    // ── Step 1: enable in-sequence HFR ───────────────────────────────────────
     KTRY_SWITCH_TO_MODULE_WITH_TIMEOUT(capture, 1000);
-    KTRY_SET_CHECKBOX(capture, enforceAutofocusHFR,    false);
-    KTRY_SET_CHECKBOX(capture, enforceRefocusEveryN,   false);
+    KTRY_SET_CHECKBOX(capture, enforceAutofocusHFR, true);
+    // 0.1 % threshold: any tiny HFR deviation between the Luminance-baseline and
+    // the Red-filter frames triggers the in-sequence check.
+    KTRY_SET_DOUBLESPINBOX(capture, hFRThresholdPercentage, 0.1);
 
-    // Add a "Red" capture sequence (non-Luminance, like the SII/OIII in the bug report).
-    QString imagepath = getImageLocation()->path() + "/test";
-    KTRY_CAPTURE_ADD_LIGHT(1.0, 3, 0.0, "Red", "test_hfr_filter", imagepath);
-
-    // Run initial autofocus (Luminance) to establish a baseline HFR.
+    // ── Step 2: run autofocus with Luminance filter ───────────────────────────
     QVERIFY(m_CaptureHelper->executeFocusing());
 
-    // Find the Red filter's 1-based position in the filter wheel.
-    const int redFilterPos = filtermanager->getFilterLabels().indexOf("Red") + 1;
-    QVERIFY2(redFilterPos > 0,
-             "Red filter not found in CCD Simulator filter wheel — cannot run this test");
-
-    // ── Start capture and wait for the first Red frame ────────────────────────
+    // ── Step 3: add a capture sequence — Red filter, 5 s × 2 ─────────────────
     KTRY_SWITCH_TO_MODULE_WITH_TIMEOUT(capture, 1000);
-    m_CaptureHelper->expectedCaptureStates.append(Ekos::CAPTURE_IMAGE_RECEIVED);
+    QString imagepath = getImageLocation()->path() + "/test";
+    KTRY_CAPTURE_ADD_LIGHT(5.0, 2, 0.0, "Red", "test", imagepath);
+
+    // ── Step 4: run the capture sequence ─────────────────────────────────────
+    auto filtermanager = manager->focusModule()->mainFocuser()->filterManager();
+    m_CaptureHelper->expectedCaptureStates.append(Ekos::CAPTURE_COMPLETE);
     KTRY_CLICK(capture, startB);
-    KVERIFY_EMPTY_QUEUE_WITH_TIMEOUT(m_CaptureHelper->expectedCaptureStates,
-                                     15000 + 1000 * static_cast<int>(capture->mainCamera()->captureExposureN->value()));
+    // Allow up to 2 min: 2 × 5 s exposures + HFR check overhead + focus overhead
+    KVERIFY_EMPTY_QUEUE_WITH_TIMEOUT(m_CaptureHelper->expectedCaptureStates, 120000);
 
-    // Sanity: after the first Red frame the wheel must be at Red (not Luminance).
-    QCOMPARE(filtermanager->getFilterPosition(), redFilterPos);
-
-    // ── Trigger an in-sequence HFR check ──────────────────────────────────────
-    // minimumRequiredHFR = 99.0 ensures the check always *passes* (any real HFR
-    // will be far below 99), so we exercise the "HFR check passes → FOCUS_COMPLETE"
-    // path — the scenario from the user's bug report.
-    m_CaptureHelper->expectedFocusStates.append(Ekos::FOCUS_PROGRESS);
-    m_CaptureHelper->expectedFocusStates.append(Ekos::FOCUS_COMPLETE);
-    // Direct call mirrors what the Capture module does after a successful dither.
-    manager->focusModule()->mainFocuser()->checkFocus(99.0);
-
-    // Wait for focus check to complete: filter change + short exposure + HFR detection.
-    KVERIFY_EMPTY_QUEUE_WITH_TIMEOUT(m_CaptureHelper->expectedFocusStates, 30000);
-
-    // ── KEY ASSERTION ─────────────────────────────────────────────────────────
-    // After FOCUS_COMPLETE the filter MUST be restored to Red.
-    //
-    // BUG (before fix): fallbackFilterPending is never set → filter stays on
-    //   Luminance → getFilterPosition() returns 1 (Luminance) → assertion FAILS.
-    //
-    // After fix: Red's lock filter (Luminance) is used for the check and the
-    //   fallback to Red is correctly registered and executed → assertion PASSES.
+    // ── Step 5: assert the filter is Red, not Luminance ──────────────────────
+    // If the in-sequence HFR check fired (filter → Luminance) but the fix is
+    // missing, the wheel stays on Luminance and this assertion fails.
+    const int redFilterPos = filtermanager->getFilterLabels().indexOf("Red") + 1;
+    QVERIFY2(redFilterPos > 0, "Red filter not found in the CCD Simulator filter wheel");
     QTRY_COMPARE_WITH_TIMEOUT(filtermanager->getFilterPosition(), redFilterPos, 10000);
 }
 
