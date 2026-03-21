@@ -12,6 +12,8 @@ Most tests in this directory require:
 - KStars data initialized (via `KStarsData::Instance()`)
 - Some tests may require location data to be available
 
+No INDI, no CFITSIO, no display — these are pure unit tests.
+
 ---
 
 ## Running a single test
@@ -46,7 +48,7 @@ sunrise, sunset, dawn, dusk, and moon phases.
 
 #### `testSchedulerDate2021_06_14`
 
-**Debug test** for the specific date used in `testGreedySchedulerRun`.
+**Diagnostic test** for the specific date used in `testGreedySchedulerRun`.
 
 The scheduler test `testGreedySchedulerRun` expects dawn at 10:53 UTC (3:53am PDT)
 but the scheduler shows 3:23am. This test outputs detailed debug information
@@ -72,73 +74,83 @@ Tests the 15th of each month to ensure calculations work year-round.
 
 ### testdms
 
-Tests for the `dms` (degrees, minutes, seconds) angle class.
+Tests for the `dms` (degrees, minutes, seconds) angle class.  Covers
+construction from degrees/radians/strings, arithmetic operators, and
+conversion back to string form.
 
 ---
 
 ### testcachingdms
 
-Tests for the `cachingdms` class, a cached version of `dms` for performance.
+Tests for the `CachingDms` class, a cached version of `dms` that precomputes
+`sin()` and `cos()` values for performance-critical inner loops.
 
 ---
 
 ### testcolorscheme
 
-Tests for KStars color scheme handling.
+Tests for KStars color scheme loading and application.
 
 ---
 
 ### testbinhelper
 
-Tests for binary data helper utilities.
+Tests for the `BinFileHelper` class which reads the custom binary catalogue
+format used by KStars star data files.
 
 ---
 
 ### testfov
 
-Tests for Field of View (FOV) calculations.
+Tests for Field of View (FOV) indicator calculations — converting sensor size,
+focal length, and binning to angular FOV values.
 
 ---
 
 ### testgeolocation
 
-Tests for geographic location handling.
+Tests for `GeoLocation`: coordinate storage, time zone conversion, and
+local ↔ UTC time transforms.
 
 ---
 
 ### testksuserdb
 
-Tests for the KStars user database.
+Tests for `KSUserDB`, the SQLite user database that stores profiles, equipment,
+and observation records.
 
 ---
 
 ### testkspaths
 
-Tests for KStars file path utilities.
+Tests for `KSPaths`, the helper that resolves KStars resource paths under
+various installation layouts and XDG standard directories.
 
 ---
 
 ### testtrixelcache
 
-Tests for the trixel cache used in indexing.
+Tests for the trixel cache used to speed up HTMesh sky-indexing lookups.
 
 ---
 
 ### testrectangleoverlap
 
-Tests for rectangle overlap detection algorithms.
+Tests for the axis-aligned rectangle overlap detection algorithms used by the
+sky labeller to avoid overlapping object labels.
 
 ---
 
 ### testcsvparser
 
-Tests for CSV file parsing.
+Tests for the `KSFileReader`-based CSV parser used to read text catalogue and
+data files.
 
 ---
 
 ### testfwparser
 
-Tests for fixed-width file parsing.
+Tests for the fixed-width column parser used to read legacy KStars data files.
 
 ---
 

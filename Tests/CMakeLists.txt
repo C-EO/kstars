@@ -1,4 +1,9 @@
+# Shared test infrastructure (header-only: kstars_test_macros.h, etc.)
+# This must come first so all subdirectories can find the headers.
+add_subdirectory(shared)
+
 include_directories(
+    ${kstars_SOURCE_DIR}/Tests/shared
     ${kstars_SOURCE_DIR}/kstars/tools
     ${kstars_SOURCE_DIR}/kstars/skyobjects
     ${kstars_SOURCE_DIR}/kstars/skycomponents
@@ -73,6 +78,9 @@ ENDIF(INDI_FOUND)
 add_subdirectory(auxiliary)
 add_subdirectory(tools)
 add_subdirectory(skyobjects)
+add_subdirectory(skycomponents)
+add_subdirectory(time)
+add_subdirectory(projections)
 
 IF (CFITSIO_FOUND)
     add_subdirectory(fitsviewer)
