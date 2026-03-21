@@ -79,6 +79,8 @@ TARGET_LINK_LIBRARIES(test_ekos_capture_count ${KSTARS_UI_EKOS_LIBS})
 
 ADD_EXECUTABLE(test_ekos_capture_workflow ${KSTARS_UI_EKOS_SRC} test_ekos_helper.cpp test_ekos_capture_helper.cpp test_ekos_capture_workflow.cpp)
 TARGET_LINK_LIBRARIES(test_ekos_capture_workflow ${KSTARS_UI_EKOS_LIBS})
+ADD_TEST(NAME TestEkosCaptureWorkflow COMMAND test_ekos_capture_workflow)
+SET_TESTS_PROPERTIES(TestEkosCaptureWorkflow PROPERTIES LABELS "stable;ui" TIMEOUT 600 RESOURCE_LOCK "kstars-ui")
 
 ADD_EXECUTABLE(test_ekos_align ${KSTARS_UI_EKOS_SRC} test_ekos_helper.cpp test_ekos_capture_helper.cpp test_ekos_scheduler_helper.cpp test_ekos_align.cpp)
 TARGET_LINK_LIBRARIES(test_ekos_align ${KSTARS_UI_EKOS_LIBS})
@@ -120,11 +122,11 @@ ADD_EXECUTABLE(test_ekos_scheduler ${KSTARS_UI_EKOS_SRC} test_ekos_scheduler.cpp
 TARGET_LINK_LIBRARIES(test_ekos_scheduler ${KSTARS_UI_EKOS_LIBS})
 ADD_CUSTOM_COMMAND( TARGET test_ekos_scheduler POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_CURRENT_SOURCE_DIR}/../scheduler/1x1s_Lum.esq
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ekos/scheduler/1x1s_Lum.esq
             ${CMAKE_CURRENT_BINARY_DIR}/1x1s_Lum.esq)
 ADD_CUSTOM_COMMAND( TARGET test_ekos_scheduler POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
-            ${CMAKE_CURRENT_SOURCE_DIR}/../scheduler/1x1s_RGBLumRGB.esq
+            ${CMAKE_CURRENT_SOURCE_DIR}/../ekos/scheduler/1x1s_RGBLumRGB.esq
             ${CMAKE_CURRENT_BINARY_DIR}/1x1s_RGBLumRGB.esq)
 ADD_TEST(NAME TestEkosScheduler COMMAND test_ekos_scheduler)
 SET_TESTS_PROPERTIES( TestEkosScheduler PROPERTIES LABELS "stable;ui" TIMEOUT 120 )
