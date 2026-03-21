@@ -1,6 +1,6 @@
 {
   "cmake.configureArgs": [
-    "-DBUILD_TESTING=ON",
+    "-DBUILD_TESTING=OFF",
     "-DBUILD_WITH_QT6=ON",
     "-DENABLE_SENTRY=ON"
   ],

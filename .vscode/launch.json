@@ -65,7 +65,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testBasics",
+      "name": "Scheduler: Test testBasics",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -88,7 +88,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testSimpleJob",
+      "name": "Scheduler: Test testSimpleJob",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -111,7 +111,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testTimeZone",
+      "name": "Scheduler: Test testTimeZone",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -134,7 +134,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testDawnShutdown",
+      "name": "Scheduler: Test testDawnShutdown",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -157,7 +157,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testPreemptiveShutdown",
+      "name": "Scheduler: Test testPreemptiveShutdown",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -180,7 +180,30 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testGreedySchedulerRun",
+      "name": "Scheduler: Test testPreemptiveShutdownTimerSwitchOnQueueComplete",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testPreemptiveShutdownTimerSwitchOnQueueComplete", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Scheduler: Test testGreedySchedulerRun",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -203,7 +226,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testTwilightStartup",
+      "name": "Scheduler: Test testTwilightStartup",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -226,7 +249,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testArtificialHorizonConstraints",
+      "name": "Scheduler: Test testArtificialHorizonConstraints",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -249,7 +272,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testGreedy",
+      "name": "Scheduler: Test testGreedy",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -272,7 +295,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testMaxMoonAltitude",
+      "name": "Scheduler: Test testMaxMoonAltitude",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -295,7 +318,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testGreedyStartAt",
+      "name": "Scheduler: Test testGreedyStartAt",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -318,7 +341,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testGroups",
+      "name": "Scheduler: Test testGroups",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -341,7 +364,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testGreedyAborts",
+      "name": "Scheduler: Test testGreedyAborts",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -364,7 +387,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testArtificialCeiling",
+      "name": "Scheduler: Test testArtificialCeiling",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -387,7 +410,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testSettingAltitudeBug",
+      "name": "Scheduler: Test testSettingAltitudeBug",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -410,7 +433,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testEstimateTimeBug",
+      "name": "Scheduler: Test testEstimateTimeBug",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -433,7 +456,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testRememberJobProgress",
+      "name": "Scheduler: Test testRememberJobProgress",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
@@ -456,7 +479,7 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug test_ekos_scheduler_ops::testGreedyMessier",
+      "name": "Scheduler: Test testGreedyMessier",
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",

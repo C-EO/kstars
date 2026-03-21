@@ -59,6 +59,7 @@ class TestEkosSchedulerOps : public QObject
         void testTimeZone();
         void testDawnShutdown();
         void testPreemptiveShutdown();
+        void testPreemptiveShutdownTimerSwitchOnQueueComplete();
         void testTwilightStartup();
         void testTwilightStartup_data();
         void testArtificialHorizonConstraints();

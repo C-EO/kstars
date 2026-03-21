@@ -182,6 +182,131 @@ expected restart window; Ekos/INDI successfully restarted.
 
 ---
 
+### `testPreemptiveShutdownTimerSwitchOnQueueComplete`
+
+**Regression test** for a bug where Ekos was **never stopped** during a
+preemptive shutdown when a pre-shutdown task queue was configured
+(`StopEkosAfterShutdown` enabled).
+
+#### Root cause
+
+When `shouldSchedulerSleep()` decides to do a preemptive shutdown it calls
+`enablePreemptiveShutdown()` which calls `setupNextIteration(RUN_WAKEUP, …)` —
+so the iteration timer is set to **`RUN_WAKEUP`**.  On the next tick the
+pre-shutdown task queue starts executing (`SHUTDOWN_PRE_QUEUE_RUNNING`).
+
+When the queue completes, `queueExecutionCompleted()` correctly sets
+`shutdownState = SHUTDOWN_STOPPING_EKOS` — **but it never changed the iteration
+timer**.  Because `runSchedulerIteration()` only dispatches to
+`checkShutdownState()` when the timer is `RUN_SHUTDOWN`, the
+`SHUTDOWN_STOPPING_EKOS` state was never processed:  the scheduler kept calling
+`wakeUpScheduler()` on every tick, Ekos and INDI remained running, and the user
+saw all devices still connected throughout the 15-hour sleep period.
+
+This is exactly what the user's log showed:
+
+```
+[05:28:36] Pre-shutdown queue completed successfully.
+[20:49:48] Scheduler is awake.
+[20:49:50] Starting startup process...  ← Ekos was never stopped
+```
+
+#### Fix
+
+`queueExecutionCompleted()` now calls `setupNextIteration(RUN_SHUTDOWN)`
+unconditionally after setting `SHUTDOWN_STOPPING_EKOS`, guaranteeing that
+`checkShutdownState()` is reached on the very next scheduler tick regardless of
+what the timer was set to before.
+
+#### Test strategy
+
+The test manipulates `SchedulerModuleState` directly — no full simulation cycle
+is needed (no jobs, no mount, no capture).  The `init()` fixture already creates
+a fully-wired `Scheduler` + `SchedulerProcess` + `SchedulerModuleState`.
+
+**Pre-conditions set:**
+- `schedulerState = SCHEDULER_RUNNING`
+- `preemptiveShutdown` flag active (wakeup 1 hour from now)
+- `shutdownState = SHUTDOWN_PRE_QUEUE_RUNNING`
+- `timerState = RUN_WAKEUP`  ← the exact buggy state
+- `weatherGracePeriodActive = false`
+
+`queueExecutionCompleted()` is then invoked via
+`QMetaObject::invokeMethod(…, Qt::DirectConnection)`.  Qt's meta-object system
+allows invoking `private slots` from outside the class; they are registered in
+the meta-object table just like public slots and this is the same mechanism the
+`QueueExecutor::completed` signal uses in production.
+
+**Assertions — Part 1 (state machine transition):**
+1. `timerState() == RUN_SHUTDOWN` — without this switch
+   `checkShutdownState()` is never called and Ekos never stops.
+2. `shutdownState() == SHUTDOWN_STOPPING_EKOS` — confirms the state machine
+   advanced to the correct next state so the very next
+   `checkShutdownState()` call will disconnect INDI and stop Ekos.
+
+**Assertions — Part 2 (full dispatch chain to `stop()`):**
+
+One call to `runSchedulerIteration()` is made after Part 1.  Because INDI and
+Ekos are both `IDLE` in this test (never started), `completeShutdown()` has
+nothing to disconnect and advances directly to `SHUTDOWN_COMPLETE`, then calls
+`stop()`.  The following is verified:
+
+3. `schedulerState() == SCHEDULER_IDLE` — `stop()` was actually reached via
+   `checkShutdownState → completeShutdown → stop()`.  Without the fix,
+   `wakeUpScheduler()` would be called instead and the scheduler would remain
+   `SCHEDULER_RUNNING` for the entire sleep period.
+
+> **Note on `timerState` after Part 2:** because the `preemptiveShutdown` flag
+> is still set when `stop()` runs, `stop()` calls
+> `setupNextIteration(RUN_WAKEUP, 10)` to re-enter sleep mode (waiting for the
+> next scheduled window) rather than `RUN_NOTHING`.  This is correct
+> preemptive-shutdown behaviour: Ekos/INDI are now stopped and the scheduler
+> will wake up automatically at the configured time.  The test does **not**
+> assert `timerState() == RUN_NOTHING` — that would be wrong for this path.
+
+Together, Parts 1 and 2 prove the entire chain:
+```
+queueExecutionCompleted()   →  shutdownState = SHUTDOWN_STOPPING_EKOS
+                               timerState    = RUN_SHUTDOWN
+runSchedulerIteration()     →  checkShutdownState() dispatched
+completeShutdown()          →  stop() called
+stop()                      →  schedulerState = SCHEDULER_IDLE
+                               timerState    = RUN_WAKEUP  (preemptive re-sleep)
+```
+
+#### Clarification: three scheduler sleep paths
+
+```
+shouldSchedulerSleep() decision tree
+├── PreemptiveShutdown=ON  AND  gap > PreemptiveShutdownTime (default 2 h)
+│     → enablePreemptiveShutdown()  →  checkShutdownState()
+│         Runs full observatory shutdown state machine:
+│           pre-shutdown queue (park mount/dome via observatory_shutdown.json)
+│           + IF StopEkosAfterShutdown=ON: disconnect INDI, stop Ekos
+│           + post-shutdown queue
+│         stop() is called as the last step (the "soft shutdown" path):
+│           schedulerState = SCHEDULER_IDLE
+│           timerState     = RUN_WAKEUP  (automatic wakeup at next window)
+│         [testPreemptiveShutdown, regression test exercise this path]
+│
+├── gap > leadTime (5 min)  AND  can park  (preemptive OFF or gap < threshold)
+│     → park mount directly, Ekos/INDI remain running
+│       timerState = RUN_WAKEUP  (automatic wakeup, no stop() call)
+│     [testDawnShutdown exercises this path]
+│
+└── gap > leadTime, no parking
+      → scheduler sleeps, nothing parked, Ekos/INDI running
+        timerState = RUN_WAKEUP
+```
+
+Key point: `StopEkosAfterShutdown` is orthogonal to the choice of path — it is only
+consulted **inside** the preemptive-shutdown state machine.  The simple park-and-sleep
+path never reaches `completeShutdown()` and therefore never consults `StopEkosAfterShutdown`.
+
+This test will **fail** on the unfixed code and **pass** once the fix is applied.
+
+---
+
 ### `testTwilightStartup`
 
 **Data-driven** (`testTwilightStartup_data`): two rows — San Francisco /
