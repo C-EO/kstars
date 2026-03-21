@@ -92,15 +92,9 @@ include_directories(
     ${kstars_SOURCE_DIR}/kstars/focus
     ${kstars_SOURCE_DIR}/kstars/scheduler
     )
-add_subdirectory(scheduler)
-add_subdirectory(focus)
-add_subdirectory(polaralign)
+# ekos/ is the parent for all Ekos module tests (scheduler, capture, focus,
+# guide, align, mount, observatory, analyze, auxiliary).
 add_subdirectory(ekos)
-# FIXME
-# Disable this test for Windows since it fails for now
-if (NOT WIN32)
-add_subdirectory(internalguide)
-endif(NOT WIN32)
 ENDIF(INDI_FOUND)
 ENDIF(CFITSIO_FOUND)
 
@@ -111,5 +105,4 @@ IF (UNIX AND NOT APPLE AND CFITSIO_FOUND)
     add_subdirectory(kstars_ui)
 ENDIF ()
 
-add_subdirectory(capture)
 add_subdirectory(datahandlers)

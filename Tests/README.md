@@ -22,7 +22,7 @@ libraries each group of tests needs, and where the known coverage gaps are.
 
 | Type | Description | Directories |
 |------|-------------|-------------|
-| **Unit** | Test a single class or algorithm in isolation; no KStars window, no INDI connection | `auxiliary`, `tools`, `skyobjects`, `fitsviewer`, `focus`, `internalguide`, `polaralign`, `scheduler`, `capture`, `mount`, `datahandlers`, `ekos/auxiliary` |
+| **Unit** | Test a single class or algorithm in isolation; no KStars window, no INDI connection | `auxiliary`, `tools`, `skyobjects`, `fitsviewer`, `ekos/focus`, `ekos/guide`, `ekos/align`, `ekos/scheduler`, `ekos/capture`, `ekos/mount`, `datahandlers`, `ekos/auxiliary` |
 | **Integration / UI** | Launch the full KStars application and interact with it via Qt signals or D-Bus mock modules; requires a display (or Xvfb) | `kstars_ui` |
 | **Lite UI** | Same idea but for the KStars Lite (QML) variant; Linux-only | `kstars_lite_ui` |
 
@@ -44,13 +44,14 @@ The top-level `Tests/CMakeLists.txt` enables subdirectories conditionally:
 
 | Subdirectory | Required CMake condition |
 |---|---|
-| `auxiliary`, `tools`, `skyobjects` | Always built |
+| `auxiliary`, `tools`, `skyobjects`, `datahandlers` | Always built |
 | `fitsviewer` | `CFITSIO_FOUND` |
-| `scheduler`, `focus`, `polaralign`, `ekos`, `capture` | `INDI_FOUND` + `CFITSIO_FOUND` |
-| `internalguide` | `INDI_FOUND` + `CFITSIO_FOUND` + not Windows |
+| `ekos/auxiliary`, `ekos/observatory`, `ekos/analyze` | Always built (self-guarded internally) |
+| `ekos/mount`, `ekos/capture` | Always built (self-guarded with `INDI_FOUND`) |
+| `ekos/scheduler`, `ekos/focus`, `ekos/align` | `INDI_FOUND` + `CFITSIO_FOUND` |
+| `ekos/guide` | `INDI_FOUND` + `CFITSIO_FOUND` + not Windows |
 | `kstars_ui` | `UNIX && NOT APPLE && CFITSIO_FOUND` |
 | `kstars_lite_ui` | `UNIX && NOT APPLE && CFITSIO_FOUND && BUILD_KSTARS_LITE` |
-| `datahandlers` | Always built |
 | `skyobjects/test_skypoint` | `NOVA_FOUND` |
 | `fitsviewer/testfitsdata` | `StellarSolver_FOUND` (within CFITSIO block) |
 
@@ -95,12 +96,15 @@ ctest --test-dir build/Tests -LE ui --output-on-failure
 ### Run a specific test binary directly (recommended for development)
 ```bash
 # Run all tests in the binary with verbose output:
-./build/Tests/focus/testfocus -v2
+./build/Tests/ekos/focus/testfocus -v2
 
 # Run a single test function:
 ./build/Tests/auxiliary/testksalmanac testDawnDusk -v2
 
-# Run a single function in the scheduler ops suite:
+# Run a single function in the scheduler unit suite:
+./build/Tests/ekos/scheduler/testschedulerunit -v2
+
+# Run a single function in the scheduler ops (UI) suite:
 ./build/Tests/kstars_ui/test_ekos_scheduler_ops testSimpleJob -v2
 ```
 
@@ -129,22 +133,23 @@ These are set automatically by `Tests/testhelpers.h` via the `KTest::setupTestEn
 | Directory | Source subsystem | Coverage | README |
 |---|---|---|---|
 | [`auxiliary/`](auxiliary/README.md) | `kstars/auxiliary/` core utilities | ✅ | ✅ |
-| [`tools/`](tools/README.md) | `kstars/tools/` math helpers | ⚠️ | ✅ |
-| [`skyobjects/`](skyobjects/README.md) | `kstars/skyobjects/` | ⚠️ | ✅ |
-| [`skycomponents/`](skycomponents/README.md) | `kstars/skycomponents/` | 🔲 | ✅ |
-| [`time/`](time/README.md) | `kstars/time/` | 🔲 | ✅ |
-| [`projections/`](projections/README.md) | `kstars/projections/` | 🔲 | ✅ |
+| [`datahandlers/`](datahandlers/README.md) | `kstars/catalogsdb/` + `datahandlers/` | ✅ | ✅ |
 | [`fitsviewer/`](fitsviewer/README.md) | `kstars/fitsviewer/` | ✅ | ✅ |
-| [`focus/`](focus/README.md) | `kstars/ekos/focus/` algorithms | ✅ | ✅ |
-| [`internalguide/`](internalguide/README.md) | `kstars/ekos/guide/internalguide/` | ✅ | ✅ |
-| [`polaralign/`](polaralign/README.md) | `kstars/ekos/align/polaralign*`, `poleaxis*` | ✅ | ✅ |
-| [`scheduler/`](scheduler/README.md) | `kstars/ekos/scheduler/` (unit) | ✅ | ✅ |
-| [`capture/`](capture/README.md) | `kstars/ekos/capture/` | ⚠️ | ✅ |
-| [`mount/`](mount/README.md) | `kstars/ekos/mount/` meridian flip state | ✅ | ✅ |
-| [`datahandlers/`](datahandlers/README.md) | `kstars/catalogsdb/` | ✅ | ✅ |
-| [`ekos/auxiliary/`](ekos/auxiliary/README.md) | `kstars/ekos/auxiliary/` dark processor | ⚠️ | ✅ |
-| [`ekos/observatory/`](ekos/observatory/README.md) | `kstars/ekos/observatory/` | 🔲 | ✅ |
+| [`projections/`](projections/README.md) | `kstars/projections/` | 🔲 | ✅ |
+| [`skycomponents/`](skycomponents/README.md) | `kstars/skycomponents/` | 🔲 | ✅ |
+| [`skyobjects/`](skyobjects/README.md) | `kstars/skyobjects/` | ⚠️ | ✅ |
+| [`time/`](time/README.md) | `kstars/time/` | 🔲 | ✅ |
+| [`tools/`](tools/README.md) | `kstars/tools/` math helpers | ⚠️ | ✅ |
+| **`ekos/`** | **All Ekos modules** | | |
+| [`ekos/align/`](ekos/align/README.md) | `kstars/ekos/align/` (polar align, pole axis) | ✅ | ✅ |
 | [`ekos/analyze/`](ekos/analyze/README.md) | `kstars/ekos/analyze/` | 🔲 | ✅ |
+| [`ekos/auxiliary/`](ekos/auxiliary/README.md) | `kstars/ekos/auxiliary/` dark processor | ⚠️ | ✅ |
+| [`ekos/capture/`](ekos/capture/README.md) | `kstars/ekos/capture/` | ⚠️ | ✅ |
+| [`ekos/focus/`](ekos/focus/README.md) | `kstars/ekos/focus/` algorithms | ✅ | ✅ |
+| [`ekos/guide/`](ekos/guide/README.md) | `kstars/ekos/guide/internalguide/` | ✅ | ✅ |
+| [`ekos/mount/`](ekos/mount/README.md) | `kstars/ekos/mount/` meridian flip state | ✅ | ✅ |
+| [`ekos/observatory/`](ekos/observatory/README.md) | `kstars/ekos/observatory/` | 🔲 | ✅ |
+| [`ekos/scheduler/`](ekos/scheduler/README.md) | `kstars/ekos/scheduler/` (unit) | ✅ | ✅ |
 | [`kstars_ui/`](kstars_ui/README.md) | Full Ekos UI integration (scheduler, capture, focus, guide, align, mount, meridian flip) | ✅ | ✅ |
 | [`kstars_lite_ui/`](kstars_lite_ui/README.md) | KStars Lite UI smoke tests | ⚠️ | ✅ |
 
