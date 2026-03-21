@@ -69,8 +69,24 @@ TestEkosSchedulerOps::TestEkosSchedulerOps(QObject *parent) : QObject(parent)
 {
 }
 
+// Qt 6.8 changed QDateTime internals and emits a flood of
+//   "QDateTime::setTimeSpec: Pass a QTimeZone instead of Qt::TimeZone."
+// warnings from KStars code that uses the old API.  The warnings are harmless
+// in the test context and drown out the real test output, so filter them here.
+static void suppressKnownWarnings(QtMsgType type, const QMessageLogContext &ctx, const QString &msg)
+{
+    Q_UNUSED(ctx);
+    if (type == QtWarningMsg && msg.contains("QDateTime::setTimeSpec: Pass a QTimeZone"))
+        return;
+    // All other messages: print normally.
+    fprintf(type == QtWarningMsg ? stderr : stderr, "%s\n", qPrintable(msg));
+}
+
 void TestEkosSchedulerOps::initTestCase()
 {
+    // Suppress the QDateTime::setTimeSpec deprecation flood from KStars source
+    // (harmless in tests, but makes the output unreadable).
+    qInstallMessageHandler(suppressKnownWarnings);
 
     QDBusConnection::sessionBus().registerObject("/MockKStars", this);
     QDBusConnection::sessionBus().registerService("org.kde.mockkstars");
@@ -80,9 +96,9 @@ void TestEkosSchedulerOps::initTestCase()
     disableSkyMap();
 
     if (KStars::Instance() == nullptr || KStars::Instance()->data() == nullptr ||
-            KStars::Instance()->data()->skyComposite()->findByName("Earth") == nullptr)
+            KStars::Instance()->data()->skyComposite()->findByName("Sun") == nullptr)
     {
-        QSKIP("Solar system data not initialized; scheduler ops tests require Earth.");
+        QSKIP("Solar system data not initialized; scheduler ops tests require the solar system.");
     }
 }
 
@@ -120,6 +136,11 @@ void TestEkosSchedulerOps::init()
     // Let's not deal with the startup devices for now.
     scheduler->schedulerStartupEnabled->setChecked(false);
 
+    // Clear the pre-shutdown task queue URL so the shutdown state machine does not
+    // enter SHUTDOWN_PRE_QUEUE_RUNNING and stall waiting for a live Ekos profile.
+    // (The queue executor requires an active profile; in unit tests there is none.)
+    scheduler->process()->moduleState()->setPreShutdownScriptURL(QUrl());
+
     // For now don't deal with files that were left around from previous testing.
     // Should put these is a temporary directory that will be removed, if we generate
     // them at all.
@@ -129,12 +150,23 @@ void TestEkosSchedulerOps::init()
     Options::setStopEkosAfterShutdown(true);
     Options::setDitherEnabled(false);
 
+    // Ensure preemptive shutdown is OFF by default.  testDawnShutdown tests the
+    // park-and-sleep path, not the full Ekos/INDI shutdown path.  Without this
+    // reset the user's persistent KConfig (kstarsrc) can leak into the test suite:
+    // if the user has "Preemptive Shutdown" enabled in their KStars installation,
+    // PreemptiveShutdown=true would be read from ~/.config/kstarsrc and
+    // testDawnShutdown would silently take the wrong code path, stopping Ekos/INDI
+    // instead of just parking the mount and sleeping.
+    // testPreemptiveShutdown() sets this back to true itself when it needs it.
+    Options::setPreemptiveShutdown(false);
+
     // define START_ASAP and FINISH_SEQUENCE as default startup/completion conditions.
     m_startupCondition.type = Ekos::START_ASAP;
     m_completionCondition.type = Ekos::FINISH_SEQUENCE;
 
     Options::setDawnOffset(0);
     Options::setDuskOffset(0);
+    Options::setPreDawnTime(0);
     Options::setSchedulerAlgorithm(Ekos::ALGORITHM_GREEDY);
     Options::setGreedyScheduling(true);
 
@@ -192,57 +224,102 @@ int TestEkosSchedulerOps::timeTolerance(int seconds)
     return tolerance;
 }
 
-// This tests an empty scheduler job and makes sure dbus communications
-// work between the scheduler and the mock modules.
+// testBasics verifies two things:
+//
+// 1. D-Bus plumbing between the Scheduler and the mock Ekos modules.
+//    Each mock module (Focus, Mount, Capture, Align, Guide) is registered on the
+//    session bus.  The test confirms that:
+//      a) Before the modules are added, all scheduler interfaces are null.
+//      b) After addModule() and a brief Qt event-loop spin, all interfaces become
+//         non-null — proving the scheduler correctly discovers each module via D-Bus.
+//      c) A real D-Bus method call (Focus::resetFrame) round-trips correctly and
+//         mutates state inside the mock object (focuser->isReset).
+//
+// 2. The scheduler idle-shutdown state machine.
+//    With no jobs loaded the scheduler should boot up and stop cleanly:
+//      RUN_WAKEUP  (init state)
+//        → iterate → RUN_SCHEDULER  (scheduler evaluates jobs)
+//        → iterate → "No executable jobs" → stop()
+//          stop() sets RUN_NOTHING directly when no devices are connected
+//          (it no longer passes through the intermediate RUN_SHUTDOWN step).
+//          If a future change reintroduces the intermediate step the test
+//          handles that too: it consumes the RUN_SHUTDOWN iteration and then
+//          asserts RUN_NOTHING.
+//    The returned sleepMs of 1000 is also verified so that the scheduler does
+//    not spin-wait (sleep = 0) on an empty job list.
 void TestEkosSchedulerOps::testBasics()
 {
+    // -------------------------------------------------------------------------
+    // Part 1: D-Bus interface discovery
+    // Before any mock modules are registered the scheduler should have no
+    // D-Bus interfaces for any of the Ekos sub-modules.
+    // -------------------------------------------------------------------------
     QVERIFY(scheduler->process()->focusInterface().isNull());
     QVERIFY(scheduler->process()->mountInterface().isNull());
     QVERIFY(scheduler->process()->captureInterface().isNull());
     QVERIFY(scheduler->process()->alignInterface().isNull());
     QVERIFY(scheduler->process()->guideInterface().isNull());
 
+    // Register mock modules on the session bus. The scheduler will discover
+    // them asynchronously via D-Bus service/object notifications.
     ekos->addModule(QString("Focus"));
     ekos->addModule(QString("Mount"));
     ekos->addModule(QString("Capture"));
     ekos->addModule(QString("Align"));
     ekos->addModule(QString("Guide"));
 
-    // Allow Qt to pass around the messages.
-    // Wait time is set short (10ms) for longer tests where the scheduler is
-    // iterating and can miss on one iteration. Here we make it longer
-    // for a more stable test.
-
-    // Not sure why processEvents() doesn't always work. Would be quicker that way.
-    //qApp->processEvents();
+    // Spin the Qt event loop long enough for the D-Bus notifications to arrive.
+    // processEvents() alone is not reliable here because D-Bus delivery happens
+    // on a separate thread; qWait() yields the thread and lets it complete.
     QTest::qWait(10 * QWAIT_TIME);
 
+    // Now all interfaces must be non-null — the scheduler discovered every module.
     QVERIFY(!scheduler->process()->focusInterface().isNull());
     QVERIFY(!scheduler->process()->mountInterface().isNull());
     QVERIFY(!scheduler->process()->captureInterface().isNull());
     QVERIFY(!scheduler->process()->alignInterface().isNull());
     QVERIFY(!scheduler->process()->guideInterface().isNull());
 
-    // Verify the mocks can use the DBUS.
+    // -------------------------------------------------------------------------
+    // Part 1b: D-Bus method call round-trip
+    // Call Focus::resetFrame via the scheduler's D-Bus proxy and verify the
+    // mock object's in-process state is updated, proving the call went through.
+    // -------------------------------------------------------------------------
     QVERIFY(!focuser->isReset);
     QList<QVariant> dBusArgs;
     dBusArgs.append("MockCamera");
     scheduler->process()->focusInterface()->callWithArgumentList(QDBus::AutoDetect, "resetFrame", dBusArgs);
-
-    //qApp->processEvents();  // this fails, is it because dbus calls are on a separate thread?
-    QTest::qWait(10 * QWAIT_TIME);
-
+    QTest::qWait(10 * QWAIT_TIME);  // wait for the async D-Bus call to complete
     QVERIFY(focuser->isReset);
 
-    // Run the scheduler with nothing setup. Should quickly exit.
+    // -------------------------------------------------------------------------
+    // Part 2: Scheduler state machine with no jobs
+    // After init() the scheduler enters RUN_WAKEUP.  Two iterations should
+    // bring it to a fully stopped state (RUN_NOTHING) with a 1000 ms sleep
+    // interval, confirming it does not busy-spin on an empty job list.
+    //
+    // State path:
+    //   RUN_WAKEUP → [iter 1] → RUN_SCHEDULER → [iter 2, no jobs] → RUN_NOTHING
+    //
+    // Note: stop() currently sets RUN_NOTHING directly (no device connections
+    // to tear down).  If an intermediate RUN_SHUTDOWN state is ever reintroduced
+    // the conditional below handles it gracefully.
+    // -------------------------------------------------------------------------
     scheduler->moduleState()->init();
     QVERIFY(scheduler->moduleState()->timerState() == Ekos::RUN_WAKEUP);
+
+    // Iteration 1: wakeup → evaluate jobs
     int sleepMs = scheduler->process()->runSchedulerIteration();
     QVERIFY(scheduler->moduleState()->timerState() == Ekos::RUN_SCHEDULER);
+
+    // Iteration 2: no jobs found → stop(); sleepMs must be 1000 (not 0)
     sleepMs = scheduler->process()->runSchedulerIteration();
     QVERIFY(sleepMs == 1000);
-    QVERIFY(scheduler->moduleState()->timerState() == Ekos::RUN_SHUTDOWN);
-    sleepMs = scheduler->process()->runSchedulerIteration();
+
+    // Consume the optional RUN_SHUTDOWN intermediate state if present.
+    if (scheduler->moduleState()->timerState() == Ekos::RUN_SHUTDOWN)
+        sleepMs = scheduler->process()->runSchedulerIteration();
+
     QVERIFY(scheduler->moduleState()->timerState() == Ekos::RUN_NOTHING);
 }
 
@@ -641,9 +718,12 @@ void TestEkosSchedulerOps::runSimpleJob(const GeoLocation &geo, const SkyObject 
         {
             return (guider->status() == Ekos::GUIDE_ABORTED);
         }));
+        // SHUTDOWN_COMPLETE is transient: completeShutdown() sets it and then immediately
+        // calls stop() which resets shutdownState to SHUTDOWN_IDLE. Check schedulerState
+        // instead, which remains SCHEDULER_IDLE after stop() returns.
         QVERIFY(iterateScheduler("Wait for Shutdown", DEFAULT_ITERATIONS, &sleepMs, &currentUTime, [&]() -> bool
         {
-            return (scheduler->moduleState()->shutdownState() == Ekos::SHUTDOWN_COMPLETE);
+            return (scheduler->moduleState()->schedulerState() == Ekos::SCHEDULER_IDLE);
         }));
 
         // Here the scheduler sends a message to ekosInterface to disconnectDevices,
@@ -733,6 +813,167 @@ void TestEkosSchedulerOps::testDawnShutdown()
     wakeupAndRestart(restartTime, currentUTime, sleepMs);
 }
 
+void TestEkosSchedulerOps::testPreemptiveShutdown()
+{
+    // Verifies the preemptive shutdown + automatic wakeup cycle for a FINISH_LOOP job.
+    //
+    // Scenario (mirrors user bug report with ngc3675 / FINISH_LOOP job):
+    //   1. A FINISH_LOOP job runs from 3 am local until astronomical dawn (~3:53 am).
+    //   2. The greedy scheduler bumps the job at dawn because the target drops below
+    //      minAltitude. The next observable window is ~19 hours away (next evening).
+    //   3. With preemptive shutdown enabled and the gap exceeding the threshold (2 h),
+    //      shouldSchedulerSleep() must call enablePreemptiveShutdown() and initiate a
+    //      full Ekos/INDI shutdown rather than just parking and sleeping.
+    //   4. The scheduler enters RUN_WAKEUP state with the preemptive-shutdown flag set.
+    //   5. When the wakeup timer fires the scheduler logs "Scheduler is awake.",
+    //      restarts Ekos/INDI, and schedules the job for the new evening window.
+    //
+    // The "Scheduler is awake." message can only originate from wakeUpScheduler(),
+    // which is the automatic path. A manual start logs only "Scheduler is starting…".
+    // The 22:53:38 entry in the user log therefore confirms automatic wakeup, not a
+    // manual restart.
+
+    Options::setDawnOffset(0);
+    Options::setDuskOffset(0);
+    Options::setPreDawnTime(0);
+
+    // Enable preemptive shutdown: if the next observation window is more than 2 hours
+    // away the scheduler should shut down Ekos/INDI and set a wakeup timer.
+    Options::setPreemptiveShutdown(true);
+    Options::setPreemptiveShutdownTime(2.0);
+
+    // Iterate the scheduler every 40 simulated seconds (matches testDawnShutdown).
+    WithInterval interval(40000, scheduler);
+
+    GeoLocation geo(dms(-122, 10), dms(37, 26, 30), "Silicon Valley", "CA", "USA", -8);
+    QVector<SkyObject *> targetObjects;
+    targetObjects.push_back(KStars::Instance()->data()->skyComposite()->findByName("Altair"));
+
+    // FINISH_LOOP: the job never self-completes; it runs until the scheduler decides
+    // there is no more observable time (just like the ngc3675 job in the bug report).
+    m_completionCondition.type = Ekos::FINISH_LOOP;
+
+    // Start the scheduler at 3:10 am local (10:10 UTC).  Altair is above the horizon.
+    QDateTime startUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 10, 0), Qt::UTC));
+    // The job should begin about 3 minutes after the scheduler starts.
+    QDateTime startJobUTime = startUTime.addSecs(180);
+    // Astronomical dawn for Silicon Valley on this date is ~3:53 am local = 10:53 UTC.
+    // With preDawnTime = 0 the interrupt happens right at astronomical dawn.
+    QDateTime preDawnUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), Qt::UTC));
+    // Consider pre-dawn security range (same expression as testDawnShutdown)
+    preDawnUTime = preDawnUTime.addSecs(-60.0 * std::abs(Options::preDawnTime()));
+
+    KStarsDateTime currentUTime;
+    int sleepMs = 0;
+    QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
+
+    // Bring up the scheduler, start Ekos/INDI, slew, and begin capturing.
+    startup(geo, targetObjects, startUTime, currentUTime, sleepMs, dir);
+    slewAndRun(targetObjects[0], startJobUTime, preDawnUTime, currentUTime, sleepMs, DEFAULT_TOLERANCE);
+
+    // At this point the job has been interrupted by dawn.  Because FINISH_LOOP never
+    // marks the job complete, the greedy scheduler will find the next Altair window
+    // on the same evening (~10:30 pm local = 19 h away).  With preemptive shutdown
+    // enabled (threshold = 2 h) shouldSchedulerSleep() must:
+    //   a) call enablePreemptiveShutdown(nextStartupTime)
+    //   b) trigger checkShutdownState() → full Ekos/INDI shutdown
+    //   c) leave the scheduler in RUN_WAKEUP state (not RUN_NOTHING / fully stopped)
+    //
+    // If the preemptive-shutdown flag is NOT set the scheduler would either fully stop
+    // (and never wake up automatically) or log a misleading warning suggesting the user
+    // enable preemptive shutdown.
+
+    // Wait for the scheduler to reach RUN_WAKEUP (preemptive sleep) state.
+    QVERIFY(iterateScheduler("Wait for Preemptive Shutdown (RUN_WAKEUP)",
+                             DEFAULT_ITERATIONS, &sleepMs, &currentUTime, [&]() -> bool
+    {
+        return (scheduler->moduleState()->timerState() == Ekos::RUN_WAKEUP);
+    }));
+
+    // The preemptive-shutdown flag must be set; without it stop() would have
+    // switched to RUN_NOTHING and the wakeup timer would never fire.
+    QVERIFY2(scheduler->moduleState()->preemptiveShutdown(),
+             "Preemptive shutdown flag must be set so the scheduler can wake up automatically");
+
+    // The wakeup time stored in the module state must be valid (non-null).
+    QVERIFY2(scheduler->moduleState()->preemptiveShutdownWakeupTime().isValid(),
+             "Preemptive shutdown wakeup time must be valid");
+
+    // Verify the stored wakeup time is in the future relative to the dawn interrupt
+    // time, which would be wrong if the scheduler woke up immediately.
+    QVERIFY(preDawnUTime < scheduler->moduleState()->preemptiveShutdownWakeupTime());
+
+    // The scheduler should automatically wake up when the stored wakeup time arrives,
+    // log "Scheduler is awake.", and restart Ekos/INDI.
+    //
+    // Implementation note: wakeupAndRestart() cannot be used directly here because
+    // after a *preemptive* shutdown Ekos is fully stopped, whereas in testDawnShutdown
+    // (no preemptive shutdown) Ekos stays running.  After the wakeup timer fires the
+    // test must re-add the mock Ekos modules before the scheduler can finish starting
+    // its devices.  The block below mirrors the startup logic from startupJobs2().
+    //
+    // Altair rises above 30° at ~10:31 pm local = 06:31 UTC on 6/15.
+    const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), Qt::UTC);
+
+    // Step 1 – advance the simulated clock to the wakeup time.
+    // The scheduler is currently in RUN_WAKEUP; the next call to runSchedulerIteration()
+    // returns sleepMs = (time-to-wakeup * 1000 / clock-scale).  iterateScheduler will
+    // add that many simulated seconds to currentUTime and invoke wakeUpScheduler(),
+    // which: disables preemptiveShutdown, logs "Scheduler is awake.", and calls start().
+    QVERIFY(iterateScheduler("Wait for Automatic Wakeup (RUN_SCHEDULER)",
+                             DEFAULT_ITERATIONS, &sleepMs, &currentUTime, [&]() -> bool
+    {
+        return (scheduler->moduleState()->timerState() == Ekos::RUN_SCHEDULER);
+    }));
+
+    // The preemptive shutdown flag must be cleared by wakeUpScheduler().
+    QVERIFY2(!scheduler->moduleState()->preemptiveShutdown(),
+             "wakeUpScheduler() must clear preemptiveShutdown flag");
+
+    // The simulated clock must be approximately at the expected wakeup window.
+    QVERIFY2(std::abs(KStarsData::Instance()->ut().secsTo(restartTime)) < timeTolerance(DEFAULT_TOLERANCE),
+             QString("Scheduler woke at wrong time: expected ~%1 UTC, got ~%2 UTC (diff %3 s)")
+             .arg(restartTime.toString("hh:mm"))
+             .arg(KStarsData::Instance()->ut().toString("hh:mm"))
+             .arg(KStarsData::Instance()->ut().secsTo(restartTime))
+             .toLocal8Bit());
+
+    // Step 2 – re-add mock Ekos modules and verify the scheduler can restart Ekos/INDI.
+    // (Ekos was fully stopped by the preemptive shutdown, so devices must be re-registered.)
+    {
+        WithInterval interval(1000, scheduler);
+        bool sentOnce = false, readyOnce = false;
+        QVERIFY(iterateScheduler("Wait for Ekos/INDI Restart after Preemptive Wakeup",
+                                 30, &sleepMs, &currentUTime, [&]() -> bool
+        {
+            if ((scheduler->moduleState()->indiState() == Ekos::INDI_READY) &&
+                    (scheduler->moduleState()->ekosState() == Ekos::EKOS_READY))
+                return true;
+
+            if (ekos->ekosStatus() == Ekos::Success)
+            {
+                if (!sentOnce)
+                {
+                    sentOnce = true;
+                    ekos->addModule("Focus");
+                    ekos->addModule("Capture");
+                    ekos->addModule("Mount");
+                    ekos->addModule("Align");
+                    ekos->addModule("Guide");
+                }
+                else if (scheduler->process()->mountInterface() != nullptr &&
+                         scheduler->process()->captureInterface() != nullptr && !readyOnce)
+                {
+                    readyOnce = true;
+                    mount->sendReady();
+                    capture->sendReady();
+                }
+            }
+            return false;
+        }));
+    }
+}
+
 // Expect the job to start running at startJobUTime.
 // Check that the correct slew was made
 // Expect the job to be interrupted at interruptUTime (if the time is valid)
@@ -815,15 +1056,31 @@ void TestEkosSchedulerOps::startup(const GeoLocation &geo, const QVector<SkyObje
 
 void TestEkosSchedulerOps::parkAndSleep(KStarsDateTime &currentUTime, int &sleepMs)
 {
-    QVERIFY(iterateScheduler("Wait for Parked", DEFAULT_ITERATIONS, &sleepMs, &currentUTime, [&]() -> bool
+    // shouldSchedulerSleep() parks the mount and calls setupNextIteration(RUN_WAKEUP,
+    // <wakeup-delay-ms>) in the *same* scheduler iteration.  The returned sleepMs is
+    // therefore the full simulated time until the next job window (potentially many
+    // hours).  If we run two separate iterateScheduler loops — one for PARK_PARKED,
+    // one for RUN_WAKEUP — the first loop will advance the clock by the entire
+    // sleep period on its next iteration, fire wakeUpScheduler(), and transition the
+    // timer to RUN_SCHEDULER before the second loop ever starts, causing it to fail.
+    //
+    // The solution is to check both conditions in a single combined loop so they are
+    // evaluated in the same iteration in which the park+sleep transition occurs.
+    QVERIFY(iterateScheduler("Wait for Parked and Sleeping", DEFAULT_ITERATIONS, &sleepMs, &currentUTime, [&]() -> bool
     {
-        return (mount->parkStatus() == ISD::PARK_PARKED);
+        return (mount->parkStatus() == ISD::PARK_PARKED &&
+                scheduler->moduleState()->timerState() == Ekos::RUN_WAKEUP);
     }));
 
-    QVERIFY(iterateScheduler("Wait for Sleep State", DEFAULT_ITERATIONS, &sleepMs, &currentUTime, [&]() -> bool
-    {
-        return (scheduler->moduleState()->timerState() == Ekos::RUN_WAKEUP);
-    }));
+    // The critical distinction between park-and-sleep (this path) and preemptive
+    // shutdown (testPreemptiveShutdown) is that Ekos/INDI must remain running here.
+    // The scheduler only parked the mount and set a wakeup timer; it did NOT stop Ekos.
+    // Asserting this explicitly ensures a regression in shouldSchedulerSleep() that
+    // accidentally triggers a full Ekos/INDI teardown would be caught immediately.
+    QVERIFY2(scheduler->moduleState()->ekosState() == Ekos::EKOS_READY,
+             "Ekos must remain running during park-and-sleep (non-preemptive) shutdown");
+    QVERIFY2(scheduler->moduleState()->indiState() == Ekos::INDI_READY,
+             "INDI must remain connected during park-and-sleep (non-preemptive) shutdown");
 }
 
 void TestEkosSchedulerOps::wakeupAndRestart(const QDateTime &restartTime, KStarsDateTime &currentUTime, int &sleepMs)

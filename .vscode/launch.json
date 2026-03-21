@@ -42,22 +42,1234 @@
       "showDisplayString": true
     },
     {
-      "name": "Debug KStars (MacOS)",
+      "name": "Debug test_ekos_scheduler_ops (all)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/build/bin/KStars.app/Contents/MacOS/kstars",
-      "args": [],
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["-v2"],
       "stopAtEntry": false,
-      "cwd": "${fileDirname}",
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
       "externalConsole": false,
-      "MIMode": "lldb",
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testBasics",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testBasics", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testSimpleJob",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testSimpleJob", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testTimeZone",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testTimeZone", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testDawnShutdown",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testDawnShutdown", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testPreemptiveShutdown",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testPreemptiveShutdown", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testGreedySchedulerRun",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testGreedySchedulerRun", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testTwilightStartup",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testTwilightStartup", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testArtificialHorizonConstraints",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testArtificialHorizonConstraints", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testGreedy",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testGreedy", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testMaxMoonAltitude",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testMaxMoonAltitude", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testGreedyStartAt",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testGreedyStartAt", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testGroups",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testGroups", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testGreedyAborts",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testGreedyAborts", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testArtificialCeiling",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testArtificialCeiling", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testSettingAltitudeBug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testSettingAltitudeBug", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testEstimateTimeBug",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testEstimateTimeBug", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testRememberJobProgress",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testRememberJobProgress", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler_ops::testGreedyMessier",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testGreedyMessier", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_scheduler",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
       "environment": [
         {
-          "name": "DYLD_BIND_AT_LAUNCH",
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
           "value": "1"
         }
       ],
-      "visualizerFile": "./qt.natvis.xml"
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_capture",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_capture",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
+          "value": "1"
+        }
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_focus",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_focus",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
+          "value": "1"
+        }
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_simulator",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_simulator",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
+          "value": "1"
+        }
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_meridianflip",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_meridianflip",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
+          "value": "1"
+        }
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_ekos_align",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_align",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
+          "value": "1"
+        }
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Debug test_artificial_horizon",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_artificial_horizon",
+      "args": ["-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
+        },
+        {
+          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
+          "value": "1"
+        }
+      ],
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set Disassembly Flavor to Intel",
+          "text": "-gdb-set disassembly-flavor intel",
+          "ignoreFailures": true
+        },
+        {
+          "text": "handle SIGPIPE nostop noprint pass"
+        },
+        {
+          "text": "skip -rfu ^std::.*"
+        }
+      ],
+      "showDisplayString": true
+    },
+     {
+        "name": "Auxiliary: Test testcsvparser",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testcsvparser",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testfwparser",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testfwparser",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testdms",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testdms",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testcachingdms",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testcachingdms",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testcolorscheme",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testcolorscheme",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testbinhelper",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testbinhelper",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testfov",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testfov",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testgeolocation",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testgeolocation",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testksuserdb",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testksuserdb",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testkspaths",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testkspaths",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testtrixelcache",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testtrixelcache",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testrectangleoverlap",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testrectangleoverlap",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
+    },
+    {
+        "name": "Auxiliary: Test testksalmanac",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/build/Tests/auxiliary/testksalmanac",
+        "args": [
+            "-v2"
+        ],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "environment": [
+            {
+                "name": "LD_BIND_NOW",
+                "value": "1"
+            }
+        ],
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            },
+            {
+                "description": "Set Disassembly Flavor to Intel",
+                "text": "-gdb-set disassembly-flavor intel",
+                "ignoreFailures": true
+            },
+            {
+                "text": "handle SIGPIPE nostop noprint pass"
+            },
+            {
+                "text": "skip -rfu ^std::.*"
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+        "showDisplayString": true
     }
   ]
 }

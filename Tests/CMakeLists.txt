@@ -62,6 +62,14 @@ if(StellarSolver_FOUND)
     )
 endif(StellarSolver_FOUND)
 
+# testksuserdb (in the auxiliary subdir) transitively includes indicommon.h via
+# profileinfo.h -> ksuserdb.h.  That header needs indiversion.h from libindi.
+# The ${INDI_INCLUDE_DIR} guard must come *before* add_subdirectory(auxiliary)
+# because CMake's include_directories() only applies to targets defined after the call.
+IF (INDI_FOUND)
+    include_directories(${INDI_INCLUDE_DIR})
+ENDIF(INDI_FOUND)
+
 add_subdirectory(auxiliary)
 add_subdirectory(tools)
 add_subdirectory(skyobjects)

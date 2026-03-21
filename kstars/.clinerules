@@ -10,3 +10,54 @@
 - Build: `cmake --build build -j$(nproc)`
 - Build directory is `build/` — never modify files inside it directly.
 - Check the relevant `CMakeLists.txt` before adding new source files.
+
+## Writing and Running Tests
+
+### Test Infrastructure
+- All tests live under `Tests/`. The build directory is `build/Tests/`.
+- Tests link against `${TEST_LIBRARIES}` which includes `Qt6::Core`, `Qt6::Test`, `KStarsLib`, `htmesh`, and `ZLIB`.
+- `KStarsLib` transitively provides Qt6 Widgets; no need to add it explicitly unless using `QTEST_MAIN`.
+- Build a single test target: `cmake --build build --target <testname> -- -j$(nproc)`
+- Run a test directly: `./build/Tests/auxiliary/<testname>`
+
+### KStarsData Requirement
+- `KSPlanetBase::updateCoords()` requires `KStarsData::Instance()` to be non-null.  
+  It calls `kd->skyComposite()->earth()` for planet/sun/moon position updates.  
+  Without it, `updateCoords` returns early and all solar-system objects remain at RA=0°/Dec=0°.
+- Any test that exercises `KSAlmanac`, planet positions, or anything that calls `KSPlanetBase::updateCoords` **must** initialize `KStarsData` first.
+
+### How to Initialize KStarsData in a Test
+1. **Use `QTEST_MAIN` (not `QTEST_GUILESS_MAIN`)** — `KStarsData::initialize()` creates `ObservingList` (a `QDialog`), which requires a `QApplication`.  
+   `QTEST_MAIN` creates `QApplication`; `QTEST_GUILESS_MAIN` only creates `QCoreApplication` and will crash.
+2. **Include `"../testhelpers.h"`** — the static `EarlyEnvironment` object it defines calls `setupTestEnvironment()` at startup, which sets `QT_QPA_PLATFORM=offscreen` when no display is present, so GUI objects work headlessly.
+3. **Call `KTEST_BEGIN()` in `initTestCase()`** — this:
+   - Sets the application name to `"kstars"` (required for `KSPaths::locate` to find data files in `/usr/share/kstars/` or the test data dir)
+   - Enables `QStandardPaths` test mode
+   - Symlinks/copies all data files from `kstars/data/` (VSOP87, `citydb.sqlite`, `TZrules.dat`, star catalogs, etc.) into the test-mode standard paths
+4. **Call `KStarsData::Create()->initialize()` after `KTEST_BEGIN()`** — creates the singleton and loads the `SkyMapComposite` (including the Earth object needed by `updateCoords`).
+5. **Call `KTEST_END()` in `cleanupTestCase()`** — cleans up test-mode directories.
+
+### Minimal initTestCase/cleanupTestCase Template
+```cpp
+#include "../testhelpers.h"
+#include "kstarsdata.h"
+// Use QTEST_MAIN (not QTEST_GUILESS_MAIN) at the bottom of the .cpp file.
+
+void TestFoo::initTestCase()
+{
+    KTEST_BEGIN();
+    KStarsData *data = KStarsData::Create();
+    QVERIFY2(data != nullptr, "KStarsData::Create() returned null");
+    QVERIFY2(data->initialize(), "KStarsData::initialize() failed");
+}
+
+void TestFoo::cleanupTestCase()
+{
+    KTEST_END();
+}
+```
+
+### What NOT to do
+- Do **not** modify `KSPlanetBase::updateCoords`, `KSSun`, `KSMoon`, or other production classes to remove their `KStarsData` dependency just to make a test pass.  
+  The proper fix is always to initialize `KStarsData` in the test.
+- Do **not** use `QTEST_GUILESS_MAIN` for tests that call any code path involving planet position updates or `KStarsData`-dependent singletons.

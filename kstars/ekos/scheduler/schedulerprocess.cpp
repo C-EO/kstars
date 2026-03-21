@@ -2030,8 +2030,14 @@ bool SchedulerProcess::checkShutdownState()
                     return false;
                 }
             }
-            // No pre-shutdown queue or empty, proceed to stop Ekos/INDI (handled by completeShutdown)
+            // No pre-shutdown queue or empty — advance directly to SHUTDOWN_STOPPING_EKOS
+            // and switch the scheduler timer to RUN_SHUTDOWN so completeShutdown() is called
+            // on the very next iteration. Without this, SHUTDOWN_IDLE would be re-entered
+            // forever because the caller (checkStatus / RUN_SCHEDULER) never drives the
+            // state machine past IDLE when the return value is just ignored.
             appendLogText(i18n("No pre-shutdown tasks, proceeding to stop Ekos/INDI."));
+            moduleState()->setShutdownState(SHUTDOWN_STOPPING_EKOS);
+            moduleState()->setupNextIteration(RUN_SHUTDOWN);
             return true;
         }
 

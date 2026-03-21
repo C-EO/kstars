@@ -351,32 +351,38 @@ Manager::Manager(QWidget * parent) : QDialog(parent), m_networkManager(this)
     // appear here automatically.  The operation is non-blocking and KStars profiles
     // always win (existing ones are never overwritten).
     {
-        QSet<QString> syncedManagers;
-        for (const auto &pi : profiles)
+        // Allow test suites (or CI) to opt-out of the async Web Manager sync so that
+        // a locally running INDI Web Manager does not inject profiles into the fresh
+        // test database and prevent the ProfileWizard from appearing.
+        if (qEnvironmentVariable("KSTARS_NO_WEB_MANAGER_SYNC") != "1")
         {
-            if (pi->INDIWebManagerPort > 0)
+            QSet<QString> syncedManagers;
+            for (const auto &pi : profiles)
             {
-                const QString key =
-                    QString("%1:%2").arg(pi->host).arg(pi->INDIWebManagerPort);
-                if (!syncedManagers.contains(key))
+                if (pi->INDIWebManagerPort > 0)
                 {
-                    syncedManagers.insert(key);
-                    syncProfilesFromWebManager(pi);
+                    const QString key =
+                        QString("%1:%2").arg(pi->host).arg(pi->INDIWebManagerPort);
+                    if (!syncedManagers.contains(key))
+                    {
+                        syncedManagers.insert(key);
+                        syncProfilesFromWebManager(pi);
+                    }
                 }
             }
-        }
 
-        // Also probe the default local Web Manager endpoint (localhost:8624) so that
-        // a fresh KStars with only the "Simulators" profile can still auto-import
-        // profiles from a locally running INDI Web Manager.
-        // syncProfilesFromWebManager() is fully async and silently no-ops if nothing
-        // is listening on that port.
-        if (!syncedManagers.contains("localhost:8624"))
-        {
-            QSharedPointer<ProfileInfo> localPI(new ProfileInfo(-1, "local-wm"));
-            localPI->host               = "localhost";
-            localPI->INDIWebManagerPort = 8624;
-            syncProfilesFromWebManager(localPI);
+            // Also probe the default local Web Manager endpoint (localhost:8624) so that
+            // a fresh KStars with only the "Simulators" profile can still auto-import
+            // profiles from a locally running INDI Web Manager.
+            // syncProfilesFromWebManager() is fully async and silently no-ops if nothing
+            // is listening on that port.
+            if (!syncedManagers.contains("localhost:8624"))
+            {
+                QSharedPointer<ProfileInfo> localPI(new ProfileInfo(-1, "local-wm"));
+                localPI->host               = "localhost";
+                localPI->INDIWebManagerPort = 8624;
+                syncProfilesFromWebManager(localPI);
+            }
         }
     }
 

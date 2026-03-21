@@ -74,3 +74,8 @@ ADD_EXECUTABLE( testrectangleoverlap testrectangleoverlap.cpp )
 TARGET_LINK_LIBRARIES( testrectangleoverlap ${TEST_LIBRARIES})
 ADD_TEST( NAME TestRectangleOverlap COMMAND testrectangleoverlap )
 SET_TESTS_PROPERTIES( TestRectangleOverlap PROPERTIES LABELS "stable")
+
+ADD_EXECUTABLE( testksalmanac testksalmanac.cpp )
+TARGET_LINK_LIBRARIES( testksalmanac ${TEST_LIBRARIES})
+ADD_TEST( NAME TestKSAlmanac COMMAND testksalmanac )
+SET_TESTS_PROPERTIES( TestKSAlmanac PROPERTIES LABELS "stable")
