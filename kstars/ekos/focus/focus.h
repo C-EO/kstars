@@ -39,9 +39,7 @@ namespace Ekos
 class DarkProcessor;
 class FocusAlgorithmInterface;
 class FocusFWHM;
-#if defined(HAVE_OPENCV)
 class FocusBlurriness;
-#endif
 class PolynomialFit;
 class AdaptiveFocus;
 class FocusAdvisor;
@@ -1339,10 +1337,8 @@ class Focus : public QWidget, public Ui::Focus
         // Fourier Transform power processing.
         std::unique_ptr<FocusFourierPower> focusFourierPower;
 
-#if defined(HAVE_OPENCV)
         // Blurriness processing.
         std::unique_ptr<FocusBlurriness> focusBlurriness;
-#endif
 
         // Adaptive Focus processing.
         std::unique_ptr<AdaptiveFocus> adaptFocus;

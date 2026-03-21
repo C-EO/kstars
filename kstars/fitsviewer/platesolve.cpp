@@ -510,7 +510,7 @@ void PlateSolve::subSolverDone(bool timedOut, bool success, const FITSImage::Sol
         return;
     }
 
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     int indexUsed = -1, healpixUsed = -1;
     m_Solver->getSolutionHealpix(&indexUsed, &healpixUsed);
     m_imageData->setStackSubSolution(solution.ra, solution.dec, solution.pixscale, indexUsed, healpixUsed);
@@ -518,7 +518,7 @@ void PlateSolve::subSolverDone(bool timedOut, bool success, const FITSImage::Sol
     m_imageData->injectStackWCS(solution.orientation, solution.ra, solution.dec, solution.pixscale, eastToTheRight);
     m_imageData->stackLoadWCS();
     emit subSolverSuccess();
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 }
 
 void PlateSolve::centerOnSkymap()

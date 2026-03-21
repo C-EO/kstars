@@ -340,6 +340,7 @@ if (INDI_FOUND)
             ekos/focus/curvefit.cpp
             ekos/focus/focusfwhm.cpp
             ekos/focus/focusfourierpower.cpp
+            ekos/focus/focusblurriness.cpp
             ekos/focus/adaptivefocus.cpp
             ekos/focus/focusadvisor.cpp
             ekos/focus/opsfocusbase.cpp
@@ -434,11 +435,6 @@ if (INDI_FOUND)
             set(ekos_SRCS ${ekos_SRCS} ekos/focus/abinstablewidget.cpp)
         endif()
 
-        # Focus Blurriness
-        if (OpenCV_FOUND)
-            set(ekos_SRCS ${ekos_SRCS} ekos/focus/focusblurriness.cpp)
-        endif()
-
     endif(CFITSIO_FOUND)
 
     include_directories(${INDI_INCLUDE_DIR})
@@ -469,15 +465,12 @@ if (CFITSIO_FOUND)
         fitsviewer/fitsmemmonitor.cpp
         fitsviewer/fitsstackmonitor.cpp
         fitsviewer/qrcodegen.cpp
+        fitsviewer/fitsstack.cpp
         fitsviewer/fitsstackwebcast.cpp
         )
 
     if (Qt5DataVisualization_FOUND OR Qt6DataVisualization_FOUND)
         set(fits_SRCS ${fits_SRCS} fitsviewer/starprofileviewer.cpp)
-    endif()
-
-    if (OpenCV_FOUND AND WCSLIB_FOUND)
-        set(fits_SRCS ${fits_SRCS} fitsviewer/fitsstack.cpp)
     endif()
 
     set (fits2_SRCS

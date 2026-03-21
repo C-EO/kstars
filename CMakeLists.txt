@@ -293,8 +293,7 @@ set_package_properties(LibRaw PROPERTIES DESCRIPTION "Library for reading RAW fi
 
 ## WCS Library
 find_package(WCSLIB)
-MACRO_BOOL_TO_01(WCSLIB_FOUND HAVE_WCSLIB)
-set_package_properties(WCSLIB PROPERTIES DESCRIPTION "World Coordinate System library" URL "https://www.atnf.csiro.au/people/mcalabre/WCS" TYPE OPTIONAL PURPOSE "WCS enables KStars to read and process world coordinate systems in FITS header.")
+set_package_properties(WCSLIB PROPERTIES DESCRIPTION "World Coordinate System library" URL "https://www.atnf.csiro.au/people/mcalabre/WCS" TYPE REQUIRED PURPOSE "WCS enables KStars to read and process world coordinate systems in FITS header.")
 
 ## XPlanet
 find_package(Xplanet)
@@ -328,13 +327,10 @@ else()
 endif()
 
 ## OpenCV
-# Disable OpenCV on Windows until KDE's Craft fixes the OpenCV package.
-find_package(OpenCV COMPONENTS core imgcodecs calib3d photo)
-MACRO_BOOL_TO_01(OpenCV_FOUND HAVE_OPENCV)
-if (OpenCV_FOUND)
-    set_package_properties(OpenCV PROPERTIES DESCRIPTION "OpenCV library" URL "https://opencv.org" TYPE OPTIONAL PURPOSE "Standard library of image processing functions.")
-    include_directories(SYSTEM ${OpenCV_INCLUDE_DIR})
-endif()
+# Ensure we have at least version 4.6.0
+find_package(OpenCV 4.6.0 REQUIRED COMPONENTS core imgcodecs calib3d photo)
+set_package_properties(OpenCV PROPERTIES DESCRIPTION "OpenCV library" URL "https://opencv.org" TYPE REQUIRED PURPOSE "Standard library of image processing functions.")
+include_directories(SYSTEM ${OpenCV_INCLUDE_DIRS})
 
 ## OpenGL
 find_package(OpenGL)

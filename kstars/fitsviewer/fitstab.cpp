@@ -923,7 +923,7 @@ void FITSTab::setupCatObjTypeFilter()
 
 void FITSTab::initLiveStacking()
 {
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     // Setup the memory monitor widget
     m_LiveStackingUI.MemMonitor->setUpdateInterval(1000);
     QString label = i18n("RAM");
@@ -1052,7 +1052,7 @@ void FITSTab::initLiveStacking()
     connect(m_View.get(), &FITSView::stackUpdateStats, this, &FITSTab::stackUpdateStats);
     connect(m_View.get(), &FITSView::updateStackSNR, this, &FITSTab::updateStackSNR);
     connect(m_View.get(), &FITSView::resetStack, this, &FITSTab::resetStack);
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 }
 
 void FITSTab::initSettings()
@@ -1264,14 +1264,14 @@ void FITSTab::stackMethodChanged(int index)
 
 void FITSTab::redoPostProcessing()
 {
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     if(m_View)
     {
         m_LiveStackingUI.PostProcGroupBox->setEnabled(false);
         viewer->restack(getUID());
         m_View->redoPostProcessStack(getPPSettings());
     }
-#endif // !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#endif // !defined (KSTARS_LITE)
 }
 
 void FITSTab::calcSNRChanged()
@@ -1779,7 +1779,7 @@ void FITSTab::liveStack()
 // Also, we assume that once the first sub is solved subsequent subs can be solved on just the same index and HEALPix
 // This significantly speeds up plate solving but if that solve fails... we widen the criteria and try again
 // before completely giving up on the sub
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
 void FITSTab::plateSolveSub(const double ra, const double dec, const double pixScale, const int index,
                             const int healpix, const LiveStackFrameWeighting &weighting)
 {
@@ -1849,7 +1849,7 @@ void FITSTab::plateSolveSub(const double ra, const double dec, const double pixS
     m_StackExtendedPlateSolve = (index == -1);
     m_PlateSolve->plateSolveSub(m_View->imageData(), ra, dec, pixScale, index, healpix, solveType);
 }
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 
 void FITSTab::stackInProgress()
 {

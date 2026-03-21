@@ -165,7 +165,7 @@ class FITSView : public QScrollArea
         void drawMarker(QPainter *, double scale);
         void drawCrosshair(QPainter *, double scale);
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
         void drawEQGrid(QPainter *, double scale);
         void drawHiPSOverlay(QPainter *painter, double scale);
 #endif

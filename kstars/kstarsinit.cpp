@@ -159,12 +159,9 @@ void KStars::initActions()
             << i18n("Open/Blink Directory") << QIcon::fromTheme("folder-open")
             << QKeySequence(Qt::CTRL | Qt::Key_O | Qt::AltModifier);
 
-#if defined(HAVE_WCSLIB) && defined(HAVE_OPENCV)
     actionCollection()->addAction("live_stacker", this, SLOT(slotStack()))
             << i18n("Live Stacker...") << QIcon::fromTheme("folder-open")
             << QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_K);
-#endif
-
 #endif
     actionCollection()->addAction("export_image", this, SLOT(slotExportImage()))
             << i18n("&Save Sky Image...")

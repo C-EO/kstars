@@ -137,7 +137,7 @@ FITSViewer::FITSViewer(QWidget *parent, Mode mode) : KXmlGuiWindow(parent), m_Mo
     action->setText(i18n("Open/Blink Directory"));
     connect(action, &QAction::triggered, this, &FITSViewer::blink);
 
-#if defined(HAVE_CFITSIO) && defined(HAVE_WCSLIB) && defined(HAVE_OPENCV)
+#if defined(HAVE_CFITSIO)
     if (m_Mode == Mode::LiveStacking)
     {
         action = actionCollection()->addAction("live_stacker");
@@ -1116,7 +1116,7 @@ void FITSViewer::openFile()
 // Launch the Live Stacking functionality...
 void FITSViewer::stack()
 {
-#if defined(HAVE_CFITSIO) && defined(HAVE_WCSLIB) && defined(HAVE_OPENCV)
+#if defined(HAVE_CFITSIO)
     if (m_StackBusy)
         return;
     m_StackBusy = true;
@@ -1163,7 +1163,7 @@ void FITSViewer::stack()
     });
 
     tab->initStack(topDir, FITS_LIVESTACKING, FITS_NONE);
-#endif // defined(HAVE_CFITSIO) && defined(HAVE_WCSLIB) && defined(HAVE_OPENCV)
+#endif // defined(HAVE_CFITSIO)
 }
 
 // Called when a stacking operation is in motion...

@@ -9,9 +9,7 @@
 #include "focusadaptor.h"
 #include "focusalgorithms.h"
 #include "focusfwhm.h"
-#if defined(HAVE_OPENCV)
 #include "focusblurriness.h"
-#endif
 #include "kstars.h"
 #include "kstarsdata.h"
 #include "Options.h"
@@ -1413,9 +1411,7 @@ void Focus::runAutoFocus(AutofocusReason autofocusReason, const QString &reasonI
             starFitting.reset(new CurveFitting());
             focusFWHM.reset(new FocusFWHM(m_ScaleCalc));
             focusFourierPower.reset(new FocusFourierPower(m_ScaleCalc));
-#if defined(HAVE_OPENCV)
             focusBlurriness.reset(new FocusBlurriness());
-#endif
             // Donut Buster
             initDonutProcessing();
             // Scan for Start Position
@@ -2473,8 +2469,6 @@ void Focus::getBlurriness(const StarMeasure starMeasure, const bool denoise, dou
     *blurriness = INVALID_STAR_MEASURE;
     *weight = 1.0;
 
-#if defined(HAVE_OPENCV)
-
     auto imageBuffer = m_ImageData->getImageBuffer();
 
     switch (m_ImageData->getStatistics().dataType)
@@ -2524,14 +2518,6 @@ void Focus::getBlurriness(const StarMeasure starMeasure, const bool denoise, dou
                                           " Cannot calc Blurriness";
             break;
     }
-#else
-    Q_UNUSED(starMeasure);
-    Q_UNUSED(denoise);
-    Q_UNUSED(roi);
-    Q_UNUSED(mosaicTile);
-    // This shouldn't occur in normal operation
-    qCDebug(KSTARS_EKOS_FOCUS) << "getBlurriness called when openCV not installed";
-#endif
 }
 
 double Focus::calculateStarWeight(const bool useWeights, const std::vector<double> values)
@@ -7274,15 +7260,6 @@ void Focus::setFocusAlgorithm(Algorithm algorithm)
                     m_OpsFocusProcess->focusStarMeasure->addItems(m_StarMeasureText);
                     m_OpsFocusProcess->focusStarMeasure->setCurrentIndex(FOCUS_STAR_HFR);
                 }
-                // If we don't have openCV installed grey out the unavailable star measures. As opposed to just
-                // hiding these measures, this will remind folks that want to try these that they need to install openCV
-#if !defined(HAVE_OPENCV)
-                QStandardItemModel *model = dynamic_cast<QStandardItemModel *>(m_OpsFocusProcess->focusStarMeasure->model());
-                model->item(FOCUS_STAR_STDDEV, 0)->setEnabled(false);
-                model->item(FOCUS_STAR_SOBEL, 0)->setEnabled(false);
-                model->item(FOCUS_STAR_LAPLASSIAN, 0)->setEnabled(false);
-                model->item(FOCUS_STAR_CANNY, 0)->setEnabled(false);
-#endif
             }
             else if (m_FocusDetection != ALGORITHM_SEP || m_CurveFit == CurveFitting::FOCUS_QUADRATIC)
             {
@@ -7806,9 +7783,7 @@ void Focus::initHelperObjects()
     starFitting.reset(new CurveFitting());
     focusFWHM.reset(new FocusFWHM(m_ScaleCalc));
     focusFourierPower.reset(new FocusFourierPower(m_ScaleCalc));
-#if defined(HAVE_OPENCV)
     focusBlurriness.reset(new FocusBlurriness());
-#endif
 
     // Adaptive Focus
     adaptFocus.reset(new AdaptiveFocus(this));

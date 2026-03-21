@@ -44,14 +44,12 @@
 
 #ifndef KSTARS_LITE
 #include <kxmlguiwindow.h>
-#ifdef HAVE_WCSLIB
 #include <wcs.h>
-#endif
 #endif
 
 #include "fitsskyobject.h"
 #include "fitsdirwatcher.h"
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
 #include "fitsstack.h"
 #endif
 
@@ -556,7 +554,6 @@ class FITSData : public QObject
         ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////
 #ifndef KSTARS_LITE
-#ifdef HAVE_WCSLIB
         /**
          * @brief search the current image for objects, either on the Skymap or a catalog
          */
@@ -583,7 +580,6 @@ class FITSData : public QObject
         }
 
         bool findWCSBounds(double &minRA, double &maxRA, double &minDec, double &maxDec);
-#endif
 #endif
         /**
          * @brief set the search center circle with center point and radius
@@ -676,7 +672,7 @@ class FITSData : public QObject
          * @brief Get the live stack object pointer
          * @return Live Stack pointer
          */
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
         const QMap<LiveStackChannel, QSharedPointer<FITSStack>> &stacks() const
         {
             return m_Stacks;
@@ -764,7 +760,7 @@ class FITSData : public QObject
          */
         void setStackSubSolution(const double ra, const double dec, const double pixscale, const int index, const int healpix);
 
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
         /**
          * @brief convertMatToFITS converts the passed in cv::Mat image to FITS
          * @param image to convert
@@ -941,9 +937,9 @@ class FITSData : public QObject
          * @brief Called when a new file is added to the watched stack directory
          * @param File added to directory
          */
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
         void newStackSubs(QDateTime timestamp, const QVector<LiveStackFile> &newFile);
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif
 
     private:
         void loadCommon(const QString &inFilename);
@@ -1235,7 +1231,7 @@ class FITSData : public QObject
          */
         void checkCancelStack();
 
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
         /**
          * @brief Return the channel for the passed in stack
          * @param stack
@@ -1396,7 +1392,7 @@ class FITSData : public QObject
         int m_CatROIRadius { -1 };
 
         // Live Stacking
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
         // Each base channel has its own FITSStack
         QMap < LiveStackChannel, QSharedPointer < FITSStack>> m_Stacks;
         QSharedPointer < FITSStack > m_CurrentStack;

@@ -435,7 +435,7 @@ void FITSView::initStack()
 
 void FITSView::loadStack(const QStringList &inDir, const LiveStackData &params)
 {
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     m_StackDir = (inDir.size() > 0) ?  inDir[0] : "";
     if (floatingToolBar != nullptr)
         floatingToolBar->setVisible(true);
@@ -509,20 +509,20 @@ void FITSView::loadStack(const QStringList &inDir, const LiveStackData &params)
     m_ImageData->loadStack(inDir, params);
 #else
     Q_UNUSED(inDir);
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 }
 
 void FITSView::cancelStack()
 {
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     m_ImageData->cancelStack();
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 }
 
 // Called when post processing controls in Fitstab changed by the user.
 void FITSView::redoPostProcessStack(const LiveStackPPData &ppParams)
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB) && defined(HAVE_OPENCV)
+#if !defined(KSTARS_LITE)
     if (m_ImageData)
         m_ImageData->redoPostProcessStack(ppParams);
 #endif
@@ -780,7 +780,7 @@ void FITSView::loadInFrame()
         emit failed(m_LastError);
 
     // If stack has just been processed, plate solve and check for more subs...
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     if (mode == FITS_LIVESTACKING && !m_ImageData.isNull())
     {
         // EkosLive integration: save the stacked image to outputDirectory if set.
@@ -1403,7 +1403,7 @@ void FITSView::drawOverlay(QPainter * painter, double scale)
 {
     painter->setRenderHint(QPainter::Antialiasing, Options::useAntialias());
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     if (showHiPSOverlay)
         drawHiPSOverlay(painter, scale);
 #endif
@@ -1420,7 +1420,7 @@ void FITSView::drawOverlay(QPainter * painter, double scale)
     if (showObjects)
         drawObjectNames(painter, scale);
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     if (showEQGrid)
         drawEQGrid(painter, scale);
 #endif
@@ -1796,7 +1796,7 @@ void FITSView::drawObjectNames(QPainter * painter, double scale)
 {
     if (Options::fitsCatalog() != CAT_SKYMAP)
     {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
         drawCatObjectNames(painter, scale);
 #endif
         return;
@@ -1810,7 +1810,7 @@ void FITSView::drawObjectNames(QPainter * painter, double scale)
     }
 }
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 void FITSView::drawCatObjectNames(QPainter * painter, double scale)
 {
     if (!m_ImageData)
@@ -1834,7 +1834,7 @@ void FITSView::drawCatObjectNames(QPainter * painter, double scale)
 }
 #endif
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 void FITSView::drawCatROI(QPainter * painter, double scale)
 {
     Q_UNUSED(scale);
@@ -1848,7 +1848,7 @@ void FITSView::drawCatROI(QPainter * painter, double scale)
 }
 #endif
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 void FITSView::drawHiPSOverlay(QPainter * painter, double scale)
 {
     if (m_HiPSOverlayPixmap.isNull())
@@ -1896,7 +1896,7 @@ judge which gridLines to draw.  Then it calls the drawEQGridlines methods below
 to draw gridlines at those specific RA and Dec values.
  */
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 void FITSView::drawEQGrid(QPainter * painter, double scale)
 {
     const int image_width = m_ImageData->width();
@@ -2367,7 +2367,7 @@ void FITSView::toggleObjects()
 
     if (m_ImageFrame)
     {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
         if (showObjects)
             m_ImageData->searchObjects();
         else
@@ -2604,7 +2604,7 @@ void FITSView::processHighlight(int x, int y)
 
 void FITSView::processCircle(QPoint p1, QPoint p2)
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     const double x = p1.x() - p2.x();
     const double y = p1.y() - p2.y();
     const int radius = std::hypot(x, y);
@@ -2784,7 +2784,7 @@ void FITSView::syncWCSState()
     bool hasWCS    = m_ImageData->hasWCS();
     bool wcsLoaded = m_ImageData->getWCSState() == FITSData::Success;
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     if (showObjects)
         m_ImageData->searchObjects();
 #endif

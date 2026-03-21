@@ -4,9 +4,6 @@
 /* Define if you have indidevapi.h */
 #cmakedefine   HAVE_INDI 1
 
-/* Define if you have wcslibt */
-#cmakedefine HAVE_WCSLIB 1
-
 /* Define if you have libraw */
 #cmakedefine HAVE_LIBRAW 1
 
@@ -45,9 +42,6 @@
 
 /* Define if astrometry.cfg file is located in the prefix (rather than /etc) */
 #cmakedefine ASTROMETRY_CONF_IN_PREFIX 1
-
-/* Define if you have OpenCV */
-#cmakedefine HAVE_OPENCV 1
 
 /* Define if you have Sentry */
 #cmakedefine HAVE_SENTRY 1

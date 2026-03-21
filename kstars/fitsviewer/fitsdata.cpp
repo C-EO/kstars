@@ -33,7 +33,7 @@
 #include <QUrl>
 #include <QNetworkAccessManager>
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 #include <wcshdr.h>
 #include <wcsfix.h>
 #endif
@@ -130,14 +130,12 @@ FITSData::~FITSData()
 
     clearImageBuffers();
 
-#ifdef HAVE_WCSLIB
     if (m_WCSHandle != nullptr)
     {
         wcsvfree(&m_nwcs, &m_WCSHandle);
         m_WCSHandle = nullptr;
         m_nwcs = 0;
     }
-#endif
 
     if (starCenters.count() > 0)
         qDeleteAll(starCenters);
@@ -165,14 +163,12 @@ FITSData::~FITSData()
         m_StackImageBuffer = nullptr;
         m_StackImageBufferSize = 0;
     }
-#ifdef HAVE_WCSLIB
     if (m_StackWCSHandle != nullptr)
     {
         wcsvfree(&m_Stacknwcs, &m_StackWCSHandle);
         m_StackWCSHandle = nullptr;
         m_Stacknwcs = 0;
     }
-#endif
     if (m_Stackfptr != nullptr)
     {
         status = 0;
@@ -295,7 +291,7 @@ QFuture<bool> FITSData::loadFromFile(const QString &inFilename)
 #endif
 }
 
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
 bool FITSData::loadStack(const QStringList &inDir, const LiveStackData &params)
 {
     m_LiveStackData = params;
@@ -1765,7 +1761,7 @@ void FITSData::stackSetupWCS()
     m_WCSState = Success;
     HasWCS = true;
 }
-#endif // #if !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // #if !KSTARS_LITE
 
 namespace
 {
@@ -2053,18 +2049,18 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
 
     if (m_Mode == FITS_NORMAL || m_Mode == FITS_ALIGN)
         loadWCS();
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
     else if (m_Mode == FITS_LIVESTACKING &&
              m_LiveStackData.alignMethod == LiveStackAlignMethod::PLATE_SOLVE)
         stackSetupWCS();
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 
     starsSearched = false;
 
     return true;
 }
 
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
 bool FITSData::stackLoadImage(QString filename)
 {
     QFileInfo info(filename);
@@ -2509,7 +2505,7 @@ bool FITSData::stackLoadWCS()
     }
     return true;
 }
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 
 bool FITSData::loadXISFImage(const QByteArray &buffer)
 {
@@ -4918,7 +4914,7 @@ QList<Edge *> FITSData::getStarCentersInSubFrame(QRect subFrame) const
 
 bool FITSData::loadWCS()
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 
     if (m_WCSState == Success)
     {
@@ -5058,7 +5054,7 @@ bool FITSData::loadWCS()
 
 bool FITSData::wcsToPixel(const SkyPoint &wcsCoord, QPointF &wcsPixelPoint, QPointF &wcsImagePoint)
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     int status, stat[NWCSFIX];
     double imgcrd[NWCSFIX], phi, pixcrd[NWCSFIX], theta, worldcrd[NWCSFIX];
 
@@ -5094,7 +5090,7 @@ bool FITSData::wcsToPixel(const SkyPoint &wcsCoord, QPointF &wcsPixelPoint, QPoi
 
 bool FITSData::pixelToWCS(const QPointF &wcsPixelPoint, SkyPoint &wcsCoord)
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     int status, stat[NWCSFIX];
     double imgcrd[NWCSFIX], phi, pixcrd[NWCSFIX], theta, world[NWCSFIX];
 
@@ -5126,7 +5122,7 @@ bool FITSData::pixelToWCS(const QPointF &wcsPixelPoint, SkyPoint &wcsCoord)
 #endif
 }
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 bool FITSData::searchObjects()
 {
     return (Options::fitsCatalog() == CAT_SKYMAP) ? searchSkyMapObjects() : searchCatObjects();
@@ -5295,7 +5291,7 @@ bool FITSData::findWCSBounds(double &minRA, double &maxRA, double &minDec, doubl
 }
 #endif
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 bool FITSData::findObjectsInImage(SkyPoint startPoint, SkyPoint endPoint)
 {
     if (KStarsData::Instance() == nullptr)
@@ -5420,9 +5416,7 @@ bool FITSData::findSimbadObjectsInImage(SkyPoint searchCenter, double radius)
     emit loadingCatalogData();
     return true;
 }
-#endif
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
 void FITSData::catTimeout()
 {
     m_CatQueryInProgress = false;
@@ -5508,7 +5502,7 @@ void FITSData::catTimeout()
 // Line 12 ""
 // Line 13 ""
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 void FITSData::simbadResponseReady(QNetworkReply * simbadReply)
 {
     m_CatQueryTimer.stop();
@@ -5717,7 +5711,7 @@ void FITSData::setCatObjectsFilters(const QStringList filters)
     m_CatObjectsFilters = filters;
 }
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 void FITSData::setCatSearchROI(const QPoint searchCenter, const int radius)
 {
     m_CatROIPt = searchCenter;
@@ -5727,7 +5721,7 @@ void FITSData::setCatSearchROI(const QPoint searchCenter, const int radius)
 }
 #endif
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 QString FITSData::getCatObjectLabel(const QString code) const
 {
     QString label;
@@ -5751,7 +5745,7 @@ QString FITSData::getCatObjectLabel(const QString code) const
 }
 #endif
 
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
 bool FITSData::getCatObjectFilter(const QString type) const
 {
     if (m_CatObjectsFilters.isEmpty() || m_CatObjectsFilters.contains(type))
@@ -5762,7 +5756,7 @@ bool FITSData::getCatObjectFilter(const QString type) const
 
 void FITSData::filterCatObjects()
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     bool changed = false;
     for (int i = 0; i < m_CatObjects.size(); i++)
     {
@@ -5780,7 +5774,7 @@ void FITSData::filterCatObjects()
 
 bool FITSData::highlightCatObject(const int hilite, const int lolite)
 {
-#if !defined(KSTARS_LITE) && defined(HAVE_WCSLIB)
+#if !defined(KSTARS_LITE)
     if (hilite < 0 || hilite >= m_CatObjects.size())
         return false;
 
@@ -6564,7 +6558,7 @@ bool FITSData::checkDebayerXISF(const QString pattern)
 }
 
 // Check whether a stack sub needs debayering
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
 bool FITSData::stackCheckDebayerFITS(BayerParameters &params)
 {
     int status = 0;
@@ -6727,7 +6721,7 @@ bool FITSData::stackCheckDebayerXISF(const QString pattern, BayerParameters &par
     params = setupBayerParams(params.engine, pattern, algo, offsetX, offsetY);
     return true;
 }
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 
 void FITSData::getBayerParams(BayerParameters * param)
 {
@@ -7007,7 +7001,7 @@ bool FITSData::debayer_16bit()
 }
 
 // Template function to handle both 8-bit and 16-bit debayering
-#if !defined (KSTARS_LITE) && defined (HAVE_WCSLIB) && defined (HAVE_OPENCV)
+#if !defined (KSTARS_LITE)
 template <typename T>
 bool FITSData::stackDebayer(BayerParameters &bayerParams)
 {
@@ -7212,7 +7206,7 @@ bool FITSData::debayerCV(BayerParameters &bayerParams, bool stack)
         return false;
     }
 }
-#endif // !KSTARS_LITE, HAVE_WCSLIB, HAVE_OPENCV
+#endif // !KSTARS_LITE
 
 void FITSData::logOOMError(uint32_t requiredMemory)
 {
