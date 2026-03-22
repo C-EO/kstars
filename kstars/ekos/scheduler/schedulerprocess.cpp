@@ -607,14 +607,15 @@ void SchedulerProcess::wakeUpScheduler()
             }
         }
 
-        // FIX: Reset startup state when waking from preemptive shutdown
-        // This is needed because pre-shutdown queue may have parked equipment (mount, dome, etc.)
-        // and we need to execute post-startup queue on the next startup to unpark them.
-        // This mirrors the fix in stop() but applies to preemptive shutdown wake-up scenario.
-        if (moduleState()->startupState() == STARTUP_COMPLETE)
+        // Reset startup state when waking from preemptive shutdown.
+        // This handles all cases where startup state needs to be reset:
+        // - STARTUP_COMPLETE: pre-shutdown may have parked equipment, need post-startup queue
+        // - STARTUP_ERROR: previous startup failed, need to retry from beginning
+        // - Any intermediate state: need clean restart
+        if (moduleState()->startupState() != STARTUP_IDLE)
         {
             moduleState()->setStartupState(STARTUP_IDLE);
-            appendLogText(i18n("Resetting startup state to run startup procedures after preemptive shutdown."));
+            appendLogText(i18n("Resetting startup state."));
         }
 
         execute();
