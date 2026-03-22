@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-21 02:08+0000\n"
+"POT-Creation-Date: 2026-03-22 02:03+0000\n"
 "PO-Revision-Date: 2025-03-30 23:35+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
@@ -589,7 +589,7 @@ msgstr "Nuligi"
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
 #: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
-#: ekos/manager.cpp:1535 ekos/manager.cpp:1550 ekos/manager.cpp:1566
+#: ekos/manager.cpp:1541 ekos/manager.cpp:1556 ekos/manager.cpp:1572
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:395
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:405
@@ -767,7 +767,7 @@ msgstr "Eraro de Legado de Dosiero de Astrometrio."
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Interna Astrometria Agorda Dosiera Skriba Eraro."
 
-#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2832
+#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2828
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -2054,7 +2054,7 @@ msgstr "Statuso:"
 #: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:25
 #: ekos/ekos.h:20 ekos/ekos.h:71 ekos/ekos.h:118 ekos/ekos.h:138
 #: ekos/ekos.h:161 ekos/ekos.h:198 ekos/guide/guidestatewidget.ui:38
-#: ekos/manager.cpp:1060 ekos/manager/guidemanager.cpp:135
+#: ekos/manager.cpp:1066 ekos/manager/guidemanager.cpp:135
 #: ekos/manager/guidemanager.ui:117 ekos/scheduler/scheduler.cpp:1809
 #: ekos/scheduler/scheduler.cpp:2452 ekos/scheduler/scheduler.cpp:2623
 #: ekos/scheduler/scheduler.cpp:2631 ekos/scheduler/scheduler.cpp:2641
@@ -2066,7 +2066,7 @@ msgstr "Statuso:"
 msgid "Idle"
 msgstr "Senlabore"
 
-#: data/qml/whatisinteresting/wiview.qml:36 kstarsinit.cpp:475
+#: data/qml/whatisinteresting/wiview.qml:36 kstarsinit.cpp:472
 #, kde-format, kde-kuit-format
 msgid "What's Interesting..."
 msgstr "Kio Interesas..."
@@ -3898,7 +3898,7 @@ msgstr "0.0 pc"
 #: ekos/capture/capturehistorynavigation.ui:128
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:898
 #: ekos/capture/sequenceeditor.cpp:141 ekos/capture/sequenceeditor.cpp:144
-#: ekos/focus/focus.cpp:457 ekos/focus/focus.ui:1054 ekos/focus/focus.ui:1068
+#: ekos/focus/focus.cpp:455 ekos/focus/focus.ui:1054 ekos/focus/focus.ui:1068
 #: ekos/focus/focus.ui:1082 ekos/guide/guide.cpp:748 ekos/guide/guide.ui:607
 #: ekos/guide/guide.ui:731 indi/streamform.ui:418 oal/equipmentwriter.ui:1157
 #, kde-format
@@ -4389,7 +4389,7 @@ msgstr "Surskriba pozicio:"
 msgid "Any"
 msgstr "Iu"
 
-#: dialogs/finddialog.cpp:38 kstarsactions.cpp:1141 kstarsinit.cpp:507
+#: dialogs/finddialog.cpp:38 kstarsactions.cpp:1141 kstarsinit.cpp:504
 #: kstarslite/dialogs/finddialoglite.cpp:27
 #: kstarslite/qml/modules/TopMenu.qml:159 tools/astrocalc.cpp:166
 #: tools/conjunctions.cpp:101
@@ -5300,7 +5300,7 @@ msgstr "Komputi FOV"
 #. i18n: ectx: property (text), widget (QLabel, indiCameraLabel)
 #: dialogs/newfov.ui:433
 #: ekos/capture/exposurecalculator/exposurecalculatordialog.ui:169
-#: ekos/manager.cpp:2441
+#: ekos/manager.cpp:2447
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:487
 #, kde-format
 msgid "Camera"
@@ -6244,7 +6244,7 @@ msgstr ""
 msgid "Dustcap error detected. Aborting alignment."
 msgstr ""
 
-#: ekos/align/align.cpp:871 ekos/focus/focus.cpp:5890
+#: ekos/align/align.cpp:871 ekos/focus/focus.cpp:5876
 #, fuzzy, kde-format
 #| msgid "Dust cap is parked."
 msgid "Dustcap device %1 removed."
@@ -6342,7 +6342,7 @@ msgid "Error: lost connection to filter wheel."
 msgstr "Eraro: perdita konekto al filtrila rado."
 
 #: ekos/align/align.cpp:1569 ekos/capture/cameraprocess.cpp:215
-#: ekos/capture/cameraprocess.cpp:636 ekos/focus/focus.cpp:6089
+#: ekos/capture/cameraprocess.cpp:636 ekos/focus/focus.cpp:6075
 #, kde-format
 msgid ""
 "Image transfer is disabled for this camera. Would you like to enable it?"
@@ -6395,13 +6395,13 @@ msgstr ""
 msgid "No remote astrometry driver detected, switching to StellarSolver."
 msgstr "Neniu fora astrometria pelilo detektita, ŝanĝante al StellarSolver."
 
-#: ekos/align/align.cpp:1738 ekos/focus/focus.cpp:2019
+#: ekos/align/align.cpp:1738 ekos/focus/focus.cpp:2015
 #, kde-format
 msgid "Capturing image..."
 msgstr "Kaptante bildon..."
 
 #: ekos/align/align.cpp:1831 ekos/auxiliary/ledstatuswidget.cpp:71
-#: ekos/focus/focus.cpp:3175
+#: ekos/focus/focus.cpp:3161
 #, kde-format
 msgid "Image received."
 msgstr "Bildo ricevita."
@@ -6591,7 +6591,7 @@ msgid "Refresh is complete."
 msgstr "Refreŝigo estas kompleta."
 
 #: ekos/align/align.cpp:2763 ekos/auxiliary/darklibrary.cpp:1455
-#: ekos/focus/focus.cpp:1716
+#: ekos/focus/focus.cpp:1712
 #, kde-format
 msgid "Capture aborted."
 msgstr "Kapto ĉesigita."
@@ -6604,9 +6604,9 @@ msgstr "Solvado ĉesigita."
 
 #: ekos/align/align.cpp:2808 ekos/analyze/analyze.cpp:4142
 #: ekos/capture/capture.cpp:319 ekos/focus/focusmodule.cpp:458
-#: ekos/guide/guide.cpp:1404 ekos/manager.cpp:2389 ekos/mount/mount.cpp:780
+#: ekos/guide/guide.cpp:1404 ekos/manager.cpp:2395 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1047
-#: ekos/scheduler/schedulerprocess.cpp:3481
+#: ekos/scheduler/schedulerprocess.cpp:3487
 #, kde-format
 msgctxt "log entry; %1 is the date, %2 is the text"
 msgid "%1 %2"
@@ -6776,7 +6776,7 @@ msgid "dDE (arcsec)"
 msgstr "dDE (arksec)"
 
 #: ekos/align/align.cpp:3848 ekos/capture/camera_config.cpp:717
-#: ekos/focus/focus.cpp:5970
+#: ekos/focus/focus.cpp:5956
 #, kde-format
 msgid "Filter operation failed."
 msgstr "Filtrila operacio malsukcesis."
@@ -6820,8 +6820,8 @@ msgstr "Nevalida URL: %1"
 
 #: ekos/align/align.cpp:4181 ekos/align/mountmodel.cpp:403
 #: ekos/capture/sequencequeue.cpp:259 ekos/guide/guidedriftgraph.cpp:510
-#: ekos/scheduler/schedulerprocess.cpp:2854
-#: ekos/scheduler/schedulerprocess.cpp:4428
+#: ekos/scheduler/schedulerprocess.cpp:2860
+#: ekos/scheduler/schedulerprocess.cpp:4434
 #, kde-format
 msgid "Unable to write to file %1"
 msgstr "Ne eblas skribi al dosiero %1"
@@ -6829,10 +6829,10 @@ msgstr "Ne eblas skribi al dosiero %1"
 #: ekos/align/align.cpp:4182 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
 #: ekos/capture/cameraprocess.cpp:2618 ekos/capture/sequencequeue.cpp:33
-#: ekos/guide/guidedriftgraph.cpp:511 ekos/scheduler/schedulerprocess.cpp:2855
-#: ekos/scheduler/schedulerprocess.cpp:3304
-#: ekos/scheduler/schedulerprocess.cpp:4429
-#: ekos/scheduler/schedulerprocess.cpp:4449 indi/drivermanager.cpp:1567
+#: ekos/guide/guidedriftgraph.cpp:511 ekos/scheduler/schedulerprocess.cpp:2861
+#: ekos/scheduler/schedulerprocess.cpp:3310
+#: ekos/scheduler/schedulerprocess.cpp:4435
+#: ekos/scheduler/schedulerprocess.cpp:4455 indi/drivermanager.cpp:1567
 #: indi/indidriver.cpp:921 kstarsactions.cpp:1440 oal/execute.cpp:321
 #: options/opscolors.cpp:267 tools/modcalcangdist.cpp:132
 #: tools/modcalcapcoord.cpp:142 tools/modcalcdaylength.cpp:259
@@ -7491,8 +7491,8 @@ msgstr "Malfermi Ekos-Vicigoliston"
 
 #: ekos/align/mountmodel.cpp:285 ekos/capture/camera_jobs.cpp:355
 #: ekos/capture/cameraprocess.cpp:2617 ekos/capture/sequencequeue.cpp:32
-#: ekos/scheduler/schedulerprocess.cpp:3303
-#: ekos/scheduler/schedulerprocess.cpp:4448
+#: ekos/scheduler/schedulerprocess.cpp:3309
+#: ekos/scheduler/schedulerprocess.cpp:4454
 #, kde-format
 msgid "Unable to open file %1"
 msgstr "Ne eblas malfermi dosieron %1"
@@ -10584,7 +10584,7 @@ msgstr "Polar Alignment alteca eraro taksita post lastatempaj alĝustigoj."
 #. i18n: ectx: property (text), widget (QPushButton, StartB)
 #: ekos/align/polaralignmentassistant.ui:810
 #: ekos/align/polaralignmentassistant.ui:813 ekos/auxiliary/darklibrary.ui:575
-#: ekos/manager.cpp:152 ekos/manager.cpp:255 ekos/manager.cpp:1068
+#: ekos/manager.cpp:152 ekos/manager.cpp:255 ekos/manager.cpp:1074
 #: ekos/observatory/observatorydomemodel.cpp:132
 #: ekos/observatory/observatorydomemodel.cpp:135
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:93
@@ -10633,7 +10633,7 @@ msgid "Slew"
 msgstr "Slew"
 
 #. i18n: ectx: property (text), widget (QLabel, PAsetup)
-#: ekos/align/polaralignwidget.ui:357 ekos/manager.cpp:389
+#: ekos/align/polaralignwidget.ui:357 ekos/manager.cpp:395
 #, kde-format
 msgid "Setup"
 msgstr "Agordi"
@@ -10696,7 +10696,7 @@ msgid "Stop the current plate solving run."
 msgstr "Meti %1 kiel la nunan lokon"
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, PushToAssistant)
-#: ekos/align/pushtoassistant.ui:14 kstarsinit.cpp:489
+#: ekos/align/pushtoassistant.ui:14 kstarsinit.cpp:486
 #, fuzzy, kde-format
 #| msgid "Serial Port Assistant"
 msgid "Push-To Assistant"
@@ -10863,7 +10863,7 @@ msgstr "Komenca Poz"
 #. i18n: ectx: property (text), widget (QCheckBox, alignStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerAlignStep)
 #: ekos/align/pushtoassistant.ui:199 ekos/analyze/analyze.cpp:2309
-#: ekos/manager.cpp:2493 ekos/scheduler/framingassistant.ui:1276
+#: ekos/manager.cpp:2499 ekos/scheduler/framingassistant.ui:1276
 #: ekos/scheduler/scheduler.ui:240 fitsviewer/fitsviewer.cpp:562
 #, kde-format
 msgid "Align"
@@ -10875,7 +10875,7 @@ msgstr "Vicigi"
 #. i18n: ectx: property (text), widget (QLabel, mountLabel)
 #: ekos/align/pushtoassistant.ui:206 ekos/analyze/analyze.cpp:2312
 #: ekos/auxiliary/opslogs.ui:77 ekos/auxiliary/opslogs.ui:413
-#: ekos/manager.cpp:2683 ekos/manager.ui:778
+#: ekos/manager.cpp:2689 ekos/manager.ui:778
 #: ekos/scheduler/taskqueue/ui/deviceselectiondialog.cpp:485
 #, kde-format
 msgid "Mount"
@@ -10966,7 +10966,7 @@ msgstr "Ne eblas montri provizoran bilddosieron: %1"
 #. i18n: ectx: property (text), widget (QCheckBox, focusStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerFocusStep)
 #: ekos/analyze/analyze.cpp:2308 ekos/auxiliary/opslogs.ui:370
-#: ekos/manager.cpp:2537 ekos/manager/focusprogresswidget.ui:101
+#: ekos/manager.cpp:2543 ekos/manager/focusprogresswidget.ui:101
 #: ekos/scheduler/framingassistant.ui:1502 ekos/scheduler/scheduler.ui:287
 #: fitsviewer/fitsviewer.cpp:554
 #, kde-format
@@ -10978,7 +10978,7 @@ msgstr "Fokuso"
 #. i18n: ectx: property (text), widget (QCheckBox, guideStepCheck)
 #. i18n: ectx: property (text), widget (QCheckBox, schedulerGuideStep)
 #: ekos/analyze/analyze.cpp:2310 ekos/auxiliary/opslogs.ui:120
-#: ekos/guide/guide.cpp:64 ekos/guide/guide.ui:129 ekos/manager.cpp:2758
+#: ekos/guide/guide.cpp:64 ekos/guide/guide.ui:129 ekos/manager.cpp:2764
 #: ekos/scheduler/framingassistant.ui:1240 ekos/scheduler/scheduler.ui:262
 #: fitsviewer/fitsviewer.cpp:558
 #, kde-format
@@ -13082,7 +13082,7 @@ msgid "Log Ekos Scheduler module activity"
 msgstr "Protokoli Ekos Scheduler modulaktivecon"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_SchedulerLogging)
-#: ekos/auxiliary/opslogs.ui:90 ekos/manager.cpp:394
+#: ekos/auxiliary/opslogs.ui:90 ekos/manager.cpp:400
 #: ekos/scheduler/framingassistantui.cpp:706
 #, kde-format
 msgid "Scheduler"
@@ -13267,7 +13267,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ObservatoryLogging)
 #. i18n: ectx: property (windowTitle), widget (QWidget, Observatory)
-#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2808
+#: ekos/auxiliary/opslogs.ui:321 ekos/manager.cpp:2814
 #: ekos/observatory/observatory.ui:14
 #, kde-format
 msgid "Observatory"
@@ -14647,7 +14647,7 @@ msgstr ""
 #: ekos/focus/aberrationinspector.ui:336 ekos/focus/aberrationinspector.ui:340
 #: fitsviewer/livestacking.ui:133 fitsviewer/livestacking.ui:1204
 #: fitsviewer/livestacking.ui:1208 fitsviewer/livestacking.ui:1697
-#: indi/drivermanager.cpp:1359 indi/indidriver.cpp:735 kstarsinit.cpp:874
+#: indi/drivermanager.cpp:1359 indi/indidriver.cpp:735 kstarsinit.cpp:871
 #: tools/obslistwizard.ui:183
 #, kde-format, kde-kuit-format
 msgid "None"
@@ -16431,8 +16431,8 @@ msgstr "Antaŭtaska skripto finiĝis kun kodo %1."
 msgid "Post job script finished with code %1."
 msgstr "Posttaska skripto finiĝis kun kodo %1."
 
-#: ekos/capture/cameraprocess.cpp:2127 ekos/focus/focus.cpp:6141
-#: ekos/focus/focus.cpp:6165
+#: ekos/capture/cameraprocess.cpp:2127 ekos/focus/focus.cpp:6127
+#: ekos/focus/focus.cpp:6151
 #, kde-format
 msgid "Exposure timeout. Aborting..."
 msgstr "Templimo de elmeto. Abortante..."
@@ -16442,7 +16442,7 @@ msgstr "Templimo de elmeto. Abortante..."
 msgid "Exposure timeout. More than 3 have been detected, will restart driver."
 msgstr "Templimo de elmeto. Pli ol 3 estis detektitaj, restartigos pelilon."
 
-#: ekos/capture/cameraprocess.cpp:2152 ekos/focus/focus.cpp:6146
+#: ekos/capture/cameraprocess.cpp:2152 ekos/focus/focus.cpp:6132
 #: ekos/guide/guide.cpp:1137
 #, kde-format
 msgid "Exposure timeout. Restarting exposure..."
@@ -16769,7 +16769,7 @@ msgstr "Entute"
 #: ekos/capture/capturecountswidget.ui:41
 #: ekos/capture/capturepreviewwidget.ui:38 ekos/manager.ui:38
 #: ekos/manager/focusprogresswidget.ui:41 ekos/manager/guidemanager.ui:41
-#: kstarsactions.cpp:1177 kstarsinit.cpp:485
+#: kstarsactions.cpp:1177 kstarsinit.cpp:482
 #, kde-format
 msgid "Ekos"
 msgstr "Ekos"
@@ -16966,7 +16966,7 @@ msgstr "Lasta Aŭtomata fokuso"
 msgid "Dithering..."
 msgstr "Malklariĝo..."
 
-#: ekos/capture/capturepreviewwidget.cpp:185 ekos/focus/focus.cpp:1101
+#: ekos/capture/capturepreviewwidget.cpp:185 ekos/focus/focus.cpp:1099
 #, kde-format
 msgid "Delete directly, do not move to trash."
 msgstr "Forigi rekte, ne movi al rubujo."
@@ -19474,12 +19474,12 @@ msgstr ""
 msgid " nm"
 msgstr " nm"
 
-#: ekos/focus/focus.cpp:117
+#: ekos/focus/focus.cpp:115
 #, kde-format
 msgid "Idle."
 msgstr "Senlabore."
 
-#: ekos/focus/focus.cpp:134
+#: ekos/focus/focus.cpp:132
 #, kde-format
 msgid "Focus Options Profile Editor"
 msgstr "Profilredaktilo por Fokusaj Elektebloj"
@@ -19488,80 +19488,80 @@ msgstr "Profilredaktilo por Fokusaj Elektebloj"
 #. i18n: ectx: property (title), widget (QGroupBox, settingsGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, analyzeGroupBox)
 #. i18n: ectx: property (title), widget (QGroupBox, ImageOverlayBox)
-#: ekos/focus/focus.cpp:202 ekos/guide/opscalibration.ui:49
+#: ekos/focus/focus.cpp:200 ekos/guide/opscalibration.ui:49
 #: ekos/guide/opsgpg.ui:93 ekos/opsekos.ui:195 options/opsimageoverlay.ui:38
 #, kde-format
 msgid "Settings"
 msgstr "Agordoj"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, OpsFocusSettings)
-#: ekos/focus/focus.cpp:202 ekos/focus/opsfocussettings.ui:14
+#: ekos/focus/focus.cpp:200 ekos/focus/opsfocussettings.ui:14
 #, kde-format
 msgid "Focus Settings"
 msgstr "Fokusaj Agordoj"
 
-#: ekos/focus/focus.cpp:206
+#: ekos/focus/focus.cpp:204
 #, kde-format
 msgid "Process"
 msgstr "Procezo"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, OpsFocusProcess)
-#: ekos/focus/focus.cpp:206 ekos/focus/opsfocusprocess.ui:14
+#: ekos/focus/focus.cpp:204 ekos/focus/opsfocusprocess.ui:14
 #, kde-format
 msgid "Focus Process"
 msgstr "Fokusa Procezo"
 
-#: ekos/focus/focus.cpp:210
+#: ekos/focus/focus.cpp:208
 #, kde-format
 msgid "Mechanics"
 msgstr "Mekaniko"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, OpsFocusMechanics)
-#: ekos/focus/focus.cpp:210 ekos/focus/opsfocusmechanics.ui:14
+#: ekos/focus/focus.cpp:208 ekos/focus/opsfocusmechanics.ui:14
 #, kde-format
 msgid "Focus Mechanics"
 msgstr "Fokusa Mekaniko"
 
-#: ekos/focus/focus.cpp:576
+#: ekos/focus/focus.cpp:574
 #, fuzzy, kde-format
 #| msgid "Dust cap unparked."
 msgid "Dustcap unparked. Resuming capture."
 msgstr "Polvĉapo neparkita."
 
-#: ekos/focus/focus.cpp:582
+#: ekos/focus/focus.cpp:580
 #, fuzzy, kde-format
 #| msgid "No star was selected. Aborting..."
 msgid "Dustcap error detected. Aborting focus."
 msgstr "Neniu stelo estis elektita. Abortante..."
 
-#: ekos/focus/focus.cpp:981
+#: ekos/focus/focus.cpp:979
 #, kde-format
 msgid "Finally found temperature source %1"
 msgstr "Fine trovis temperaturfonton %1"
 
-#: ekos/focus/focus.cpp:1128
+#: ekos/focus/focus.cpp:1126
 #, kde-format
 msgid "Delete the corresponding focus frames?"
 msgstr ""
 
-#: ekos/focus/focus.cpp:1128
+#: ekos/focus/focus.cpp:1126
 #, fuzzy, kde-format
 #| msgid "Filter focus offset"
 msgid "Delete focus frames?"
 msgstr "Filtrila fokusa deŝovo"
 
-#: ekos/focus/focus.cpp:1147
+#: ekos/focus/focus.cpp:1145
 #, kde-format
 msgid "No Focuser connected."
 msgstr "Neniu Focusilo konektita."
 
-#: ekos/focus/focus.cpp:1154 ekos/focus/focus.cpp:5046
+#: ekos/focus/focus.cpp:1152 ekos/focus/focus.cpp:5032
 #, fuzzy, kde-format
 #| msgid "No Focuser connected."
 msgid "No camera connected."
 msgstr "Neniu Focusilo konektita."
 
-#: ekos/focus/focus.cpp:1161
+#: ekos/focus/focus.cpp:1159
 #, kde-format
 msgid ""
 "Starting pulse step is too low. Increase the step size to %1 or higher..."
@@ -19569,373 +19569,373 @@ msgstr ""
 "Komenca pulspaŝo estas tro malalta. Pliigu la paŝograndon al %1 aŭ pli "
 "alta..."
 
-#: ekos/focus/focus.cpp:1172
+#: ekos/focus/focus.cpp:1170
 #, kde-format
 msgid "Autofocus is already running, discarding start request."
 msgstr "Aŭtomata fokuso jam funkcias, forĵetante startpeton."
 
-#: ekos/focus/focus.cpp:1179
+#: ekos/focus/focus.cpp:1177
 #, kde-format
 msgid "Build Offset is already running, Autofocus rejected."
 msgstr "Konstrui Deŝovon jam estas rulanta, Aŭtofokusado malakceptita."
 
-#: ekos/focus/focus.cpp:1187
+#: ekos/focus/focus.cpp:1185
 #, kde-format
 msgid "In Focus Loop, Autofocus rejected."
 msgstr "En Fokusbuklo, Aŭtofokusado malakceptita."
 
-#: ekos/focus/focus.cpp:1194 ekos/focus/focus.cpp:5473
-#: ekos/focus/focus.cpp:5748
+#: ekos/focus/focus.cpp:1192 ekos/focus/focus.cpp:5459
+#: ekos/focus/focus.cpp:5734
 #, kde-format
 msgid "Adjust Focus"
 msgstr "Ĝustigi Fokuson"
 
 #. i18n: ectx: property (title), widget (QGroupBox, adaptiveFocusGroup)
 #. i18n: ectx: property (text), widget (QCheckBox, focusAdaptive)
-#: ekos/focus/focus.cpp:1194 ekos/focus/focus.cpp:5475
-#: ekos/focus/focus.cpp:5748 ekos/focus/opsfocussettings.ui:503
+#: ekos/focus/focus.cpp:1192 ekos/focus/focus.cpp:5461
+#: ekos/focus/focus.cpp:5734 ekos/focus/opsfocussettings.ui:503
 #: ekos/focus/opsfocussettings.ui:583
 #, kde-format
 msgid "Adaptive Focus"
 msgstr "Sinadapta Fokuso"
 
-#: ekos/focus/focus.cpp:1197
+#: ekos/focus/focus.cpp:1195
 #, kde-format
 msgid "Autofocus start request - Waiting 10sec for %1 to complete."
 msgstr "Aŭtomat-fokusa ekigopeto - Atendante 10sek por ke %1 plenumiĝu."
 
-#: ekos/focus/focus.cpp:1205
+#: ekos/focus/focus.cpp:1203
 #, kde-format
 msgid "Discarding Autofocus start request - %1 in progress."
 msgstr "Forĵetante Aŭtofokusan ekigopeton - %1 en progreso."
 
-#: ekos/focus/focus.cpp:1225
+#: ekos/focus/focus.cpp:1223
 #, kde-format
 msgid "Autofocus request [%1] optimized out."
 msgstr "Aŭtofokusa alpeto [%1] foroptimumiĝis."
 
-#: ekos/focus/focus.cpp:1386
+#: ekos/focus/focus.cpp:1384
 #, kde-format
 msgid "Autofocus starting..."
 msgstr "Aŭtomata fokuso komenciĝas..."
 
-#: ekos/focus/focus.cpp:1400
+#: ekos/focus/focus.cpp:1398
 #, kde-format
 msgid "Autofocus operation started"
 msgstr "Aŭtomata fokusa operacio komenciĝis"
 
-#: ekos/focus/focus.cpp:1552 ekos/focus/focus.cpp:2346
+#: ekos/focus/focus.cpp:1548 ekos/focus/focus.cpp:2342
 #, kde-format
 msgid "Detection complete."
 msgstr "Detekto kompleta."
 
-#: ekos/focus/focus.cpp:1721
+#: ekos/focus/focus.cpp:1717
 #, kde-format
 msgid "Capture in progress, retrying in 1s..."
 msgstr "Kaptado progresadas, reprovonte post 1s..."
 
-#: ekos/focus/focus.cpp:1735
+#: ekos/focus/focus.cpp:1731
 #, kde-format
 msgid "Star detection in progress, retrying in 1s..."
 msgstr "Steldetekto progresadas, reprovonte post 1s..."
 
-#: ekos/focus/focus.cpp:1739
+#: ekos/focus/focus.cpp:1735
 #, fuzzy, kde-format
 #| msgid "Star detection in progress, retrying in 1s..."
 msgid "Star detection still in progress, aborting..."
 msgstr "Steldetekto progresadas, reprovonte post 1s..."
 
-#: ekos/focus/focus.cpp:1788
+#: ekos/focus/focus.cpp:1784
 #, kde-format
 msgid "Autofocus aborted."
 msgstr "Aŭtomata fokuso ĉesigita."
 
-#: ekos/focus/focus.cpp:1892
+#: ekos/focus/focus.cpp:1888
 #, kde-format
 msgid "Error: No Camera detected."
 msgstr "Eraro: Neniu fotilo detektita."
 
-#: ekos/focus/focus.cpp:1899
+#: ekos/focus/focus.cpp:1895
 #, kde-format
 msgid "Error: Lost connection to Camera."
 msgstr "Eraro: Perdita konekto al Fotilo."
 
-#: ekos/focus/focus.cpp:1907
+#: ekos/focus/focus.cpp:1903
 #, fuzzy, kde-format
 #| msgid "Dust cap is unparking..."
 msgid "Dustcap is parked. Unparking before capture..."
 msgstr "Polvĉapo estas malparkanta..."
 
-#: ekos/focus/focus.cpp:1915
+#: ekos/focus/focus.cpp:1911
 #, kde-format
 msgid "Dustcap is not ready (status: %1). Waiting before capture..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:1939
+#: ekos/focus/focus.cpp:1935
 #, kde-format
 msgid "Error: No Filter Wheel detected."
 msgstr "Eraro: Neniu Filtrila Rado detektita."
 
-#: ekos/focus/focus.cpp:1945
+#: ekos/focus/focus.cpp:1941
 #, kde-format
 msgid "Error: Lost connection to Filter Wheel."
 msgstr "Eraro: Perdita konekto al Filtrila Rado."
 
-#: ekos/focus/focus.cpp:2063
+#: ekos/focus/focus.cpp:2059
 #, kde-format
 msgid "At minimum focus position %1..."
 msgstr "Ĉe minimuma fokuspozicio %1..."
 
-#: ekos/focus/focus.cpp:2078
+#: ekos/focus/focus.cpp:2074
 #, kde-format
 msgid "Moving to minimum focus position %1..."
 msgstr "Movante al minimuma fokuspozicio %1..."
 
-#: ekos/focus/focus.cpp:2087
+#: ekos/focus/focus.cpp:2083
 #, kde-format
 msgid "At maximum focus position %1..."
 msgstr "Ĉe maksimuma fokuspozicio %1..."
 
-#: ekos/focus/focus.cpp:2103
+#: ekos/focus/focus.cpp:2099
 #, kde-format
 msgid "Moving to maximum focus position %1..."
 msgstr "Movante al maksimuma fokuspozicio %1..."
 
-#: ekos/focus/focus.cpp:2130
+#: ekos/focus/focus.cpp:2126
 #, kde-format
 msgid "Error: No Focuser detected."
 msgstr "Eraro: Neniu Fokuligilo detektita."
 
-#: ekos/focus/focus.cpp:2137
+#: ekos/focus/focus.cpp:2133
 #, kde-format
 msgid "Error: Lost connection to Focuser."
 msgstr "Eraro: Perdita konekto al Focuser."
 
-#: ekos/focus/focus.cpp:2151
+#: ekos/focus/focus.cpp:2147
 #, kde-format
 msgid "outward"
 msgstr "eksteren"
 
-#: ekos/focus/focus.cpp:2151
+#: ekos/focus/focus.cpp:2147
 #, kde-format
 msgid "inward"
 msgstr "enen"
 
-#: ekos/focus/focus.cpp:2168
+#: ekos/focus/focus.cpp:2164
 #, kde-format
 msgid "Focusing %2 by %1 steps..."
 msgstr "Enfokusigante %2 je %1 paŝoj..."
 
-#: ekos/focus/focus.cpp:2174
+#: ekos/focus/focus.cpp:2170
 #, kde-format
 msgid "Focusing %2 by %1 step..."
 msgid_plural "Focusing %2 by %1 steps..."
 msgstr[0] "Fokusante %2 per %1 paŝo..."
 msgstr[1] "Fokusante %2 per %1 paŝoj..."
 
-#: ekos/focus/focus.cpp:2180
+#: ekos/focus/focus.cpp:2176
 #, kde-format
 msgid "Focusing %2 by %1 ms..."
 msgstr "Enfokusigante %2 je %1 ms..."
 
-#: ekos/focus/focus.cpp:2215
+#: ekos/focus/focus.cpp:2211
 #, kde-format
 msgid "Focuser is still timing out. Aborting..."
 msgstr "Fokusilo ankoraŭ finiĝas. Abortante..."
 
-#: ekos/focus/focus.cpp:2222
+#: ekos/focus/focus.cpp:2218
 #, kde-format
 msgid "Focus motion timed out (%1). Restarting focus driver %2"
 msgstr "Fokuso-movo elĉerpita (%1). Rekomencante fokusan pelilon %2"
 
-#: ekos/focus/focus.cpp:2233
+#: ekos/focus/focus.cpp:2229
 #, kde-format
 msgid "Focus motion timed out (%1). Focusing to %2 steps..."
 msgstr "Fokuso-movo elĉerpita (%1). Koncentriĝo al %2 paŝoj..."
 
-#: ekos/focus/focus.cpp:2279
+#: ekos/focus/focus.cpp:2275
 #, kde-format
 msgid "Attempting to reconnect focuser: %1"
 msgstr "Provante rekonekti fokusilon: %1"
 
-#: ekos/focus/focus.cpp:2288
+#: ekos/focus/focus.cpp:2284
 #, kde-format
 msgid "Cannot reconnect focuser: %1. Aborting..."
 msgstr "Ne povas rekonekti fokusilon: %1. Abortante..."
 
-#: ekos/focus/focus.cpp:2549
+#: ekos/focus/focus.cpp:2535
 #, kde-format
 msgid "Detecting sources..."
 msgstr "Detektante fontojn..."
 
-#: ekos/focus/focus.cpp:2685
+#: ekos/focus/focus.cpp:2671
 #, kde-format
 msgid "Autofocus operation completed successfully"
 msgstr "Aŭtomata fokusa operacio sukcese finiĝis"
 
-#: ekos/focus/focus.cpp:2699
+#: ekos/focus/focus.cpp:2685
 #, kde-format
 msgid "Autofocus operation failed"
 msgstr "Aŭtomata fokusa operacio malsukcesis"
 
-#: ekos/focus/focus.cpp:2767
+#: ekos/focus/focus.cpp:2753
 #, kde-format
 msgid "Focus procedure completed after %1 iteration."
 msgid_plural "Focus procedure completed after %1 iterations."
 msgstr[0] "Fokusproceduro kompletiĝis post %1 iteracio."
 msgstr[1] "Fokusproceduro kompletiĝis post %1 iteracioj."
 
-#: ekos/focus/focus.cpp:2853
+#: ekos/focus/focus.cpp:2839
 #, kde-format
 msgid "Settling for %1s..."
 msgstr "Kontenta je %1s..."
 
-#: ekos/focus/focus.cpp:2861
+#: ekos/focus/focus.cpp:2847
 #, kde-format
 msgid "Settling complete."
 msgstr "Aranĝo kompleta."
 
-#: ekos/focus/focus.cpp:2874
+#: ekos/focus/focus.cpp:2860
 #, kde-format
 msgid "Autofocus failed, moving back to initial focus position %1."
 msgstr ""
 "Aŭtomata fokuso malsukcesis, moviĝante reen al komenca fokusa pozicio %1."
 
-#: ekos/focus/focus.cpp:2907
+#: ekos/focus/focus.cpp:2893
 #, kde-format
 msgid "FITS received. No stars detected."
 msgstr "FITS ricevis. Neniuj steloj detektitaj."
 
-#: ekos/focus/focus.cpp:3240
+#: ekos/focus/focus.cpp:3226
 #, kde-format
 msgid "Capture complete. Select a region of interest."
 msgstr "Kapto kompleta. Elektu interesan regionon."
 
-#: ekos/focus/focus.cpp:3281
+#: ekos/focus/focus.cpp:3267
 #, kde-format
 msgid "Failed to automatically select a star. Please select a star manually."
 msgstr "Malsukcesis aŭtomate elekti stelon. Bonvolu elekti stelon permane."
 
-#: ekos/focus/focus.cpp:3375
+#: ekos/focus/focus.cpp:3361
 #, kde-format
 msgid "Capture complete. Select a star to focus."
 msgstr "Kapto kompleta. Elektu stelon por fokusigi."
 
-#: ekos/focus/focus.cpp:3406
+#: ekos/focus/focus.cpp:3392
 #, kde-format
 msgid "No stars detected while testing HFR, capturing again..."
 msgstr "Neniuj steloj detektitaj dum testado de HFR, kaptado denove..."
 
-#: ekos/focus/focus.cpp:3427
+#: ekos/focus/focus.cpp:3413
 #, kde-format
 msgid "HFR %1 > Limit %2"
 msgstr "HFR %1 > Limo %2"
 
-#: ekos/focus/focus.cpp:3569
+#: ekos/focus/focus.cpp:3555
 #, kde-format
 msgid "Autofocus failed: exceeded max iterations %1"
 msgstr "Aŭtomata fokusado malsukcesis: transpasis maks iteraciojn %1"
 
-#: ekos/focus/focus.cpp:3580 ekos/focus/focus.cpp:3842
-#: ekos/focus/focus.cpp:4450
+#: ekos/focus/focus.cpp:3566 ekos/focus/focus.cpp:3828
+#: ekos/focus/focus.cpp:4436
 #, kde-format
 msgid "No stars detected, capturing again..."
 msgstr "Neniuj steloj detektitaj, kaptante denove..."
 
-#: ekos/focus/focus.cpp:3586 ekos/focus/focus.cpp:4456
+#: ekos/focus/focus.cpp:3572 ekos/focus/focus.cpp:4442
 #, kde-format
 msgid "Failed to detect any stars at position %1. Continuing..."
 msgstr "Malsukcesis detekti iujn stelojn ĉe pozicio %1. Daŭrigante..."
 
-#: ekos/focus/focus.cpp:3592 ekos/focus/focus.cpp:4462
+#: ekos/focus/focus.cpp:3578 ekos/focus/focus.cpp:4448
 #, kde-format
 msgid "Failed to detect any stars. Reset frame and try again."
 msgstr ""
 "Malsukcesis detekti iujn ajn stelojn. Restarigu kadron kaj provu denove."
 
-#: ekos/focus/focus.cpp:3779
+#: ekos/focus/focus.cpp:3765
 #, kde-format
 msgid "Unable to launch Aberration Inspector run %1..."
 msgstr "Ne eblas lanĉi Aberacio-Inspektistan rulon %1..."
 
-#: ekos/focus/focus.cpp:3799
+#: ekos/focus/focus.cpp:3785
 #, kde-format
 msgid "Launching Aberration Inspector run %1..."
 msgstr "Lanĉante Aberacio-Inspektistan rulon %1..."
 
-#: ekos/focus/focus.cpp:3825
+#: ekos/focus/focus.cpp:3811
 #, kde-format
 msgid "Starting scan for initial focuser position."
 msgstr "Komencante skanadon por komenca fokusilpozicio."
 
-#: ekos/focus/focus.cpp:3826
+#: ekos/focus/focus.cpp:3812
 #, kde-format
 msgid "Scanning for starting position..."
 msgstr "Skanante por komenca pozicio..."
 
-#: ekos/focus/focus.cpp:3848
+#: ekos/focus/focus.cpp:3834
 #, kde-format
 msgid "Failed to detect any stars. Aborting..."
 msgstr "Malsukcesis detekti iujn stelojn. Ĉesigante..."
 
-#: ekos/focus/focus.cpp:3857
+#: ekos/focus/focus.cpp:3843
 #, kde-format
 msgid "Scan Start Pos: exceeded max iterations %1"
 msgstr "Skana Komencpozicio: transpasis maks iteraciojn %1"
 
-#: ekos/focus/focus.cpp:3876
+#: ekos/focus/focus.cpp:3862
 #, kde-format
 msgid "Scanning for starting position %1/%2"
 msgstr "Skanante por komenca pozicio %1/%2"
 
-#: ekos/focus/focus.cpp:3890
+#: ekos/focus/focus.cpp:3876
 #, kde-format
 msgid "No scan minimum - widening search..."
 msgstr "Neniu skan-minimumo - ampleksitgante serĉon..."
 
-#: ekos/focus/focus.cpp:3903
+#: ekos/focus/focus.cpp:3889
 #, kde-format
 msgid "Scan Start Position %1 Found"
 msgstr "Trovis Skan-Komencpozicion %1"
 
-#: ekos/focus/focus.cpp:3904
+#: ekos/focus/focus.cpp:3890
 #, kde-format
 msgid "Scan Start Position %1 found"
 msgstr "Trovis Skan-Komencpozicion %1"
 
-#: ekos/focus/focus.cpp:3973
+#: ekos/focus/focus.cpp:3959
 #, kde-format
 msgid "Curve Fit check failed R2=%1 focusR2Limit=%2 retrying..."
 msgstr "Kontrolo de Curve Fit malsukcesis R2=%1 focusR2Limit=%2 reprovanta..."
 
-#: ekos/focus/focus.cpp:3975
+#: ekos/focus/focus.cpp:3961
 #, kde-format
 msgid "R2=%1 < Limit=%2"
 msgstr "R2=%1 < Limo=%2"
 
-#: ekos/focus/focus.cpp:3983
+#: ekos/focus/focus.cpp:3969
 #, kde-format
 msgid "Curve Fit check failed again R2=%1 focusR2Limit=%2 but continuing..."
 msgstr ""
 "Kontrolo de Curve Fit denove malsukcesis R2=%1 focusR2Limit=%2 sed "
 "daŭrigante..."
 
-#: ekos/focus/focus.cpp:3993
+#: ekos/focus/focus.cpp:3979
 #, kde-format
 msgid "Linear autofocus algorithm aborted: %1"
 msgstr "Lineara aŭtofokus-algoritmo ĉesigita: %1"
 
-#: ekos/focus/focus.cpp:4028
+#: ekos/focus/focus.cpp:4014
 #, kde-format
 msgid "FITS received. HFR %1 @ %2. Delta (%3%)"
 msgstr "FITS ricevis. HFR %1 @ %2. Delta (%3%)"
 
-#: ekos/focus/focus.cpp:4030
+#: ekos/focus/focus.cpp:4016
 #, kde-format
 msgid "FITS received. HFR %1 @ %2."
 msgstr "FITS ricevis. HFR %1 @ %2."
 
-#: ekos/focus/focus.cpp:4091
+#: ekos/focus/focus.cpp:4077
 #, kde-format
 msgid ""
 "Change in HFR is too small. Try increasing the step size or decreasing the "
@@ -19944,154 +19944,154 @@ msgstr ""
 "Ŝanĝo en HFR estas tro malgranda. Provu pliigi la paŝon aŭ malpliigi la "
 "toleremon."
 
-#: ekos/focus/focus.cpp:4098
+#: ekos/focus/focus.cpp:4084
 #, kde-format
 msgid "Failed to detect focus star in frame. Capture and select a focus star."
 msgstr ""
 "Malsukcesis detekti fokusstelon en kadro. Kaptu kaj elektu fokusan stelon."
 
-#: ekos/focus/focus.cpp:4204
+#: ekos/focus/focus.cpp:4190
 #, kde-format
 msgid "Found polynomial solution @ %1"
 msgstr "Trovita polinoma solvo @ %1"
 
-#: ekos/focus/focus.cpp:4268
+#: ekos/focus/focus.cpp:4254
 #, kde-format
 msgid "Focuser cannot move further, device limits reached. Autofocus aborted."
 msgstr ""
 "Fokusilo ne povas movi plu, limoj de aparatoj atingis. Aŭtomata fokuso "
 "ĉesigita."
 
-#: ekos/focus/focus.cpp:4279
+#: ekos/focus/focus.cpp:4265
 #, kde-format
 msgid ""
 "Unstable fluctuations. Try increasing initial step size or exposure time."
 msgstr "Malstabilaj fluktuoj. Provu pliigi komencan paŝon aŭ ekspontempon."
 
-#: ekos/focus/focus.cpp:4289
+#: ekos/focus/focus.cpp:4275
 #, kde-format
 msgid "Deadlock reached. Please try again with different settings."
 msgstr "Bloko atingita. Bonvolu provi denove kun malsamaj agordoj."
 
-#: ekos/focus/focus.cpp:4318
+#: ekos/focus/focus.cpp:4304
 #, kde-format
 msgid "Maximum travel limit reached. Autofocus aborted."
 msgstr "Maksimuma vojaĝlimo atingita. Aŭtomata fokuso ĉesigita."
 
-#: ekos/focus/focus.cpp:4435
+#: ekos/focus/focus.cpp:4421
 #, kde-format
 msgid "FITS received. HFR %1. Delta (%2%) Min HFR (%3)"
 msgstr "FITS ricevis. HFR %1. Delta (%2%) Min HFR (%3)"
 
-#: ekos/focus/focus.cpp:4439
+#: ekos/focus/focus.cpp:4425
 #, kde-format
 msgid ""
 "Autofocus failed to reach proper focus. Try adjusting the tolerance value."
 msgstr ""
 "Aŭtomata fokuso ne atingis taŭgan fokuson. Provu ĝustigi la toleran valoron."
 
-#: ekos/focus/focus.cpp:4553 ekos/focus/focus.cpp:4576
-#: ekos/focus/focus.cpp:4761 ekos/focus/focus.cpp:4854
-#: ekos/focus/focus.cpp:4936 ekos/focus/focus.cpp:5021
+#: ekos/focus/focus.cpp:4539 ekos/focus/focus.cpp:4562
+#: ekos/focus/focus.cpp:4747 ekos/focus/focus.cpp:4840
+#: ekos/focus/focus.cpp:4922 ekos/focus/focus.cpp:5007
 #, kde-format
 msgid "Focuser error, check INDI panel."
 msgstr "Fokusila eraro, kontrolu INDI-panelon."
 
-#: ekos/focus/focus.cpp:4637 ekos/focus/focus.cpp:4777
+#: ekos/focus/focus.cpp:4623 ekos/focus/focus.cpp:4763
 #, kde-format
 msgid "Simulate focuser comms failure..."
 msgstr "Simuli misfunkciadon de la fokusilo..."
 
-#: ekos/focus/focus.cpp:4738 ekos/focus/focus.cpp:4835
-#: ekos/focus/focus.cpp:4917 ekos/focus/focus.cpp:4958
+#: ekos/focus/focus.cpp:4724 ekos/focus/focus.cpp:4821
+#: ekos/focus/focus.cpp:4903 ekos/focus/focus.cpp:4944
 #, kde-format
 msgid "Restarting autofocus process..."
 msgstr "Rekomencante aŭtomatan fokusan procezon..."
 
-#: ekos/focus/focus.cpp:5062
+#: ekos/focus/focus.cpp:5048
 #, kde-format
 msgid "Starting continuous exposure..."
 msgstr "Komencante kontinuan ekspozicion..."
 
-#: ekos/focus/focus.cpp:5443
+#: ekos/focus/focus.cpp:5429
 #, kde-format
 msgid "Disabling Auto Star Selection as star selection box was moved manually."
 msgstr ""
 "Malebliganta Aŭtomatan Stel-Elekton ĉar stel-elektokesto estis movita "
 "permane."
 
-#: ekos/focus/focus.cpp:5449
+#: ekos/focus/focus.cpp:5435
 #, kde-format
 msgid "Focus star is selected."
 msgstr "Fokusa stelo estas elektita."
 
-#: ekos/focus/focus.cpp:5451
+#: ekos/focus/focus.cpp:5437
 #, kde-format
 msgid "Region of interest is selected."
 msgstr "Regiono de intereso estas elektita."
 
-#: ekos/focus/focus.cpp:5471
+#: ekos/focus/focus.cpp:5457
 #, kde-format
 msgid "Autofocus"
 msgstr "Aŭtomata fokuso"
 
-#: ekos/focus/focus.cpp:5479
+#: ekos/focus/focus.cpp:5465
 #, kde-format
 msgid "Check focus request - Waiting 10sec for %1 to complete."
 msgstr "Aŭtomat-fokusa kontrolopeto - Atendante 10sek por ke %1 plenumiĝu."
 
-#: ekos/focus/focus.cpp:5487
+#: ekos/focus/focus.cpp:5473
 #, kde-format
 msgid "Discarding Check Focus request - %1 in progress."
 msgstr "Forĵetante Aŭtofokusan ekigopeton - %1 en progreso."
 
-#: ekos/focus/focus.cpp:5500
+#: ekos/focus/focus.cpp:5486
 #, kde-format
 msgid "Check Focus ignored - Star Measure must be star based"
 msgstr "Kontroli Fokuson ignorita - Star Measure devas esti stelbazita"
 
-#: ekos/focus/focus.cpp:5505
+#: ekos/focus/focus.cpp:5491
 #, kde-format
 msgid "Capturing to check HFR..."
 msgstr "Kaptado por kontroli HFR..."
 
-#: ekos/focus/focus.cpp:5635
+#: ekos/focus/focus.cpp:5621
 #, kde-format
 msgid "No star was selected. Using last known position..."
 msgstr "Neniu stelo estis elektita. Uzante lastan konatan pozicion..."
 
-#: ekos/focus/focus.cpp:5641
+#: ekos/focus/focus.cpp:5627
 #, kde-format
 msgid "No star was selected. Aborting..."
 msgstr "Neniu stelo estis elektita. Abortante..."
 
-#: ekos/focus/focus.cpp:5652
+#: ekos/focus/focus.cpp:5638
 #, kde-format
 msgid "Focuser already at %1..."
 msgstr "Fokusilo jam ĉe %1..."
 
-#: ekos/focus/focus.cpp:5751
+#: ekos/focus/focus.cpp:5737
 #, kde-format
 msgid "Adjust focus request - Waiting 10sec for %1 to complete."
 msgstr "Aŭtomat-fokusa ekigopeto - Atendante 10sek por ke %1 plenumiĝu."
 
-#: ekos/focus/focus.cpp:5785
+#: ekos/focus/focus.cpp:5771
 #, kde-format
 msgctxt "@title:window"
 msgid "Focus Frame"
 msgstr "Fokuso Kadro"
 
-#: ekos/focus/focus.cpp:6189
+#: ekos/focus/focus.cpp:6175
 #, kde-format
 msgid "Failed to save image. Aborting..."
 msgstr "Malsukcesis konservi bildon. Abortante..."
 
-#: ekos/focus/focus.cpp:6204 ekos/focus/focus.cpp:6229
+#: ekos/focus/focus.cpp:6190 ekos/focus/focus.cpp:6215
 #, kde-format
 msgid "Exposure failure. Aborting..."
 msgstr "Malsukceso de malkovro. Abortante..."
 
-#: ekos/focus/focus.cpp:6528
+#: ekos/focus/focus.cpp:6514
 #, kde-format
 msgctxt "@title:window"
 msgid "Relative Profile"
@@ -25205,70 +25205,70 @@ msgid "Logging"
 msgstr "Protokolado"
 
 #. i18n: ectx: attribute (title), widget (QWidget, analyzeTab)
-#: ekos/manager.cpp:429 ekos/opsekos.ui:174
+#: ekos/manager.cpp:435 ekos/opsekos.ui:174
 #, kde-format
 msgid "Analyze"
 msgstr "Analizi"
 
-#: ekos/manager.cpp:444
+#: ekos/manager.cpp:450
 #, kde-format
 msgid "Extension '%1' failed to start, aborting"
 msgstr "Etendo '%1' malsukcesis komenci, ĉesigante"
 
-#: ekos/manager.cpp:458
+#: ekos/manager.cpp:464
 #, kde-format
 msgid "Extension '%1' failed to stop, abort enabled"
 msgstr "Etendo '%1' malsukcesis ĉesi, ĉesigo ebligita"
 
-#: ekos/manager.cpp:467
+#: ekos/manager.cpp:473
 #, kde-format
 msgid "Extension '%1' aborting"
 msgstr "Etendo '%1' ĉesanta"
 
-#: ekos/manager.cpp:477
+#: ekos/manager.cpp:483
 #, kde-format
 msgid "Extension '%1' start requested"
 msgstr "Komenco de la etendo '%1' estas petita"
 
-#: ekos/manager.cpp:482
+#: ekos/manager.cpp:488
 #, kde-format
 msgid "Extension '%1' started"
 msgstr "Etendo '%1' komenciĝis"
 
-#: ekos/manager.cpp:490
+#: ekos/manager.cpp:496
 #, kde-format
 msgid "Extension '%1' stop requested"
 msgstr "Etendo '%1' haltigo petita"
 
-#: ekos/manager.cpp:495
+#: ekos/manager.cpp:501
 #, kde-format
 msgid "Extension '%1' stopped"
 msgstr "Etendo '%1' ĉesis"
 
-#: ekos/manager.cpp:511
+#: ekos/manager.cpp:517
 #, kde-format
 msgid "Extension '%1': %2"
 msgstr "Etendo '%1': %2"
 
-#: ekos/manager.cpp:934
+#: ekos/manager.cpp:940
 #, fuzzy, kde-format
 #| msgid "Starting profile on remote INDI Web Manager..."
 msgid "Imported profile '%1' from INDI Web Manager."
 msgstr "Komencante profilon en fora INDI Reta Administranto..."
 
-#: ekos/manager.cpp:1089
+#: ekos/manager.cpp:1095
 #, kde-format
 msgctxt "@title:window"
 msgid "Ekos"
 msgstr "Ekos"
 
-#: ekos/manager.cpp:1237 ekos/manager.cpp:1262
+#: ekos/manager.cpp:1243 ekos/manager.cpp:1268
 #, fuzzy, kde-format
 #| msgid "Ekos requires at least one CCD or Guider to operate."
 msgid "Ekos requires at least one Camera to operate."
 msgstr "Ekos postulas almenaŭ unu CCD aŭ Guider por funkcii."
 
-#: ekos/manager.cpp:1325
+#: ekos/manager.cpp:1331
 #, kde-format
 msgid ""
 "Ekos detected that PTP Camera is running and may prevent a Canon or Nikon "
@@ -25277,17 +25277,17 @@ msgstr ""
 "Ekos detektis, ke PTP-Ĉambro funkcias kaj eble malebligas, ke Canon aŭ Nikon "
 "fotilo konektiĝu al Ekos. Ĉu vi volas forlasi PTP-fotilon nun?"
 
-#: ekos/manager.cpp:1326
+#: ekos/manager.cpp:1332
 #, kde-format
 msgid "PTP Camera"
 msgstr "PTP-Ĉambro"
 
-#: ekos/manager.cpp:1340
+#: ekos/manager.cpp:1346
 #, kde-format
 msgid "Starting INDI services..."
 msgstr "Komencante INDI-servojn..."
 
-#: ekos/manager.cpp:1371
+#: ekos/manager.cpp:1377
 #, kde-format
 msgid ""
 "Ekos detected an instance of INDI server running. Do you wish to shut down "
@@ -25297,48 +25297,48 @@ msgstr ""
 "ekzistantan petskribon antaŭ ol komenci novan?"
 
 #. i18n: ectx: property (title), widget (QGroupBox, indiServerGroup)
-#: ekos/manager.cpp:1373 indi/opsindi.ui:248
+#: ekos/manager.cpp:1379 indi/opsindi.ui:248
 #, kde-format
 msgid "INDI Server"
 msgstr "INDI-Servilo"
 
-#: ekos/manager.cpp:1388
+#: ekos/manager.cpp:1394
 #, kde-format
 msgid "Connecting to remote INDI server at %1 on port %2 ..."
 msgstr "Konektante al fora INDI-servilo ĉe %1 sur la konektejo %2 ..."
 
-#: ekos/manager.cpp:1409
+#: ekos/manager.cpp:1415
 #, kde-format
 msgid "Failed to start profile on remote INDI Web Manager."
 msgstr "Malsukcesis lanĉi profilon en fora INDI Reta Administranto."
 
-#: ekos/manager.cpp:1413
+#: ekos/manager.cpp:1419
 #, kde-format
 msgid "Starting profile on remote INDI Web Manager..."
 msgstr "Komencante profilon en fora INDI Reta Administranto..."
 
-#: ekos/manager.cpp:1426
+#: ekos/manager.cpp:1432
 #, kde-format
 msgid "Establishing communication with remote INDI Web Manager..."
 msgstr "Establi komunikadon kun fora INDI Reta Administranto..."
 
-#: ekos/manager.cpp:1445
+#: ekos/manager.cpp:1451
 #, fuzzy, kde-format
 #| msgid "Warning: INDI Web Manager is not online."
 msgid "Error: INDI Web Manager is not online at %1:%2"
 msgstr "Averto: INDI Web Manager ne estas interreta."
 
-#: ekos/manager.cpp:1486
+#: ekos/manager.cpp:1492
 #, kde-format
 msgid "INDI services started on port %1."
 msgstr "INDI-servoj komenciĝis en konektejo %1."
 
-#: ekos/manager.cpp:1489
+#: ekos/manager.cpp:1495
 #, kde-format
 msgid "INDI services started on port %1. Please connect devices."
 msgstr "INDI-servoj komenciĝis en konektejo %1. Bonvolu konekti aparatojn."
 
-#: ekos/manager.cpp:1494
+#: ekos/manager.cpp:1500
 #, kde-format
 msgid ""
 "INDI services started. Connection to remote INDI server %1:%2 is successful. "
@@ -25347,27 +25347,27 @@ msgstr ""
 "INDI-servoj komenciĝis. Konekto al fora INDI-servilo %1:%2 sukcesas. "
 "Atendante aparatojn..."
 
-#: ekos/manager.cpp:1526
+#: ekos/manager.cpp:1532
 #, kde-format
 msgid "Failed to connect to local INDI server %1:%2"
 msgstr "Malsukcesis konekti al loka INDI-servilo %1:%2"
 
-#: ekos/manager.cpp:1528
+#: ekos/manager.cpp:1534
 #, kde-format
 msgid "Failed to connect to remote INDI server %1:%2"
 msgstr "Malsukcesis konekti al fora INDI-servilo %1:%2"
 
-#: ekos/manager.cpp:1541
+#: ekos/manager.cpp:1547
 #, kde-format
 msgid "Lost connection to local INDI server %1:%2"
 msgstr "Perdita konekto al loka INDI-servilo %1:%2"
 
-#: ekos/manager.cpp:1543
+#: ekos/manager.cpp:1549
 #, kde-format
 msgid "Lost connection to remote INDI server %1:%2"
 msgstr "Perdita konekto al fora INDI-servilo %1:%2"
 
-#: ekos/manager.cpp:1610
+#: ekos/manager.cpp:1616
 #, kde-format
 msgid ""
 "Failed to connect to %1. Please ensure device is connected and powered on."
@@ -25375,7 +25375,7 @@ msgstr ""
 "Malsukcesis konekti al %1. Bonvolu certigi ke aparato estas konektita kaj "
 "ŝaltita."
 
-#: ekos/manager.cpp:1612
+#: ekos/manager.cpp:1618
 #, kde-format
 msgid ""
 "Failed to connect to \n"
@@ -25386,7 +25386,7 @@ msgstr ""
 "%1\n"
 "Bonvolu certigi, ke ĉiu aparato estas konektita kaj ŝaltita."
 
-#: ekos/manager.cpp:1640
+#: ekos/manager.cpp:1646
 #, kde-format
 msgid ""
 "Unable to establish:\n"
@@ -25397,13 +25397,13 @@ msgstr ""
 "%1\n"
 "Bonvolu certigi, ke la aparato estas konektita kaj ŝaltita."
 
-#: ekos/manager.cpp:1644 ekos/manager.cpp:1652 ekos/manager.cpp:1685
-#: ekos/manager.cpp:1693
+#: ekos/manager.cpp:1650 ekos/manager.cpp:1658 ekos/manager.cpp:1691
+#: ekos/manager.cpp:1699
 #, kde-format
 msgid "Ekos startup error"
 msgstr "Ekos lanĉa eraro"
 
-#: ekos/manager.cpp:1648
+#: ekos/manager.cpp:1654
 #, kde-format
 msgid ""
 "Unable to establish the following devices:\n"
@@ -25414,7 +25414,7 @@ msgstr ""
 "%1\n"
 "Bonvolu certigi, ke ĉiu aparato estas konektita kaj ŝaltita."
 
-#: ekos/manager.cpp:1681
+#: ekos/manager.cpp:1687
 #, kde-format
 msgid ""
 "Unable to remotely establish:\n"
@@ -25425,7 +25425,7 @@ msgstr ""
 "%1\n"
 "Bonvolu certigi, ke la aparato estas konektita kaj ŝaltita."
 
-#: ekos/manager.cpp:1689
+#: ekos/manager.cpp:1695
 #, kde-format
 msgid ""
 "Unable to remotely establish the following devices:\n"
@@ -25436,32 +25436,32 @@ msgstr ""
 "%1\n"
 "Bonvolu certigi, ke ĉiu aparato estas konektita kaj ŝaltita."
 
-#: ekos/manager.cpp:1747
+#: ekos/manager.cpp:1753
 #, kde-format
 msgid "Connecting INDI devices..."
 msgstr "Konektante INDI-aparatojn..."
 
-#: ekos/manager.cpp:1766
+#: ekos/manager.cpp:1772
 #, kde-format
 msgid "Disconnecting INDI devices..."
 msgstr "Malkonekti INDI-aparatojn..."
 
-#: ekos/manager.cpp:1806
+#: ekos/manager.cpp:1812
 #, kde-format
 msgid "INDI services stopped."
 msgstr "INDI-servoj ĉesis."
 
-#: ekos/manager.cpp:1873
+#: ekos/manager.cpp:1879
 #, kde-format
 msgid "Remote devices established."
 msgstr "Foraj aparatoj establitaj."
 
-#: ekos/manager.cpp:1876
+#: ekos/manager.cpp:1882
 #, kde-format
 msgid "Remote devices established. Please connect devices."
 msgstr "Foraj aparatoj establitaj. Bonvolu konekti aparatojn."
 
-#: ekos/manager.cpp:1940
+#: ekos/manager.cpp:1946
 #, kde-format
 msgid ""
 "%1 failed to connect.\n"
@@ -25470,119 +25470,119 @@ msgstr ""
 "%1 malsukcesis konekti.\n"
 "Bonvolu certigi, ke la aparato estas konektita kaj ŝaltita."
 
-#: ekos/manager.cpp:1947
+#: ekos/manager.cpp:1953
 #, kde-format
 msgid "%1 is disconnected."
 msgstr "%1 estas malkonektita."
 
-#: ekos/manager.cpp:1968 ekos/manager.cpp:1977 ekos/manager.cpp:2010
+#: ekos/manager.cpp:1974 ekos/manager.cpp:1983 ekos/manager.cpp:2016
 #: indi/indistd.cpp:719
 #, kde-format
 msgid "%1 is online."
 msgstr "%1 estas enreta."
 
-#: ekos/manager.cpp:1985
+#: ekos/manager.cpp:1991
 #, kde-format
 msgid "%1 filter is online."
 msgstr "%1 filtrilo estas enreta."
 
-#: ekos/manager.cpp:1994
+#: ekos/manager.cpp:2000
 #, kde-format
 msgid "%1 focuser is online."
 msgstr "%1 fokusilo estas enreta."
 
-#: ekos/manager.cpp:2001
+#: ekos/manager.cpp:2007
 #, kde-format
 msgid "Rotator %1 is online."
 msgstr "Rotaciilo %1 estas enreta."
 
-#: ekos/manager.cpp:2017
+#: ekos/manager.cpp:2023
 #, kde-format
 msgid "%1 Weather is online."
 msgstr "%1 Vetero estas interreta."
 
-#: ekos/manager.cpp:2024
+#: ekos/manager.cpp:2030
 #, kde-format
 msgid "%1 GPS is online."
 msgstr "%1 GPS estas enreta."
 
-#: ekos/manager.cpp:2031
+#: ekos/manager.cpp:2037
 #, fuzzy, kde-format
 #| msgid "%1 GPS is online."
 msgid "%1 PAC is online."
 msgstr "%1 GPS estas enreta."
 
-#: ekos/manager.cpp:2040
+#: ekos/manager.cpp:2046
 #, kde-format
 msgid "%1 Dust cap is online."
 msgstr "%1 Polvkapo estas enreta."
 
-#: ekos/manager.cpp:2047
+#: ekos/manager.cpp:2053
 #, kde-format
 msgid "%1 Light box is online."
 msgstr "%1 Lumkesto estas enreta."
 
-#: ekos/manager.cpp:2192
+#: ekos/manager.cpp:2198
 #, kde-format
 msgid "%1 is offline."
 msgstr "%1 estas eksterrete."
 
-#: ekos/manager.cpp:2825
+#: ekos/manager.cpp:2831
 #, kde-format
 msgid "Guider port from %1 is ready."
 msgstr "Gvidkonektejo de %1 estas preta."
 
-#: ekos/manager.cpp:3040
+#: ekos/manager.cpp:3046
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Ĉu vi certas, ke vi volas forigi la profilon?"
 
-#: ekos/manager.cpp:3041
+#: ekos/manager.cpp:3047
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Konfirmi Forigon"
 
-#: ekos/manager.cpp:3093
+#: ekos/manager.cpp:3099
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "Loko de la retejo ĝisdatigita al %1."
 
-#: ekos/manager.cpp:3095
+#: ekos/manager.cpp:3101
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "Malsukcesis ĝisdatigi retejon al %1. Urbo ne trovita."
 
-#: ekos/manager.cpp:3368
+#: ekos/manager.cpp:3374
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "Ebligante sencimigan protokolon por %1..."
 
-#: ekos/manager.cpp:3376
+#: ekos/manager.cpp:3382
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "Malŝaltante sencimigan protokolon por %1..."
 
-#: ekos/manager.cpp:3404
+#: ekos/manager.cpp:3410
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "Reebligante sencimigan protokolon por %1..."
 
-#: ekos/manager.cpp:3416
+#: ekos/manager.cpp:3422
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "Remalŝaltas sencimigan protokolon por %1..."
 
-#: ekos/manager.cpp:4206
+#: ekos/manager.cpp:4212
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Antaŭrigarda fonto agordita al ekstera"
 
-#: ekos/manager.cpp:4214
+#: ekos/manager.cpp:4220
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Antaŭrigardo fonto rekomencigita al interna"
 
-#: ekos/manager.cpp:4221
+#: ekos/manager.cpp:4227
 #, kde-format
 msgid "Received external preview file"
 msgstr "Ricevis eksteran antaŭrigardan dosieron"
@@ -25621,7 +25621,7 @@ msgid "Remove profile"
 msgstr "Forigi profilon"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, customDriversB)
-#: ekos/manager.ui:272 kstarsinit.cpp:547
+#: ekos/manager.ui:272 kstarsinit.cpp:544
 #, kde-format
 msgid "Custom Drivers..."
 msgstr "Propraj peliloj..."
@@ -25645,7 +25645,7 @@ msgid "Ekos Live..."
 msgstr "Ekos Live..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, indiControlPanelB)
-#: ekos/manager.ui:420 kstarsinit.cpp:550
+#: ekos/manager.ui:420 kstarsinit.cpp:547
 #, kde-format
 msgid "INDI Control Panel..."
 msgstr "INDI Kontrolpanelo..."
@@ -29237,7 +29237,7 @@ msgstr ""
 "tempon, tiam taksas taskojn."
 
 #: ekos/scheduler/scheduler.cpp:511 ekos/scheduler/scheduler.cpp:2413
-#: ekos/scheduler/schedulerprocess.cpp:3390
+#: ekos/scheduler/schedulerprocess.cpp:3396
 #, kde-format
 msgid ""
 "Warning: The Classic scheduler algorithm has been retired. Switching you to "
@@ -30643,28 +30643,28 @@ msgstr ""
 msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Malsukcesis ŝargi difektan mapon %1"
 
-#: ekos/scheduler/schedulerprocess.cpp:2034
+#: ekos/scheduler/schedulerprocess.cpp:2038
 #, kde-format
 msgid "No pre-shutdown tasks, proceeding to stop Ekos/INDI."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:2075
+#: ekos/scheduler/schedulerprocess.cpp:2081
 #, fuzzy, kde-format
 #| msgid "park/unpark wait procedure failed, aborting..."
 msgid "Park/unpark procedure failed, aborting..."
 msgstr "parki/malparki atendproceduron malsukcesis, ĉesigante..."
 
-#: ekos/scheduler/schedulerprocess.cpp:2088
+#: ekos/scheduler/schedulerprocess.cpp:2094
 #, kde-format
 msgid "Scheduler paused."
 msgstr "Planilo paŭzis."
 
-#: ekos/scheduler/schedulerprocess.cpp:2131
+#: ekos/scheduler/schedulerprocess.cpp:2137
 #, kde-format
 msgid "No jobs left in the scheduler queue after evaluating."
 msgstr "Neniuj taskoj restas en la vostovico post taksado."
 
-#: ekos/scheduler/schedulerprocess.cpp:2141
+#: ekos/scheduler/schedulerprocess.cpp:2147
 #, kde-format
 msgid ""
 "Only aborted jobs left in the scheduler queue after evaluating, rescheduling "
@@ -30673,27 +30673,27 @@ msgstr ""
 "Nur ĉesigitaj taskoj restis en la vostovico post taksado, reprogramado de "
 "tiuj."
 
-#: ekos/scheduler/schedulerprocess.cpp:2155
+#: ekos/scheduler/schedulerprocess.cpp:2161
 #, kde-format
 msgid "No jobs scheduled."
 msgstr "Neniuj taskoj planitaj."
 
-#: ekos/scheduler/schedulerprocess.cpp:2324
+#: ekos/scheduler/schedulerprocess.cpp:2330
 #, kde-format
 msgid "Starting job sequence iteration #%1"
 msgstr "Komencante tasksekvencan iteracion #%1"
 
-#: ekos/scheduler/schedulerprocess.cpp:2340
+#: ekos/scheduler/schedulerprocess.cpp:2346
 #, kde-format
 msgid "No executable jobs found. Stopping scheduler."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:2408
+#: ekos/scheduler/schedulerprocess.cpp:2414
 #, kde-format
 msgid "Guiding already running, directly start capturing."
 msgstr "Gvidado jam kuranta, rekte komenci kapti."
 
-#: ekos/scheduler/schedulerprocess.cpp:2420
+#: ekos/scheduler/schedulerprocess.cpp:2426
 #, kde-format
 msgid ""
 "Job '%1' is proceeding directly to capture stage because only calibration "
@@ -30702,134 +30702,134 @@ msgstr ""
 "Tasko '%1' iras rekte por kapti etapon ĉar nur kalibraj kadroj estas "
 "pritraktataj."
 
-#: ekos/scheduler/schedulerprocess.cpp:2636
-#: ekos/scheduler/schedulerprocess.cpp:3549
+#: ekos/scheduler/schedulerprocess.cpp:2642
+#: ekos/scheduler/schedulerprocess.cpp:3555
 #, kde-format
 msgid "Warning: job '%1' alignment procedure failed, marking aborted."
 msgstr ""
 "Averto: proceduro de vicigo de tasko '%1' malsukcesis, markado ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:2662
+#: ekos/scheduler/schedulerprocess.cpp:2668
 #, kde-format
 msgid "Warning: job '%1' capture procedure failed, marking aborted."
 msgstr "Averto: tasko '%1' kapta procedo malsukcesis, markado ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:2708
+#: ekos/scheduler/schedulerprocess.cpp:2714
 #, kde-format
 msgid "Warning: job '%1' focusing procedure failed, marking aborted."
 msgstr ""
 "Averto: proceduro de fokuso de tasko '%1' malsukcesis, markado ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:2731
-#: ekos/scheduler/schedulerprocess.cpp:3620
+#: ekos/scheduler/schedulerprocess.cpp:2737
+#: ekos/scheduler/schedulerprocess.cpp:3626
 #, kde-format
 msgid "Warning: job '%1' guiding procedure failed, marking aborted."
 msgstr "Averto: tasko '%1' gvida proceduro malsukcesis, markado ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:2755
+#: ekos/scheduler/schedulerprocess.cpp:2761
 #, kde-format
 msgid ""
 "Warning: job '%1' lost connection to the mount, attempting to reconnect."
 msgstr "Averto: tasko '%1' perdis konekton al la muntaĵo, provante rekonekti."
 
-#: ekos/scheduler/schedulerprocess.cpp:2772
+#: ekos/scheduler/schedulerprocess.cpp:2778
 #, kde-format
 msgid "Warning: job '%1' lost connection to the dome, attempting to reconnect."
 msgstr "Averto: tasko '%1' perdis konekton al la kupolo, provante rekonekti."
 
-#: ekos/scheduler/schedulerprocess.cpp:2840
+#: ekos/scheduler/schedulerprocess.cpp:2846
 #, kde-format
 msgid "Ekos job started (%1)"
 msgstr "Ekos-tasko komenciĝis (%1)"
 
-#: ekos/scheduler/schedulerprocess.cpp:3033
+#: ekos/scheduler/schedulerprocess.cpp:3039
 #, kde-format
 msgid "Scheduler list saved to %1"
 msgstr "Listo de planistoj konservita al %1"
 
-#: ekos/scheduler/schedulerprocess.cpp:3149
+#: ekos/scheduler/schedulerprocess.cpp:3155
 #, kde-format
 msgid "Solver timed out: %1s %2"
 msgstr "Solvanto elĉerpita: %1s %2"
 
-#: ekos/scheduler/schedulerprocess.cpp:3151
+#: ekos/scheduler/schedulerprocess.cpp:3157
 #, kde-format
 msgid "Solver failed: %1s %2"
 msgstr "Solvanto malsukcesis: %1s %2"
 
-#: ekos/scheduler/schedulerprocess.cpp:3186
+#: ekos/scheduler/schedulerprocess.cpp:3192
 #, kde-format
 msgid "Captured frame is %1 arcminutes away from target, re-aligning..."
 msgstr "Kaptita kadro estas %1 arkminutoj for de celo, realigante..."
 
-#: ekos/scheduler/schedulerprocess.cpp:3198
+#: ekos/scheduler/schedulerprocess.cpp:3204
 #, fuzzy, kde-format
 #| msgid "Manual startup procedure completed successfully."
 msgid "Pre-startup queue completed successfully. Starting Ekos..."
 msgstr "Mana lanĉa proceduro sukcese kompletigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3206
+#: ekos/scheduler/schedulerprocess.cpp:3212
 #, fuzzy, kde-format
 #| msgid "Manual startup procedure completed successfully."
 msgid "Post-startup queue completed successfully."
 msgstr "Mana lanĉa proceduro sukcese kompletigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3213
+#: ekos/scheduler/schedulerprocess.cpp:3219
 #, kde-format
 msgid "Resuming scheduler after safety recovery startup tasks..."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:3221
+#: ekos/scheduler/schedulerprocess.cpp:3227
 #, fuzzy, kde-format
 #| msgid "Manual shutdown procedure completed successfully."
 msgid "Pre-shutdown queue completed successfully."
 msgstr "Mana haltiga proceduro sukcese kompletigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3248
+#: ekos/scheduler/schedulerprocess.cpp:3254
 #, fuzzy, kde-format
 #| msgid "Manual shutdown procedure completed successfully."
 msgid "Post-shutdown queue completed successfully."
 msgstr "Mana haltiga proceduro sukcese kompletigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3261
+#: ekos/scheduler/schedulerprocess.cpp:3267
 #, fuzzy, kde-format
 #| msgid "Extractor failed: %1s"
 msgid "Startup queue failed: %1"
 msgstr "Ekstraktilo malsukcesis: %1s"
 
-#: ekos/scheduler/schedulerprocess.cpp:3268
+#: ekos/scheduler/schedulerprocess.cpp:3274
 #, fuzzy, kde-format
 #| msgid "Refresh solver failed: %1s"
 msgid "Pre-shutdown queue failed: %1"
 msgstr "Refreŝiga solvilo malsukcesis: %1s"
 
-#: ekos/scheduler/schedulerprocess.cpp:3275
+#: ekos/scheduler/schedulerprocess.cpp:3281
 #, kde-format
 msgid "Post-shutdown queue failed: %1"
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:3287
+#: ekos/scheduler/schedulerprocess.cpp:3293
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:3353
+#: ekos/scheduler/schedulerprocess.cpp:3359
 #, kde-format
 msgid "Warning: train name is empty, selecting \"%1\"."
 msgstr "Averto: nomo de ĉeno estas malplena, elektante \"%1\"."
 
-#: ekos/scheduler/schedulerprocess.cpp:3354
+#: ekos/scheduler/schedulerprocess.cpp:3360
 #, kde-format
 msgid "Warning: train name %2 does not exist, selecting \"%1\"."
 msgstr "Averto: ĉen-nomo %2 ne ekzistas, elektante \"%1\"."
 
-#: ekos/scheduler/schedulerprocess.cpp:3356
-#: ekos/scheduler/schedulerprocess.cpp:3368
+#: ekos/scheduler/schedulerprocess.cpp:3362
+#: ekos/scheduler/schedulerprocess.cpp:3374
 #, kde-format
 msgid "Select optical train"
 msgstr "Elekti optikan ĉenon"
 
-#: ekos/scheduler/schedulerprocess.cpp:3365
+#: ekos/scheduler/schedulerprocess.cpp:3371
 #, kde-format
 msgid ""
 "Warning: no available train name for scheduler job, select the optical train "
@@ -30838,17 +30838,17 @@ msgstr ""
 "Averto: neniu disponebla ĉenonomo por planil-laboro, elektu la optikan "
 "ĉenonomon permane."
 
-#: ekos/scheduler/schedulerprocess.cpp:3515
+#: ekos/scheduler/schedulerprocess.cpp:3521
 #, kde-format
 msgid "Job '%1' alignment is complete."
 msgstr "La vicigo de la tasko '%1' estas finita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3534
+#: ekos/scheduler/schedulerprocess.cpp:3540
 #, kde-format
 msgid "Warning: job '%1' alignment failed."
 msgstr "Averto: vicigo de tasko '%1' malsukcesis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3540
+#: ekos/scheduler/schedulerprocess.cpp:3546
 #, kde-format
 msgid ""
 "Warning: job '%1' forcing mount model reset after failing alignment #%2."
@@ -30856,38 +30856,38 @@ msgstr ""
 "Averto: tasko '%1' deviganta muntan modelon restarigi post malsukcesa vicigo "
 "#%2."
 
-#: ekos/scheduler/schedulerprocess.cpp:3544
-#: ekos/scheduler/schedulerprocess.cpp:3608
+#: ekos/scheduler/schedulerprocess.cpp:3550
+#: ekos/scheduler/schedulerprocess.cpp:3614
 #, kde-format
 msgid "Restarting %1 alignment procedure..."
 msgstr "Rekomencante %1 aliĝproceduron..."
 
-#: ekos/scheduler/schedulerprocess.cpp:3580
+#: ekos/scheduler/schedulerprocess.cpp:3586
 #, kde-format
 msgid "Job '%1' guiding is in progress."
 msgstr "Gvidado de tasko '%1' estas en progreso."
 
-#: ekos/scheduler/schedulerprocess.cpp:3592
+#: ekos/scheduler/schedulerprocess.cpp:3598
 #, kde-format
 msgid "Warning: job '%1' guiding failed."
 msgstr "Averto: gvidado de tasko '%1' malsukcesis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3594
+#: ekos/scheduler/schedulerprocess.cpp:3600
 #, kde-format
 msgid "Warning: job '%1' calibration failed."
 msgstr "Averto: calibrado de tasko '%1' malsukcesis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3613
+#: ekos/scheduler/schedulerprocess.cpp:3619
 #, kde-format
 msgid "Job '%1' is guiding, guiding procedure will be restarted in %2 seconds."
 msgstr "Tasko '%1' gvidas, gvidprocedo estos rekomencita post %2 sekundoj."
 
-#: ekos/scheduler/schedulerprocess.cpp:3666
+#: ekos/scheduler/schedulerprocess.cpp:3672
 #, kde-format
 msgid "[%2] Warning: job '%1' failed to capture target."
 msgstr "[%2] Averto: laboro '%1' malsukcesis kapti celon."
 
-#: ekos/scheduler/schedulerprocess.cpp:3684
+#: ekos/scheduler/schedulerprocess.cpp:3690
 #, kde-format
 msgid ""
 "[%2] Job '%1' is capturing, is restarting its guiding procedure (attempt #%3 "
@@ -30896,50 +30896,50 @@ msgstr ""
 "[%2] Labortasko '%1' kaptas, rekomencas sian gvidan proceduron (provo #%3 el "
 "%4)."
 
-#: ekos/scheduler/schedulerprocess.cpp:3693
+#: ekos/scheduler/schedulerprocess.cpp:3699
 #, kde-format
 msgid "Warning: job '%1' failed its capture procedure, restarting capture."
 msgstr ""
 "Averto: tasko '%1' malsukcesis sian kaptan proceduron, rekomencante kapton."
 
-#: ekos/scheduler/schedulerprocess.cpp:3699
+#: ekos/scheduler/schedulerprocess.cpp:3705
 #, kde-format
 msgid "[%2] Warning: job '%1' failed its capture procedure, marking aborted."
 msgstr ""
 "[%2] Averto: labortasko '%1' malsukcesis sian kaptan proceduron, markante "
 "ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3712
+#: ekos/scheduler/schedulerprocess.cpp:3718
 #, kde-format
 msgid "[%2] Follower job '%1' has been aborted, is restarting."
 msgstr "[%2] Sekva laboro '%1' estas ĉesigita, rekomenciĝas."
 
-#: ekos/scheduler/schedulerprocess.cpp:3718
+#: ekos/scheduler/schedulerprocess.cpp:3724
 #, kde-format
 msgid "[%2] Follower job '%1' has been aborted."
 msgstr "[%2] Sekva labortasko '%1' estas ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3726
+#: ekos/scheduler/schedulerprocess.cpp:3732
 #, kde-format
 msgid "[%2] Job (%1) - Capture finished"
 msgstr "[%2] Labortasko (%1) - Kapto finiĝis"
 
-#: ekos/scheduler/schedulerprocess.cpp:3800
+#: ekos/scheduler/schedulerprocess.cpp:3806
 #, kde-format
 msgid "Job '%1' focusing train '%2' is complete."
 msgstr "Labortasko '%1' fokusante ĉenon '%2' plenumiĝis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3812
+#: ekos/scheduler/schedulerprocess.cpp:3818
 #, kde-format
 msgid "Warning: job '%1' focusing failed."
 msgstr "Averto: fokuso de tasko '%1' malsukcesis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3816
+#: ekos/scheduler/schedulerprocess.cpp:3822
 #, kde-format
 msgid "Job '%1' for train '%2' is restarting its focusing procedure."
 msgstr "Labortasko '%1' por ĉeno '%2' estas rekomencanta sian fokusproceduron."
 
-#: ekos/scheduler/schedulerprocess.cpp:3821
+#: ekos/scheduler/schedulerprocess.cpp:3827
 #, kde-format
 msgid ""
 "Warning: job '%1' on train '%2' focusing procedure failed, marking aborted."
@@ -30947,40 +30947,40 @@ msgstr ""
 "Averto: labortasko '%1' en ĉeno '%2' fokusproceduro malsukcesis, markado "
 "ĉesigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:3854
+#: ekos/scheduler/schedulerprocess.cpp:3860
 #, kde-format
 msgid "Job '%1' slew is complete."
 msgstr "La slew de la tasko '%1' finiĝis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3860
+#: ekos/scheduler/schedulerprocess.cpp:3866
 #, kde-format
 msgid "Warning: job '%1' slew failed, marking terminated due to errors."
 msgstr "Averto: la tasko '%1' malsukcesis, markado finiĝis pro eraroj."
 
-#: ekos/scheduler/schedulerprocess.cpp:3866
+#: ekos/scheduler/schedulerprocess.cpp:3872
 #, kde-format
 msgid "Warning: job '%1' found not slewing, restarting."
 msgstr "Averto: tasko '%1' trovita ne ŝanĝanta, rekomencanta."
 
-#: ekos/scheduler/schedulerprocess.cpp:3879
+#: ekos/scheduler/schedulerprocess.cpp:3885
 #, kde-format
 msgid "Job '%1' repositioning is complete."
 msgstr "La repoziciigo de la tasko '%1' finiĝis."
 
-#: ekos/scheduler/schedulerprocess.cpp:3885
+#: ekos/scheduler/schedulerprocess.cpp:3891
 #, kde-format
 msgid ""
 "Warning: job '%1' repositioning failed, marking terminated due to errors."
 msgstr ""
 "Averto: repoziciigo de tasko '%1' malsukcesis, markado ĉesigita pro eraroj."
 
-#: ekos/scheduler/schedulerprocess.cpp:3891
+#: ekos/scheduler/schedulerprocess.cpp:3897
 #, kde-format
 msgid "Warning: job '%1' found not repositioning, restarting."
 msgstr "Averto: tasko '%1' trovita ne repozicianta, rekomencanta."
 
-#: ekos/scheduler/schedulerprocess.cpp:3905
-#: ekos/scheduler/schedulerprocess.cpp:3916
+#: ekos/scheduler/schedulerprocess.cpp:3911
+#: ekos/scheduler/schedulerprocess.cpp:3922
 #, kde-format
 msgid ""
 "Warning: Mount is parked while scheduler for job '%1' is active. Aborting."
@@ -30988,41 +30988,41 @@ msgstr ""
 "Averto: Muntaĵo estas parkumita dum planilo por labortasko '%1' estas "
 "aktiva. Ĉesigante."
 
-#: ekos/scheduler/schedulerprocess.cpp:3982
+#: ekos/scheduler/schedulerprocess.cpp:3988
 #, fuzzy, kde-format
 #| msgid "Weather has improved. Resuming operations."
 msgid "Safety has improved. Resuming operations."
 msgstr "Vetero pliboniĝis. Daŭrigante operaciojn."
 
-#: ekos/scheduler/schedulerprocess.cpp:3993
+#: ekos/scheduler/schedulerprocess.cpp:3999
 #, kde-format
 msgid "Safety alert detected. Starting soft shutdown procedure in %1 seconds."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:4021
+#: ekos/scheduler/schedulerprocess.cpp:4027
 #, kde-format
 msgid ""
 "Observatory scheduled for soft shutdown. Monitoring weather indefinitely "
 "until safety improves."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:4023
+#: ekos/scheduler/schedulerprocess.cpp:4029
 #, kde-format
 msgid ""
 "Observatory scheduled for soft shutdown until safety improves or until %1."
 msgstr ""
 
-#: ekos/scheduler/schedulerprocess.cpp:4051
+#: ekos/scheduler/schedulerprocess.cpp:4057
 #, kde-format
 msgid "Manual shutdown procedure completed successfully."
 msgstr "Mana haltiga proceduro sukcese kompletigita."
 
-#: ekos/scheduler/schedulerprocess.cpp:4057
+#: ekos/scheduler/schedulerprocess.cpp:4063
 #, kde-format
 msgid "Manual shutdown procedure terminated due to errors."
 msgstr "Mana haltiga proceduro finiĝis pro eraroj."
 
-#: ekos/scheduler/schedulerprocess.cpp:4218
+#: ekos/scheduler/schedulerprocess.cpp:4224
 #, kde-format
 msgid ""
 "Sleeping for %1 on simulation clock update until next observation job is "
@@ -31031,13 +31031,13 @@ msgstr ""
 "Dormante por %1 dum ĝisdatigo de simula horloĝo ĝis la sekva observlaboro "
 "estas preta..."
 
-#: ekos/scheduler/schedulerprocess.cpp:4523
+#: ekos/scheduler/schedulerprocess.cpp:4529
 #, kde-format
 msgid "Warning: job '%1' has inaccessible sequence '%2', marking invalid."
 msgstr ""
 "Averto: tasko '%1' havas nealireblan sekvencon '%2', markante nevalida."
 
-#: ekos/scheduler/schedulerprocess.cpp:4608
+#: ekos/scheduler/schedulerprocess.cpp:4614
 #, kde-format
 msgid "Safety monitor initialized with connection string: %1"
 msgstr ""
@@ -32366,222 +32366,222 @@ msgstr "Priskribo de Objekta Tipo"
 msgid "Object Type Comments"
 msgstr "Objekt-Tipaj Komentoj"
 
-#: fitsviewer/fitsdata.cpp:1841
+#: fitsviewer/fitsdata.cpp:1837
 #, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr "Eraro legante taŭgas bufron: %1."
 
-#: fitsviewer/fitsdata.cpp:1854
+#: fitsviewer/fitsdata.cpp:1850
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr "Malsukcesis malpaki kunpremitajn agordojn"
 
-#: fitsviewer/fitsdata.cpp:1870
+#: fitsviewer/fitsdata.cpp:1866
 #, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "Eraro dum la malfermo taŭgas dosieron %1 : %2"
 
-#: fitsviewer/fitsdata.cpp:1883
+#: fitsviewer/fitsdata.cpp:1879
 #, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr "Eraro legante taŭgas bufron: %1"
 
-#: fitsviewer/fitsdata.cpp:1895
+#: fitsviewer/fitsdata.cpp:1891
 #, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "Ne eblis trovi bildon HDU: %1"
 
-#: fitsviewer/fitsdata.cpp:1902
+#: fitsviewer/fitsdata.cpp:1898
 #, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr "FITS-dosiera eraro de malfermado (fits_get_img_param): %1"
 
-#: fitsviewer/fitsdata.cpp:1916
+#: fitsviewer/fitsdata.cpp:1912
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr "Bildoj 1D FITS ne estas subtenataj en KStars."
 
-#: fitsviewer/fitsdata.cpp:1962 fitsviewer/fitsdata.cpp:2661
+#: fitsviewer/fitsdata.cpp:1958 fitsviewer/fitsdata.cpp:2657
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "Bitoprofundo %1 ne estas subtenata."
 
-#: fitsviewer/fitsdata.cpp:1972
+#: fitsviewer/fitsdata.cpp:1968
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr "Bildo havas nevalidajn dimensiojn %1x%2"
 
-#: fitsviewer/fitsdata.cpp:2022
+#: fitsviewer/fitsdata.cpp:2018
 #, kde-format
 msgid "Error reading image: %1"
 msgstr "Eraro legante bildon: %1"
 
-#: fitsviewer/fitsdata.cpp:2423 fitsviewer/fitsdata.cpp:2621
+#: fitsviewer/fitsdata.cpp:2419 fitsviewer/fitsdata.cpp:2617
 #, kde-format
 msgid "XISF file open error: "
 msgstr "XISF eraro dum dosiermalfermado: "
 
-#: fitsviewer/fitsdata.cpp:2535
+#: fitsviewer/fitsdata.cpp:2531
 #, kde-format
 msgid "File contain no images"
 msgstr "Dosiero ne enhavas bildojn"
 
-#: fitsviewer/fitsdata.cpp:2564
+#: fitsviewer/fitsdata.cpp:2560
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "Specimena formato %1 ne estas subtenata."
 
-#: fitsviewer/fitsdata.cpp:2699
+#: fitsviewer/fitsdata.cpp:2695
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Eraro konservante XISF-bildon"
 
-#: fitsviewer/fitsdata.cpp:2791 fitsviewer/fitsdata.cpp:2907
+#: fitsviewer/fitsdata.cpp:2787 fitsviewer/fitsdata.cpp:2903
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
 msgstr ""
 "FITSDatumoj: Ne sufiĉa memoro por image_buffer-kanalo. Petita: %1 bajtoj"
 
-#: fitsviewer/fitsdata.cpp:2846
+#: fitsviewer/fitsdata.cpp:2842
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "Ne povas malfermi dosieron %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2859
+#: fitsviewer/fitsdata.cpp:2855
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Ne povas malfermi bufron: %1"
 
-#: fitsviewer/fitsdata.cpp:2870
+#: fitsviewer/fitsdata.cpp:2866
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "Ne povas malpakigi_thumb: %1"
 
-#: fitsviewer/fitsdata.cpp:2877
+#: fitsviewer/fitsdata.cpp:2873
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "Ne povas dcraw_process: %1"
 
-#: fitsviewer/fitsdata.cpp:2885
+#: fitsviewer/fitsdata.cpp:2881
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "Ne povas ŝargi en memoron: %1"
 
-#: fitsviewer/fitsdata.cpp:3032
+#: fitsviewer/fitsdata.cpp:3028
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "Konservado de kunpremitaj dosieroj ne estas subtenata."
 
-#: fitsviewer/fitsdata.cpp:3097
+#: fitsviewer/fitsdata.cpp:3093
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Malsukcesis krei dosieron: %1"
 
-#: fitsviewer/fitsdata.cpp:3112
+#: fitsviewer/fitsdata.cpp:3108
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Malsukcesis krei bildon: %1"
 
-#: fitsviewer/fitsdata.cpp:3121 fitsviewer/fitsdata.cpp:3128
+#: fitsviewer/fitsdata.cpp:3117 fitsviewer/fitsdata.cpp:3124
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Malsukcesis ĝisdatigi ŝlosilon: %1"
 
-#: fitsviewer/fitsdata.cpp:3229
+#: fitsviewer/fitsdata.cpp:3225
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Malsukcesis ĝisdatigi daton: %1"
 
-#: fitsviewer/fitsdata.cpp:3238
+#: fitsviewer/fitsdata.cpp:3234
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Malsukcesis ĝisdatigi historion: %1"
 
-#: fitsviewer/fitsdata.cpp:3260
+#: fitsviewer/fitsdata.cpp:3256
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Malsukcesis skribi bildon: %1"
 
-#: fitsviewer/fitsdata.cpp:5019 fitsviewer/fitsdata.cpp:5030
-#: fitsviewer/fitsdata.cpp:5067 fitsviewer/fitsdata.cpp:5103
-#: fitsviewer/fitsdata.cpp:5237
+#: fitsviewer/fitsdata.cpp:5015 fitsviewer/fitsdata.cpp:5026
+#: fitsviewer/fitsdata.cpp:5063 fitsviewer/fitsdata.cpp:5099
+#: fitsviewer/fitsdata.cpp:5233
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "Neniuj mondaj koordinatsistemoj trovitaj."
 
-#: fitsviewer/fitsdata.cpp:5412 fitsviewer/fitsdata.cpp:5520
+#: fitsviewer/fitsdata.cpp:5408 fitsviewer/fitsdata.cpp:5514
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Eraro dum pridemando de Simbad"
 
-#: fitsviewer/fitsdata.cpp:5429
+#: fitsviewer/fitsdata.cpp:5423
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "Simbad-demando eksvalidiĝis"
 
-#: fitsviewer/fitsdata.cpp:6406 fitsviewer/fitsdata.cpp:6519
+#: fitsviewer/fitsdata.cpp:6400 fitsviewer/fitsdata.cpp:6513
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr "Nur 8 kaj 16 bitoj bayeritaj bildoj subtenataj."
 
-#: fitsviewer/fitsdata.cpp:6414 fitsviewer/fitsdata.cpp:6525
+#: fitsviewer/fitsdata.cpp:6408 fitsviewer/fitsdata.cpp:6519
 #, fuzzy, kde-format
 #| msgid "Unsupported bayer pattern %1."
 msgid "Unknown bayer pattern %1"
 msgstr "Nesubtenata bayer-ŝablono %1."
 
-#: fitsviewer/fitsdata.cpp:6438 fitsviewer/fitsdata.cpp:6464
+#: fitsviewer/fitsdata.cpp:6432 fitsviewer/fitsdata.cpp:6458
 #, fuzzy, kde-format
 #| msgid "Unsupported bayer pattern %1."
 msgid "Unsupported bayer pattern %1"
 msgstr "Nesubtenata bayer-ŝablono %1."
 
-#: fitsviewer/fitsdata.cpp:6472
+#: fitsviewer/fitsdata.cpp:6466
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Nesubtenata bayer kompensas %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6483 fitsviewer/fitsdata.cpp:6536
+#: fitsviewer/fitsdata.cpp:6477 fitsviewer/fitsdata.cpp:6530
 #, fuzzy, kde-format
 #| msgid "Input Parameters"
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Enigaj Parametroj"
 
-#: fitsviewer/fitsdata.cpp:6494 fitsviewer/fitsdata.cpp:6547
+#: fitsviewer/fitsdata.cpp:6488 fitsviewer/fitsdata.cpp:6541
 #, fuzzy, kde-format
 #| msgid "Input Parameters"
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Enigaj Parametroj"
 
-#: fitsviewer/fitsdata.cpp:6503 fitsviewer/fitsdata.cpp:6556
+#: fitsviewer/fitsdata.cpp:6497 fitsviewer/fitsdata.cpp:6550
 #, fuzzy, kde-format
 #| msgid "Invalid response."
 msgid "Invalid debayer engine"
 msgstr "Nevalida respondo."
 
-#: fitsviewer/fitsdata.cpp:6810
+#: fitsviewer/fitsdata.cpp:6804
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6826 fitsviewer/fitsdata.cpp:6872
-#: fitsviewer/fitsdata.cpp:6930 fitsviewer/fitsdata.cpp:6976
+#: fitsviewer/fitsdata.cpp:6820 fitsviewer/fitsdata.cpp:6866
+#: fitsviewer/fitsdata.cpp:6924 fitsviewer/fitsdata.cpp:6970
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr "Ne eblas atribui memoron por provizora bayer-bufro: %1"
 
-#: fitsviewer/fitsdata.cpp:6836 fitsviewer/fitsdata.cpp:6940
+#: fitsviewer/fitsdata.cpp:6830 fitsviewer/fitsdata.cpp:6934
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr "Ne eblas atribui memoron por provizora bayer-bufro."
 
-#: fitsviewer/fitsdata.cpp:6855 fitsviewer/fitsdata.cpp:6959
+#: fitsviewer/fitsdata.cpp:6849 fitsviewer/fitsdata.cpp:6953
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "Debayer malsukcesis (%1)"
 
-#: fitsviewer/fitsdata.cpp:6915
+#: fitsviewer/fitsdata.cpp:6909
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""
@@ -33862,7 +33862,7 @@ msgstr "Inversigi Vertikale"
 msgid "Open/Blink Directory"
 msgstr "Malfermi/Pulsigi Dosierujon"
 
-#: fitsviewer/fitsviewer.cpp:145 kstarsinit.cpp:164
+#: fitsviewer/fitsviewer.cpp:145 kstarsinit.cpp:163
 #, fuzzy, kde-format
 #| msgid "%1 is tracking."
 msgid "Live Stacker..."
@@ -37896,7 +37896,7 @@ msgctxt "Digitized Sky Survey"
 msgid "Show DSS Image"
 msgstr "Montri DSS bildon"
 
-#: kspopupmenu.cpp:212 kspopupmenu.cpp:341 kstarsinit.cpp:1002
+#: kspopupmenu.cpp:212 kspopupmenu.cpp:341 kstarsinit.cpp:999
 #: kstarslite/dialogs/detaildialoglite.cpp:69 kstarsliteinit.cpp:68
 #: printing/detailstable.cpp:77 printing/pwizobjectselection.cpp:101
 #: skycomponents/starcomponent.cpp:518 skyobjects/starobject.cpp:634
@@ -38115,12 +38115,12 @@ msgstr "(c), La KStars Teamo"
 msgid "Stop &Tracking"
 msgstr "Hal&tigi Spuradon"
 
-#: kstars.cpp:436 kstarsactions.cpp:1825 kstarsinit.cpp:277
+#: kstars.cpp:436 kstarsactions.cpp:1825 kstarsinit.cpp:274
 #, kde-format
 msgid "Switch to Star Globe View (Equatorial &Coordinates)"
 msgstr "Ŝanĝi al Star Globe View (Ekvatoraj &Koordinatoj)"
 
-#: kstars.cpp:437 kstarsactions.cpp:1806 kstarsinit.cpp:278
+#: kstars.cpp:437 kstarsactions.cpp:1806 kstarsinit.cpp:275
 #, kde-format
 msgid "Switch to Horizontal View (Horizontal &Coordinates)"
 msgstr "Ŝanĝi al Horizontala Vido (Horizontalaj &Koordinatoj)"
@@ -74397,22 +74397,22 @@ msgstr "Xplanet"
 msgid "Developer"
 msgstr "Ellaboranto"
 
-#: kstarsactions.cpp:1210 kstarsactions.cpp:2088 kstarsinit.cpp:287
+#: kstarsactions.cpp:1210 kstarsactions.cpp:2088 kstarsinit.cpp:284
 #, kde-format
 msgid "Hide Terrain"
 msgstr "Kaŝi Terenon"
 
-#: kstarsactions.cpp:1210 kstarsactions.cpp:2088 kstarsinit.cpp:288
+#: kstarsactions.cpp:1210 kstarsactions.cpp:2088 kstarsinit.cpp:285
 #, kde-format
 msgid "Show Terrain"
 msgstr "Montri Terenon"
 
-#: kstarsactions.cpp:1214 kstarsactions.cpp:2098 kstarsinit.cpp:292
+#: kstarsactions.cpp:1214 kstarsactions.cpp:2098 kstarsinit.cpp:289
 #, kde-format
 msgid "Hide Image Overlays"
 msgstr "Kaŝi Bildajn Supermetojn"
 
-#: kstarsactions.cpp:1214 kstarsactions.cpp:2098 kstarsinit.cpp:293
+#: kstarsactions.cpp:1214 kstarsactions.cpp:2098 kstarsinit.cpp:290
 #, kde-format
 msgid "Show Image Overlays"
 msgstr "Montri Bildajn Supermetojn"
@@ -74505,12 +74505,12 @@ msgstr "Ne Ŝalti"
 msgid "Stop running clock in realtime"
 msgstr "Ruli horloĝon realtempe"
 
-#: kstarsactions.cpp:1591 kstarsinit.cpp:205
+#: kstarsactions.cpp:1591 kstarsinit.cpp:202
 #, kde-format
 msgid "Run clock in realtime"
 msgstr "Ruli horloĝon realtempe"
 
-#: kstarsactions.cpp:1635 kstarsinit.cpp:250
+#: kstarsactions.cpp:1635 kstarsinit.cpp:247
 #, kde-format
 msgid "Engage &Tracking"
 msgstr "Engaĝi &Spuradon"
@@ -74544,25 +74544,25 @@ msgstr "Enigi Deziratan Vid-Angulon"
 msgid "Enter a field-of-view angle in degrees: "
 msgstr "Enigu vidkampan angulon en gradoj:"
 
-#: kstarsactions.cpp:1809 kstarsinit.cpp:751
+#: kstarsactions.cpp:1809 kstarsinit.cpp:748
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid "North &Up"
 msgstr "Nordo S&upre"
 
-#: kstarsactions.cpp:1812 kstarsinit.cpp:760
+#: kstarsactions.cpp:1812 kstarsinit.cpp:757
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid "North &Down"
 msgstr "Nor&do Malsupre"
 
-#: kstarsactions.cpp:1828 kstarsinit.cpp:751
+#: kstarsactions.cpp:1828 kstarsinit.cpp:748
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid "Zenith &Up"
 msgstr "Zenito S&upre"
 
-#: kstarsactions.cpp:1831 kstarsinit.cpp:760
+#: kstarsactions.cpp:1831 kstarsinit.cpp:757
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid "Zenith &Down"
@@ -74769,363 +74769,363 @@ msgstr "Elŝutas novajn datumojn"
 msgid "Open Image(s)..."
 msgstr "Malfermi Bildo(j)n..."
 
-#: kstarsinit.cpp:170
+#: kstarsinit.cpp:167
 #, kde-format
 msgid "&Save Sky Image..."
 msgstr "Kon&servi Ĉielbildon..."
 
-#: kstarsinit.cpp:177
+#: kstarsinit.cpp:174
 #, kde-format
 msgid "&Run Script..."
 msgstr "&Ruligi Skripton..."
 
-#: kstarsinit.cpp:181
+#: kstarsinit.cpp:178
 #, kde-format
 msgctxt "start Printing Wizard"
 msgid "Printing &Wizard..."
 msgstr "&Sorĉisto de Preso..."
 
-#: kstarsinit.cpp:190
+#: kstarsinit.cpp:187
 #, kde-format
 msgid "Set Time to &Now"
 msgstr "Meti Tempon al &Nun"
 
-#: kstarsinit.cpp:194
+#: kstarsinit.cpp:191
 #, kde-format
 msgctxt "set Clock to New Time"
 msgid "&Set Time..."
 msgstr "&Meti Tempon..."
 
-#: kstarsinit.cpp:198
+#: kstarsinit.cpp:195
 #, kde-format
 msgid "Stop &Clock"
 msgstr "Halti &Horloĝon"
 
-#: kstarsinit.cpp:225
+#: kstarsinit.cpp:222
 #, kde-format
 msgid "Resume Clock"
 msgstr "Rekomenci Horloĝon"
 
-#: kstarsinit.cpp:225
+#: kstarsinit.cpp:222
 #, kde-format
 msgid "Stop Clock"
 msgstr "Halti Horloĝon"
 
-#: kstarsinit.cpp:231
+#: kstarsinit.cpp:228
 #, kde-format
 msgid "Advance One Step Forward in Time"
 msgstr "Iri Unu Paŝon Antaŭen en Tempo"
 
-#: kstarsinit.cpp:235
+#: kstarsinit.cpp:232
 #, kde-format
 msgid "Advance One Step Backward in Time"
 msgstr "Iri Unu Paŝon Reen en la Tempo"
 
-#: kstarsinit.cpp:240
+#: kstarsinit.cpp:237
 #, kde-format
 msgid "&Zenith"
 msgstr "&Zenito"
 
-#: kstarsinit.cpp:241
+#: kstarsinit.cpp:238
 #, kde-format
 msgid "&North"
 msgstr "&Nordo"
 
-#: kstarsinit.cpp:242
+#: kstarsinit.cpp:239
 #, kde-format
 msgid "&East"
 msgstr "Ori&ento"
 
-#: kstarsinit.cpp:243
+#: kstarsinit.cpp:240
 #, kde-format
 msgid "&South"
 msgstr "&Sudo"
 
-#: kstarsinit.cpp:244
+#: kstarsinit.cpp:241
 #, kde-format
 msgid "&West"
 msgstr "&Okzidento"
 
-#: kstarsinit.cpp:247
+#: kstarsinit.cpp:244
 #, kde-format
 msgid "&Find Object..."
 msgstr "&Trovu objekton..."
 
-#: kstarsinit.cpp:254
+#: kstarsinit.cpp:251
 #, kde-format
 msgid "Set Coordinates &Manually..."
 msgstr "Meti Koordinatojn &Mane..."
 
-#: kstarsinit.cpp:266
+#: kstarsinit.cpp:263
 #, kde-format
 msgid "&Default Zoom"
 msgstr "&Defaŭlta zomo"
 
-#: kstarsinit.cpp:269
+#: kstarsinit.cpp:266
 #, kde-format
 msgid "&Zoom to Angular Size..."
 msgstr "&Zomi al angula grandeco..."
 
-#: kstarsinit.cpp:283
+#: kstarsinit.cpp:280
 #, kde-format
 msgctxt "Mirror the view of the sky map"
 msgid "Mirrored View"
 msgstr "Spegulita Vido"
 
-#: kstarsinit.cpp:297
+#: kstarsinit.cpp:294
 #, kde-format
 msgid "&Lambert Azimuthal Equal-area"
 msgstr "&Lambert Azimutala Egala-areo"
 
-#: kstarsinit.cpp:300
+#: kstarsinit.cpp:297
 #, kde-format
 msgid "&Azimuthal Equidistant"
 msgstr "&Azimutala Ekvidistanco"
 
-#: kstarsinit.cpp:303
+#: kstarsinit.cpp:300
 #, kde-format
 msgid "&Orthographic"
 msgstr "&Ortografia"
 
-#: kstarsinit.cpp:306
+#: kstarsinit.cpp:303
 #, kde-format
 msgid "&Equirectangular"
 msgstr "&Ekvirangula"
 
-#: kstarsinit.cpp:309
+#: kstarsinit.cpp:306
 #, kde-format
 msgid "&Stereographic"
 msgstr "&Stereografia"
 
-#: kstarsinit.cpp:312
+#: kstarsinit.cpp:309
 #, kde-format
 msgid "&Gnomonic"
 msgstr "&Gnomoniko"
 
-#: kstarsinit.cpp:318
+#: kstarsinit.cpp:315
 #, kde-format
 msgctxt "Show the information boxes"
 msgid "Show &Info Boxes"
 msgstr "Montri &Informkestojn"
 
-#: kstarsinit.cpp:323
+#: kstarsinit.cpp:320
 #, kde-format
 msgctxt "Show time-related info box"
 msgid "Show &Time Box"
 msgstr "Montri &Tempo-Keston"
 
-#: kstarsinit.cpp:330
+#: kstarsinit.cpp:327
 #, kde-format
 msgctxt "Show focus-related info box"
 msgid "Show &Focus Box"
 msgstr "Montri &Fokusan Keston"
 
-#: kstarsinit.cpp:337
+#: kstarsinit.cpp:334
 #, kde-format
 msgctxt "Show location-related info box"
 msgid "Show &Location Box"
 msgstr "Montru &Lokkeston"
 
-#: kstarsinit.cpp:344
+#: kstarsinit.cpp:341
 #, kde-format
 msgid "Show Main Toolbar"
 msgstr "Montri Precipan ilobreton"
 
-#: kstarsinit.cpp:346
+#: kstarsinit.cpp:343
 #, kde-format
 msgid "Show View Toolbar"
 msgstr "Montri Rigardan ilobreton"
 
-#: kstarsinit.cpp:350
+#: kstarsinit.cpp:347
 #, kde-format
 msgid "Show Statusbar"
 msgstr "Montri Statusbreton"
 
-#: kstarsinit.cpp:351
+#: kstarsinit.cpp:348
 #, kde-format
 msgid "Show Az/Alt Field"
 msgstr "Montri Az/Alt-Kampon"
 
-#: kstarsinit.cpp:352
+#: kstarsinit.cpp:349
 #, kde-format
 msgid "Show RA/Dec Field"
 msgstr "Montri RA/Dec Field"
 
-#: kstarsinit.cpp:353
+#: kstarsinit.cpp:350
 #, kde-format
 msgid "Show J2000.0 RA/Dec Field"
 msgstr "Montri J2000.0 RA/Dec Field"
 
-#: kstarsinit.cpp:360
+#: kstarsinit.cpp:357
 #, kde-format
 msgid "C&olor Schemes"
 msgstr "K&olorskemoj"
 
-#: kstarsinit.cpp:361
+#: kstarsinit.cpp:358
 #, kde-format
 msgid "&Classic"
 msgstr "&Klasikaĵo"
 
-#: kstarsinit.cpp:362
+#: kstarsinit.cpp:359
 #, kde-format
 msgid "&Star Chart"
 msgstr "&Stelkarto"
 
-#: kstarsinit.cpp:363
+#: kstarsinit.cpp:360
 #, kde-format
 msgid "&Night Vision"
 msgstr "&Noktrigardo"
 
-#: kstarsinit.cpp:364
+#: kstarsinit.cpp:361
 #, kde-format
 msgid "&Moonless Night"
 msgstr "&Senluna Nokto"
 
-#: kstarsinit.cpp:384
+#: kstarsinit.cpp:381
 #, kde-format
 msgid "&FOV Symbols"
 msgstr "&FOV-Simboloj"
 
-#: kstarsinit.cpp:392
+#: kstarsinit.cpp:389
 #, kde-format
 msgid "&Views"
 msgstr "&Vidoj"
 
-#: kstarsinit.cpp:400
+#: kstarsinit.cpp:397
 #, kde-format
 msgid "HiPS All Sky Overlay"
 msgstr "HiPS Ĉielo Overlay"
 
-#: kstarsinit.cpp:407
+#: kstarsinit.cpp:404
 #, kde-format
 msgid "Skymap Orientation"
 msgstr "Skymap-Orientiĝo"
 
-#: kstarsinit.cpp:413
+#: kstarsinit.cpp:410
 #, kde-format
 msgctxt "Location on Earth"
 msgid "&Geographic..."
 msgstr "&Geografia..."
 
-#: kstarsinit.cpp:430
+#: kstarsinit.cpp:427
 #, kde-format
 msgid "Startup Wizard..."
 msgstr "Starta Sorĉisto..."
 
-#: kstarsinit.cpp:435
+#: kstarsinit.cpp:432
 #, kde-format
 msgid "Manage DSO Catalogs"
 msgstr "Administri DSO-Katalogojn"
 
-#: kstarsinit.cpp:439
+#: kstarsinit.cpp:436
 #, kde-format
 msgid "Update Comets Orbital Elements"
 msgstr "Ĝisdatigi Kometajn Orbitalajn Elementojn"
 
-#: kstarsinit.cpp:441
+#: kstarsinit.cpp:438
 #, kde-format
 msgid "Update Asteroids Orbital Elements"
 msgstr "Ĝisdatigi Asteroids Orbital Elements"
 
-#: kstarsinit.cpp:443
+#: kstarsinit.cpp:440
 #, kde-format
 msgid "Update Recent Supernovae Data"
 msgstr "Ĝisdatigi Lastatempajn Supernovajn Datumojn"
 
-#: kstarsinit.cpp:445
+#: kstarsinit.cpp:442
 #, kde-format
 msgid "Update Satellites Orbital Elements"
 msgstr "Ĝisdatigi Satelitajn Orbitalajn Elementojn"
 
-#: kstarsinit.cpp:449
+#: kstarsinit.cpp:446
 #, kde-format
 msgid "Calculator"
 msgstr "Kalkulilo"
 
-#: kstarsinit.cpp:459
+#: kstarsinit.cpp:456
 #, kde-format
 msgid "Observation Planner"
 msgstr "Observado-Planisto"
 
-#: kstarsinit.cpp:463
+#: kstarsinit.cpp:460
 #, kde-format
 msgid "Imaging Planner"
 msgstr "Bildiga Planisto"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, AltVsTime)
-#: kstarsinit.cpp:467 tools/altvstime.ui:14 tools/obslistpopupmenu.cpp:54
+#: kstarsinit.cpp:464 tools/altvstime.ui:14 tools/obslistpopupmenu.cpp:54
 #, kde-format
 msgid "Altitude vs. Time"
 msgstr "Alteco kontraŭ Tempo"
 
-#: kstarsinit.cpp:470
+#: kstarsinit.cpp:467
 #, kde-format
 msgid "What's up Tonight"
 msgstr "Kio okazas Ĉi-vespere"
 
-#: kstarsinit.cpp:479
+#: kstarsinit.cpp:476
 #, kde-format
 msgid "XPlanet Solar System Simulator"
 msgstr "Simulilo de Sunsistemo XPlanet"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, SkyCalendar)
-#: kstarsinit.cpp:481 tools/skycalendar.cpp:438 tools/skycalendar.ui:20
+#: kstarsinit.cpp:478 tools/skycalendar.cpp:438 tools/skycalendar.ui:20
 #, kde-format
 msgid "Sky Calendar"
 msgstr "Ĉiela Kalendaro"
 
-#: kstarsinit.cpp:503
+#: kstarsinit.cpp:500
 #, kde-format
 msgid "Script Builder"
 msgstr "Skripto-Konstruisto"
 
-#: kstarsinit.cpp:511
+#: kstarsinit.cpp:508
 #, kde-format
 msgid "Jupiter's Moons"
 msgstr "La Lunoj de Jupitero"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowFlags)
-#: kstarsinit.cpp:514 options/opsguides.ui:284
+#: kstarsinit.cpp:511 options/opsguides.ui:284
 #, kde-format
 msgid "Flags"
 msgstr "Flagoj"
 
-#: kstarsinit.cpp:517
+#: kstarsinit.cpp:514
 #, kde-format
 msgid "List your &Equipment..."
 msgstr "Listigi vian &Ekipaĵon..."
 
-#: kstarsinit.cpp:519
+#: kstarsinit.cpp:516
 #, kde-format
 msgid "Manage Observer..."
 msgstr "Administri Observanton..."
 
-#: kstarsinit.cpp:523
+#: kstarsinit.cpp:520
 #, kde-format
 msgid "Artificial Horizon..."
 msgstr "Artefarita Horizonto..."
 
-#: kstarsinit.cpp:527
+#: kstarsinit.cpp:524
 #, kde-format
 msgid "Execute the Session Plan..."
 msgstr "Efektivigi la Seancan Planon..."
 
-#: kstarsinit.cpp:531
+#: kstarsinit.cpp:528
 #, kde-format
 msgid "Polaris Hour Angle..."
 msgstr "Polaris Hora Angulo..."
 
-#: kstarsinit.cpp:538
+#: kstarsinit.cpp:535
 #, kde-format
 msgid "Telescope Wizard..."
 msgstr "Teleskopa Sorĉisto..."
 
-#: kstarsinit.cpp:543
+#: kstarsinit.cpp:540
 #, kde-format
 msgid "Device Manager..."
 msgstr "Aparatomanaĝero..."
 
-#: kstarsinit.cpp:566
+#: kstarsinit.cpp:563
 #, kde-format
 msgctxt "Tooltip describing the nature of the time step control"
 msgid ""
@@ -75141,315 +75141,315 @@ msgstr ""
 "Por tempopaŝoj pli grandaj ol 10 minutoj, kadroj estas montrataj. je "
 "intervalo de 'X'."
 
-#: kstarsinit.cpp:575
+#: kstarsinit.cpp:572
 #, kde-format
 msgid "Time step control"
 msgstr "Tempo-paŝa rego"
 
-#: kstarsinit.cpp:584
+#: kstarsinit.cpp:581
 #, kde-format
 msgctxt "Toggle Stars in the display"
 msgid "Stars"
 msgstr "Steloj"
 
-#: kstarsinit.cpp:586
+#: kstarsinit.cpp:583
 #, kde-format
 msgid "Toggle stars"
 msgstr "Baskuligi stelojn"
 
-#: kstarsinit.cpp:588
+#: kstarsinit.cpp:585
 #, kde-format
 msgctxt "Toggle Deep Sky Objects in the display"
 msgid "Deep Sky"
 msgstr "Profunda Ĉielo"
 
-#: kstarsinit.cpp:590
+#: kstarsinit.cpp:587
 #, kde-format
 msgid "Toggle deep sky objects"
 msgstr "Baskuligi profundajn ĉielobjektojn"
 
-#: kstarsinit.cpp:592
+#: kstarsinit.cpp:589
 #, kde-format
 msgctxt "Toggle Solar System objects in the display"
 msgid "Solar System"
 msgstr "Sunsistemo"
 
-#: kstarsinit.cpp:594
+#: kstarsinit.cpp:591
 #, kde-format
 msgid "Toggle Solar system objects"
 msgstr "Baskuligi sunsistemajn objektojn"
 
-#: kstarsinit.cpp:596
+#: kstarsinit.cpp:593
 #, kde-format
 msgctxt "Toggle Constellation Lines in the display"
 msgid "Const. Lines"
 msgstr "Konst. Linioj"
 
-#: kstarsinit.cpp:598
+#: kstarsinit.cpp:595
 #, kde-format
 msgid "Toggle constellation lines"
 msgstr "Baskuligi konstelaciajn liniojn"
 
-#: kstarsinit.cpp:600
+#: kstarsinit.cpp:597
 #, kde-format
 msgctxt "Toggle Constellation Names in the display"
 msgid "Const. Names"
 msgstr "Konst. Nomoj"
 
-#: kstarsinit.cpp:602
+#: kstarsinit.cpp:599
 #, kde-format
 msgid "Toggle constellation names"
 msgstr "Baskuligi la nomojn de konstelacioj"
 
-#: kstarsinit.cpp:604
+#: kstarsinit.cpp:601
 #, kde-format
 msgctxt "Toggle Constellation Boundaries in the display"
 msgid "C. Boundaries"
 msgstr "K. Limoj"
 
-#: kstarsinit.cpp:606
+#: kstarsinit.cpp:603
 #, kde-format
 msgid "Toggle constellation boundaries"
 msgstr "Baskuligi konstelaciajn limojn"
 
-#: kstarsinit.cpp:608
+#: kstarsinit.cpp:605
 #, kde-kuit-format
 msgctxt "Toggle Constellation Art in the display"
 msgid "C. Art (BETA)"
 msgstr "K. Arto (BETA)"
 
-#: kstarsinit.cpp:610
+#: kstarsinit.cpp:607
 #, kde-kuit-format
 msgid "Toggle constellation art (BETA)"
 msgstr "Baskuligi konstelacian arton (BETA)"
 
-#: kstarsinit.cpp:612
+#: kstarsinit.cpp:609
 #, kde-format
 msgctxt "Toggle Milky Way in the display"
 msgid "Milky Way"
 msgstr "Lakta Vojo"
 
-#: kstarsinit.cpp:614
+#: kstarsinit.cpp:611
 #, kde-format
 msgid "Toggle milky way"
 msgstr "Baskuligi laktan vojon"
 
-#: kstarsinit.cpp:616
+#: kstarsinit.cpp:613
 #, kde-format
 msgctxt "Toggle Equatorial Coordinate Grid in the display"
 msgid "Equatorial coord. grid"
 msgstr "Ekvatora koordinato. krado"
 
-#: kstarsinit.cpp:618
+#: kstarsinit.cpp:615
 #, kde-format
 msgid "Toggle equatorial coordinate grid"
 msgstr "Baskuligi ekvatoran koordinatan kradon"
 
-#: kstarsinit.cpp:620
+#: kstarsinit.cpp:617
 #, kde-format
 msgctxt "Toggle Horizontal Coordinate Grid in the display"
 msgid "Horizontal coord. grid"
 msgstr "Horizontala koordinato. krado"
 
-#: kstarsinit.cpp:622
+#: kstarsinit.cpp:619
 #, kde-format
 msgid "Toggle horizontal coordinate grid"
 msgstr "Baskuligi horizontalan koordinatan kradon"
 
-#: kstarsinit.cpp:624
+#: kstarsinit.cpp:621
 #, kde-format
 msgctxt "Toggle the opaque fill of the ground polygon in the display"
 msgid "Ground"
 msgstr "Tero"
 
-#: kstarsinit.cpp:626
+#: kstarsinit.cpp:623
 #, kde-format
 msgid "Toggle opaque ground"
 msgstr "Baskuligi maldiafanan grundon"
 
-#: kstarsinit.cpp:628
+#: kstarsinit.cpp:625
 #, kde-format
 msgctxt "Toggle Daytime Simulation"
 msgid "Daytime"
 msgstr "Tagtempo"
 
-#: kstarsinit.cpp:630
+#: kstarsinit.cpp:627
 #, kde-format
 msgid "Toggle daytime simulation"
 msgstr "Baskuligi tagtempan simulon"
 
-#: kstarsinit.cpp:632
+#: kstarsinit.cpp:629
 #, kde-format
 msgctxt "Toggle flags in the display"
 msgid "Flags"
 msgstr "Flagoj"
 
-#: kstarsinit.cpp:634
+#: kstarsinit.cpp:631
 #, kde-format
 msgid "Toggle flags"
 msgstr "Baskuligi flagojn"
 
-#: kstarsinit.cpp:636
+#: kstarsinit.cpp:633
 #, kde-format
 msgctxt "Toggle satellites in the display"
 msgid "Satellites"
 msgstr "Satelitoj"
 
-#: kstarsinit.cpp:638
+#: kstarsinit.cpp:635
 #, kde-format
 msgid "Toggle satellites"
 msgstr "Baskuligi satelitojn"
 
-#: kstarsinit.cpp:640
+#: kstarsinit.cpp:637
 #, kde-format
 msgctxt "Toggle supernovae in the display"
 msgid "Supernovae"
 msgstr "Supernovaoj"
 
-#: kstarsinit.cpp:642
+#: kstarsinit.cpp:639
 #, kde-format
 msgid "Toggle supernovae"
 msgstr "Baskuligi supernovaojn"
 
-#: kstarsinit.cpp:644
+#: kstarsinit.cpp:641
 #, kde-format
 msgctxt "Toggle What's Interesting"
 msgid "What's Interesting"
 msgstr "Kio estas Interesa"
 
-#: kstarsinit.cpp:646
+#: kstarsinit.cpp:643
 #, kde-format
 msgid "Toggle What's Interesting"
 msgstr "Baskuligi Kio estas Interesa"
 
-#: kstarsinit.cpp:651
+#: kstarsinit.cpp:648
 #, kde-format
 msgctxt "Toggle Ekos in the display"
 msgid "Ekos"
 msgstr "Ekos"
 
-#: kstarsinit.cpp:653
+#: kstarsinit.cpp:650
 #, kde-format
 msgid "Toggle Ekos"
 msgstr "Baskuligi Ekos"
 
-#: kstarsinit.cpp:655
+#: kstarsinit.cpp:652
 #, kde-format
 msgctxt "Toggle the INDI Control Panel in the display"
 msgid "INDI Control Panel"
 msgstr "INDI Stirpanelo"
 
-#: kstarsinit.cpp:657
+#: kstarsinit.cpp:654
 #, kde-format
 msgid "Toggle INDI Control Panel"
 msgstr "Baskuligi INDI-Stirpanelon"
 
-#: kstarsinit.cpp:660
+#: kstarsinit.cpp:657
 #, kde-format
 msgctxt "Toggle the FITS Viewer in the display"
 msgid "FITS Viewer"
 msgstr "FITS Vidilo"
 
-#: kstarsinit.cpp:662
+#: kstarsinit.cpp:659
 #, kde-format
 msgid "Toggle FITS Viewer"
 msgstr "Baskuligi FITS-Vidilon"
 
-#: kstarsinit.cpp:666
+#: kstarsinit.cpp:663
 #, kde-format
 msgctxt "Toggle the sensor Field of View"
 msgid "Sensor FOV"
 msgstr "Sensilo FOV"
 
-#: kstarsinit.cpp:668
+#: kstarsinit.cpp:665
 #, kde-format
 msgid "Toggle Sensor FOV"
 msgstr "Baskuligi Sensilan FOV"
 
-#: kstarsinit.cpp:673
+#: kstarsinit.cpp:670
 #, kde-format
 msgctxt "Toggle the Mosaic Panel"
 msgid "Mosaic Panel"
 msgstr "Mozaika Panelo"
 
-#: kstarsinit.cpp:675
+#: kstarsinit.cpp:672
 #, kde-format
 msgid "Toggle Mosaic Panel"
 msgstr "Baskuligi Mozaika Panelo"
 
-#: kstarsinit.cpp:680
+#: kstarsinit.cpp:677
 #, kde-format
 msgctxt "Toggle the Mount Control Panel"
 msgid "Mount Control"
 msgstr "Stiro de Muntaĵo"
 
-#: kstarsinit.cpp:682
+#: kstarsinit.cpp:679
 #, kde-format
 msgid "Toggle Mount Control Panel"
 msgstr "Baskuligi Muntaĵan Stirpanelon"
 
-#: kstarsinit.cpp:686
+#: kstarsinit.cpp:683
 #, kde-format
 msgctxt "Toggle the telescope center lock in display"
 msgid "Center Telescope"
 msgstr "Centra Teleskopo"
 
-#: kstarsinit.cpp:688
+#: kstarsinit.cpp:685
 #, kde-format
 msgid "Toggle Lock Telescope Center"
 msgstr "Baskuligi Ŝloson de Teleskopa Centro"
 
-#: kstarsinit.cpp:692
+#: kstarsinit.cpp:689
 #, kde-format
 msgid "Toggle Telescope Tracking"
 msgstr "Baskuligi Teleskopan Spuradon"
 
-#: kstarsinit.cpp:696
+#: kstarsinit.cpp:693
 #, kde-format
 msgid "Slew telescope to the focused object"
 msgstr "Turni teleskopon al la fokusita objekto"
 
-#: kstarsinit.cpp:700
+#: kstarsinit.cpp:697
 #, kde-format
 msgid "Sync telescope to the focused object"
 msgstr "Sinkronigi teleskopon al la fokusita objekto"
 
-#: kstarsinit.cpp:704
+#: kstarsinit.cpp:701
 #, kde-format
 msgid "Abort telescope motions"
 msgstr "Ĉesigi teleskopajn movojn"
 
-#: kstarsinit.cpp:709
+#: kstarsinit.cpp:706
 #, kde-format
 msgid "Park telescope"
 msgstr "Parkumi teleskopo"
 
-#: kstarsinit.cpp:713
+#: kstarsinit.cpp:710
 #, kde-format
 msgid "Unpark telescope"
 msgstr "Malparkumi teleskopon"
 
-#: kstarsinit.cpp:719
+#: kstarsinit.cpp:716
 #, kde-format
 msgid "Slew the telescope to the mouse pointer position"
 msgstr "Turni la teleskopon al la musmontrilo"
 
-#: kstarsinit.cpp:722
+#: kstarsinit.cpp:719
 #, kde-format
 msgid "Sync the telescope to the mouse pointer position"
 msgstr "Sinkronigi la teleskopon al la musa montrilo"
 
-#: kstarsinit.cpp:729
+#: kstarsinit.cpp:726
 #, kde-format
 msgid "Park dome"
 msgstr "Parkumi kupolon"
 
-#: kstarsinit.cpp:733
+#: kstarsinit.cpp:730
 #, kde-format
 msgid "Unpark dome"
 msgstr "Malparkumi kupolon"
 
-#: kstarsinit.cpp:755
+#: kstarsinit.cpp:752
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid ""
@@ -75463,7 +75463,7 @@ msgstr ""
 "vertikale supre. Ĉi tio estus la natura elekto por rekta bildtrovilo aŭ "
 "nudokula vido."
 
-#: kstarsinit.cpp:764
+#: kstarsinit.cpp:761
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid ""
@@ -75477,14 +75477,14 @@ msgstr ""
 "vertikale malsupre. Tio estus la natura elekto por inversa bildtroviloskopo, "
 "refraktor/cassegrain sen erectorprismo, aŭ Dobsonian."
 
-#: kstarsinit.cpp:769
+#: kstarsinit.cpp:766
 #, kde-format
 msgctxt ""
 "Orientation of the sky map is arbitrary as it has been adjusted by the user"
 msgid "Arbitrary"
 msgstr "Arbitra"
 
-#: kstarsinit.cpp:773
+#: kstarsinit.cpp:770
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid ""
@@ -75495,13 +75495,13 @@ msgstr ""
 "Ĉi tiu reĝimo estas elektita aŭtomate se vi mane turnis la ĉielmapon per Maj "
 "+ Trenu musa ago, por informi vin, ke la orientiĝo estas arbitra."
 
-#: kstarsinit.cpp:780
+#: kstarsinit.cpp:777
 #, kde-format
 msgctxt "Do not adjust the orientation of the sky map for an erect observer"
 msgid "No correction"
 msgstr "Neniu korekto"
 
-#: kstarsinit.cpp:784
+#: kstarsinit.cpp:781
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid ""
@@ -75511,7 +75511,7 @@ msgstr ""
 "Elektu ĉi tion se vi uzas fotilon sur la teleskopo, aŭ havas la "
 "ĉielmapanekranon muntita sur via teleskopo"
 
-#: kstarsinit.cpp:790
+#: kstarsinit.cpp:787
 #, kde-format
 msgctxt ""
 "Adjust the orientation of the sky map for an erect observer, left-handed "
@@ -75519,7 +75519,7 @@ msgctxt ""
 msgid "Erect observer correction, left-handed"
 msgstr "Korekto por erekta observanto, maldekstramana"
 
-#: kstarsinit.cpp:794
+#: kstarsinit.cpp:791
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid ""
@@ -75537,7 +75537,7 @@ msgstr ""
 "male al fotilo kiu rotacius kun la teleskopo. Tipe havas sencon kombini ĉi "
 "tion kun Zenith Down-orientiĝo."
 
-#: kstarsinit.cpp:800
+#: kstarsinit.cpp:797
 #, kde-format
 msgctxt ""
 "Adjust the orientation of the sky map for an erect observer, left-handed "
@@ -75545,7 +75545,7 @@ msgctxt ""
 msgid "Erect observer correction, right-handed"
 msgstr "Korekto por erekta observanto, dekstramana"
 
-#: kstarsinit.cpp:804
+#: kstarsinit.cpp:801
 #, kde-format
 msgctxt "Orientation of the sky map"
 msgid ""
@@ -75563,44 +75563,44 @@ msgstr ""
 "male al fotilo kiu rotacius kun la teleskopo. Tipe havas sencon kombini ĉi "
 "tion kun Zenith Down-orientiĝo."
 
-#: kstarsinit.cpp:828
+#: kstarsinit.cpp:825
 #, kde-format
 msgctxt "Arbitrary Sky Map View"
 msgid "Arbitrary"
 msgstr "Arbitra"
 
-#: kstarsinit.cpp:831
+#: kstarsinit.cpp:828
 #, kde-format
 msgid "Edit Views..."
 msgstr "Redakti Vidojn..."
 
-#: kstarsinit.cpp:858
+#: kstarsinit.cpp:855
 #, kde-format
 msgid "Edit FOV Symbols..."
 msgstr "Redakti FOV-Simbolojn..."
 
-#: kstarsinit.cpp:895
+#: kstarsinit.cpp:892
 #, kde-format
 msgid "HiPS Settings..."
 msgstr "HiPS-agordoj..."
 
-#: kstarsinit.cpp:902
+#: kstarsinit.cpp:899
 #, kde-format
 msgid " Welcome to KStars "
 msgstr " Bonvenon ĉe KStars"
 
-#: kstarsinit.cpp:999 kstarsliteinit.cpp:65 skymap.cpp:410 skymaplite.cpp:324
+#: kstarsinit.cpp:996 kstarsliteinit.cpp:65 skymap.cpp:410 skymaplite.cpp:324
 #: widgets/infoboxwidget.cpp:111
 #, kde-format
 msgid "nothing"
 msgstr "nenio"
 
-#: kstarsinit.cpp:1054 kstarsliteinit.cpp:120
+#: kstarsinit.cpp:1051 kstarsliteinit.cpp:120
 #, kde-format
 msgid "Initial Position is Below Horizon"
 msgstr "Komenca Pozicio estas Sub Horizonto"
 
-#: kstarsinit.cpp:1056 kstarsliteinit.cpp:122
+#: kstarsinit.cpp:1053 kstarsliteinit.cpp:122
 #, kde-format
 msgid ""
 "The initial position is below the horizon.\n"
@@ -75609,17 +75609,17 @@ msgstr ""
 "La komenca pozicio estas sub la horizonto.\n"
 "Ĉu vi ŝatus restarigi al la defaŭlta pozicio?"
 
-#: kstarsinit.cpp:1057
+#: kstarsinit.cpp:1054
 #, kde-format
 msgid "Reset Position"
 msgstr "Restarigi Pozicion"
 
-#: kstarsinit.cpp:1058
+#: kstarsinit.cpp:1055
 #, kde-format
 msgid "Do Not Reset"
 msgstr "Ne Restarigi"
 
-#: kstarsinit.cpp:1123
+#: kstarsinit.cpp:1120
 #, kde-format
 msgid "&Themes"
 msgstr "E&tosoj"
