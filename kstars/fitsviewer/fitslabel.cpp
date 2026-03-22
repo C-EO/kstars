@@ -140,11 +140,18 @@ If you are in the dragMouse mode and the mousebutton is pressed, The method chec
 between the location of the last point stored and the current event point to see how the mouse has moved.
 Then it moves the scrollbars and thus the view to the right location.
 Then it stores the current point so next time it can do it again.
+
+*** MAKE SURE ANY CHANGES TO THIS FUNCTION CONSISTENTLY UNLOCK THE MUTEX
  */
 void FITSLabel::mouseMoveEvent(QMouseEvent *e)
 {
     const QSharedPointer<FITSData> &imageData = view->imageData();
     if (imageData.isNull())
+        return;
+
+    // For LiveStacker there is a mutex on the image buffer. Don't access whilst the buffer is being updated to
+    // prevent SEGV. Just ignore the mouse event to prevent GUI lag.
+    if (!imageData->mutex()->tryLock())
         return;
 
     float scale = (view->getCurrentZoom() / ZOOM_DEFAULT);
@@ -200,7 +207,10 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
     uint8_t const *buffer = imageData->getImageBuffer();
 
     if (buffer == nullptr)
+    {
+        imageData->mutex()->unlock();
         return;
+    }
 
     x = round(e->x() / scale);
     y = round(e->y() / scale);
@@ -320,6 +330,7 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
         }
     }
 
+    imageData->mutex()->unlock();
     e->accept();
 }
 

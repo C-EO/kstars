@@ -41,6 +41,7 @@
 #include <QNetworkReply>
 #include <QTimer>
 #include <QQueue>
+#include <QMutex>
 
 #ifndef KSTARS_LITE
 #include <kxmlguiwindow.h>
@@ -88,6 +89,15 @@ class FITSData : public QObject
         explicit FITSData(FITSMode fitsMode = FITS_NORMAL);
         explicit FITSData(const QSharedPointer<FITSData> &other);
         ~FITSData() override;
+
+        /**
+         * @brief mutex locks the image buffer during update
+         * @return mutex.
+         */
+        QMutex* mutex() const
+        {
+            return &m_DataMutex;
+        };
 
         /** Object to hold FITS Header records */
         struct Record
@@ -1270,6 +1280,8 @@ class FITSData : public QObject
         void updateLiveStackMetadata();
 #endif
 
+        /// Mutex used by LiveStacker to protect updating data buffer
+        mutable QMutex m_DataMutex;
         /// Pointer to CFITSIO FITS file struct
         fitsfile *fptr { nullptr };
         /// Generic data image buffer

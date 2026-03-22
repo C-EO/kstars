@@ -675,6 +675,10 @@ QFuture<bool> FITSData::loadStackBuffer()
 {
     m_Extension = "fits";
     QByteArray &buffer = *m_StackedBuffer;
+    // Lock a mutex whilst the stack buffer is changed. This is stop mouse move events triggering a SEGV if the buffer
+    // is changed whilst the user is acting upon the data in the UI.
+    // NOTE: the mutex is unlocked when locker goes out of scope
+    QMutexLocker locker(&m_DataMutex);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     return QtConcurrent::run(&FITSData::loadFromBuffer, this, buffer);
 #else
