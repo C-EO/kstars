@@ -640,6 +640,16 @@ void SchedulerProcess::start()
         emit updateJobTable(j);
     }
 
+    // Reset startup state only if it's in an error or intermediate state.
+    // STARTUP_COMPLETE is preserved so we don't re-run the startup procedure unnecessarily.
+    // This handles the case where the previous run ended with STARTUP_ERROR
+    // and the user manually presses Start to retry.
+    if (moduleState()->startupState() != STARTUP_IDLE &&
+            moduleState()->startupState() != STARTUP_COMPLETE)
+    {
+        moduleState()->setStartupState(STARTUP_IDLE);
+    }
+
     moduleState()->init();
     iterate();
 }
