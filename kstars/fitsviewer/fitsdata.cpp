@@ -273,6 +273,13 @@ void FITSData::loadCommon(const QString &inFilename)
 
 bool FITSData::loadFromBuffer(const QByteArray &buffer)
 {
+    // Lock a mutex whilst the stack buffer is changed. This is stop mouse move events triggering a SEGV if the buffer
+    // is changed whilst the user is acting upon the data in the UI.
+    // NOTE: the mutex is unlocked when locker goes out of scope
+    QScopedPointer<QMutexLocker> locker;
+    if (m_Mode == FITS_LIVESTACKING)
+        locker.reset(new QMutexLocker(&m_DataMutex));
+
     loadCommon("");
     qCDebug(KSTARS_FITS) << "Reading file buffer (" << KFormat().formatByteSize(buffer.size()) << ")";
     return privateLoad(buffer);
@@ -675,10 +682,6 @@ QFuture<bool> FITSData::loadStackBuffer()
 {
     m_Extension = "fits";
     QByteArray &buffer = *m_StackedBuffer;
-    // Lock a mutex whilst the stack buffer is changed. This is stop mouse move events triggering a SEGV if the buffer
-    // is changed whilst the user is acting upon the data in the UI.
-    // NOTE: the mutex is unlocked when locker goes out of scope
-    QMutexLocker locker(&m_DataMutex);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     return QtConcurrent::run(&FITSData::loadFromBuffer, this, buffer);
 #else
