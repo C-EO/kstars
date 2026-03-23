@@ -46,6 +46,7 @@ extern void execute_tests();
             if (!strcmp("-functions", argv[i])) \
                 return QTest::qExec(&tc, argc, argv); \
         QApplication* app = new QApplication(argc, argv); \
+        app->setStyle("Fusion"); \
         KLocalizedString::setApplicationDomain("kstars"); \
         KTEST_BEGIN(); \
         prepare_tests(); \

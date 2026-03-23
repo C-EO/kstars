@@ -571,8 +571,6 @@ void SchedulerProcess::wakeUpScheduler()
                 moduleState()->disablePreemptiveShutdown();
                 // Clear job
                 moduleState()->setActiveJob(nullptr);
-                // Set flag to indicate we're entering weather monitoring mode
-                moduleState()->setWeatherShutdownMonitoring(true);
                 // Proceed to remaining shutdown stages
                 checkShutdownState();
                 return;
@@ -582,30 +580,30 @@ void SchedulerProcess::wakeUpScheduler()
         moduleState()->disablePreemptiveShutdown();
         appendLogText(i18n("Scheduler is awake."));
 
-        // If we're recovering from weather alert soft shutdown, execute post-startup queue
-        // to reverse the parking/shutdown actions (symmetric with pre-shutdown queue execution)
-        if (moduleState()->weatherGracePeriodActive() &&
-                Options::schedulerStartupEnabled() &&
-                m_queueManager &&
-                !moduleState()->postStartupScriptURL().isEmpty())
-        {
-            QString queueFile = moduleState()->postStartupScriptURL().toLocalFile();
-            if (m_queueManager->loadQueue(queueFile))
-            {
-                if (m_queueManager->count() > 0)
-                {
-                    appendLogText(i18n("Executing post-startup tasks from %1 after safety recovery...", queueFile));
-                    // Set a temporary state to track post-weather-recovery startup
-                    moduleState()->setStartupState(STARTUP_POST_DEVICES_RUNNING);
-                    m_queueExecutor->start();
-                    return; // Don't call execute() yet, wait for queue completion
-                }
-            }
-            else
-            {
-                appendLogText(i18n("Warning: Failed to load post-startup queue from %1 after safety recovery", queueFile));
-            }
-        }
+        // CRITICAL FIX: Read startupState BEFORE the reset loop below clears it.
+        //
+        // Background: when startShutdownDueToWeather() runs the pre-shutdown queue and
+        // queueExecutionCompleted() fires with weatherGracePeriodActive == true, it sets:
+        //   startupState  = STARTUP_POST_DEVICES   (skip Ekos/INDI re-start, only unpark)
+        //   shutdownState = SHUTDOWN_COMPLETE       (soft shutdown, Ekos/INDI still running)
+        //
+        // There are two distinct code paths that bring us here after weather improves:
+        //
+        //   Path A – timer-based (grace period expires, weather OK):
+        //     The inner weatherGracePeriodActive() block above already called
+        //     setWeatherGracePeriodActive(false) before falling through to this point.
+        //
+        //   Path B – event-driven (setWeatherStatus(WEATHER_OK) fires):
+        //     setWeatherStatus() calls setWeatherGracePeriodActive(false) and then
+        //     setupNextIteration(RUN_WAKEUP, 10).  wakeUpScheduler() is invoked 10 ms
+        //     later with weatherGracePeriodActive already false.
+        //
+        // In both paths weatherGracePeriodActive() == false here, so we cannot use it
+        // as the trigger for the post-startup queue.  The only reliable indicator is
+        // startupState == STARTUP_POST_DEVICES, which queueExecutionCompleted() set.
+        const bool needsPostStartupRecovery =
+            (moduleState()->startupState() == STARTUP_POST_DEVICES ||
+             moduleState()->startupState() == STARTUP_POST_DEVICES_RUNNING);
 
         // Reset startup state when waking from preemptive shutdown.
         // This handles all cases where startup state needs to be reset:
@@ -614,8 +612,55 @@ void SchedulerProcess::wakeUpScheduler()
         // - Any intermediate state: need clean restart
         if (moduleState()->startupState() != STARTUP_IDLE)
         {
+            qCDebug(KSTARS_EKOS_SCHEDULER) << "wakeUpScheduler: Resetting startup state from"
+                                           << startupStateString(moduleState()->startupState()) << "to STARTUP_IDLE";
             moduleState()->setStartupState(STARTUP_IDLE);
             appendLogText(i18n("Resetting startup state."));
+        }
+
+        // Reset shutdown state when waking from preemptive shutdown.
+        // During weather soft-shutdown, shutdownState was set to SHUTDOWN_COMPLETE.
+        // If we don't reset it, checkStatus() will see SHUTDOWN_COMPLETE when the current
+        // job finishes and call completeShutdown() -> stop(), aborting all remaining jobs
+        // and skipping the pre-shutdown queue.
+        if (moduleState()->shutdownState() != SHUTDOWN_IDLE)
+        {
+            qCDebug(KSTARS_EKOS_SCHEDULER) << "wakeUpScheduler: Resetting shutdown state from"
+                                           << shutdownStateString(moduleState()->shutdownState()) << "to SHUTDOWN_IDLE";
+            moduleState()->setShutdownState(SHUTDOWN_IDLE);
+        }
+
+        // If we are recovering from a weather soft-shutdown, run the post-startup queue
+        // (which should unpark dome/mount) BEFORE resuming job execution.  This is the
+        // symmetric counterpart to the pre-shutdown queue that was run when the weather
+        // alert first triggered the soft-shutdown.
+        //
+        // NOTE: we do this AFTER the state resets so that queueExecutionCompleted()
+        // sees clean IDLE shutdown/startup states when it finishes and calls execute().
+        if (needsPostStartupRecovery)
+        {
+            // Run the post-startup queue if one is configured (e.g. unpark dome/mount).
+            if (Options::schedulerStartupEnabled() &&
+                    m_queueManager &&
+                    !moduleState()->postStartupScriptURL().isEmpty())
+            {
+                QString queueFile = moduleState()->postStartupScriptURL().toLocalFile();
+                if (m_queueManager->loadQueue(queueFile) && m_queueManager->count() > 0)
+                {
+                    appendLogText(i18n("Executing post-startup tasks from %1 after safety recovery...", queueFile));
+                    moduleState()->setStartupState(STARTUP_POST_DEVICES_RUNNING);
+                    m_queueExecutor->start();
+                    return; // queueExecutionCompleted() → STARTUP_COMPLETE → execute()
+                }
+                else
+                {
+                    appendLogText(i18n("Post-startup queue empty or unloadable after safety recovery."));
+                }
+            }
+            // No post-startup queue configured, or it was empty/unloadable.
+            // Mark startup complete immediately — mirrors checkStartupState(STARTUP_POST_DEVICES)
+            // which also proceeds directly to STARTUP_COMPLETE when there are no tasks.
+            moduleState()->setStartupState(STARTUP_COMPLETE);
         }
 
         execute();
@@ -647,6 +692,8 @@ void SchedulerProcess::start()
     if (moduleState()->startupState() != STARTUP_IDLE &&
             moduleState()->startupState() != STARTUP_COMPLETE)
     {
+        qCDebug(KSTARS_EKOS_SCHEDULER) << "start: Resetting startup state from"
+                                       << startupStateString(moduleState()->startupState()) << "to STARTUP_IDLE";
         moduleState()->setStartupState(STARTUP_IDLE);
     }
 
@@ -2041,7 +2088,28 @@ bool SchedulerProcess::checkShutdownState()
                     return false;
                 }
             }
-            // No pre-shutdown queue or empty — advance directly to SHUTDOWN_STOPPING_EKOS
+            // No pre-shutdown queue configured, or the queue file loaded with zero tasks.
+            //
+            // For a weather soft-shutdown (grace period active), Ekos/INDI are intentionally
+            // kept running, so the "shutdown" is immediately complete from the scheduler's
+            // perspective.  Set SHUTDOWN_COMPLETE + STARTUP_POST_DEVICES (the recovery
+            // signal) here, mirroring what queueExecutionCompleted() does when a pre-shutdown
+            // queue finishes with weatherGracePeriodActive == true.
+            //
+            // Without this branch the code would advance to SHUTDOWN_STOPPING_EKOS, which
+            // requires a subsequent scheduler iteration to call completeShutdown().  In unit
+            // tests the iteration timer is not running during QTest::qWait(), so
+            // completeShutdown() is never reached and shutdownState stays at
+            // SHUTDOWN_STOPPING_EKOS indefinitely.
+            if (moduleState()->weatherGracePeriodActive())
+            {
+                appendLogText(i18n("No pre-shutdown tasks during weather grace period; soft shutdown complete."));
+                moduleState()->setShutdownState(SHUTDOWN_COMPLETE);
+                moduleState()->setStartupState(STARTUP_POST_DEVICES);
+                return true;
+            }
+
+            // Normal (non-grace-period) shutdown: advance to SHUTDOWN_STOPPING_EKOS
             // and switch the scheduler timer to RUN_SHUTDOWN so completeShutdown() is called
             // on the very next iteration. Without this, SHUTDOWN_IDLE would be re-entered
             // forever because the caller (checkStatus / RUN_SCHEDULER) never drives the
@@ -3240,10 +3308,14 @@ void SchedulerProcess::queueExecutionCompleted()
         // Mark shutdown as complete since it is only a soft-shutdown
         if (moduleState()->weatherGracePeriodActive())
         {
+            qCDebug(KSTARS_EKOS_SCHEDULER) <<
+            "queueExecutionCompleted: Weather grace period active, setting shutdownState to SHUTDOWN_COMPLETE";
             moduleState()->setShutdownState(SHUTDOWN_COMPLETE);
             // Because this is only a soft shutdown
             // Reset startup stage to POST_DEVICES we do not need to run
             // any pre-INDI steps.
+            qCDebug(KSTARS_EKOS_SCHEDULER) <<
+            "queueExecutionCompleted: Setting startupState to STARTUP_POST_DEVICES for weather recovery";
             moduleState()->setStartupState(STARTUP_POST_DEVICES);
         }
         else
@@ -3999,6 +4071,18 @@ void SchedulerProcess::setWeatherStatus(ISD::Weather::Status status, bool fromSt
         appendLogText(i18n("Safety has improved. Resuming operations."));
         moduleState()->setWeatherGracePeriodActive(false);
         moduleState()->setWeatherShutdownMonitoring(false);
+        // Schedule wakeUpScheduler() via a real Qt single-shot timer so it fires
+        // during QTest::qWait() even when the scheduler's iterationTimer is not
+        // running (unit tests drive runSchedulerIteration() manually, so the
+        // iterationTimer is never started).  In production this also means recovery
+        // happens in 10 ms rather than waiting for the iterationTimer to expire,
+        // which could be sleeping for hours.
+        QTimer::singleShot(10, this, [this]()
+        {
+            wakeUpScheduler();
+        });
+        // Also update the scheduler state so iterateScheduler() / iterate() pick it
+        // up correctly on the next iteration.
         moduleState()->setupNextIteration(RUN_WAKEUP, 10);
     }
     // Check if the weather enforcement is on and weather is critical

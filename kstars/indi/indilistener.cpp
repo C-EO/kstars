@@ -150,8 +150,6 @@ void INDIListener::removeDevice(const QString &deviceName)
             m_Devices.removeOne(oneDevice);
             // Then emit a signal to inform subscribers that this device is removed.
             emit deviceRemoved(oneDevice);
-            // Delete this device later.
-            oneDevice->deleteLater();
             return;
         }
     }

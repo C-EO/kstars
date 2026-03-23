@@ -16,7 +16,10 @@
 #include "ekos/capture/capture.h"
 #include "ekos/focus/focusmodule.h"
 #include "ekos/scheduler/scheduler.h"
+#include "ekos/scheduler/schedulermodulestate.h"
 #include "ekos/auxiliary/filtermanager.h"
+#include "indi/drivermanager.h"
+#include "indi/driverinfo.h"
 #include "kstarsdata.h"
 #include "../testhelpers.h"
 
@@ -169,6 +172,12 @@ void TestEkosHelper::fillProfile(bool *isDone)
     if (m_RotatorDevice != "")
     {
         selectProfileDevice(m_RotatorDevice, "aux2Combo", "Rotator");
+    }
+
+    // Select any extra devices requested
+    for (const QString &dev : m_ExtraDevices)
+    {
+        addDriverToProfile(dev);
     }
 
     // Save the profile using the "Save" button
@@ -1154,4 +1163,88 @@ void TestEkosHelper::domeStatusChanged(ISD::Dome::Status status)
     // check if the new state is the next one expected, then remove it from the stack
     if (!expectedDomeStates.isEmpty() && expectedDomeStates.head() == status)
         expectedDomeStates.dequeue();
+}
+
+bool TestEkosHelper::ensureSimulatorProfile(const QString &profileName, const QStringList &extraDevices)
+{
+    Ekos::Manager *manager = Ekos::Manager::Instance();
+    if (!manager)
+        return false;
+
+    auto &profiles = const_cast<QList<QSharedPointer<ProfileInfo>>&>(manager->getAllProfiles());
+
+    QSharedPointer<ProfileInfo> pi;
+    for (auto &profile : profiles)
+    {
+        if (profile->name == profileName)
+        {
+            pi = profile;
+            break;
+        }
+    }
+
+    if (!pi)
+    {
+        int id = KStarsData::Instance()->userdb()->AddProfile(profileName);
+        if (id < 0) return false;
+        pi.reset(new ProfileInfo(id, profileName));
+        profiles.append(pi);
+
+        QComboBox* profileCBox = manager->findChild<QComboBox*>("profileCombo");
+        if (profileCBox && profileCBox->findText(profileName) < 0)
+        {
+            profileCBox->addItem(profileName);
+        }
+    }
+
+    pi->host = "localhost";
+    pi->port = 7624;
+    pi->autoConnect = true;
+
+    pi->drivers.clear();
+
+    auto addDrv = [&](const QString & label) -> bool
+    {
+        auto dInfo = DriverManager::Instance()->findDriverByLabel(label);
+        if (!dInfo)
+        {
+            qWarning() << "Driver not found:" << label;
+            return false;
+        }
+        pi->addDriver(dInfo->getType(), label);
+        return true;
+    };
+
+    if (!addDrv("Telescope Simulator")) return false;
+    if (!addDrv("CCD Simulator")) return false;
+    if (!addDrv("Focuser Simulator")) return false;
+    if (!addDrv("Guide Simulator")) return false;
+
+    for (const auto &dev : extraDevices)
+    {
+        if (!addDrv(dev)) return false;
+    }
+
+    return KStarsData::Instance()->userdb()->SaveProfile(pi);
+}
+
+bool TestEkosHelper::setSimulatedWeather(bool alert, QSharedPointer<Ekos::Scheduler> &scheduler, int timeoutMs)
+{
+    int result = QProcess::execute(QString("indi_setprop"), {QString("-n"), QString("Weather Simulator.WEATHER_CONTROL.Weather=%1").arg(alert ? 1 : 0)});
+    if (result != 0) return false;
+
+    int result2 = QProcess::execute(QString("indi_setprop"), {QString("-s"), QString("Weather Simulator.WEATHER_REFRESH.REFRESH=On")});
+    if (result2 != 0) return false;
+
+    QElapsedTimer timer;
+    timer.start();
+    while (timer.elapsed() < timeoutMs)
+    {
+        if (scheduler->moduleState()->weatherStatus() == (alert ? ISD::Weather::WEATHER_ALERT : ISD::Weather::WEATHER_OK))
+        {
+            return true;
+        }
+        QTest::qWait(100);
+    }
+    return false;
 }

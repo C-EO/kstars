@@ -35,6 +35,9 @@ void SchedulerModuleState::init()
 
 void SchedulerModuleState::setCurrentProfile(const QString &newName, bool signal)
 {
+    if (m_profiles.isEmpty())
+        return;
+
     bool changed = (newName != m_currentProfile);
 
     if (m_profiles.contains(newName))

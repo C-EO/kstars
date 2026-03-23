@@ -158,9 +158,7 @@ void Ekos::Camera::init()
 
 Camera::~Camera()
 {
-    foreach (auto job, state()->allJobs())
-        job->deleteLater();
-
+    state()->setActiveJob(QSharedPointer<SequenceJob>());
     state()->allJobs().clear();
 }
 

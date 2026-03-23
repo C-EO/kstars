@@ -1114,8 +1114,6 @@ QString Camera::previewFilename(FilenamePreviewType previewType)
         previewText = m_placeholderPath.generateSequenceFilename(*m_job, previewType == FILENAME_LOCAL_PREVIEW, true, 1,
                       extension, "", false);
         previewText = QDir::toNativeSeparators(previewText);
-        // we do not use it any more
-        m_job->deleteLater();
     }
 
     // Must change directory separate to UNIX style for remote

@@ -19,6 +19,8 @@
 - `KStarsLib` transitively provides Qt6 Widgets; no need to add it explicitly unless using `QTEST_MAIN`.
 - Build a single test target: `cmake --build build --target <testname> -- -j$(nproc)`
 - Run a test directly: `./build/Tests/auxiliary/<testname>`
+- Do not run any tests automatically. User will run all tests manually.
+
 
 ### KStarsData Requirement
 - `KSPlanetBase::updateCoords()` requires `KStarsData::Instance()` to be non-null.  
@@ -112,3 +114,10 @@ filtermanager->setFilterPosition(redFilterPos, Ekos::FilterManager::CHANGE_POLIC
 KTRY_CLICK(capture, startB);
 KVERIFY_EMPTY_QUEUE_WITH_TIMEOUT(m_CaptureHelper->expectedCaptureStates, 120000);
 ```
+
+### Ekos Simulator Integration Tests
+
+When writing end-to-end UI tests that interact with `Ekos::Manager` and require custom device profiles:
+
+- **Profile Initialization:** If `KTRY_OPEN_EKOS()` has already executed, `Ekos::Manager` caches the existing profile list. Inserting new profiles directly into the database (e.g. `userdb()->AddProfile()`) will not update the `profileCombo` UI. Always construct new test profiles through UI-driven helpers (like `TestEkosHelper::setupEkosProfile()`) which automatically trigger `Ekos::Manager::loadProfiles()` upon saving.
+- **Immediate Job Execution:** When asserting that a scheduled job begins immediately, explicitly disable situational execution limits in the `.esl` file (`enforceTwilight = false`, `enforceArtificialHorizon = false`, `minAltitude = 0`). Failing to disable these limits will cause the job to pause indefinitely until the simulated `KStarsData::ut()` reaches the valid capture window.

@@ -203,6 +203,75 @@
       "showDisplayString": true
     },
     {
+      "name": "Scheduler: Test testWeatherSoftShutdownFullCycle",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+            "args": ["testWeatherSoftShutdownSimulator", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Scheduler: Test testWeatherHardShutdownSimulator",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testWeatherHardShutdownSimulator", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
+      "name": "Scheduler: Test testWeatherMonitoringModeSimulator",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
+      "args": ["testWeatherMonitoringModeSimulator", "-v2"],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "environment": [
+        { "name": "LD_BIND_NOW", "value": "1" },
+        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      ],
+      "setupCommands": [
+        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
+        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
+        { "text": "handle SIGPIPE nostop noprint pass" },
+        { "text": "skip -rfu ^std::.*" }
+      ],
+      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
+      "showDisplayString": true
+    },
+    {
       "name": "Scheduler: Test testGreedySchedulerRun",
       "type": "cppdbg",
       "request": "launch",

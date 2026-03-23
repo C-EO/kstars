@@ -401,6 +401,9 @@ class TestEkosHelper : public QObject
         // Dome device
         QString m_DomeDevice = "";
 
+        // Extra devices to add via the UI (e.g., "Weather Simulator")
+        QStringList m_ExtraDevices;
+
         // Guider (PHD2 or Internal)
         QString m_Guider = "Internal";
 
@@ -562,6 +565,45 @@ class TestEkosHelper : public QObject
          * @return true iff starting alignment succeeds
          */
         bool startAligning(double expTime);
+
+        /**
+         * @brief Ensures a simulator profile named @p profileName exists in the Ekos profile
+         * database, creating or updating it if necessary, with the standard simulator
+         * drivers plus any additional INDI devices in @p extraDevices.
+         *
+         * Standard drivers always included (matches KTRY_EKOS_START_SIMULATORS):
+         *   - Telescope Simulator
+         *   - CCD Simulator
+         *   - Focuser Simulator
+         *   - Guide Simulator
+         *
+         * @p extraDevices — additional INDI driver names to include, e.g.:
+         *   "Weather Simulator", "Filter Simulator", "Dome Simulator"
+         *
+         * The profile is configured for a local INDI server.
+         * Calling this twice with the same arguments must be idempotent (no duplicates).
+         *
+         * @return true if profile was successfully created or updated.
+         */
+        static bool ensureSimulatorProfile(const QString &profileName,
+                                           const QStringList &extraDevices = {});
+
+        /**
+         * @brief Sets the simulated weather condition by writing to the WEATHER_CONTROL
+         * INDI property on the Weather Simulator driver, then waits for the
+         * scheduler's weatherStatus() to reflect the new state.
+         *
+         * @p alert  true  → WEATHER_ALERT (sets WEATHER_CONTROL "Weather" = 1)
+         *           false → WEATHER_OK    (sets WEATHER_CONTROL "Weather" = 0)
+         * @p scheduler    pointer to the running Scheduler instance
+         * @p timeoutMs    how long to wait for the scheduler to react
+         *
+         * @return true if the scheduler reflected the new weather state within
+         *         the timeout, false otherwise.
+         */
+        static bool setSimulatedWeather(bool alert,
+                                        QSharedPointer<Ekos::Scheduler> &scheduler,
+                                        int timeoutMs = 10000);
 
         /**
          * @brief Check if astrometry files exist.

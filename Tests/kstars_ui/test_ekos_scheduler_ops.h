@@ -60,6 +60,19 @@ class TestEkosSchedulerOps : public QObject
         void testDawnShutdown();
         void testPreemptiveShutdown();
         void testPreemptiveShutdownTimerSwitchOnQueueComplete();
+
+        // Weather soft-shutdown → recovery state-machine tests.
+        // testWeatherSoftShutdownSimulator goes through the full Ekos/INDI simulator
+        // startup, injects a weather alert, verifies the soft-shutdown state, then
+        // injects WEATHER_OK and verifies the post-startup queue runs (the fix).
+        void testWeatherSoftShutdownSimulator();
+        // testWeatherHardShutdownSimulator tests the scenario where weather remains
+        // bad and the grace period expires, leading to a full hard shutdown.
+        void testWeatherHardShutdownSimulator();
+        // testWeatherMonitoringModeSimulator tests the scenario where weather remains
+        // bad and the grace period is 0 (wait indefinitely), entering monitoring mode.
+        void testWeatherMonitoringModeSimulator();
+
         void testTwilightStartup();
         void testTwilightStartup_data();
         void testArtificialHorizonConstraints();
