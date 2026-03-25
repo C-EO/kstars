@@ -2930,19 +2930,33 @@ void Manager::deleteNamedProfile(const QString &name)
         // cannot be re-imported on the next startup sync.
         if (pi->INDIWebManagerPort > 0)
         {
-            const QUrl wmUrl(
-                QString("http://%1:%2/api/profiles/%3")
-                .arg(pi->host)
-                .arg(pi->INDIWebManagerPort)
-                .arg(pi->name));
-            QNetworkReply *wmReply = m_networkManager.deleteResource(QNetworkRequest(wmUrl));
-            connect(wmReply, &QNetworkReply::finished, wmReply, &QNetworkReply::deleteLater);
-        }
+            QFutureWatcher<bool> *watcher = new QFutureWatcher<bool>();
+            connect(watcher, &QFutureWatcher<bool>::finished, this, [this, pi, watcher]()
+            {
+                watcher->deleteLater();
 
-        KStarsData::Instance()->userdb()->PurgeProfile(pi);
-        profiles.clear();
-        loadProfiles();
-        getCurrentProfile(m_CurrentProfile);
+                if (watcher->result() == false)
+                {
+                    qCWarning(KSTARS_EKOS) << "Failed to delete profile" << pi->name << "from Web Manager";
+                }
+
+                // Proceed to delete from local DB regardless of Web Manager result
+                KStarsData::Instance()->userdb()->PurgeProfile(pi);
+                profiles.clear();
+                loadProfiles();
+                getCurrentProfile(m_CurrentProfile);
+            });
+
+            QFuture<bool> result = INDI::AsyncWebManager::deleteProfile(pi, pi->name);
+            watcher->setFuture(result);
+        }
+        else
+        {
+            KStarsData::Instance()->userdb()->PurgeProfile(pi);
+            profiles.clear();
+            loadProfiles();
+            getCurrentProfile(m_CurrentProfile);
+        }
         return;
     }
 }
@@ -3015,25 +3029,39 @@ void Manager::deleteProfile()
     if (m_CurrentProfile->name == "Simulators")
         return;
 
-    auto executeDeleteProfile = [&]()
+    auto executeDeleteProfile = [this]()
     {
         // If the profile is linked to a Web Manager, delete it there first so it
         // cannot be re-imported on the next startup sync.
         if (m_CurrentProfile->INDIWebManagerPort > 0)
         {
-            const QUrl wmUrl(
-                QString("http://%1:%2/api/profiles/%3")
-                .arg(m_CurrentProfile->host)
-                .arg(m_CurrentProfile->INDIWebManagerPort)
-                .arg(m_CurrentProfile->name));
-            QNetworkReply *wmReply = m_networkManager.deleteResource(QNetworkRequest(wmUrl));
-            connect(wmReply, &QNetworkReply::finished, wmReply, &QNetworkReply::deleteLater);
-        }
+            QFutureWatcher<bool> *watcher = new QFutureWatcher<bool>();
+            connect(watcher, &QFutureWatcher<bool>::finished, this, [this, watcher]()
+            {
+                watcher->deleteLater();
 
-        KStarsData::Instance()->userdb()->PurgeProfile(m_CurrentProfile);
-        profiles.clear();
-        loadProfiles();
-        getCurrentProfile(m_CurrentProfile);
+                if (watcher->result() == false)
+                {
+                    qCWarning(KSTARS_EKOS) << "Failed to delete profile" << m_CurrentProfile->name << "from Web Manager";
+                }
+
+                // Proceed to delete from local DB regardless of Web Manager result
+                KStarsData::Instance()->userdb()->PurgeProfile(m_CurrentProfile);
+                profiles.clear();
+                loadProfiles();
+                getCurrentProfile(m_CurrentProfile);
+            });
+
+            QFuture<bool> result = INDI::AsyncWebManager::deleteProfile(m_CurrentProfile, m_CurrentProfile->name);
+            watcher->setFuture(result);
+        }
+        else
+        {
+            KStarsData::Instance()->userdb()->PurgeProfile(m_CurrentProfile);
+            profiles.clear();
+            loadProfiles();
+            getCurrentProfile(m_CurrentProfile);
+        }
     };
 
     connect(KSMessageBox::Instance(), &KSMessageBox::accepted, this, [this, executeDeleteProfile]()

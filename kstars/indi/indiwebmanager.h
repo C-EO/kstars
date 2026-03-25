@@ -50,6 +50,7 @@ QFuture<bool> syncCustomDrivers(const QSharedPointer<ProfileInfo> &pi);
 QFuture<bool> areDriversRunning(const QSharedPointer<ProfileInfo> &pi);
 QFuture<bool> startProfile(const QSharedPointer<ProfileInfo> &pi);
 QFuture<bool> stopProfile(const QSharedPointer<ProfileInfo> &pi);
+QFuture<bool> deleteProfile(const QSharedPointer<ProfileInfo> &pi, const QString &profileName);
 }
 
 }

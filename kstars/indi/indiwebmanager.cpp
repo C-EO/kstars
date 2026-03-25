@@ -541,6 +541,11 @@ QFuture<bool> stopProfile(const QSharedPointer<ProfileInfo> &pi)
 {
     return QtConcurrent::run(WebManager::stopProfile, pi);
 }
+
+QFuture<bool> deleteProfile(const QSharedPointer<ProfileInfo> &pi, const QString &profileName)
+{
+    return QtConcurrent::run(WebManager::deleteProfile, pi, profileName);
+}
 }
 
 }
