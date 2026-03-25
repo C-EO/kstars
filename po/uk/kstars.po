@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-23 21:54+0200\n"
+"PO-Revision-Date: 2026-03-24 08:04+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -30531,12 +30531,11 @@ msgstr ""
 "безпеки…"
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"Виконуємо завдання після запуску з %1 після відновлення належних умов "
-"безпеки…"
+"Черга завдань після запуску порожня або непридатна до завантаження після "
+"відновлення належних умов безпеки…"
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30857,11 +30856,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Не вдалося завантажити чергу завдань перед вимиканням з %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "Черга завдань після вимикання порожня. Вимикання завершено."
+msgstr ""
+"Немає завдань до вимикання під час періоду лояльності щодо погоди; м'яке "
+"вимикання завершено."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format

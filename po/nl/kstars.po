@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-23 16:27+0100\n"
+"PO-Revision-Date: 2026-03-24 12:49+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -30256,10 +30256,9 @@ msgid "Executing post-startup tasks from %1 after safety recovery..."
 msgstr "Taken ná opstarten uitvoeren van %1 na veiligheidsherstel..."
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
-msgstr "Taken ná opstarten uitvoeren van %1 na veiligheidsherstel..."
+msgstr "Wachtrij ná opstarten is leeg of niet te laden na veiligheidsherstel."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30563,11 +30562,11 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Laden van wachtrij voor afsluiten uit %1 is mislukt"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "Wachtrij ná afsluiten is leeg, afsluiten voltooid."
+msgstr ""
+"Geen taken na afsluiten tijdens weerrespijtperiode; zacht afsluiten voltooid."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format

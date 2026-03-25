@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-23 09:21-0300\n"
+"PO-Revision-Date: 2026-03-24 07:26-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -30410,12 +30410,11 @@ msgstr ""
 "das da segurança..."
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"Executando tarefas de pós-inicialização a partir de %1 após a recuperação "
-"das da segurança..."
+"A fila pós-inicialização está vazia ou pode ser descarregada após a "
+"recuperação de segurança."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30729,11 +30728,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Falha ao carregar a fila pré-desligamento de %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "Fila de pós-desligamento está vazia. Desligamento concluído."
+msgstr ""
+"Nenhuma tarefa pré-desligamento durante o período de tolerância climática; "
+"desligamento suave concluído."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format

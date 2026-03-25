@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-23 11:22+0100\n"
+"PO-Revision-Date: 2026-03-24 11:08+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -30626,12 +30626,11 @@ msgstr ""
 "recuperació de seguretat..."
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"S'estan executant les tasques posteriors d'inici de %1 després de la "
-"recuperació de seguretat..."
+"La cua posterior d'inici està buida o no es pot carregar després de la "
+"recuperació de seguretat."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30951,11 +30950,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Ha fallat en carregar la cua prèvia de tancament de %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "La cua posterior de tancament és buida, el tancament s'ha completat."
+msgstr ""
+"No hi ha tasques a la cua posterior de tancament durant el període de gràcia "
+"meteorològic; l'aturada suau s'ha completat."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format

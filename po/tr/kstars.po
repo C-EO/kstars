@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-24 01:59+0300\n"
+"PO-Revision-Date: 2026-03-24 19:32+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -30187,12 +30187,11 @@ msgstr ""
 "görevleri yürütülüyor…"
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"Güvenlik durumunun iyileşmesi sonrası %1 konumundan başlangıç sonrası "
-"görevleri yürütülüyor…"
+"Güvenlik durumunun iyileşmesi sonrası başlangıç sonrası kuyruğu boş veya "
+"yüklenemez durumda."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30494,11 +30493,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "%1 konumundan kapanış öncesi görevleri yüklenemedi"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "Kapanış sonrası kuyruğu boş, kapanma tamamlandı."
+msgstr ""
+"Hava durumu bekleme süresi boyunca kapanma öncesi görevi yok; yumuşak "
+"kapanma tamamlandı."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format

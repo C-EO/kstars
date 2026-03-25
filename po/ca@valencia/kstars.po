@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-22 12:26+0100\n"
+"PO-Revision-Date: 2026-03-24 14:15+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -30953,10 +30953,9 @@ msgid "Scheduler is awake."
 msgstr "El programador està actiu."
 
 #: ekos/scheduler/schedulerprocess.cpp:618
-#, fuzzy, kde-format
-#| msgid "Reset job status"
+#, kde-format
 msgid "Resetting startup state."
-msgstr "Restablix l'estat de les tasques"
+msgstr "Restablix l'estat de l'inici."
 
 #: ekos/scheduler/schedulerprocess.cpp:650
 #, kde-format
@@ -30966,12 +30965,11 @@ msgstr ""
 "recuperació de seguretat…"
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"S'estan executant les tasques posteriors a l'inici de %1 després de la "
-"recuperació de seguretat…"
+"La cua posterior a l'inici està buida o no es pot carregar després de la "
+"recuperació de seguretat."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -31291,11 +31289,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Ha fallat mentre es carregava la cua prèvia al tancament de %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "La cua posterior al tancament està buida, el tancament s'ha completat."
+msgstr ""
+"No hi ha cap tasca prèvia al tancament durant el període de gràcia "
+"meteorològic. S'ha completat el tancament suau."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format
@@ -94474,16 +94473,3 @@ msgstr "Color de fons:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Establix el color de fons."
-
-#~ msgid ""
-#~ "Warning: Failed to load post-startup queue from %1 after safety recovery"
-#~ msgstr ""
-#~ "Avís: ha fallat mentre es carregava la cua posterior a l'inici de %1 "
-#~ "després de la recuperació de seguretat"
-
-#~ msgid ""
-#~ "Resetting startup state to run startup procedures after preemptive "
-#~ "shutdown."
-#~ msgstr ""
-#~ "Restablix l'estat d'inici per a que s'executen els procediments d'inici "
-#~ "després d'un tancament preventiu."

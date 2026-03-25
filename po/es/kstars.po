@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-18 00:48+0100\n"
+"PO-Revision-Date: 2026-03-25 01:45+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -30596,10 +30596,9 @@ msgid "Scheduler is awake."
 msgstr "El planificador está activado."
 
 #: ekos/scheduler/schedulerprocess.cpp:618
-#, fuzzy, kde-format
-#| msgid "Reset job status"
+#, kde-format
 msgid "Resetting startup state."
-msgstr "Reiniciar el estado de los trabajos"
+msgstr "Reiniciando el estado de arranque."
 
 #: ekos/scheduler/schedulerprocess.cpp:650
 #, kde-format
@@ -30608,11 +30607,11 @@ msgstr ""
 "Ejecutando tareas de postarranque de %1 tras la recuperación de seguridad…"
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"Ejecutando tareas de postarranque de %1 tras la recuperación de seguridad…"
+"La cola de postarranque está vacía o se puede descargar tras la recuperación "
+"de seguridad."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30933,11 +30932,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "No se ha podido cargar la cola de preapagado de %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "La cola de postapagado está vacía. Se ha completado el apagado."
+msgstr ""
+"No hay tareas de preapagado durante el período de gracia meteorológico; se "
+"ha completado el apagado suave."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format
@@ -93549,16 +93549,3 @@ msgstr "Color del fondo:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Establecer el color para el fondo."
-
-#~ msgid ""
-#~ "Warning: Failed to load post-startup queue from %1 after safety recovery"
-#~ msgstr ""
-#~ "Advertencia: No se ha podido cargar la cola de postarranque de %1 tras la "
-#~ "recuperación de seguridad."
-
-#~ msgid ""
-#~ "Resetting startup state to run startup procedures after preemptive "
-#~ "shutdown."
-#~ msgstr ""
-#~ "Restableciendo el estado de arranque para ejecutar procedimientos de "
-#~ "inicio después del apagado preventivo."

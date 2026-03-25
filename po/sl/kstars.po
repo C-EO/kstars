@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-23 06:20+0100\n"
+"PO-Revision-Date: 2026-03-24 06:26+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -30197,10 +30197,11 @@ msgid "Executing post-startup tasks from %1 after safety recovery..."
 msgstr "Izvajanje post-zagonskih opravil iz %1 po varnostni obnovi..."
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
-msgstr "Izvajanje post-zagonskih opravil iz %1 po varnostni obnovi..."
+msgstr ""
+"Čakalna vrsta po zagonu je prazna ali je ni mogoče odložiti po varnostni "
+"obnovi."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30507,11 +30508,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Neuspelo nalaganje pred-zaustavitvene čakalne vrste iz %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "Post-zaustavitvena čakalna vrsta je prazna, zaustavitev zaključena."
+msgstr ""
+"Ni opravil pred zaustavitvijo med obdobjem vremenskega mirovanja ; mehka "
+"zaustavitev je končana."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format
