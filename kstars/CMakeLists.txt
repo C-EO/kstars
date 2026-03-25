@@ -233,6 +233,7 @@ if (INDI_FOUND)
             ekos/auxiliary/darkview.cpp
             ekos/auxiliary/defectmap.cpp
             ekos/auxiliary/opticaltrainmanager.cpp
+            ekos/auxiliary/opticaltraindbusinterface.cpp
             ekos/auxiliary/profilesettings.cpp
             ekos/auxiliary/opticaltrainsettings.cpp
             ekos/auxiliary/filtermanager.cpp
@@ -1320,6 +1321,7 @@ IF (NOT ANDROID)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Mount.xml ekos/mount/mount.h Ekos::Mount)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Scheduler.xml ekos/scheduler/schedulerprocess.h Ekos::SchedulerProcess)
             qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Observatory.xml ekos/observatory/observatory.h Ekos::Observatory)
+            qt5_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.OpticalTrain.xml ekos/auxiliary/opticaltraindbusinterface.h Ekos::OpticalTrainDBusInterface)
         ELSE()
             # INDI
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.INDI.xml indi/indidbus.h INDIDBus)
@@ -1338,6 +1340,7 @@ IF (NOT ANDROID)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Mount.xml ekos/mount/mount.h Ekos::Mount)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Scheduler.xml ekos/scheduler/schedulerprocess.h Ekos::SchedulerProcess)
             qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.Observatory.xml ekos/observatory/observatory.h Ekos::Observatory)
+            qt6_add_dbus_adaptor(kstars_SRCS org.kde.kstars.Ekos.OpticalTrain.xml ekos/auxiliary/opticaltraindbusinterface.h Ekos::OpticalTrainDBusInterface)
 	    ENDIF()
     ENDIF ()
 

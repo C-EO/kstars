@@ -12,6 +12,7 @@
 #include <indi/indifocuser.h>
 
 #include <QDialog>
+#include <QMap>
 #include <QSqlDatabase>
 #include <QQueue>
 #include <QPointer>
@@ -26,6 +27,8 @@ class ProfileInfo;
 
 namespace Ekos
 {
+
+class OpticalTrainDBusInterface;
 
 class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
 {
@@ -194,6 +197,16 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
         ISD::Guider *getGuider(const QString &name);
         ISD::AdaptiveOptics *getAdaptiveOptics(const QString &name);
 
+        /**
+         * @brief getOpticalTrainObjectPaths Return the DBus object paths of all registered optical trains.
+         *
+         * Each path has the form /KStars/Ekos/OpticalTrain/{id} and corresponds to a
+         * live org.kde.kstars.Ekos.OpticalTrain object on the session bus.
+         *
+         * @return List of DBus object paths, one per optical train.
+         */
+        QStringList getOpticalTrainObjectPaths() const;
+
     signals:
         void updated();
         void configurationRequested(bool show);
@@ -254,6 +267,18 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
          * @brief Export INDI properties of devices in the optical trains to the user database.
          */
         void exportTrainINDIProperties();
+
+        /**
+         * @brief syncDBusInterfaces Keep the set of per-train DBus objects in sync with m_OpticalTrains.
+         *
+         * Called at the end of refreshTrains(). Creates a new OpticalTrainDBusInterface for
+         * every train that does not yet have one, notifies existing interfaces of any update,
+         * and destroys interfaces whose train has been removed.
+         */
+        void syncDBusInterfaces();
+
+        // Per-train DBus objects, keyed by database train ID.
+        QMap<int, OpticalTrainDBusInterface *> m_DBusInterfaces;
 
         QSharedPointer<ProfileInfo> m_Profile;
         QList<QVariantMap> m_OpticalTrains;

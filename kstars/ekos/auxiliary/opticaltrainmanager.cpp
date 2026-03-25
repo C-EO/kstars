@@ -5,6 +5,7 @@
 */
 
 #include "opticaltrainmanager.h"
+#include "opticaltraindbusinterface.h"
 #include <kstars_debug.h>
 
 #include "ksnotification.h"
@@ -445,6 +446,8 @@ void OpticalTrainManager::checkOpticalTrains()
                 ProfileSettings::Instance()->setOneSetting(ProfileSettings::GuideOpticalTrain, primaryTrainID);
         }
 
+        // Register DBus objects for the newly generated trains.
+        syncDBusInterfaces();
         emit updated();
         show();
         raise();
@@ -452,6 +455,8 @@ void OpticalTrainManager::checkOpticalTrains()
     }
     else
     {
+        // Register / update DBus objects for the existing trains on every profile load.
+        syncDBusInterfaces();
         m_CheckMissingDevicesTimer.start();
         emit updated();
     }
@@ -1211,6 +1216,7 @@ const QVariantMap OpticalTrainManager::getOpticalTrain(const QString &name) cons
 void OpticalTrainManager::refreshTrains()
 {
     refreshModel();
+    syncDBusInterfaces();
     emit updated();
 }
 
@@ -1434,4 +1440,51 @@ bool OpticalTrainManager::importTrainINDIProperties(QJsonArray &devices, uint32_
 
     return KStarsData::Instance()->userdb()->GetOpticalTrainDevices(targetTrainID, devices);
 }
+
+////////////////////////////////////////////////////////////////////////////
+/// Sync per-train DBus interface objects with the current train list.
+////////////////////////////////////////////////////////////////////////////
+void OpticalTrainManager::syncDBusInterfaces()
+{
+    // Collect the set of database IDs that currently exist.
+    QSet<int> currentIDs;
+    for (const auto &oneTrain : m_OpticalTrains)
+        currentIDs.insert(oneTrain["id"].toInt());
+
+    // Remove DBus objects for trains that no longer exist.
+    for (auto it = m_DBusInterfaces.begin(); it != m_DBusInterfaces.end(); )
+    {
+        if (!currentIDs.contains(it.key()))
+        {
+            delete it.value();
+            it = m_DBusInterfaces.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+
+    // Create DBus objects for newly added trains; notify existing ones of the update.
+    for (const auto &oneTrain : m_OpticalTrains)
+    {
+        int trainID = oneTrain["id"].toInt();
+        if (!m_DBusInterfaces.contains(trainID))
+            m_DBusInterfaces[trainID] = new OpticalTrainDBusInterface(trainID, this);
+        else
+            m_DBusInterfaces[trainID]->notifyUpdated();
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////
+/// Return the DBus object paths for all registered optical trains.
+////////////////////////////////////////////////////////////////////////////
+QStringList OpticalTrainManager::getOpticalTrainObjectPaths() const
+{
+    QStringList paths;
+    for (auto *iface : m_DBusInterfaces)
+        paths << iface->dbusObjectPath();
+    return paths;
+}
+
 }

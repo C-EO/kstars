@@ -1,0 +1,81 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<!--
+    SPDX-FileCopyrightText: 2024 Jasem Mutlaq <mutlaqja@ikarustech.com>
+
+    SPDX-License-Identifier: GPL-2.0-or-later
+-->
+<node>
+    <interface name="org.kde.kstars.Ekos.OpticalTrain">
+
+        <!-- Identity -->
+        <property name="name" type="s" access="read"/>
+        <property name="id"   type="i" access="read"/>
+
+        <!-- Device assignments (read-only; use setter methods to change) -->
+        <property name="mount"       type="s" access="read"/>
+        <property name="camera"      type="s" access="read"/>
+        <property name="focuser"     type="s" access="read"/>
+        <property name="filterWheel" type="s" access="read"/>
+        <property name="rotator"     type="s" access="read"/>
+        <property name="dustCap"     type="s" access="read"/>
+        <property name="lightBox"    type="s" access="read"/>
+        <property name="scope"       type="s" access="read"/>
+        <property name="reducer"     type="d" access="read"/>
+        <property name="guider"      type="s" access="read"/>
+
+        <!-- Setters for individual device fields -->
+        <method name="setMount">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setCamera">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setFocuser">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setFilterWheel">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setRotator">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setDustCap">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setLightBox">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setScope">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setReducer">
+            <arg name="value" type="d" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="setGuider">
+            <arg name="name" type="s" direction="in"/>
+            <arg type="b" direction="out"/>
+        </method>
+
+        <!-- Bulk operations -->
+        <method name="remove">
+            <arg type="b" direction="out"/>
+        </method>
+        <method name="reset">
+            <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+        </method>
+
+        <!-- Signals -->
+        <signal name="updated"/>
+        <signal name="removed"/>
+
+    </interface>
+</node>
