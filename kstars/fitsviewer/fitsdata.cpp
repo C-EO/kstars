@@ -276,9 +276,15 @@ bool FITSData::loadFromBuffer(const QByteArray &buffer)
     // Lock a mutex whilst the stack buffer is changed. This is stop mouse move events triggering a SEGV if the buffer
     // is changed whilst the user is acting upon the data in the UI.
     // NOTE: the mutex is unlocked when locker goes out of scope
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    std::unique_ptr<QMutexLocker<QMutex>> locker;
+    if (m_Mode == FITS_LIVESTACKING)
+        locker = std::make_unique<QMutexLocker<QMutex>>(&m_DataMutex);
+#else
     QScopedPointer<QMutexLocker> locker;
     if (m_Mode == FITS_LIVESTACKING)
         locker.reset(new QMutexLocker(&m_DataMutex));
+#endif
 
     loadCommon("");
     qCDebug(KSTARS_FITS) << "Reading file buffer (" << KFormat().formatByteSize(buffer.size()) << ")";
@@ -3199,6 +3205,32 @@ bool FITSData::saveImage(const QString &newFilename)
         }
         else
         {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            switch (value.typeId())
+            {
+                case QMetaType::Int:
+                {
+                    int number = value.toInt();
+                    fits_write_key(fptr, TINT, key.toLatin1().constData(), &number, comment, &status);
+                }
+                break;
+
+                case QMetaType::Double:
+                {
+                    double number = value.toDouble();
+                    fits_write_key(fptr, TDOUBLE, key.toLatin1().constData(), &number, comment, &status);
+                }
+                break;
+
+                case QMetaType::QString:
+                default:
+                {
+                    char valueBuffer[256] = {0};
+                    strncpy(valueBuffer, value.toString().toLatin1().constData(), 256 - 1);
+                    fits_write_key(fptr, TSTRING, key.toLatin1().constData(), valueBuffer, comment, &status);
+                }
+            }
+#else
             switch (value.type())
             {
                 case QVariant::Int:
@@ -3223,6 +3255,7 @@ bool FITSData::saveImage(const QString &newFilename)
                     fits_write_key(fptr, TSTRING, key.toLatin1().constData(), valueBuffer, comment, &status);
                 }
             }
+#endif
         }
     }
 
@@ -4069,13 +4102,25 @@ bool FITSData::parseHeader(const bool stack)
             // Is it Integer?
             oneRecord.value.toInt(&ok);
             if (ok)
+            {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                oneRecord.value.convert(QMetaType(QMetaType::Int));
+#else
                 oneRecord.value.convert(QMetaType::Int);
+#endif
+            }
             else
             {
                 // Is it double?
                 oneRecord.value.toDouble(&ok);
                 if (ok)
+                {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+                    oneRecord.value.convert(QMetaType(QMetaType::Double));
+#else
                     oneRecord.value.convert(QMetaType::Double);
+#endif
+                }
             }
         }
 
