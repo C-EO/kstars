@@ -163,6 +163,29 @@ void ScriptAction::processFinished(int exitCode, QProcess::ExitStatus exitStatus
 {
     m_timeoutTimer->stop();
 
+    // Flush any remaining buffered output
+    if (!m_stdoutBuffer.isEmpty())
+    {
+        QString line = m_stdoutBuffer.trimmed();
+        if (!line.isEmpty())
+        {
+            qCInfo(KSTARS_EKOS_SCHEDULER) << "Script stdout:" << line;
+            emit progress(line);
+        }
+        m_stdoutBuffer.clear();
+    }
+
+    if (!m_stderrBuffer.isEmpty())
+    {
+        QString line = m_stderrBuffer.trimmed();
+        if (!line.isEmpty())
+        {
+            qCWarning(KSTARS_EKOS_SCHEDULER) << "Script stderr:" << line;
+            emit progress(QString("Error: %1").arg(line));
+        }
+        m_stderrBuffer.clear();
+    }
+
     qCInfo(KSTARS_EKOS_SCHEDULER) << "Script finished with exit code:" << exitCode
                                   << "status:" << (exitStatus == QProcess::NormalExit ? "Normal" : "Crashed");
 
@@ -262,21 +285,41 @@ void ScriptAction::processError(QProcess::ProcessError error)
 
 void ScriptAction::readStandardOutput()
 {
-    QString output = QString::fromUtf8(m_process->readAllStandardOutput()).simplified();
-    if (!output.isEmpty())
+    // Append new data to buffer
+    m_stdoutBuffer.append(QString::fromUtf8(m_process->readAllStandardOutput()));
+
+    // Emit complete lines only
+    while (m_stdoutBuffer.contains('\n'))
     {
-        qCInfo(KSTARS_EKOS_SCHEDULER) << "Script stdout:" << output;
-        emit progress(output);
+        int newlinePos = m_stdoutBuffer.indexOf('\n');
+        QString line = m_stdoutBuffer.left(newlinePos).trimmed();
+        m_stdoutBuffer.remove(0, newlinePos + 1);
+
+        if (!line.isEmpty())
+        {
+            qCInfo(KSTARS_EKOS_SCHEDULER) << "Script stdout:" << line;
+            emit progress(line);
+        }
     }
 }
 
 void ScriptAction::readStandardError()
 {
-    QString output = QString::fromUtf8(m_process->readAllStandardError()).simplified();
-    if (!output.isEmpty())
+    // Append new data to buffer
+    m_stderrBuffer.append(QString::fromUtf8(m_process->readAllStandardError()));
+
+    // Emit complete lines only
+    while (m_stderrBuffer.contains('\n'))
     {
-        qCWarning(KSTARS_EKOS_SCHEDULER) << "Script stderr:" << output;
-        emit progress(QString("Error: %1").arg(output));
+        int newlinePos = m_stderrBuffer.indexOf('\n');
+        QString line = m_stderrBuffer.left(newlinePos).trimmed();
+        m_stderrBuffer.remove(0, newlinePos + 1);
+
+        if (!line.isEmpty())
+        {
+            qCWarning(KSTARS_EKOS_SCHEDULER) << "Script stderr:" << line;
+            emit progress(QString("Error: %1").arg(line));
+        }
     }
 }
 

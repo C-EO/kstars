@@ -63,6 +63,8 @@ class ScriptAction : public TaskAction
         bool validateScript();
 
         QString m_scriptPath;
+        QString m_stdoutBuffer;
+        QString m_stderrBuffer;
         QProcess *m_process = nullptr;
         QTimer *m_timeoutTimer = nullptr;
 };
