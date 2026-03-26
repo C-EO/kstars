@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-24 02:02+0000\n"
-"PO-Revision-Date: 2026-03-14 17:58+0100\n"
+"POT-Creation-Date: 2026-03-26 02:08+0000\n"
+"PO-Revision-Date: 2026-03-24 17:26+0100\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.12.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -149,17 +149,17 @@ msgstr "Reticolo delle coordinate orizzontali"
 #: auxiliary/colorscheme.cpp:50
 #, kde-format
 msgid "Info Box Text"
-msgstr "Testo riquadro informavo"
+msgstr "Testo riquadro informativo"
 
 #: auxiliary/colorscheme.cpp:51
 #, kde-format
 msgid "Info Box Selected"
-msgstr "Riquadro informazioni selezionato"
+msgstr "Riquadro informativo selezionato"
 
 #: auxiliary/colorscheme.cpp:52
 #, kde-format
 msgid "Info Box Background"
-msgstr "Sfondo riquadro informazioni"
+msgstr "Sfondo riquadro informativo"
 
 #: auxiliary/colorscheme.cpp:53
 #, kde-format
@@ -778,7 +778,7 @@ msgstr "Errore di lettura del file di configurazione di astrometria."
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Errore di scrittura interno del file di configurazione di astrometria."
 
-#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2835
+#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2841
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -6462,11 +6462,7 @@ msgid "Image received."
 msgstr "Immagine ricevuta."
 
 #: ekos/align/align.cpp:1965
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
@@ -6554,10 +6550,9 @@ msgid "Target is within %1 degrees of solution coordinates."
 msgstr "Il bersaglio è all'interno di %1 gradi di coordinate della soluzione."
 
 #: ekos/align/align.cpp:2363
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "%1 position angle is %2 degrees."
-msgstr "L'angolo di posizione della fotocamera è di %1 gradi."
+msgstr "L'angolo di posizione %1 è di %2 gradi."
 
 #: ekos/align/align.cpp:2400 ekos/align/align.cpp:2558
 #, kde-format
@@ -6584,7 +6579,7 @@ msgstr "Il bersaglio è in un intervallo accettabile."
 #: ekos/align/align.cpp:2504
 #, kde-format
 msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
-msgstr ""
+msgstr "AP principale: %1, scostamento principale: %2, scostamento guida: %3"
 
 #: ekos/align/align.cpp:2540
 #, kde-format
@@ -6625,16 +6620,14 @@ msgstr ""
 "informazioni dettagliate sull'insuccesso."
 
 #: ekos/align/align.cpp:2657
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting %1 position angle to %2 degrees ..."
-msgstr "Impostazione dell'angolo di posizione della fotocamera a %1 gradi ..."
+msgstr "Impostazione dell'angolo di posizione %1 a %2 gradi ..."
 
 #: ekos/align/align.cpp:2669
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "%1 position angle is within acceptable range."
-msgstr "L'angolo di posizione della fotocamera è in un intervallo accettabile."
+msgstr "L'angolo di posizione %1 è in un intervallo accettabile."
 
 #: ekos/align/align.cpp:2683
 #, kde-format
@@ -6767,18 +6760,18 @@ msgstr "Carica immagine"
 #, kde-format
 msgid "Warning: Camera module & Align module have to use the same train!"
 msgstr ""
+"Attenzione: il modulo della fotocamera e quello di allineamento devono usare "
+"lo stesso gruppo!"
 
 #: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
-msgstr "Il sistema di coordinate mondiali (WCS) è abilitato."
+msgstr "%1: il sistema di coordinate mondiali (WCS) è abilitato."
 
 #: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "Il sistema di coordinate mondiali (WCS) è disabilitato."
+msgstr "%1: il sistema di coordinate mondiali (WCS) è disabilitato."
 
 #: ekos/align/align.cpp:3496
 #, kde-format
@@ -7530,7 +7523,7 @@ msgid ""
 "Options&quot;.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Per disabilitare la convalida della rotazione, "
-"disattivare il &quot;Controllo del rotatore manuale e automatico&quot; nelle "
+"disattivare il &quot;Controllo automatico e manuale del rotatore&quot; nelle "
 "&quot;Opzioni dello StellarSolver&quot;.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, currentRotationL)
@@ -8278,7 +8271,7 @@ msgstr "Soglia dinamica"
 #: ekos/align/opsalign.ui:285
 #, kde-format
 msgid "Automatic and Manual Rotator Control"
-msgstr "Controllo del rotatore manuale e automatico"
+msgstr "Controllo automatico e manuale del rotatore"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, label)
 #: ekos/align/opsalign.ui:294
@@ -13481,27 +13474,27 @@ msgstr "Messaggi INDI nella &barra di stato"
 msgid "Open Logs Directory..."
 msgstr "Apri cartella dei registri..."
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:143
+#: ekos/auxiliary/opticaltrainmanager.cpp:144
 #, kde-format
 msgid "New Train"
 msgstr "Nuovo gruppo"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:465
+#: ekos/auxiliary/opticaltrainmanager.cpp:470
 #, kde-format
 msgid "Primary"
 msgstr "Principale"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:468
+#: ekos/auxiliary/opticaltrainmanager.cpp:473
 #, kde-format
 msgid "Secondary"
 msgstr "Secondario"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:471
+#: ekos/auxiliary/opticaltrainmanager.cpp:476
 #, kde-format
 msgid "Tertiary"
 msgstr "Terziario"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1266
+#: ekos/auxiliary/opticaltrainmanager.cpp:1272
 #, kde-format
 msgid ""
 "Missing device detected (%1). Please reconfigure the optical trains before "
@@ -13510,7 +13503,7 @@ msgstr ""
 "Rilevato dispositivo mancante (%1). Riconfigura il gruppo ottico prima di "
 "procedere oltre."
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1273
+#: ekos/auxiliary/opticaltrainmanager.cpp:1279
 #, kde-format
 msgid ""
 "Missing devices detected (%1). Please reconfigure the optical trains before "
@@ -23783,6 +23776,8 @@ msgid ""
 "Vertically reflected image detected: Try to check option 'Use reflected "
 "guide frames' in [Guide Options/Calibration]"
 msgstr ""
+"Rilevata immagine riflessa verticalmente: prova ad attivare l'opzione «Usa "
+"fotogrammi di guida riflessi» in [Opzioni per la guida/Calibrazione]"
 
 #: ekos/guide/internalguide/gmath.cpp:511
 #, kde-format
@@ -23807,10 +23802,11 @@ msgstr "Attenzione: dithering manuale non riuscito."
 #, kde-format
 msgid "Internal guider could not find WCS rotation property of %1..."
 msgstr ""
+"Il telescopio guida interno non ha potuto trovare la proprietà di rotazione "
+"WCS di %1..."
 
 #: ekos/guide/internalguide/internalguider.cpp:735
-#, fuzzy, kde-format
-#| msgid "Error while updating pierside for camera rotation: Pierside unknown!"
+#, kde-format
 msgid "Error while updating pierside for camera rotation: Pierside unknown!"
 msgstr ""
 "Errore durante l'aggiornamento dello stato di puntamento per la rotazione "
@@ -23819,13 +23815,12 @@ msgstr ""
 #: ekos/guide/internalguide/internalguider.cpp:738
 #, kde-format
 msgid "Pierside is now "
-msgstr ""
+msgstr "Lo stato di puntamento è adesso"
 
 #: ekos/guide/internalguide/internalguider.cpp:746
-#, fuzzy, kde-format
-#| msgid "Camera rotation is now %1 (Original calibration with %2)"
+#, kde-format
 msgid "%1 rotation is now %2 (calibration with %3)"
-msgstr "La rotazione della fotocamera è ora %1 (calibrazione originale con %2)"
+msgstr "La rotazione di %1 è ora %2 (calibrazione originale con %3)"
 
 #: ekos/guide/internalguide/internalguider.cpp:754
 #, kde-format
@@ -23850,10 +23845,7 @@ msgid "Guiding calibration restored"
 msgstr "Calibrazione della guida ripristinata"
 
 #: ekos/guide/internalguide/internalguider.cpp:880
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."
@@ -24053,16 +24045,13 @@ msgstr "Posizione Y della stella guida"
 
 #. i18n: ectx: property (toolTip), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:286
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>The Master Dark to use to calibrate lights.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>These are the current calibration parameters.</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Il Master dark da utilizzare per calibrare le luci.</"
-"p></body></html>"
+"<html><head/><body><p>Questi sono i parametri di calibrazione attuali.</p></"
+"body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationsValues)
 #: ekos/guide/opscalibration.ui:289
@@ -24084,10 +24073,9 @@ msgstr "xxxx"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/guide/opscalibration.ui:323
-#, fuzzy, kde-format
-#| msgid "CCD Rotation"
+#, kde-format
 msgid "DEC Rotation"
-msgstr "Rotazione CCD"
+msgstr "Rotazione DEC"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #. i18n: ectx: property (text), widget (QLabel, label_11)
@@ -24098,10 +24086,9 @@ msgstr "ms/sec. d'arco"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: ekos/guide/opscalibration.ui:344
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "RA Pulse"
-msgstr "Impulso:"
+msgstr "Impulso AR"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, dec_cal_degrees_unit)
@@ -24117,24 +24104,21 @@ msgstr "°"
 
 #. i18n: ectx: property (text), widget (QLabel, racal)
 #: ekos/guide/opscalibration.ui:415
-#, fuzzy, kde-format
-#| msgid "Rotation"
+#, kde-format
 msgid "RA Rotation"
-msgstr "Rotazione"
+msgstr "Rotazione AR"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: ekos/guide/opscalibration.ui:444
-#, fuzzy, kde-format
-#| msgid "Pulse:"
+#, kde-format
 msgid "DEC Pulse"
-msgstr "Impulso:"
+msgstr "Impulso DEC"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/guide/opscalibration.ui:468
-#, fuzzy, kde-format
-#| msgid "Rotator angle offset"
+#, kde-format
 msgid "Rotation Offset"
-msgstr "Scostamento angolo rotatore"
+msgstr "Scostamento rotazione"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideCalibrationBacklash)
 #: ekos/guide/opscalibration.ui:524
@@ -24154,12 +24138,7 @@ msgstr "Rimuovi gioco DEC nella calibrazione guida"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:543
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -24169,12 +24148,11 @@ msgstr ""
 "<html><head/><body><p>Se l'opzione è attivata, ricalibra sempre quando la "
 "guida è avviata. Spesso non è necessaria quando è stata raggiunta in "
 "precedenza una buona qualità di calibrazione e la fotocamera della guida non "
-"è stata ruotata o reinstallata.</p></body></html>"
+"è stata reinstallata.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:549
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset guide calibration after each mount slew"
 msgstr ""
 "Ripristina la calibrazione della guida dopo ciascuna rotazione della "
@@ -24204,29 +24182,21 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:584
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
 "works on opposite sides of the meridian if the pier-side can be "
 "automatically determined from your mount.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Memorizza e tenta di riutilizzare le calibrazioni. "
-"Funziona solo sui lati opposti del meridiano se lo stato di puntamento può "
-"essere determinato automaticamente dalla tua montatura. Per tentare questa "
-"operazione, l'opzione \"Ripristina la guide alla rotazione\" sopra deve "
-"essere disattivata.</p></body></html>"
+"Funziona anche sui lati opposti del meridiano se lo stato di puntamento può "
+"essere determinato automaticamente dalla tua montatura.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:587
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible"
-msgstr "Memorizza e riutilizza la calibrazione della guida quando possibile."
+msgstr "Memorizza e riutilizza la calibrazione della guida quando possibile"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:611
@@ -24237,13 +24207,16 @@ msgid ""
 "drift in case of mirrored captures (e.g. with an OAG or ONAG-train).</p></"
 "body></html>"
 msgstr ""
+"<html><head/><body><p>Riflette le immagini di guida sull'asse x prima di "
+"passarle all'elaborazione del telescopio guida.<br/>Ciò assicura un'analisi "
+"corretta della deriva della montatura, in caso di acquisizioni rispecchiate "
+"(per es. con un gruppo OAG od ONAG).</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideReflectFrames)
 #: ekos/guide/opscalibration.ui:614
-#, fuzzy, kde-format
-#| msgid "Select guide camera."
+#, kde-format
 msgid "Use reflected guide frames"
-msgstr "Seleziona fotocamera guida."
+msgstr "Usa fotogrammi di guida riflessi"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:627
@@ -24255,12 +24228,18 @@ msgid ""
 ">Please note that an active option &quot;Automatic and Manual Rotator "
 "Control&quot; in Rotator Settings is a precondition.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Attiva questa opzione se vuoi riutilizzare la "
+"calibrazione della guida ma il dispositivo del rotatore non è presente e la "
+"fotocamera di guida viene ruotata manualmente insieme con la fotocamera di "
+"riprese fotografiche (es. con un gruppo OAG). <br/>Nota che una "
+"precondizione è l'opzione &quot;Controllo automatico e manuale del "
+"rotatore&quot; attiva nelle impostazioni del rotatore.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_GuideManualRotator)
 #: ekos/guide/opscalibration.ui:630
 #, kde-format
 msgid "Couple guide camera on \"Manual Rotator\""
-msgstr ""
+msgstr "Aggancia la fotocamera di guida su «Rotatore manuale»"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
@@ -25734,57 +25713,57 @@ msgstr "%1 non è in linea."
 msgid "Guider port from %1 is ready."
 msgstr "La porta del telescopio guida da %1 è pronta."
 
-#: ekos/manager.cpp:3046
+#: ekos/manager.cpp:3074
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Vuoi davvero eliminare il profilo?"
 
-#: ekos/manager.cpp:3047
+#: ekos/manager.cpp:3075
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Conferma l'eliminazione"
 
-#: ekos/manager.cpp:3099
+#: ekos/manager.cpp:3127
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "Luogo del sito aggiornato a %1."
 
-#: ekos/manager.cpp:3101
+#: ekos/manager.cpp:3129
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr "Impossibile aggiornare il luogo del sito a %1: città non trovata."
 
-#: ekos/manager.cpp:3374
+#: ekos/manager.cpp:3402
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "Abilitazione della registrazione di debug per %1..."
 
-#: ekos/manager.cpp:3382
+#: ekos/manager.cpp:3410
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "Disabilitazione della registrazione di debug per %1..."
 
-#: ekos/manager.cpp:3410
+#: ekos/manager.cpp:3438
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "Ri-abilitazione della registrazione di debug per %1..."
 
-#: ekos/manager.cpp:3422
+#: ekos/manager.cpp:3450
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "Ri-disabilitazione della registrazione di debug per %1..."
 
-#: ekos/manager.cpp:4212
+#: ekos/manager.cpp:4240
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Sorgente anteprima impostata a esterna"
 
-#: ekos/manager.cpp:4220
+#: ekos/manager.cpp:4248
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Sorgente anteprima azzerata a interna"
 
-#: ekos/manager.cpp:4227
+#: ekos/manager.cpp:4255
 #, kde-format
 msgid "Received external preview file"
 msgstr "File di anteprima esterna ricevuto"
@@ -30597,10 +30576,9 @@ msgid "Scheduler is awake."
 msgstr "Il pianificatore è attivo."
 
 #: ekos/scheduler/schedulerprocess.cpp:618
-#, fuzzy, kde-format
-#| msgid "Reset job status"
+#, kde-format
 msgid "Resetting startup state."
-msgstr "Azzera lo stato del lavoro"
+msgstr "Azzeramento dello stato di avvio."
 
 #: ekos/scheduler/schedulerprocess.cpp:650
 #, kde-format
@@ -30610,12 +30588,11 @@ msgstr ""
 "sicurezza..."
 
 #: ekos/scheduler/schedulerprocess.cpp:657
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"Esecuzione delle operazioni di post-avvio da %1 dopo il recupero della "
-"sicurezza..."
+"Coda delle operazioni di post-avvio vuota o non caricabile dopo il recupero "
+"della sicurezza."
 
 #: ekos/scheduler/schedulerprocess.cpp:671
 #, kde-format
@@ -30931,11 +30908,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Impossibile caricare la coda di pre-spegnimento da %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2106
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "La coda di post-spegnimento è vuota, spegnimento completato."
+msgstr ""
+"Nessuna operazione di pre-spegnimento durante il ritardo meteo; spegnimento "
+"lento completato."
 
 #: ekos/scheduler/schedulerprocess.cpp:2117
 #, kde-format
@@ -31117,6 +31095,8 @@ msgstr "Coda di post-spegnimento non riuscita: %1"
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
+"Attenzione: operazione non riuscita durante il processo «%1»: %2. Processo "
+"contrassegnato come interrotto."
 
 #: ekos/scheduler/schedulerprocess.cpp:3442
 #, kde-format
@@ -32038,7 +32018,7 @@ msgstr "Creazione dell'oggetto del modello da JSON non riuscito."
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:1046
 #, kde-format
 msgid "Task Queue Viewer"
-msgstr "Visore coda delle attività"
+msgstr "Visore coda delle operazioni"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:60
 #, kde-format
@@ -32065,7 +32045,7 @@ msgstr "Pausa"
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:115
 #, kde-format
 msgid "Task"
-msgstr "Attività"
+msgstr "Operazione"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32123,7 +32103,7 @@ msgstr "Coda in esecuzione"
 #, kde-format
 msgid "Cannot edit tasks while queue is running. Please stop the queue first."
 msgstr ""
-"Impossibile modificare le attività mentre la coda è in esecuzione. Ferma "
+"Impossibile modificare le operazioni mentre la coda è in esecuzione. Ferma "
 "prima la coda."
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:396
@@ -32149,23 +32129,23 @@ msgid ""
 "The template for this task is no longer available.\n"
 "Template ID: %1"
 msgstr ""
-"Il modello per questa attività non è più disponibile.\n"
+"Il modello per questa operazione non è più disponibile.\n"
 "ID del modello: %1"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:437
 #, kde-format
 msgid "Task Update Failed"
-msgstr "Aggiornamento dell'attività non riuscito"
+msgstr "Aggiornamento delle operazioni non riuscito"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:438
 #, kde-format
 msgid "Failed to update task with new parameters"
-msgstr "L'aggiornamento dell'attività con nuovi parametri non è riuscito"
+msgstr "L'aggiornamento delle operazioni con nuovi parametri non è riuscito"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:452
 #, kde-format
 msgid "Task updated"
-msgstr "Attività aggiornata"
+msgstr "Operazione aggiornata"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:506
 #, kde-format
@@ -32590,77 +32570,77 @@ msgstr "Descrizione del tipo di oggetto"
 msgid "Object Type Comments"
 msgstr "Commenti del tipo di oggetto"
 
-#: fitsviewer/fitsdata.cpp:1844
+#: fitsviewer/fitsdata.cpp:1850
 #, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr "Errore di lettura del buffer di fit: %1."
 
-#: fitsviewer/fitsdata.cpp:1857
+#: fitsviewer/fitsdata.cpp:1863
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr "Estrazione dei fits compressi non riuscita"
 
-#: fitsviewer/fitsdata.cpp:1873
+#: fitsviewer/fitsdata.cpp:1879
 #, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "Errore all'apertura del file fits %1: %2"
 
-#: fitsviewer/fitsdata.cpp:1886
+#: fitsviewer/fitsdata.cpp:1892
 #, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr "Errore di lettura del buffer di fits: %1"
 
-#: fitsviewer/fitsdata.cpp:1898
+#: fitsviewer/fitsdata.cpp:1904
 #, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "Impossibile trovare immagine HDU: %1"
 
-#: fitsviewer/fitsdata.cpp:1905
+#: fitsviewer/fitsdata.cpp:1911
 #, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr "Errore di apertura del file FITS (fits_get_img_param): %1"
 
-#: fitsviewer/fitsdata.cpp:1919
+#: fitsviewer/fitsdata.cpp:1925
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr "Le immagini FITS 1D non sono supportate in KStars."
 
-#: fitsviewer/fitsdata.cpp:1965 fitsviewer/fitsdata.cpp:2664
+#: fitsviewer/fitsdata.cpp:1971 fitsviewer/fitsdata.cpp:2670
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "La profondità di bit %1 non è supportata."
 
-#: fitsviewer/fitsdata.cpp:1975
+#: fitsviewer/fitsdata.cpp:1981
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr "L'immagine ha dimensioni non valide %1×%2"
 
-#: fitsviewer/fitsdata.cpp:2025
+#: fitsviewer/fitsdata.cpp:2031
 #, kde-format
 msgid "Error reading image: %1"
 msgstr "Errore di lettura dell'immagine: %1"
 
-#: fitsviewer/fitsdata.cpp:2426 fitsviewer/fitsdata.cpp:2624
+#: fitsviewer/fitsdata.cpp:2432 fitsviewer/fitsdata.cpp:2630
 #, kde-format
 msgid "XISF file open error: "
 msgstr "Errore nell'apertura del file XISF: "
 
-#: fitsviewer/fitsdata.cpp:2538
+#: fitsviewer/fitsdata.cpp:2544
 #, kde-format
 msgid "File contain no images"
 msgstr "Il file non contiene nessuna immagine"
 
-#: fitsviewer/fitsdata.cpp:2567
+#: fitsviewer/fitsdata.cpp:2573
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "Il formato del campione %1 non è supportato."
 
-#: fitsviewer/fitsdata.cpp:2702
+#: fitsviewer/fitsdata.cpp:2708
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Errore nel salvataggio dell'immagine XISF."
 
-#: fitsviewer/fitsdata.cpp:2794 fitsviewer/fitsdata.cpp:2910
+#: fitsviewer/fitsdata.cpp:2800 fitsviewer/fitsdata.cpp:2916
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
@@ -32668,140 +32648,140 @@ msgstr ""
 "Dati FITS: non vi è memoria sufficiente per il canale image_buffer. "
 "Richiesti: %1 byte"
 
-#: fitsviewer/fitsdata.cpp:2849
+#: fitsviewer/fitsdata.cpp:2855
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "Impossibile aprire il file %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2862
+#: fitsviewer/fitsdata.cpp:2868
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Impossibile aprire il buffer: %1"
 
-#: fitsviewer/fitsdata.cpp:2873
+#: fitsviewer/fitsdata.cpp:2879
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "Impossibile eseguire unpack_thumb : %1"
 
-#: fitsviewer/fitsdata.cpp:2880
+#: fitsviewer/fitsdata.cpp:2886
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "Impossibile eseguire dcraw_process: %1"
 
-#: fitsviewer/fitsdata.cpp:2888
+#: fitsviewer/fitsdata.cpp:2894
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "Impossibile caricare in memoria: %1"
 
-#: fitsviewer/fitsdata.cpp:3035
+#: fitsviewer/fitsdata.cpp:3041
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "Il salvataggio di file compressi non è supportato."
 
-#: fitsviewer/fitsdata.cpp:3100
+#: fitsviewer/fitsdata.cpp:3106
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Creazione del file non riuscita: %1"
 
-#: fitsviewer/fitsdata.cpp:3115
+#: fitsviewer/fitsdata.cpp:3121
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Creazione dell'immagine non riuscita: %1"
 
-#: fitsviewer/fitsdata.cpp:3124 fitsviewer/fitsdata.cpp:3131
+#: fitsviewer/fitsdata.cpp:3130 fitsviewer/fitsdata.cpp:3137
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Aggiornamento della chiave non riuscito: %1"
 
-#: fitsviewer/fitsdata.cpp:3232
+#: fitsviewer/fitsdata.cpp:3265
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Aggiornamento della data non riuscito: %1"
 
-#: fitsviewer/fitsdata.cpp:3241
+#: fitsviewer/fitsdata.cpp:3274
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Aggiornamento della cronologia non riuscito: %1"
 
-#: fitsviewer/fitsdata.cpp:3263
+#: fitsviewer/fitsdata.cpp:3296
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Scrittura dell''immagine non riuscita: %1"
 
-#: fitsviewer/fitsdata.cpp:5022 fitsviewer/fitsdata.cpp:5033
-#: fitsviewer/fitsdata.cpp:5070 fitsviewer/fitsdata.cpp:5106
-#: fitsviewer/fitsdata.cpp:5240
+#: fitsviewer/fitsdata.cpp:5067 fitsviewer/fitsdata.cpp:5078
+#: fitsviewer/fitsdata.cpp:5115 fitsviewer/fitsdata.cpp:5151
+#: fitsviewer/fitsdata.cpp:5285
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "Nessun sistema di coordinate mondiali trovato."
 
-#: fitsviewer/fitsdata.cpp:5415 fitsviewer/fitsdata.cpp:5521
+#: fitsviewer/fitsdata.cpp:5460 fitsviewer/fitsdata.cpp:5566
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Errore nella ricerca Simbad"
 
-#: fitsviewer/fitsdata.cpp:5430
+#: fitsviewer/fitsdata.cpp:5475
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "Ricerca Simbad scaduta"
 
-#: fitsviewer/fitsdata.cpp:6407 fitsviewer/fitsdata.cpp:6520
+#: fitsviewer/fitsdata.cpp:6452 fitsviewer/fitsdata.cpp:6565
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr "Sono gestite solo immagini bayer a 8 o 16 bit."
 
-#: fitsviewer/fitsdata.cpp:6415 fitsviewer/fitsdata.cpp:6526
+#: fitsviewer/fitsdata.cpp:6460 fitsviewer/fitsdata.cpp:6571
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Schema Bayer %1 sconosciuto"
 
-#: fitsviewer/fitsdata.cpp:6439 fitsviewer/fitsdata.cpp:6465
+#: fitsviewer/fitsdata.cpp:6484 fitsviewer/fitsdata.cpp:6510
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Schema Bayer %1 non supportato"
 
-#: fitsviewer/fitsdata.cpp:6473
+#: fitsviewer/fitsdata.cpp:6518
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Scostamenti Bayer non supportati %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6484 fitsviewer/fitsdata.cpp:6537
+#: fitsviewer/fitsdata.cpp:6529 fitsviewer/fitsdata.cpp:6582
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Parametri di debayerizzazione dc1394 non validi."
 
-#: fitsviewer/fitsdata.cpp:6495 fitsviewer/fitsdata.cpp:6548
+#: fitsviewer/fitsdata.cpp:6540 fitsviewer/fitsdata.cpp:6593
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Parametri OpenCV non validi."
 
-#: fitsviewer/fitsdata.cpp:6504 fitsviewer/fitsdata.cpp:6557
+#: fitsviewer/fitsdata.cpp:6549 fitsviewer/fitsdata.cpp:6602
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Motore di debayerizzazione non valido"
 
-#: fitsviewer/fitsdata.cpp:6811
+#: fitsviewer/fitsdata.cpp:6856
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr "debayer_8bit chiamato con parametri di debayerizzazione non validi"
 
-#: fitsviewer/fitsdata.cpp:6827 fitsviewer/fitsdata.cpp:6873
-#: fitsviewer/fitsdata.cpp:6931 fitsviewer/fitsdata.cpp:6977
+#: fitsviewer/fitsdata.cpp:6872 fitsviewer/fitsdata.cpp:6918
+#: fitsviewer/fitsdata.cpp:6976 fitsviewer/fitsdata.cpp:7022
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr "Impossibile allocare la memoria per il buffer temporaneo di bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:6837 fitsviewer/fitsdata.cpp:6941
+#: fitsviewer/fitsdata.cpp:6882 fitsviewer/fitsdata.cpp:6986
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr "Impossibile allocare la memoria per il buffer temporaneo di bayer."
 
-#: fitsviewer/fitsdata.cpp:6856 fitsviewer/fitsdata.cpp:6960
+#: fitsviewer/fitsdata.cpp:6901 fitsviewer/fitsdata.cpp:7005
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "Debayerizzazione non riuscita (%1)"
 
-#: fitsviewer/fitsdata.cpp:6916
+#: fitsviewer/fitsdata.cpp:6961
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr "debayer_16bit chiamato con parametri di debayerizzazione non validi"
@@ -34991,13 +34971,17 @@ msgid ""
 "alignment master prior to stacking. In addition, the image edges are "
 "normalized to maintain appropriate brightness.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Normalizza le immagini prima dello stacking:</p><p>- "
+"Nessuna: nessuna normalizzazione.</p><p>- Lineare: normalizza ogni sub alla "
+"luminosità del master di allineamento prima dello stacking. In aggiunta, i "
+"bordi dell'immagine vengono normalizzati per mantenere la luminosità "
+"corretta.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, NormalizationLabel)
 #: fitsviewer/livestacking.ui:1671
-#, fuzzy, kde-format
-#| msgid "Information"
+#, kde-format
 msgid "Normalization:"
-msgstr "Informazioni"
+msgstr "Normalizzazione:"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, StackingMinimized)
 #: fitsviewer/livestacking.ui:1713
@@ -42726,10 +42710,9 @@ msgstr "Live Stacking - valutazione peso dei sub"
 
 #. i18n: ectx: whatsthis, entry (fitsLSNormalization), group (FITSViewer)
 #: kstars.kcfg:1867
-#, fuzzy, kde-format
-#| msgid "Live Stacking Monitor"
+#, kde-format
 msgid "Live Stacking normalization"
-msgstr "Monitor Live Stacking"
+msgstr "Live Stacking - normalizzazione"
 
 #. i18n: ectx: whatsthis, entry (fitsLSStackingMethod), group (FITSViewer)
 #: kstars.kcfg:1871
@@ -43179,10 +43162,9 @@ msgstr "Moltiplicatore dell'angolo di posizione"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of capture camera"
-msgstr "Scostamento dell'angolo di posizione"
+msgstr "Scostamento dell'angolo di posizione della fotocamera di acquisizione"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -44942,10 +44924,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (PAOffsetGuide), group (Guide)
 #: kstars.kcfg:3071
-#, fuzzy, kde-format
-#| msgid "Position angle offset"
+#, kde-format
 msgid "Position angle offset of guide camera"
-msgstr "Scostamento dell'angolo di posizione"
+msgstr "Scostamento dell'angolo di posizione della fotocamera di guida"
 
 #. i18n: ectx: label, entry (PHD2Host), group (Guide)
 #: kstars.kcfg:3075
@@ -45356,6 +45337,8 @@ msgid ""
 "Guide frames are reflected vertically before passing them to the guider "
 "process."
 msgstr ""
+"I fotogrammi di guida sono riflessi verticalmente prima di passarli al "
+"processo del telescopio guida."
 
 #. i18n: ectx: label, entry (GuideManualRotator), group (Scheduler)
 #: kstars.kcfg:3400
@@ -45363,6 +45346,8 @@ msgstr ""
 msgid ""
 "Guide camera is rotated together with main camera in \"Manual Rotator\" mode."
 msgstr ""
+"La fotocamera di guida è ruotata insieme con la fotocamera principale in "
+"modalità «Rotatore manuale»."
 
 #. i18n: ectx: label, entry (GuideCalibrationBacklash), group (Scheduler)
 #: kstars.kcfg:3404

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-24 02:02+0000\n"
+"POT-Creation-Date: 2026-03-26 02:08+0000\n"
 "PO-Revision-Date: 2026-03-24 11:08+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -778,7 +778,7 @@ msgstr "Error de lectura del fitxer de configuració d'astrometria."
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Error d'escriptura en el fitxer de configuració intern d'astrometria."
 
-#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2835
+#: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2841
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -13503,27 +13503,27 @@ msgstr "Missatges de l'INDI a la &barra d'estat"
 msgid "Open Logs Directory..."
 msgstr "Obre el directori dels registres..."
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:143
+#: ekos/auxiliary/opticaltrainmanager.cpp:144
 #, kde-format
 msgid "New Train"
 msgstr "Tren nou"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:465
+#: ekos/auxiliary/opticaltrainmanager.cpp:470
 #, kde-format
 msgid "Primary"
 msgstr "Primari"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:468
+#: ekos/auxiliary/opticaltrainmanager.cpp:473
 #, kde-format
 msgid "Secondary"
 msgstr "Secundari"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:471
+#: ekos/auxiliary/opticaltrainmanager.cpp:476
 #, kde-format
 msgid "Tertiary"
 msgstr "Terciari"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1266
+#: ekos/auxiliary/opticaltrainmanager.cpp:1272
 #, kde-format
 msgid ""
 "Missing device detected (%1). Please reconfigure the optical trains before "
@@ -13532,7 +13532,7 @@ msgstr ""
 "S'ha detectat un dispositiu (%1) que manca. Torneu a configurar els trens "
 "òptics abans de continuar."
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1273
+#: ekos/auxiliary/opticaltrainmanager.cpp:1279
 #, kde-format
 msgid ""
 "Missing devices detected (%1). Please reconfigure the optical trains before "
@@ -25757,59 +25757,59 @@ msgstr "%1 està fora de línia."
 msgid "Guider port from %1 is ready."
 msgstr "El port del sistema de guiatge del %1 està a punt."
 
-#: ekos/manager.cpp:3046
+#: ekos/manager.cpp:3074
 #, kde-format
 msgid "Are you sure you want to delete the profile?"
 msgstr "Segur que voleu eliminar el perfil?"
 
-#: ekos/manager.cpp:3047
+#: ekos/manager.cpp:3075
 #, kde-format
 msgid "Confirm Delete"
 msgstr "Confirmació de la supressió"
 
-#: ekos/manager.cpp:3099
+#: ekos/manager.cpp:3127
 #, kde-format
 msgid "Site location updated to %1."
 msgstr "L'emplaçament del lloc s'ha actualitzat a %1."
 
-#: ekos/manager.cpp:3101
+#: ekos/manager.cpp:3129
 #, kde-format
 msgid "Failed to update site location to %1. City not found."
 msgstr ""
 "Ha fallat en actualitzar l'emplaçament del lloc a %1. No s'ha trobat la "
 "ciutat."
 
-#: ekos/manager.cpp:3374
+#: ekos/manager.cpp:3402
 #, kde-format
 msgid "Enabling debug logging for %1..."
 msgstr "S'activa el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3382
+#: ekos/manager.cpp:3410
 #, kde-format
 msgid "Disabling debug logging for %1..."
 msgstr "Es desactiva el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3410
+#: ekos/manager.cpp:3438
 #, kde-format
 msgid "Re-enabling debug logging for %1..."
 msgstr "Es torna a activar el registre de depuració del %1..."
 
-#: ekos/manager.cpp:3422
+#: ekos/manager.cpp:3450
 #, kde-format
 msgid "Re-disabling debug logging for %1..."
 msgstr "Es torna a desactivar el registre de depuració del %1..."
 
-#: ekos/manager.cpp:4212
+#: ekos/manager.cpp:4240
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Font de vista prèvia definida a externa"
 
-#: ekos/manager.cpp:4220
+#: ekos/manager.cpp:4248
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Font de vista prèvia restablerta a interna"
 
-#: ekos/manager.cpp:4227
+#: ekos/manager.cpp:4255
 #, kde-format
 msgid "Received external preview file"
 msgstr "S'ha rebut un fitxer extern de vista prèvia"
@@ -32606,78 +32606,78 @@ msgstr "Descripció de tipus d'objecte"
 msgid "Object Type Comments"
 msgstr "Comentaris de tipus d'objecte"
 
-#: fitsviewer/fitsdata.cpp:1844
+#: fitsviewer/fitsdata.cpp:1850
 #, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr "Error en llegir la memòria intermèdia del FITS: %1."
 
-#: fitsviewer/fitsdata.cpp:1857
+#: fitsviewer/fitsdata.cpp:1863
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr "Ha fallat en desempaquetar els FITS comprimits"
 
-#: fitsviewer/fitsdata.cpp:1873
+#: fitsviewer/fitsdata.cpp:1879
 #, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "S'ha produït un error en obrir el fitxer FITS %1: %2"
 
-#: fitsviewer/fitsdata.cpp:1886
+#: fitsviewer/fitsdata.cpp:1892
 #, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr "Error en llegir la memòria intermèdia del FITS: %1"
 
-#: fitsviewer/fitsdata.cpp:1898
+#: fitsviewer/fitsdata.cpp:1904
 #, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "No s'ha pogut localitzar la imatge HDU: %1"
 
-#: fitsviewer/fitsdata.cpp:1905
+#: fitsviewer/fitsdata.cpp:1911
 #, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr "S'ha produït un error en obrir el fitxer FITS (fits_get_img_param): %1"
 
-#: fitsviewer/fitsdata.cpp:1919
+#: fitsviewer/fitsdata.cpp:1925
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr "El KStars no admet les imatges FITS 1D."
 
-#: fitsviewer/fitsdata.cpp:1965 fitsviewer/fitsdata.cpp:2664
+#: fitsviewer/fitsdata.cpp:1971 fitsviewer/fitsdata.cpp:2670
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "La profunditat de bits %1 no està admesa."
 
-#: fitsviewer/fitsdata.cpp:1975
+#: fitsviewer/fitsdata.cpp:1981
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr "La imatge té dimensions no vàlides %1x%2"
 
-#: fitsviewer/fitsdata.cpp:2025
+#: fitsviewer/fitsdata.cpp:2031
 #, kde-format
 msgid "Error reading image: %1"
 msgstr "Error en llegir la imatge: %1"
 
 # skip-rule: k-Alt-1
-#: fitsviewer/fitsdata.cpp:2426 fitsviewer/fitsdata.cpp:2624
+#: fitsviewer/fitsdata.cpp:2432 fitsviewer/fitsdata.cpp:2630
 #, kde-format
 msgid "XISF file open error: "
 msgstr "Error en obrir el fitxer XISF: "
 
-#: fitsviewer/fitsdata.cpp:2538
+#: fitsviewer/fitsdata.cpp:2544
 #, kde-format
 msgid "File contain no images"
 msgstr "El fitxer no conté cap imatge"
 
-#: fitsviewer/fitsdata.cpp:2567
+#: fitsviewer/fitsdata.cpp:2573
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "El format de mostra %1 no està admès."
 
-#: fitsviewer/fitsdata.cpp:2702
+#: fitsviewer/fitsdata.cpp:2708
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Error en desar la imatge XISF"
 
-#: fitsviewer/fitsdata.cpp:2794 fitsviewer/fitsdata.cpp:2910
+#: fitsviewer/fitsdata.cpp:2800 fitsviewer/fitsdata.cpp:2916
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
@@ -32685,147 +32685,147 @@ msgstr ""
 "FITSData: No hi ha prou memòria per al canal «image_buffer». Sol·licitats: "
 "%1 bytes "
 
-#: fitsviewer/fitsdata.cpp:2849
+#: fitsviewer/fitsdata.cpp:2855
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "No s'ha pogut obrir el fitxer %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2862
+#: fitsviewer/fitsdata.cpp:2868
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "No s'ha pogut la memòria intermèdia: %1"
 
-#: fitsviewer/fitsdata.cpp:2873
+#: fitsviewer/fitsdata.cpp:2879
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "No s'ha pogut fer el «unpack_thumb»: %1"
 
-#: fitsviewer/fitsdata.cpp:2880
+#: fitsviewer/fitsdata.cpp:2886
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "No s'ha pogut fer el «dcraw_process»: %1"
 
-#: fitsviewer/fitsdata.cpp:2888
+#: fitsviewer/fitsdata.cpp:2894
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "No s'ha pogut carregar a la memòria: %1"
 
-#: fitsviewer/fitsdata.cpp:3035
+#: fitsviewer/fitsdata.cpp:3041
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "No s'admet el desament de fitxers comprimits."
 
-#: fitsviewer/fitsdata.cpp:3100
+#: fitsviewer/fitsdata.cpp:3106
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Ha fallat en crear el fitxer: %1"
 
-#: fitsviewer/fitsdata.cpp:3115
+#: fitsviewer/fitsdata.cpp:3121
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Ha fallat en crear la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:3124 fitsviewer/fitsdata.cpp:3131
+#: fitsviewer/fitsdata.cpp:3130 fitsviewer/fitsdata.cpp:3137
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Ha fallat en actualitzar la clau: %1"
 
-#: fitsviewer/fitsdata.cpp:3232
+#: fitsviewer/fitsdata.cpp:3265
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Ha fallat en actualitzar la data: %1"
 
-#: fitsviewer/fitsdata.cpp:3241
+#: fitsviewer/fitsdata.cpp:3274
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Ha fallat en actualitzar l'historial: %1"
 
-#: fitsviewer/fitsdata.cpp:3263
+#: fitsviewer/fitsdata.cpp:3296
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Ha fallat en escriure la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:5022 fitsviewer/fitsdata.cpp:5033
-#: fitsviewer/fitsdata.cpp:5070 fitsviewer/fitsdata.cpp:5106
-#: fitsviewer/fitsdata.cpp:5240
+#: fitsviewer/fitsdata.cpp:5067 fitsviewer/fitsdata.cpp:5078
+#: fitsviewer/fitsdata.cpp:5115 fitsviewer/fitsdata.cpp:5151
+#: fitsviewer/fitsdata.cpp:5285
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "No s'ha trobat cap sistema de coordenades mundial."
 
-#: fitsviewer/fitsdata.cpp:5415 fitsviewer/fitsdata.cpp:5521
+#: fitsviewer/fitsdata.cpp:5460 fitsviewer/fitsdata.cpp:5566
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Error en consultar el Simbad"
 
-#: fitsviewer/fitsdata.cpp:5430
+#: fitsviewer/fitsdata.cpp:5475
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "La consulta del Simbad ha excedit el temps límit"
 
-#: fitsviewer/fitsdata.cpp:6407 fitsviewer/fitsdata.cpp:6520
+#: fitsviewer/fitsdata.cpp:6452 fitsviewer/fitsdata.cpp:6565
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr ""
 "Només es permeten imatges de 8 i 16 bits construïdes amb el filtre mosaic de "
 "Bayer."
 
-#: fitsviewer/fitsdata.cpp:6415 fitsviewer/fitsdata.cpp:6526
+#: fitsviewer/fitsdata.cpp:6460 fitsviewer/fitsdata.cpp:6571
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Patró de Bayer desconegut %1"
 
-#: fitsviewer/fitsdata.cpp:6439 fitsviewer/fitsdata.cpp:6465
+#: fitsviewer/fitsdata.cpp:6484 fitsviewer/fitsdata.cpp:6510
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Patró de Bayer no implementat %1"
 
-#: fitsviewer/fitsdata.cpp:6473
+#: fitsviewer/fitsdata.cpp:6518
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Desplaçaments del filtre mosaic de Bayer no implementats %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6484 fitsviewer/fitsdata.cpp:6537
+#: fitsviewer/fitsdata.cpp:6529 fitsviewer/fitsdata.cpp:6582
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Paràmetres no vàlids de reconstrucció des de Bayer del dc1394."
 
-#: fitsviewer/fitsdata.cpp:6495 fitsviewer/fitsdata.cpp:6548
+#: fitsviewer/fitsdata.cpp:6540 fitsviewer/fitsdata.cpp:6593
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Paràmetres no vàlids de reconstrucció des de Bayer de l'OpenCV."
 
-#: fitsviewer/fitsdata.cpp:6504 fitsviewer/fitsdata.cpp:6557
+#: fitsviewer/fitsdata.cpp:6549 fitsviewer/fitsdata.cpp:6602
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Motor no vàlid de reconstrucció des de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6811
+#: fitsviewer/fitsdata.cpp:6856
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 "debayer_8bit invocat amb paràmetres no vàlids de reconstrucció des de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6827 fitsviewer/fitsdata.cpp:6873
-#: fitsviewer/fitsdata.cpp:6931 fitsviewer/fitsdata.cpp:6977
+#: fitsviewer/fitsdata.cpp:6872 fitsviewer/fitsdata.cpp:6918
+#: fitsviewer/fitsdata.cpp:6976 fitsviewer/fitsdata.cpp:7022
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:6837 fitsviewer/fitsdata.cpp:6941
+#: fitsviewer/fitsdata.cpp:6882 fitsviewer/fitsdata.cpp:6986
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer."
 
-#: fitsviewer/fitsdata.cpp:6856 fitsviewer/fitsdata.cpp:6960
+#: fitsviewer/fitsdata.cpp:6901 fitsviewer/fitsdata.cpp:7005
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "La reconstrucció des de Bayer ha fallat (%1)"
 
-#: fitsviewer/fitsdata.cpp:6916
+#: fitsviewer/fitsdata.cpp:6961
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""
