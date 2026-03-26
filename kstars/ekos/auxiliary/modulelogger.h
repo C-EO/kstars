@@ -17,6 +17,11 @@ class ModuleLogger
 {
     public:
         /**
+         * @brief Virtual destructor for proper cleanup of derived classes
+         */
+        virtual ~ModuleLogger() = default;
+
+        /**
          * @brief appendLogText Append a new line to the logging.
          */
         virtual void appendLogText(const QString &) {};

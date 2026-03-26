@@ -315,6 +315,29 @@ int QueueManager::pendingCount() const
     return count;
 }
 
+void QueueManager::resetAllItems()
+{
+    // Don't reset while running
+    if (m_state == RUNNING)
+        return;
+
+    for (QueueItem *item : m_items)
+    {
+        if (item)
+        {
+            // This resets status, progress, error message, timestamps,
+            // and also resets the underlying task and all its actions
+            item->reset();
+        }
+    }
+
+    // Reset queue state to IDLE
+    m_state = IDLE;
+    m_currentItem = nullptr;
+
+    emit itemsReset();
+}
+
 Task *QueueManager::createTaskFromTemplate(const QString &templateId, const QMap<QString, QVariant> &parameters)
 {
     // Get the template manager instance

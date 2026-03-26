@@ -123,6 +123,12 @@ class QueueItem : public QObject
             m_errorMessage = msg;
         }
 
+        /**
+         * @brief Reset item state for re-execution
+         * Resets status, progress, error message, and task state
+         */
+        void reset();
+
         // Serialization
         QJsonObject toJson() const;
         bool loadFromJson(const QJsonObject &json);

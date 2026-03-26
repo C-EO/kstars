@@ -59,6 +59,7 @@ class QueueViewerWidget : public QWidget
         void onPauseQueue();
         void onStopQueue();
         void onClearQueue();
+        void onResetQueue();
 
         // Queue persistence
         void onSaveQueue();
@@ -119,6 +120,7 @@ class QueueViewerWidget : public QWidget
         QPushButton *m_pauseButton = nullptr;
         QPushButton *m_stopButton = nullptr;
         QPushButton *m_clearButton = nullptr;
+        QPushButton *m_resetButton = nullptr;
         QPushButton *m_removeButton = nullptr;
         QPushButton *m_moveUpButton = nullptr;
         QPushButton *m_moveDownButton = nullptr;

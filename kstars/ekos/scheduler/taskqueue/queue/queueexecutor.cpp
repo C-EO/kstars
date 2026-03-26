@@ -6,6 +6,7 @@
 
 #include "queueexecutor.h"
 #include "../actions/taskaction.h"
+#include "../actions/evaluateaction.h"
 #include "../templatemanager.h"
 #include "ekos/manager.h"
 #include "indi/indilistener.h"
@@ -338,6 +339,23 @@ void QueueExecutor::executeAction(TaskAction *action)
 
     // Reset retry counter before first execution
     action->resetRetryCounter();
+
+    // For EVALUATE actions, check if the previous SET action was skipped
+    // If so, configure the EVALUATE to accept IDLE state since the property
+    // state may not have been updated if the value was already correct
+    if (action->type() == TaskAction::EVALUATE && m_currentActionIndex > 0)
+    {
+        TaskAction *prevAction = m_currentItem->task()->actions().at(m_currentActionIndex - 1);
+        if (prevAction && prevAction->type() == TaskAction::SET && prevAction->wasSkipped())
+        {
+            auto *evaluateAction = qobject_cast<EvaluateAction *>(action);
+            if (evaluateAction)
+            {
+                qCInfo(KSTARS_EKOS_SCHEDULER) << "Previous SET action was skipped, configuring EVALUATE to accept IDLE state";
+                evaluateAction->setAcceptIdleOnSkippedPredecessor(true);
+            }
+        }
+    }
 
     // Execute the action
     action->start();

@@ -95,6 +95,12 @@ class QueueManager : public QObject
         int failedCount() const;
         int pendingCount() const;
 
+        /**
+         * @brief Reset all items to PENDING status and clear progress
+         * Used to restart a completed queue
+         */
+        void resetAllItems();
+
         // Programmatic task creation for mount parking between jobs
         /**
          * @brief Creates and adds a mount park task programmatically
@@ -124,6 +130,7 @@ class QueueManager : public QObject
         void queueCleared();
         void stateChanged(QueueState newState);
         void currentItemChanged(QueueItem *item);
+        void itemsReset();
 
     private:
         QList<QueueItem *> m_items;

@@ -135,6 +135,12 @@ class Task : public QObject
             m_deviceMappingFailureAction = action;
         }
 
+        /**
+         * @brief Reset task state for re-execution
+         * Resets task status and all action states
+         */
+        void reset();
+
         // Serialization (for queue persistence)
         QJsonObject toJson() const;
         bool loadFromJson(const QJsonObject &json);

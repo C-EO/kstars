@@ -147,6 +147,16 @@ class TaskAction : public QObject
             m_failureAction = action;
         }
 
+        // Skipped status (for idempotency)
+        bool wasSkipped() const
+        {
+            return m_wasSkipped;
+        }
+        void setWasSkipped(bool skipped)
+        {
+            m_wasSkipped = skipped;
+        }
+
         // Error information
         QString errorMessage() const
         {
@@ -161,6 +171,18 @@ class TaskAction : public QObject
         void resetRetryCounter()
         {
             m_currentRetry = 0;
+        }
+
+        /**
+         * @brief Reset action state for re-execution
+         * Resets status, retry counter, and skipped flag
+         */
+        void reset()
+        {
+            m_status = PENDING;
+            m_currentRetry = 0;
+            m_wasSkipped = false;
+            m_errorMessage.clear();
         }
 
         // Device pointer management
@@ -236,6 +258,7 @@ class TaskAction : public QObject
         int m_currentRetry = 0;
         FailureAction m_failureAction = ABORT_QUEUE;
         QString m_errorMessage;
+        bool m_wasSkipped = false;
 
         // Connection to device for cleanup
         QMetaObject::Connection m_deviceConnection;

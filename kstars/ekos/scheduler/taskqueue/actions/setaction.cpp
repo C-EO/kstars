@@ -41,6 +41,7 @@ bool SetAction::start()
                       .arg(m_device).arg(m_property).arg(m_element);
         qCInfo(KSTARS_EKOS_SCHEDULER) << msg;
         emit progress(msg);
+        m_wasSkipped = true;
         setStatus(COMPLETED);
         emit completed();
         return true;

@@ -128,6 +128,23 @@ void Task::setStatus(Status status)
     }
 }
 
+void Task::reset()
+{
+    // Reset task status
+    m_status = PENDING;
+    m_errorMessage.clear();
+    m_currentAction = nullptr;
+
+    // Reset all actions
+    for (TaskAction *action : m_actions)
+    {
+        if (action)
+        {
+            action->reset();
+        }
+    }
+}
+
 int Task::currentActionIndex() const
 {
     return m_actions.indexOf(m_currentAction);
@@ -180,7 +197,11 @@ QJsonObject Task::substituteParameters(const QJsonObject &actionDef) const
 QVariant Task::substituteValue(const QVariant &value) const
 {
     // Only substitute strings
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    if (value.typeId() != QMetaType::QString)
+#else
     if (value.type() != QVariant::String)
+#endif
     {
         return value;
     }

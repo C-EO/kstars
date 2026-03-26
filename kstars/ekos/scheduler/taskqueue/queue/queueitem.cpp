@@ -140,6 +140,26 @@ void QueueItem::onTaskProgress(const QString &message)
     emit progressUpdated(m_progress, m_progressMessage);
 }
 
+void QueueItem::reset()
+{
+    // Reset item status and progress
+    m_status = PENDING;
+    m_progress = 0;
+    m_progressMessage.clear();
+    m_errorMessage.clear();
+
+    // Clear execution timestamps
+    m_startTime = QDateTime();
+    m_endTime = QDateTime();
+    m_scheduledTime = QDateTime();
+
+    // Reset the underlying task and all its actions
+    if (m_task)
+    {
+        m_task->reset();
+    }
+}
+
 QJsonObject QueueItem::toJson() const
 {
     QJsonObject json;
@@ -187,27 +207,19 @@ QJsonObject QueueItem::toJson() const
 bool QueueItem::loadFromJson(const QJsonObject &json)
 {
     m_id = json["id"].toString();
-    m_status = static_cast<Status>(json["status"].toInt());
+    // Reset status to PENDING when loading - tasks should be re-runnable
+    m_status = PENDING;
     m_createdTime = QDateTime::fromString(json["created_time"].toString(), Qt::ISODate);
 
-    if (json.contains("scheduled_time"))
-    {
-        m_scheduledTime = QDateTime::fromString(json["scheduled_time"].toString(), Qt::ISODate);
-    }
+    // Clear execution timestamps since we're starting fresh
+    m_scheduledTime = QDateTime();
+    m_startTime = QDateTime();
+    m_endTime = QDateTime();
 
-    if (json.contains("start_time"))
-    {
-        m_startTime = QDateTime::fromString(json["start_time"].toString(), Qt::ISODate);
-    }
-
-    if (json.contains("end_time"))
-    {
-        m_endTime = QDateTime::fromString(json["end_time"].toString(), Qt::ISODate);
-    }
-
-    m_progress = json["progress"].toInt();
-    m_progressMessage = json["progress_message"].toString();
-    m_errorMessage = json["error_message"].toString();
+    // Reset progress since we're starting fresh
+    m_progress = 0;
+    m_progressMessage.clear();
+    m_errorMessage.clear();
 
     // Load task
     if (json.contains("task"))

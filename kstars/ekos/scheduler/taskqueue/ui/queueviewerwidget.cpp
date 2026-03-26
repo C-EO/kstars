@@ -98,10 +98,13 @@ void QueueViewerWidget::setupUI()
     m_stopButton->setToolTip(i18n("Stop"));
     m_clearButton = new QPushButton(QIcon::fromTheme("edit-clear"), QString(), this);
     m_clearButton->setToolTip(i18n("Clear"));
+    m_resetButton = new QPushButton(QIcon::fromTheme("view-refresh"), QString(), this);
+    m_resetButton->setToolTip(i18n("Reset Progress"));
 
     toolbarLayout->addWidget(m_startButton);
     toolbarLayout->addWidget(m_pauseButton);
     toolbarLayout->addWidget(m_stopButton);
+    toolbarLayout->addWidget(m_resetButton);
     toolbarLayout->addWidget(m_clearButton);
 
     mainLayout->addLayout(toolbarLayout);
@@ -166,6 +169,7 @@ void QueueViewerWidget::setupUI()
     connect(m_pauseButton, &QPushButton::clicked, this, &QueueViewerWidget::onPauseQueue);
     connect(m_stopButton, &QPushButton::clicked, this, &QueueViewerWidget::onStopQueue);
     connect(m_clearButton, &QPushButton::clicked, this, &QueueViewerWidget::onClearQueue);
+    connect(m_resetButton, &QPushButton::clicked, this, &QueueViewerWidget::onResetQueue);
     connect(m_removeButton, &QPushButton::clicked, this, &QueueViewerWidget::onRemoveItem);
     connect(m_moveUpButton, &QPushButton::clicked, this, &QueueViewerWidget::onMoveUp);
     connect(m_moveDownButton, &QPushButton::clicked, this, &QueueViewerWidget::onMoveDown);
@@ -327,6 +331,16 @@ void QueueViewerWidget::onClearQueue()
     setModified(true);
 }
 
+void QueueViewerWidget::onResetQueue()
+{
+    if (!m_manager)
+        return;
+
+    m_manager->resetAllItems();
+    refreshQueue();
+    m_statusLabel->setText(i18n("Queue reset - all tasks set to pending"));
+}
+
 void QueueViewerWidget::onRemoveItem()
 {
     if (!m_manager)
@@ -414,7 +428,7 @@ void QueueViewerWidget::onItemDoubleClicked(int row, int /*column*/)
     {
         QMessageBox::warning(this, i18n("Template Not Found"),
                              i18n("The template for this task is no longer available.\n"
-             "Template ID: %1", task->templateId()));
+                                  "Template ID: %1", task->templateId()));
         return;
     }
 
@@ -612,6 +626,7 @@ void QueueViewerWidget::updateControls()
     m_pauseButton->setEnabled(hasExecutor && isRunning);
     m_stopButton->setEnabled(hasExecutor && isRunning);
     m_clearButton->setEnabled(hasManager && hasItems && !isRunning);
+    m_resetButton->setEnabled(hasManager && hasItems && !isRunning);
 
     // Item controls
     m_removeButton->setEnabled(hasManager && hasSelection && !isRunning);
