@@ -183,10 +183,10 @@
                     "type": "SET",
                     "property": "CCD_TEMP_RAMP",
                     "element": "RAMP_SLOPE",
-                    "value": "${ramp_slope}",
                     "timeout": 30,
                     "retries": 2,
-                    "failure_action": 1
+                    "failure_action": 1,
+                    "value": "${ramp_slope}"
                 },
                 {
                     "type": "SET",
@@ -227,6 +227,60 @@
                     "target": "OK",
                     "timeout": 60,
                     "retries": 2,
+                    "failure_action": 0
+                }
+            ]
+        },
+        {
+            "id": "camera_warm_passive",
+            "name": "Warm Camera (Passive)",
+            "description": "Warm camera by disabling cooling and waiting for the sensor to reach or exceed the target temperature",
+            "version": "1.0",
+            "category": "Camera",
+            "supported_interfaces": [
+                2
+            ],
+            "parameters": [
+                {
+                    "name": "target_temperature",
+                    "type": "number",
+                    "default": 20,
+                    "min": -10,
+                    "max": 50,
+                    "step": 1,
+                    "unit": "°C",
+                    "description": "Target warming temperature (usually ambient)"
+                },
+                {
+                    "name": "max_wait_time",
+                    "type": "number",
+                    "default": 600,
+                    "min": 60,
+                    "max": 1800,
+                    "step": 60,
+                    "unit": "seconds",
+                    "description": "Maximum time to wait for passive warming"
+                }
+            ],
+            "actions": [
+                {
+                    "type": "SET",
+                    "property": "CCD_COOLER",
+                    "element": "COOLER_OFF",
+                    "value": true,
+                    "timeout": 30,
+                    "retries": 2,
+                    "failure_action": 1
+                },
+                {
+                    "type": "EVALUATE",
+                    "property": "CCD_TEMPERATURE",
+                    "element": "CCD_TEMPERATURE_VALUE",
+                    "property_type": 0,
+                    "condition": 4,
+                    "target": "${target_temperature}",
+                    "timeout": "${max_wait_time}",
+                    "retries": 0,
                     "failure_action": 0
                 }
             ]
