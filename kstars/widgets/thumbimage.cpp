@@ -59,33 +59,34 @@ void ThumbImage::paintEvent(QPaintEvent *)
 
 void ThumbImage::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton && CropRect->contains(e->pos()))
+    const QPoint pos = e->position().toPoint();
+    if (e->button() == Qt::LeftButton && CropRect->contains(pos))
     {
         bMouseButtonDown = true;
 
         //The Anchor tells how far from the CropRect corner we clicked
-        Anchor->setX(e->x() - CropRect->left());
-        Anchor->setY(e->y() - CropRect->top());
+        Anchor->setX(pos.x() - CropRect->left());
+        Anchor->setY(pos.y() - CropRect->top());
 
-        if (e->x() <= CropRect->left() + HandleSize && e->y() <= CropRect->top() + HandleSize)
+        if (pos.x() <= CropRect->left() + HandleSize && pos.y() <= CropRect->top() + HandleSize)
         {
             bTopLeftGrab = true;
         }
-        if (e->x() <= CropRect->left() + HandleSize && e->y() >= CropRect->bottom() - HandleSize)
+        if (pos.x() <= CropRect->left() + HandleSize && pos.y() >= CropRect->bottom() - HandleSize)
         {
             bBottomLeftGrab = true;
-            Anchor->setY(e->y() - CropRect->bottom());
+            Anchor->setY(pos.y() - CropRect->bottom());
         }
-        if (e->x() >= CropRect->right() - HandleSize && e->y() <= CropRect->top() + HandleSize)
+        if (pos.x() >= CropRect->right() - HandleSize && pos.y() <= CropRect->top() + HandleSize)
         {
             bTopRightGrab = true;
-            Anchor->setX(e->x() - CropRect->right());
+            Anchor->setX(pos.x() - CropRect->right());
         }
-        if (e->x() >= CropRect->right() - HandleSize && e->y() >= CropRect->bottom() - HandleSize)
+        if (pos.x() >= CropRect->right() - HandleSize && pos.y() >= CropRect->bottom() - HandleSize)
         {
             bBottomRightGrab = true;
-            Anchor->setX(e->x() - CropRect->right());
-            Anchor->setY(e->y() - CropRect->bottom());
+            Anchor->setX(pos.x() - CropRect->right());
+            Anchor->setY(pos.y() - CropRect->bottom());
         }
     }
 }
@@ -108,13 +109,14 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
 {
     if (bMouseButtonDown)
     {
+        const QPoint pos = e->position().toPoint();
         //If a corner was grabbed, we are resizing the box
         if (bTopLeftGrab)
         {
-            if (e->x() >= 0 && e->x() <= width())
-                CropRect->setLeft(e->x() - Anchor->x());
-            if (e->y() >= 0 && e->y() <= height())
-                CropRect->setTop(e->y() - Anchor->y());
+            if (pos.x() >= 0 && pos.x() <= width())
+                CropRect->setLeft(pos.x() - Anchor->x());
+            if (pos.y() >= 0 && pos.y() <= height())
+                CropRect->setTop(pos.y() - Anchor->y());
             if (CropRect->left() < 0)
                 CropRect->setLeft(0);
             if (CropRect->top() < 0)
@@ -126,10 +128,10 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
         }
         else if (bTopRightGrab)
         {
-            if (e->x() >= 0 && e->x() <= width())
-                CropRect->setRight(e->x() - Anchor->x());
-            if (e->y() >= 0 && e->y() <= height())
-                CropRect->setTop(e->y() - Anchor->y());
+            if (pos.x() >= 0 && pos.x() <= width())
+                CropRect->setRight(pos.x() - Anchor->x());
+            if (pos.y() >= 0 && pos.y() <= height())
+                CropRect->setTop(pos.y() - Anchor->y());
             if (CropRect->right() > width())
                 CropRect->setRight(width());
             if (CropRect->top() < 0)
@@ -141,10 +143,10 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
         }
         else if (bBottomLeftGrab)
         {
-            if (e->x() >= 0 && e->x() <= width())
-                CropRect->setLeft(e->x() - Anchor->x());
-            if (e->y() >= 0 && e->y() <= height())
-                CropRect->setBottom(e->y() - Anchor->y());
+            if (pos.x() >= 0 && pos.x() <= width())
+                CropRect->setLeft(pos.x() - Anchor->x());
+            if (pos.y() >= 0 && pos.y() <= height())
+                CropRect->setBottom(pos.y() - Anchor->y());
             if (CropRect->left() < 0)
                 CropRect->setLeft(0);
             if (CropRect->bottom() > height())
@@ -156,10 +158,10 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
         }
         else if (bBottomRightGrab)
         {
-            if (e->x() >= 0 && e->x() <= width())
-                CropRect->setRight(e->x() - Anchor->x());
-            if (e->y() >= 0 && e->y() <= height())
-                CropRect->setBottom(e->y() - Anchor->y());
+            if (pos.x() >= 0 && pos.x() <= width())
+                CropRect->setRight(pos.x() - Anchor->x());
+            if (pos.y() >= 0 && pos.y() <= height())
+                CropRect->setBottom(pos.y() - Anchor->y());
             if (CropRect->right() > width())
                 CropRect->setRight(width());
             if (CropRect->bottom() > height())
@@ -171,7 +173,7 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
         }
         else //no corner grabbed; move croprect
         {
-            CropRect->moveTopLeft(QPoint(e->x() - Anchor->x(), e->y() - Anchor->y()));
+            CropRect->moveTopLeft(QPoint(pos.x() - Anchor->x(), pos.y() - Anchor->y()));
             if (CropRect->left() < 0)
                 CropRect->moveLeft(0);
             if (CropRect->right() > width())
