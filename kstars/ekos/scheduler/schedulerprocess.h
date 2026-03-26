@@ -811,5 +811,21 @@ class SchedulerProcess : public QObject, public ModuleLogger
 
         // Standalone safety monitor monitoring (before equipment profile starts)
         SchedulerSafetyMonitor *m_StandaloneSafetyMonitor {nullptr};
+
+        // Startup queue error tracking
+        QString m_lastStartupQueueError;
+        bool m_startupQueueFailurePopupShown = false;
+
+        /**
+         * @brief showStartupQueueFailurePopup Display a popup notification for startup queue failure.
+         * Only shows the popup once per failure cycle.
+         */
+        void showStartupQueueFailurePopup();
+
+        /**
+         * @brief resetLatchedStartupErrorIfQueuesDisabled Clear the latched startup error state
+         * when startup queues are disabled in options, allowing recovery.
+         */
+        void resetLatchedStartupErrorIfQueuesDisabled();
 };
 }

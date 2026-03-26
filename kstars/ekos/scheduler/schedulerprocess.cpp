@@ -678,6 +678,9 @@ void SchedulerProcess::wakeUpScheduler()
 
 void SchedulerProcess::start()
 {
+    // Reset latched startup error state for new scheduler session
+    resetLatchedStartupErrorIfQueuesDisabled();
+
     // New scheduler session shouldn't inherit ABORT or ERROR states from the last one.
     foreach (auto j, moduleState()->jobs())
     {
@@ -2035,6 +2038,7 @@ bool SchedulerProcess::checkStartupState()
             return true;
 
         case STARTUP_ERROR:
+            showStartupQueueFailurePopup();
             stop();
             return true;
     }
@@ -3347,6 +3351,8 @@ void SchedulerProcess::queueItemFailed(QueueItem *item, const QString &error)
     if (moduleState()->startupState() == STARTUP_PRE_DEVICES_RUNNING
             || moduleState()->startupState() == STARTUP_POST_DEVICES_RUNNING)
     {
+        // Latch the error for display in popup
+        m_lastStartupQueueError = error;
         appendLogText(i18n("Startup queue failed: %1", error));
         moduleState()->setStartupState(STARTUP_ERROR);
         return;
@@ -4733,6 +4739,35 @@ void SchedulerProcess::printStates(const QString &label)
     foreach (auto j, moduleState()->jobs())
         qCDebug(KSTARS_EKOS_SCHEDULER) << QString("job %1 %2\n").arg(j->getName()).arg(SchedulerJob::jobStatusString(
                                            j->getState())).toLatin1().data();
+}
+
+void SchedulerProcess::showStartupQueueFailurePopup()
+{
+    // Only show once per failure cycle
+    if (m_startupQueueFailurePopupShown)
+        return;
+
+    m_startupQueueFailurePopupShown = true;
+
+    QString errorMessage = m_lastStartupQueueError.isEmpty()
+                           ? i18n("Unknown error occurred during startup queue execution.")
+                           : m_lastStartupQueueError;
+
+    KSMessageBox::Instance()->sorry(i18n("Startup Queue Failed"),
+                                    i18n("The scheduler startup queue has failed:\n\n%1\n\n"
+                                         "The scheduler has been stopped. Please check the log for details "
+                                         "and correct the issue before restarting.", errorMessage), 30);
+}
+
+void SchedulerProcess::resetLatchedStartupErrorIfQueuesDisabled()
+{
+    // If startup queues are disabled in options, clear the latched error
+    // This allows users to retry after disabling a problematic queue
+    if (!Options::schedulerStartupEnabled())
+    {
+        m_lastStartupQueueError.clear();
+        m_startupQueueFailurePopupShown = false;
+    }
 }
 
 } // Ekos namespace
