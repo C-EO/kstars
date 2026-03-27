@@ -57,6 +57,11 @@ class BinaryListComponent
          */
         BinaryListComponent(Component* parent, QString basename, QString txtExt, QString binExt);
 
+        /**
+         * @brief Virtual destructor for proper cleanup of derived classes
+         */
+        virtual ~BinaryListComponent() = default;
+
     protected:
         /**
          * @brief loadData
