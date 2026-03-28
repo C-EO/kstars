@@ -149,8 +149,17 @@ FITSData::~FITSData()
 
     if (fptr != nullptr)
     {
-        fits_flush_file(fptr, &status);
-        fits_close_file(fptr, &status);
+        // Do not flush or close compressed FITS files normally. They are opened via
+        // fp_unpack_file_to_fits() or fp_unpack_data_to_data() which create memory-backed
+        // FITS files. Both fits_flush_file() and fits_close_file() attempt to truncate/resize
+        // the memory buffer via mem_truncate() → realloc(), which causes a crash due to
+        // CFITSIO's internal memory management issues with these decompressed files.
+        // Simply set fptr to nullptr and free our own buffer - the memory will be cleaned up.
+        if (!m_isCompressed)
+        {
+            fits_flush_file(fptr, &status);
+            fits_close_file(fptr, &status);
+        }
         free(m_PackBuffer);
         m_PackBuffer = nullptr;
         fptr = nullptr;
@@ -261,8 +270,17 @@ void FITSData::loadCommon(const QString &inFilename)
 
     if (fptr != nullptr)
     {
-        fits_flush_file(fptr, &status);
-        fits_close_file(fptr, &status);
+        // Do not flush or close compressed FITS files normally. They are opened via
+        // fp_unpack_file_to_fits() or fp_unpack_data_to_data() which create memory-backed
+        // FITS files. Both fits_flush_file() and fits_close_file() attempt to truncate/resize
+        // the memory buffer via mem_truncate() → realloc(), which causes a crash due to
+        // CFITSIO's internal memory management issues with these decompressed files.
+        // Simply set fptr to nullptr and free our own buffer - the memory will be cleaned up.
+        if (!m_isCompressed)
+        {
+            fits_flush_file(fptr, &status);
+            fits_close_file(fptr, &status);
+        }
         fptr = nullptr;
     }
 
