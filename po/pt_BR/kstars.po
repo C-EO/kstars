@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-27 02:06+0000\n"
-"PO-Revision-Date: 2026-03-24 07:26-0300\n"
+"PO-Revision-Date: 2026-03-27 09:24-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -31150,16 +31150,15 @@ msgid "Safety monitor initialized with connection string: %1"
 msgstr "Monitor de segurança inicializado com a string de conexão: %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4753
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Ativar execução da fila de inicialização"
+msgstr ""
+"Ocorreu um erro desconhecido durante a execução da fila de inicialização."
 
 #: ekos/scheduler/schedulerprocess.cpp:4756
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "Fila de inicialização falhou: %1"
+msgstr "Fila de inicialização falhou"
 
 #: ekos/scheduler/schedulerprocess.cpp:4757
 #, kde-format
@@ -31171,6 +31170,12 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"A fila de inicialização do agendador falhou:\n"
+"\n"
+"%1\n"
+"\n"
+"O agendador foi interrompido. Verifique o log para obter detalhes e corrija "
+"o problema antes de reiniciar."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -31863,10 +31868,9 @@ msgid "Pause"
 msgstr "Pausar"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Progresso"
+msgstr "Reiniciar progresso"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -31921,7 +31925,7 @@ msgstr "Falha ao iniciar a execução da fila. Verifique se a fila contém itens
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:341
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
-msgstr ""
+msgstr "Fila reiniciada - todas as tarefas definidas como pendentes"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format

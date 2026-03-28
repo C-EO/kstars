@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-27 02:06+0000\n"
-"PO-Revision-Date: 2026-03-24 14:15+0100\n"
+"PO-Revision-Date: 2026-03-27 17:30+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -444,7 +444,7 @@ msgstr "Guarda"
 #: auxiliary/imageviewer.cpp:136 auxiliary/xplanetimageviewer.cpp:292
 #, kde-format
 msgid "Save the image to disk"
-msgstr "Guarda la imatge al disc"
+msgstr "Guarda la imatge en el disc"
 
 #: auxiliary/imageviewer.cpp:177
 #, kde-format
@@ -476,7 +476,7 @@ msgstr "Visor d'imatges"
 #: auxiliary/imageviewer.cpp:257
 #, kde-format
 msgid "Loading of the image %1 failed."
-msgstr "La càrrega de la imatge %1 ha fallat."
+msgstr "Ha fallat la càrrega de la imatge %1."
 
 #: auxiliary/imageviewer.cpp:312 auxiliary/xplanetimageviewer.cpp:1232
 #: indi/clientmanagerlite.cpp:797 printing/foveditordialog.cpp:119
@@ -782,8 +782,8 @@ msgstr ""
 #, kde-format
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr ""
-"S'ha produït un error mentre s'escrivia al fitxer de configuració intern de "
-"l'astrometria."
+"S'ha produït un error mentre s'escrivia en el fitxer de configuració intern "
+"de l'astrometria."
 
 #: auxiliary/ksutils.cpp:1768 fitsviewer/fitsdata.cpp:2841
 #, kde-format
@@ -864,7 +864,7 @@ msgstr ""
 #: auxiliary/kswizard.cpp:386
 #, kde-format
 msgid "File write error."
-msgstr "S'ha produït un error mentre s'escrivia al fitxer."
+msgstr "S'ha produït un error mentre s'escrivia en el fitxer."
 
 #: auxiliary/kswizard.cpp:398
 #, kde-format
@@ -1635,7 +1635,7 @@ msgstr "Vista d'Xplanet: %1 des de %2 a %3 amb CDV: %4 deg"
 #: auxiliary/xplanetimageviewer.cpp:779
 #, kde-format
 msgid "Loading of the image of object %1 failed."
-msgstr "La càrrega de la imatge de l'objecte %1 ha fallat."
+msgstr "Ha fallat la càrrega de la imatge de %1."
 
 #: auxiliary/xplanetimageviewer.cpp:785
 #, kde-format
@@ -1669,7 +1669,7 @@ msgstr "Renderitza CDV en Xplanet:"
 #: auxiliary/xplanetimageviewer.cpp:1258
 #, kde-format
 msgid "Saving of the image to %1 failed."
-msgstr "La guardada de la imatge a %1 ha fallat."
+msgstr "No s'ha pogut fer la guardada de la imatge a %1."
 
 #: catalogsdb/catalogsdb.cpp:322
 #, kde-format
@@ -2309,7 +2309,7 @@ msgstr ""
 "objectes interessants diferents del cel nocturn. Inclou els objectes "
 "visibles a simple vista, així com els objectes que requerixen telescopis. "
 "Està pensat per a astrònoms principiants i avançats. Si cliqueu damunt d'una "
-"categoria o un catàleg, apareixerà una llista d'objectes. Quan es clique "
+"categoria o un catàleg, apareixerà una llista d'objectes. Quan es clica "
 "damunt d'un objecte de la llista apareixerà una vista de detalls a on "
 "trobareu més informació sobre seu.  Si hi ha imatges en miniatura o "
 "informació de la Viquipèdia, també es mostraran. Si no, les podreu baixar "
@@ -2530,7 +2530,7 @@ msgstr "Miscel·lània"
 #: dialogs/addcatalogobject.ui:182 dialogs/addcatalogobject.ui:185
 #, kde-format
 msgid "Some catalog specific identifier, like the NGC number."
-msgstr "Identificador específic en catàleg, com el número NGC."
+msgstr "Algun identificador específic de catàleg, com el número NGC."
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: dialogs/addcatalogobject.ui:188
@@ -2681,7 +2681,7 @@ msgstr "CSV"
 #: dialogs/addcatdialog.ui:311
 #, kde-format
 msgid "Space Delimited"
-msgstr "Delimitat a l'espai"
+msgstr "Delimitat en l'espai"
 
 #. i18n: ectx: property (text), widget (QPushButton, PreviewButton)
 #: dialogs/addcatdialog.ui:324
@@ -3901,7 +3901,7 @@ msgstr "0,0 min. d'arc"
 #: dialogs/details_data.ui:332
 #, kde-format
 msgid "B - V index:"
-msgstr "Índex B - V:"
+msgstr "Índex B – V:"
 
 #. i18n: ectx: property (text), widget (KSHelpLabel, DistanceLabel)
 #: dialogs/details_data.ui:342 printing/detailstable.cpp:323
@@ -4106,7 +4106,7 @@ msgstr "0 a"
 #: dialogs/details_database.ui:13
 #, kde-format
 msgid "Details - Online Databases"
-msgstr "Detalls - Bases de dades en línia"
+msgstr "Detalls – Bases de dades en línia"
 
 #. i18n: ectx: property (text), widget (QTreeWidget, ADVTree)
 #: dialogs/details_database.ui:29
@@ -4118,7 +4118,7 @@ msgstr "Trieu una base de dades nova en línia"
 #: dialogs/details_links.ui:13
 #, kde-format
 msgid "Details - Resource Links"
-msgstr "Detalls - Enllaços cap a recursos"
+msgstr "Detalls – Enllaços cap a recursos"
 
 #. i18n: ectx: property (text), widget (QLabel, InfoTitle)
 #: dialogs/details_links.ui:47 kstarslite/qml/dialogs/DetailsDialog.qml:357
@@ -4166,7 +4166,7 @@ msgstr "Registre de l'usuari"
 #: dialogs/details_position.ui:14
 #, kde-format
 msgid "Details - Position Data"
-msgstr "Detalls - Dades de posició"
+msgstr "Detalls – Dades de posició"
 
 #. i18n: ectx: property (text), widget (QLabel, CoordTitle)
 #. i18n: ectx: property (text), widget (QRadioButton, coordinatesR)
@@ -6409,7 +6409,7 @@ msgstr ""
 #: ekos/align/align.cpp:2601
 #, kde-format
 msgid "Astrometry alignment failed"
-msgstr "L'alineació amb l'astrometria ha fallat"
+msgstr "No s'ha pogut fer l'alineació amb l'astrometria"
 
 #: ekos/align/align.cpp:1493
 #, kde-format
@@ -6627,7 +6627,7 @@ msgstr "S'ha completat amb èxit l'alineació amb l'astrometria"
 #, kde-format
 msgid "Maximum number of iterations reached. Solver failed."
 msgstr ""
-"S'ha arribat fins al nombre màxim d'iteracions. El solucionador ha fallat."
+"S'ha arribat fins al nombre màxim d'iteracions. Ha fallat el solucionador."
 
 #: ekos/align/align.cpp:2459
 #, kde-format
@@ -6649,25 +6649,25 @@ msgstr "S'està guardant la imatge fallida del solucionador a %1"
 #, kde-format
 msgid "Solver failed. Retrying with blind dynamic threshold."
 msgstr ""
-"El solucionador ha fallat. Es torna a intentar amb un llindar dinàmic cec."
+"Ha fallat el solucionador. Es torna a intentar amb un llindar dinàmic cec."
 
 #: ekos/align/align.cpp:2578
 #, kde-format
 msgid "Solver failed. Retrying without scale constraint."
 msgstr ""
-"El solucionador ha fallat. Es torna a intentar sense la restricció d'escala."
+"Ha fallat el solucionador. Es torna a intentar sense la restricció d'escala."
 
 #: ekos/align/align.cpp:2588
 #, kde-format
 msgid "Solver failed. Retrying without position constraint."
 msgstr ""
-"El solucionador ha fallat. Es torna a intentar sense la restricció de "
+"Ha fallat el solucionador. Es torna a intentar sense la restricció de "
 "posició."
 
 #: ekos/align/align.cpp:2596
 #, kde-format
 msgid "Solver Failed."
-msgstr "El solucionador ha fallat."
+msgstr "Ha fallat el solucionador."
 
 #: ekos/align/align.cpp:2599
 #, kde-format
@@ -6678,7 +6678,7 @@ msgid ""
 msgstr ""
 "Comproveu que hi haja estreles suficients en la imatge, que CDV indicat siga "
 "correcte i que estiguen instal·lats els fitxers d'índex necessaris. Activeu "
-"la gravació de l'alineació en la pestanya «Configuració -> Registres» per a "
+"la gravació de l'alineació en la pestanya «Configuració → Registres» per a "
 "obtindre informació detallada de la fallada."
 
 #: ekos/align/align.cpp:2657
@@ -7577,7 +7577,7 @@ msgstr "S'està iniciant el solucionador…"
 #: ekos/align/remoteastrometryparser.cpp:248
 #, kde-format
 msgid "Solver failed. Try again."
-msgstr "El solucionador ha fallat. Torneu-ho a provar."
+msgstr "Ha fallat el solucionador. Torneu-ho a provar."
 
 #: ekos/align/astapastrometryparser.cpp:148
 #, kde-format
@@ -7943,7 +7943,8 @@ msgid ""
 "location.  If you select a star, it will be added to the table below."
 msgstr ""
 "Estos són els noms comuns de les estreles anomenades que es veuen actualment "
-"al vostre emplaçament. Si trieu una estrela, s'afegirà a la taula de davall."
+"en el vostre emplaçament. Si trieu una estrela, s'afegirà a la taula de "
+"davall."
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: ekos/align/mountmodel.ui:270
@@ -7959,8 +7960,8 @@ msgid ""
 "your location.  If you select a star, it will be added to the table below."
 msgstr ""
 "Estos són els noms grecs de les estreles més brillants que es veuen "
-"actualment al vostre emplaçament. Si trieu una estrela, s'afegirà a la taula "
-"de davall."
+"actualment en el vostre emplaçament. Si trieu una estrela, s'afegirà a la "
+"taula de davall."
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
 #: ekos/align/mountmodel.ui:293
@@ -9029,7 +9030,7 @@ msgstr "S'ha cancel·lat la baixada de %1."
 #: ekos/align/opsastrometryindexfiles.cpp:565
 #, kde-format
 msgid "File Write Error"
-msgstr "S'ha produït un error mentre s'escrivia al fitxer"
+msgstr "S'ha produït un error mentre s'escrivia en el fitxer"
 
 #: ekos/align/opsastrometryindexfiles.cpp:579
 #, kde-format
@@ -9267,7 +9268,7 @@ msgstr "index-5200-*.fits"
 #: ekos/align/opsastrometryindexfiles.ui:357
 #, kde-format
 msgid "170' - 240'"
-msgstr "170' - 240'"
+msgstr "170' – 240'"
 
 #. i18n: ectx: property (text), widget (QCheckBox, index_4210)
 #: ekos/align/opsastrometryindexfiles.ui:426
@@ -9280,7 +9281,7 @@ msgstr "index-4210.fits"
 #: ekos/align/opsastrometryindexfiles.ui:438
 #, kde-format
 msgid "60' - 85'"
-msgstr "60' - 85'"
+msgstr "60' – 85'"
 
 #. i18n: ectx: property (text), widget (QLabel, index_4210_perc)
 #. i18n: ectx: property (text), widget (QLabel, index_4212_perc)
@@ -9325,7 +9326,7 @@ msgstr "(24 M)"
 #: ekos/align/opsastrometryindexfiles.ui:507
 #, kde-format
 msgid "120' - 170'"
-msgstr "120' - 170'"
+msgstr "120' – 170'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_22)
 #: ekos/align/opsastrometryindexfiles.ui:619
@@ -9420,14 +9421,14 @@ msgstr "index-4215.fits"
 #: ekos/align/opsastrometryindexfiles.ui:1131
 #, kde-format
 msgid "42' - 60'"
-msgstr "42' - 60'"
+msgstr "42' – 60'"
 
 # skip-rule: t-apo_fin,t-apo_fim
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: ekos/align/opsastrometryindexfiles.ui:1186
 #, kde-format
 msgid "16' - 22'"
-msgstr "16' - 22'"
+msgstr "16' – 22'"
 
 #. i18n: ectx: property (text), widget (QLabel, index_4206_info)
 #. i18n: ectx: property (text), widget (QLabel, index_4202_info)
@@ -9474,7 +9475,7 @@ msgstr "(157 M)"
 #: ekos/align/opsastrometryindexfiles.ui:1248
 #, kde-format
 msgid "4.0' - 5.6'"
-msgstr "4,0' - 5,6'"
+msgstr "4,0' – 5,6'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_38)
 #: ekos/align/opsastrometryindexfiles.ui:1298
@@ -9607,7 +9608,7 @@ msgstr "(160 K)"
 #: ekos/align/opsastrometryindexfiles.ui:2042
 #, kde-format
 msgid "2.0' - 2.8'"
-msgstr "2,0' - 2,8'"
+msgstr "2,0' – 2,8'"
 
 #. i18n: ectx: property (text), widget (QCheckBox, index_4209)
 #: ekos/align/opsastrometryindexfiles.ui:2092
@@ -9656,7 +9657,7 @@ msgstr "(7,6 M)"
 #: ekos/align/opsastrometryindexfiles.ui:2277
 #, kde-format
 msgid "5.6' - 8.0'"
-msgstr "5,6' - 8,0'"
+msgstr "5,6' – 8,0'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_43)
 #: ekos/align/opsastrometryindexfiles.ui:2327
@@ -9675,7 +9676,7 @@ msgstr "index-5206-*.fits"
 #: ekos/align/opsastrometryindexfiles.ui:2444
 #, kde-format
 msgid "240' - 340'"
-msgstr "240' - 340'"
+msgstr "240' – 340'"
 
 #. i18n: ectx: property (text), widget (QCheckBox, index_4117)
 #: ekos/align/opsastrometryindexfiles.ui:2575
@@ -9688,14 +9689,14 @@ msgstr "index-4117.fits"
 #: ekos/align/opsastrometryindexfiles.ui:2656
 #, kde-format
 msgid "11' - 16'"
-msgstr "11' - 16'"
+msgstr "11' – 16'"
 
 # skip-rule: t-apo_fin,t-apo_fim
 #. i18n: ectx: property (text), widget (QLabel, label_9)
 #: ekos/align/opsastrometryindexfiles.ui:2718
 #, kde-format
 msgid "30' - 42'"
-msgstr "30' - 42'"
+msgstr "30' – 42'"
 
 #. i18n: ectx: property (text), widget (QCheckBox, index_4119)
 #: ekos/align/opsastrometryindexfiles.ui:2768
@@ -9708,7 +9709,7 @@ msgstr "index-4119.fits"
 #: ekos/align/opsastrometryindexfiles.ui:2780
 #, kde-format
 msgid "2.8' - 4.0'"
-msgstr "2,8' - 4,0'"
+msgstr "2,8' – 4,0'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_61)
 #: ekos/align/opsastrometryindexfiles.ui:2830
@@ -9763,7 +9764,7 @@ msgstr "index-4216.fits"
 #: ekos/align/opsastrometryindexfiles.ui:3175
 #, kde-format
 msgid "340' - 480'"
-msgstr "340' - 480'"
+msgstr "340' – 480'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_134)
 #. i18n: ectx: property (text), widget (QLabel, label_135)
@@ -9790,7 +9791,7 @@ msgstr "index-4111.fits"
 #: ekos/align/opsastrometryindexfiles.ui:3206
 #, kde-format
 msgid "1000' - 1400'"
-msgstr "1000' - 1400'"
+msgstr "1000' – 1400'"
 
 #. i18n: ectx: property (text), widget (QCheckBox, index_4113)
 #: ekos/align/opsastrometryindexfiles.ui:3227
@@ -9803,14 +9804,14 @@ msgstr "index-4113.fits"
 #: ekos/align/opsastrometryindexfiles.ui:3234
 #, kde-format
 msgid "1400' - 2000'"
-msgstr "1400' - 2000'"
+msgstr "1400' – 2000'"
 
 # skip-rule: t-apo_fin,t-apo_fim
 #. i18n: ectx: property (text), widget (QLabel, label_18)
 #: ekos/align/opsastrometryindexfiles.ui:3241
 #, kde-format
 msgid "680' - 1000'"
-msgstr "680' - 1000'"
+msgstr "680' – 1000'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_29)
 #: ekos/align/opsastrometryindexfiles.ui:3248
@@ -9835,7 +9836,7 @@ msgstr "(183 K)"
 #: ekos/align/opsastrometryindexfiles.ui:3412
 #, kde-format
 msgid "8' - 11'"
-msgstr "8' - 11'"
+msgstr "8' – 11'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_21)
 #: ekos/align/opsastrometryindexfiles.ui:3462
@@ -9860,7 +9861,7 @@ msgstr "(399 K)"
 #: ekos/align/opsastrometryindexfiles.ui:3520
 #, kde-format
 msgid "480' - 680'"
-msgstr "480' - 680'"
+msgstr "480' – 680'"
 
 #. i18n: ectx: property (text), widget (QCheckBox, index_4116)
 #: ekos/align/opsastrometryindexfiles.ui:3589
@@ -9915,7 +9916,7 @@ msgstr "index-4204-*.fits"
 #: ekos/align/opsastrometryindexfiles.ui:3726
 #, kde-format
 msgid "85' - 120'"
-msgstr "85' - 120'"
+msgstr "85' – 120'"
 
 #. i18n: ectx: property (text), widget (QLabel, label_42)
 #: ekos/align/opsastrometryindexfiles.ui:3872
@@ -9952,7 +9953,7 @@ msgstr "index-5202-*.fits"
 #: ekos/align/opsastrometryindexfiles.ui:3974
 #, kde-format
 msgid "22' - 30'"
-msgstr "22' - 30'"
+msgstr "22' – 30'"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_5)
 #: ekos/align/opsprograms.ui:17
@@ -10502,7 +10503,7 @@ msgstr ""
 #: ekos/align/polaralignmentassistant.cpp:1355
 #, kde-format
 msgid "PAC: Correction failed. Stopping polar alignment."
-msgstr "PAC: la correcció ha fallat. Es para l'alineació polar."
+msgstr "PAC: ha fallat la correcció. Es para l'alineació polar."
 
 #: ekos/align/polaralignmentassistant.cpp:1386
 #, kde-format
@@ -11915,7 +11916,7 @@ msgid ""
 "<html><head/><body><p>Plot the mount's pier side (left) -> where the mount "
 "is pointing.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Traça el costat del moll (esquerra) de la muntura -> "
+"<html><head/><body><p>Traça el costat del moll (esquerra) de la muntura → "
 "cap a on està apuntant la muntura.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, pierSideCB)
@@ -11932,9 +11933,9 @@ msgid ""
 "pointing. Click here to view this axis on left-axis values. Double click to "
 "update axis.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>El costat del moll (esquerra) de la muntura -> cap a "
-"on està apuntant la muntura. Cliqueu ací per a veure este eix en els valors "
-"de l'eix esquerre. Feu doble clic per a actualitzar l'eix.</p></body></html>"
+"<html><head/><body><p>El costat del moll (esquerra) de la muntura → cap a on "
+"està apuntant la muntura. Cliqueu ací per a veure este eix en els valors de "
+"l'eix esquerre. Feu doble clic per a actualitzar l'eix.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, mountHaCB)
 #: ekos/analyze/analyze.ui:1172
@@ -12860,7 +12861,7 @@ msgstr "Restablix"
 #: ekos/auxiliary/darklibrary.ui:1008
 #, kde-format
 msgid "Detect hot and cold pixels within the aggressiveness threshold."
-msgstr "S'han detectat píxels cremats i freds al llindar d'agressivitat."
+msgstr "S'han detectat píxels cremats i freds en el llindar d'agressivitat."
 
 #. i18n: ectx: property (text), widget (QPushButton, generateMapB)
 #: ekos/auxiliary/darklibrary.ui:1011
@@ -12873,7 +12874,7 @@ msgstr "Genera el mapa"
 #, kde-format
 msgid "Save defect map to disk once the map results are satisfactory."
 msgstr ""
-"Guarda el mapa de defectes al disc una vegada el resultat del mapa siga "
+"Guarda el mapa de defectes en el disc una vegada el resultat del mapa siga "
 "satisfactori."
 
 #. i18n: ectx: attribute (title), widget (QWidget, mastersTab)
@@ -14005,10 +14006,10 @@ msgid ""
 "adapters. The device must <b>always</b> be plugged into the same port for "
 "this to work."
 msgstr ""
-"Assigna el nom permanent basant-se en el port físic al qual està connectat "
-"el dispositiu en StellarMate. Açò és útil per a distingir entre dos "
-"adaptadors USB idèntics. Perquè funcione, cal que el dispositiu <b>sempre</"
-"b> es connecte al mateix port."
+"Assigna el nom permanent basant-se en el port físic en el qual està "
+"connectat el dispositiu en StellarMate. Açò és útil per a distingir entre "
+"dos adaptadors USB idèntics. Perquè funcione, cal que el dispositiu "
+"<b>sempre</b> es connecte amb el mateix port."
 
 #: ekos/auxiliary/serialportassistant.cpp:165
 #, kde-format
@@ -15224,7 +15225,7 @@ msgid ""
 "When shooting flats on sky that can change intensity. Will use simpler "
 "exposure calculation."
 msgstr ""
-"Quan es prenen plans del cel als que es pot canviar la intensitat. "
+"Quan es prenen plans del cel en els que es pot canviar la intensitat. "
 "S'utilitzarà un càlcul més senzill de l'exposició."
 
 #. i18n: ectx: property (text), widget (QCheckBox, captureCalibrationSkyFlats)
@@ -15762,16 +15763,16 @@ msgstr ""
 "list-indent:1;\"><li style=\"margin-top:12px; margin-bottom:0px; margin-"
 "left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
 "style=\"font-weight:600;\">Localment</span>: Les imatges capturades es "
-"guarden localment al disc en la carpeta especificada més amunt.</li><li "
+"guarden localment en el disc en la carpeta especificada més amunt.</li><li "
 "style=\"margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\"font-"
 "weight:600;\">Remotament</span>: En connectar amb un dispositiu remot, trieu "
-"esta opció per a guardar les imatges només al dispositiu remot. No es puja "
-"cap imatge a Ekos.</li><li style=\"margin-top:0px; margin-bottom:12px; "
+"esta opció per a guardar les imatges només en el dispositiu remot. No es "
+"puja cap imatge a Ekos.</li><li style=\"margin-top:0px; margin-bottom:12px; "
 "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"
 "\"><span style=\"font-weight:600;\">Ambdós</span>: Les imatges capturades es "
 "guarden en l'ordinador remot <span style=\"font-weight:600;\">i</span> també "
-"al disc local.</li></ol><p>En seleccionar <span style=\"font-style:italic;"
+"en el disc local.</li></ol><p>En seleccionar <span style=\"font-style:italic;"
 "\">Remotament</span> o <span style=\"font-style:italic;\">Ambdós</span>, cal "
 "especificar la carpeta remota a on es guardaran les imatges. De manera "
 "predeterminada, totes les imatges capturades es guarden <span style=\"font-"
@@ -16739,7 +16740,7 @@ msgid ""
 "Flat calibration failed. Captured image is only %1-bit while requested ADU "
 "is %2."
 msgstr ""
-"El calibratge pla ha fallat. La imatge capturada és de només %1 bits, mentre "
+"Ha fallat el calibratge pla. La imatge capturada és de només %1 bits, mentre "
 "que l'ADU sol·licitada era %2."
 
 #: ekos/capture/cameraprocess.cpp:2270
@@ -17397,7 +17398,7 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Trieu les propietats personalitzades que s'han "
 "d'establir quan s'execute la tasca en seqüència en el mode Treball per lots. "
-"Una vegada establit el valor de la propietat al quadro de control d'INDI, "
+"Una vegada establit el valor de la propietat en el quadro de control d'INDI, "
 "afegiu-lo a la secció <span style=\"font-weight:600;\">Propietats de la "
 "tasca</span>. Cliqueu damunt <span style=\"font-weight:600;\">Aplica</span> "
 "per a enregistrar els valors de la propietat.</p></body></html>"
@@ -18991,7 +18992,7 @@ msgstr "S'ha produït un error durant l'anàlisi de la resposta del servidor: %1
 #: ekos/focus/aberrationinspector.cpp:60
 #, kde-format
 msgid "Aberration Inspector - Run %1"
-msgstr "Inspector d'aberracions - Execució %1"
+msgstr "Inspector d'aberracions: execució %1"
 
 #: ekos/focus/aberrationinspector.cpp:93 ekos/focus/aberrationinspector.cpp:98
 #, kde-format
@@ -23014,7 +23015,7 @@ msgstr "PHD2: S'està calibrant, venç en %1 s."
 #: ekos/guide/externalguide/phd2.cpp:796
 #, kde-format
 msgid "PHD2: Calibration turned to looping, failed."
-msgstr "PHD2: El calibratge ha entrat en bucle, ha fallat."
+msgstr "PHD2: Ha fallat el calibratge, ha entrat en un bucle."
 
 #: ekos/guide/externalguide/phd2.cpp:800
 #, kde-format
@@ -24096,7 +24097,7 @@ msgid ""
 "guide frames' in [Guide Options/Calibration]"
 msgstr ""
 "S'ha detectat una imatge reflectida verticalment: proveu marcant l'opció "
-"«Utilitza els fotogrames de guiatge reflectits» en «Opcions del guiatge -> "
+"«Utilitza els fotogrames de guiatge reflectits» en «Opcions del guiatge → "
 "Calibratge»."
 
 #: ekos/guide/internalguide/gmath.cpp:511
@@ -24151,7 +24152,8 @@ msgstr "Pols RA ara és %1 ms/seg. d'arc calculat per a la Dec = %2"
 #, kde-format
 msgid "%1 info are missing. Please set the values in INDI Control Panel."
 msgstr ""
-"Falta la informació de %1. Establiu els valors al quadro de control d'INDI."
+"Falta la informació de %1. Establiu els valors en el quadro de control "
+"d'INDI."
 
 #: ekos/guide/internalguide/internalguider.cpp:793
 #, kde-format
@@ -25653,7 +25655,7 @@ msgstr "Algorisme per a la detecció d'estreles"
 #, kde-format
 msgid "Minimum number of stars detected for SEP MultiStar to initialize."
 msgstr ""
-"Nombre mínim d'estreles detectades pel SEP amb múltiples estreles a la "
+"Nombre mínim d'estreles detectades pel SEP amb múltiples estreles durant la "
 "inicialització."
 
 #. i18n: ectx: property (text), widget (QLabel, label_22)
@@ -25702,7 +25704,7 @@ msgstr "Utilitza el xip de guiatge dedicat"
 #, kde-format
 msgctxt "@title:window"
 msgid "Ekos - %1 Profile"
-msgstr "Ekos - Perfil %1"
+msgstr "Ekos: perfil %1"
 
 #: ekos/manager.cpp:260
 #, kde-format
@@ -31720,16 +31722,14 @@ msgstr ""
 "El monitor de seguretat s'ha inicialitzat amb la cadena de connexió: %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4753
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Activa l'execució de la cua d'inici"
+msgstr "S'ha produït un error desconegut durant l'execució de la cua d'inici."
 
 #: ekos/scheduler/schedulerprocess.cpp:4756
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "Ha fallat la cua d'inici: %1"
+msgstr "Ha fallat la cua d'inici"
 
 #: ekos/scheduler/schedulerprocess.cpp:4757
 #, kde-format
@@ -31741,6 +31741,12 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"Ha fallat la cua d'inici del programador:\n"
+"\n"
+"%1\n"
+"\n"
+"S'ha parat el programador. Comproveu el registre per a trobar els detalls i "
+"corregiu el problema abans de reiniciar."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -32067,7 +32073,7 @@ msgstr "Permisos:"
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:207
 #, kde-format
 msgid "SET - Write value to property"
-msgstr "SET: escriu el valor a la propietat"
+msgstr "SET: escriu el valor en la propietat"
 
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:211
 #, kde-format
@@ -32441,10 +32447,9 @@ msgid "Pause"
 msgstr "Pausa"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Progrés"
+msgstr "Reinicia el progrés"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32501,7 +32506,7 @@ msgstr ""
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:341
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
-msgstr ""
+msgstr "Reinici de la cua: s'establixen totes les tasques com a pendents"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format
@@ -33222,7 +33227,7 @@ msgstr "S'ha completat."
 #: fitsviewer/fitsdebayer.cpp:116
 #, kde-format
 msgid "Debayer failed."
-msgstr "La reconstrucció des de Bayer ha fallat."
+msgstr "Ha fallat la reconstrucció des de Bayer."
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, FITSDebayerDialog)
 #: fitsviewer/fitsdebayer.ui:14
@@ -34327,7 +34332,7 @@ msgstr "(%1)"
 #: fitsviewer/fitsview.cpp:688 fitsviewer/fitsview.cpp:699
 #, kde-format
 msgid "Rescaling image failed."
-msgstr "El canvi d'escala de la imatge ha fallat."
+msgstr "Ha fallat el canvi d'escala de la imatge."
 
 #: fitsviewer/fitsview.cpp:953
 #, kde-format
@@ -34528,12 +34533,12 @@ msgstr "Pestanya anterior"
 #: fitsviewer/fitsviewer.cpp:302
 #, kde-format
 msgid "Next Blink Image"
-msgstr "Fes una comparació visual a la imatge següent"
+msgstr "Fes una comparació visual en la imatge següent"
 
 #: fitsviewer/fitsviewer.cpp:307
 #, kde-format
 msgid "Previous Blink Image"
-msgstr "Fes una comparació visual a la imatge anterior"
+msgstr "Fes una comparació visual en la imatge anterior"
 
 #: fitsviewer/fitsviewer.cpp:312
 #, kde-format
@@ -34641,7 +34646,7 @@ msgstr "Superposició de HiPS"
 #, kde-format
 msgctxt "@title:window"
 msgid "Blink Top Directory"
-msgstr "Fes una comparació visual a la carpeta superior"
+msgstr "Fes una comparació visual en la carpeta superior"
 
 #: fitsviewer/fitsviewer.cpp:1096
 #, kde-format
@@ -35290,7 +35295,7 @@ msgid ""
 "(usually in the range 0.6 - 0.9)</p></body></html>"
 msgstr ""
 "<html><head/><body><p>L'escala de la sigma és el multiplicador MAD per a "
-"eliminar els valors discrepants (normalment en l'interval 0,6 - 0,9).</p></"
+"eliminar els valors discrepants (normalment en l'interval 0,6 – 0,9).</p></"
 "body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, LowSigmaLabel)
@@ -35375,7 +35380,7 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Relaxació / esmorteïment entre les iteracions. 1,0 = "
 "sense esmortiment, &lt;1.0 = més suau (però convergència més lenta).</"
-"p><p>Valors normals 0,7 - 0,9.</p></body></html>"
+"p><p>Valors normals 0,7 – 0,9.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, HighSigma)
 #. i18n: ectx: property (toolTip), widget (QLabel, HighSigmaLabel)
@@ -35472,7 +35477,7 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Quantitat de desconvolució de Wiener que s'aplicarà a "
 "l'interval de 0 fins a 1. La característica combina esta quantitat de la "
-"imatge desconvolutada amb (1 - quantitat) de la imatge original.</"
+"imatge desconvolutada amb (1 – quantitat) de la imatge original.</"
 "p><p>Establiu-la a 0 per a desactivar-la.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, SharpenKernalLabel)
@@ -37507,7 +37512,7 @@ msgid ""
 "from the Device Manager in the devices menu."
 msgstr ""
 "Actualment no hi ha cap dispositiu INDI en marxa. Per a iniciar-los, trieu-"
-"los des del Gestor de dispositius amb l'element de menú «Dades -> "
+"los des del Gestor de dispositius amb l'element de menú «Dades → "
 "Dispositius»."
 
 #: indi/indicamera.cpp:482
@@ -37675,12 +37680,12 @@ msgstr "El posicionament inicial de la muntura s'ha fet correctament"
 #: indi/indimount.cpp:397
 #, kde-format
 msgid "Mount homing failed"
-msgstr "El posicionament inicial de la muntura ha fallat"
+msgstr "Ha fallat el posicionament inicial de la muntura"
 
 #: indi/indimount.cpp:486
 #, kde-format
 msgid "Mount parking failed"
-msgstr "No s'ha pogut aparcar la muntura"
+msgstr "Ha fallat mentre s'aparcava la muntura"
 
 #: indi/indimount.cpp:492
 #, kde-format
@@ -39640,7 +39645,7 @@ msgid ""
 msgstr ""
 "Els noms dels indicadors del camp de visió actualment seleccionats. La "
 "llista de noms per als indicadors de CDV definits es mostra en el menú "
-"«Configuració -> Símbols de CDV»."
+"«Configuració → Símbols de CDV»."
 
 #. i18n: ectx: label, entry (FadePlanetTrails), group (View)
 #: kstars.kcfg:386
@@ -45754,7 +45759,7 @@ msgstr "Tramat després d'este nombre de fotogrames."
 #: kstars.kcfg:3183
 #, kde-format
 msgid "Maximum distance (pixels) for guiding to be considered settled."
-msgstr "Distància màxima (píxels) per a considerar ubicat el guiatge."
+msgstr "Distància màxima (píxels) per a considerar posicionat el guiatge."
 
 #. i18n: ectx: label, entry (DitherTimeout), group (Guide)
 #: kstars.kcfg:3187
@@ -58022,7 +58027,7 @@ msgstr "Hapcheon"
 #, kde-kuit-format
 msgctxt "City in Newfoundland Canada"
 msgid "Happy Valley - Goose Bay"
-msgstr "Happy Valley - Goose Bay"
+msgstr "Happy Valley – Goose Bay"
 
 #: kstars_i18n.cpp:1948
 #, kde-kuit-format
@@ -75707,7 +75712,7 @@ msgstr ""
 #: kstarsactions.cpp:1469
 #, kde-format
 msgid "Script Validation Failed"
-msgstr "La validació de l'script ha fallat"
+msgstr "No s'ha pogut validar l'script"
 
 #: kstarsactions.cpp:1469
 #, kde-format
@@ -76936,7 +76941,7 @@ msgstr "Planetari per a l'escriptori"
 #: kstarslite/qml/dialogs/DetailsDialog.qml:148
 #, kde-kuit-format
 msgid "B - V Index"
-msgstr "Índex B - V"
+msgstr "Índex B – V"
 
 #: kstarslite/qml/dialogs/DetailsDialog.qml:158
 #, kde-kuit-format
@@ -77066,12 +77071,12 @@ msgstr "Busca en Internet"
 #: kstarslite/qml/dialogs/helpers/DetailsAddLink.qml:13
 #, kde-kuit-format
 msgid "%1 - Edit Link"
-msgstr "%1 - Edita l'enllaç"
+msgstr "%1 – Edita l'enllaç"
 
 #: kstarslite/qml/dialogs/helpers/DetailsAddLink.qml:13
 #, kde-kuit-format
 msgid "%1 - Add a Link"
-msgstr "%1 - Afig un enllaç"
+msgstr "%1 – Afig un enllaç"
 
 #: kstarslite/qml/dialogs/helpers/DetailsAddLink.qml:77
 #, kde-kuit-format
@@ -77273,7 +77278,7 @@ msgstr "Ha fallat mentre s'afegia l'emplaçament"
 #: kstarslite/qml/dialogs/helpers/LocationEdit.qml:417
 #, kde-kuit-format
 msgid "Added new location - %1"
-msgstr "S'ha afegit un l'emplaçament nou - %1"
+msgstr "S'ha afegit un l'emplaçament nou – %1"
 
 #: kstarslite/qml/dialogs/helpers/LocationEdit.qml:423
 #, kde-kuit-format
@@ -77343,7 +77348,7 @@ msgstr "S'ha eliminat l'emplaçament %1"
 #: kstarslite/qml/indi/ImagePreview.qml:15
 #, kde-kuit-format
 msgid "Image Preview - %1"
-msgstr "Vista prèvia de la imatge - %1"
+msgstr "Vista prèvia de la imatge – %1"
 
 #: kstarslite/qml/indi/INDIControlPanel.qml:15
 #, kde-kuit-format
@@ -85489,7 +85494,7 @@ msgstr "Fitxer incorrecte"
 #: skycomponents/imageoverlaycomponent.cpp:556
 #, kde-format
 msgid "Solve Failed"
-msgstr "La resolució ha fallat"
+msgstr "Ha fallat la resolució"
 
 #: skycomponents/imageoverlaycomponent.cpp:579
 #, kde-format
@@ -86262,7 +86267,7 @@ msgid ""
 "\t\n"
 msgstr ""
 "\t\t<p>Podeu localitzar objectes en el cel pel seu nom.\n"
-"\t\t\tUtilitzeu «Ctrl+F», l'element de menú «Apunta -> Busca un objecte»\n"
+"\t\t\tUtilitzeu «Ctrl+F», l'element de menú «Apunta → Busca un objecte»\n"
 "\t\t\to el botó «Busca un objecte» de la barra d'eines.\n"
 "\t\t</p>\n"
 "\t\n"
@@ -86279,7 +86284,7 @@ msgid ""
 msgstr ""
 "\t\t<p>Per a canviar el vostre emplaçament geogràfic,\n"
 "\t\t\tutilitzeu «Ctrl+G», el botó «globus» de la barra d'eines\n"
-"\t\t\to l'element de menú «Configuració -> Emplaçament geogràfic…».\n"
+"\t\t\to l'element de menú «Configuració → Emplaçament geogràfic…».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -86299,7 +86304,7 @@ msgid ""
 msgstr ""
 "\t\t<p>Podeu seguir un objecte, de manera que sempre estiga centrat\n"
 "\t\t\ten la pantalla.<br/>\n"
-"\t\t\tUtilitzeu «Ctrl+T», l'element de menú «Apunta -> Comença el seguiment» "
+"\t\t\tUtilitzeu «Ctrl+T», l'element de menú «Apunta → Comença el seguiment» "
 "o el botó\n"
 "\t\t\tdel «cadenat» de la barra d'eines. També podeu centrar amb facilitat\n"
 "\t\t\tl'objecte fent-hi doble clic o seleccionant «Centra i seguix»\n"
@@ -86346,7 +86351,7 @@ msgstr ""
 "ratolí\n"
 "\t\t\ti ocultar-los fent doble clic damunt seu per a mostrar més (o menys)\n"
 "\t\t\tinformació. Els podeu ocultar tots simultàniament en el menú "
-"«Configuració -> Rètols informatius».\n"
+"«Configuració → Rètols informatius».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -86517,7 +86522,7 @@ msgid ""
 "\t\n"
 msgstr ""
 "\t\t<p>Podeu establir manualment les coordenades del punt d'enfocament.\n"
-"\t\t\tPremeu «Ctrl+M» o utilitzeu l'element de menú «Apunta -> Establix "
+"\t\t\tPremeu «Ctrl+M» o utilitzeu l'element de menú «Apunta → Establix "
 "manualment les coordenades…»\n"
 "\t\t\ti introduïu les coordenades desitjades en la finestra emergent.\n"
 "\t\t</p>\n"
@@ -86534,8 +86539,8 @@ msgid ""
 "\t\n"
 msgstr ""
 "\t\t<p>Per a alternar entre el sistema de coordenades equatorials i\n"
-"\t\t\thoritzontals, utilitzeu l'element de menú «Visualitza -> Coordenades» "
-"o premeu\n"
+"\t\t\thoritzontals, utilitzeu l'element de menú «Visualitza → Coordenades» o "
+"premeu\n"
 "la barra espaiadora.\n"
 "\t\t</p>\n"
 "\t\n"
@@ -86554,8 +86559,8 @@ msgid ""
 msgstr ""
 "\t\t<p>Per a establir la data i l'hora, premeu «Ctrl+S», utilitzeu l'element "
 "de menú\n"
-"\t\t\t«Temps -> Establix la data i l'hora» o el botó del rellotge de la "
-"barra d'eines.\n"
+"\t\t\t«Temps → Establix la data i l'hora» o el botó del rellotge de la barra "
+"d'eines.\n"
 "\t\t\tCal tindre present que les dates de KStars poden ser molt remotes;\n"
 "\t\t\tpodeu utilitzar qualsevol any entre el -50.000 i el +50.000.\n"
 "\t\t</p>\n"
@@ -86571,8 +86576,8 @@ msgid ""
 "\t\t</p>\n"
 "\t\n"
 msgstr ""
-"\t\t<p>Podeu prémer «Ctrl+E» o utilitzar l'element de menú «Temps -> "
-"Establix el temps a ara»\n"
+"\t\t<p>Podeu prémer «Ctrl+E» o utilitzar l'element de menú «Temps → Establix "
+"el temps a ara»\n"
 "\t\t\tper a sincronitzar el rellotge de simulació amb el rellotge de la "
 "vostra CPU.\n"
 "\t\t</p>\n"
@@ -86607,7 +86612,7 @@ msgid ""
 "\t\n"
 msgstr ""
 "\t\t<p>Podeu parar i iniciar el rellotge amb el botó «Reproduïu o pausa»\n"
-"\t\t\tde la barra d'eines o amb l'element de menú «Temps -> Para el "
+"\t\t\tde la barra d'eines o amb l'element de menú «Temps → Para el "
 "rellotge».\n"
 "\t\t\t</p>\n"
 "\t\n"
@@ -86720,7 +86725,7 @@ msgid ""
 msgstr ""
 "\t\t<p>Si voleu la informació orbital més recent d'asteroides i cometes\n"
 "\t\t\t(incloent-hi la dels objectes descoberts darrerament), aneu sovint a\n"
-"\t\t\tl'eina «Descarrega dades» («Dades -> Descarrega dades noves» o «Ctrl"
+"\t\t\tl'eina «Descarrega dades» («Dades → Descarrega dades noves» o «Ctrl"
 "+N»)\n"
 "\t\t\tper tal d'obtindre les efemèrides actualitzades.\n"
 "\t\t</p>\n"
@@ -86993,7 +86998,7 @@ msgid ""
 msgstr ""
 "\t\t<p>De manera predeterminada, KStars es distribuïx amb els catàlegs "
 "d'objectes del cel profund NGC i IC. Podeu baixar molts més catàlegs des de "
-"l'opció «Dades -> Descarrega dades noves». També podeu crear el vostre propi "
+"l'opció «Dades → Descarrega dades noves». També podeu crear el vostre propi "
 "catàleg personalitzat i afegir-los-hi.\n"
 "\t\t</p>\n"
 "\t\n"
@@ -87012,7 +87017,7 @@ msgstr ""
 "\t\t<p>De manera predeterminada, KStars es distribuïx amb un catàleg "
 "d'estreles fins a magnitud 8. Podeu baixar catàlegs addicionals d'estreles "
 "(Tycho-2 i USNO NOMAD) per a mostrar fins a 100 milions d'estreles de "
-"magnitud 16 utilitzant l'opció «Dades -> Descarrega dades noves».\n"
+"magnitud 16 utilitzant l'opció «Dades → Descarrega dades noves».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87044,7 +87049,7 @@ msgstr ""
 "\t\t<p>Podeu ajustar dotzenes d'opcions de pantalla clicant damunt del botó "
 "de\n"
 "\t\t\t«clau anglesa» de la barra d'eines o seleccionant l'element de menú\n"
-"«Configuració -> Configura KStars…».\n"
+"«Configuració → Configura KStars…».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87059,7 +87064,7 @@ msgid ""
 "\t\n"
 msgstr ""
 "\t\t<p>Podeu ocultar o mostrar els rètols informatius en pantalla\n"
-"\t\t\tutilitzant l'element de menú «Configuració -> Rètols informatius».\n"
+"\t\t\tutilitzant l'element de menú «Configuració → Rètols informatius».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87074,7 +87079,7 @@ msgid ""
 msgstr ""
 "\t\t<p>Podeu ocultar o mostrar les barres d'eines utilitzant l'element de "
 "menú\n"
-"\t\t\t«Configuració -> Barres d'eines mostrades».\n"
+"\t\t\t«Configuració → Barres d'eines mostrades».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87091,7 +87096,7 @@ msgstr ""
 "\t\t<p>Podeu ocultar els camps de coordenades tant AR/Dec com Alt/Az en la "
 "barra d'estat\n"
 "\t\t\to fins i tot ocultar completament la barra d'estat, emprant el menú \n"
-"\t\t\t«Configuració -> Barra d'estat».\n"
+"\t\t\t«Configuració → Barra d'estat».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87106,7 +87111,7 @@ msgid ""
 msgstr ""
 "\t\t<p>Podeu canviar amb facilitat entre els esquemes de color predefinits "
 "seleccionant\n"
-"\t\t\tl'esquema des del menú «Configuració -> Esquemes de color».\n"
+"\t\t\tl'esquema des del menú «Configuració → Esquemes de color».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87164,7 +87169,7 @@ msgid ""
 msgstr ""
 "\t\t<p>Podeu dissenyar-vos els vostres propis símbols del camp de visió "
 "(CDV)\n"
-"\t\t\tutilitzant l'«Editor de CDV» des del menú «Configuració -> Símbols de "
+"\t\t\tutilitzant l'«Editor de CDV» des del menú «Configuració → Símbols de "
 "CDV». Podeu establir la mida angular,\n"
 "\t\t\tla forma i el color dels vostres símbols nous.\n"
 "\t\t</p>\n"
@@ -87187,7 +87192,7 @@ msgstr ""
 "de la càmera. Llavors podreu ajustar l'orientació del símbol de CDV perquè "
 "coincidisca amb l'orientació de la càmera, per a veure que s'ajusta dins el "
 "camp per a l'obtenció de les imatges. Es pot accedir a l'«Editor de CDV» des "
-"del menú «Configuració -> Símbols de CDV».\n"
+"del menú «Configuració → Símbols de CDV».\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -87477,7 +87482,7 @@ msgstr ""
 "\t\t<p>Edwin Hubble va fer els primers amidaments que mostraven que les "
 "galàxies distants s'allunyen de nosaltres a velocitats molt grans. Esta va "
 "ser una prova precoç de l'expansió de l'univers. Apreneu-ne més al projecte "
-"AstroInfo en el manual de KStars (Ajuda -> Manual de KStars).\n"
+"AstroInfo en el manual de KStars (Ajuda → Manual de KStars).\n"
 "\t\t</p>\n"
 "\t\n"
 
@@ -88915,7 +88920,7 @@ msgid ""
 msgstr ""
 "Caldrà que carregueu un catàleg per a començar a emprar esta eina.\n"
 "Si en teniu un, utilitzeu el botó «Carrega el catàleg».\n"
-"Vegeu «Dades -> Descarrega dades noves…»"
+"Vegeu «Dades → Descarrega dades noves…»"
 
 #: tools/imagingplanner.cpp:2399
 #, kde-format
@@ -91234,7 +91239,7 @@ msgstr "Guarda la sessió d'observació."
 #: tools/observinglist.ui:111
 #, kde-format
 msgid "Save the current observing list to disk"
-msgstr "Guarda la llista d'observacions actual al disc."
+msgstr "Guarda la llista d'observacions actual en el disc."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, SaveAsButton)
 #: tools/observinglist.ui:139
@@ -91248,7 +91253,7 @@ msgstr "Anomena i guarda la sessió d'observació…"
 #, kde-format
 msgid "Save the current observing list to disk, specifying the filename"
 msgstr ""
-"Guarda la llista d'observacions actual al disc, especificant el nom de "
+"Guarda la llista d'observacions actual en el disc, especificant el nom de "
 "fitxer."
 
 #. i18n: ectx: property (text), widget (QPushButton, OALExport)
@@ -93033,9 +93038,9 @@ msgid ""
 "Star-hopper algorithm failed. If you're trying a large star hop, try using a "
 "smaller FOV or changing the source point"
 msgstr ""
-"L'algorisme del saltador entre estreles ha fallat. Si esteu intentant un "
-"salt gran entre estreles, proveu utilitzant un CDV més xicotet o canvieu el "
-"punt d'origen"
+"No s'ha pogut fer l'algorisme del saltador entre estreles. Si esteu "
+"intentant un salt gran entre estreles, proveu utilitzant un CDV més xicotet "
+"o canvieu el punt d'origen"
 
 #. i18n: ectx: property (windowTitle), widget (QDialog, StarHopperDialog)
 #: tools/starhopperdialog.ui:14
@@ -94110,8 +94115,8 @@ msgstr ""
 "per a que puga carregar-la i actualitzar la vista. Si no se selecciona, en "
 "realitat Xplanet guardarà els fitxers en la carpeta d'Xplanet de la carpeta "
 "de dades de KStars. L'ús d'un fitxer FIFO hauria d'evitar lectures i "
-"escriptures excessives al disc dur i pot oferir una millora en el rendiment."
-"</p></body></html>"
+"escriptures excessives en el disc dur i pot oferir una millora en el "
+"rendiment.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_XplanetUseFIFO)
 #: xplanet/opsxplanet.ui:222
@@ -94123,7 +94128,7 @@ msgstr "Utilitza el fitxer FIFO"
 #: xplanet/opsxplanet.ui:229
 #, kde-format
 msgid "(saves to memory instead of a hard disk)"
-msgstr "(es guardarà a la memòria en comptes d'un disc dur)"
+msgstr "(es guardarà en la memòria en comptes d'un disc dur)"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_XplanetFOV)
 #: xplanet/opsxplanet.ui:236

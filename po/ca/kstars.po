@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-27 02:06+0000\n"
-"PO-Revision-Date: 2026-03-24 11:08+0100\n"
+"PO-Revision-Date: 2026-03-27 11:28+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -31382,16 +31382,14 @@ msgstr ""
 "El monitor de seguretat s'ha inicialitzat amb la cadena de connexió: %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4753
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Activa l'execució de la cua d'inici"
+msgstr "S'ha produït un error desconegut durant l'execució de la cua d'inici."
 
 #: ekos/scheduler/schedulerprocess.cpp:4756
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "Ha fallat la cua d'inici: %1"
+msgstr "Ha fallat la cua d'inici"
 
 #: ekos/scheduler/schedulerprocess.cpp:4757
 #, kde-format
@@ -31403,6 +31401,12 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"La cua d'inic del programador ha fallat:\n"
+"\n"
+"%1\n"
+"\n"
+"S'ha aturat el programador. Comproveu el registre per a trobar els detalls i "
+"corregiu el problema abans de reiniciar."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -32104,10 +32108,9 @@ msgid "Pause"
 msgstr "Pausa"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Progrés"
+msgstr "Reinicia el progrès"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32164,7 +32167,7 @@ msgstr ""
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:341
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
-msgstr ""
+msgstr "Reinici de la cua - totes les tasques es defineixen com a pendents"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format

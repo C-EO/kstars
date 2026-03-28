@@ -29668,16 +29668,14 @@ msgid "Safety monitor initialized with connection string: %1"
 msgstr "安全条件监视器已通过连接字符串：%1 初始化"
 
 #: ekos/scheduler/schedulerprocess.cpp:4753
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "启用启动队列执行"
+msgstr ""
 
 #: ekos/scheduler/schedulerprocess.cpp:4756
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "启动队列失败：%1"
+msgstr ""
 
 #: ekos/scheduler/schedulerprocess.cpp:4757
 #, kde-format
@@ -30368,10 +30366,9 @@ msgid "Pause"
 msgstr "暂停"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "进度"
+msgstr ""
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format

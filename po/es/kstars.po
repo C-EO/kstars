@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-27 02:06+0000\n"
-"PO-Revision-Date: 2026-03-25 01:45+0100\n"
+"PO-Revision-Date: 2026-03-27 11:35+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -31364,16 +31364,15 @@ msgid "Safety monitor initialized with connection string: %1"
 msgstr "Monitor de seguridad inicializado con la cadena de conexión: %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4753
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Activar la ejecución de la cola de arranque"
+msgstr ""
+"Ha ocurrido un error desconocido durante la ejecución de la cola de arranque."
 
 #: ekos/scheduler/schedulerprocess.cpp:4756
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "La cola de arranque ha fallado: %1"
+msgstr "La cola de arranque ha fallado"
 
 #: ekos/scheduler/schedulerprocess.cpp:4757
 #, kde-format
@@ -31385,6 +31384,12 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"La cola de arranque del planificador ha fallado:\n"
+"\n"
+"%1\n"
+"\n"
+"El planificador se ha detenido. Compruebe el registro para más detalles y "
+"corrija el problema antes de reiniciarlo."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -32084,10 +32089,9 @@ msgid "Pause"
 msgstr "Pausar"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Avance"
+msgstr "Reiniciar el proceso"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32144,7 +32148,7 @@ msgstr ""
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:341
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
-msgstr ""
+msgstr "Reinicio de la cola: todas las tareas se definen como pendientes"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format

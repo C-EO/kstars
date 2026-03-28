@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-27 02:06+0000\n"
-"PO-Revision-Date: 2026-03-24 08:04+0200\n"
+"PO-Revision-Date: 2026-03-27 08:25+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -31288,16 +31288,15 @@ msgid "Safety monitor initialized with connection string: %1"
 msgstr "Монітор безпеки ініціалізовано за допомогою такого рядка з'єднання: %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4753
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Увімкнути виконання черги при запуску"
+msgstr ""
+"Під час виконання черги дій із запуску сталася помилка невідомої природи."
 
 #: ekos/scheduler/schedulerprocess.cpp:4756
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "Помилка у черзі запуску: %1"
+msgstr "Помилка у черзі запуску"
 
 #: ekos/scheduler/schedulerprocess.cpp:4757
 #, kde-format
@@ -31309,6 +31308,12 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"Помилка у черзі запуску планувальника:\n"
+"\n"
+"%1\n"
+"\n"
+"Роботу планувальника зупинено. Будь ласка, ознайомтеся із журналом, щоб "
+"дізнатися більше, і виправте помилку, перш ніж перезапускати планувальник."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -32001,10 +32006,9 @@ msgid "Pause"
 msgstr "Призупинити"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Поступ"
+msgstr "Скинути поступ"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32061,7 +32065,7 @@ msgstr ""
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:341
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
-msgstr ""
+msgstr "Чергу скинуто — для усіх завдань встановлено стан «у черзі»"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format
