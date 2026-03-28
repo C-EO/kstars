@@ -263,10 +263,14 @@ void FITSData::loadCommon(const QString &inFilename)
     {
         fits_flush_file(fptr, &status);
         fits_close_file(fptr, &status);
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
         fptr = nullptr;
     }
+
+    free(m_PackBuffer);
+    m_PackBuffer = nullptr;
+    m_PackBufferSize = 0;
+    m_MemFileBuffer = nullptr;
+    m_MemFileBufferSize = 0;
 
     m_Filename = inFilename;
 }
@@ -1824,42 +1828,38 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
         {
             // Store so we don't lose.
             m_compressedFilename = m_Filename;
-
             QString uncompressedFile = QDir::tempPath() + QString("/%1").arg(QUuid::createUuid().toString().remove(
                                            QRegularExpression("[-{}]")));
 
             rc = fp_unpack_file_to_fits(m_Filename.toLocal8Bit().data(), &fptr, fpvar) == 0;
             if (rc)
-            {
                 m_Filename = uncompressedFile;
-            }
         }
         else
         {
-            size_t m_PackBufferSize = 100000;
+            m_PackBufferSize = 100000;
             free(m_PackBuffer);
             m_PackBuffer = (uint8_t *)malloc(m_PackBufferSize);
             rc = fp_unpack_data_to_data(buffer.data(), buffer.size(), &m_PackBuffer, &m_PackBufferSize, fpvar) == 0;
 
             if (rc)
             {
-                void *data = reinterpret_cast<void *>(m_PackBuffer);
-                if (fits_open_memfile(&fptr, m_Filename.toLocal8Bit().data(), READONLY, &data, &m_PackBufferSize, 0,
+                m_MemFileBuffer = reinterpret_cast<void *>(m_PackBuffer);
+                m_MemFileBufferSize = m_PackBufferSize;
+                if (fits_open_memfile(&fptr, m_Filename.toLocal8Bit().data(), READONLY, &m_MemFileBuffer, &m_MemFileBufferSize, 0,
                                       nullptr, &status))
                 {
                     m_LastError = i18n("Error reading fits buffer: %1.", fitsErrorToString(status));
                     return false;
                 }
-
-                m_Statistics.size = m_PackBufferSize;
             }
-            //rc = fp_unpack_data_to_fits(buffer.data(), buffer.size(), &fptr, fpvar) == 0;
         }
 
         if (rc == false)
         {
             free(m_PackBuffer);
             m_PackBuffer = nullptr;
+            m_PackBufferSize = 0;
             m_LastError = i18n("Failed to unpack compressed fits");
             qCCritical(KSTARS_FITS) << m_LastError;
             return false;
@@ -1867,7 +1867,21 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
 
         m_isTemporary = true;
         m_isCompressed = true;
-        m_Statistics.size = fptr->Fptr->logfilesize;
+        if (buffer.isEmpty())
+        {
+            int hduStatus = 0;
+            int hduCount = 1;
+            LONGLONG headStart = 0, dataStart = 0, dataEnd = 0;
+            // Use public CFITSIO APIs; do not read internal fields like fptr->Fptr->logfilesize.
+            if (fits_get_num_hdus(fptr, &hduCount, &hduStatus) == 0 &&
+                    fits_movabs_hdu(fptr, hduCount, nullptr, &hduStatus) == 0 &&
+                    fits_get_hduaddrll(fptr, &headStart, &dataStart, &dataEnd, &hduStatus) == 0)
+                m_Statistics.size = dataEnd;
+            else
+                m_Statistics.size = 0;
+        }
+        else
+            m_Statistics.size = m_MemFileBufferSize;
 
     }
     else if (buffer.isEmpty())
@@ -1884,18 +1898,19 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
     else
     {
         // Read the FITS file from a memory buffer.
-        void *temp_buffer = const_cast<void *>(reinterpret_cast<const void *>(buffer.data()));
-        size_t temp_size = buffer.size();
+        m_MemFileBuffer = const_cast<void *>(reinterpret_cast<const void *>(buffer.data()));
+        m_MemFileBufferSize = buffer.size();
         if (fits_open_memfile(&fptr, m_Filename.toLocal8Bit().data(), READONLY,
-                              &temp_buffer, &temp_size, 0, nullptr, &status))
+                              &m_MemFileBuffer, &m_MemFileBufferSize, 0, nullptr, &status))
         {
             m_LastError = i18n("Error reading fits buffer: %1", fitsErrorToString(status));
             return false;
         }
 
-        m_Statistics.size = temp_size;
+        m_Statistics.size = m_MemFileBufferSize;
     }
 
+    // Size probing may change current HDU; always continue from the first image HDU.
     if (fits_movabs_hdu(fptr, 1, IMAGE_HDU, &status))
     {
 

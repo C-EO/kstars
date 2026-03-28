@@ -11,10 +11,13 @@
 #endif
 
 #include <memory>
+#include <QFileInfo>
+#include <QTemporaryDir>
 #include "testfitsdata.h"
 #include "Options.h"
 #include "ekos/auxiliary/solverutils.h"
 #include "ekos/auxiliary/stellarsolverprofile.h"
+#include "fitsviewer/fpack.h"
 
 Q_DECLARE_METATYPE(FITSMode);
 
@@ -299,6 +302,65 @@ void TestFitsData::testLoadFits()
     // QWARN(QString("TB Center %1,%2").arg(TRACKING_BOX.center().x()).arg(TRACKING_BOX.center().y()).toStdString().c_str());
     QVERIFY(abs(centers[0]->x - TRACKING_BOX.center().x()) <= 5);
     QVERIFY(abs(centers[0]->y - TRACKING_BOX.center().y()) <= 5);
+#endif
+}
+
+void TestFitsData::testLoadCompressedFits_data()
+{
+#if QT_VERSION < 0x050900
+    QSKIP("Skipping fixture-based test on old QT version.");
+#else
+    QTest::addColumn<QString>("NAME");
+    QTest::newRow("M47-1-COMPRESSED") << "m47_sim_stars.fits";
+#endif
+}
+
+void TestFitsData::testLoadCompressedFits()
+{
+#if QT_VERSION < 0x050900
+    QSKIP("Skipping fixture-based test on old QT version.");
+#else
+    QFETCH(QString, NAME);
+
+    if (!QFile::exists(NAME))
+        QSKIP("Skipping compressed load test because of missing fixture");
+
+    std::unique_ptr<FITSData> uncompressed(new FITSData(FITS_NORMAL));
+    QVERIFY(uncompressed != nullptr);
+
+    QFuture<bool> worker = uncompressed->loadFromFile(NAME);
+    QTRY_VERIFY_WITH_TIMEOUT(worker.isFinished(), 10000);
+    QVERIFY2(worker.result(), qPrintable(uncompressed->getLastError()));
+
+    QTemporaryDir compressedDir;
+    QVERIFY(compressedDir.isValid());
+
+    const QString sourceFits = QFileInfo(NAME).absoluteFilePath();
+    const QString compressedFits = compressedDir.filePath(QString("%1.fits.fz").arg(QFileInfo(NAME).baseName()));
+
+    fpstate fpvar;
+    QCOMPARE(fp_init(&fpvar), 0);
+
+    int isLossless = 0;
+    QByteArray sourcePath = QFile::encodeName(sourceFits);
+    QByteArray compressedPath = QFile::encodeName(compressedFits);
+    QVERIFY2(fp_pack(sourcePath.data(), compressedPath.data(), fpvar, &isLossless) == 0,
+             qPrintable(QString("Failed to create compressed FITS fixture from %1").arg(sourceFits)));
+    QVERIFY(QFile::exists(compressedFits));
+
+    std::unique_ptr<FITSData> compressed(new FITSData(FITS_NORMAL));
+    QVERIFY(compressed != nullptr);
+
+    worker = compressed->loadFromFile(compressedFits);
+    QTRY_VERIFY_WITH_TIMEOUT(worker.isFinished(), 10000);
+    QVERIFY2(worker.result(), qPrintable(compressed->getLastError()));
+
+    QVERIFY(compressed->isCompressed());
+    QCOMPARE(compressed->width(), uncompressed->width());
+    QCOMPARE(compressed->height(), uncompressed->height());
+    QCOMPARE(compressed->channels(), uncompressed->channels());
+    QVERIFY(abs(compressed->getMean() - uncompressed->getMean()) < 0.01);
+    QVERIFY(abs(compressed->getStdDev() - uncompressed->getStdDev()) < 0.01);
 #endif
 }
 

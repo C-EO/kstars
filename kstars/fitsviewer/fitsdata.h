@@ -1306,6 +1306,9 @@ class FITSData : public QObject
         bool HasDebayer { false };
         /// Buffer to hold fpack uncompressed data
         uint8_t *m_PackBuffer {nullptr};
+        size_t m_PackBufferSize {0};
+        void *m_MemFileBuffer {nullptr};
+        size_t m_MemFileBufferSize {0};
 
         /// Our very own file name
         QString m_Filename, m_compressedFilename, m_Extension;
