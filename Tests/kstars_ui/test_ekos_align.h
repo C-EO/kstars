@@ -136,7 +136,7 @@ class TestEkosAlign : public QObject
          * @brief slot to track captured images from the align process
          * @param view
          */
-        void ImageReceived(const QSharedPointer<FITSView> &view);
+        void imageReceived(const QSharedPointer<FITSView> &view);
 
         // counter for images taken in a single test run
         int image_count;
@@ -148,7 +148,7 @@ class TestEkosAlign : public QObject
          * @param dec DEC position
          * @param pixscale image scale of a single image pixel
          */
-        void RotationReceived(double orientation, double ra, double dec, double pixscale);
+        void solverResultReceived(double orientation, double ra, double dec, double pixscale);
 
         // counter of solver results in a single test run
         int solver_count;

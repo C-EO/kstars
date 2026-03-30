@@ -92,7 +92,7 @@ double Camera::getOffset()
     return devices()->cameraOffset(customPropertiesDialog()->getCustomProperties());
 }
 
-void Camera::setRotator(const QString name, const QString CameraName)
+void Camera::setRotator(QString name)
 {
     ISD::Rotator *Rotator = devices()->rotator();
     // clear old rotator
@@ -103,7 +103,7 @@ void Camera::setRotator(const QString name, const QString CameraName)
     // set new rotator
     if (!name.isEmpty())  // start real rotator
     {
-        Manager::Instance()->getRotatorController(name, m_RotatorControlPanel, CameraName);
+        Manager::Instance()->getRotatorController(name, m_RotatorControlPanel);
         m_RotatorControlPanel->initRotator(opticalTrainCombo->currentText(), devices(), Rotator);
         connect(rotatorB, &QPushButton::clicked, this, [this]()
         {
@@ -112,7 +112,7 @@ void Camera::setRotator(const QString name, const QString CameraName)
         });
         rotatorB->setEnabled(true);
     }
-    else // start rotatorutils for "manual rotator" or no rotator at all for adaptGuideParameter()
+    else if (Options::astrometryUseRotator()) // start at least rotatorutils for "manual rotator"
     {
         RotatorUtils::Instance()->initRotatorUtils(opticalTrainCombo->currentText());
     }

@@ -190,7 +190,7 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
         ISD::LightBox *getLightBox(const QString &name);
         QJsonObject getScope(const QString &name);
         double getReducer(const QString &name);
-        ISD::Rotator *getRotator(const QString &name, QString &CameraName);
+        ISD::Rotator *getRotator(const QString &name);
         ISD::Focuser *getFocuser(const QString &name);
         ISD::FilterWheel *getFilterWheel(const QString &name);
         ISD::Camera *getCamera(const QString &name);
@@ -304,8 +304,6 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
         QStringList m_FilterWheelNames;
         QStringList m_CameraNames;
         QStringList m_GuiderNames;
-
-        QString m_activeCameraName;
 };
 
 }

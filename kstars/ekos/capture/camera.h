@@ -82,7 +82,7 @@ class Camera : public QWidget, public Ui::Camera
          * @brief Add new Rotator
          * @param name name of the new rotator
         */
-        void setRotator(const QString name, const QString CameraName);
+        void setRotator(QString name);
 
         /**
          * @brief addDSLRInfo Save DSLR Info the in the database. If the interactive dialog was open, close it.
@@ -480,7 +480,6 @@ class Camera : public QWidget, public Ui::Camera
         void suspendGuiding();
         void resumeGuiding();
         void driverTimedout(const QString &deviceName);
-        void newPA(const double Angle, const bool FlipRotationDone);
 
     private slots:
         // ////////////////////////////////////////////////////////////////////

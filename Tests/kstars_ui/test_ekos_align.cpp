@@ -204,11 +204,11 @@ void TestEkosAlign::initTestCase()
 void TestEkosAlign::cleanupTestCase()
 {
     // connect to the align process to count solving results
-    disconnect(Ekos::Manager::Instance()->alignModule(), &Ekos::Align::rotateMainCam, this,
-               &TestEkosAlign::RotationReceived);
+    disconnect(Ekos::Manager::Instance()->alignModule(), &Ekos::Align::newSolverResults, this,
+               &TestEkosAlign::solverResultReceived);
     // disconnect to the capture process to receive capture status changes
     disconnect(Ekos::Manager::Instance()->alignModule(), &Ekos::Align::newImage, this,
-               &TestEkosAlign::ImageReceived);
+               &TestEkosAlign::imageReceived);
     // disconnect to the alignment process to receive align status changes
     disconnect(Ekos::Manager::Instance()->alignModule(), &Ekos::Align::newStatus, this,
                &TestEkosAlign::alignStatusChanged);
@@ -251,11 +251,11 @@ void TestEkosAlign::prepareTestCase()
             &TestEkosAlign::telescopeStatusChanged, Qt::UniqueConnection);
 
     // connect to the align process to receive captured images
-    connect(ekos->alignModule(), &Ekos::Align::newImage, this, &TestEkosAlign::ImageReceived,
+    connect(ekos->alignModule(), &Ekos::Align::newImage, this, &TestEkosAlign::imageReceived,
             Qt::UniqueConnection);
 
     // connect to the align process to count solving results
-    connect(ekos->alignModule(), &Ekos::Align::rotateMainCam, this, &TestEkosAlign::RotationReceived,
+    connect(ekos->alignModule(), &Ekos::Align::newSolverResults, this, &TestEkosAlign::solverResultReceived,
             Qt::UniqueConnection);
 }
 
@@ -489,14 +489,14 @@ void TestEkosAlign::captureStatusChanged(Ekos::CaptureState status)
         expectedCaptureStates.dequeue();
 }
 
-void TestEkosAlign::ImageReceived(const QSharedPointer<FITSView> &view)
+void TestEkosAlign::imageReceived(const QSharedPointer<FITSView> &view)
 {
     Q_UNUSED(view);
     captureStatusChanged(Ekos::CAPTURE_COMPLETE);
     image_count++;
 }
 
-void TestEkosAlign::RotationReceived(double orientation, double ra, double dec, double pixscale)
+void TestEkosAlign::solverResultReceived(double orientation, double ra, double dec, double pixscale)
 {
     Q_UNUSED(orientation);
     Q_UNUSED(ra);

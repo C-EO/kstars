@@ -101,11 +101,12 @@ bool CameraProcess::setMount(ISD::Mount *device)
     return true;
 }
 
-bool CameraProcess::setRotator(ISD::Rotator *device, const QString CameraName)
+bool CameraProcess::setRotator(ISD::Rotator *device)
 {
     // do nothing if *real* rotator is already connected
     if ((devices()->rotator() == device) && (device != nullptr))
         return false;
+
     // real & manual rotator initializing depends on present mount process
     if (devices()->mount())
     {
@@ -117,7 +118,7 @@ bool CameraProcess::setRotator(ISD::Rotator *device, const QString CameraName)
 
         if (device)
         {
-            Manager::Instance()->createRotatorController(device, CameraName);
+            Manager::Instance()->createRotatorController(device);
             connect(devices().data(), &CaptureDeviceAdaptor::rotatorReverseToggled, this, &CameraProcess::rotatorReverseToggled,
                     Qt::UniqueConnection);
         }
@@ -787,12 +788,8 @@ void CameraProcess::refreshOpticalTrain(QString name)
     auto filterWheel = OpticalTrainManager::Instance()->getFilterWheel(name);
     setFilterWheel(filterWheel);
 
-    if (camera)
-    {
-        QString CameraName;
-        auto rotator = OpticalTrainManager::Instance()->getRotator(name, CameraName);
-        setRotator(rotator, CameraName);
-    }
+    auto rotator = OpticalTrainManager::Instance()->getRotator(name);
+    setRotator(rotator);
 
     auto dustcap = OpticalTrainManager::Instance()->getDustCap(name);
     setDustCap(dustcap);

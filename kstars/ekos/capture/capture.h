@@ -742,7 +742,6 @@ class Capture : public QWidget, public Ui::Capture
         void newLocalPreview(const QString &preview);
         void dslrInfoRequested(const QString &cameraName);
         void driverTimedout(const QString &deviceName);
-        void newPA(const double Angle, const bool FlipRotationDone);
 
         // Signals for the Analyze tab.
         void captureStarting(double exposureSeconds, const QString &filter);

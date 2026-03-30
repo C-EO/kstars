@@ -10,7 +10,6 @@
 
 #include "matr.h"
 #include "indi/indicommon.h"
-#include "indi/indicamera.h"
 #include "../guideinterface.h"
 #include "guidelog.h"
 #include "calibration.h"
@@ -40,12 +39,6 @@ class InternalGuider : public GuideInterface
     public:
         InternalGuider();
 
-        enum IGState
-        {
-            CALIBRATION_UNDEFINED,
-            CALIBRATION_OK
-        };
-
         bool Connect() override
         {
             state = GUIDE_IDLE;
@@ -60,10 +53,6 @@ class InternalGuider : public GuideInterface
             return true;
         }
 
-        IGState getCalState()
-        {
-            return CalState;
-        }
         bool calibrate() override;
         bool guide() override;
         bool abort() override;
@@ -74,7 +63,7 @@ class InternalGuider : public GuideInterface
         bool ditherXY(double x, double y);
 
         bool clearCalibration() override;
-        bool restoreGuideParameters();
+        bool restoreCalibration();
 
         bool reacquire() override;
 
@@ -101,8 +90,6 @@ class InternalGuider : public GuideInterface
         void setGuideView(const QSharedPointer<GuideView> &guideView);
         // Image Data
         void setImageData(const QSharedPointer<FITSData> &data);
-        // RA-DEC coordinate system
-        void displayRADEC(const QString message, const double RotationRA, const double RotationDEC);
 
         /**
          * @brief setStreamingMode Enable or disable streaming guide mode.
@@ -151,7 +138,7 @@ class InternalGuider : public GuideInterface
 
     public slots:
         void setDECSwap(bool enable);
-        void setGuiderRotation(ISD::Camera *CamDevice, const double PAAngle);
+
 
     protected slots:
         void trackingStarSelected(int x, int y);
@@ -164,10 +151,6 @@ class InternalGuider : public GuideInterface
         void newSinglePulse(GuideDirection dir, int msecs, CaptureAfterPulses followWithCapture);
         //void newStarPosition(QVector3D, bool);
         void DESwapChanged(bool enable);
-
-    protected:
-        IGState CalState {CALIBRATION_UNDEFINED};
-
     private:
         // Guiding
         bool processGuiding();
@@ -176,6 +159,7 @@ class InternalGuider : public GuideInterface
         bool onePulseDither(double pixels);
         void startDitherSettleTimer(int ms);
         void disableDitherSettleTimer();
+
 
         void reset();
 
@@ -204,7 +188,7 @@ class InternalGuider : public GuideInterface
         QElapsedTimer reacquireTimer;
         int m_highRMSCounter {0};
 
-        GuiderUtils::Matrix ROT_Z_RA, ROT_Z_DEC;
+        GuiderUtils::Matrix ROT_Z;
         Ekos::GuideState rememberState { GUIDE_IDLE };
 
         // Progressive Manual Dither
@@ -250,20 +234,5 @@ class InternalGuider : public GuideInterface
 
         bool isPoorGuiding(const cproc_out_params *out);
         void emitAxisPulse(const cproc_out_params *out);
-
-        // Adapt the restored parameters and calculate new rotation matrix for reuse of calibration
-        bool adaptGuideParameters();
-        struct RType
-        {
-            bool Set;
-            double Angle;
-        };
-        // Full circle angle ...
-        RType m_CamRotation = { .Set = false, .Angle = 0 }; // ... of camera rotation
-        double m_CalRotationAngle = 0; // ... of calibration rotation
-
-        QString m_ImageParity {""};
-
-        Calibration::FRType m_FlipRotation = { .Done = false, .Pierside = ISD::Mount::PIER_UNKNOWN};
 };
 }

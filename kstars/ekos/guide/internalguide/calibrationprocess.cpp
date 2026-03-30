@@ -580,24 +580,19 @@ void CalibrationProcess::decInState(double cur_x, double cur_y)
         return;
     }
 
-    bool invertedDECAxis = false;
-    bool reflectedImage = false;
+    bool reverse_dec_dir = false;
     // calc orientation
     if (calibration->calculate2D(start_x1, start_y1, end_x1, end_y1, start_x2, start_y2, end_x2, end_y2,
-                                 &invertedDECAxis, &reflectedImage, ra_total_pulse, de_total_pulse))
+                                 &reverse_dec_dir, ra_total_pulse, de_total_pulse))
     {
         double rotation = calibration->getAngle();
-        QString success = QString("Camera Rotation = %1").arg(rotation, 0, 'f', 1);
+        QString success = QString("Calibration OK\n Rotation = %1").arg(rotation, 0, 'f', 1);
         addCalibrationUpdate(GuideInterface::CALIBRATION_MESSAGE_ONLY, i18n(success.toLatin1().data()));
 
         calibration->save();
         calibrationStage = CAL_IDLE;
-        if (invertedDECAxis)
-            addLogStatus("Inverted DEC detected: Try to uncheck option 'Mount reverses DEC pulses after"
-                         " changing pierside' in [Guide Options/Calibration]");
-        if (reflectedImage)
-            addLogStatus(i18n("Vertically reflected image detected: Try to check option 'Use reflected guide"
-                              " frames' in [Guide Options/Calibration]"));
+        if (reverse_dec_dir)
+            addLogStatus(i18n("DEC direction reversed (RA-DEC is now standard CCW-system)."));
 
         addStatus(Ekos::GUIDE_CALIBRATION_SUCCESS);
 

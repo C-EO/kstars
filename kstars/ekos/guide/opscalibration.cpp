@@ -56,16 +56,15 @@ void OpsCalibration::showEvent(QShowEvent *)
         ra_cal_mspp->setText(QString::number(cal.raPulseMillisecondsPerArcsecond(), 'f', 1));
         dec_cal_degrees->setText(QString::number(cal.getDECAngle(), 'f', 1));
         dec_cal_mspp->setText(QString::number(cal.decPulseMillisecondsPerArcsecond(), 'f', 1));
-        dec_inverted->setText(cal.declinationSwapEnabled() ?
-                              "(DEC pulses inverted)" : "");
-        cam_rot_offset->setText(QString::number(Options::pAOffsetGuide(), 'f', 1));
+        dec_cal_degrees_unit->setText(
+            cal.declinationSwapEnabled() ? "degrees (swapped)" : "degrees");
     }
     else
     {
         ra_cal_degrees->setText("xxxx");
         ra_cal_mspp->setText("xxxx");
         dec_cal_degrees->setText("xxxx");
-        dec_cal_degrees_unit->setText("°");
+        dec_cal_degrees_unit->setText("degrees");
         dec_cal_mspp->setText("xxxx");
     }
 }

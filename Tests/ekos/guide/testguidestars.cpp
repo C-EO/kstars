@@ -261,7 +261,6 @@ void TestGuideStars::calibrationTest()
 {
     const int binning = 1;
     double angle = 0.0;
-    double angle2 = 0.0;
     const double pixel_size = 3e-3, focal_length = 750.0;
     Calibration cal;
     dms ra, dec;
@@ -325,8 +324,8 @@ void TestGuideStars::calibrationTest()
         GuiderUtils::Vector input(i, 2 * i, 0);
         GuiderUtils::Vector as = cal.convertToArcseconds(input);
         GuiderUtils::Vector px = cal.convertToPixels(input);
-        CompareFloat(as.x, i * (bFactor * arcsecondsPerPixel));
-        CompareFloat(as.y, 2 * i * (bFactor * arcsecondsPerPixel));
+        CompareFloat(as.x, bFactor * i * arcsecondsPerPixel);
+        CompareFloat(as.y, bFactor * 2 * i * arcsecondsPerPixel);
         CompareFloat(px.x, i / (bFactor * arcsecondsPerPixel));
         CompareFloat(px.y, 2 * i / (bFactor * arcsecondsPerPixel));
         double x, y;
@@ -391,71 +390,78 @@ void TestGuideStars::calibrationTest()
     QString encodedCal = cal.serialize();
     Calibration cal2;
     QVERIFY(cal2.getFocalLength() != focal_length);
-    QVERIFY(cal2.m_Current.CCDPixelWidth != pixSzW);
-    QVERIFY(cal2.m_Current.CCDPixelHeight != pixSzH);
+    QVERIFY(cal2.ccd_pixel_width != pixSzW);
+    QVERIFY(cal2.ccd_pixel_height != pixSzH);
     QVERIFY(cal2.getAngle() != angle);
-    QVERIFY(cal2.m_Current.SubBinX != binX);
-    QVERIFY(cal2.m_Current.SubBinY != binY);
+    QVERIFY(cal2.subBinX != binX);
+    QVERIFY(cal2.subBinY != binY);
     QVERIFY(cal2.raPulseMillisecondsPerArcsecond() != raMillisecondsPerArcsecond);
     QVERIFY(cal2.decPulseMillisecondsPerArcsecond() != decMillisecondsPerArcsecond);
-    QVERIFY(cal2.m_Current.PierSide != side);
-    QVERIFY(!(cal2.m_Current.MountRA == ra));
-    QVERIFY(!(cal2.m_Current.MountDEC == dec));
+    QVERIFY(cal2.calibrationPierSide != side);
+    QVERIFY(!(cal2.calibrationRA == ra));
+    QVERIFY(!(cal2.calibrationDEC == dec));
     // swap defaults to false, and we haven't done anything to change it.
     QVERIFY(cal2.declinationSwapEnabled() == false);
 
-    QVERIFY(!cal2.restore("", side, dec));
-    QVERIFY(cal2.restore(encodedCal, side, dec));
+    QVERIFY(!cal2.restore(""));
+    QVERIFY(cal2.restore(encodedCal));
     cal2.setBinningUsed(binX, binY);
     QCOMPARE(cal2.getFocalLength(), focal_length);
-    QCOMPARE(cal2.m_Current.CCDPixelWidth, pixSzW);
-    QCOMPARE(cal2.m_Current.CCDPixelHeight, pixSzH);
+    QCOMPARE(cal2.ccd_pixel_width, pixSzW);
+    QCOMPARE(cal2.ccd_pixel_height, pixSzH);
     QCOMPARE(cal2.getAngle(), angle);
-    QCOMPARE(cal2.m_Current.SubBinX, binX);
-    QCOMPARE(cal2.m_Current.SubBinY, binY);
+    QCOMPARE(cal2.subBinX, binX);
+    QCOMPARE(cal2.subBinY, binY);
     CompareFloat(cal2.raPulseMillisecondsPerArcsecond(), raMillisecondsPerArcsecond);
     CompareFloat(cal2.decPulseMillisecondsPerArcsecond(), decMillisecondsPerArcsecond);
-    QCOMPARE(cal2.m_Current.PierSide, side);
-    QVERIFY(cal2.m_Current.MountRA == ra);
-    QVERIFY(cal2.m_Current.MountDEC == dec);
+    QCOMPARE(cal2.calibrationPierSide, side);
+    QVERIFY(cal2.calibrationRA == ra);
+    QVERIFY(cal2.calibrationDEC == dec);
     // Swap still should be false.
     QVERIFY(cal2.declinationSwapEnabled() == false);
+    bool swap;
 
-    // Test restoring on pier side east with calibration on east
-    side = ISD::Mount::PIER_EAST;
-    angle2 = angle;
-    Calibration::FRType FlipReady = { false, side };
-    QVERIFY(cal2.restore(encodedCal, side, dec));
-    // This tests flip
-    cal2.updatePierside(&side, &angle2, &FlipReady, true);
-    // Same as above, as the encoded pier side was east.
-    QCOMPARE(angle2, angle);
+    // This is an options checkbox that the user modifies depending on his/her mount.
+    bool reverseDecOnPierChange = false;
+
+    // Test restoring with a pier side.
+    // This is same as above, as the encoded pier side was east.
+    QVERIFY(cal2.restore(encodedCal, ISD::Mount::PIER_EAST, reverseDecOnPierChange, binning, binning));
+    QCOMPARE(cal2.getAngle(), angle);
+    QCOMPARE(cal2.declinationSwapEnabled(), false);
     // This tests that the rotation matrix got adjusted with the angle.
-    cal2.setAngle(angle2);
     cal2.rotateToRaDec(px.x, px.y, &rdx, &rdy);
     CompareFloat(px.y, rdx);
-    CompareFloat(-px.x, rdy);
+    CompareFloat(px.x, -rdy);
 
-    // Test restoring on pier side west with calibration on east
-    side = ISD::Mount::PIER_WEST;
-    angle2 = angle;
-    FlipReady = { false, side };
-    QVERIFY(cal2.restore(encodedCal, side, dec));
-    cal2.updatePierside(&side, &angle2, &FlipReady, true);
-    // Angle should have changed by +180 degrees
-    QCOMPARE(angle2, angle + 180.0);
-    cal2.setAngle(angle2);
+    // If we are now west, the angle should have changed by +180 degrees and dec-swap should invert.
+    QVERIFY(cal2.restore(encodedCal, ISD::Mount::PIER_WEST, reverseDecOnPierChange, binning, binning));
+    QCOMPARE(cal2.getAngle(), angle + 180.0);
+    QCOMPARE(cal2.declinationSwapEnabled(), true);
     cal2.rotateToRaDec(px.x, px.y, &rdx, &rdy);
-    CompareFloat(-px.y, rdx);
+    CompareFloat(px.y, rdx);
     CompareFloat(px.x, rdy);
 
-    // Should not restore if the pier is unknown.
-    QVERIFY(!cal2.restore(encodedCal, ISD::Mount::PIER_UNKNOWN, dec));
+    // Set the user option to reverse DEC on pier-side change.
+    reverseDecOnPierChange = true;
+    QVERIFY(cal2.restore(encodedCal, ISD::Mount::PIER_WEST, reverseDecOnPierChange, binning, binning));
+    QCOMPARE(cal2.getAngle(), angle + 180.0);
+    QCOMPARE(cal2.declinationSwapEnabled(), false);
+    cal2.rotateToRaDec(px.x, px.y, &rdx, &rdy);
+    CompareFloat(px.y, rdx); // same as above because px(1,0,0)!! Perhaps we should use another test vector?
+    CompareFloat(px.x, rdy);
+    reverseDecOnPierChange = false;
 
-    // Should not restore if declination is NaN
-    dms nanTest;
-    nanTest.setFromString("");
-    QVERIFY(!cal2.restore(encodedCal, side, nanTest));
+    // If we go back east, the angle and decSwap should revert to their original values.
+    QVERIFY(cal2.restore(encodedCal, ISD::Mount::PIER_EAST, reverseDecOnPierChange, binning, binning));
+    QCOMPARE(cal2.getAngle(), angle);
+    QCOMPARE(cal2.declinationSwapEnabled(), false);
+    cal2.rotateToRaDec(px.x, px.y, &rdx, &rdy);
+    CompareFloat(px.y, rdx);
+    CompareFloat(px.x, -rdy);
+
+    // Should not restore if the pier is unknown.
+    QVERIFY(!cal2.restore(encodedCal, ISD::Mount::PIER_UNKNOWN, reverseDecOnPierChange, binning, binning));
 
     // Calculate the rotation.
     // Compute the angle the coordinates passed in make with the x-axis.
@@ -499,8 +505,6 @@ void TestGuideStars::calibrationTest()
     // Made sure the ra and dec vectors were orthogonal and dec was 90-degrees greater
     // than ra (ignoring that y-flip).
     double ra_x = -16.0, ra_y = 16.0, dec_x = -12.0, dec_y = -12.0;
-    bool invDEC = false;
-    bool reflImage = false;
     double ra_factor = 750.0;
     int ra_pulse = std::hypot(ra_x, ra_y) * ra_factor;
     // Correct for rounding, since pulse is an integer.
@@ -508,17 +512,15 @@ void TestGuideStars::calibrationTest()
     double dec_factor = 300.0;
     int dec_pulse = std::hypot(dec_x, dec_y) * dec_factor;
     dec_factor = dec_pulse / std::hypot(dec_x, dec_y);
-    cal.calculate2D(ra_x, ra_y, dec_x, dec_y, &invDEC, &reflImage, ra_pulse, dec_pulse);
+    cal.calculate2D(ra_x, ra_y, dec_x, dec_y, &swap, ra_pulse, dec_pulse);
     QCOMPARE(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), ra_factor);
     QCOMPARE(cal.decPulseMillisecondsPerArcsecond() * cal.yArcsecondsPerPixel(), dec_factor);
-    angle = cal.getAngle();
-    QCOMPARE(angle, toDegrees(atan2(ra_y, ra_x)));
-    QCOMPARE(invDEC, false);
-    encodedCal = cal.serialize();
+    QCOMPARE(cal.getAngle(), toDegrees(atan2(ra_y, ra_x)));
+    QCOMPARE(swap, false);
 
     // Note: SetAngle() creates rotation matrix with reversed sign:
-    // So calculate2D() above creates a calibration rotation of +135° and
-    // rotateToRaDec() rotates (1,0) by -135° to (-size1side,-size1side) in left hand system.
+    // Hence even if calculate2D() above creates a calibration rotation of +135° in right hand system,
+    // rotateToRaDec() rotates (1,0) by -135° to (-size1side,-size1side) in right hand system.
     const double size1side = sqrt(2.0) / 2.0;
     cal.rotateToRaDec(1.0, 0.0, &rdx, &rdy);
     CompareFloat(rdx, -size1side);
@@ -528,14 +530,9 @@ void TestGuideStars::calibrationTest()
     CompareFloat(rdx, -size1side);
     CompareFloat(rdy, size1side);
 
-    // If we are on the EAST side
-    side = ISD::Mount::PIER_EAST;
-    angle2 = angle;
-    FlipReady = { false, side };
-    QVERIFY(cal.restore(encodedCal, side, dec));
-    cal.updatePierside(&side, &angle2, &FlipReady, true);
+    // If we restored this on the EAST side
+    QVERIFY(cal.restore(cal.serialize(), ISD::Mount::PIER_EAST, reverseDecOnPierChange, binning, binning));
     // ...RA moves should be inverted
-    cal.setAngle(angle2);
     cal.rotateToRaDec(1.0, 0.0, &rdx, &rdy);
     CompareFloat(rdx, size1side);
     CompareFloat(rdy, size1side);
@@ -544,13 +541,8 @@ void TestGuideStars::calibrationTest()
     CompareFloat(rdx, size1side);
     CompareFloat(rdy, -size1side);
 
-    // If we are on the WEST side, we should get the original results.
-    side = ISD::Mount::PIER_WEST;
-    angle2 = angle;
-    FlipReady = { false, side };
-    QVERIFY(cal.restore(encodedCal, side, dec));
-    cal.updatePierside(&side, &angle2, &FlipReady, true);
-    cal.setAngle(angle2);
+    // If we then move back to the WEST side, we should get the original results.
+    QVERIFY(cal.restore(cal.serialize(), ISD::Mount::PIER_WEST, reverseDecOnPierChange, binning, binning));
     cal.rotateToRaDec(1.0, 0.0, &rdx, &rdy);
     CompareFloat(rdx, -size1side);
     CompareFloat(rdy, -size1side);
@@ -559,6 +551,7 @@ void TestGuideStars::calibrationTest()
     CompareFloat(rdy, size1side);
 
     // Test adjusting the RA rate according to DEC.
+
     dms calDec;
     calDec.setD(0, 0, 0);
     cal.setParameters(pixel_size, pixel_size, focal_length, binning, binning, side, ra, calDec);
@@ -566,28 +559,23 @@ void TestGuideStars::calibrationTest()
     double raPulseRate = cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel();
     dms currDec;
     currDec.setD(0, 0, 0);
-    QVERIFY(cal.restore(encodedCal, side, currDec));
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), raPulseRate);
     currDec.setD(70, 0, 0);
-    QVERIFY(cal.restore(encodedCal, side, currDec));
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(),
                  raPulseRate / std::cos(70.0 * M_PI / 180.0));
     currDec.setD(-45, 0, 0);
-    QVERIFY(cal.restore(encodedCal, side, currDec));
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(),
                  raPulseRate / std::cos(45.0 * M_PI / 180.0));
     currDec.setD(20, 0, 0);
-    QVERIFY(cal.restore(encodedCal, side, currDec));
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(),
                  raPulseRate / std::cos(20.0 * M_PI / 180.0));
     // Set the rate back to its original value.
     currDec.setD(0, 0, 0);
-    QVERIFY(cal.restore(encodedCal, side, currDec));
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), raPulseRate);
 
     // Change the calibration DEC.
@@ -597,21 +585,18 @@ void TestGuideStars::calibrationTest()
     encodedCal = cal.serialize();
     raPulseRate = cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel();
     currDec.setD(20, 0, 0);
-    cal.restore(encodedCal, side, currDec);
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), raPulseRate);
     // Both 20 should result in no change.
     calDec.setD(20, 0, 0);
     cal.setParameters(pixel_size, pixel_size, focal_length, binning, binning, side, ra, calDec);
     encodedCal = cal.serialize();
     currDec.setD(20, 0, 0);
-    cal.restore(encodedCal, side, currDec);
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), raPulseRate);
     // Cal 20 and current 45 should change the rate accordingly.
     currDec.setD(45, 0, 0);
-    cal.restore(encodedCal, side, currDec);
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(),
                  raPulseRate * std::cos(20.0 * M_PI / 180.0) / std::cos(45.0 * M_PI / 180.0));
     // Changing cal dec to > 60-degrees or < -60 degrees results in no rate change.
@@ -620,16 +605,14 @@ void TestGuideStars::calibrationTest()
     encodedCal = cal.serialize();
     raPulseRate = cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel();
     currDec.setD(20, 0, 0);
-    cal.restore(encodedCal, side, currDec);
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), raPulseRate);
     calDec.setD(-70, 0, 0);
     cal.setParameters(pixel_size, pixel_size, focal_length, binning, binning, side, ra, calDec);
     encodedCal = cal.serialize();
     raPulseRate = cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel();
     currDec.setD(20, 0, 0);
-    cal.restore(encodedCal, side, currDec);
-    cal.updateRAPulse(currDec);
+    cal.restore(encodedCal, side, reverseDecOnPierChange, binning, binning, &currDec);
     CompareFloat(cal.raPulseMillisecondsPerArcsecond() * cal.xArcsecondsPerPixel(), raPulseRate);
 }
 

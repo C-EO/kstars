@@ -242,7 +242,7 @@ class Align : public QWidget, public Ui::Align
              * @brief Add new Rotator
              * @param device pointer to rotator device.
              */
-        void setRotator(ISD::Rotator *device, const QString CameraName);
+        void setRotator(ISD::Rotator *device);
 
         void removeDevice(const QSharedPointer<ISD::GenericDevice> &device);
 
@@ -619,8 +619,7 @@ class Align : public QWidget, public Ui::Align
         // This is sent when the pixmap is updated within the view
         void newFrame(const QSharedPointer<FITSView> &view);
         // Send new solver results
-        void rotateMainCam(double orientation, double ra, double dec, double pixscale);
-        void setGuideCamRotation(const double Angle);
+        void newSolverResults(double orientation, double ra, double dec, double pixscale);
 
         // Train changed
         void trainChanged();
@@ -810,8 +809,6 @@ class Align : public QWidget, public Ui::Align
         double sOrientation { INVALID_VALUE };
         double sRA { INVALID_VALUE };
         double sDEC { INVALID_VALUE };
-        double sOffset = 0;
-        FITSImage::Parity sParity = FITSImage::BOTH;
 
         /// Solver alignment coordinates
         SkyPoint m_AlignCoord;

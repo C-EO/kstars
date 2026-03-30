@@ -9,7 +9,7 @@
 * - Rotator angle in "Circular Angle (A)" mode (0 <> 359.99° CCW)
 * - Camera offset angle & Camera position angle in "Position Angle (PA)" mode (180 <> -179.99° CCW)
 * This leads to the following calculations:
-* - Camera PA = calcCameraAngle(Rotator A)
+* - Camera PA = calcCameraAngel(Rotator A)
 * - Rotator A = calcRotatorAngle(Camera PA)
 * - Camera offset PA = calcOffsetAngle(Rotator A, Camera PA)
 *******************************************************************************************************/
@@ -47,7 +47,6 @@ RotatorUtils::~RotatorUtils() {}
 void RotatorUtils::initRotatorUtils(const QString &train)
 {
     m_Offset = Options::pAOffset();
-    m_OffsetGuide = Options::pAOffsetGuide();
     m_Mount = Ekos::OpticalTrainManager::Instance()->getMount(train);
 
     if (m_Mount)
@@ -111,6 +110,12 @@ double RotatorUtils::calcOffsetAngle(double RotatorAngle, double PositionAngle)
         OffsetAngle -= 180;
     }
     return KSUtils::rangePA(OffsetAngle);
+}
+
+void RotatorUtils::updateOffset(double Angle)
+{
+    m_Offset = Angle;
+    Options::setPAOffset(Angle);
 }
 
 ISD::Mount::PierSide RotatorUtils::getMountPierside()
@@ -187,90 +192,4 @@ void RotatorUtils::startTimeFrame(const double StartAngle)
     m_StartTime = QTime::currentTime();
     m_ShiftAngle = 360 - m_StartAngle;
     m_DiffAngle = m_EndAngle - m_StartAngle;
-}
-
-bool RotatorUtils::addRecord(QString CameraName, const CamType CameraType,
-                             QString RotatorName)
-{
-    if (!m_CamRotator.contains(CameraName))
-    {
-        m_CamRotator[CameraName].Name = RotatorName;
-        m_CamRotator[CameraName].Type = CameraType;
-        if (m_CamRotator[CameraName].Type == MAIN_CAM)
-            m_CamRotator[CameraName].Offset = m_Offset;
-        else if (m_CamRotator[CameraName].Type == GUIDE_CAM)
-            m_CamRotator[CameraName].Offset = m_OffsetGuide;
-        return true;
-    }
-    else
-        return (m_CamRotator[CameraName].Type == CameraType);
-}
-
-bool RotatorUtils::checkRecord(QString CameraName, const CamType CameraType,
-                               QString RotatorName)
-{
-    if (m_CamRotator.contains(CameraName))
-    {
-        if ((m_CamRotator[CameraName].Type == CameraType) &&
-                (m_CamRotator[CameraName].Name == RotatorName))
-            return true;
-    }
-    return false;
-}
-
-bool  RotatorUtils::updateOffset(const QString CameraName, const double Offset,
-                                 const FITSImage::Parity Parity)
-{
-    if (m_CamRotator.contains(CameraName))
-    {
-        m_CamRotator[CameraName].Offset = Offset;
-        m_CamRotator[CameraName].Parity = Parity;
-        if (m_CamRotator[CameraName].Type == MAIN_CAM)
-        {
-            m_Offset = Offset;
-            Options::setPAOffset(Offset);
-        }
-        else if (m_CamRotator[CameraName].Type == GUIDE_CAM)
-        {
-            m_ParityGuide = Parity;
-            m_OffsetGuide = Offset;
-            Options::setPAOffsetGuide(Offset);
-        }
-        return true;
-    }
-    return false;
-}
-
-QString RotatorUtils::getRotatorName(const QString CameraName)
-{
-    if (m_CamRotator.contains(CameraName))
-    {
-        return m_CamRotator[CameraName].Name;
-    }
-    return QString();
-}
-
-RotatorUtils::CamType RotatorUtils::getCamType(const QString CameraName)
-{
-    if (m_CamRotator.contains(CameraName))
-    {
-        return m_CamRotator.value(CameraName).Type;
-    }
-    return RotatorUtils::UNDEFINED_CAM;
-}
-
-FITSImage::Parity RotatorUtils::getGuideImageParity()
-{
-    return m_ParityGuide;
-}
-
-double RotatorUtils::calcGuideCamPA(const double PAMain)
-{
-    double Angle = PAMain + (m_OffsetGuide - m_Offset);
-    return KSUtils:: rangePA(Angle);
-}
-
-void RotatorUtils::clearMap()
-{
-    m_CamRotator.clear();
 }

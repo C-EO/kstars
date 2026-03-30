@@ -18,9 +18,6 @@
 #include "Options.h"
 #include "indi/indiguider.h"
 #include "indi/indiadaptiveoptics.h"
-#include "indi/clientmanager.h"
-#include "indi/driverinfo.h"
-#include "indi/indirotator.h"
 #include "auxiliary/QProgressIndicator.h"
 #include "ekos/auxiliary/opticaltrainmanager.h"
 #include "ekos/auxiliary/profilesettings.h"
@@ -36,9 +33,7 @@
 #include "guidegraph.h"
 #include "guidestatewidget.h"
 #include "manualpulse.h"
-#include "ekos/capture/capture.h"
 #include "ekos/auxiliary/darkprocessor.h"
-#include "ekos/manager.h"
 
 #include <KConfigDialog>
 
@@ -172,9 +167,6 @@ Guide::Guide() : QWidget()
     // Initialize non guided dithering random generator.
     resetNonGuidedDither();
 
-    // Disable clear button by default
-    clearCalibrationB->setEnabled(false);
-
     //Note:  This is to prevent a button from being called the default button
     //and then executing when the user hits the enter key such as when on a Text Box
     QList<QPushButton *> qButtons = findChildren<QPushButton *>();
@@ -287,10 +279,7 @@ void Guide::clearCalibrationGraphs()
     calRAArrow->setVisible(false);
     calDECLabel->setVisible(false);
     calDECArrow->setVisible(false);
-    calLabel->setText("");
     calibrationPlot->replot();
-    calDecArrowStartX = 0;
-    calDecArrowStartY = 0;
 }
 
 void Guide::slotAutoScaleGraphs()
@@ -366,12 +355,9 @@ bool Guide::setCamera(ISD::Camera * device)
 
     if(guiderType != GUIDE_INTERNAL)
         m_Camera->setBLOBEnabled(false);
-    else if (Options::reuseGuideCalibration())
-        setWCSEnabled(m_Camera, true);
 
     checkCamera();
     configurePHD2Camera();
-
 
     // In case we are recovering from a crash and capture is pending, process it immediately.
     if (captureTimeout.isActive() && m_State >= Ekos::GUIDE_CAPTURE)
@@ -584,37 +570,6 @@ void Guide::syncTelescopeInfo()
     updateGuideParams();
 }
 
-void Guide::setWCSEnabled(ISD::Camera *CameraDevice, bool enable)
-{
-    if (!CameraDevice)
-        return;
-    auto wcsControl = CameraDevice->getSwitch("WCS_CONTROL");
-    if (!wcsControl)
-        return;
-    auto wcs_enable  = wcsControl.findWidgetByName("WCS_ENABLE");
-    auto wcs_disable = wcsControl.findWidgetByName("WCS_DISABLE");
-    if (!wcs_enable || !wcs_disable)
-        return;
-    if ((wcs_enable->getState() == ISS_ON && enable) || (wcs_disable->getState() == ISS_ON && !enable))
-        return;
-    wcsControl.reset();
-    if (enable)
-    {
-        appendLogText(i18n("%1: World Coordinate System (WCS) is enabled.",
-                           CameraDevice->getDeviceName()));
-        wcs_enable->setState(ISS_ON);
-    }
-    else
-    {
-        appendLogText(i18n("%1: World Coordinate System (WCS) is disabled.",
-                           CameraDevice->getDeviceName()));
-        wcs_disable->setState(ISS_ON);
-    }
-    auto clientManager = CameraDevice->getDriverInfo()->getClientManager();
-    if (clientManager)
-        clientManager->sendNewProperty(wcsControl);
-}
-
 void Guide::updateGuideParams()
 {
     if (m_Camera == nullptr)
@@ -622,9 +577,7 @@ void Guide::updateGuideParams()
 
     checkUseGuideHead();
 
-    ISD::CameraChip *targetChip = m_Camera->getChip(useGuideHead
-                                  ? ISD::CameraChip::GUIDE_CCD
-                                  : ISD::CameraChip::PRIMARY_CCD);
+    ISD::CameraChip *targetChip = m_Camera->getChip(useGuideHead ? ISD::CameraChip::GUIDE_CCD : ISD::CameraChip::PRIMARY_CCD);
 
     if (targetChip == nullptr)
     {
@@ -772,19 +725,7 @@ void Guide::updateGuideParams()
         guideGain->setEnabled(false);
 }
 
-void Guide::setRotator(ISD::Rotator *Device, const QString CameraName)
-{
-    if (Manager::Instance()->existRotatorController(Ekos::Manager::Instance()
-            ->captureModule()->camera()))
-    {
-        if (Device)
-            if (!Manager::Instance()->
-                    associateRotatorController(Device->getDeviceName(), CameraName))
-                appendLogText("Warning: Guiding camera cannot be identical to imaging camera.");
-    }
-}
-
-bool Guide::setGuider(ISD::Guider *device)
+bool Guide::setGuider(ISD::Guider * device)
 {
     if (guiderType != GUIDE_INTERNAL || (m_Guider && device == m_Guider))
         return false;
@@ -1273,8 +1214,6 @@ void Guide::processData(const QSharedPointer<FITSData> &data)
 
     if (data && (!guideShowFrame->isEnabled() || guideShowFrame->isChecked()))
     {
-        if (Options::guideReflectFrames())
-            data->applyFilter(FITS_MOUNT_FLIP_V);
         m_GuideView->loadData(data);
         m_ImageData = data;
     }
@@ -1750,11 +1689,7 @@ void Guide::setMountStatus(ISD::Mount::Status newState)
             {
                 captureB->setEnabled(true);
                 loopB->setEnabled(true);
-                if (calibrationComplete ||
-                        ((guiderType == GUIDE_INTERNAL) &&
-                         Options::reuseGuideCalibration() &&
-                         !Options::serializedCalibration().isEmpty()))
-                    clearCalibrationB->setEnabled(true);
+                clearCalibrationB->setEnabled(true);
                 manualPulseB->setEnabled(true);
             }
     }
@@ -1764,8 +1699,7 @@ void Guide::setMountCoords(const SkyPoint &position, ISD::Mount::PierSide pierSi
 {
     Q_UNUSED(ha);
     m_GuiderInstance->setMountCoords(position, pierSide);
-    if (m_ManaulPulse->isVisible()) // update only if visible
-        m_ManaulPulse->setMountCoords(position);
+    m_ManaulPulse->setMountCoords(position);
 }
 
 void Guide::setExposure(double value)
@@ -1792,10 +1726,11 @@ void Guide::clearCalibration()
     calibrationComplete = false;
     if (m_GuiderInstance->clearCalibration())
     {
-        clearCalibrationGraphs();
         clearCalibrationB->setEnabled(false);
         appendLogText(i18n("Calibration is cleared."));
     }
+
+
 }
 
 void Guide::setStatus(Ekos::GuideState newState)
@@ -2190,11 +2125,7 @@ bool Guide::setGuiderType(int type)
 
             internalGuider->setStarDetectionAlgorithm(opsGuide->kcfg_GuideAlgorithm->currentIndex());
 
-            if (calibrationComplete ||
-                    ((guiderType == GUIDE_INTERNAL) &&
-                     Options::reuseGuideCalibration() &&
-                     !Options::serializedCalibration().isEmpty()))
-                clearCalibrationB->setEnabled(true);
+            clearCalibrationB->setEnabled(true);
             guideB->setEnabled(true);
             captureB->setEnabled(true);
             loopB->setEnabled(true);
@@ -3616,13 +3547,6 @@ void Guide::refreshOpticalTrain()
         setCamera(camera);
 
         syncTelescopeInfo();
-
-        if (camera)
-        {
-            QString CameraName;
-            auto Rotator = OpticalTrainManager::Instance()->getRotator(name, CameraName);
-            setRotator(Rotator, CameraName);
-        }
 
         auto guider = OpticalTrainManager::Instance()->getGuider(name);
         setGuider(guider);

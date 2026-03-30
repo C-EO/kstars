@@ -1057,14 +1057,13 @@ double OpticalTrainManager::getReducer(const QString &name)
 ////////////////////////////////////////////////////////////////////////////
 ///
 ////////////////////////////////////////////////////////////////////////////
-ISD::Rotator *OpticalTrainManager::getRotator(const QString &name, QString &CameraName)
+ISD::Rotator *OpticalTrainManager::getRotator(const QString &name)
 {
     for (auto &oneTrain : m_OpticalTrains)
     {
         if (oneTrain["name"].toString() == name)
         {
             QSharedPointer<ISD::GenericDevice> generic;
-            CameraName = m_activeCameraName;
             if (INDIListener::findDevice(oneTrain["rotator"].toString(), generic))
                 return generic->getRotator();
         }
@@ -1120,10 +1119,7 @@ ISD::Camera *OpticalTrainManager::getCamera(const QString &name)
         {
             QSharedPointer<ISD::GenericDevice> generic;
             if (INDIListener::findDevice(oneTrain["camera"].toString(), generic))
-            {
-                m_activeCameraName = generic->getDeviceName();
                 return generic->getCamera();
-            }
         }
     }
 
