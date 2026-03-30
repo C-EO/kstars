@@ -159,7 +159,7 @@ void modCalcAngDist::processLines(QTextStream &istream)
     QString outputFileName;
     outputFileName = OutputLineEditBatch->text();
     QFile fOut(outputFileName);
-    fOut.open(QIODevice::WriteOnly);
+    if (!fOut.open(QIODevice::WriteOnly)) return;
     QTextStream ostream(&fOut);
 
     QString line;

@@ -131,7 +131,7 @@ void FovEditorDialog::slotSaveImage()
     }
 
     QTemporaryFile tmpfile;
-    tmpfile.open();
+    (void)tmpfile.open();
     QString fname;
 
     if (fileUrl.isValid())

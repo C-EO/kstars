@@ -104,7 +104,7 @@ GUIManager::GUIManager(QWidget *parent) : QWidget(parent, Qt::Window)
 
 GUIManager::~GUIManager()
 {
-    for (auto oneClient : qAsConst(clients))
+    for (auto oneClient : std::as_const(clients))
         oneClient->disconnect(this);
 }
 

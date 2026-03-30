@@ -311,7 +311,7 @@ void modCalcVlsr::processLines(QTextStream &istream)
     QString outputFileName;
     outputFileName = OutputFileBoxBatch->url().toLocalFile();
     QFile fOut(outputFileName);
-    fOut.open(QIODevice::WriteOnly);
+    if (!fOut.open(QIODevice::WriteOnly)) return;
     QTextStream ostream(&fOut);
 
     QString line;

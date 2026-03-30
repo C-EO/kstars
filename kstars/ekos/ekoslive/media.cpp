@@ -320,7 +320,7 @@ void Media::sendFile(const QString &filename, const QString &uuid)
     QSharedPointer<FITSData> data(new FITSData());
     data->loadFromFile(filename);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QtConcurrent::run(&Media::dispatch, this, data, uuid);
+    (void)QtConcurrent::run(&Media::dispatch, this, data, uuid);
 #else
     QtConcurrent::run(this, &Media::dispatch, data, uuid);
 #endif

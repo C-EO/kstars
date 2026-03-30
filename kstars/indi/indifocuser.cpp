@@ -18,8 +18,8 @@ void Focuser::registerProperty(INDI::Property prop)
 
     if (prop.isNameMatch("FOCUS_MAX"))
     {
-        auto nvp = prop.getNumber();
-        m_maxPosition = nvp->at(0)->getValue();
+        auto nvp = INDI::PropertyNumber(prop);
+        m_maxPosition = nvp[0].getValue();
     }
 
     ConcreteDevice::registerProperty(prop);
@@ -27,10 +27,10 @@ void Focuser::registerProperty(INDI::Property prop)
 
 void Focuser::processNumber(INDI::Property prop)
 {
-    auto nvp = prop.getNumber();
     if (prop.isNameMatch("FOCUS_MAX"))
     {
-        m_maxPosition = nvp->at(0)->getValue();
+        auto nvp = INDI::PropertyNumber(prop);
+        m_maxPosition = nvp[0].getValue();
     }
 }
 
@@ -41,7 +41,7 @@ bool Focuser::focusIn()
     if (!focusProp)
         return false;
 
-    auto inFocus = focusProp->findWidgetByName("FOCUS_INWARD");
+    auto inFocus = focusProp.findWidgetByName("FOCUS_INWARD");
 
     if (!inFocus)
         return false;
@@ -49,7 +49,7 @@ bool Focuser::focusIn()
     if (inFocus->getState() == ISS_ON)
         return true;
 
-    focusProp->reset();
+    focusProp.reset();
     inFocus->setState(ISS_ON);
 
     sendNewProperty(focusProp);
@@ -64,7 +64,7 @@ bool Focuser::stop()
     if (!focusStop)
         return false;
 
-    focusStop->at(0)->setState(ISS_ON);
+    focusStop[0].setState(ISS_ON);
     sendNewProperty(focusStop);
 
     return true;
@@ -77,7 +77,7 @@ bool Focuser::focusOut()
     if (!focusProp)
         return false;
 
-    auto outFocus = focusProp->findWidgetByName("FOCUS_OUTWARD");
+    auto outFocus = focusProp.findWidgetByName("FOCUS_OUTWARD");
 
     if (!outFocus)
         return false;
@@ -85,7 +85,7 @@ bool Focuser::focusOut()
     if (outFocus->getState() == ISS_ON)
         return true;
 
-    focusProp->reset();
+    focusProp.reset();
     outFocus->setState(ISS_ON);
 
     sendNewProperty(focusProp);
@@ -100,7 +100,7 @@ bool Focuser::getFocusDirection(ISD::Focuser::FocusDirection *dir)
     if (!focusProp)
         return false;
 
-    auto inFocus = focusProp->findWidgetByName("FOCUS_INWARD");
+    auto inFocus = focusProp.findWidgetByName("FOCUS_INWARD");
 
     if (!inFocus)
         return false;
@@ -120,7 +120,7 @@ bool Focuser::moveByTimer(int msecs)
     if (!focusProp)
         return false;
 
-    focusProp->at(0)->setValue(msecs);
+    focusProp[0].setValue(msecs);
 
     sendNewProperty(focusProp);
 
@@ -134,7 +134,7 @@ bool Focuser::moveAbs(int steps)
     if (!focusProp)
         return false;
 
-    focusProp->at(0)->setValue(steps);
+    focusProp[0].setValue(steps);
 
     sendNewProperty(focusProp);
 
@@ -218,7 +218,7 @@ double Focuser::getLastManualFocusDriveValue()
     if (!focusProp)
         return 0;
 
-    return focusProp->at(0)->getValue();
+    return focusProp[0].getValue();
 }
 
 
@@ -239,7 +239,7 @@ bool Focuser::setMaxPosition(uint32_t steps)
     if (!focusProp)
         return false;
 
-    focusProp->at(0)->setValue(steps);
+    focusProp[0].setValue(steps);
     sendNewProperty(focusProp);
 
     return true;
@@ -258,11 +258,11 @@ bool Focuser::setBacklash(int32_t steps)
         return false;
 
     // Make sure focus compensation is enabled.
-    if (steps != 0 && focusToggle->at(0)->getState() != ISS_ON)
+    if (steps != 0 && focusToggle[0].getState() != ISS_ON)
     {
         focusToggle->reset();
-        focusToggle->at(0)->setState(ISS_ON);
-        focusToggle->at(1)->setState(ISS_OFF);
+        focusToggle[0].setState(ISS_ON);
+        focusToggle[1].setState(ISS_OFF);
         sendNewProperty(focusToggle);
     }
 
@@ -270,15 +270,15 @@ bool Focuser::setBacklash(int32_t steps)
     if (!focusProp)
         return false;
 
-    focusProp->at(0)->setValue(steps);
+    focusProp[0].setValue(steps);
     sendNewProperty(focusProp);
 
     // If steps = 0, disable compensation
-    if (steps == 0 && focusToggle->at(0)->getState() == ISS_ON)
+    if (steps == 0 && focusToggle[0].getState() == ISS_ON)
     {
         focusToggle->reset();
-        focusToggle->at(0)->setState(ISS_OFF);
-        focusToggle->at(1)->setState(ISS_ON);
+        focusToggle[0].setState(ISS_OFF);
+        focusToggle[1].setState(ISS_ON);
         sendNewProperty(focusToggle);
     }
     return true;
@@ -290,7 +290,7 @@ int32_t Focuser::getBacklash()
     if (!focusProp)
         return -1;
 
-    return focusProp->at(0)->getValue();
+    return focusProp[0].getValue();
 }
 
 bool Focuser::hasDeviation()

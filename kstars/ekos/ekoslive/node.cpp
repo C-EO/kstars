@@ -27,8 +27,12 @@ Node::Node(const QString &name) : m_Name(name)
 {
     connect(&m_WebSocket, &QWebSocket::connected, this, &Node::onConnected);
     connect(&m_WebSocket, &QWebSocket::disconnected, this, &Node::onDisconnected);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(&m_WebSocket, &QWebSocket::errorOccurred, this, &Node::onError);
+#else
     connect(&m_WebSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this,
             &Node::onError);
+#endif
 
     m_Path = "/" + m_Name + "/ekos";
 }
@@ -120,6 +124,7 @@ void Node::onDisconnected()
 
 void Node::onError(QAbstractSocket::SocketError error)
 {
+    Q_UNUSED(error)
     qCritical(KSTARS_EKOS) << m_Name << "Websocket connection error from" << m_URL.toDisplayString() << ":" <<
                            m_WebSocket.errorString();
 

@@ -109,7 +109,8 @@ void GuideLog::startLog()
 
     logFileName = dir.filePath("guide_log-" + QDateTime::currentDateTime().toString("yyyy-MM-ddThh-mm-ss") + ".txt");
     logFile.setFileName(logFileName);
-    logFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
 
     appendToLog(QString("KStars version %1. PHD2 log version 2.5. Log enabled at %2\n\n")
                 .arg(KSTARS_VERSION)

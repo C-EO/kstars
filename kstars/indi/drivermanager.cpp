@@ -384,7 +384,7 @@ void DriverManager::startLocalDrivers(ServerManager *serverManager)
     connect(serverManager, &ServerManager::driverStarted, this, &DriverManager::processDriverStartup, Qt::UniqueConnection);
     connect(serverManager, &ServerManager::driverFailed, this, &DriverManager::processDriverFailure, Qt::UniqueConnection);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QtConcurrent::run(&ServerManager::startDriver, serverManager, serverManager->pendingDrivers().first());
+    (void)QtConcurrent::run(&ServerManager::startDriver, serverManager, serverManager->pendingDrivers().first());
 #else
     QtConcurrent::run(serverManager, &ServerManager::startDriver, serverManager->pendingDrivers().first());
 #endif
@@ -399,7 +399,7 @@ void DriverManager::processDriverStartup(const QSharedPointer<DriverInfo> &drive
     if (manager->pendingDrivers().count() > 0)
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        QtConcurrent::run(&ServerManager::startDriver, manager, manager->pendingDrivers().first());
+        (void)QtConcurrent::run(&ServerManager::startDriver, manager, manager->pendingDrivers().first());
 #else
         QtConcurrent::run(manager, &ServerManager::startDriver, manager->pendingDrivers().first());
 #endif
@@ -429,7 +429,7 @@ void DriverManager::processDriverFailure(const QSharedPointer<DriverInfo> &drive
         if (manager->pendingDrivers().count() > 0)
         {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-            QtConcurrent::run(&ServerManager::startDriver, manager, manager->pendingDrivers().first());
+            (void)QtConcurrent::run(&ServerManager::startDriver, manager, manager->pendingDrivers().first());
 #else
             QtConcurrent::run(manager, &ServerManager::startDriver, manager->pendingDrivers().first());
 #endif

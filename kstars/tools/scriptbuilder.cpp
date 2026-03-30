@@ -786,7 +786,7 @@ void ScriptBuilder::slotOpen()
 
     QString fname;
     QTemporaryFile tmpfile;
-    tmpfile.open();
+    (void)tmpfile.open();
 
     if (!UnsavedChanges)
     {
@@ -839,7 +839,7 @@ void ScriptBuilder::slotSave()
 {
     QString fname;
     QTemporaryFile tmpfile;
-    tmpfile.open();
+    (void)tmpfile.open();
 
     if (currentScriptName.isEmpty())
     {

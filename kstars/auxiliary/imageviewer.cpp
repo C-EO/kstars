@@ -102,7 +102,7 @@ ImageViewer::ImageViewer(const QUrl &url, const QString &capText, QWidget *paren
 
     {
         QTemporaryFile tempfile;
-        tempfile.open();
+        (void)tempfile.open();
         file.setFileName(tempfile.fileName());
     } // we just need the name and delete the tempfile from disc; if we don't do it, a dialog will be show
 

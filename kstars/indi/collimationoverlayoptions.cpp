@@ -43,11 +43,20 @@ CollimationOverlayOptions::CollimationOverlayOptions(QWidget *parent) : QDialog(
     setupUi(this);
 
     // Enable Checkbox
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(EnableCheckBox, &QCheckBox::checkStateChanged, this, [this](Qt::CheckState state)
+    {
+        updateValue(static_cast<int>(state), "Enabled");
+    });
+#else
     connect(EnableCheckBox, static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged), this,
             [this](int state)
+#endif
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     {
         updateValue(state, "Enabled");
     });
+#endif
 
     // Type Combo
     connect(typeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
@@ -451,7 +460,11 @@ bool CollimationOverlayOptions::selectCollimationOverlayElement(const QString &n
             pcdSpinBox->setValue(oneElement["PCD"].toUInt());
             rotationDoubleSpinBox->setValue(oneElement["Rotation"].toDouble());
             QColor tempColour;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            tempColour = QColor::fromString(oneElement["Colour"].toString());
+#else
             tempColour.setNamedColor(oneElement["Colour"].toString());
+#endif
             colourButton->setColor(tempColour);
             thicknessSpinBox->setValue(oneElement["Thickness"].toUInt());
             removeB->setEnabled(m_CollimationOverlayElements.length() > 0);
@@ -474,7 +487,11 @@ bool CollimationOverlayOptions::selectCollimationOverlayElement(const QString &n
     pcdSpinBox->setValue(0);
     rotationDoubleSpinBox->setValue(0.0);
     QColor tempColour;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    tempColour = QColor::fromString("White");
+#else
     tempColour.setNamedColor("White");
+#endif
     colourButton->setColor(tempColour);
     thicknessSpinBox->setValue(1);
 

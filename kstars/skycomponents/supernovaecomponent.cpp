@@ -184,7 +184,7 @@ void SupernovaeComponent::draw(SkyPainter *skyp)
         {
             m_DataLoading = true;
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-            QtConcurrent::run(&SupernovaeComponent::loadData, this);
+            (void)QtConcurrent::run(&SupernovaeComponent::loadData, this);
 #else
             QtConcurrent::run(this, &SupernovaeComponent::loadData);
 #endif

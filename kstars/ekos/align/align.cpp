@@ -353,22 +353,22 @@ void Align::handlePointTooltip(QMouseEvent *event)
                 return;
             QToolTip::showText(event->globalPos(),
                                i18n("<table>"
-                 "<tr>"
-                 "<th colspan=\"2\">Object %1: %2</th>"
-                 "</tr>"
-                 "<tr>"
-                 "<td>RA:</td><td>%3</td>"
-                 "</tr>"
-                 "<tr>"
-                 "<td>DE:</td><td>%4</td>"
-                 "</tr>"
-                 "<tr>"
-                 "<td>dRA:</td><td>%5</td>"
-                 "</tr>"
-                 "<tr>"
-                 "<td>dDE:</td><td>%6</td>"
-                 "</tr>"
-                 "</table>",
+                                    "<tr>"
+                                    "<th colspan=\"2\">Object %1: %2</th>"
+                                    "</tr>"
+                                    "<tr>"
+                                    "<td>RA:</td><td>%3</td>"
+                                    "</tr>"
+                                    "<tr>"
+                                    "<td>DE:</td><td>%4</td>"
+                                    "</tr>"
+                                    "<tr>"
+                                    "<td>dRA:</td><td>%5</td>"
+                                    "</tr>"
+                                    "<tr>"
+                                    "<td>dDE:</td><td>%6</td>"
+                                    "</tr>"
+                                    "</table>",
                                     point + 1,
                                     solutionTable->item(point, 2)->text(),
                                     solutionTable->item(point, 0)->text(),
@@ -1963,7 +1963,7 @@ void Align::startSolving()
             {
                 appendLogText(
                     i18n("No index files were found on your system in the specified index file directories."
-                     "Please download some index files or add the correct directory to the list."));
+                         "Please download some index files or add the correct directory to the list."));
                 KConfigDialog * alignSettings = KConfigDialog::exists("alignsettings");
                 if(alignSettings && m_IndexFilesPage)
                 {
@@ -3442,8 +3442,6 @@ void Align::setRotator(ISD::Rotator *Device, const QString CameraName)
         else
             ok = true;
     }
-    else
-        appendLogText(i18n("Warning: Camera module & Align module have to use the same train!"));
     rotatorB->setEnabled(ok);
 }
 
@@ -4160,7 +4158,7 @@ void Align::exportSolutionPoints()
     {
         int r = KMessageBox::warningContinueCancel(nullptr,
                 i18n("A file named \"%1\" already exists. "
-             "Overwrite it?",
+                     "Overwrite it?",
                      exportFile.fileName()),
                 i18n("Overwrite File?"), KStandardGuiItem::overwrite());
         if (r == KMessageBox::Cancel)

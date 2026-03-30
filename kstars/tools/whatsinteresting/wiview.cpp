@@ -269,7 +269,7 @@ void WIView::onCategorySelected(QString model)
             .contains(model))
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        QtConcurrent::run(&ModelManager::loadCatalog, m_ModManager.get(), model);
+        (void)QtConcurrent::run(&ModelManager::loadCatalog, m_ModManager.get(), model);
 #else
         QtConcurrent::run(m_ModManager.get(), &ModelManager::loadCatalog, model);
 #endif

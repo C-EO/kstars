@@ -77,7 +77,7 @@ ConjunctionsTool::ConjunctionsTool(QWidget *parentSplit) : QFrame(parentSplit)
     connect(ComputeButton, &QPushButton::clicked, [this]()
     {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        QtConcurrent::run(&ConjunctionsTool::slotCompute, this);
+        (void)QtConcurrent::run(&ConjunctionsTool::slotCompute, this);
 #else
         QtConcurrent::run(this, &ConjunctionsTool::slotCompute);
 #endif
@@ -211,7 +211,8 @@ void ConjunctionsTool::slotExport()
     QFile file(QFileDialog::getSaveFileName(nullptr, i18nc("@title:window", "Save Conjunctions"), QDir::homePath(),
                                             "*|All files"));
 
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
 
     for (i = 0; i < m_Model->rowCount(); ++i)
     {

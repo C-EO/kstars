@@ -51,7 +51,7 @@ EclipseTool::EclipseTool(QWidget *parent) :
         ui->progressBar->setValue(0);
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-        QtConcurrent::run(&EclipseTool::slotCompute, this);
+        (void)QtConcurrent::run(&EclipseTool::slotCompute, this);
 #else
         QtConcurrent::run(this, &EclipseTool::slotCompute);
 #endif
@@ -244,7 +244,8 @@ void EclipseModel::exportAsCsv()
 
     QFile file(fname);
 
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
 
     for (i = 0; i < rowCount(); ++i)
     {

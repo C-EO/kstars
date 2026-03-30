@@ -141,7 +141,7 @@ void Cloud::sendData(const QSharedPointer<FITSData> &data, const QString &uuid)
         return;
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QtConcurrent::run(&Cloud::dispatch, this, data, uuid);
+    (void)QtConcurrent::run(&Cloud::dispatch, this, data, uuid);
 #else
     QtConcurrent::run(this, &Cloud::dispatch, data, uuid);
 #endif

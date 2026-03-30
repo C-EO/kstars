@@ -953,7 +953,7 @@ void KStars::renderEyepieceView(const QString &objectName, const QString &destPa
         if (!QFile::exists(imagePath))
         {
             // We must download a DSS image
-            tempFile.open();
+            (void)tempFile.open();
             QEventLoop loop;
             std::function<void(bool)> slot = [&loop](bool unused)
             {

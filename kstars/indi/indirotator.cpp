@@ -16,10 +16,10 @@ bool Rotator::setAbsoluteAngle(double angle)
     if (!nvp)
         return false;
 
-    if (std::abs(angle - nvp->at(0)->getValue()) < 0.01)
+    if (std::abs(angle - nvp[0].getValue()) < 0.01)
         return true;
 
-    nvp->at(0)->setValue(angle);
+    nvp[0].setValue(angle);
 
     sendNewProperty(nvp);
     return true;
@@ -32,10 +32,10 @@ bool Rotator::setAbsoluteSteps(uint32_t steps)
     if (!nvp)
         return false;
 
-    if (steps == static_cast<uint32_t>(nvp->at(0)->getValue()))
+    if (steps == static_cast<uint32_t>(nvp[0].getValue()))
         return true;
 
-    nvp->at(0)->setValue(steps);
+    nvp[0].setValue(steps);
 
     sendNewProperty(nvp);
     return true;
@@ -48,13 +48,13 @@ bool Rotator::setReversed(bool enabled)
     if (!svp)
         return false;
 
-    if ( (enabled && svp->sp[0].s == ISS_ON) ||
-            (!enabled && svp->sp[1].s == ISS_ON))
+    if ( (enabled && svp[0].getState() == ISS_ON) ||
+            (!enabled && svp[1].getState() == ISS_ON))
         return true;
 
-    svp->reset();
-    svp->at(0)->setState(enabled ? ISS_ON : ISS_OFF);
-    svp->at(1)->setState(enabled ? ISS_OFF : ISS_ON);
+    svp.reset();
+    svp[0].setState(enabled ? ISS_ON : ISS_OFF);
+    svp[1].setState(enabled ? ISS_OFF : ISS_ON);
 
     sendNewProperty(svp);
     return true;

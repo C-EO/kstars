@@ -1588,7 +1588,7 @@ std::pair<bool, QString> updateLocalDatabase(SkyObjectUserdata::Type type,
     QFile URLFile;
     QTemporaryFile TempFile;
     TempFile.setAutoRemove(false);
-    TempFile.open();
+    (void)TempFile.open();
 
     bool replace = !replace_line.isEmpty();
 

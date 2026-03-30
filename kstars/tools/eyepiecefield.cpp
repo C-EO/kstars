@@ -109,7 +109,7 @@ void EyepieceField::generateEyepieceView(SkyPoint *sp, QImage *skyChart, QImage 
 
     // Vector export
     QTemporaryFile myTempSvgFile;
-    myTempSvgFile.open();
+    (void)myTempSvgFile.open();
 
     // export as SVG
     QSvgGenerator svgGenerator;

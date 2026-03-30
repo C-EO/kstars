@@ -554,7 +554,7 @@ void HorizonManager::exportHorizon()
     if (filename.isEmpty())
         return;
     QFile file(filename);
-    file.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) return;
     QTextStream out(&file);
     out << "# KStars Artificial Horizon export (Alt Az)\n";
     out << "#\n";

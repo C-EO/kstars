@@ -38,7 +38,7 @@ ModelManager::ModelManager(ObsConditions *obs)
     }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QtConcurrent::run(&ModelManager::loadLists, this);
+    (void)QtConcurrent::run(&ModelManager::loadLists, this);
 #else
     QtConcurrent::run(this, &ModelManager::loadLists);
 #endif

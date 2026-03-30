@@ -32,7 +32,9 @@ macro(_INDI_check_version)
         set(INDI_VERSION_RELEASE "${CMAKE_MATCH_1}")
         
         # Check if version extraction was successful
-        if(INDI_VERSION_MAJOR AND INDI_VERSION_MINOR AND INDI_VERSION_RELEASE)
+        # NOTE: Use STREQUAL "" instead of boolean check because CMake treats "0" as FALSE,
+        # which would break detection of versions like x.y.0 or x.0.z (e.g. INDI 2.2.0).
+        if(NOT "${INDI_VERSION_MAJOR}" STREQUAL "" AND NOT "${INDI_VERSION_MINOR}" STREQUAL "" AND NOT "${INDI_VERSION_RELEASE}" STREQUAL "")
             set(_INDI_version_found TRUE)
         endif()
     endif()

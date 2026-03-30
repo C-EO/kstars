@@ -303,7 +303,7 @@ void OpsColors::slotRemovePreset()
 
             //remove the old colors.dat file, and rebuild it with the modified string list.
             cdatFile.remove();
-            cdatFile.open(QIODevice::ReadWrite);
+            if (!cdatFile.open(QIODevice::ReadWrite)) return;
             QTextStream stream2(&cdatFile);
             for (int i = 0; i < slist.count(); ++i)
                 stream << slist[i] << '\n';

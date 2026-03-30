@@ -203,7 +203,7 @@ bool ImageExporter::exportImage(QString url)
 
         else
         {
-            tmpfile.open();
+            (void)tmpfile.open();
             fname = tmpfile.fileName();
         }
 

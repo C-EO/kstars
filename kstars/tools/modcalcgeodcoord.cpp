@@ -253,7 +253,7 @@ void modCalcGeodCoord::processLines(QTextStream &istream)
     //	QTextStream istream(&fIn);
     const QString outputFileName = OutputFileBoxBatch->url().toLocalFile();
     QFile fOut(outputFileName);
-    fOut.open(QIODevice::WriteOnly);
+    if (!fOut.open(QIODevice::WriteOnly)) return;
     QTextStream ostream(&fOut);
 
     QString line;

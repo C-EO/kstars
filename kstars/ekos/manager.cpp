@@ -1278,7 +1278,7 @@ void Manager::start()
 
     // Prioritize profile script drivers over other drivers
     QList<QSharedPointer<DriverInfo >> sortedList;
-    for (const auto &oneRule : qAsConst(profileScripts))
+    for (const auto &oneRule : std::as_const(profileScripts))
     {
         auto driver = oneRule.toObject()["Driver"].toString();
         auto matchingDriver = std::find_if(managedDrivers.begin(), managedDrivers.end(), [oneRule, driver](const auto & oneDriver)
@@ -1514,7 +1514,7 @@ void Manager::setClientStarted(const QString &host, int port)
     if (jsonError.error == QJsonParseError::NoError)
     {
         profileScripts = doc.array();
-        for (const auto &oneRule : qAsConst(profileScripts))
+        for (const auto &oneRule : std::as_const(profileScripts))
         {
             const auto &oneRuleObj = oneRule.toObject();
             auto totalDelay = (oneRuleObj["PreDelay"].toDouble(0) + oneRuleObj["PostDelay"].toDouble(0)) * 1000;
@@ -4117,6 +4117,9 @@ void Manager::setDeviceReady()
     {
         // Phase 1: Create Ekos modules for any newly-ready device.
         // m_syncedDevices guards this so each device only triggers module creation once.
+        // Track whether any new module was actually created so Phase 2 knows whether
+        // a full re-sweep is necessary.
+        bool newModuleCreated = false;
         for (auto &oneDevice : INDIListener::devices())
         {
             if (oneDevice->isConnected() && oneDevice->isReady() &&
@@ -4124,16 +4127,35 @@ void Manager::setDeviceReady()
             {
                 m_syncedDevices.insert(oneDevice->getDeviceName());
                 createModulesForDevice(oneDevice);
+                newModuleCreated = true;
             }
         }
 
-        // Phase 2: Bind every ready device to every now-existing module.
-        // bindDeviceToModules() is safe to call multiple times — setters are
-        // idempotent and adders guard against duplicate entries.
-        for (auto &oneDevice : INDIListener::devices())
+        // Phase 2: Bind devices to modules.
+        // If a new module was just created we must sweep ALL ready devices so that
+        // devices that were already synced (and therefore skipped in Phase 1) are
+        // also bound to the brand-new module.
+        // If no new module was created, only bind the single device that just became
+        // ready — this avoids the O(N²) log spam where every device-ready event
+        // re-logs "Binding device to modules" for all N devices.
+        if (newModuleCreated)
         {
-            if (oneDevice->isConnected() && oneDevice->isReady())
-                bindDeviceToModules(oneDevice);
+            for (auto &oneDevice : INDIListener::devices())
+            {
+                if (oneDevice->isConnected() && oneDevice->isReady())
+                    bindDeviceToModules(oneDevice);
+            }
+        }
+        else
+        {
+            // Only the device that triggered setDeviceReady() needs binding.
+            auto senderDevice = static_cast<ISD::GenericDevice *>(sender());
+            if (senderDevice)
+            {
+                QSharedPointer<ISD::GenericDevice> sharedDevice;
+                if (INDIListener::findDevice(senderDevice->getDeviceName(), sharedDevice))
+                    bindDeviceToModules(sharedDevice);
+            }
         }
 
         // Set the profile for OpticalTrainManager only once after all devices have been processed.

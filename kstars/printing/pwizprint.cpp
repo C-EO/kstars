@@ -87,7 +87,7 @@ void PWizPrintUI::slotExport()
     }
 
     QTemporaryFile tmpfile;
-    tmpfile.open();
+    (void)tmpfile.open();
     QString fname;
 
     if (url.isValid())
