@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-29 02:01+0000\n"
-"PO-Revision-Date: 2026-03-27 11:28+0100\n"
+"PO-Revision-Date: 2026-03-29 11:04+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 # Diccionari de termes astronòmics:
 # https://www.ub.edu/ubterm/cerca-termes/?cerca=&obra-cerca=68&categoria-
@@ -41889,7 +41889,7 @@ msgid ""
 msgstr ""
 "Especifica el format de l'etiqueta de data/hora. Aquesta cadena de format es "
 "passa a strftime(3). De manera predeterminada val «%c %Z», la qual mostra la "
-"data, hora i zona horària en la representació adient segons la configuració "
+"data, hora i fus horari en la representació adient segons la configuració "
 "regional («locale»)."
 
 #. i18n: ectx: label, entry (XplanetLabelTL), group (Xplanet)
@@ -93637,7 +93637,7 @@ msgid ""
 msgstr ""
 "Especifica el format de l'etiqueta de data/hora. Aquesta cadena de format es "
 "passa a strftime(3). De manera predeterminada val «%c %Z», la qual mostra la "
-"data, hora i zona horària en la representació adient segons la configuració "
+"data, hora i fus horari en la representació adient segons la configuració "
 "regional («locale»)."
 
 #. i18n: ectx: property (text), widget (QLabel, textLabelXplanetFontSize)
