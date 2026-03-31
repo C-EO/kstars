@@ -1929,6 +1929,33 @@ void FITSTab::startProgrammatically(const QString &dir, const LiveStackData &par
     m_liveStackDir.push_back(dir);
     m_StackDefTabName = dir;
 
+    // Sync ALL programmatic params back to the UI so that:
+    // (a) the user can see the active settings (e.g. downscale=3 → "4x4" in the combo), and
+    // (b) getAllSettings() (called by redoPostProcessing and the manual Start button)
+    //     returns the correct values rather than stale / empty Options-loaded defaults.
+
+    // Calibration frames
+    if (!params.masterDark.isEmpty())
+        m_LiveStackingUI.MasterDark->setText(params.masterDark.first());
+    if (!params.masterFlat.isEmpty())
+        m_LiveStackingUI.MasterFlat->setText(params.masterFlat.first());
+
+    // General / stacking settings
+    m_LiveStackingUI.CalcSNR->setChecked(params.calcSNR);
+    m_LiveStackingUI.LSDownscale->setCurrentIndex(static_cast<int>(params.downscale));
+    m_LiveStackingUI.NumInMem->setValue(params.numInMem);
+    m_LiveStackingUI.Weighting->setCurrentIndex(static_cast<int>(params.weighting));
+    m_LiveStackingUI.AlignMethod->setCurrentIndex(static_cast<int>(params.alignMethod));
+    m_LiveStackingUI.StackingMethod->setCurrentIndex(static_cast<int>(params.stackingMethod));
+    m_LiveStackingUI.LowSigma->setValue(params.lowSigma);
+    m_LiveStackingUI.HighSigma->setValue(params.highSigma);
+
+    // Post-processing
+    m_LiveStackingUI.PostProcGroupBox->setChecked(params.postProcessing.postProcess);
+    m_LiveStackingUI.SharpenAmt->setValue(params.postProcessing.sharpenAmt);
+    m_LiveStackingUI.DenoiseAmt->setValue(params.postProcessing.denoiseAmt);
+    m_LiveStackingUI.DeconvAmt->setValue(params.postProcessing.deconvAmt);
+
     m_StackStarted   = true;
     m_StackCancelled = false;
 
