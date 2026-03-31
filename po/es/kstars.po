@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-29 02:01+0000\n"
+"POT-Creation-Date: 2026-03-31 02:06+0000\n"
 "PO-Revision-Date: 2026-03-27 11:35+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -471,14 +471,14 @@ msgctxt "@title:window"
 msgid "Save Image"
 msgstr "Guardar imagen"
 
-#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4162
+#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4160
 #: ekos/guide/guidedriftgraph.cpp:491 kstarsactions.cpp:1391
 #: printing/pwizprint.cpp:77 tools/scriptbuilder.cpp:879
 #, kde-format
 msgid "A file named \"%1\" already exists. Overwrite it?"
 msgstr "Ya existe un archivo llamado «%1». ¿Sobrescribir?"
 
-#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4165
+#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4163
 #: ekos/guide/guidedriftgraph.cpp:494 kstarsactions.cpp:1392
 #: printing/pwizprint.cpp:78 tools/scriptbuilder.cpp:882
 #, kde-format
@@ -1077,7 +1077,7 @@ msgstr "Simulador del Sistema Solar XPlanet: %1"
 #: skyobjects/ksplanetbase.cpp:270 skyobjects/kssun.cpp:17
 #: skyobjects/satellite.cpp:1223 skyobjects/skyobject.cpp:287
 #: skyobjects/skypoint.cpp:435 skyqpainter.cpp:524 skyqpainter.cpp:548
-#: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:299
+#: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:300
 #: tools/imagingplanner.cpp:1542 tools/jmoontool.cpp:106
 #: tools/modcalcdaylength.ui:109 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:388 tools/modcalcplanets.ui:190
@@ -2707,7 +2707,7 @@ msgstr ""
 "La URL no es válida. ¿Quiere abrir una ventana del navegador\n"
 "con el buscador de Google?"
 
-#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4173
+#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4171
 #: ekos/align/mountmodel.cpp:267 ekos/align/mountmodel.cpp:393
 #: ekos/capture/camera_jobs.cpp:341 ekos/capture/camera_jobs.cpp:427
 #: ekos/guide/guidedriftgraph.cpp:502 ekos/scheduler/scheduler.cpp:2193
@@ -6676,7 +6676,7 @@ msgid "Mount is synced to solution coordinates."
 msgstr "La montura se ha sincronizado con las coordenadas de la solución."
 
 #: ekos/align/align.cpp:2922 ekos/align/align.cpp:2940
-#: ekos/align/align.cpp:3576 ekos/align/align.cpp:4321
+#: ekos/align/align.cpp:3574 ekos/align/align.cpp:4319
 #: ekos/align/polaralignmentassistant.cpp:657
 #, kde-format
 msgid "Settling..."
@@ -6758,110 +6758,103 @@ msgctxt "@title:window"
 msgid "Load Image"
 msgstr "Cargar imagen"
 
-#: ekos/align/align.cpp:3446
-#, kde-format
-msgid "Warning: Camera module & Align module have to use the same train!"
-msgstr ""
-"Advertencia: Los módulos de la cámara y de alineación tienen que usar el "
-"mismo tren."
-
-#: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
+#: ekos/align/align.cpp:3470 ekos/guide/guide.cpp:603
 #, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "%1: El sistema de coordenadas mundial (WCS) está activado."
 
-#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
+#: ekos/align/align.cpp:3475 ekos/guide/guide.cpp:609
 #, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "%1: El sistema de coordenadas mundial (WCS) está desactivado."
 
-#: ekos/align/align.cpp:3496
+#: ekos/align/align.cpp:3494
 #, kde-format
 msgid "Capture error. Aborting..."
 msgstr "Error de captura. Interrumpiendo…"
 
-#: ekos/align/align.cpp:3501 ekos/capture/cameraprocess.cpp:1644
+#: ekos/align/align.cpp:3499 ekos/capture/cameraprocess.cpp:1644
 #: ekos/capture/cameraprocess.cpp:2205
 #, kde-format
 msgid "Restarting capture attempt #%1"
 msgstr "Reiniciando intento de captura #%1"
 
-#: ekos/align/align.cpp:3627
+#: ekos/align/align.cpp:3625
 #, kde-format
 msgctxt "@title:window"
 msgid "Align Frame"
 msgstr "Alinear fotograma"
 
-#: ekos/align/align.cpp:3702
+#: ekos/align/align.cpp:3700
 #, kde-format
 msgid "StellarSolver Options"
 msgstr "Opciones de StellarSolver"
 
-#: ekos/align/align.cpp:3707
+#: ekos/align/align.cpp:3705
 #, kde-format
 msgid "External & Online Programs"
 msgstr "Programas externos y en línea"
 
-#: ekos/align/align.cpp:3711
+#: ekos/align/align.cpp:3709
 #, kde-format
 msgid "Scale & Position"
 msgstr "Escala y posición"
 
-#: ekos/align/align.cpp:3715
+#: ekos/align/align.cpp:3713
 #, kde-format
 msgid "Align Options Profiles Editor"
 msgstr "Editor de perfiles de opciones de alineación"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ekos/align/align.cpp:3734 ekos/align/opsastrometryindexfiles.ui:329
+#: ekos/align/align.cpp:3732 ekos/align/opsastrometryindexfiles.ui:329
 #, kde-format
 msgid "Index Files"
 msgstr "Archivos de índice:"
 
-#: ekos/align/align.cpp:3799 ekos/guide/guidetargetplot.cpp:55
+#: ekos/align/align.cpp:3797 ekos/guide/guidetargetplot.cpp:55
 #, kde-format
 msgid "dRA (arcsec)"
 msgstr "dAR (segundos de arco)"
 
-#: ekos/align/align.cpp:3800 ekos/guide/guidetargetplot.cpp:56
+#: ekos/align/align.cpp:3798 ekos/guide/guidetargetplot.cpp:56
 #, kde-format
 msgid "dDE (arcsec)"
 msgstr "dDE (segundos de arco)"
 
-#: ekos/align/align.cpp:3848 ekos/capture/camera_config.cpp:717
+#: ekos/align/align.cpp:3846 ekos/capture/camera_config.cpp:717
 #: ekos/focus/focus.cpp:5956
 #, kde-format
 msgid "Filter operation failed."
 msgstr "La operación de filtrado ha fallado."
 
-#: ekos/align/align.cpp:3860 ekos/capture/camera.cpp:580
+#: ekos/align/align.cpp:3858 ekos/capture/camera.cpp:580
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr "Cambiando el desplazamiento de enfoque en %1 pasos…"
 
-#: ekos/align/align.cpp:3867 ekos/auxiliary/buildfilteroffsets.cpp:466
+#: ekos/align/align.cpp:3865 ekos/auxiliary/buildfilteroffsets.cpp:466
 #: ekos/capture/camera.cpp:585
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr "Cambiando el filtro a %1…"
 
-#: ekos/align/align.cpp:3872 ekos/capture/camera.cpp:590
+#: ekos/align/align.cpp:3870 ekos/capture/camera.cpp:590
 #, kde-format
 msgid "Auto focus on filter change..."
 msgstr "Enfoque automático al cambiar filtros…"
 
-#: ekos/align/align.cpp:3993
+#: ekos/align/align.cpp:3991
 #, kde-format
 msgid "Invalid FOV."
 msgstr "Campo de visión no válido."
 
-#: ekos/align/align.cpp:4149
+#: ekos/align/align.cpp:4147
 #, kde-format
 msgctxt "@title:window"
 msgid "Export Solution Points"
 msgstr "Exportar los puntos de la solución"
 
-#: ekos/align/align.cpp:4172 ekos/align/mountmodel.cpp:266
+#: ekos/align/align.cpp:4170 ekos/align/mountmodel.cpp:266
 #: ekos/align/mountmodel.cpp:392 ekos/capture/camera_jobs.cpp:340
 #: ekos/capture/camera_jobs.cpp:426 ekos/guide/guidedriftgraph.cpp:501
 #: ekos/scheduler/scheduler.cpp:2192 ekos/scheduler/scheduler.cpp:2302
@@ -6871,7 +6864,7 @@ msgstr "Exportar los puntos de la solución"
 msgid "Invalid URL: %1"
 msgstr "URL no válida: %1"
 
-#: ekos/align/align.cpp:4181 ekos/align/mountmodel.cpp:403
+#: ekos/align/align.cpp:4179 ekos/align/mountmodel.cpp:403
 #: ekos/capture/sequencequeue.cpp:259 ekos/guide/guidedriftgraph.cpp:510
 #: ekos/scheduler/schedulerprocess.cpp:2943
 #: ekos/scheduler/schedulerprocess.cpp:4535
@@ -6879,7 +6872,7 @@ msgstr "URL no válida: %1"
 msgid "Unable to write to file %1"
 msgstr "No se puede escribir en el archivo %1 "
 
-#: ekos/align/align.cpp:4182 ekos/align/mountmodel.cpp:286
+#: ekos/align/align.cpp:4180 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
 #: ekos/capture/cameraprocess.cpp:2618 ekos/capture/sequencequeue.cpp:33
 #: ekos/guide/guidedriftgraph.cpp:511 ekos/scheduler/schedulerprocess.cpp:2944
@@ -6899,33 +6892,33 @@ msgstr "No se puede escribir en el archivo %1 "
 msgid "Could Not Open File"
 msgstr "Imposible abrir el archivo"
 
-#: ekos/align/align.cpp:4203
+#: ekos/align/align.cpp:4201
 #, kde-format
 msgid "Error in table structure."
 msgstr "Error en estructura de tabla."
 
-#: ekos/align/align.cpp:4212
+#: ekos/align/align.cpp:4210
 #, kde-format
 msgid "Solution Points Saved as: %1"
 msgstr "Puntos de la solución guardados como: %1"
 
-#: ekos/align/align.cpp:4229
+#: ekos/align/align.cpp:4227
 #, kde-format
 msgid "Polar Alignment"
 msgstr "Alineación polar"
 
-#: ekos/align/align.cpp:4808
+#: ekos/align/align.cpp:4806
 #, kde-format
 msgid "Capture timed out."
 msgstr "Se ha agotado el tiempo de la captura."
 
-#: ekos/align/align.cpp:4817
+#: ekos/align/align.cpp:4815
 #, kde-format
 msgid "Capturing still running, Retrying in %1 seconds..."
 msgstr ""
 "El proceso de captura está en marcha. Se vuelve a intentar en %1 segundos…"
 
-#: ekos/align/align.cpp:4863
+#: ekos/align/align.cpp:4861
 #, kde-format
 msgid "Rotator timeout after %1 seconds. Aborting alignment."
 msgstr ""
@@ -10818,7 +10811,7 @@ msgstr "Empezar resolución de placa en la posición a la que está apuntando."
 #: ekos/focus/focusmodule.cpp:676 ekos/observatory/observatory.ui:550
 #: kspopupmenu.cpp:644 skycomponents/imageoverlaycomponent.cpp:623
 #: skycomponents/imageoverlaycomponent.cpp:753
-#: skycomponents/satellitescomponent.cpp:147 tools/conjunctions.cpp:357
+#: skycomponents/satellitescomponent.cpp:147 tools/conjunctions.cpp:358
 #, kde-format
 msgid "Abort"
 msgstr "Interrumpir"
@@ -25759,17 +25752,17 @@ msgstr "Volviendo a activar registro de depuración para %1…"
 msgid "Re-disabling debug logging for %1..."
 msgstr "Volviendo a desactivar registro de depuración para %1…"
 
-#: ekos/manager.cpp:4240
+#: ekos/manager.cpp:4262
 #, kde-format
 msgid "Preview source set to external"
 msgstr "Fuente de vista previa establecida a externa"
 
-#: ekos/manager.cpp:4248
+#: ekos/manager.cpp:4270
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr "Fuente de vista previa restablecida a interna"
 
-#: ekos/manager.cpp:4255
+#: ekos/manager.cpp:4277
 #, kde-format
 msgid "Received external preview file"
 msgstr "Recibido archivo externo de vista previa"
@@ -87491,7 +87484,7 @@ msgctxt "@title:window"
 msgid "Save Conjunctions"
 msgstr "Guardar conjunciones"
 
-#: tools/conjunctions.cpp:259
+#: tools/conjunctions.cpp:260
 #, kde-format
 msgid ""
 "Maximum separation entered is not a valid angle. Use the What's this help "
@@ -87501,7 +87494,7 @@ msgstr ""
 "funcionalidad de ayuda «Qué es esto» para obtener información sobre cómo "
 "introducir un ángulo válido."
 
-#: tools/conjunctions.cpp:268
+#: tools/conjunctions.cpp:269
 #, kde-format
 msgid ""
 "Please select an object to check conjunctions with, by clicking on the 'Find "
@@ -87510,35 +87503,35 @@ msgstr ""
 "Seleccione un objeto con el que comprobar conjunciones pulsando en el botón "
 "«Buscar objeto»."
 
-#: tools/conjunctions.cpp:275
+#: tools/conjunctions.cpp:276
 #, kde-format
 msgid "Please select two different objects to check conjunctions with."
 msgstr "Seleccione dos objetos diferentes con los que comprobar conjunciones."
 
-#: tools/conjunctions.cpp:357
+#: tools/conjunctions.cpp:358
 #, kde-format
 msgid "Compute conjunction..."
 msgstr "Calcular conjunción…"
 
-#: tools/conjunctions.cpp:358
+#: tools/conjunctions.cpp:359
 #, kde-format
 msgctxt "@title:window"
 msgid "Conjunction"
 msgstr "Conjunción"
 
-#: tools/conjunctions.cpp:371
+#: tools/conjunctions.cpp:372
 #, kde-format
 msgid "Compute conjunction between %1 and %2"
 msgstr "Calcular la conjunción entre %1 y %2"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, ModeSelector)
-#: tools/conjunctions.cpp:418 tools/conjunctions.ui:165
+#: tools/conjunctions.cpp:419 tools/conjunctions.ui:165
 #, kde-format
 msgid "Conjunction"
 msgstr "Conjunción"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, ModeSelector)
-#: tools/conjunctions.cpp:420 tools/conjunctions.ui:170
+#: tools/conjunctions.cpp:421 tools/conjunctions.ui:170
 #, kde-format
 msgid "Opposition"
 msgstr "Oposición"
@@ -93587,3 +93580,8 @@ msgstr "Color del fondo:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Establecer el color para el fondo."
+
+#~ msgid "Warning: Camera module & Align module have to use the same train!"
+#~ msgstr ""
+#~ "Advertencia: Los módulos de la cámara y de alineación tienen que usar el "
+#~ "mismo tren."

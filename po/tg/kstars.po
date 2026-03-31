@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-29 02:01+0000\n"
+"POT-Creation-Date: 2026-03-31 02:06+0000\n"
 "PO-Revision-Date: 2021-09-09 23:34-0700\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik Language Support\n"
@@ -518,14 +518,14 @@ msgctxt "@title:window"
 msgid "Save Image"
 msgstr "&Захира кардани тасвири осмон..."
 
-#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4162
+#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4160
 #: ekos/guide/guidedriftgraph.cpp:491 kstarsactions.cpp:1391
 #: printing/pwizprint.cpp:77 tools/scriptbuilder.cpp:879
 #, kde-format
 msgid "A file named \"%1\" already exists. Overwrite it?"
 msgstr "Файл бо номи \"%1\"аллакай вуҷуд дорад. Шумо мехоҳед ӯро иваз кунед?"
 
-#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4165
+#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4163
 #: ekos/guide/guidedriftgraph.cpp:494 kstarsactions.cpp:1392
 #: printing/pwizprint.cpp:78 tools/scriptbuilder.cpp:882
 #, kde-format
@@ -1165,7 +1165,7 @@ msgstr "Системаи Офтобӣ"
 #: skyobjects/ksplanetbase.cpp:270 skyobjects/kssun.cpp:17
 #: skyobjects/satellite.cpp:1223 skyobjects/skyobject.cpp:287
 #: skyobjects/skypoint.cpp:435 skyqpainter.cpp:524 skyqpainter.cpp:548
-#: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:299
+#: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:300
 #: tools/imagingplanner.cpp:1542 tools/jmoontool.cpp:106
 #: tools/modcalcdaylength.ui:109 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:388 tools/modcalcplanets.ui:190
@@ -2812,7 +2812,7 @@ msgstr ""
 "URL ёфт нашуд. Таснифгарро бо мошини ҷустуҷӯии Google \n"
 "кушоям?"
 
-#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4173
+#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4171
 #: ekos/align/mountmodel.cpp:267 ekos/align/mountmodel.cpp:393
 #: ekos/capture/camera_jobs.cpp:341 ekos/capture/camera_jobs.cpp:427
 #: ekos/guide/guidedriftgraph.cpp:502 ekos/scheduler/scheduler.cpp:2193
@@ -6881,7 +6881,7 @@ msgid "Mount is synced to solution coordinates."
 msgstr "Ҷузъиёти тирезаро барои объекти асосӣ нишон диҳед."
 
 #: ekos/align/align.cpp:2922 ekos/align/align.cpp:2940
-#: ekos/align/align.cpp:3576 ekos/align/align.cpp:4321
+#: ekos/align/align.cpp:3574 ekos/align/align.cpp:4319
 #: ekos/align/polaralignmentassistant.cpp:657
 #, fuzzy, kde-format
 msgid "Settling..."
@@ -6962,80 +6962,75 @@ msgctxt "@title:window"
 msgid "Load Image"
 msgstr "Пурборкунии тасвирҳои бадарғашуда"
 
-#: ekos/align/align.cpp:3446
-#, kde-format
-msgid "Warning: Camera module & Align module have to use the same train!"
-msgstr ""
-
-#: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
+#: ekos/align/align.cpp:3470 ekos/guide/guide.cpp:603
 #, fuzzy, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "Заминаро дар Файли Вуруди интихобед"
 
-#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
+#: ekos/align/align.cpp:3475 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "Заминаро дар Файли Вуруди интихобед"
 
-#: ekos/align/align.cpp:3496
+#: ekos/align/align.cpp:3494
 #, fuzzy, kde-format
 #| msgid "Capture Image"
 msgid "Capture error. Aborting..."
 msgstr "Гирифтани расм"
 
-#: ekos/align/align.cpp:3501 ekos/capture/cameraprocess.cpp:1644
+#: ekos/align/align.cpp:3499 ekos/capture/cameraprocess.cpp:1644
 #: ekos/capture/cameraprocess.cpp:2205
 #, kde-format
 msgid "Restarting capture attempt #%1"
 msgstr ""
 
-#: ekos/align/align.cpp:3627
+#: ekos/align/align.cpp:3625
 #, fuzzy, kde-format
 #| msgid "Focused on: "
 msgctxt "@title:window"
 msgid "Align Frame"
 msgstr "Пайвандӣ ба: "
 
-#: ekos/align/align.cpp:3702
+#: ekos/align/align.cpp:3700
 #, fuzzy, kde-format
 #| msgid "Constellation Name Options"
 msgid "StellarSolver Options"
 msgstr "Номи интихобҳои бурҷ"
 
-#: ekos/align/align.cpp:3707
+#: ekos/align/align.cpp:3705
 #, kde-format
 msgid "External & Online Programs"
 msgstr ""
 
-#: ekos/align/align.cpp:3711
+#: ekos/align/align.cpp:3709
 #, fuzzy, kde-format
 msgid "Scale & Position"
 msgstr "&Нуқта"
 
-#: ekos/align/align.cpp:3715
+#: ekos/align/align.cpp:3713
 #, fuzzy, kde-format
 msgid "Align Options Profiles Editor"
 msgstr "Ягон чизро интихоб накардан"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ekos/align/align.cpp:3734 ekos/align/opsastrometryindexfiles.ui:329
+#: ekos/align/align.cpp:3732 ekos/align/opsastrometryindexfiles.ui:329
 #, fuzzy, kde-format
 msgid "Index Files"
 msgstr "Номи нодурусти файл"
 
-#: ekos/align/align.cpp:3799 ekos/guide/guidetargetplot.cpp:55
+#: ekos/align/align.cpp:3797 ekos/guide/guidetargetplot.cpp:55
 #, fuzzy, kde-format
 msgid "dRA (arcsec)"
 msgstr "<i>arcmin</i>"
 
-#: ekos/align/align.cpp:3800 ekos/guide/guidetargetplot.cpp:56
+#: ekos/align/align.cpp:3798 ekos/guide/guidetargetplot.cpp:56
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Parsons"
 msgid "dDE (arcsec)"
 msgstr "Парсон"
 
-#: ekos/align/align.cpp:3848 ekos/capture/camera_config.cpp:717
+#: ekos/align/align.cpp:3846 ekos/capture/camera_config.cpp:717
 #: ekos/focus/focus.cpp:5956
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
@@ -7043,37 +7038,37 @@ msgstr "Парсон"
 msgid "Filter operation failed."
 msgstr "Калиент"
 
-#: ekos/align/align.cpp:3860 ekos/capture/camera.cpp:580
+#: ekos/align/align.cpp:3858 ekos/capture/camera.cpp:580
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr ""
 
-#: ekos/align/align.cpp:3867 ekos/auxiliary/buildfilteroffsets.cpp:466
+#: ekos/align/align.cpp:3865 ekos/auxiliary/buildfilteroffsets.cpp:466
 #: ekos/capture/camera.cpp:585
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr ""
 
-#: ekos/align/align.cpp:3872 ekos/capture/camera.cpp:590
+#: ekos/align/align.cpp:3870 ekos/capture/camera.cpp:590
 #, fuzzy, kde-format
 #| msgid "completed"
 msgid "Auto focus on filter change..."
 msgstr "Комил"
 
-#: ekos/align/align.cpp:3993
+#: ekos/align/align.cpp:3991
 #, fuzzy, kde-format
 #| msgid "Invalid URL"
 msgid "Invalid FOV."
 msgstr "URL-и нодуруст"
 
-#: ekos/align/align.cpp:4149
+#: ekos/align/align.cpp:4147
 #, fuzzy, kde-format
 #| msgid "Clear all orbit trails"
 msgctxt "@title:window"
 msgid "Export Solution Points"
 msgstr "Пок кардани ҳамаи аломатҳои мадор"
 
-#: ekos/align/align.cpp:4172 ekos/align/mountmodel.cpp:266
+#: ekos/align/align.cpp:4170 ekos/align/mountmodel.cpp:266
 #: ekos/align/mountmodel.cpp:392 ekos/capture/camera_jobs.cpp:340
 #: ekos/capture/camera_jobs.cpp:426 ekos/guide/guidedriftgraph.cpp:501
 #: ekos/scheduler/scheduler.cpp:2192 ekos/scheduler/scheduler.cpp:2302
@@ -7083,7 +7078,7 @@ msgstr "Пок кардани ҳамаи аломатҳои мадор"
 msgid "Invalid URL: %1"
 msgstr "Адреси хато: %1"
 
-#: ekos/align/align.cpp:4181 ekos/align/mountmodel.cpp:403
+#: ekos/align/align.cpp:4179 ekos/align/mountmodel.cpp:403
 #: ekos/capture/sequencequeue.cpp:259 ekos/guide/guidedriftgraph.cpp:510
 #: ekos/scheduler/schedulerprocess.cpp:2943
 #: ekos/scheduler/schedulerprocess.cpp:4535
@@ -7092,7 +7087,7 @@ msgstr "Адреси хато: %1"
 msgid "Unable to write to file %1"
 msgstr "Наметавонам маълумотҳоро аз файли FITS-ро %1 хонам.\n"
 
-#: ekos/align/align.cpp:4182 ekos/align/mountmodel.cpp:286
+#: ekos/align/align.cpp:4180 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
 #: ekos/capture/cameraprocess.cpp:2618 ekos/capture/sequencequeue.cpp:33
 #: ekos/guide/guidedriftgraph.cpp:511 ekos/scheduler/schedulerprocess.cpp:2944
@@ -7112,35 +7107,35 @@ msgstr "Наметавонам маълумотҳоро аз файли FITS-р�
 msgid "Could Not Open File"
 msgstr "Наметавонам файлро боз кунам"
 
-#: ekos/align/align.cpp:4203
+#: ekos/align/align.cpp:4201
 #, fuzzy, kde-format
 msgid "Error in table structure."
 msgstr "Хатогӣ дар вақти нобуд кардани файл"
 
-#: ekos/align/align.cpp:4212
+#: ekos/align/align.cpp:4210
 #, fuzzy, kde-format
 #| msgid "Horizontal Coordinates"
 msgid "Solution Points Saved as: %1"
 msgstr "Хати уфуқии Координатаҳо"
 
-#: ekos/align/align.cpp:4229
+#: ekos/align/align.cpp:4227
 #, fuzzy, kde-format
 #| msgid "Focused on: "
 msgid "Polar Alignment"
 msgstr "Пайвандӣ ба: "
 
-#: ekos/align/align.cpp:4808
+#: ekos/align/align.cpp:4806
 #, fuzzy, kde-format
 #| msgid "Capture Image"
 msgid "Capture timed out."
 msgstr "Гирифтани расм"
 
-#: ekos/align/align.cpp:4817
+#: ekos/align/align.cpp:4815
 #, fuzzy, kde-format
 msgid "Capturing still running, Retrying in %1 seconds..."
 msgstr "Ҷустуҷӯи объект"
 
-#: ekos/align/align.cpp:4863
+#: ekos/align/align.cpp:4861
 #, fuzzy, kde-format
 #| msgid "FITS file saved to %1"
 msgid "Rotator timeout after %1 seconds. Aborting alignment."
@@ -10810,7 +10805,7 @@ msgstr ""
 #: ekos/focus/focusmodule.cpp:676 ekos/observatory/observatory.ui:550
 #: kspopupmenu.cpp:644 skycomponents/imageoverlaycomponent.cpp:623
 #: skycomponents/imageoverlaycomponent.cpp:753
-#: skycomponents/satellitescomponent.cpp:147 tools/conjunctions.cpp:357
+#: skycomponents/satellitescomponent.cpp:147 tools/conjunctions.cpp:358
 #, fuzzy, kde-format
 msgid "Abort"
 msgstr "Албург"
@@ -24884,17 +24879,17 @@ msgstr ""
 msgid "Re-disabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:4240
+#: ekos/manager.cpp:4262
 #, kde-format
 msgid "Preview source set to external"
 msgstr ""
 
-#: ekos/manager.cpp:4248
+#: ekos/manager.cpp:4270
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr ""
 
-#: ekos/manager.cpp:4255
+#: ekos/manager.cpp:4277
 #, kde-format
 msgid "Received external preview file"
 msgstr ""
@@ -92067,53 +92062,53 @@ msgctxt "@title:window"
 msgid "Save Conjunctions"
 msgstr "Пайвастшавӣ"
 
-#: tools/conjunctions.cpp:259
+#: tools/conjunctions.cpp:260
 #, kde-format
 msgid ""
 "Maximum separation entered is not a valid angle. Use the What's this help "
 "feature for information on how to enter a valid angle"
 msgstr ""
 
-#: tools/conjunctions.cpp:268
+#: tools/conjunctions.cpp:269
 #, kde-format
 msgid ""
 "Please select an object to check conjunctions with, by clicking on the 'Find "
 "Object' button."
 msgstr ""
 
-#: tools/conjunctions.cpp:275
+#: tools/conjunctions.cpp:276
 #, kde-format
 msgid "Please select two different objects to check conjunctions with."
 msgstr ""
 
-#: tools/conjunctions.cpp:357
+#: tools/conjunctions.cpp:358
 #, fuzzy, kde-format
 #| msgid "Copy Function"
 msgid "Compute conjunction..."
 msgstr "Функсияи нусхабардорӣ"
 
-#: tools/conjunctions.cpp:358
+#: tools/conjunctions.cpp:359
 #, fuzzy, kde-format
 #| msgid "Connection"
 msgctxt "@title:window"
 msgid "Conjunction"
 msgstr "Пайвастшавӣ"
 
-#: tools/conjunctions.cpp:371
+#: tools/conjunctions.cpp:372
 #, fuzzy, kde-format
 #| msgid "Copy Function"
 msgid "Compute conjunction between %1 and %2"
 msgstr "Функсияи нусхабардорӣ"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, ModeSelector)
-#: tools/conjunctions.cpp:418 tools/conjunctions.ui:165
+#: tools/conjunctions.cpp:419 tools/conjunctions.ui:165
 #, fuzzy, kde-format
 #| msgid "Connection"
 msgid "Conjunction"
 msgstr "Пайвастшавӣ"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, ModeSelector)
-#: tools/conjunctions.cpp:420 tools/conjunctions.ui:170
+#: tools/conjunctions.cpp:421 tools/conjunctions.ui:170
 #, fuzzy, kde-format
 msgid "Opposition"
 msgstr "&Нуқта"

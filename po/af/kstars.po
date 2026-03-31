@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-29 02:01+0000\n"
+"POT-Creation-Date: 2026-03-31 02:06+0000\n"
 "PO-Revision-Date: 2002-11-07 11:31+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -466,14 +466,14 @@ msgctxt "@title:window"
 msgid "Save Image"
 msgstr "Stoor Beeld"
 
-#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4162
+#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4160
 #: ekos/guide/guidedriftgraph.cpp:491 kstarsactions.cpp:1391
 #: printing/pwizprint.cpp:77 tools/scriptbuilder.cpp:879
 #, kde-format
 msgid "A file named \"%1\" already exists. Overwrite it?"
 msgstr ""
 
-#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4165
+#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4163
 #: ekos/guide/guidedriftgraph.cpp:494 kstarsactions.cpp:1392
 #: printing/pwizprint.cpp:78 tools/scriptbuilder.cpp:882
 #, kde-format
@@ -1102,7 +1102,7 @@ msgstr "Steek weg objekte terwyl beweeg"
 #: skyobjects/ksplanetbase.cpp:270 skyobjects/kssun.cpp:17
 #: skyobjects/satellite.cpp:1223 skyobjects/skyobject.cpp:287
 #: skyobjects/skypoint.cpp:435 skyqpainter.cpp:524 skyqpainter.cpp:548
-#: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:299
+#: skyqpainter.cpp:550 tools/conjunctions.cpp:58 tools/conjunctions.cpp:300
 #: tools/imagingplanner.cpp:1542 tools/jmoontool.cpp:106
 #: tools/modcalcdaylength.ui:109 tools/modcalcplanets.cpp:262
 #: tools/modcalcplanets.cpp:388 tools/modcalcplanets.ui:190
@@ -2687,7 +2687,7 @@ msgstr ""
 "Die Url is nie geldige. Sal jy hou van na open 'n blaaier venster\n"
 "na Die Google soektog masjien?"
 
-#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4173
+#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4171
 #: ekos/align/mountmodel.cpp:267 ekos/align/mountmodel.cpp:393
 #: ekos/capture/camera_jobs.cpp:341 ekos/capture/camera_jobs.cpp:427
 #: ekos/guide/guidedriftgraph.cpp:502 ekos/scheduler/scheduler.cpp:2193
@@ -6545,7 +6545,7 @@ msgid "Mount is synced to solution coordinates."
 msgstr ""
 
 #: ekos/align/align.cpp:2922 ekos/align/align.cpp:2940
-#: ekos/align/align.cpp:3576 ekos/align/align.cpp:4321
+#: ekos/align/align.cpp:3574 ekos/align/align.cpp:4319
 #: ekos/align/polaralignmentassistant.cpp:657
 #, fuzzy, kde-format
 msgid "Settling..."
@@ -6622,113 +6622,108 @@ msgctxt "@title:window"
 msgid "Load Image"
 msgstr "Laaiïng van Beeld Urls"
 
-#: ekos/align/align.cpp:3446
-#, kde-format
-msgid "Warning: Camera module & Align module have to use the same train!"
-msgstr ""
-
-#: ekos/align/align.cpp:3472 ekos/guide/guide.cpp:603
+#: ekos/align/align.cpp:3470 ekos/guide/guide.cpp:603
 #, fuzzy, kde-format
 msgid "%1: World Coordinate System (WCS) is enabled."
 msgstr "Horisontaal Koördinate"
 
-#: ekos/align/align.cpp:3477 ekos/guide/guide.cpp:609
+#: ekos/align/align.cpp:3475 ekos/guide/guide.cpp:609
 #, fuzzy, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "Horisontaal Koördinate"
 
-#: ekos/align/align.cpp:3496
+#: ekos/align/align.cpp:3494
 #, fuzzy, kde-format
 msgid "Capture error. Aborting..."
 msgstr "Stoor Beeld"
 
-#: ekos/align/align.cpp:3501 ekos/capture/cameraprocess.cpp:1644
+#: ekos/align/align.cpp:3499 ekos/capture/cameraprocess.cpp:1644
 #: ekos/capture/cameraprocess.cpp:2205
 #, kde-format
 msgid "Restarting capture attempt #%1"
 msgstr ""
 
-#: ekos/align/align.cpp:3627
+#: ekos/align/align.cpp:3625
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Align Frame"
 msgstr "Vertoon naam"
 
-#: ekos/align/align.cpp:3702
+#: ekos/align/align.cpp:3700
 #, fuzzy, kde-format
 msgid "StellarSolver Options"
 msgstr "Leo"
 
-#: ekos/align/align.cpp:3707
+#: ekos/align/align.cpp:3705
 #, kde-format
 msgid "External & Online Programs"
 msgstr ""
 
-#: ekos/align/align.cpp:3711
+#: ekos/align/align.cpp:3709
 #, fuzzy, kde-format
 msgid "Scale & Position"
 msgstr "Bereken"
 
-#: ekos/align/align.cpp:3715
+#: ekos/align/align.cpp:3713
 #, fuzzy, kde-format
 msgid "Align Options Profiles Editor"
 msgstr "Invoer Keuse"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ekos/align/align.cpp:3734 ekos/align/opsastrometryindexfiles.ui:329
+#: ekos/align/align.cpp:3732 ekos/align/opsastrometryindexfiles.ui:329
 #, fuzzy, kde-format
 msgid "Index Files"
 msgstr "Ongeldige Lêernaam"
 
-#: ekos/align/align.cpp:3799 ekos/guide/guidetargetplot.cpp:55
+#: ekos/align/align.cpp:3797 ekos/guide/guidetargetplot.cpp:55
 #, fuzzy, kde-format
 #| msgctxt "Country name (optional, but should be translated)"
 #| msgid "Spain"
 msgid "dRA (arcsec)"
 msgstr "Spanje"
 
-#: ekos/align/align.cpp:3800 ekos/guide/guidetargetplot.cpp:56
+#: ekos/align/align.cpp:3798 ekos/guide/guidetargetplot.cpp:56
 #, fuzzy, kde-format
 #| msgctxt "seconds"
 #| msgid "secs"
 msgid "dDE (arcsec)"
 msgstr "sekondes"
 
-#: ekos/align/align.cpp:3848 ekos/capture/camera_config.cpp:717
+#: ekos/align/align.cpp:3846 ekos/capture/camera_config.cpp:717
 #: ekos/focus/focus.cpp:5956
 #, fuzzy, kde-format
 msgid "Filter operation failed."
 msgstr "Bereken"
 
-#: ekos/align/align.cpp:3860 ekos/capture/camera.cpp:580
+#: ekos/align/align.cpp:3858 ekos/capture/camera.cpp:580
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr ""
 
-#: ekos/align/align.cpp:3867 ekos/auxiliary/buildfilteroffsets.cpp:466
+#: ekos/align/align.cpp:3865 ekos/auxiliary/buildfilteroffsets.cpp:466
 #: ekos/capture/camera.cpp:585
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr ""
 
-#: ekos/align/align.cpp:3872 ekos/capture/camera.cpp:590
+#: ekos/align/align.cpp:3870 ekos/capture/camera.cpp:590
 #, fuzzy, kde-format
 msgid "Auto focus on filter change..."
 msgstr "Bereken"
 
-#: ekos/align/align.cpp:3993
+#: ekos/align/align.cpp:3991
 #, fuzzy, kde-format
 #| msgid "Invalid URL"
 msgid "Invalid FOV."
 msgstr "Ongeldige Url"
 
-#: ekos/align/align.cpp:4149
+#: ekos/align/align.cpp:4147
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Export Solution Points"
 msgstr "Maak skoon Velde"
 
-#: ekos/align/align.cpp:4172 ekos/align/mountmodel.cpp:266
+#: ekos/align/align.cpp:4170 ekos/align/mountmodel.cpp:266
 #: ekos/align/mountmodel.cpp:392 ekos/capture/camera_jobs.cpp:340
 #: ekos/capture/camera_jobs.cpp:426 ekos/guide/guidedriftgraph.cpp:501
 #: ekos/scheduler/scheduler.cpp:2192 ekos/scheduler/scheduler.cpp:2302
@@ -6738,7 +6733,7 @@ msgstr "Maak skoon Velde"
 msgid "Invalid URL: %1"
 msgstr "Ongeldige Url"
 
-#: ekos/align/align.cpp:4181 ekos/align/mountmodel.cpp:403
+#: ekos/align/align.cpp:4179 ekos/align/mountmodel.cpp:403
 #: ekos/capture/sequencequeue.cpp:259 ekos/guide/guidedriftgraph.cpp:510
 #: ekos/scheduler/schedulerprocess.cpp:2943
 #: ekos/scheduler/schedulerprocess.cpp:4535
@@ -6746,7 +6741,7 @@ msgstr "Ongeldige Url"
 msgid "Unable to write to file %1"
 msgstr "Kon nie Open Lêer"
 
-#: ekos/align/align.cpp:4182 ekos/align/mountmodel.cpp:286
+#: ekos/align/align.cpp:4180 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
 #: ekos/capture/cameraprocess.cpp:2618 ekos/capture/sequencequeue.cpp:33
 #: ekos/guide/guidedriftgraph.cpp:511 ekos/scheduler/schedulerprocess.cpp:2944
@@ -6766,32 +6761,32 @@ msgstr "Kon nie Open Lêer"
 msgid "Could Not Open File"
 msgstr "Kon nie Open Lêer"
 
-#: ekos/align/align.cpp:4203
+#: ekos/align/align.cpp:4201
 #, fuzzy, kde-format
 msgid "Error in table structure."
 msgstr "Fout Uitveeïng Lêer"
 
-#: ekos/align/align.cpp:4212
+#: ekos/align/align.cpp:4210
 #, fuzzy, kde-format
 msgid "Solution Points Saved as: %1"
 msgstr "Horisontaal Koördinate"
 
-#: ekos/align/align.cpp:4229
+#: ekos/align/align.cpp:4227
 #, fuzzy, kde-format
 msgid "Polar Alignment"
 msgstr "Vertoon naam"
 
-#: ekos/align/align.cpp:4808
+#: ekos/align/align.cpp:4806
 #, fuzzy, kde-format
 msgid "Capture timed out."
 msgstr "Stoor Beeld"
 
-#: ekos/align/align.cpp:4817
+#: ekos/align/align.cpp:4815
 #, fuzzy, kde-format
 msgid "Capturing still running, Retrying in %1 seconds..."
 msgstr "Soek Voorwerp"
 
-#: ekos/align/align.cpp:4863
+#: ekos/align/align.cpp:4861
 #, fuzzy, kde-format
 msgid "Rotator timeout after %1 seconds. Aborting alignment."
 msgstr "Ongeldige Url"
@@ -10357,7 +10352,7 @@ msgstr ""
 #: ekos/focus/focusmodule.cpp:676 ekos/observatory/observatory.ui:550
 #: kspopupmenu.cpp:644 skycomponents/imageoverlaycomponent.cpp:623
 #: skycomponents/imageoverlaycomponent.cpp:753
-#: skycomponents/satellitescomponent.cpp:147 tools/conjunctions.cpp:357
+#: skycomponents/satellitescomponent.cpp:147 tools/conjunctions.cpp:358
 #, fuzzy, kde-format
 msgid "Abort"
 msgstr " norman"
@@ -23728,17 +23723,17 @@ msgstr ""
 msgid "Re-disabling debug logging for %1..."
 msgstr ""
 
-#: ekos/manager.cpp:4240
+#: ekos/manager.cpp:4262
 #, kde-format
 msgid "Preview source set to external"
 msgstr ""
 
-#: ekos/manager.cpp:4248
+#: ekos/manager.cpp:4270
 #, kde-format
 msgid "Preview source reset to internal"
 msgstr ""
 
-#: ekos/manager.cpp:4255
+#: ekos/manager.cpp:4277
 #, kde-format
 msgid "Received external preview file"
 msgstr ""
@@ -84894,49 +84889,49 @@ msgctxt "@title:window"
 msgid "Save Conjunctions"
 msgstr "Bereken"
 
-#: tools/conjunctions.cpp:259
+#: tools/conjunctions.cpp:260
 #, kde-format
 msgid ""
 "Maximum separation entered is not a valid angle. Use the What's this help "
 "feature for information on how to enter a valid angle"
 msgstr ""
 
-#: tools/conjunctions.cpp:268
+#: tools/conjunctions.cpp:269
 #, kde-format
 msgid ""
 "Please select an object to check conjunctions with, by clicking on the 'Find "
 "Object' button."
 msgstr ""
 
-#: tools/conjunctions.cpp:275
+#: tools/conjunctions.cpp:276
 #, kde-format
 msgid "Please select two different objects to check conjunctions with."
 msgstr ""
 
-#: tools/conjunctions.cpp:357
+#: tools/conjunctions.cpp:358
 #, fuzzy, kde-format
 msgid "Compute conjunction..."
 msgstr "Bereken"
 
-#: tools/conjunctions.cpp:358
+#: tools/conjunctions.cpp:359
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Conjunction"
 msgstr "Bereken"
 
-#: tools/conjunctions.cpp:371
+#: tools/conjunctions.cpp:372
 #, fuzzy, kde-format
 msgid "Compute conjunction between %1 and %2"
 msgstr "Bereken"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, ModeSelector)
-#: tools/conjunctions.cpp:418 tools/conjunctions.ui:165
+#: tools/conjunctions.cpp:419 tools/conjunctions.ui:165
 #, fuzzy, kde-format
 msgid "Conjunction"
 msgstr "Bereken"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, ModeSelector)
-#: tools/conjunctions.cpp:420 tools/conjunctions.ui:170
+#: tools/conjunctions.cpp:421 tools/conjunctions.ui:170
 #, fuzzy, kde-format
 msgid "Opposition"
 msgstr "Bereken"
