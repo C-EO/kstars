@@ -89908,6 +89908,3 @@ msgstr "背景颜色："
 #, kde-format
 msgid "Set the color for the background."
 msgstr "设置背景颜色。"
-
-#~ msgid "Warning: Camera module & Align module have to use the same train!"
-#~ msgstr "警告：相机模块与校准模块必须使用同一导星链！"
