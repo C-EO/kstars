@@ -319,7 +319,7 @@ void ImageViewer::saveFileToDisc()
         {
             if ((KMessageBox::warningContinueCancel(static_cast<QWidget *>(parent()),
                                                     i18n("A file named \"%1\" already exists. "
-                                                            "Overwrite it?",
+                 "Overwrite it?",
                                                             newURL.fileName()),
                                                     i18n("Overwrite File?"), KStandardGuiItem::overwrite()) == KMessageBox::Cancel))
                 return;
