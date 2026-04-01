@@ -953,6 +953,8 @@ class FITSData : public QObject
 
     private:
         void loadCommon(const QString &inFilename);
+        void releaseMemFileBuffer();
+        void releaseStackMemFileBuffer();
         /**
          * @brief privateLoad Load an image (FITS, RAW, or images supported by Qt like jpeg, png).
          * @param Buffer pointer to image data. If buffer is emtpy, read from disk (m_Filename).
@@ -1309,6 +1311,7 @@ class FITSData : public QObject
         size_t m_PackBufferSize {0};
         void *m_MemFileBuffer {nullptr};
         size_t m_MemFileBufferSize {0};
+        bool m_MemFileBufferOwned {false};
 
         /// Our very own file name
         QString m_Filename, m_compressedFilename, m_Extension;
@@ -1464,6 +1467,9 @@ class FITSData : public QObject
         int m_Stacknwcs { 0 };
         QSharedPointer < wcsprm > m_StackAlignMasterWCS;
         fitsfile *m_Stackfptr { nullptr };
+        void *m_StackMemFileBuffer {nullptr};
+        size_t m_StackMemFileBufferSize {0};
+        bool m_StackMemFileBufferOwned {false};
         QList < Record > m_StackHeaderRecords;
         QFutureWatcher < bool > m_StackWatcher;
         QFutureWatcher < bool > m_StackFITSWatcher;

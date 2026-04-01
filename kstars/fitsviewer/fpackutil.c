@@ -1454,16 +1454,27 @@ int fp_unpack (char *infits, char *outfits, fpstate fpvar)
 /*--------------------------------------------------------------------------*/
 /* fp_unpack assumes the output file does not exist
  */
-int fp_unpack_file_to_fits (char *infits, fitsfile **outfits, fpstate fpvar)
+int fp_unpack_file_to_fits (char *infits, fitsfile **outfits, void **outbuffer, size_t *outbufferSize, fpstate fpvar)
 {
-    fitsfile *infptr, *outfptr;
+    fitsfile *infptr = NULL, *outfptr = NULL;
     int stat = 0, hdutype, extnum, single = 0;
     char *loc, *hduloc = 0, hduname[SZ_STR] = { 0 };
-    size_t outbufferSize = 2880;
-    void *outbuffer = (char *)malloc(outbufferSize);
+
+    if (infits == NULL || outfits == NULL || outbuffer == NULL || outbufferSize == NULL)
+        return NULL_INPUT_PTR;
+
+    if (*outbufferSize == 0)
+        *outbufferSize = 2880;
+
+    if (*outbuffer == NULL)
+    {
+        *outbuffer = malloc(*outbufferSize);
+        if (*outbuffer == NULL)
+            return MEMORY_ALLOCATION;
+    }
 
     fits_open_file (&infptr, infits, READONLY, &stat);
-    fits_create_memfile(&outfptr, &outbuffer, &outbufferSize, 2880, realloc, &stat);
+    fits_create_memfile(&outfptr, outbuffer, outbufferSize, 2880, realloc, &stat);
 
     if (stat)
     {

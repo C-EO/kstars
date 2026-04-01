@@ -149,21 +149,11 @@ FITSData::~FITSData()
 
     if (fptr != nullptr)
     {
-        // Do not flush or close compressed FITS files normally. They are opened via
-        // fp_unpack_file_to_fits() or fp_unpack_data_to_data() which create memory-backed
-        // FITS files. Both fits_flush_file() and fits_close_file() attempt to truncate/resize
-        // the memory buffer via mem_truncate() → realloc(), which causes a crash due to
-        // CFITSIO's internal memory management issues with these decompressed files.
-        // Simply set fptr to nullptr and free our own buffer - the memory will be cleaned up.
-        if (!m_isCompressed)
-        {
-            fits_flush_file(fptr, &status);
-            fits_close_file(fptr, &status);
-        }
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
+        fits_flush_file(fptr, &status);
+        fits_close_file(fptr, &status);
         fptr = nullptr;
     }
+    releaseMemFileBuffer();
 
     // Live Stacking
     if (m_StackImageBuffer != nullptr)
@@ -186,6 +176,7 @@ FITSData::~FITSData()
         fits_close_file(m_Stackfptr, &status);
         m_Stackfptr = nullptr;
     }
+    releaseStackMemFileBuffer();
     m_StackFITSWatcher.waitForFinished();
     m_StackWatcher.waitForFinished();
     m_StackPrepareFuture.waitForFinished();
@@ -262,6 +253,32 @@ BayerParameters FITSData::setupBayerParams(const DebayerEngine engine, const QSt
     return params;
 }
 
+void FITSData::releaseMemFileBuffer()
+{
+    // m_MemFileBuffer is the authoritative pointer: after fits_create_memfile /
+    // fits_open_memfile CFITSIO stores &m_MemFileBuffer internally and may
+    // realloc() through it, making m_PackBuffer stale.  Always free through
+    // m_MemFileBuffer and never free m_PackBuffer independently.
+    if (m_MemFileBufferOwned && m_MemFileBuffer != nullptr)
+        free(m_MemFileBuffer);
+
+    m_PackBuffer = nullptr;
+    m_PackBufferSize = 0;
+    m_MemFileBuffer = nullptr;
+    m_MemFileBufferSize = 0;
+    m_MemFileBufferOwned = false;
+}
+
+void FITSData::releaseStackMemFileBuffer()
+{
+    if (m_StackMemFileBufferOwned && m_StackMemFileBuffer != nullptr)
+        free(m_StackMemFileBuffer);
+
+    m_StackMemFileBuffer = nullptr;
+    m_StackMemFileBufferSize = 0;
+    m_StackMemFileBufferOwned = false;
+}
+
 void FITSData::loadCommon(const QString &inFilename)
 {
     int status = 0;
@@ -270,25 +287,12 @@ void FITSData::loadCommon(const QString &inFilename)
 
     if (fptr != nullptr)
     {
-        // Do not flush or close compressed FITS files normally. They are opened via
-        // fp_unpack_file_to_fits() or fp_unpack_data_to_data() which create memory-backed
-        // FITS files. Both fits_flush_file() and fits_close_file() attempt to truncate/resize
-        // the memory buffer via mem_truncate() → realloc(), which causes a crash due to
-        // CFITSIO's internal memory management issues with these decompressed files.
-        // Simply set fptr to nullptr and free our own buffer - the memory will be cleaned up.
-        if (!m_isCompressed)
-        {
-            fits_flush_file(fptr, &status);
-            fits_close_file(fptr, &status);
-        }
+        fits_flush_file(fptr, &status);
+        fits_close_file(fptr, &status);
         fptr = nullptr;
     }
 
-    free(m_PackBuffer);
-    m_PackBuffer = nullptr;
-    m_PackBufferSize = 0;
-    m_MemFileBuffer = nullptr;
-    m_MemFileBufferSize = 0;
+    releaseMemFileBuffer();
 
     m_Filename = inFilename;
 }
@@ -647,12 +651,22 @@ void FITSData::newStackSubs(QDateTime timestamp, const QVector<LiveStackFile> &n
     {
         LiveStackFile lsf = newFiles[i];
         getChannelInfoforSub(lsf.file, lsf.baseChannel, lsf.channels);
+
+        if (lsf.baseChannel == LiveStackChannel::NONE)
+        {
+            qCDebug(KSTARS_FITS) << QString("Live Stacker: ignoring %1 - unknown channel").arg(lsf.file);
+            continue;
+        }
+
         qCDebug(KSTARS_FITS) << QString("Live Stacker: Newfile %1 ID=%2 Base Channel=%3 Dependent Channels: %4")
                              .arg(lsf.file).arg(lsf.ID).arg(LiveStackChannelNames.value(lsf.baseChannel))
                              .arg(vectorChannelToString(lsf.channels));
         m_StackQ.enqueue(lsf);
         lsfs.push_back(lsf);
     }
+
+    if (lsfs.isEmpty())
+        return;
 
     // Add the new files to the Stack Monitor
     emit addStackMon(timestamp, lsfs);
@@ -691,6 +705,14 @@ void FITSData::incrementalStack()
         if(i == 0 && nextChannel != currentChannel)
         {
             m_CurrentStack = m_Stacks.value(nextChannel);
+            if (!m_CurrentStack)
+            {
+                qCDebug(KSTARS_FITS) << QString("incrementalStack: no stack for channel %1 - discarding sub")
+                                     .arg(LiveStackChannelNames.value(nextChannel));
+                m_StackQ.dequeue(); // discard the offending sub
+                m_StackSubs.clear();
+                return;
+            }
             currentChannel = nextChannel;
         }
         else if (i > 0 && nextChannel != currentChannel)
@@ -701,6 +723,14 @@ void FITSData::incrementalStack()
         if (m_StackQ.isEmpty())
             break;
     }
+
+    if (!m_CurrentStack)
+    {
+        qCDebug(KSTARS_FITS) << "incrementalStack: m_CurrentStack is null after building sub list - aborting";
+        m_StackSubs.clear();
+        return;
+    }
+
     m_CurrentStack->setStackInProgress(true);
     emit stackInProgress();
     nextStackAction();
@@ -1849,7 +1879,10 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
             QString uncompressedFile = QDir::tempPath() + QString("/%1").arg(QUuid::createUuid().toString().remove(
                                            QRegularExpression("[-{}]")));
 
-            rc = fp_unpack_file_to_fits(m_Filename.toLocal8Bit().data(), &fptr, fpvar) == 0;
+            m_MemFileBuffer = nullptr;
+            m_MemFileBufferSize = 0;
+            m_MemFileBufferOwned = true;
+            rc = fp_unpack_file_to_fits(m_Filename.toLocal8Bit().data(), &fptr, &m_MemFileBuffer, &m_MemFileBufferSize, fpvar) == 0;
             if (rc)
                 m_Filename = uncompressedFile;
         }
@@ -1860,13 +1893,20 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
             m_PackBuffer = (uint8_t *)malloc(m_PackBufferSize);
             rc = fp_unpack_data_to_data(buffer.data(), buffer.size(), &m_PackBuffer, &m_PackBufferSize, fpvar) == 0;
 
+            // Sync m_MemFileBuffer immediately after fp_unpack_data_to_data: CFITSIO may have
+            // realloc()'d m_PackBuffer to a new address. By setting m_MemFileBuffer here (before
+            // the rc check) we ensure releaseMemFileBuffer() can free the buffer on ALL exit
+            // paths -- both the rc==false branch below and any subsequent error returns.
+            m_MemFileBuffer = reinterpret_cast<void *>(m_PackBuffer);
+            m_MemFileBufferSize = m_PackBufferSize;
+            m_MemFileBufferOwned = (m_PackBuffer != nullptr);
+
             if (rc)
             {
-                m_MemFileBuffer = reinterpret_cast<void *>(m_PackBuffer);
-                m_MemFileBufferSize = m_PackBufferSize;
                 if (fits_open_memfile(&fptr, m_Filename.toLocal8Bit().data(), READONLY, &m_MemFileBuffer, &m_MemFileBufferSize, 0,
                                       nullptr, &status))
                 {
+                    releaseMemFileBuffer();
                     m_LastError = i18n("Error reading fits buffer: %1.", fitsErrorToString(status));
                     return false;
                 }
@@ -1875,9 +1915,7 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
 
         if (rc == false)
         {
-            free(m_PackBuffer);
-            m_PackBuffer = nullptr;
-            m_PackBufferSize = 0;
+            releaseMemFileBuffer();
             m_LastError = i18n("Failed to unpack compressed fits");
             qCCritical(KSTARS_FITS) << m_LastError;
             return false;
@@ -1909,6 +1947,7 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
         if (fits_open_diskfile(&fptr, m_Filename.toLocal8Bit(), READONLY, &status))
         {
             m_LastError = i18n("Error opening fits file %1 : %2", m_Filename, fitsErrorToString(status));
+            return false;
         }
 
         m_Statistics.size = QFile(m_Filename).size();
@@ -1916,6 +1955,7 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
     else
     {
         // Read the FITS file from a memory buffer.
+        m_MemFileBufferOwned = false;
         m_MemFileBuffer = const_cast<void *>(reinterpret_cast<const void *>(buffer.data()));
         m_MemFileBufferSize = buffer.size();
         if (fits_open_memfile(&fptr, m_Filename.toLocal8Bit().data(), READONLY,
@@ -1931,16 +1971,20 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
     // Size probing may change current HDU; always continue from the first image HDU.
     if (fits_movabs_hdu(fptr, 1, IMAGE_HDU, &status))
     {
-
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
+        status = 0;
+        fits_close_file(fptr, &status);
+        fptr = nullptr;
+        releaseMemFileBuffer();
         m_LastError = i18n("Could not locate image HDU: %1", fitsErrorToString(status));
+        return false;
     }
 
     if (fits_get_img_param(fptr, 3, &m_FITSBITPIX, &(m_Statistics.ndim), naxes, &status))
     {
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
+        status = 0;
+        fits_close_file(fptr, &status);
+        fptr = nullptr;
+        releaseMemFileBuffer();
         m_LastError = i18n("FITS file open error (fits_get_img_param): %1", fitsErrorToString(status));
         return false;
     }
@@ -1957,8 +2001,10 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
     {
         m_LastError = i18n("1D FITS images are not supported in KStars.");
         qCCritical(KSTARS_FITS) << m_LastError;
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
+        status = 0;
+        fits_close_file(fptr, &status);
+        fptr = nullptr;
+        releaseMemFileBuffer();
         return false;
     }
 
@@ -2013,8 +2059,10 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
     {
         m_LastError = i18n("Image has invalid dimensions %1x%2", naxes[0], naxes[1]);
         qCCritical(KSTARS_FITS) << m_LastError;
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
+        status = 0;
+        fits_close_file(fptr, &status);
+        fptr = nullptr;
+        releaseMemFileBuffer();
         return false;
     }
 
@@ -2049,8 +2097,10 @@ bool FITSData::loadFITSImage(const QByteArray &buffer, const bool isCompressed)
         qCWarning(KSTARS_FITS) << "FITSData: Not enough memory for image_buffer channel. Requested: "
                                << m_ImageBufferSize << " bytes.";
         clearImageBuffers();
-        free(m_PackBuffer);
-        m_PackBuffer = nullptr;
+        status = 0;
+        fits_close_file(fptr, &status);
+        fptr = nullptr;
+        releaseMemFileBuffer();
         return false;
     }
 
@@ -2134,6 +2184,7 @@ bool FITSData::stackLoadFITSImage(QString filename, const bool isCompressed)
         if (status != 0)
             qCDebug(KSTARS_FITS) << QString("Error %1 closing file %2").arg(fitsErrorToString(status)).arg(filename);
         m_Stackfptr = nullptr;
+        releaseStackMemFileBuffer();
         status = 0;
     }
 
@@ -2149,11 +2200,16 @@ bool FITSData::stackLoadFITSImage(QString filename, const bool isCompressed)
         QString uncompressedFile = QDir::tempPath() + QString("/%1").arg(QUuid::createUuid().toString().remove(
                                        QRegularExpression("[-{}]")));
 
-        rc = fp_unpack_file_to_fits(filename.toLocal8Bit().data(), &m_Stackfptr, fpvar) == 0;
+        m_StackMemFileBuffer = nullptr;
+        m_StackMemFileBufferSize = 0;
+        m_StackMemFileBufferOwned = true;
+        rc = fp_unpack_file_to_fits(filename.toLocal8Bit().data(), &m_Stackfptr, &m_StackMemFileBuffer,
+                                    &m_StackMemFileBufferSize, fpvar) == 0;
         if (rc)
             filename = uncompressedFile;
         else
         {
+            releaseStackMemFileBuffer();
             qCDebug(KSTARS_FITS) << QString("Failed to unpack compressed fits file %1").arg(filename);
             return false;
         }

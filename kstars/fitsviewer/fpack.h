@@ -181,8 +181,9 @@ int fp_pack_fits_to_fits (fitsfile *infptr, fitsfile **outfits, fpstate fpvar, i
 
 /* Unpack on disk file to output on disk file */
 int fp_unpack (char *infits, char *outfits, fpstate fpvar);
-/* Unpack input compressed input file to uncompressed output in-memory fits file */
-int fp_unpack_file_to_fits (char *infits, fitsfile **outfits, fpstate fpvar);
+/* Unpack input compressed file to uncompressed output in-memory fits file.
+ * Caller owns buffer/size storage and must keep them valid while outfits is open. */
+int fp_unpack_file_to_fits (char *infits, fitsfile **outfits, void **outbuffer, size_t *outbufferSize, fpstate fpvar);
 /* Unpack input compressed data to uncompressed output in-memory fits file */
 /*int fp_unpack_data_to_fits (const char *inputBuffer, size_t inputBufferSize, fitsfile **outfptr, fpstate fpvar);*/
 /* Unpack input compressed data to uncompressed output uncompressed data */
