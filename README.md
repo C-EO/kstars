@@ -10,13 +10,13 @@ Included with KStars is Ekos astrophotography suite, a complete astrophotography
 
 ## Copyright
 
-Copyright (c) 2001 - 2025 by The KStars Team:
+Copyright (c) 2001 - 2026 by The KStars Team:
 
 KStars is Free Software, released under the GNU Public License. See COPYING for GPL license information.
 
 ## Downloads
 
-KStars is available for Windows, MacOS, and Linux. You can download the latest version from [KStars official website](https://kstars.kde.org).
+KStars is available for [Windows](https://apps.microsoft.com/detail/9pprz2qhlxtg), [MacOS](https://apps.apple.com/app/kstars-desktop-planetarium/id6759097263), and [Linux](https://kstars.kde.org/download/linux). You can download the latest version from [KStars official website](https://kstars.kde.org). Under Linux, it is recommened to use the official [KStars Flatpak](https://flathub.org/en/apps/org.kde.kstars).
 
 ## Important URLs and files.
 
