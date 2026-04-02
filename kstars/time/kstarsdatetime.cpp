@@ -15,7 +15,11 @@
 
 KStarsDateTime::KStarsDateTime() : QDateTime()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    setTimeZone(QTimeZone::utc());
+#else
     setTimeSpec(Qt::UTC);
+#endif
     setDJD(J2000);
 }
 
@@ -27,7 +31,11 @@ KStarsDateTime::KStarsDateTime(const KStarsDateTime &kdt) : QDateTime()
 KStarsDateTime &KStarsDateTime::operator=(const KStarsDateTime &kdt) noexcept
 {
     setDJD(kdt.djd());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    setTimeZone(kdt.timeZone());
+#else
     setTimeSpec(kdt.timeSpec());
+#endif
     //utcoffset deprecated
     //setUtcOffset(kdt.utcOffset());
     return *this;
@@ -50,7 +58,11 @@ KStarsDateTime::KStarsDateTime(const QDateTime &qdt) : QDateTime(qdt) //, QDateT
     QDate _d           = qdt.date();
     long double jdFrac = (_t.hour() - 12 + (_t.minute() + (_t.second() + _t.msec() / 1000.) / 60.) / 60.) / 24.;
     DJD                = static_cast<long double>(_d.toJulianDay()) + jdFrac;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    setTimeZone(qdt.timeZone());
+#else
     setTimeSpec(qdt.timeSpec());
+#endif
     //setUtcOffset(qdt.utcOffset());
 }
 
@@ -65,7 +77,11 @@ KStarsDateTime::KStarsDateTime(const QDate &_d, const QTime &_t, Qt::TimeSpec ti
 
 KStarsDateTime::KStarsDateTime(long double _jd) : QDateTime()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    setTimeZone(QTimeZone::utc());
+#else
     setTimeSpec(Qt::UTC);
+#endif
     setDJD(_jd);
 }
 
@@ -154,7 +170,11 @@ KStarsDateTime KStarsDateTime::addSecs(double s) const
 {
     long double ds = static_cast<long double>(s) / 86400.;
     KStarsDateTime kdt(djd() + ds);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    kdt.setTimeZone(timeZone());
+#else
     kdt.setTimeSpec(timeSpec());
+#endif
     return kdt;
 }
 

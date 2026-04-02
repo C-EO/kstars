@@ -16,6 +16,10 @@
 #include "fitsviewer/fitsdata.h"
 #include "rotations.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QTimeZone>
+#endif
+
 using Rotations::V3;
 
 // Solver's solution. RA, DEC, & orientation in degrees, pixScale in arc-seconds/pixel,
@@ -75,7 +79,11 @@ void setupData(Solution s, QSharedPointer<FITSData> &image, bool eastToTheRight)
     KStarsDateTime time;
     time.setDate(QDate(s.year, s.month, s.day));
     time.setTime(QTime(s.hour, s.minute, s.second));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    time.setTimeZone(QTimeZone::utc());
+#else
     time.setTimeSpec(Qt::UTC);
+#endif
     loadDummyFits(image, time, s.ra, s.dec, s.orientation, s.pixScale, eastToTheRight);
 }
 
@@ -1075,7 +1083,11 @@ void runRefreshCoords(const GeoLocation &geo,
         KStarsDateTime newTime;
         newTime.setDate(QDate(r.year, r.month, r.day));
         newTime.setTime(QTime(r.hour, r.minute, r.second));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        newTime.setTimeZone(QTimeZone::utc());
+#else
         newTime.setTimeSpec(Qt::UTC);
+#endif
 
         SkyPoint solution;
         SkyPoint refreshPoint(r.ra / 15.0, r.dec);
@@ -1117,7 +1129,11 @@ void TestPolarAlign::testAlt()
     KStarsDateTime time1;
     time1.setDate(QDate(2020, 12, 27));
     time1.setTime(QTime(3, 32, 18));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    time1.setTimeZone(QTimeZone::utc());
+#else
     time1.setTimeSpec(Qt::UTC);
+#endif
 
 
     double az1 = 0, alt1 = 0;
@@ -1126,7 +1142,11 @@ void TestPolarAlign::testAlt()
     KStarsDateTime time2;
     time2.setDate(QDate(2020, 12, 27));
     time2.setTime(QTime(3, 42, 10));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    time2.setTimeZone(QTimeZone::utc());
+#else
     time2.setTimeSpec(Qt::UTC);
+#endif
 
     double az2 = 0, alt2 = 0;
     getAzAlt(time2, geo, QPointF(IMAGE_WIDTH / 2, IMAGE_HEIGHT / 2), 26.66804, 89.61473, 79.69920, pixScale, &az2, &alt2);
@@ -1262,7 +1282,11 @@ bool runPAARefresh(const GeoLocation &geo, QVector<Solution> &samples)
         KStarsDateTime newTime;
         newTime.setDate(QDate(sample.year, sample.month, sample.day));
         newTime.setTime(QTime(sample.hour, sample.minute, sample.second));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        newTime.setTimeZone(QTimeZone::utc());
+#else
         newTime.setTimeSpec(Qt::UTC);
+#endif
 
         SkyPoint solution;
         SkyPoint refreshPoint(sample.ra / 15.0, sample.dec);

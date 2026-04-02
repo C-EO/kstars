@@ -9,6 +9,10 @@
 
 #include "timezonerule.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#include <QTimeZone>
+#endif
+
 GeoLocation::GeoLocation(const dms &lng, const dms &lat, const QString &name, const QString &province,
                          const QString &country,
                          double tz, TimeZoneRule *tzrule, double elevation, bool readOnly, int iEllips) :
@@ -196,7 +200,11 @@ KStarsDateTime GeoLocation::UTtoLT(const KStarsDateTime &ut) const
     KStarsDateTime lt = ut.addSecs(int(3600. * TZ()));
     // 2017-08-11 (Jasem): setUtcOffset is deprecated
     //lt.setUtcOffset(int(3600. * TZ()));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    lt.setTimeZone(QTimeZone::systemTimeZone());
+#else
     lt.setTimeSpec(Qt::LocalTime);
+#endif
 
     return lt;
 }
@@ -204,7 +212,11 @@ KStarsDateTime GeoLocation::UTtoLT(const KStarsDateTime &ut) const
 KStarsDateTime GeoLocation::LTtoUT(const KStarsDateTime &lt) const
 {
     KStarsDateTime ut = lt.addSecs(int(-3600. * TZ()));
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    ut.setTimeZone(QTimeZone::utc());
+#else
     ut.setTimeSpec(Qt::UTC);
+#endif
     // 2017-08-11 (Jasem): setUtcOffset is deprecated
     //ut.setUtcOffset(0);
 
