@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-02 02:04+0000\n"
-"PO-Revision-Date: 2026-03-27 10:15+0100\n"
+"PO-Revision-Date: 2026-04-02 12:57+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -6527,10 +6527,9 @@ msgstr "Doel is binnen %1 boogseconden van de oplossingscoördinaten."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2341
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "%1 positiehoek van camera is op %2 graden."
+msgstr "Positiehoek van camera is %1 graden."
 
 #: ekos/align/align.cpp:2377 ekos/align/align.cpp:2517
 #, kde-format
@@ -6594,16 +6593,14 @@ msgstr ""
 "informatie over het mislukken te krijgen."
 
 #: ekos/align/align.cpp:2618
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "Positiehoek %1 wordt ingesteld op %2 graden ..."
+msgstr "Positiehoek van camera wordt ingesteld op %1 graden ..."
 
 #: ekos/align/align.cpp:2628
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "%1 positiehoek is binnen een acceptabele reeks."
+msgstr "Positiehoek van camera is binnen een acceptabele reeks."
 
 #: ekos/align/align.cpp:2642
 #, kde-format
@@ -6731,10 +6728,9 @@ msgid "Load Image"
 msgstr "Afbeelding Inlezen"
 
 #: ekos/align/align.cpp:3426
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
-msgstr "%1: World Coordinate System (WCS) is ingeschakeld."
+msgstr "World Coordinate System (WCS) is ingeschakeld."
 
 #: ekos/align/align.cpp:3431
 #, kde-format
@@ -23800,12 +23796,7 @@ msgstr "Speling DEC wissen in kalibratie volger"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -23814,23 +23805,18 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Indien geactiveerd,  altijd opnieuw kalibreren wanneer "
 "volgen is gestart. Dit is vaak niet nodig wanneer een goede kwaliteit "
-"kalibratie eerder is gedaan en de volgcamera niet opnieuw geïnstalleerd is.</"
-"p></body></html>"
+"kalibratie eerder is gedaan en de volgcamera niet is gedraaid of opnieuw is "
+"geïnstalleerd.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr "Na elke beweging van de opstelling volgkalibratie resetten"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -23838,13 +23824,13 @@ msgid ""
 "above must be unchecked for this to be attempted.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Calibraties opslaan en proberen her te gebruiken. Dit "
-"werkt zelfs aan beide zijden van de meridiaan als de zijde automatisch "
-"bepaald kan worden uit uw opstelling.</p></body></html>"
+"werkt alleen aan beide zijden van de meridiaan als de zijde automatisch "
+"bepaald kan worden uit uw opstelling. De optie \"Reset volger bij draai\" "
+"boven moet niet geactiveerd zijn om dit te proberen.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
 msgstr "Volgkalibratie waar mogelijk opslaan en hergebruiken."
 
@@ -42629,10 +42615,9 @@ msgstr "Vermenigvuldigingsfactor positiehoek"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Positiehoek:"
+msgstr "Offset van positiehoek"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176

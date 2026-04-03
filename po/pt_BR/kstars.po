@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-02 02:04+0000\n"
-"PO-Revision-Date: 2026-03-27 09:24-0300\n"
+"PO-Revision-Date: 2026-04-02 06:43-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -6552,10 +6552,9 @@ msgstr "O alvo está dentro dos %1 graus das coordenadas da solução."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2341
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "O ângulo de posição de %1 é de %2 graus."
+msgstr "O ângulo de posição da câmera é de %1 graus."
 
 #: ekos/align/align.cpp:2377 ekos/align/align.cpp:2517
 #, kde-format
@@ -6621,16 +6620,14 @@ msgstr ""
 "obter informações detalhadas sobre a falha."
 
 #: ekos/align/align.cpp:2618
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "Definindo o ângulo de posição %1 para %2 graus ..."
+msgstr "Definindo o ângulo de posição da câmera para %1 graus ..."
 
 #: ekos/align/align.cpp:2628
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "O ângulo de posição de %1 está dentro da faixa aceitável."
+msgstr "O ângulo de posição da câmera está dentro da faixa aceitável."
 
 #: ekos/align/align.cpp:2642
 #, kde-format
@@ -6759,11 +6756,9 @@ msgid "Load Image"
 msgstr "Carregar imagem"
 
 #: ekos/align/align.cpp:3426
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
-msgstr ""
-"%1: o Sistema Mundial de Coordenadas (WCS, sigla em inglês) está ativado."
+msgstr "O Sistema Mundial de Coordenadas (WCS, sigla em inglês) está ativado."
 
 #: ekos/align/align.cpp:3431
 #, kde-format
@@ -23923,12 +23918,7 @@ msgstr "Remover folga DEC na calibração da guia"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -23937,23 +23927,18 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Se marcado, sempre recalibra ao iniciar a guia. Isso "
 "geralmente não é necessário quando uma calibração de boa qualidade foi "
-"realizada anteriormente e a câmera guia não foi reinstalada.</p></body></"
-"html>"
+"realizada anteriormente e a câmera guia não foi girada ou reinstalada.</p></"
+"body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr "Redefinir a calibração da guia após cada movimento de montagem"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -23962,14 +23947,14 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Armazena e tenta reutilizar calibrações. Isso funciona "
 "mesmo em lados opostos do meridiano se o lado do píer puder ser determinado "
-"automaticamente pela sua montagem.</p></body></html>"
+"automaticamente pela sua montagem. A opção \"Redefinir guia ao girar\" acima "
+"deve estar desmarcada para que isso seja tentado.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
-msgstr "Armazenar e reutilizar a guia de calibração quando possível"
+msgstr "Armazenar e reutilizar a guia de calibração quando possível."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:405
@@ -42836,10 +42821,9 @@ msgstr "Multiplicador do ângulo de posição"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Ângulo de posição:"
+msgstr "Deslocamento do ângulo de posição"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176

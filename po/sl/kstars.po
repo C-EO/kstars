@@ -39,7 +39,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-02 02:04+0000\n"
-"PO-Revision-Date: 2026-03-27 06:35+0100\n"
+"PO-Revision-Date: 2026-04-02 06:37+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -6532,10 +6532,9 @@ msgstr "Cilj je znotraj %1 stopinj koordinat rešitve."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2341
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "%1 položajni kot je %2 stopinj."
+msgstr "Kot položaja kamere je %1 stopinj."
 
 #: ekos/align/align.cpp:2377 ekos/align/align.cpp:2517
 #, kde-format
@@ -6595,16 +6594,14 @@ msgstr ""
 "informacije o napaki."
 
 #: ekos/align/align.cpp:2618
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "Nastavljanje %1 položajnega kota na %2 stopinj …"
+msgstr "Nastavitev kota položaja kamere na %1 stopinj ..."
 
 #: ekos/align/align.cpp:2628
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "%1 kot položaja je v sprejemljivem območju."
+msgstr "Kot položaja kamere je znotraj sprejemljivega območja."
 
 #: ekos/align/align.cpp:2642
 #, kde-format
@@ -6732,10 +6729,9 @@ msgid "Load Image"
 msgstr "Naloži sliko"
 
 #: ekos/align/align.cpp:3426
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
-msgstr "%1: Svetovni koordinatni sistem (WCS) je omogočen."
+msgstr "Svetovni koordinatni sistem (WCS) je omogočen."
 
 #: ekos/align/align.cpp:3431
 #, kde-format
@@ -23753,12 +23749,7 @@ msgstr "Odstrani zračnost DEC pri umerjanju vodnika"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -23767,22 +23758,18 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Če je odkljukano,  vedno znova kalibriraj, ko se je "
 "vodenje začelo. To pogosto ni potrebno, kadar je opravljena kakovostna "
-"kalibracija in vodilo kamere ni bilo ponovno nameščeno.</p></body></html>"
+"kalibracija in vodilo kamere ni bilo zavrteno ali ponovno nameščeno.</p></"
+"body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr "Ponovno nastavi kalibracijo vodila po vsakem obratu montaže"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -23791,14 +23778,14 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Shranite in poskusite ponovno uporabiti kalibracije. "
 "To deluje celo na nasprotnih straneh meridiana, če je stran stojala mogoče "
-"samodejno določiti iz vaše montaže.</p></body></html>"
+"samodejno določiti iz vaše montaže. Možnost »Ponastavi vodnik ob obračanju« "
+"mora biti neoznačen, da se to poskuša.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
-msgstr "Shrani in ponovno uporabi kalibracijo vodila, kadar je to mogoče"
+msgstr "Shrani in ponovno uporabi kalibracijo vodila, kadar je to mogoče."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:405
@@ -42465,10 +42452,9 @@ msgstr "Množitelj položajnega kota"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Kot položaja:"
+msgstr "Odmik kota položaja"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176

@@ -6374,10 +6374,9 @@ msgstr "目标在解析坐标 %1 度范围内。"
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2341
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "%1 方位角 %2 度。"
+msgstr ""
 
 #: ekos/align/align.cpp:2377 ekos/align/align.cpp:2517
 #, kde-format
@@ -6435,16 +6434,14 @@ msgstr ""
 "件。 在设置标签页 -> 日志中启用校准日志以获取关于失败的详细信息。"
 
 #: ekos/align/align.cpp:2618
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "设置 %1 方位角到 %2 度 ..."
+msgstr ""
 
 #: ekos/align/align.cpp:2628
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "%1 方位角在可接受范围内。"
+msgstr ""
 
 #: ekos/align/align.cpp:2642
 #, kde-format
@@ -6565,10 +6562,9 @@ msgid "Load Image"
 msgstr "加载图像"
 
 #: ekos/align/align.cpp:3426
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
-msgstr "%1：世界坐标系统 (WCS) 已启用。"
+msgstr ""
 
 #: ekos/align/align.cpp:3431
 #, kde-format
@@ -22837,10 +22833,9 @@ msgstr "被导星的 Y 坐标"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_3)
 #: ekos/guide/opscalibration.ui:223
-#, fuzzy, kde-format
-#| msgid "Calibrated"
+#, kde-format
 msgid "Calibrated Values"
-msgstr "已校准"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, ra_cal_degrees)
 #. i18n: ectx: property (text), widget (QLabel, ra_cal_mspp)
@@ -22882,50 +22877,35 @@ msgstr "导星校准时移除赤纬回差"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
 "previously been done and the guide camera has not been rotated or re-"
 "installed.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>如果选中，在开始导星时总是重新校准。如果以往进行过良好"
-"的校准，且导星相机没有重新安装，这常常是不必要的。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
-msgstr "每次支架移动后，重置导星校准"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
 "automatically determined from your mount. The \"Reset Guide on Slew\" option "
 "above must be unchecked for this to be attempted.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>保存并尝试重复使用校准数据。若赤道仪可自动判断镜筒侧，"
-"即使在子午线两侧也能正常使用。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
-msgstr "如可能，保存并复用导星校准数据。"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:405
@@ -22942,11 +22922,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:411
-#, fuzzy, kde-format
-#| msgid "Reverse DEC on pier-side change when reusing calibration."
+#, kde-format
 msgid ""
 "Reverse DEC guide pulses when changing pier-side and reusing calibration."
-msgstr "复用校准数据时，过中天后翻转赤纬角度。"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
@@ -40807,10 +40786,9 @@ msgstr "方位角乘系数"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "位置角:"
+msgstr ""
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -89802,76 +89780,3 @@ msgstr "背景颜色："
 #, kde-format
 msgid "Set the color for the background."
 msgstr "设置背景颜色。"
-
-#~ msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
-#~ msgstr "主极轴：%1，主偏移：%2，导星偏移：%3"
-
-#~ msgid ""
-#~ "Vertically reflected image detected: Try to check option 'Use reflected "
-#~ "guide frames' in [Guide Options/Calibration]"
-#~ msgstr ""
-#~ "检测到图像为垂直镜像：尝试在 [导星选项/校准] 中勾选“使用镜像导星帧”选项"
-
-#~ msgid "Internal guider could not find WCS rotation property of %1..."
-#~ msgstr "内置导星器未找到 %1 的世界坐标 (WCS) 旋转属性..."
-
-#~ msgid "Error while updating pierside for camera rotation: Pierside unknown!"
-#~ msgstr "更新相机旋转对应的镜筒侧信息时出错：镜筒侧未知！"
-
-#~ msgid "Pierside is now "
-#~ msgstr "镜筒侧现在是 "
-
-#~ msgid "%1 rotation is now %2 (calibration with %3)"
-#~ msgstr "%1 旋转现在是 %2 (使用 %3 校准)"
-
-#~ msgid "RApulse now %1ms/arcsec calculated for DEC = %2"
-#~ msgstr "已计算赤纬 %2 下的赤经脉冲系数：当前为 %1 ms / 角秒"
-
-#~ msgid ""
-#~ "<html><head/><body><p>These are the current calibration parameters.</p></"
-#~ "body></html>"
-#~ msgstr "<html><head/><body><p>这里是当前的校准参数。</p></body></html>"
-
-#~ msgid "DEC Rotation"
-#~ msgstr "赤纬旋转"
-
-#~ msgid "RA Pulse"
-#~ msgstr "赤经脉冲"
-
-#~ msgid "RA Rotation"
-#~ msgstr "赤经旋转"
-
-#~ msgid "DEC Pulse"
-#~ msgstr "赤纬脉冲"
-
-#~ msgid "Rotation Offset"
-#~ msgstr "旋转偏移"
-
-#~ msgid "Mount reverses DEC pulses after changing pierside"
-#~ msgstr "每次改变镜筒侧后，赤道仪反转赤纬脉冲"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Reflect the guide images on x-axis before passing "
-#~ "them to the guider process.<br/>This ensures a correct analysis of the "
-#~ "mount drift in case of mirrored captures (e.g. with an OAG or ONAG-train)."
-#~ "</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>在将导星图像传入导星处理流程前，先对其进行 X 轴镜像"
-#~ "处理。<br/>若拍摄图像为镜像 (如使用偏轴导星器 / OAG 或 ONAG 导星链)，此设"
-#~ "置可确保系统正确分析赤道仪的偏移情况。</p></body></html>"
-
-#~ msgid "Use reflected guide frames"
-#~ msgstr "使用镜像的导星帧"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Check this option if you want to reuse the guide "
-#~ "calibration, but there is no rotator device and the guide camera is "
-#~ "manually rotated together with the imaging camera (e.g. with a OAG "
-#~ "train). <br/>Please note that an active option &quot;Automatic and Manual "
-#~ "Rotator Control&quot; in Rotator Settings is a precondition.</p></body></"
-#~ "html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>若你希望重复使用导星校准，但没有旋转器设备，且导星相"
-#~ "机与拍摄相机是手动一起旋转的 (例如使用 OAG 导星链)，请勾选此选项。<br/>请"
-#~ "注意：前提条件是在旋转器设置中已启用 &quot;自动与手动旋转器控制&quot;。</"
-#~ "p></body></html>"

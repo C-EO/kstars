@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-02 02:04+0000\n"
-"PO-Revision-Date: 2026-03-29 11:04+0200\n"
+"PO-Revision-Date: 2026-04-02 11:30+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -6560,10 +6560,9 @@ msgstr "L'objectiu es troba a %1 graus de les coordenades de la solució."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2341
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "L'angle de posició de %1 són %2 graus."
+msgstr "L'angle de posició de la càmera són %1 graus."
 
 #: ekos/align/align.cpp:2377 ekos/align/align.cpp:2517
 #, kde-format
@@ -6623,16 +6622,14 @@ msgstr ""
 "Registres per a obtenir informació detallada de la fallada."
 
 #: ekos/align/align.cpp:2618
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "L'angle de posició de %1 s'estableix a %2 graus..."
+msgstr "L'angle de posició de la càmera s'estableix a %1 graus..."
 
 #: ekos/align/align.cpp:2628
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "L'angle de posició de %1 està dins d'un l'interval acceptable."
+msgstr "L'angle de posició de la càmera està dins d'un l'interval acceptable."
 
 #: ekos/align/align.cpp:2642
 #, kde-format
@@ -6763,11 +6760,10 @@ msgid "Load Image"
 msgstr "Càrrega d'una imatge"
 
 #: ekos/align/align.cpp:3426
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
 msgstr ""
-"%1: El sistema de coordenades mundial (World Coordinate System -WCS-) està "
+"El sistema de coordenades mundial (World Coordinate System, WCS) està "
 "activat."
 
 #: ekos/align/align.cpp:3431
@@ -24098,12 +24094,7 @@ msgstr "Elimina el rebot de la Dec en calibrar el sistema de guiatge"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -24112,24 +24103,19 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Si està marcada, sempre es tornarà a calibrar quan "
 "s'iniciï el guiatge. Sovint no cal fer-ho perquè abans s'ha efectuat un "
-"calibratge de bona qualitat i la càmera guia no s'ha reinstal·lat.</p></"
-"body></html>"
+"calibratge de bona qualitat i la càmera guia no s'ha girat o reinstal·lat.</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr ""
 "Reinicia el calibratge del guiatge després de cada orientació de la muntura"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -24137,15 +24123,16 @@ msgid ""
 "above must be unchecked for this to be attempted.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Emmagatzema i intenta reutilitzar els calibratges. "
-"Això inclús funciona als costats oposats del meridià si es pot determinar "
-"automàticament el costat del moll a partir de la muntura.</p></body></html>"
+"Això només funciona als costats oposats del meridià si es pot determinar "
+"automàticament el costat del moll a partir de la muntura. L'opció "
+"«Reinicialitza el guiatge en orientar» de dalt ha d'estar desmarcada perquè "
+"s'intenti</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
-msgstr "Emmagatzema i reutilitza el calibratge del guiatge si és possible"
+msgstr "Emmagatzema i reutilitza el calibratge del guiatge si és possible."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:405
@@ -43233,10 +43220,9 @@ msgstr "Multiplicador de l'angle de posició"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Angle de posició:"
+msgstr "Desplaçament de l'angle de posició"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176

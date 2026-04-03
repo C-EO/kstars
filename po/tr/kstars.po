@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-02 02:04+0000\n"
-"PO-Revision-Date: 2026-03-30 19:36+0300\n"
+"PO-Revision-Date: 2026-04-02 14:35+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -6507,10 +6507,9 @@ msgstr "Hedef, çözüm koordinatlarının %1 derece yakınında."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2341
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "%1 konum açısı %2 derece."
+msgstr "Kamera konum açısı %1 derece."
 
 #: ekos/align/align.cpp:2377 ekos/align/align.cpp:2517
 #, kde-format
@@ -6570,16 +6569,14 @@ msgstr ""
 "Hizalama Günlüğü’nü etkinleştirin."
 
 #: ekos/align/align.cpp:2618
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "%1 konumu açısı %2 derece olarak ayarlanıyor…"
+msgstr "Kamera konumu açısı %1 derece olarak ayarlanıyor…"
 
 #: ekos/align/align.cpp:2628
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "%1 konumu açısı kabul edilebilir erimde."
+msgstr "Kamera konumu açısı kabul edilebilir erimde."
 
 #: ekos/align/align.cpp:2642
 #, kde-format
@@ -6705,10 +6702,9 @@ msgid "Load Image"
 msgstr "Görseli Yükle"
 
 #: ekos/align/align.cpp:3426
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
-msgstr "%1: Dünya Koordinat Sistemi (WCS) etkin."
+msgstr "Dünya Koordinat Sistemi (WCS) etkin."
 
 #: ekos/align/align.cpp:3431
 #, kde-format
@@ -23746,12 +23742,7 @@ msgstr "Kılavuz kalibrasyonunda DEC boşluğu etkisini kaldır"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -23760,23 +23751,18 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>İşaretliyse kılavuzlama başlatıldığında her zaman "
 "yeniden kalibrasyon yapın. Daha önce kaliteli bir kalibrasyon yapılmışsa ve "
-"kılavuz kamera yeniden takılmamışsa bu genellikle gerekli değildir.</p></"
-"body></html>"
+"kılavuz kamera döndürülmemişse veya yeniden takılmamışsa bu genellikle "
+"gerekli değildir.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr "Her kaide çevriminde kılavuz kalibrasyonunu sıfırla"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -23785,13 +23771,13 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Kalibrasyonları depolayın ve yeniden kullanmayı "
 "deneyin. Bu yalnızca iskele tarafının kaidenizden kendiliğinden "
-"belirlenebilmesi durumunda meridyenin karşıt taraflarında işe yarar.</p></"
-"body></html>"
+"belirlenebilmesi durumunda meridyenin karşıt taraflarında işe yarar. Bunun "
+"denenebilmesi için yukarıdaki “Çevirme sırasında kılavuzu sıfırla” "
+"seçeneğinin işareti kaldırılmış olmalıdır.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
 msgstr "Olanaklıysa kılavuz kalibrasyonunu depola ve yeniden kullan"
 
@@ -42563,10 +42549,9 @@ msgstr "Konum açısı çarpanı"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Konum açısı:"
+msgstr "Konum açısı ofseti"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
