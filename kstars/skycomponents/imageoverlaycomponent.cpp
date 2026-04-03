@@ -23,6 +23,7 @@
 #include <QtConcurrent>
 #include <QRegularExpression>
 
+#include "qtcompat.h"
 #include "ekos/auxiliary/solverutils.h"
 #include "ekos/auxiliary/stellarsolverprofile.h"
 
@@ -505,7 +506,7 @@ QImage *ImageOverlayComponent::loadImageFile (const QString &fullFilename, bool 
     int scaleWidth = std::min(tempImage->width(), Options::imageOverlayMaxDimension());
     QImage *processedImg = new QImage;
     if (mirror)
-        *processedImg = tempImage->mirrored(true, false).scaledToWidth(scaleWidth); // It's reflected horizontally.
+        *processedImg = QtCompat::mirrored(*tempImage, true, false).scaledToWidth(scaleWidth); // It's reflected horizontally.
     else
         *processedImg = tempImage->scaledToWidth(scaleWidth);
 

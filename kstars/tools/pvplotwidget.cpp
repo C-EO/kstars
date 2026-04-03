@@ -13,6 +13,7 @@
 
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include "qtcompat.h"
 #include <QWheelEvent>
 
 #include <cmath>
@@ -185,8 +186,8 @@ void PVPlotWidget::keyPressEvent(QKeyEvent *e)
 void PVPlotWidget::mousePressEvent(QMouseEvent *e)
 {
     mouseButtonDown = true;
-    oldx            = e->x();
-    oldy            = e->y();
+    oldx            = QtCompat::mouseX(e);
+    oldy            = QtCompat::mouseY(e);
 }
 
 void PVPlotWidget::mouseReleaseEvent(QMouseEvent *)
@@ -205,8 +206,8 @@ void PVPlotWidget::mouseMoveEvent(QMouseEvent *e)
         double xscale = dataRect().width() / (width() - leftPadding() - rightPadding());
         double yscale = dataRect().height() / (height() - topPadding() - bottomPadding());
 
-        xc += (oldx - e->x()) * xscale;
-        yc -= (oldy - e->y()) * yscale; //Y data axis is reversed...
+        xc += (oldx - QtCompat::mouseX(e)) * xscale;
+        yc -= (oldy - QtCompat::mouseY(e)) * yscale; //Y data axis is reversed...
 
         if (xc > -AUMAX && xc < AUMAX && yc > -AUMAX && yc < AUMAX)
         {
@@ -216,8 +217,8 @@ void PVPlotWidget::mouseMoveEvent(QMouseEvent *e)
             qApp->processEvents();
         }
 
-        oldx = e->x();
-        oldy = e->y();
+        oldx = QtCompat::mouseX(e);
+        oldy = QtCompat::mouseY(e);
     }
 }
 
@@ -226,8 +227,8 @@ void PVPlotWidget::mouseDoubleClickEvent(QMouseEvent *e)
     double xscale = dataRect().width() / (width() - leftPadding() - rightPadding());
     double yscale = dataRect().height() / (height() - topPadding() - bottomPadding());
 
-    double xc = dataRect().x() + xscale * (e->x() - leftPadding());
-    double yc = dataRect().bottom() - yscale * (e->y() - topPadding());
+    double xc = dataRect().x() + xscale * (QtCompat::mouseX(e) - leftPadding());
+    double yc = dataRect().bottom() - yscale * (QtCompat::mouseY(e) - topPadding());
 
     if (xc > -AUMAX && xc < AUMAX && yc > -AUMAX && yc < AUMAX)
     {

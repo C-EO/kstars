@@ -33,7 +33,7 @@ bool FilterWheel::setLabels(const QStringList &names)
     if (!tvp.isValid())
         return false;
 
-    if (names.count() != tvp.count())
+    if (static_cast<size_t>(names.count()) != tvp.count())
         return false;
 
     for (uint8_t i = 0; i < tvp.count(); i++)

@@ -5,6 +5,7 @@
 */
 
 #include "altvstime.h"
+#include "qtcompat.h"
 
 #include "avtplotwidget.h"
 #include "dms.h"
@@ -33,6 +34,29 @@
 #include <QToolTip>
 
 #include "kstars_debug.h"
+
+#include <cmath>
+
+/**
+ * @brief Custom QCPAxisTickerTime subclass that wraps time labels to the 0–24h range.
+ *
+ * QCPAxisTickerTime displays elapsed seconds as raw hours without wrapping, so axis
+ * values beyond 86400 s (24 h) appear as "25:00", "30:00", "36:00", etc. instead of
+ * the correct "01:00", "06:00", "12:00". This subclass overrides getTickLabel() to
+ * apply a modulo-86400 wrap before formatting, ensuring labels always stay in [00:00, 23:59].
+ */
+class QCPAxisTickerTimeWrapped : public QCPAxisTickerTime
+{
+    public:
+        QString getTickLabel(double tick, const QLocale &locale, QChar formatChar, int precision) override
+        {
+            // Wrap seconds into the 0–86400 range (0:00–24:00)
+            double wrappedTick = fmod(tick, 86400.0);
+            if (wrappedTick < 0.0)
+                wrappedTick += 86400.0;
+            return QCPAxisTickerTime::getTickLabel(wrappedTick, locale, formatChar, precision);
+        }
+};
 
 AltVsTimeUI::AltVsTimeUI(QWidget *p) : QFrame(p)
 {
@@ -100,7 +124,9 @@ AltVsTime::AltVsTime(QWidget *parent) : QDialog(parent)
     avtUI->View->xAxis2->setRange(61200, 147600);
 
     // configure the bottom axis to show time instead of number:
-    QSharedPointer<QCPAxisTickerTime> xAxisTimeTicker(new QCPAxisTickerTime);
+    // QCPAxisTickerTimeWrapped wraps tick labels to the 0-24h range, preventing
+    // labels like "28:00" or "32:00" from appearing when the axis range extends past midnight.
+    QSharedPointer<QCPAxisTickerTimeWrapped> xAxisTimeTicker(new QCPAxisTickerTimeWrapped);
     xAxisTimeTicker->setTimeFormat("%h:%m");
     xAxisTimeTicker->setTickCount(12);
     xAxisTimeTicker->setTickStepStrategy(QCPAxisTicker::tssReadability);
@@ -108,7 +134,9 @@ AltVsTime::AltVsTime(QWidget *parent) : QDialog(parent)
     avtUI->View->xAxis->setTicker(xAxisTimeTicker);
 
     // configure the top axis to show time instead of number:
-    QSharedPointer<QCPAxisTickerTime> xAxis2TimeTicker(new QCPAxisTickerTime);
+    // QCPAxisTickerTimeWrapped wraps tick labels to the 0-24h range, preventing
+    // labels like "30:00" or "41:00" from appearing on the LST axis.
+    QSharedPointer<QCPAxisTickerTimeWrapped> xAxis2TimeTicker(new QCPAxisTickerTimeWrapped);
     xAxis2TimeTicker->setTimeFormat("%h:%m");
     xAxis2TimeTicker->setTickCount(12);
     xAxis2TimeTicker->setTickStepStrategy(QCPAxisTicker::tssReadability);
@@ -558,8 +586,8 @@ void AltVsTime::plotMousePress(QCPAbstractPlottable *abstractPlottable, int data
         QCPAbstractPlottable *plottable = abstractPlottable;
         if (plottable)
         {
-            double x = avtUI->View->xAxis->pixelToCoord(event->localPos().x());
-            double y = avtUI->View->yAxis->pixelToCoord(event->localPos().y());
+            double x = avtUI->View->xAxis->pixelToCoord(QtCompat::mousePos(event).x());
+            double y = avtUI->View->yAxis->pixelToCoord(QtCompat::mousePos(event).y());
 
             QCPGraph *graph = qobject_cast<QCPGraph *>(plottable);
 
@@ -576,7 +604,7 @@ void AltVsTime::plotMousePress(QCPAbstractPlottable *abstractPlottable, int data
                 localSiderealTime = localSiderealTime.addSecs(int(xValue));
 
                 QToolTip::hideText();
-                QToolTip::showText(event->globalPos(),
+                QToolTip::showText(QtCompat::mouseGlobalPos(event).toPoint(),
                                    i18n("<table>"
                      "<tr>"
                      "<th colspan=\"2\">%1</th>"
@@ -684,7 +712,8 @@ void AltVsTime::slotComputeAltitudeByTime()
     }
 
     // Get Local Date & Time
-    KStarsDateTime lt = KStarsDateTime(avtUI->DateWidget->date(), avtUI->timeSpin->time(), Qt::LocalTime);
+    KStarsDateTime lt = KStarsDateTime(avtUI->DateWidget->date(), avtUI->timeSpin->time(),
+                                       QTimeZone(QTimeZone::systemTimeZoneId()));
     // Convert to UT
     KStarsDateTime ut = geo->LTtoUT(lt);
     // Get LST from GST
@@ -849,9 +878,9 @@ void AltVsTime::slotMarkTransitTime()
 
 void AltVsTime::mouseOverLine(QMouseEvent *event)
 {
-    double x                            = avtUI->View->xAxis->pixelToCoord(event->localPos().x());
-    double y                            = avtUI->View->yAxis->pixelToCoord(event->localPos().y());
-    QCPAbstractPlottable *abstractGraph = avtUI->View->plottableAt(event->pos(), false);
+    double x                            = avtUI->View->xAxis->pixelToCoord(QtCompat::mousePos(event).x());
+    double y                            = avtUI->View->yAxis->pixelToCoord(QtCompat::mousePos(event).y());
+    QCPAbstractPlottable *abstractGraph = avtUI->View->plottableAt(QtCompat::mousePos(event).toPoint(), false);
     QCPGraph *graph                     = qobject_cast<QCPGraph *>(abstractGraph);
 
     if (x > avtUI->View->xAxis->range().lower && x < avtUI->View->xAxis->range().upper)
@@ -870,7 +899,7 @@ void AltVsTime::mouseOverLine(QMouseEvent *event)
                 localSiderealTime = localSiderealTime.addSecs(int(xValue));
 
                 QToolTip::hideText();
-                QToolTip::showText(event->globalPos(),
+                QToolTip::showText(QtCompat::mouseGlobalPos(event).toPoint(),
                                    i18n("<table>"
                      "<tr>"
                      "<th colspan=\"2\">%1</th>"

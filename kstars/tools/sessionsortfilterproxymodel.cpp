@@ -18,7 +18,7 @@ bool SessionSortFilterProxyModel::lessThan(const QModelIndex &left, const QModel
 {
     QVariant leftData  = sourceModel()->data(left);
     QVariant rightData = sourceModel()->data(right);
-    if (leftData.type() == QVariant::Time)
+    if (leftData.typeId() == QMetaType::QTime)
     {
         // We are sorting the observing time.
         return (leftData.toTime().addSecs(12 * 3600) <

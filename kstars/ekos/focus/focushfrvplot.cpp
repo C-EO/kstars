@@ -10,6 +10,7 @@
 #include "klocalizedstring.h"
 
 #include "curvefit.h"
+#include "qtcompat.h"
 #include <QToolTip>
 
 #define DEFAULT_BASIC_FONT_SIZE 10
@@ -67,7 +68,7 @@ FocusHFRVPlot::FocusHFRVPlot(QWidget *parent) : QCustomPlot (parent)
 
     connect(this, &QCustomPlot::mouseMove, [this](QMouseEvent * event)
     {
-        double key = xAxis->pixelToCoord(event->localPos().x());
+        double key = xAxis->pixelToCoord(QtCompat::mousePos(event).x());
         if (xAxis->range().contains(key))
         {
             QCPGraph *graph = qobject_cast<QCPGraph *>(plottableAt(event->pos(), false));
@@ -80,7 +81,7 @@ FocusHFRVPlot::FocusHFRVPlot(QWidget *parent) : QCustomPlot (parent)
                     double focusPosition = v_graph->dataMainKey(positionKey);
                     double focusValue = v_graph->dataMainValue(positionKey);
                     QToolTip::showText(
-                        event->globalPos(),
+                        QtCompat::mouseGlobalPos(event).toPoint(),
                         i18nc("Graphics tooltip; %1 is the Focus Position; %2 is the Focus Value;",
                               "<table>"
                               "<tr><td>POS:   </td><td>%1</td></tr>"
@@ -95,7 +96,7 @@ FocusHFRVPlot::FocusHFRVPlot(QWidget *parent) : QCustomPlot (parent)
                     double focusPosition = focusPoint->dataMainKey(positionKey);
                     double focusValue = focusPoint->dataMainValue(positionKey);
                     QToolTip::showText(
-                        event->globalPos(),
+                        QtCompat::mouseGlobalPos(event).toPoint(),
                         i18nc("Graphics tooltip; %1 is the Minimum Focus Position; %2 is the Focus Value;",
                               "<table>"
                               "<tr><td>MIN:   </td><td>%1</td></tr>"

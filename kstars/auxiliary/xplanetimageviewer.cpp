@@ -6,6 +6,7 @@
 */
 
 #include "xplanetimageviewer.h"
+#include "qtcompat.h"
 #include "Options.h"
 #include "dialogs/timedialog.h"
 #include "ksnotification.h"
@@ -147,7 +148,7 @@ void XPlanetImageLabel::pinchTriggered(QPinchGesture *gesture)
 void XPlanetImageLabel::mousePressEvent(QMouseEvent *e)
 {
     m_MouseButtonDown = true;
-    m_LastMousePoint = e->globalPos();
+    m_LastMousePoint = QtCompat::mouseGlobalPos(e).toPoint();
     e->accept();
 }
 
@@ -161,7 +162,7 @@ void XPlanetImageLabel::mouseMoveEvent(QMouseEvent *e)
 {
     if(m_MouseButtonDown)
     {
-        QPoint newPoint = e->globalPos();
+        QPoint newPoint = QtCompat::mouseGlobalPos(e).toPoint();
         int dx = newPoint.x() - m_LastMousePoint.x();
         int dy = newPoint.y() - m_LastMousePoint.y();
         if(e->buttons() & Qt::RightButton)

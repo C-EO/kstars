@@ -688,7 +688,7 @@ void SkyLabeler::printInfo()
     printf("  hits=%d  misses=%d  ratio=%.1f%%\n", m_hits, m_misses, hitRatio());
     printf("  yScale=%.1f maxY=%d\n", m_yScale, m_maxY);
 
-    printf("  screenRows=%d elements=%d virtualSize=%.1f Kbytes\n", screenRows.size(), m_elements,
+    printf("  screenRows=%d elements=%d virtualSize=%.1f Kbytes\n", static_cast < int > (screenRows.size()), m_elements,
            float(m_size) / 1024.0);
 
     //    static const char *labelName[NUM_LABEL_TYPES];

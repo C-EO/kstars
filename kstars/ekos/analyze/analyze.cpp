@@ -5,6 +5,7 @@
 */
 
 #include "analyze.h"
+#include "qtcompat.h"
 
 #include <knotification.h>
 #include <QDateTime>
@@ -47,7 +48,16 @@ class OffsetDateTimeTicker : public QCPAxisTickerDateTime
             Q_UNUSED(precision);
             Q_UNUSED(formatChar);
             // Seconds are offset from the unix origin by
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            if (mDateTimeSpec == Qt::UTC)
+                return locale.toString(keyToDateTime(tick + timeOffset).toTimeZone(QTimeZone::utc()), mDateTimeFormat);
+            else if (mDateTimeSpec == Qt::LocalTime)
+                return locale.toString(keyToDateTime(tick + timeOffset).toTimeZone(QTimeZone::systemTimeZone()), mDateTimeFormat);
+            else
+                return locale.toString(keyToDateTime(tick + timeOffset), mDateTimeFormat);
+#else
             return locale.toString(keyToDateTime(tick + timeOffset).toTimeSpec(mDateTimeSpec), mDateTimeFormat);
+#endif
         }
     private:
         double timeOffset = 0;
@@ -435,10 +445,17 @@ Analyze::Analyze() : m_YAxisTool(this)
     graphsCB->setChecked(true);
     timelineCB->setChecked(true);
     setVisibility();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(timelineCB, &QCheckBox::checkStateChanged, this, &Analyze::setVisibility);
+    connect(graphsCB, &QCheckBox::checkStateChanged, this, &Analyze::setVisibility);
+    connect(statsCB, &QCheckBox::checkStateChanged, this, &Analyze::setVisibility);
+    connect(detailsCB, &QCheckBox::checkStateChanged, this, &Analyze::setVisibility);
+#else
     connect(timelineCB, &QCheckBox::stateChanged, this, &Analyze::setVisibility);
     connect(graphsCB, &QCheckBox::stateChanged, this, &Analyze::setVisibility);
     connect(statsCB, &QCheckBox::stateChanged, this, &Analyze::setVisibility);
     connect(detailsCB, &QCheckBox::stateChanged, this, &Analyze::setVisibility);
+#endif
 
     connect(fullWidthCB, &QCheckBox::toggled, [ = ](bool checked)
     {
@@ -460,7 +477,11 @@ Analyze::Analyze() : m_YAxisTool(this)
     connect(statsPlot, &QCustomPlot::mouseMove, this, &Analyze::statsMouseMove);
     connect(analyzeSB, &QScrollBar::valueChanged, this, &Analyze::scroll);
     analyzeSB->setRange(0, MAX_SCROLL_VALUE);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(keepCurrentCB, &QCheckBox::checkStateChanged, this, &Analyze::keepCurrent);
+#else
     connect(keepCurrentCB, &QCheckBox::stateChanged, this, &Analyze::keepCurrent);
+#endif
 
     setupKeyboardShortcuts(this);
 
@@ -488,7 +509,11 @@ void Analyze::timelineMouseWheel(QWheelEvent *event)
 
 // This callback is used so that when keepCurrent is checked, we replot immediately.
 // The actual keepCurrent work is done in replot().
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+void Analyze::keepCurrent(Qt::CheckState state)
+#else
 void Analyze::keepCurrent(int state)
+#endif
 {
     Q_UNUSED(state);
     if (keepCurrentCB->isChecked())
@@ -1664,8 +1689,8 @@ void Analyze::schedulerSessionClicked(SchedulerJobSession &c, bool doubleClick)
 void Analyze::processTimelineClick(QMouseEvent *event, bool doubleClick)
 {
     unhighlightTimelineItem();
-    double xval = timelinePlot->xAxis->pixelToCoord(event->x());
-    double yval = timelinePlot->yAxis->pixelToCoord(event->y());
+    double xval = timelinePlot->xAxis->pixelToCoord(QtCompat::mouseX(event));
+    double yval = timelinePlot->yAxis->pixelToCoord(QtCompat::mouseY(event));
     if (yval >= CAPTURE_Y - 0.5 && yval <= CAPTURE_Y + 0.5)
     {
         QList<CaptureSession> candidates = captureSessions.find(xval);
@@ -1893,7 +1918,7 @@ void Analyze::removeStatsCursor()
 void Analyze::processStatsClick(QMouseEvent *event, bool doubleClick)
 {
     Q_UNUSED(doubleClick);
-    double xval = statsPlot->xAxis->pixelToCoord(event->x());
+    double xval = statsPlot->xAxis->pixelToCoord(QtCompat::mouseX(event));
     setStatsCursor(xval);
     replot();
 }
@@ -1914,9 +1939,9 @@ void Analyze::statsMousePress(QMouseEvent *event)
     if (!yAxis) return;
 
     // If we're on the y-axis, adjust the y-axis.
-    if (statsPlot->xAxis->pixelToCoord(event->x()) < plotStart)
+    if (statsPlot->xAxis->pixelToCoord(QtCompat::mouseX(event)) < plotStart)
     {
-        yAxisInitialPos = yAxis->pixelToCoord(event->y());
+        yAxisInitialPos = yAxis->pixelToCoord(QtCompat::mouseY(event));
         return;
     }
     processStatsClick(event, false);
@@ -1934,10 +1959,10 @@ void Analyze::statsMouseMove(QMouseEvent *event)
     if (!yAxis) return;
 
     // If we're on the y-axis, adjust the y-axis.
-    if (statsPlot->xAxis->pixelToCoord(event->x()) < plotStart)
+    if (statsPlot->xAxis->pixelToCoord(QtCompat::mouseX(event)) < plotStart)
     {
         auto range = yAxis->range();
-        double yDiff = yAxisInitialPos - yAxis->pixelToCoord(event->y());
+        double yDiff = yAxisInitialPos - yAxis->pixelToCoord(QtCompat::mouseY(event));
         yAxis->setRange(range.lower + yDiff, range.upper + yDiff);
         replot();
         if (m_YAxisTool.isVisible() && m_YAxisTool.getAxis() == yAxis)

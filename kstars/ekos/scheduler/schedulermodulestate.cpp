@@ -453,7 +453,10 @@ void SchedulerModuleState::calculateDawnDusk(const QDateTime &when, QDateTime &n
 
     // Our local midnight - the KStarsDateTime date+time constructor is safe for local times
     // Exact midnight seems unreliable--offset it by a minute.
-    KStarsDateTime midnight(startup.date(), QTime(0, 1), Qt::LocalTime);
+    // Use the geo's fixed UTC offset rather than the system timezone so this function
+    // produces the same result regardless of which timezone the machine is running in.
+    const QTimeZone geoTZ = QTimeZone(static_cast<int>(getGeo()->TZ() * 3600));
+    KStarsDateTime midnight(startup.date(), QTime(0, 1), geoTZ);
 
     QDateTime dawn = startup, dusk = startup;
 
@@ -507,6 +510,21 @@ void SchedulerModuleState::calculateDawnDusk(const QDateTime &when, QDateTime &n
     // - if dusk comes first, observation runs during the day
     nDawn = dawn;
     nDusk = dusk;
+
+    // Fix for overnight queries (e.g. shortly after local midnight):
+    // The loop above searches independently for the next future dawn and the next future dusk.
+    // When called near midnight the first almanac iteration sometimes places the computed dawn
+    // *before* midnight in the UTC comparison (due to timezone handling in UTtoLT), so the loop
+    // advances dawn to the following calendar day while dusk is correctly found for the current
+    // day.  The result is nDawn > nDusk even though we are in the middle of tonight's astronomical
+    // night.  Detect and correct this by checking whether the previous day's dawn falls between
+    // startup and nDusk (i.e. it is still in the future and precedes tonight's dusk).
+    if (nDawn > nDusk)
+    {
+        const QDateTime candidateDawn = nDawn.addDays(-1);
+        if (candidateDawn < nDusk)
+            nDawn = candidateDawn;
+    }
 }
 
 void SchedulerModuleState::calculateDawnDusk()

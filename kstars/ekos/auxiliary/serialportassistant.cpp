@@ -305,7 +305,7 @@ void SerialPortAssistant::parseDevices()
     QJsonObject rule = jsonDoc.object();
 
     // Make sure we have valid vendor ID
-    if (rule.contains("ID_VENDOR_ID") == false || rule["ID_VENDOR_ID"].toString().count() != 4)
+    if (rule.contains("ID_VENDOR_ID") == false || rule["ID_VENDOR_ID"].toString().length() != 4)
     {
         KSNotification::error(
             i18n("Failed to detect any devices. Please make sure device is powered and connected to StellarMate via USB."));
@@ -371,7 +371,7 @@ bool SerialPortAssistant::addRule(const QJsonObject &rule)
         if (devicePort)
         {
             // Set port in device and then save config
-            devicePort->at(0)->setText(QString("/dev/%1").arg(rule["symlink"].toString()).toLatin1().constData());
+            devicePort[0].setText(QString("/dev/%1").arg(rule["symlink"].toString()).toLatin1().constData());
             m_CurrentDevice->sendNewProperty(devicePort);
             m_CurrentDevice->setConfig(SAVE_CONFIG);
             m_CurrentDevice->Connect();

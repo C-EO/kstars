@@ -190,7 +190,7 @@ void ConstellationBoundaryLines::appendPoly(const std::shared_ptr<PolyList> &pol
     }
 
     if (debug > 9)
-        printf("PolyList: %3d: %d\n", ++m_polyIndexCnt, indexHash.size());
+        printf("PolyList: %3d: %d\n", ++m_polyIndexCnt, static_cast<int>(indexHash.size()));
 }
 
 PolyList *ConstellationBoundaryLines::ContainingPoly(const SkyPoint *p) const

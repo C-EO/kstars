@@ -748,8 +748,8 @@ void TestEkosSchedulerOps::testSimpleJob()
     // The dawn/dusk constraints are 4:03am and 10:12pm (lst=13:43)
     // At 10:12pm it should have an altitude of about 14 degrees, still below the 30-degree constraint.
     // It achieves 30-degrees altitude at about 23:35.
-    QDateTime startUTime(QDateTime(QDate(2021, 6, 13), QTime(22, 0, 0), Qt::UTC));
-    const QDateTime wakeupTime(QDate(2021, 6, 14), QTime(06, 35, 0), Qt::UTC);
+    QDateTime startUTime(QDateTime(QDate(2021, 6, 13), QTime(22, 0, 0), QTimeZone::utc()));
+    const QDateTime wakeupTime(QDate(2021, 6, 14), QTime(06, 35, 0), QTimeZone::utc());
     runSimpleJob(geo, targetObject, startUTime, wakeupTime, true);
     QVERIFY(checkLastSlew(targetObject));
 }
@@ -761,11 +761,11 @@ void TestEkosSchedulerOps::testTimeZone()
     WithInterval interval(5000, scheduler);
     GeoLocation geo(dms(-74, 0), dms(40, 42, 0), "NYC", "NY", "USA", -5);
     SkyObject *targetObject = KStars::Instance()->data()->skyComposite()->findByName("Altair");
-    KStarsDateTime startUTime(QDateTime(QDate(2021, 6, 13), QTime(22, 0, 0), Qt::UTC));
+    KStarsDateTime startUTime(QDateTime(QDate(2021, 6, 13), QTime(22, 0, 0), QTimeZone::utc()));
 
     // It crosses 30-degrees altitude around the same time locally, but that's
     // 3 hours earlier UTC.
-    const QDateTime wakeupTime(QDate(2021, 6, 14), QTime(03, 26, 0), Qt::UTC);
+    const QDateTime wakeupTime(QDate(2021, 6, 14), QTime(03, 26, 0), QTimeZone::utc());
 
     runSimpleJob(geo, targetObject, startUTime, wakeupTime, true);
     QVERIFY(checkLastSlew(targetObject));
@@ -793,11 +793,11 @@ void TestEkosSchedulerOps::testDawnShutdown()
     targetObjects.push_back(KStars::Instance()->data()->skyComposite()->findByName("Altair"));
 
     // We'll start the scheduler at 3am local time.
-    QDateTime startUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 10, 0), Qt::UTC));
+    QDateTime startUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 10, 0), QTimeZone::utc()));
     // The job should start at 3:12am local time.
     QDateTime startJobUTime = startUTime.addSecs(180);
     // The job should be interrupted at the pre-dawn time, which is about 3:53am
-    QDateTime preDawnUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), Qt::UTC));
+    QDateTime preDawnUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), QTimeZone::utc()));
     // Consider pre-dawn security range
     preDawnUTime = preDawnUTime.addSecs(-60.0 * abs(Options::preDawnTime()));
 
@@ -809,7 +809,7 @@ void TestEkosSchedulerOps::testDawnShutdown()
     slewAndRun(targetObjects[0], startJobUTime, preDawnUTime, currentUTime, sleepMs, DEFAULT_TOLERANCE);
     parkAndSleep(currentUTime, sleepMs);
 
-    const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), Qt::UTC);
+    const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), QTimeZone::utc());
     wakeupAndRestart(restartTime, currentUTime, sleepMs);
 }
 
@@ -854,12 +854,12 @@ void TestEkosSchedulerOps::testPreemptiveShutdown()
     m_completionCondition.type = Ekos::FINISH_LOOP;
 
     // Start the scheduler at 3:10 am local (10:10 UTC).  Altair is above the horizon.
-    QDateTime startUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 10, 0), Qt::UTC));
+    QDateTime startUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 10, 0), QTimeZone::utc()));
     // The job should begin about 3 minutes after the scheduler starts.
     QDateTime startJobUTime = startUTime.addSecs(180);
     // Astronomical dawn for Silicon Valley on this date is ~3:53 am local = 10:53 UTC.
     // With preDawnTime = 0 the interrupt happens right at astronomical dawn.
-    QDateTime preDawnUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), Qt::UTC));
+    QDateTime preDawnUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), QTimeZone::utc()));
     // Consider pre-dawn security range (same expression as testDawnShutdown)
     preDawnUTime = preDawnUTime.addSecs(-60.0 * std::abs(Options::preDawnTime()));
 
@@ -913,7 +913,7 @@ void TestEkosSchedulerOps::testPreemptiveShutdown()
     // its devices.  The block below mirrors the startup logic from startupJobs2().
     //
     // Altair rises above 30° at ~10:31 pm local = 06:31 UTC on 6/15.
-    const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), Qt::UTC);
+    const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), QTimeZone::utc());
 
     // Step 1 – advance the simulated clock to the wakeup time.
     // The scheduler is currently in RUN_WAKEUP; the next call to runSchedulerIteration()
@@ -1326,15 +1326,15 @@ void TestEkosSchedulerOps::testArtificialHorizonConstraints()
     GeoLocation geo(dms(-122, 10), dms(37, 26, 30), "Silicon Valley", "CA", "USA", -8);
     QVector<SkyObject*> targetObjects;
     targetObjects.push_back(KStars::Instance()->data()->skyComposite()->findByName("Altair"));
-    QDateTime startUTime(QDateTime(QDate(2021, 6, 13), QTime(22, 0, 0), Qt::UTC));
+    QDateTime startUTime(QDateTime(QDate(2021, 6, 13), QTime(22, 0, 0), QTimeZone::utc()));
 
-    const QDateTime wakeupTime(QDate(2021, 6, 14), QTime(07, 27, 0), Qt::UTC);
+    const QDateTime wakeupTime(QDate(2021, 6, 14), QTime(07, 27, 0), QTimeZone::utc());
     runSimpleJob(geo, targetObjects[0], startUTime, wakeupTime, true);
 
     // Uncheck enforce artificial horizon and the wakeup time should go back to it's original time,
     // even though the artificial horizon is still there and enabled.
     init(); // Reset the scheduler.
-    const QDateTime originalWakeupTime(QDate(2021, 6, 14), QTime(06, 35, 0), Qt::UTC);
+    const QDateTime originalWakeupTime(QDate(2021, 6, 14), QTime(06, 35, 0), QTimeZone::utc());
     runSimpleJob(geo, targetObjects[0], startUTime, originalWakeupTime, /* enforce artificial horizon */false);
 
     // Re-check enforce artificial horizon, but remove the constraint, and the wakeup time also goes back to it's original time.
@@ -1362,11 +1362,11 @@ void TestEkosSchedulerOps::testArtificialHorizonConstraints()
         Ekos::SchedulerJob::setHorizon(&shutdownHorizon);
 
         // We'll start the scheduler at 3am local time.
-        startUTime = QDateTime(QDate(2021, 6, 14), QTime(10, 0, 0), Qt::UTC);
+        startUTime = QDateTime(QDate(2021, 6, 14), QTime(10, 0, 0), QTimeZone::utc());
         // The job should start at 3:12am local time.
         QDateTime startJobUTime = startUTime.addSecs(120);
         // The job should be interrupted by the horizon limit, which is reached about 3:19am local.
-        QDateTime horizonStopUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 19, 0), Qt::UTC));
+        QDateTime horizonStopUTime(QDateTime(QDate(2021, 6, 14), QTime(10, 19, 0), QTimeZone::utc()));
 
         KStarsDateTime currentUTime;
         int sleepMs = 0;
@@ -1376,7 +1376,7 @@ void TestEkosSchedulerOps::testArtificialHorizonConstraints()
         slewAndRun(targetObjects[0], startJobUTime, horizonStopUTime, currentUTime, sleepMs, DEFAULT_TOLERANCE,
                    "Horizon slewAndRun");
         parkAndSleep(currentUTime, sleepMs);
-        const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), Qt::UTC);
+        const QDateTime restartTime(QDate(2021, 6, 15), QTime(06, 31, 0), QTimeZone::utc());
         wakeupAndRestart(restartTime, currentUTime, sleepMs);
     }
 }
@@ -1412,13 +1412,13 @@ void TestEkosSchedulerOps::testGreedySchedulerRun()
     Ekos::SchedulerJob::setHorizon(&shutdownHorizon);
 
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), QTimeZone::utc());
 
-    QDateTime d1Start (QDateTime(QDate(2021, 6, 14), QTime( 5, 50, 0), Qt::UTC)); // 10:48pm
-    QDateTime a1Start (QDateTime(QDate(2021, 6, 14), QTime( 6, 34, 0), Qt::UTC)); // 11:34pm
-    QDateTime d2Start (QDateTime(QDate(2021, 6, 14), QTime(10, 20, 0), Qt::UTC)); //  3:20am
-    QDateTime d2End   (QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), Qt::UTC)); //  3:53am
-    QDateTime d3Start (QDateTime(QDate(2021, 6, 15), QTime( 5, 44, 0), Qt::UTC)); // 10:43pm the next day
+    QDateTime d1Start (QDateTime(QDate(2021, 6, 14), QTime( 5, 50, 0), QTimeZone::utc())); // 10:48pm
+    QDateTime a1Start (QDateTime(QDate(2021, 6, 14), QTime( 6, 34, 0), QTimeZone::utc())); // 11:34pm
+    QDateTime d2Start (QDateTime(QDate(2021, 6, 14), QTime(10, 20, 0), QTimeZone::utc())); //  3:20am
+    QDateTime d2End   (QDateTime(QDate(2021, 6, 14), QTime(10, 53, 0), QTimeZone::utc())); //  3:53am
+    QDateTime d3Start (QDateTime(QDate(2021, 6, 15), QTime( 5, 44, 0), QTimeZone::utc())); // 10:43pm the next day
 
     KStarsDateTime currentUTime;
     int sleepMs = 0;
@@ -1450,7 +1450,7 @@ void TestEkosSchedulerOps::testRememberJobProgress()
     SkyObject *targetObject = KStars::Instance()->data()->skyComposite()->findByName("Kocab");
 
     // Take 20:00 GMT (incl. +1h DST) and invalid wakeup time since the scheduler will start immediately
-    QDateTime startUTime(QDateTime(QDate(2021, 10, 30), QTime(18, 0, 0), Qt::UTC));
+    QDateTime startUTime(QDateTime(QDate(2021, 10, 30), QTime(18, 0, 0), QTimeZone::utc()));
     const QDateTime wakeupTime;
     KStarsDateTime currentUTime;
     int sleepMs = 0;
@@ -1491,8 +1491,8 @@ void TestEkosSchedulerOps::testRememberJobProgress()
                 QFile frame;
                 frame.setFileName(QString(img_dir.absolutePath() + "/Kocab/Light/" + filter + "/Kocab_Light_%1_%2.fits").arg(filter).arg(
                                       i));
-                frame.open(QIODevice::WriteOnly | QIODevice::Text);
-                frame.close();
+                if (frame.open(QIODevice::WriteOnly | QIODevice::Text))
+                    frame.close();
             }
         }
     }
@@ -1567,15 +1567,21 @@ bool checkSchedule(const QVector<SPlan> &ref, const QList<Ekos::GreedyScheduler:
         else
         {
             auto geo = KStarsData::Instance()->geo();
-            KStarsDateTime refStartLocal(startTime.date(), startTime.time(), Qt::LocalTime);
-            KStarsDateTime refStopLocal(stopTime.date(), stopTime.time(), Qt::LocalTime);
+            // Use the geo's fixed UTC offset, not the system timezone, so the test is
+            // independent of which timezone the machine running the test happens to be in.
+            const QTimeZone geoTZ = QTimeZone(static_cast<int>(geo->TZ() * 3600));
+            KStarsDateTime refStartLocal(startTime.date(), startTime.time(), geoTZ);
+            KStarsDateTime refStopLocal(stopTime.date(), stopTime.time(), geoTZ);
             const KStarsDateTime refStartUT = geo->LTtoUT(refStartLocal);
             const KStarsDateTime refStopUT = geo->LTtoUT(refStopLocal);
 
             KStarsDateTime schedStart(schedule[i].startTime);
             KStarsDateTime schedStop(schedule[i].stopTime);
-            const KStarsDateTime schedStartUT = (schedStart.timeSpec() == Qt::LocalTime) ? geo->LTtoUT(schedStart) : schedStart;
-            const KStarsDateTime schedStopUT = (schedStop.timeSpec() == Qt::LocalTime) ? geo->LTtoUT(schedStop) : schedStop;
+            // Always call LTtoUT: KStarsDateTime::addSecs() uses the internal Julian Day (DJD)
+            // which is set from the stored date/time values and is timezone-independent, so
+            // LTtoUT produces the correct UT regardless of which timezone tag the QDateTime carries.
+            const KStarsDateTime schedStartUT = geo->LTtoUT(schedStart);
+            const KStarsDateTime schedStopUT = geo->LTtoUT(schedStop);
 
             const bool mismatch = (ref[i].name != schedule[i].job->getName()) ||
                                   (std::abs(schedStartUT.secsTo(refStartUT)) > tolerance) ||
@@ -1606,11 +1612,13 @@ void TestEkosSchedulerOps::testGreedy()
 
     // Setup geo and an artificial horizon.
     GeoLocation geo(dms(-122, 10), dms(37, 26, 30), "Silicon Valley", "CA", "USA", -8);
+    // Use the geo's fixed UTC offset so the test is timezone-independent.
+    const QTimeZone geoTZ = QTimeZone(static_cast<int>(geo.TZ() * 3600));
     ArtificialHorizon shutdownHorizon;
     addHorizonConstraint(&shutdownHorizon, "h", true, QVector<double>({175, 200}), QVector<double>({70, 70}));
     Ekos::SchedulerJob::setHorizon(&shutdownHorizon);
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), QTimeZone::utc());
     initTimeGeo(geo, startUTime);
 
     auto schedJob200x60 = QVector<TestEkosSchedulerHelper::CaptureJob>(1, {200, 60, "Red", "."});
@@ -1621,13 +1629,13 @@ void TestEkosSchedulerOps::testGreedy()
     TestEkosSchedulerHelper::CompletionCondition repeat2CompletionCondition, atCompletionCondition;
     asapStartupCondition.type = Ekos::START_ASAP;
     atStartupCondition.type = Ekos::START_AT;
-    atStartupCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(1, 0, 0), Qt::LocalTime);
+    atStartupCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(1, 0, 0), geoTZ);
     finishCompletionCondition.type = Ekos::FINISH_SEQUENCE;
     loopCompletionCondition.type = Ekos::FINISH_LOOP;
     repeat2CompletionCondition.type = Ekos::FINISH_REPEAT;
     repeat2CompletionCondition.repeat = 2;
     atCompletionCondition.type = Ekos::FINISH_AT;
-    atCompletionCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(3, 30, 0), Qt::LocalTime);
+    atCompletionCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(3, 30, 0), geoTZ);
 
     // Write the scheduler and sequence files.
     QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
@@ -1789,7 +1797,7 @@ void TestEkosSchedulerOps::testMaxMoonAltitude()
 
     GeoLocation geo(dms(-122, 10), dms(37, 26, 30), "Silicon Valley", "CA", "USA", -8);
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2021, 4, 21), QTime(4, 0, 0), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2021, 4, 21), QTime(4, 0, 0), QTimeZone::utc());
     initTimeGeo(geo, startUTime);
 
     auto schedJob5x120 = QVector<TestEkosSchedulerHelper::CaptureJob>(1, {120, 5, "Red", "."});
@@ -1825,11 +1833,13 @@ void TestEkosSchedulerOps::testGreedyStartAt()
 
     // Setup geo and an artificial horizon.
     GeoLocation geo(dms(-122, 10), dms(37, 26, 30), "Silicon Valley", "CA", "USA", -8);
+    // Use the geo's fixed UTC offset so the test is timezone-independent.
+    const QTimeZone geoTZ = QTimeZone(static_cast<int>(geo.TZ() * 3600));
     ArtificialHorizon shutdownHorizon;
     addHorizonConstraint(&shutdownHorizon, "h", true, QVector<double>({175, 200}), QVector<double>({70, 70}));
 
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), QTimeZone::utc());
     initTimeGeo(geo, startUTime);
 
     auto schedJob60x10 = QVector<TestEkosSchedulerHelper::CaptureJob>(1, {60, 30, "Red", "."});
@@ -1838,9 +1848,9 @@ void TestEkosSchedulerOps::testGreedyStartAt()
     TestEkosSchedulerHelper::StartupCondition atStartupCondition, atStartupCondition2;
     TestEkosSchedulerHelper::CompletionCondition finishCompletionCondition;
     atStartupCondition.type = Ekos::START_AT;
-    atStartupCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(1, 0, 0), Qt::LocalTime);
+    atStartupCondition.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(1, 0, 0), geoTZ);
     atStartupCondition2.type = Ekos::START_AT;
-    atStartupCondition2.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(3, 0, 0), Qt::LocalTime);
+    atStartupCondition2.atLocalDateTime = QDateTime(QDate(2021, 6, 14), QTime(3, 0, 0), geoTZ);
     finishCompletionCondition.type = Ekos::FINISH_SEQUENCE;
 
     // Write the scheduler and sequence files.
@@ -1871,10 +1881,10 @@ void TestEkosSchedulerOps::testGreedyStartAt()
     constexpr int altairIndex = 0, denebIndex = 1;
     targetObjects.push_back(KStars::Instance()->data()->skyComposite()->findByName("Altair"));
     targetObjects.push_back(KStars::Instance()->data()->skyComposite()->findByName("Deneb"));
-    QDateTime a1Start (QDateTime(QDate(2021, 6, 14), QTime( 8, 00, 0), Qt::UTC)); // 1am
-    QDateTime a1End   (QDateTime(QDate(2021, 6, 14), QTime( 8, 33, 0), Qt::UTC)); // 1:33am
-    QDateTime d1Start (QDateTime(QDate(2021, 6, 14), QTime(10, 00, 0), Qt::UTC)); // 3am
-    QDateTime d1End   (QDateTime(QDate(2021, 6, 14), QTime(10, 23, 0), Qt::UTC)); // 3:23am
+    QDateTime a1Start (QDateTime(QDate(2021, 6, 14), QTime( 8, 00, 0), QTimeZone::utc())); // 1am
+    QDateTime a1End   (QDateTime(QDate(2021, 6, 14), QTime( 8, 33, 0), QTimeZone::utc())); // 1:33am
+    QDateTime d1Start (QDateTime(QDate(2021, 6, 14), QTime(10, 00, 0), QTimeZone::utc())); // 3am
+    QDateTime d1End   (QDateTime(QDate(2021, 6, 14), QTime(10, 23, 0), QTimeZone::utc())); // 3:23am
 
     slewAndRun(targetObjects[altairIndex], a1Start, a1End, currentUTime, sleepMs, 600, "Greedy job #1", a1End);
     wakeupAndRestart(d1Start, currentUTime, sleepMs);
@@ -1898,7 +1908,7 @@ void TestEkosSchedulerOps::testGroups()
     addHorizonConstraint(&shutdownHorizon, "h", true, QVector<double>({175, 200}), QVector<double>({70, 70}));
     Ekos::SchedulerJob::setHorizon(&shutdownHorizon);
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2021, 6, 14), QTime(4, 0, 0), QTimeZone::utc());
     initTimeGeo(geo, startUTime);
 
     // About a 30-minute job
@@ -1974,9 +1984,11 @@ void TestEkosSchedulerOps::testGreedyAborts()
 
     // Setup geo and an artificial horizon.
     GeoLocation geo(dms(-122, 10), dms(37, 26, 30), "Silicon Valley", "CA", "USA", -8);
+    // Use the geo's fixed UTC offset so the test is timezone-independent.
+    const QTimeZone geoTZ = QTimeZone(static_cast<int>(geo.TZ() * 3600));
 
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2022, 2, 28), QTime(10, 29, 26), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2022, 2, 28), QTime(10, 29, 26), QTimeZone::utc());
     initTimeGeo(geo, startUTime);
 
     auto schedJob200x60 = QVector<TestEkosSchedulerHelper::CaptureJob>(1, {200, 60, "Red", "."});
@@ -2002,7 +2014,7 @@ void TestEkosSchedulerOps::testGreedyAborts()
                        enforceTwilight, enforceHorizon, errorDelay);
 
     // start the scheduler at 1am
-    KStarsDateTime evalUTime(QDate(2022, 2, 28), QTime(9, 00, 00), Qt::UTC);
+    KStarsDateTime evalUTime(QDate(2022, 2, 28), QTime(9, 00, 00), QTimeZone::utc());
     KStarsData::Instance()->changeDateTime(evalUTime);
 
     scheduler->process()->evaluateJobs(false);
@@ -2034,7 +2046,7 @@ void TestEkosSchedulerOps::testGreedyAborts()
     scheduler->moduleState()->setSchedulerState(Ekos::SCHEDULER_RUNNING);
 
     // Find the M 104 job and make it aborted at 12:59am
-    KStarsDateTime abortUTime(QDate(2022, 2, 28), QTime(8, 59, 00), Qt::UTC);
+    KStarsDateTime abortUTime(QDate(2022, 2, 28), QTime(8, 59, 00), QTimeZone::utc());
     KStarsData::Instance()->changeDateTime(abortUTime);
 
     Ekos::SchedulerJob *m104Job = nullptr;
@@ -2070,7 +2082,7 @@ void TestEkosSchedulerOps::testGreedyAborts()
     QVERIFY(ngc3628->getName() == "NGC 3628");
 
     // And ngc3628 should not be preempted right away,
-    QDateTime localTime(QDate(2022, 2, 28), QTime(1, 00, 00), Qt::LocalTime);
+    QDateTime localTime(QDate(2022, 2, 28), QTime(1, 00, 00), geoTZ);
     bool keepRunning = scheduler->process()->getGreedyScheduler()->checkJob(scheduler->moduleState()->jobs(), localTime,
                        ngc3628);
     QVERIFY(keepRunning);
@@ -2095,7 +2107,7 @@ void TestEkosSchedulerOps::testGreedyAborts()
     QVERIFY(newSchedule.size() > 0);
     QVERIFY(newSchedule[0].job->getName() == "M 104");
     QVERIFY(std::abs(newSchedule[0].startTime.secsTo(
-                         QDateTime(QDate(2022, 2, 28), QTime(2, 00, 00), Qt::LocalTime))) < 200);
+                         QDateTime(QDate(2022, 2, 28), QTime(2, 00, 00), geoTZ))) < 200);
 }
 
 void TestEkosSchedulerOps::testArtificialCeiling()
@@ -2116,7 +2128,7 @@ void TestEkosSchedulerOps::testArtificialCeiling()
     GeoLocation geo(dms(-75, 40), dms(45, 40), "New York", "NY", "USA", -5);
     Ekos::SchedulerJob::setHorizon(&horizon);
     // Start the scheduler about 9pm local
-    const QDateTime startUTime = QDateTime(QDate(2022, 8, 21), QTime(16, 0, 0), Qt::UTC);
+    const QDateTime startUTime = QDateTime(QDate(2022, 8, 21), QTime(16, 0, 0), QTimeZone::utc());
     initTimeGeo(geo, startUTime);
 
     auto schedJob200x60 = QVector<TestEkosSchedulerHelper::CaptureJob>(1, {200, 60, "Red", "."});
@@ -2160,7 +2172,7 @@ void TestEkosSchedulerOps::testSettingAltitudeBug()
     Ekos::SchedulerJob::setHorizon(nullptr);
 
     GeoLocation geo(dms(9, 45, 54), dms(49, 6, 22), "Schwaebisch Hall", "Baden-Wuerttemberg", "Germany", +1);
-    const QDateTime time1 = QDateTime(QDate(2022, 3, 7), QTime(21, 28, 55), Qt::UTC); //22:28 local
+    const QDateTime time1 = QDateTime(QDate(2022, 3, 7), QTime(21, 28, 55), QTimeZone::utc()); //22:28 local
     initTimeGeo(geo, time1);
 
     auto wolfgangJob = QVector<TestEkosSchedulerHelper::CaptureJob>(
@@ -2209,7 +2221,7 @@ void TestEkosSchedulerOps::testSettingAltitudeBug()
     // job, preempting it. The intention of that parameter is to stop new jobs
     // from being scheduled near their altitude cutoff times, not to preempt existing ones.
 
-    KStarsDateTime time2(QDate(2022, 3, 7), QTime(19, 30, 00), Qt::UTC); //20:30 local
+    KStarsDateTime time2(QDate(2022, 3, 7), QTime(19, 30, 00), QTimeZone::utc()); //20:30 local
     initTimeGeo(geo, time2);
     scheduler->process()->evaluateJobs(false);
 
@@ -2252,7 +2264,7 @@ void TestEkosSchedulerOps::testEstimateTimeBug()
     QTemporaryDir dir(KTest::tempDirPattern(QStringLiteral("scheduler")));
 
     GeoLocation geo(dms(9, 45, 54), dms(49, 6, 22), "Schwaebisch Hall", "Baden-Wuerttemberg", "Germany", +1);
-    const QDateTime time1 = QDateTime(QDate(2022, 3, 20), QTime(18, 52, 48), Qt::UTC); //19:52 local
+    const QDateTime time1 = QDateTime(QDate(2022, 3, 20), QTime(18, 52, 48), QTimeZone::utc()); //19:52 local
     initTimeGeo(geo, time1);
 
     auto path = dir.filePath(".");
@@ -2373,7 +2385,7 @@ void TestEkosSchedulerOps::testGreedyMessier()
     Options::setSchedulerAlgorithm(Ekos::ALGORITHM_GREEDY);
 
     GeoLocation geo(dms(9, 45, 54), dms(49, 6, 22), "Schwaebisch Hall", "Baden-Wuerttemberg", "Germany", +1);
-    const QDateTime time1 = QDateTime(QDate(2022, 3, 7), QTime(21, 28, 55), Qt::UTC); //22:28 local
+    const QDateTime time1 = QDateTime(QDate(2022, 3, 7), QTime(21, 28, 55), QTimeZone::utc()); //22:28 local
     initTimeGeo(geo, time1);
 
     qCInfo(KSTARS_EKOS_TEST) << QString("Calculate schedule with no artificial horizon and 0 min altitude.");

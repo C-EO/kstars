@@ -12,9 +12,10 @@ libraries each group of tests needs, and where the known coverage gaps are.
 2. [Build prerequisites](#2-build-prerequisites)
 3. [Building the tests](#3-building-the-tests)
 4. [Running the tests](#4-running-the-tests)
-5. [Environment variables](#5-environment-variables)
-6. [Directory map and coverage](#6-directory-map-and-coverage)
-7. [Known coverage gaps](#7-known-coverage-gaps)
+5. [Python test runner script](#5-python-test-runner-script)
+6. [Environment variables](#6-environment-variables)
+7. [Directory map and coverage](#7-directory-map-and-coverage)
+8. [Known coverage gaps](#8-known-coverage-gaps)
 
 ---
 
@@ -112,7 +113,131 @@ Per-test VS Code launch configurations are available in `.vscode/launch.json`.
 
 ---
 
-## 5. Environment variables
+## 5. Python test runner script
+
+`Tests/run_tests.py` is a self-contained Python 3 script that wraps `ctest`
+and the Qt Test binaries to provide a **developer-friendly** experience:
+
+- Auto-discovers all CTest-registered test binaries (no manual list).
+- Saves per-test **XML** and **stderr log** files to a timestamped directory.
+- Parses the Qt Test XML output and shows the exact **test function**, **source
+  file:line**, and **failure message** for every assertion that failed.
+- Prints a colourised summary with failures first.
+- Writes a plain-text `summary.txt` alongside the logs (useful in CI).
+- Returns exit code `0` only when all selected tests pass.
+
+### Prerequisites
+
+Python 3.8+ and a configured CMake build with `BUILD_TESTING=ON`.
+No additional pip packages are required — only the Python standard library.
+
+### Quick start
+
+```bash
+# From the repository root:
+
+# Run the full suite (also builds first by default):
+python3 Tests/run_tests.py
+
+# Skip the build step (use existing binaries):
+python3 Tests/run_tests.py --no-build
+
+# List all discovered tests without running them:
+python3 Tests/run_tests.py --no-build --list
+```
+
+### Filtering tests
+
+```bash
+# Run only tests whose name contains "scheduler" (case-insensitive):
+python3 Tests/run_tests.py --no-build -k scheduler
+
+# Run only tests tagged with the 'stable' CTest label:
+python3 Tests/run_tests.py --no-build -L stable
+
+# Combine: stable tests that don't require a display:
+python3 Tests/run_tests.py --no-build -L stable --exclude-label ui
+
+# Run tests with multiple label filters (OR logic):
+python3 Tests/run_tests.py --no-build -L stable -L unstable
+```
+
+### Parallel execution
+
+```bash
+# Run 4 tests at the same time:
+python3 Tests/run_tests.py --no-build -j 4
+
+# Note: --verbose forces single-threaded mode (output would interleave)
+python3 Tests/run_tests.py --no-build --verbose -k focus
+```
+
+### Custom paths and timeout
+
+```bash
+# Custom build directory:
+python3 Tests/run_tests.py --build-dir /tmp/kstars-build
+
+# Custom log output directory:
+python3 Tests/run_tests.py --no-build --log-dir /tmp/my-logs
+
+# Per-test timeout (default is 120 s):
+python3 Tests/run_tests.py --no-build --timeout 60
+```
+
+### Full CLI reference
+
+| Option | Default | Description |
+|---|---|---|
+| `-k PATTERN` | — | Run only tests whose name contains `PATTERN` (substring, case-insensitive) |
+| `-L LABEL` | — | Include only tests that carry this CTest label; may be repeated |
+| `--exclude-label LABEL` | — | Exclude tests with this label; may be repeated |
+| `-j N` | `1` | Run `N` tests in parallel |
+| `--timeout N` | `120` | Per-test timeout in seconds |
+| `--build-dir DIR` | `../build` | CMake build directory |
+| `--log-dir DIR` | `./test-logs-<stamp>/` | Directory for log files |
+| `--no-build` | off | Skip the `cmake --build` step |
+| `--verbose` | off | Stream test output live to the terminal (forces `-j 1`) |
+| `--list` | off | List discovered tests and exit without running them |
+
+### Log directory layout
+
+```
+test-logs-20260403-212736/
+├── summary.txt               ← plain-text copy of the summary (no ANSI codes)
+├── CSVParserTest.xml         ← raw Qt Test XML output (stdout)
+├── CSVParserTest.log         ← KDE/Qt diagnostic messages (stderr)
+├── SchedulerunitTest.xml
+├── SchedulerunitTest.log
+└── …
+```
+
+### Reading the summary
+
+```
+────────────────────────────────────────────────────────────────────────
+  KStars Test Suite — Summary
+────────────────────────────────────────────────────────────────────────
+  ❌ FAIL  SchedulerunitTest          0.1s  6p 3f 0s  [stable]
+         ↳ loadSequenceQueueTest
+           at Tests/ekos/scheduler/testschedulerunit.cpp:344
+           'Ekos::SchedulerUtils::loadSequenceQueue(...)' returned FALSE.
+         ↳ estimateJobTimeTest
+           at Tests/ekos/scheduler/testschedulerunit.cpp:381
+           'Ekos::SchedulerUtils::estimateJobTime(...)' returned FALSE.
+  ✅ PASS  DMSTest                    0.0s  11p 0f 0s  [stable]
+  …
+────────────────────────────────────────────────────────────────────────
+  27 passed  |  3 failed  |  1.9s total
+────────────────────────────────────────────────────────────────────────
+```
+
+Column legend: `Np` = N test functions passed · `Nf` = failed · `Ns` = skipped.
+The `↳` lines appear only for failing tests and pinpoint the exact assertion.
+
+---
+
+## 6. Environment variables
 
 These are set automatically by `Tests/testhelpers.h` via the `KTest::setupTestEnvironment()` function that runs before `main()`.  You can also set them manually to influence test behaviour.
 
@@ -126,7 +251,7 @@ These are set automatically by `Tests/testhelpers.h` via the `KTest::setupTestEn
 
 ---
 
-## 6. Directory map and coverage
+## 7. Directory map and coverage
 
 > Legend: ✅ Covered — ⚠️ Partial — ❌ Not tested — 🔲 Stub (needs tests)
 
@@ -155,7 +280,7 @@ These are set automatically by `Tests/testhelpers.h` via the `KTest::setupTestEn
 
 ---
 
-## 7. Known coverage gaps
+## 8. Known coverage gaps
 
 The following KStars subsystems have **no automated tests** of any kind.
 Contributions are welcome — see the stub `README.md` in each directory marked

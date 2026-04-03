@@ -1780,7 +1780,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
         // Today's date
         const KStarsDateTime localTime  = KStarsData::Instance()->lt();
         // Local Midnight
-        const KStarsDateTime midnight  = KStarsDateTime(localTime.date(), QTime(0, 0), Qt::LocalTime);
+        const KStarsDateTime midnight  = KStarsDateTime(localTime.date(), QTime(0, 0), QTimeZone(QTimeZone::systemTimeZoneId()));
 
         KSAlmanac almanac(midnight, KStarsData::Instance()->geo());
 
@@ -2375,7 +2375,7 @@ KStarsDateTime Message::getNextDawn()
     // Today's date
     const KStarsDateTime localTime  = KStarsData::Instance()->lt();
     // Local Midnight
-    const KStarsDateTime midnight  = KStarsDateTime(localTime.date(), QTime(0, 0), Qt::LocalTime);
+    const KStarsDateTime midnight  = KStarsDateTime(localTime.date(), QTime(0, 0), QTimeZone(QTimeZone::systemTimeZoneId()));
     // Almanac
     KSAlmanac almanac(midnight, KStarsData::Instance()->geo());
     // Next Dawn

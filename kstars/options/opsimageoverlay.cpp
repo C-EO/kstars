@@ -38,15 +38,15 @@ OpsImageOverlay::OpsImageOverlay() : QFrame(KStars::Instance())
             Qt::UniqueConnection);
     connect(refreshB, &QPushButton::clicked, overlayComponent, &ImageOverlayComponent::reload,
             Qt::UniqueConnection);
-    connect(kcfg_ShowImageOverlays, &QCheckBox::stateChanged, [](int state)
+    connect(kcfg_ShowImageOverlays, &QCheckBox::toggled, [](bool state)
     {
         Options::setShowImageOverlays(state);
     });
-    connect(kcfg_ShowSelectedImageOverlay, &QCheckBox::stateChanged, [](int state)
+    connect(kcfg_ShowSelectedImageOverlay, &QCheckBox::toggled, [](bool state)
     {
         Options::setShowSelectedImageOverlay(state);
     });
-    connect(kcfg_ShowImageOverlaysBelowCatalogs, &QCheckBox::stateChanged, [](int state)
+    connect(kcfg_ShowImageOverlaysBelowCatalogs, &QCheckBox::toggled, [](bool state)
     {
         Options::setShowImageOverlaysBelowCatalogs(state);
     });

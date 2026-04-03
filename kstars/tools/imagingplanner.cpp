@@ -5,6 +5,7 @@
 */
 
 #include "imagingplanner.h"
+#include "qtcompat.h"
 
 #include <kio_version.h>
 #include <KLocalizedString>
@@ -2210,7 +2211,6 @@ void ImagingPlanner::checkTargets(bool justCheckCurrentCatalog)
         }
         targets.push_back(name);
     }
-    fprintf(stderr, "********** %d/%d targets found. %d unique test objects\n", good, count, newObjects.size());
 
     // First we add all the new objects that aren't already existing, and that can be found by KStars, to a
     // list. This is done so we can find distances to the nearest other one.
@@ -2801,7 +2801,7 @@ bool ImagingPlanner::eventFilter(QObject * obj, QEvent * event)
                           (numImaged > 0 && numNotImaged > 0) ? nullptr : &imaged,
                           (numPicked > 0 && numNotPicked > 0) ? nullptr : &picked,
                           (numIgnored > 0 && numNotIgnored > 0) ? nullptr : &ignored);
-        QPoint pos(mouseEvent->globalX(), mouseEvent->globalY());
+        QPoint pos(QtCompat::mouseGlobalX(mouseEvent), QtCompat::mouseGlobalY(mouseEvent));
         m_PopupMenu->popup(pos);
     }
 
@@ -4041,7 +4041,8 @@ void ImagingPlanner::extractImage()
         const int scaleWidth = std::min(m_ScreenShotImage.width(), Options::imageOverlayMaxDimension());
         QImage *processedImg = new QImage;
         if (mirror)
-            *processedImg = m_ScreenShotImage.mirrored(true, false).scaledToWidth(scaleWidth); // It's reflected horizontally.
+            *processedImg = QtCompat::mirrored(m_ScreenShotImage, true,
+                                               false).scaledToWidth(scaleWidth); // It's reflected horizontally.
         else
             *processedImg = m_ScreenShotImage.scaledToWidth(scaleWidth);
         overlay.m_Img.reset(processedImg);

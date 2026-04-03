@@ -9,5 +9,5 @@ Exposure,Filter,Type,Prefix,RawPrefix,FilterEnabled,ExpEnabled,FITSDirectory,Pla
 1,,,,,,,/home/pi/%T,/%t%e,3,,/home/pi/1_secs
 10,,Light,,,,,/home/pi,/%T/%t%e,3,,/home/pi/Light/10_secs
 20,H_Alpha,Light,,,,,/home/pi,/%T/%t_%e,3,M42,/home/pi/Light/M42_20_secs
-1,H_Alpha,Flat,,,,,/home/pi,/New %target/%Type/%Filter/%T_%exposure,3,M42,/home/pi/New M42/Flat/H_Alpha/Flat_1_secs
+1,H_Alpha,Flat,,,,,/home/pi,/New %target/%Type/%Filter/%T_%exposure,3,M42,/home/pi/New M42/Flat/H_Alpha/Flat_[\d.]+_secs
 ,,Light,,,,,/home/pi,/%T/%Type_%Datetime,3,,/home/pi/Light/Light_\d\d\d\d-\d\d-\d\dT\d\d-\d\d-\d\d

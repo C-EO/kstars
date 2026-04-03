@@ -122,10 +122,17 @@ void FocusAdvisor::setupHelpTable()
     itemProposedValue->setToolTip(i18n("Focus Advisor proposed value for the parameter"));
     m_helpUI->table->setHorizontalHeaderItem(HELP_NEW_VALUE, itemProposedValue);
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(m_helpUI->focusAdvHelpOnlyChanges, &QCheckBox::checkStateChanged, this, [this](Qt::CheckState)
+    {
+        setupParams("");
+    });
+#else
     connect(m_helpUI->focusAdvHelpOnlyChanges, static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged), this, [this]()
     {
         setupParams("");
     });
+#endif
 }
 
 void FocusAdvisor::setButtons(const bool running)

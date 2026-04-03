@@ -60,6 +60,11 @@ class TestSchedulerUnit : public QObject
                          const QDateTime &eTime, int eReps,
                          double minAlt, double minMoonSep = 0, double maxMoonAlt = 90, bool enforceTwilight = true,
                          bool enforceArtificialHorizon = true, bool track = true, bool focus = true, bool align = true, bool guide = true);
+
+        // Path to the 9-filter test sequence file.
+        // Resolved at runtime via QFINDTESTDATA so it works regardless of the
+        // process working directory (e.g. when run_tests.py sets cwd=log_dir).
+        QString seqFile9Filters;
 };
 
 #include "testschedulerunit.moc"
@@ -98,7 +103,6 @@ struct CaptureJobDetails
 };
 
 // This sequence corresponds to the contents of the sequence file 9filters.esq.
-const QString seqFile9Filters = "9filters.esq";
 QList<CaptureJobDetails> details9Filters =
 {
     {"Luminance", 6,  60.0, FRAME_LIGHT},
@@ -114,6 +118,12 @@ QList<CaptureJobDetails> details9Filters =
 
 TestSchedulerUnit::TestSchedulerUnit() : QObject()
 {
+    // Locate the test data file at runtime so the test works regardless of the
+    // process working directory (e.g. when run_tests.py sets cwd to the log dir).
+    // QFINDTESTDATA searches the source-file directory, so it finds the file in
+    // the source tree even when the binary runs from an unrelated directory.
+    seqFile9Filters = QFINDTESTDATA("9filters.esq");
+
     // Remove the dither-enabled option. It adds a complexity to estimating the job time.
     Options::setDitherEnabled(false);
 
@@ -501,6 +511,18 @@ void TestSchedulerUnit::evaluateJobsTest()
                                      computeExposureDurations(details9Filters))));
 
     state.calculateDawnDusk();
+
+    // Debug: dump job state before the twilight check
+    fprintf(stderr, "DEBUG test: startupTime=%s valid=%d state=%d enforceTwilight=%d "
+                    "nextDawn=%s nextDusk=%s localTime=%s geo=%p\n",
+            job.getStartupTime().toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            job.getStartupTime().isValid() ? 1 : 0,
+            (int)job.getState(),
+            job.getEnforceTwilight() ? 1 : 0,
+            job.getDawnAstronomicalTwilight().toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            job.getDuskAstronomicalTwilight().toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            Ekos::SchedulerModuleState::getLocalTime().toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            (void *)Ekos::SchedulerModuleState::getGeo());
 
     // The job should run inside the twilight interval and have the same twilight values as Scheduler current values
     QVERIFY(job.runsDuringAstronomicalNightTime());

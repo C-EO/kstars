@@ -844,7 +844,10 @@ bool SchedulerJob::runsDuringAstronomicalNightTime(const QDateTime &time,
     const std::lock_guard<std::mutex> lock(nightTimeMutex);
 
     // We likely can rely on the previous calculations.
-    if (previousTime.isValid() && previousMinDawnDusk.isValid() &&
+    // Only use the cache when 'time' is a concrete valid timestamp.
+    // When time is invalid the caller means "use startupTime" which depends on
+    // per-job members (nextDawn/nextDusk), not the shared time-range cache.
+    if (time.isValid() && previousTime.isValid() && previousMinDawnDusk.isValid() &&
             time >= previousTime && time < previousMinDawnDusk &&
             SchedulerModuleState::getGeo() == previousGeo &&
             Options::preDawnTime() == previousPreDawnTime)
@@ -856,9 +859,14 @@ bool SchedulerJob::runsDuringAstronomicalNightTime(const QDateTime &time,
     else
     {
         previousAnswer = runsDuringAstronomicalNightTimeInternal(time, &previousMinDawnDusk, &nextSuccess);
-        previousTime = time;
-        previousGeo = SchedulerModuleState::getGeo();
-        previousPreDawnTime = Options::preDawnTime();
+        // Only update the cache for valid times; invalid-time queries rely on per-job
+        // precomputed nextDawn/nextDusk and must not pollute the shared time-range cache.
+        if (time.isValid())
+        {
+            previousTime = time;
+            previousGeo = SchedulerModuleState::getGeo();
+            previousPreDawnTime = Options::preDawnTime();
+        }
         if (!previousAnswer && nextPossibleSuccess != nullptr)
             *nextPossibleSuccess = nextSuccess;
         return previousAnswer;
@@ -882,7 +890,12 @@ bool SchedulerJob::runsDuringAstronomicalNightTimeInternal(const QDateTime &time
     }
     else
     {
-        t = startupTime;
+        // Use the job's startup time; fall back to the module's current local time if
+        // the startup time has not yet been assigned by the scheduler.
+        t = startupTime.isValid() ? startupTime : SchedulerModuleState::getLocalTime();
+        // Always recalculate dawn/dusk for the resolved time so that the result is
+        // independent of whether the per-job nextDawn/nextDusk members are up to date.
+        SchedulerModuleState::calculateDawnDusk(t, nDawn, nDusk);
     }
 
     // Calculate the next astronomical dawn time, adjusted with the Ekos pre-dawn offset
@@ -890,9 +903,34 @@ bool SchedulerJob::runsDuringAstronomicalNightTimeInternal(const QDateTime &time
 
     *minDawnDusk = earlyDawn < nDusk ? earlyDawn : nDusk;
 
-    // Dawn and dusk are ordered as the immediate next events following the observation time
+    // Dawn and dusk are ordered as the immediate next events following the observation time.
     // Thus if dawn comes first, the job startup time occurs during the dusk/dawn interval.
     bool result = nDawn < nDusk && t <= earlyDawn;
+
+    // Fallback: calculateDawnDusk may compute the NEXT night's dusk/dawn pair (nDusk < nDawn)
+    // rather than the current night's remaining interval when the query time is shortly after
+    // local midnight. In that case nDawn is still the correct end of the current night; check
+    // whether t falls in the interval [nDusk - 1 day, nDawn] which corresponds to the overnight
+    // period that started with yesterday's dusk and ends with tonight's dawn.
+    if (!result && nDawn.isValid() && nDusk.isValid() && t <= earlyDawn)
+    {
+        const QDateTime previousDusk = nDusk.addDays(-1);
+        if (t > previousDusk)
+            result = true;
+    }
+
+    fprintf(stderr, "DEBUG runsDuringAstronomicalNightTimeInternal: "
+                    "time.isValid=%d startupTime=%s t=%s nDawn=%s nDusk=%s earlyDawn=%s "
+                    "nDawn<nDusk=%d t<=earlyDawn=%d result=%d\n",
+            time.isValid() ? 1 : 0,
+            startupTime.toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            t.toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            nDawn.toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            nDusk.toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            earlyDawn.toString("yyyy-MM-dd hh:mm:ss").toLocal8Bit().data(),
+            (nDawn < nDusk) ? 1 : 0,
+            (t <= earlyDawn) ? 1 : 0,
+            result ? 1 : 0);
 
     // Return a hint about when it might succeed.
     if (nextPossibleSuccess != nullptr)

@@ -1085,7 +1085,7 @@ void SequenceJob::saveTo(QTextStream &outstream, const QLocale &cLocale) const
         while (iter.hasNext())
         {
             iter.next();
-            if (iter.value().type() == QVariant::String)
+            if (iter.value().typeId() == QMetaType::QString)
             {
                 outstream << "<OneElement name='" << iter.key()
                           << "'>" << iter.value().toString() << "</OneElement>" << Qt::endl;

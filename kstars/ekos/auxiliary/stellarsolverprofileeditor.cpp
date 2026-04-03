@@ -139,7 +139,13 @@ StellarSolverProfileEditor::StellarSolverProfileEditor(QWidget *parent, ProfileG
 
     QList<QCheckBox *> checks = this->findChildren<QCheckBox *>();
     for(QCheckBox *check : checks)
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        connect(check, &QCheckBox::checkStateChanged, this, &StellarSolverProfileEditor::settingJustChanged);
+#else
         connect(check, &QCheckBox::stateChanged, this, &StellarSolverProfileEditor::settingJustChanged);
+#endif
+    }
 
     QList<QComboBox *> combos = this->findChildren<QComboBox *>();
     for(QComboBox *combo : combos)

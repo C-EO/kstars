@@ -8,6 +8,7 @@
 
 #include "kstarsdata.h"
 #include "Options.h"
+#include "qtcompat.h"
 
 #include <QWidget>
 #include <QDebug>
@@ -46,18 +47,20 @@ void AVTPlotWidget::mouseDoubleClickEvent(QMouseEvent *e)
 void AVTPlotWidget::mouseMoveEvent(QMouseEvent *e)
 {
     QRect checkRect(leftPadding(), topPadding(), pixRect().width(), pixRect().height());
-    int Xcursor = e->x();
-    int Ycursor = e->y();
+    const int eX = QtCompat::mouseX(e);
+    const int eY = QtCompat::mouseY(e);
+    int Xcursor  = eX;
+    int Ycursor  = eY;
 
-    if (!checkRect.contains(e->x(), e->y()))
+    if (!checkRect.contains(eX, eY))
     {
-        if (e->x() < checkRect.left())
+        if (eX < checkRect.left())
             Xcursor = checkRect.left();
-        if (e->x() > checkRect.right())
+        if (eX > checkRect.right())
             Xcursor = checkRect.right();
-        if (e->y() < checkRect.top())
+        if (eY < checkRect.top())
             Ycursor = checkRect.top();
-        if (e->y() > checkRect.bottom())
+        if (eY > checkRect.bottom())
             Ycursor = checkRect.bottom();
     }
 
@@ -65,7 +68,7 @@ void AVTPlotWidget::mouseMoveEvent(QMouseEvent *e)
     Ycursor -= topPadding();
 
     MousePoint = QPoint(Xcursor, Ycursor);
-    displayToolTip(e->pos(), e->globalPos());
+    displayToolTip(QtCompat::mousePos(e).toPoint(), QtCompat::mouseGlobalPos(e).toPoint());
     update();
 }
 

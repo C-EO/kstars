@@ -396,7 +396,7 @@ bool syncProfile(const QSharedPointer<ProfileInfo> &pi)
     }
 
     QJsonArray sortedList;
-    for (const auto &oneRule : qAsConst(profileScripts))
+    for (const auto &oneRule : std::as_const(profileScripts))
     {
         auto matchingDriver = std::find_if(driverArray.begin(), driverArray.end(), [oneRule](const auto & oneDriver)
         {

@@ -7,10 +7,7 @@
 #pragma once
 
 #include <QDateTime>
-
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QTimeZone>
-#endif
 
 #define J2000          2451545.0    //Julian Date for noon on Jan 1, 2000 (epoch J2000)
 #define B1950          2433282.4235 // Julian date for Jan 0.9235, 1950
@@ -73,12 +70,15 @@ class KStarsDateTime : public QDateTime
 
         /**
              *@short Constructor
-             *Create a KStarsDateTimne based on the specified Date and Time.
+             *Create a KStarsDateTime based on the specified Date and Time.
              *@p _d The QDate to assign
              *@p _t The QTime to assign
-             *@p timespec The desired timespec, UTC by default.
+             *@p timeZone The desired time zone, defaults to UTC.
+             *@note QTimeZone is used for both Qt5 (available since Qt 5.2) and Qt6.
+             *      Use QTimeZone(QTimeZone::systemTimeZoneId()) for local time (Qt5.2+),
+             *      or QTimeZone::systemTimeZone() for Qt5.15+/Qt6.
              */
-        KStarsDateTime(const QDate &_d, const QTime &_t, Qt::TimeSpec timeSpec = Qt::UTC);
+        KStarsDateTime(const QDate &_d, const QTime &_t, const QTimeZone &timeZone = QTimeZone("UTC"));
 
         /**
              *Assign the static_cast<long double> Julian Day value, which includes the time of day

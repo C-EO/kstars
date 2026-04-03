@@ -33,9 +33,9 @@ MilkyWay::MilkyWay(SkyComposite *parent) : LineListIndex(parent, i18n("Milky Way
     //summary();
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    QtConcurrent::run(&MilkyWay::loadContours, this, QString("milkyway.dat"), i18n("Loading Milky Way"));
-    QtConcurrent::run(&MilkyWay::loadContours, this, QString("lmc.dat"), i18n("Loading Large Magellanic Clouds"));
-    QtConcurrent::run(&MilkyWay::loadContours, this, QString("smc.dat"), i18n("Loading Small Magellanic Clouds"));
+    (void)QtConcurrent::run(&MilkyWay::loadContours, this, QString("milkyway.dat"), i18n("Loading Milky Way"));
+    (void)QtConcurrent::run(&MilkyWay::loadContours, this, QString("lmc.dat"), i18n("Loading Large Magellanic Clouds"));
+    (void)QtConcurrent::run(&MilkyWay::loadContours, this, QString("smc.dat"), i18n("Loading Small Magellanic Clouds"));
 #else
     QtConcurrent::run(this, &MilkyWay::loadContours, QString("milkyway.dat"), i18n("Loading Milky Way"));
     QtConcurrent::run(this, &MilkyWay::loadContours, QString("lmc.dat"), i18n("Loading Large Magellanic Clouds"));

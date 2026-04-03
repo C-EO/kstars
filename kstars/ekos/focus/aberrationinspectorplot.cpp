@@ -7,6 +7,7 @@
 #include "aberrationinspectorplot.h"
 #include "curvefit.h"
 #include "klocalizedstring.h"
+#include "qtcompat.h"
 
 namespace Ekos
 {
@@ -84,7 +85,7 @@ AberrationInspectorPlot::AberrationInspectorPlot(QWidget *parent) : QCustomPlot 
 
     connect(this, &QCustomPlot::mouseMove, [this](QMouseEvent * event)
     {
-        double key = xAxis->pixelToCoord(event->localPos().x());
+        double key = xAxis->pixelToCoord(QtCompat::mousePos(event).x());
         if (xAxis->range().contains(key))
         {
             QCPGraph *graph = qobject_cast<QCPGraph *>(plottableAt(event->pos(), false));
@@ -101,7 +102,7 @@ AberrationInspectorPlot::AberrationInspectorPlot(QWidget *parent) : QCustomPlot 
                             double focusPosition = focusPoint[i]->dataMainKey(positionKey);
                             double focusMeasure = focusPoint[i]->dataMainValue(positionKey);
                             QToolTip::showText(
-                                event->globalPos(),
+                                QtCompat::mouseGlobalPos(event).toPoint(),
                                 i18nc("Graphics tooltip; %2 is tile code; %3 is tile name, %4 is Focus Position; %5 is Focus Measure;",
                                       "<style>table { background-color: white;}</style>"
                                       "<font color='%1'><table>"

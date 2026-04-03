@@ -2511,7 +2511,6 @@ bool CurveFitting::minMax2DGaussian(double expected, double minPosition, double 
     double a = m_coefficients[A_IDX];
     double b = m_coefficients[B_IDX];
     double c = m_coefficients[C_IDX];
-    double d = m_coefficients[D_IDX];
 
     // Equation y = f(x) = a + b.exp-((x-c)^2/2d^2)
     // We need to check that the solution found is in the correct form.

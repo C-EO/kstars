@@ -133,7 +133,11 @@ FITSViewer::FITSViewer(QWidget *parent, Mode mode) : KXmlGuiWindow(parent), m_Mo
     action->setIcon(QIcon::fromTheme("document-open"));
 
     action = actionCollection()->addAction("blink");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    actionCollection()->setDefaultShortcut(action, QKeySequence(QKeyCombination(Qt::CTRL | Qt::ALT, Qt::Key_O)));
+#else
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_O | Qt::AltModifier));
+#endif
     action->setText(i18n("Open/Blink Directory"));
     connect(action, &QAction::triggered, this, &FITSViewer::blink);
 
@@ -141,7 +145,11 @@ FITSViewer::FITSViewer(QWidget *parent, Mode mode) : KXmlGuiWindow(parent), m_Mo
     if (m_Mode == Mode::LiveStacking)
     {
         action = actionCollection()->addAction("live_stacker");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        actionCollection()->setDefaultShortcut(action, QKeySequence(QKeyCombination(Qt::CTRL | Qt::SHIFT, Qt::Key_K)));
+#else
         actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_K | Qt::SHIFT));
+#endif
         action->setText(i18n("Live Stacker..."));
         connect(action, &QAction::triggered, this, &FITSViewer::stack);
     }
@@ -293,7 +301,11 @@ FITSViewer::FITSViewer(QWidget *parent, Mode mode) : KXmlGuiWindow(parent), m_Mo
     connect(action, &QAction::triggered, this, &FITSViewer::nextTab);
 
     action = actionCollection()->addAction("previous_tab");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    actionCollection()->setDefaultShortcut(action, QKeySequence(QKeyCombination(Qt::CTRL | Qt::SHIFT, Qt::Key_Tab)));
+#else
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Tab | Qt::ShiftModifier));
+#endif
     action->setText(i18n("Previous Tab"));
     connect(action, &QAction::triggered, this, &FITSViewer::previousTab);
 
@@ -308,12 +320,20 @@ FITSViewer::FITSViewer(QWidget *parent, Mode mode) : KXmlGuiWindow(parent), m_Mo
     connect(action, &QAction::triggered, this, &FITSViewer::previousBlink);
 
     action = actionCollection()->addAction("zoom_all_in");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    actionCollection()->setDefaultShortcut(action, QKeySequence(QKeyCombination(Qt::CTRL | Qt::ALT, Qt::Key_Plus)));
+#else
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Plus | Qt::AltModifier));
+#endif
     action->setText(i18n("Zoom all tabs in"));
     connect(action, &QAction::triggered, this, &FITSViewer::ZoomAllIn);
 
     action = actionCollection()->addAction("zoom_all_out");
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    actionCollection()->setDefaultShortcut(action, QKeySequence(QKeyCombination(Qt::CTRL | Qt::ALT, Qt::Key_Minus)));
+#else
     actionCollection()->setDefaultShortcut(action, QKeySequence(Qt::CTRL | Qt::Key_Minus | Qt::AltModifier));
+#endif
     action->setText(i18n("Zoom all tabs out"));
     connect(action, &QAction::triggered, this, &FITSViewer::ZoomAllOut);
 

@@ -15,6 +15,7 @@
 // Qt version calming
 #include <qtendl.h>
 #include <QToolTip>
+#include "qtcompat.h"
 #include <QFileDialog>
 
 GuideDriftGraph::GuideDriftGraph(QWidget *parent)
@@ -617,7 +618,7 @@ void GuideDriftGraph::updateCorrectionsScaleVisibility()
 
 void GuideDriftGraph::mouseOverLine(QMouseEvent *event)
 {
-    double key = xAxis->pixelToCoord(event->localPos().x());
+    double key = xAxis->pixelToCoord(QtCompat::mousePos(event).x());
 
     if (xAxis->range().contains(key))
     {
@@ -650,7 +651,7 @@ void GuideDriftGraph::mouseOverLine(QMouseEvent *event)
             if(raPulse == 0 && dePulse == 0)
             {
                 QToolTip::showText(
-                    event->globalPos(),
+                    QtCompat::mouseGlobalPos(event).toPoint(),
                     i18nc("Drift graphics tooltip; %1 is local time; %2 is RA deviation; %3 is DE deviation in arcseconds; %4 is the RMS error in arcseconds; %5 is the SNR",
                           "<table>"
                           "<tr><td>LT:   </td><td>%1</td></tr>"
@@ -666,7 +667,7 @@ void GuideDriftGraph::mouseOverLine(QMouseEvent *event)
             else
             {
                 QToolTip::showText(
-                    event->globalPos(),
+                    QtCompat::mouseGlobalPos(event).toPoint(),
                     i18nc("Drift graphics tooltip; %1 is local time; %2 is RA deviation; %3 is DE deviation in arcseconds; %4 is the RMS error in arcseconds; %5 is the SNR; %6 is RA Pulse in ms; %7 is DE Pulse in ms",
                           "<table>"
                           "<tr><td>LT:   </td><td>%1</td></tr>"
@@ -725,7 +726,7 @@ void GuideDriftGraph::mouseOverLine(QMouseEvent *event)
             if(raPulse == 0 && dePulse == 0)
             {
                 QToolTip::showText(
-                    event->globalPos(),
+                    QtCompat::mouseGlobalPos(event).toPoint(),
                     i18nc("Drift graphics tooltip; %1 is local time; %2 is RA deviation; %3 is DE deviation in arcseconds; %4 is the RMS error in arcseconds; %5 is the SNR",
                           "<table>"
                           "<tr><td>LT:   </td><td>%1</td></tr>"
@@ -741,7 +742,7 @@ void GuideDriftGraph::mouseOverLine(QMouseEvent *event)
             else
             {
                 QToolTip::showText(
-                    event->globalPos(),
+                    QtCompat::mouseGlobalPos(event).toPoint(),
                     i18nc("Drift graphics tooltip; %1 is local time; %2 is RA deviation; %3 is DE deviation in arcseconds; %4 is the RMS error in arcseconds; %5 is the SNR; %6 is RA Pulse in ms; %7 is DE Pulse in ms",
                           "<table>"
                           "<tr><td>LT:   </td><td>%1</td></tr>"

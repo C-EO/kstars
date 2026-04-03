@@ -213,7 +213,11 @@ void modCalcGalCoord::processLines(QTextStream &istream)
     //	QTextStream istream(&fIn);
     const QString outputFileName = OutputFileBoxBatch->url().toLocalFile();
     QFile fOut(outputFileName);
-    fOut.open(QIODevice::WriteOnly);
+    if (!fOut.open(QIODevice::WriteOnly))
+    {
+        qWarning() << "Failed to open output file:" << outputFileName;
+        return;
+    }
     QTextStream ostream(&fOut);
 
     QString line;

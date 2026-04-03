@@ -1052,7 +1052,8 @@ int TestEkosHelper::countScriptRuns(Ekos::ScriptTypes scripttype)
         QString logfilename = scriptname;
         logfilename.replace(scriptname.lastIndexOf(".sh"), 3, ".log");
         QFile logfile(logfilename);
-        logfile.open(QIODevice::ReadOnly | QIODevice::Text);
+        if (!logfile.open(QIODevice::ReadOnly | QIODevice::Text))
+            return 0;
         QTextStream in(&logfile);
         QString countstr = in.readLine();
         logfile.close();

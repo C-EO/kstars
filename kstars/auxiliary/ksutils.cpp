@@ -980,7 +980,8 @@ void Logging::UseFile()
 
         // Clear file contents
         QFile file(_filename);
-        file.open(QFile::WriteOnly);
+        if (!file.open(QFile::WriteOnly))
+            qWarning() << "Failed to clear log file:" << _filename;
         file.close();
     }
 

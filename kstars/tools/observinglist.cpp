@@ -8,6 +8,7 @@
 */
 
 #include "observinglist.h"
+#include "qtcompat.h"
 
 #include "config-kstars.h"
 
@@ -1585,7 +1586,7 @@ bool ObservingList::eventFilter(QObject *obj, QEvent *event)
         if (event->type() == QEvent::MouseButtonRelease) // Mouse button release event
         {
             QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
-            QPoint pos(mouseEvent->globalX(), mouseEvent->globalY());
+            QPoint pos(QtCompat::mouseGlobalX(mouseEvent), QtCompat::mouseGlobalY(mouseEvent));
 
             if (mouseEvent->button() == Qt::RightButton)
             {

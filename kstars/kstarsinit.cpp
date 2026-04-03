@@ -157,7 +157,11 @@ void KStars::initActions()
 
     actionCollection()->addAction("blink_directory", this, SLOT(slotBlink()))
             << i18n("Open/Blink Directory") << QIcon::fromTheme("folder-open")
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+            << QKeySequence(QKeyCombination(Qt::CTRL | Qt::ALT, Qt::Key_O));
+#else
             << QKeySequence(Qt::CTRL | Qt::Key_O | Qt::AltModifier);
+#endif
 
     actionCollection()->addAction("live_stacker", this, SLOT(slotStack()))
             << i18n("Live Stacker...") << QIcon::fromTheme("folder-open")

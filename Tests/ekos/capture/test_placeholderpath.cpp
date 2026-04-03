@@ -181,7 +181,7 @@ void TestPlaceholderPath::testSchedulerProcessJobInfo_data()
     {
         QTest::addColumn<QString>(column);
     }
-    parseCSV("testSchedulerProcessJobInfo_data.csv", columns);
+    parseCSV(QFINDTESTDATA("testSchedulerProcessJobInfo_data.csv"), columns);
 
 #endif
 }
@@ -524,7 +524,7 @@ void TestPlaceholderPath::testFlexibleNaming_data()
                               <<
     "^/tmp/kstars/%a_0\\.fits$";
 
-    parseCSV("testFlexibleNaming_data_small.csv", columns);
+    parseCSV(QFINDTESTDATA("testFlexibleNaming_data_small.csv"), columns);
 
 #endif
 }
@@ -755,7 +755,8 @@ void TestPlaceholderPath::testGetCompletedFileIds()
         QString filename = placeholderPath.generateOutputFilename(true, bm, id, ".fits", "");
         QDir path;
         path.mkpath(QFileInfo(filename).dir().path());
-        QFile(filename).open(QIODevice::WriteOnly);
+        QFile file(filename);
+        (void)file.open(QIODevice::WriteOnly);
     }
 
 #endif

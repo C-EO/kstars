@@ -5,6 +5,7 @@
 */
 
 #include "fitshistogramview.h"
+#include "qtcompat.h"
 
 #include "fits_debug.h"
 
@@ -165,7 +166,7 @@ void FITSHistogramView::resizePlot()
 
 void FITSHistogramView::driftMouseOverLine(QMouseEvent * event)
 {
-    double intensity = xAxis->pixelToCoord(event->localPos().x());
+    double intensity = xAxis->pixelToCoord(QtCompat::mousePos(event).x());
 
     uint8_t channels = m_ImageData->channels();
     QVector<double> freq(3, -1);
@@ -197,7 +198,7 @@ void FITSHistogramView::driftMouseOverLine(QMouseEvent * event)
         if (channels == 1 && freq[0] > 0)
         {
             QToolTip::showText(
-                event->globalPos(),
+                QtCompat::mouseGlobalPos(event).toPoint(),
                 i18nc("Histogram tooltip; %1 is intensity; %2 is frequency;",
                       "<table>"
                       "<tr><td>Intensity:   </td><td>%1</td></tr>"
@@ -209,7 +210,7 @@ void FITSHistogramView::driftMouseOverLine(QMouseEvent * event)
         else if (freq[1] > 0)
         {
             QToolTip::showText(
-                event->globalPos(),
+                QtCompat::mouseGlobalPos(event).toPoint(),
                 i18nc("Histogram tooltip; %1 is intensity; %2 is frequency;",
                       "<table>"
                       "<tr><td>Intensity:   </td><td>%1</td></tr>"

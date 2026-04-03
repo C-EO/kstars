@@ -232,7 +232,11 @@ void modCalcPlanets::processLines(QTextStream &istream)
 
     const QString outputFileName = OutputFileBoxBatch->url().toLocalFile();
     QFile fOut(outputFileName);
-    fOut.open(QIODevice::WriteOnly);
+    if (!fOut.open(QIODevice::WriteOnly))
+    {
+        qWarning() << "Failed to open output file:" << outputFileName;
+        return;
+    }
     QTextStream ostream(&fOut);
     bool lineIsValid = true;
 

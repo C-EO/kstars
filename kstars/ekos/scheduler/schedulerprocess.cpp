@@ -571,6 +571,11 @@ void SchedulerProcess::wakeUpScheduler()
                 moduleState()->disablePreemptiveShutdown();
                 // Clear job
                 moduleState()->setActiveJob(nullptr);
+                // Arm weather monitoring so that completeShutdown() enters monitoring
+                // mode (instead of calling stop()) after Ekos/INDI are torn down.
+                // Without this flag, completeShutdown() falls through to stop() and
+                // the scheduler fully dies — unable to auto-restart when weather clears.
+                moduleState()->setWeatherShutdownMonitoring(true);
                 // Proceed to remaining shutdown stages
                 checkShutdownState();
                 return;

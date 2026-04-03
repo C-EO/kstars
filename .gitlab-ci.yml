@@ -31,7 +31,7 @@ include:
 # Override the script for Suse Tumbleweed to avoid building with tests,
 # since ci-utilities/run-ci-build.py turns it on
 
-suse_tumbleweed_qt610:
+suse_tumbleweed_qt611:
   allow_failure: true # Necessary since INDI interface changed
   script:
     - git config --global --add safe.directory $CI_PROJECT_DIR
@@ -58,7 +58,7 @@ windows_qt610:
   rules:
     - !reference [.standard-build-recipes, rules]
   needs:
-    - suse_tumbleweed_qt610 # Wait for a success of the fast job
+    - suse_tumbleweed_qt611 # Wait for a success of the fast job
 
 suse_tumbleweed_qt515:
   variables:
@@ -68,7 +68,7 @@ suse_tumbleweed_qt515:
     LD_LIBRARY_PATH: "$CI_PROJECT_DIR/.local/stellarsolver/lib64:$CI_PROJECT_DIR/.local/stellarsolver/lib:$LD_LIBRARY_PATH"
     PKG_CONFIG_PATH: "$CI_PROJECT_DIR/.local/stellarsolver/lib64/pkgconfig:$CI_PROJECT_DIR/.local/stellarsolver/lib/pkgconfig:$PKG_CONFIG_PATH"
   rules:
-#    - !reference [.standard-build-recipes, rules]
+    #    - !reference [.standard-build-recipes, rules]
     - when: never # DISABLED, since tumbleweed has problems with Qt5
   before_script:
     - git clone https://invent.kde.org/sysadmin/ci-utilities.git --depth=1
@@ -165,14 +165,14 @@ craft_windows_qt6_x86_64: # Extended from /gitlab-templates/craft-windows-x86-64
 craft_macos_qt6_x86_64: # Extended from /gitlab-templates/craft-macos-x86-64-qt6.yml
   timeout: 2h # Signing procedure often exceeds the default 1h
   needs:
-    - suse_tumbleweed_qt610 # we don't have a macos check build
+    - suse_tumbleweed_qt611 # we don't have a macos check build
   rules:
     - !reference [.craft-recipes, rules]
 
 craft_macos_qt6_arm64: # Extended from /gitlab-templates/craft-macos-arm64-qt6.yml
   timeout: 2h # Signing procedure often exceeds the default 1h
   needs:
-    - suse_tumbleweed_qt610 # we don't have a macos check build
+    - suse_tumbleweed_qt611 # we don't have a macos check build
   rules:
     - !reference [.craft-recipes, rules]
 
@@ -193,7 +193,7 @@ microsoftstore_qt6:
 flatpak-amd64:
   timeout: 2h
   needs:
-    - suse_tumbleweed_qt610
+    - suse_tumbleweed_qt611
   rules:
     - !reference [.always-on-scheduled-pipeline, rules]
     - !reference [.publishing-recipes, rules]
@@ -201,7 +201,7 @@ flatpak-amd64:
 flatpak-arm64:
   timeout: 2h
   needs:
-    - suse_tumbleweed_qt610
+    - suse_tumbleweed_qt611
   rules:
     - !reference [.always-on-scheduled-pipeline, rules]
     - !reference [.publishing-recipes, rules]
@@ -258,7 +258,7 @@ ubuntu_qt5:
     name: sternejaeger/kstars-ci:qt5
   allow_failure: true # TODO: REMOVE IF TIMEOUT PROBLEMS ARE FIXED
   needs:
-    - suse_tumbleweed_qt610
+    - suse_tumbleweed_qt611
   script:
     - cd kstars-build
     - cmake -GNinja -DCMAKE_BUILD_TYPE=Release -DCCACHE_SUPPORT=ON -DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_WITH_QT6=OFF ..
@@ -271,7 +271,7 @@ ubuntu_qt6:
     name: sternejaeger/kstars-ci:qt6
   allow_failure: true # TODO: REMOVE WHEN STABLE AGAIN
   needs:
-    - suse_tumbleweed_qt610
+    - suse_tumbleweed_qt611
   rules:
     - when: never # DISABLED, since we use tumbleweed_qt6 for Qt6 compile checks
   script:

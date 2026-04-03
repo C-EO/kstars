@@ -11,6 +11,7 @@
 #include <QPixmap>
 #include <QMouseEvent>
 #include <QPaintEvent>
+#include "qtcompat.h"
 #include <QStandardPaths>
 #include "kspaths.h"
 
@@ -57,8 +58,8 @@ void MapCanvas::setGeometry(const QRect &r)
 void MapCanvas::mousePressEvent(QMouseEvent *e)
 {
     //Determine Lat/Long corresponding to event press
-    int lng = ((e->x() - origin.x()) / xscale);
-    int lat = ((origin.y() - e->y()) / yscale);
+    int lng = ((QtCompat::mouseX(e) - origin.x()) / xscale);
+    int lat = ((origin.y() - QtCompat::mouseY(e)) / yscale);
 
     if (ld)
         ld->findCitiesNear(lng, lat);

@@ -662,8 +662,8 @@ bool ObsListWizard::applyObservableFilter(SkyObject *o, bool doBuildList)
 
     //Check altitude of object every hour from 18:00 to midnight
     //If it's ever above 15 degrees, flag it as visible
-    KStarsDateTime Evening(olw->Date->date(), QTime(18, 0, 0), Qt::LocalTime);
-    KStarsDateTime Midnight(olw->Date->date().addDays(1), QTime(0, 0, 0), Qt::LocalTime);
+    KStarsDateTime Evening(olw->Date->date(), QTime(18, 0, 0), QTimeZone(QTimeZone::systemTimeZoneId()));
+    KStarsDateTime Midnight(olw->Date->date().addDays(1), QTime(0, 0, 0), QTimeZone(QTimeZone::systemTimeZoneId()));
     double minAlt = 15, maxAlt = 90;
 
     // Or use user-selected values, if they're valid

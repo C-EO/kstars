@@ -70,9 +70,9 @@ Weather::Status Weather::status()
     if (!weatherLP)
         return WEATHER_IDLE;
 
-    m_WeatherStatus = static_cast<Status>(weatherLP->getState());
+    m_WeatherStatus = static_cast<Status>(weatherLP.getState());
 
-    return static_cast<Status>(weatherLP->getState());
+    return static_cast<Status>(weatherLP.getState());
 }
 
 int Weather::refreshPeriod()
@@ -82,7 +82,7 @@ int Weather::refreshPeriod()
     if (!updateNP)
         return 0;
 
-    return static_cast<int>(updateNP->at(0)->getValue());
+    return static_cast<int>(updateNP[0].getValue());
 }
 
 void Weather::setRefreshPeriod(int value)
@@ -92,7 +92,7 @@ void Weather::setRefreshPeriod(int value)
     if (!updateNP)
         return;
 
-    updateNP->at(0)->setValue(value);
+    updateNP[0].setValue(value);
     sendNewProperty(updateNP);
 }
 
@@ -100,16 +100,12 @@ bool Weather::refresh()
 {
     auto refreshSP = getSwitch("WEATHER_REFRESH");
 
-    if (refreshSP == nullptr)
+    if (!refreshSP.isValid())
         return false;
 
-    auto refreshSW = refreshSP->findWidgetByName("REFRESH");
 
-    if (refreshSW == nullptr)
-        return false;
-
-    refreshSP->reset();
-    refreshSW->setState(ISS_ON);
+    refreshSP.reset();
+    refreshSP[0].setState(ISS_ON);
     sendNewProperty(refreshSP);
 
     return true;

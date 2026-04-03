@@ -14,7 +14,7 @@
 <RefocusOnMeridianFlip enabled='false'/>
 <Job>
 <Exposure>30</Exposure>
-<Format></Format>
+<Format>Mono</Format>
 <Encoding>FITS</Encoding>
 <Binning>
 <X>1</X>
@@ -27,14 +27,14 @@
 <H>1024</H>
 </Frame>
 <Temperature force='true'>-15</Temperature>
-<Filter>Red</Filter>
+<Filter>L</Filter>
 <Type>Light</Type>
 <Count>3</Count>
 <Delay>0</Delay>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/kstars_tests</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
-<PlaceholderSuffix>0</PlaceholderSuffix>
+<PlaceholderSuffix>1</PlaceholderSuffix>
 <UploadMode>0</UploadMode>
 <Properties>
 </Properties>

@@ -1086,7 +1086,7 @@ void ScriptBuilder::readScript(QTextStream &istream)
             }
 
             //remove leading dbus prefix
-            line = line.mid(line.lastIndexOf(service_name) + service_name.count());
+            line = line.mid(line.lastIndexOf(service_name) + service_name.size());
 
             fn_name = line.left(line.indexOf(' '));
 

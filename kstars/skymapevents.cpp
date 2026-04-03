@@ -7,6 +7,7 @@
 //This file contains Event handlers for the SkyMap class.
 
 #include "skymap.h"
+#include "qtcompat.h"
 
 #include "ksplanetbase.h"
 #include "kspopupmenu.h"
@@ -504,7 +505,7 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
 {
 #if !defined(KSTARS_LITE)
     // Skip touch points
-    if (m_pinchMode || m_tapAndHoldMode || (m_touchMode && e->globalX() == 0 && e->globalY() == 0))
+    if (m_pinchMode || m_tapAndHoldMode || (m_touchMode && QtCompat::mouseGlobalX(e) == 0 && QtCompat::mouseGlobalY(e) == 0))
         return;
 #endif
 
@@ -530,8 +531,8 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
         {
             //Resize the rectangle so that it passes through the cursor position
             QPoint pcenter = ZoomRect.center();
-            int dx         = abs(e->x() - pcenter.x());
-            int dy         = abs(e->y() - pcenter.y());
+            int dx         = abs(QtCompat::mouseX(e) - pcenter.x());
+            int dy         = abs(QtCompat::mouseY(e) - pcenter.y());
             if (dx == 0 || float(dy) / float(dx) > float(height()) / float(width()))
             {
                 //Size rect by height
@@ -569,8 +570,8 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
             const float start_x = rotationStart.x() - width() / 2.0f;
             const float start_y = height() / 2.0f - rotationStart.y();
 
-            const float curr_x = e->pos().x() - width() / 2.0f;
-            const float curr_y = height() / 2.0f - e->pos().y();
+            const float curr_x = QtCompat::mouseX(e) - width() / 2.0f;
+            const float curr_y = height() / 2.0f - QtCompat::mouseY(e);
 
             const dms angle {(std::atan2(curr_y, curr_x) - std::atan2(start_y, start_x)) / dms::DegToRad };
             slotSetSkyRotation((rotationStartAngle - angle).Degrees());
@@ -596,8 +597,8 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
             const float start_x = fovRotationStart.x() - width() / 2.0f;
             const float start_y = height() / 2.0f - fovRotationStart.y();
 
-            const float curr_x = e->pos().x() - width() / 2.0f;
-            const float curr_y = height() / 2.0f - e->pos().y();
+            const float curr_x = QtCompat::mouseX(e) - width() / 2.0f;
+            const float curr_y = height() / 2.0f - QtCompat::mouseY(e);
 
             const dms angle {(std::atan2(curr_y, curr_x) - std::atan2(start_y, start_x)) / dms::DegToRad };
             setExtraFovRotation((fovRotationStartAngle - angle).Degrees());
@@ -605,13 +606,13 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
         }
     }
 
-    if (projector()->unusablePoint(e->pos()))
+    if (projector()->unusablePoint(QtCompat::mousePos(e).toPoint()))
         return; // break if point is unusable
 
     //determine RA, Dec of mouse pointer
-    m_MousePoint = projector()->fromScreen(e->pos(), data);
+    m_MousePoint = projector()->fromScreen(QtCompat::mousePos(e).toPoint(), data);
 
-    double dyPix = 0.5 * height() - e->y();
+    double dyPix = 0.5 * height() - QtCompat::mouseY(e);
     if (midMouseButtonDown) //zoom according to y-offset
     {
         float yoff = dyPix - y0;
@@ -659,7 +660,7 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
                     emit mosaicCenterChanged(dRA, dDec);
 
                     // Update mouse and clicked points.
-                    m_MousePoint = projector()->fromScreen(e->pos(), data);
+                    m_MousePoint = projector()->fromScreen(QtCompat::mousePos(e).toPoint(), data);
                     setClickedPoint(&m_MousePoint);
                     update();
                     return;
@@ -701,7 +702,7 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
         showFocusCoords();
 
         //redetermine RA, Dec of mouse pointer, using new focus
-        m_MousePoint = projector()->fromScreen(e->pos(), data);
+        m_MousePoint = projector()->fromScreen(QtCompat::mousePos(e).toPoint(), data);
         setClickedPoint(&m_MousePoint);
         forceUpdate(); // must be new computed
     }
@@ -800,7 +801,7 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
             && (e->button() == Qt::LeftButton))
     {
         // FOV rotation mode
-        fovRotationStart = e->pos();
+        fovRotationStart = QtCompat::mousePos(e).toPoint();
         fovRotationStartAngle = dms(Options::skyRotation());
         slewing = true;
         setFovRotationMouseCursor();
@@ -814,7 +815,7 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
 
     if ((e->modifiers() & Qt::ControlModifier) && (e->button() == Qt::LeftButton))
     {
-        ZoomRect.moveCenter(e->pos());
+        ZoomRect.moveCenter(QtCompat::mousePos(e).toPoint());
         setZoomMouseCursor();
         update(); //refresh without redrawing skymap
         return;
@@ -823,7 +824,7 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
     if ((e->modifiers() & Qt::ShiftModifier) && (e->button() == Qt::LeftButton))
     {
         // Skymap rotation mode
-        rotationStart = e->pos();
+        rotationStart = QtCompat::mousePos(e).toPoint();
         rotationStartAngle = dms(Options::skyRotation());
         slewing = true;
         setRotationMouseCursor();
@@ -835,12 +836,12 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
     //QTimer::singleShot(500, this, SLOT(setMouseMoveCursor()));
 
     // break if point is unusable
-    if (projector()->unusablePoint(e->pos()))
+    if (projector()->unusablePoint(QtCompat::mousePos(e).toPoint()))
         return;
 
     if (!midMouseButtonDown && e->button() == Qt::MiddleButton)
     {
-        y0                 = 0.5 * height() - e->y(); //record y pixel coordinate for middle-button zooming
+        y0                 = 0.5 * height() - QtCompat::mouseY(e); //record y pixel coordinate for middle-button zooming
         midMouseButtonDown = true;
     }
 
@@ -852,7 +853,7 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
         }
 
         //determine RA, Dec of mouse pointer
-        m_MousePoint = projector()->fromScreen(e->pos(), data);
+        m_MousePoint = projector()->fromScreen(QtCompat::mousePos(e).toPoint(), data);
         setClickedPoint(&m_MousePoint);
 
         //Find object nearest to clickedPoint()
@@ -909,10 +910,10 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
 
 void SkyMap::mouseDoubleClickEvent(QMouseEvent *e)
 {
-    if (e->button() == Qt::LeftButton && !projector()->unusablePoint(e->pos()))
+    if (e->button() == Qt::LeftButton && !projector()->unusablePoint(QtCompat::mousePos(e).toPoint()))
     {
         mouseButtonDown = false;
-        if (e->x() != width() / 2 || e->y() != height() / 2)
+        if (QtCompat::mouseX(e) != width() / 2 || QtCompat::mouseY(e) != height() / 2)
             slotCenter();
     }
 }

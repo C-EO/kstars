@@ -189,10 +189,11 @@ bool DBManager::initialize_db()
         throw std::runtime_error("DBManager not initialized properly, m_db_vesion and "
                                  "m_htmesh_level have to be set.");
 
-    if (!m_db.exec(SqlStatements::create_meta_table).isActive())
+    QSqlQuery create_query{ m_db };
+    if (!create_query.exec(SqlStatements::create_meta_table))
         return false;
 
-    if (!m_db.exec(SqlStatements::create_colors_table).isActive())
+    if (!create_query.exec(SqlStatements::create_colors_table))
         return false;
 
     QSqlQuery meta_query{ m_db };
@@ -204,12 +205,13 @@ bool DBManager::initialize_db()
     if (!meta_query.exec())
         return false;
 
-    return m_db.exec(SqlStatements::create_catalog_list_table).isActive();
+    return create_query.exec(SqlStatements::create_catalog_list_table);
 }
 
 std::tuple<int, int, bool> DBManager::get_db_meta()
 {
-    auto query = m_db.exec(SqlStatements::get_meta);
+    QSqlQuery query{ m_db };
+    query.exec(SqlStatements::get_meta);
 
     if (query.first())
         return { query.value(0).toInt(), query.value(1).toInt(),
@@ -221,8 +223,9 @@ std::tuple<int, int, bool> DBManager::get_db_meta()
 
 std::vector<int> DBManager::get_catalog_ids(bool include_disabled)
 {
-    auto query = m_db.exec(include_disabled ? SqlStatements::get_all_catalog_ids :
-                           SqlStatements::get_catalog_ids);
+    QSqlQuery query{ m_db };
+    query.exec(include_disabled ? SqlStatements::get_all_catalog_ids :
+               SqlStatements::get_catalog_ids);
 
     std::vector<int> ids;
 

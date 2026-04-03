@@ -6,6 +6,7 @@
 */
 
 #include "fitslabel.h"
+#include "qtcompat.h"
 
 #include "config-kstars.h"
 
@@ -95,8 +96,8 @@ void FITSLabel::mouseReleaseEvent(QMouseEvent *e)
 {
     float scale = (view->getCurrentZoom() / ZOOM_DEFAULT);
 
-    double x = round(e->position().x() / scale);
-    double y = round(e->position().y() / scale);
+    double x = round(QtCompat::mouseX(e) / scale);
+    double y = round(QtCompat::mouseY(e) / scale);
 
     m_p2.setX(x);//record second point for selection Rectangle
     m_p2.setY(y);
@@ -156,13 +157,13 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
 
     float scale = (view->getCurrentZoom() / ZOOM_DEFAULT);
 
-    double x = round(e->position().x() / scale);
-    double y = round(e->position().y() / scale);
+    double x = round(QtCompat::mouseX(e) / scale);
+    double y = round(QtCompat::mouseY(e) / scale);
 
     //Panning
     if (e->modifiers() != Qt::ShiftModifier  && view->getCursorMode() == FITSView::dragCursor && mouseButtonDown  )
     {
-        QPoint newPoint = e->globalPosition().toPoint();
+        QPoint newPoint = QtCompat::mouseGlobalPos(e).toPoint();
         int dx          = newPoint.x() - lastMousePoint.x();
         int dy          = newPoint.y() - lastMousePoint.y();
         view->horizontalScrollBar()->setValue(view->horizontalScrollBar()->value() - dx);
@@ -212,8 +213,8 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
         return;
     }
 
-    x = round(e->position().x() / scale);
-    y = round(e->position().y() / scale);
+    x = round(QtCompat::mouseX(e) / scale);
+    y = round(QtCompat::mouseY(e) / scale);
 
     if(QGuiApplication::queryKeyboardModifiers().testFlag(Qt::ControlModifier))
         view->updateMagnifyingGlass(x, y);
@@ -276,7 +277,11 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
 
     if(view->isSelectionRectShown())
     {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        if (roiRB->geometry().contains(e->position().toPoint()))
+#else
         if (roiRB->geometry().contains(e->pos()))
+#endif
             updatePersistentRoiLabel(roiRB->geometry());
     }
 
@@ -300,7 +305,7 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
         {
             if ((std::abs(listObject->x() - x) < 5 / scale) && (std::abs(listObject->y() - y) < 5 / scale))
             {
-                QToolTip::showText(e->globalPosition().toPoint(),
+                QToolTip::showText(QtCompat::mouseGlobalPos(e).toPoint(),
                                    QToolTip::text() + '\n' + listObject->skyObject()->name() + '\n' + listObject->skyObject()->longname(), this);
                 objFound = true;
                 break;
@@ -319,14 +324,14 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
         // Don't i18n away HFR: because the RegExp below checks for HFR: to make sure there aren't duplicate strings added.
         QString hfrStr = QString("HFR: %1").arg(HFR, 4, 'f', 2);
         if (tip.isEmpty() || tip == hfrStr)
-            QToolTip::showText(e->globalPosition().toPoint(), hfrStr, this);
+            QToolTip::showText(QtCompat::mouseGlobalPos(e).toPoint(), hfrStr, this);
         else
         {
             QRegularExpression hfrRegEx("HFR\\: \\d+\\.\\d\\d");
             if (tip.contains(hfrRegEx))
-                QToolTip::showText(e->globalPosition().toPoint(), tip.replace(hfrRegEx, hfrStr), this);
+                QToolTip::showText(QtCompat::mouseGlobalPos(e).toPoint(), tip.replace(hfrRegEx, hfrStr), this);
             else
-                QToolTip::showText(e->globalPosition().toPoint(), QToolTip::text() + '\n' + hfrStr, this);
+                QToolTip::showText(QtCompat::mouseGlobalPos(e).toPoint(), QToolTip::text() + '\n' + hfrStr, this);
         }
     }
 
@@ -346,8 +351,8 @@ void FITSLabel::mousePressEvent(QMouseEvent *e)
 {
     float scale = (view->getCurrentZoom() / ZOOM_DEFAULT);
 
-    double x = round(e->position().x() / scale);
-    double y = round(e->position().y() / scale);
+    double x = round(QtCompat::mouseX(e) / scale);
+    double y = round(QtCompat::mouseY(e) / scale);
 
     m_p1.setX(x);//record first point for selection Rectangle
     m_p1.setY(y);
@@ -365,7 +370,7 @@ void FITSLabel::mousePressEvent(QMouseEvent *e)
     if (view->getCursorMode() == FITSView::dragCursor && !isRoiSelected)
     {
         mouseButtonDown = true;
-        lastMousePoint  = e->globalPosition().toPoint();
+        lastMousePoint  = QtCompat::mouseGlobalPos(e).toPoint();
         view->updateMouseCursor();
     }
     else if (e->buttons() & Qt::LeftButton && view->getCursorMode() == FITSView::scopeCursor)
@@ -425,7 +430,7 @@ void FITSLabel::mousePressEvent(QMouseEvent *e)
                         if (action->text().left(12) == "Attach Label")
                             pmenu->removeAction(action);
                     }
-                    pmenu->popup(e->globalPosition().toPoint());
+                    pmenu->popup(QtCompat::mouseGlobalPos(e).toPoint());
                     KStars::Instance()->map()->setClickedObject(object);
                     break;
                 }
@@ -452,8 +457,8 @@ void FITSLabel::mouseDoubleClickEvent(QMouseEvent *e)
 {
     double x, y;
 
-    x = round(e->x() / (view->getCurrentZoom() / ZOOM_DEFAULT));
-    y = round(e->y() / (view->getCurrentZoom() / ZOOM_DEFAULT));
+    x = round(QtCompat::mouseX(e) / (view->getCurrentZoom() / ZOOM_DEFAULT));
+    y = round(QtCompat::mouseY(e) / (view->getCurrentZoom() / ZOOM_DEFAULT));
 
     x = KSUtils::clamp(x, 1.0, m_Width);
     y = KSUtils::clamp(y, 1.0, m_Height);

@@ -1644,8 +1644,8 @@ int fp_unpack_data_to_data (const char *inputBuffer, size_t inputBufferSize, uns
     int stat = 0, hdutype, extnum, single = 0;
     char *loc, *hduloc = 0, hduname[SZ_STR] = { 0 };
 
-    fits_open_memfile(&infptr, "", READONLY, &inputBuffer, &inputBufferSize, 2880, NULL, &stat);
-    fits_create_memfile(&outfptr, outputBuffer, outputBufferSize, 100000, realloc, &stat);
+    fits_open_memfile(&infptr, "", READONLY, (void **)&inputBuffer, &inputBufferSize, 2880, NULL, &stat);
+    fits_create_memfile(&outfptr, (void **)outputBuffer, outputBufferSize, 100000, realloc, &stat);
 
     if (stat)
     {

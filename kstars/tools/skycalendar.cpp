@@ -92,19 +92,19 @@ void SkyCalendar::slotFillCalendar()
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     if (scUI->checkBox_Mercury->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::MERCURY);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::MERCURY);
     if (scUI->checkBox_Venus->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::VENUS);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::VENUS);
     if (scUI->checkBox_Mars->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::MARS);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::MARS);
     if (scUI->checkBox_Jupiter->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::JUPITER);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::JUPITER);
     if (scUI->checkBox_Saturn->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::SATURN);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::SATURN);
     if (scUI->checkBox_Uranus->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::URANUS);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::URANUS);
     if (scUI->checkBox_Neptune->isChecked())
-        QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::NEPTUNE);
+        (void)QtConcurrent::run(&SkyCalendar::addPlanetEvents, this, KSPlanetBase::NEPTUNE);
 #else
     if (scUI->checkBox_Mercury->isChecked())
         QtConcurrent::run(this, &SkyCalendar::addPlanetEvents, KSPlanetBase::MERCURY);

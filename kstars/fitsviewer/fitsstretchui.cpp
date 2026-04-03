@@ -4,6 +4,7 @@
 */
 
 #include "fitsstretchui.h"
+#include "qtcompat.h"
 #include "fitsview.h"
 #include "fitsdata.h"
 #include "Options.h"
@@ -99,7 +100,7 @@ void FITSStretchUI::onHistoMouseMove(QMouseEvent *event)
     const int numPixels = image->width() * image->height();
     const int histogramSize = image->getHistogramBinCount();
     const int histoBin = std::max(0, std::min(histogramSize - 1,
-                                  static_cast<int>(histoPlot->xAxis->pixelToCoord(event->x()))));
+                                  static_cast<int>(histoPlot->xAxis->pixelToCoord(QtCompat::mouseX(event)))));
 
     QString tip = "";
     if (histoBin >= 0 && histoBin < histogramSize)
@@ -126,7 +127,7 @@ void FITSStretchUI::onHistoMouseMove(QMouseEvent *event)
         }
     }
     if (tip.size() > 0)
-        QToolTip::showText(event->globalPos(), tip, nullptr, QRect(), 10000);
+        QToolTip::showText(QtCompat::mouseGlobalPos(event).toPoint(), tip, nullptr, QRect(), 10000);
 }
 
 void FITSStretchUI::setupHistoSlider()

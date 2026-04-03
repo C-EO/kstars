@@ -544,7 +544,14 @@ void AberrationInspector::updateTable()
         abInsTable->setCellWidget(rowCounter, 7, checkBoxWidget);
         // The tableWidget cellChanged event doesn't fire when the checkbox state is changed.
         // Seems like the only way to get the event is to connect up directly to the checkbox
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        connect(checkBox, &QCheckBox::checkStateChanged, this, [this](Qt::CheckState state)
+        {
+            onStateChanged(state);
+        });
+#else
         connect(checkBox, &QCheckBox::stateChanged, this, &AberrationInspector::onStateChanged);
+#endif
     }
     connect(abInsTable, &AbInsTableWidget::cellChanged, this, &AberrationInspector::onCellChanged);
 

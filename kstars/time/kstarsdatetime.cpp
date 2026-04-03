@@ -66,9 +66,8 @@ KStarsDateTime::KStarsDateTime(const QDateTime &qdt) : QDateTime(qdt) //, QDateT
     //setUtcOffset(qdt.utcOffset());
 }
 
-KStarsDateTime::KStarsDateTime(const QDate &_d, const QTime &_t, Qt::TimeSpec timeSpec)
-    : //QDateTime( _d, _t, QDateTime::Spec::UTC() )
-      QDateTime(_d, _t, timeSpec)
+KStarsDateTime::KStarsDateTime(const QDate &_d, const QTime &_t, const QTimeZone &timeZone)
+    : QDateTime(_d, _t, timeZone)
 {
     //don't call setDJD() because we don't need to compute the time; just set DJD directly
     long double jdFrac = (_t.hour() - 12 + (_t.minute() + (_t.second() + _t.msec() / 1000.) / 60.) / 60.) / 24.;
@@ -180,7 +179,8 @@ KStarsDateTime KStarsDateTime::addSecs(double s) const
 
 void KStarsDateTime::setTime(const QTime &_t)
 {
-    KStarsDateTime _dt(date(), _t, timeSpec());
+    // timeZone() returns the appropriate QTimeZone for both Qt5 (Qt5.2+) and Qt6
+    KStarsDateTime _dt(date(), _t, timeZone());
     setDJD(_dt.djd());
 }
 

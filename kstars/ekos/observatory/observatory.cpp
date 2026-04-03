@@ -13,6 +13,7 @@
 #include "ekos_observatory_debug.h"
 
 #include <QToolTip>
+#include "qtcompat.h"
 #include <QButtonGroup>
 
 namespace Ekos
@@ -761,7 +762,7 @@ void Observatory::updateSensorData(const QJsonArray &data)
 
 void Observatory::mouseOverLine(QMouseEvent *event)
 {
-    double key = sensorGraphs->xAxis->pixelToCoord(event->localPos().x());
+    double key = sensorGraphs->xAxis->pixelToCoord(QtCompat::mousePos(event).x());
     QCPGraph *graph = qobject_cast<QCPGraph *>(sensorGraphs->plottableAt(event->pos(), false));
 
     if (graph)
@@ -771,7 +772,7 @@ void Observatory::mouseOverLine(QMouseEvent *event)
         QDateTime when = QDateTime::fromSecsSinceEpoch(sensorGraphs->graph(0)->dataMainKey(index));
 
         QToolTip::showText(
-            event->globalPos(),
+            QtCompat::mouseGlobalPos(event).toPoint(),
             i18n("%1 = %2 @ %3", selectedSensorID, value, when.toString("hh:mm")));
     }
     else

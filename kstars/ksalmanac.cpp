@@ -31,7 +31,7 @@ KSAlmanac::KSAlmanac(const KStarsDateTime &midnight, const GeoLocation *g)
     geo = g ? g : KStarsData::Instance()->geo();
 
     dt = midnight.isValid() ?
-         midnight.timeSpec() == Qt::LocalTime ?
+         midnight.timeZone() != QTimeZone::utc() ?
          geo->LTtoUT(midnight) :
          midnight :
          KStarsData::Instance()->ut();

@@ -201,7 +201,7 @@ KStarsDateTime GeoLocation::UTtoLT(const KStarsDateTime &ut) const
     // 2017-08-11 (Jasem): setUtcOffset is deprecated
     //lt.setUtcOffset(int(3600. * TZ()));
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    lt.setTimeZone(QTimeZone::systemTimeZone());
+    lt.setTimeZone(QTimeZone(static_cast<int>(TZ() * 3600)));
 #else
     lt.setTimeSpec(Qt::LocalTime);
 #endif

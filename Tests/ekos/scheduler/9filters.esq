@@ -14,7 +14,7 @@
 <RefocusOnMeridianFlip enabled='false'/>
 <Job>
 <Exposure>60</Exposure>
-<Format></Format>
+<Format>Mono</Format>
 <Encoding>FITS</Encoding>
 <Binning>
 <X>1</X>
@@ -34,7 +34,7 @@
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
-<PlaceholderSuffix>0</PlaceholderSuffix>
+<PlaceholderSuffix>1</PlaceholderSuffix>
 <UploadMode>0</UploadMode>
 <Properties>
 </Properties>
@@ -66,6 +66,7 @@
 <Type>Light</Type>
 <Count>20</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -101,6 +102,7 @@
 <Type>Light</Type>
 <Count>7</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -136,6 +138,7 @@
 <Type>Light</Type>
 <Count>5</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -177,6 +180,7 @@
 <Type>Light</Type>
 <Count>7</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -212,6 +216,7 @@
 <Type>Light</Type>
 <Count>7</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -247,6 +252,7 @@
 <Type>Light</Type>
 <Count>2</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -282,6 +288,7 @@
 <Type>Light</Type>
 <Count>6</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>
@@ -317,6 +324,7 @@
 <Type>Light</Type>
 <Count>6</Count>
 <Delay>0</Delay>
+<TargetName></TargetName>
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/EasternVeil</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%F/%t_%T_%F_%e_%D</PlaceholderFormat>

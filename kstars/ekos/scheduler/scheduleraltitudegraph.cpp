@@ -173,11 +173,11 @@ void SchedulerAltitudeGraph::plot()
     // Normally start the plot 1 hour before dusk and end it an hour after dawn.
     int startOffset = 1;
 
-    KStarsDateTime midnight = KStarsDateTime(now.date().addDays(1), QTime(0, 1), Qt::LocalTime);
+    KStarsDateTime midnight = KStarsDateTime(now.date().addDays(1), QTime(0, 1), QTimeZone(QTimeZone::systemTimeZoneId()));
     // Midnight not quite right if it's in the wee hours before dawn.
     // Then we use the midnight before now.
     if (now.secsTo(nextDawn) < now.secsTo(nextDusk) && now.date() == nextDawn.date())
-        midnight = KStarsDateTime(now.date(), QTime(0, 1), Qt::LocalTime);
+        midnight = KStarsDateTime(now.date(), QTime(0, 1), QTimeZone(QTimeZone::systemTimeZoneId()));
     else if (now < nextDusk.addSecs(-startOffset * 3600))
     {
         // It's in the (day)time between dawn and dusk. If there is a job scheduled to run

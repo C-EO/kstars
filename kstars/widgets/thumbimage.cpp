@@ -10,6 +10,8 @@
 #include <QPainter>
 #include <QPen>
 
+#include "qtcompat.h"
+
 QPixmap ThumbImage::croppedImage()
 {
     return Image->copy(*CropRect);
@@ -59,7 +61,7 @@ void ThumbImage::paintEvent(QPaintEvent *)
 
 void ThumbImage::mousePressEvent(QMouseEvent *e)
 {
-    const QPoint pos = e->position().toPoint();
+    const QPoint pos = QtCompat::mousePos(e).toPoint();
     if (e->button() == Qt::LeftButton && CropRect->contains(pos))
     {
         bMouseButtonDown = true;
@@ -109,7 +111,7 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
 {
     if (bMouseButtonDown)
     {
-        const QPoint pos = e->position().toPoint();
+        const QPoint pos = QtCompat::mousePos(e).toPoint();
         //If a corner was grabbed, we are resizing the box
         if (bTopLeftGrab)
         {

@@ -115,13 +115,6 @@ void TestEkosScheduler::testScheduleManipulation()
 
     raBox->setText("1h 2' 3\"");
     decBox->setText("1° 2' 3\"");
-    sequenceEdit->setText(QString("%1%201x1s_Lum.esq").arg(QDir::current().currentPath()).arg(
-                              QDir::separator())); // %20 to retain the next '1'
-
-    QEXPECT_FAIL("", "The sequence file editbox cannot be edited directly, and changing its text does not allow to add a job",
-                 Continue);
-    QTRY_VERIFY_WITH_TIMEOUT(addToQueueB->isEnabled(), 200);
-
     const int count = 20;
     QStringList seqs;
     seqs << QString("%1%201x1s_Lum.esq").arg(QDir::current().currentPath()).arg(

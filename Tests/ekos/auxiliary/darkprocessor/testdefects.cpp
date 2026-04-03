@@ -94,7 +94,7 @@ void TestDefects::basicTest()
     processor->normalizeDefects(map, defectiveData, 0, 0);
 
     // Verify that the buffer was indeed updated and fixed
-    for (const auto &onePixel : qAsConst(hot))
+    for (const auto &onePixel : std::as_const(hot))
     {
         const int value = onePixel.first + onePixel.second * defectiveData->width();
         QVERIFY(buffer[value] < 100);

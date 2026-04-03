@@ -26,7 +26,8 @@ KSDssDownloader::KSDssDownloader(QObject *parent) : QObject(parent)
                         << "poss1_red"
                         << "quickv"
                         << "poss2ukstu_ir";
-    m_TempFile.open();
+    if (!m_TempFile.open())
+        qWarning() << "Failed to create temporary file";
 }
 
 KSDssDownloader::KSDssDownloader(const SkyPoint *const p, const QString &destFileName,
@@ -47,7 +48,8 @@ KSDssDownloader::KSDssDownloader(const SkyPoint *const p, const QString &destFil
                         << "poss1_red"
                         << "quickv"
                         << "poss2ukstu_ir";
-    m_TempFile.open();
+    if (!m_TempFile.open())
+        qWarning() << "Failed to create temporary file";
     connect(this, &KSDssDownloader::downloadComplete, slotDownloadReady);
     startDownload(p, destFileName);
 }
@@ -251,7 +253,13 @@ void KSDssDownloader::downloadError(const QString &errorString)
 
 void KSDssDownloader::singleDownloadFinished()
 {
-    m_TempFile.open();
+    if (!m_TempFile.open())
+    {
+        qWarning() << "Failed to open temporary file";
+        emit downloadComplete(false);
+        downloadJob->deleteLater();
+        return;
+    }
     m_TempFile.write(downloadJob->downloadedData());
     m_TempFile.close();
     downloadJob->deleteLater();
@@ -281,7 +289,14 @@ void KSDssDownloader::downloadAttemptFinished()
     }
     else
     {
-        m_TempFile.open();
+        if (!m_TempFile.open())
+        {
+            qWarning() << "Failed to open temporary file";
+            emit downloadComplete(false);
+            deleteLater();
+            downloadJob->deleteLater();
+            return;
+        }
         m_TempFile.write(downloadJob->downloadedData());
         m_TempFile.close();
         downloadJob->deleteLater();

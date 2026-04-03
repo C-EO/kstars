@@ -104,7 +104,11 @@ bool cgmath::setGuiderParameters(double guider_aperture)
 void cgmath::createGuideLog()
 {
     logFile.close();
-    logFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    if (!logFile.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        qCWarning(KSTARS_EKOS_GUIDE) << "Failed to open guide log file:" << logFile.fileName() << logFile.errorString();
+        return;
+    }
     QTextStream out(&logFile);
 
     out << "Guiding rate,x15 arcsec/sec: " << Qt::endl;

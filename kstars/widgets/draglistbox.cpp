@@ -13,6 +13,7 @@
 #include <QDropEvent>
 #include <QMimeData>
 #include <QMouseEvent>
+#include "qtcompat.h"
 
 DragListBox::DragListBox(QWidget *parent, const char *name) : QListWidget(parent)
 {
@@ -69,14 +70,14 @@ void DragListBox::dropEvent(QDropEvent *evt)
         //need to insert the item, because FieldPool already has a persistent Ignore item.
         if (!(text == i18n("Ignore") && QString(evt->source()->objectName()) == "FieldList" && evt->source() != this))
         {
-            QListWidgetItem *lwi = itemAt(evt->pos());
-            if (lwi == nullptr && evt->pos().y() > visualItemRect(item(count() - 1)).bottom())
+            QListWidgetItem *lwi = itemAt(QtCompat::dropPos(evt));
+            if (lwi == nullptr && QtCompat::dropPos(evt).y() > visualItemRect(item(count() - 1)).bottom())
             {
                 addItem(text);
             }
             else
             {
-                int i = row(itemAt(evt->pos()));
+                int i = row(itemAt(QtCompat::dropPos(evt)));
                 insertItem(i, text);
             }
         }

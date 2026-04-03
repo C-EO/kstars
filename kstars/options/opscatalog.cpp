@@ -48,8 +48,13 @@ OpsCatalog::OpsCatalog() : QFrame(KStars::Instance())
     connect(kcfg_DSOMinZoomFactor, &QSlider::valueChanged, this, [&] { isDirty = true; });
 
     kcfg_ShowUnknownMagObjects->setChecked(Options::showUnknownMagObjects());
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(kcfg_ShowUnknownMagObjects, &QCheckBox::checkStateChanged, this,
+            [&] { isDirty = true; });
+#else
     connect(kcfg_ShowUnknownMagObjects, &QCheckBox::stateChanged, this,
             [&] { isDirty = true; });
+#endif
 
     //disable star-related widgets if not showing stars
     if (!kcfg_ShowStars->isChecked())

@@ -16,6 +16,7 @@
 #include <QMouseEvent>
 #include <QFontMetrics>
 #include <QLocale>
+#include "qtcompat.h"
 
 const int InfoBoxWidget::padX = 6;
 const int InfoBoxWidget::padY = 2;
@@ -206,7 +207,7 @@ void InfoBoxWidget::mouseMoveEvent(QMouseEvent *event)
 {
     m_grabbed = true;
     // X axis
-    int newX = x() + event->x();
+    int newX = x() + QtCompat::mouseX(event);
     int maxX = parentWidget()->width() - width();
     if (newX > maxX)
     {
@@ -220,7 +221,7 @@ void InfoBoxWidget::mouseMoveEvent(QMouseEvent *event)
         m_anchor &= ~AnchorRight;
     }
     // Y axis
-    int newY = y() + event->y();
+    int newY = y() + QtCompat::mouseY(event);
     int maxY = parentWidget()->height() - height();
     if (newY > maxY)
     {

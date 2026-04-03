@@ -5,6 +5,7 @@
 */
 
 #include "platesolve.h"
+#include "qtcompat.h"
 #include "ui_platesolve.h"
 
 #include "auxiliary/kspaths.h"
@@ -589,7 +590,7 @@ void PlateSolve::overlayImage()
     const int scaleWidth = std::min((int) m_imageData->width(), Options::imageOverlayMaxDimension());
     QImage *processedImg = new QImage;
     if (mirror)
-        *processedImg = tempImage->mirrored(true, false).scaledToWidth(scaleWidth); // It's reflected horizontally.
+        *processedImg = QtCompat::mirrored(*tempImage, true, false).scaledToWidth(scaleWidth); // It's reflected horizontally.
     else
         *processedImg = tempImage->scaledToWidth(scaleWidth);
     overlay.m_Img.reset(processedImg);
@@ -726,10 +727,17 @@ void PlateSolve::initSolverUI()
         setProfileIndex(kcfg_FitsSolverModule->currentIndex(), index);
     });
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(kcfg_FitsSolverUseScale, &QCheckBox::checkStateChanged, this, [](Qt::CheckState state)
+    {
+        Options::setFitsSolverUseScale(static_cast<int>(state));
+    });
+#else
     connect(kcfg_FitsSolverUseScale, &QCheckBox::stateChanged, this, [](int state)
     {
         Options::setFitsSolverUseScale(state);
     });
+#endif
     connect(kcfg_FitsSolverScale, QOverload<double>::of(&QDoubleSpinBox::valueChanged), [](double value)
     {
         Options::setFitsSolverScale(value);
@@ -739,10 +747,17 @@ void PlateSolve::initSolverUI()
         Options::setFitsSolverImageScaleUnits(index);
     });
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(kcfg_FitsSolverUsePosition, &QCheckBox::checkStateChanged, this, [](Qt::CheckState state)
+    {
+        Options::setFitsSolverUsePosition(static_cast<int>(state));
+    });
+#else
     connect(kcfg_FitsSolverUsePosition, &QCheckBox::stateChanged, this, [](int state)
     {
         Options::setFitsSolverUsePosition(state);
     });
+#endif
 
     connect(kcfg_FitsSolverRadius, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this, [](double value)
     {

@@ -10,7 +10,7 @@
 
 namespace
 {
-bool isTestDataLocation(QStandardPaths::StandardLocation location)
+[[maybe_unused]] static bool isTestDataLocation(QStandardPaths::StandardLocation location)
 {
     switch (location)
     {

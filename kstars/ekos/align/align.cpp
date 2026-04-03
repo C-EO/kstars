@@ -63,6 +63,7 @@
 #include <basedevice.h>
 #include <indicom.h>
 #include <memory>
+#include "qtcompat.h"
 #include <algorithm>
 
 //Qt Includes
@@ -338,7 +339,7 @@ void Align::resizeEvent(QResizeEvent *event)
 
 void Align::handlePointTooltip(QMouseEvent *event)
 {
-    QCPAbstractItem *item = alignPlot->itemAt(event->localPos());
+    QCPAbstractItem *item = alignPlot->itemAt(QtCompat::mousePos(event));
     if (item)
     {
         QCPItemText *label = qobject_cast<QCPItemText *>(item);
@@ -349,7 +350,7 @@ void Align::handlePointTooltip(QMouseEvent *event)
 
             if (point < 0)
                 return;
-            QToolTip::showText(event->globalPos(),
+            QToolTip::showText(QtCompat::mouseGlobalPos(event).toPoint(),
                                i18n("<table>"
                  "<tr>"
                  "<th colspan=\"2\">Object %1: %2</th>"

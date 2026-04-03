@@ -11,6 +11,7 @@
 #include "../testhelpers.h"
 #include <QDate>
 #include <QDateTime>
+#include <QTimeZone>
 #include <KActionCollection>
 
 #define KTRY_SHOW_KSTARS() do { \
@@ -39,7 +40,7 @@ class TestKStarsStartup : public QObject
             bool clockRunning;
 
             _InitialConditions():
-                dateTime(QDate(2020, 01, 01), QTime(23, 0, 0), Qt::UTC),
+                dateTime(QDate(2020, 01, 01), QTime(23, 0, 0), QTimeZone::utc()),
                 clockRunning(false) {};
         }
         const m_InitialConditions;

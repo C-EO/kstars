@@ -423,7 +423,11 @@ class Analyze : public QWidget, public Ui::Analyze
         // Manages the statsPlot cursor.
         void setStatsCursor(double time);
         void removeStatsCursor();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        void keepCurrent(Qt::CheckState state);
+#else
         void keepCurrent(int state);
+#endif
 
         // Restore checkboxs from Options.
         void initStatsCheckboxes();

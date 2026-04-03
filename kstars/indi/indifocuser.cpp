@@ -247,8 +247,7 @@ bool Focuser::setMaxPosition(uint32_t steps)
 
 bool Focuser::hasBacklash()
 {
-    auto focusProp = getNumber("FOCUS_BACKLASH_STEPS");
-    return (focusProp != nullptr);
+    return getNumber("FOCUS_BACKLASH_STEPS");
 }
 
 bool Focuser::setBacklash(int32_t steps)
@@ -260,7 +259,7 @@ bool Focuser::setBacklash(int32_t steps)
     // Make sure focus compensation is enabled.
     if (steps != 0 && focusToggle[0].getState() != ISS_ON)
     {
-        focusToggle->reset();
+        focusToggle.reset();
         focusToggle[0].setState(ISS_ON);
         focusToggle[1].setState(ISS_OFF);
         sendNewProperty(focusToggle);
@@ -276,7 +275,7 @@ bool Focuser::setBacklash(int32_t steps)
     // If steps = 0, disable compensation
     if (steps == 0 && focusToggle[0].getState() == ISS_ON)
     {
-        focusToggle->reset();
+        focusToggle.reset();
         focusToggle[0].setState(ISS_OFF);
         focusToggle[1].setState(ISS_ON);
         sendNewProperty(focusToggle);

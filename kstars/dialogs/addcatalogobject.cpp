@@ -71,7 +71,11 @@ AddCatalogObject::AddCatalogObject(QWidget *parent, const CatalogObject &obj)
             ui->magUnknown->isChecked() ? NaN::f : static_cast<float>(ui->mag->value()));
     };
     connect(ui->mag, QOverload<double>::of(&QDoubleSpinBox::valueChanged), updateMag);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(ui->magUnknown, &QCheckBox::checkStateChanged, updateMag);
+#else
     connect(ui->magUnknown, &QCheckBox::stateChanged, updateMag);
+#endif
 
     connect(ui->maj, QOverload<double>::of(&QDoubleSpinBox::valueChanged),
             [&](const auto value)

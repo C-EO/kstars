@@ -59,7 +59,7 @@ bool DefectMap::load(const QString &filename)
     m_HotPixels.clear();
     m_ColdPixels.clear();
 
-    for (const auto &onePixel : qAsConst(hot))
+    for (const auto &onePixel : std::as_const(hot))
     {
         QJsonObject oneObject = onePixel.toObject();
         m_HotPixels.insert(BadPixel(oneObject["x"].toInt(), oneObject["y"].toInt(), oneObject["value"].toDouble()));
@@ -67,7 +67,7 @@ bool DefectMap::load(const QString &filename)
 
     m_HotPixelsCount = m_HotPixels.size();
 
-    for (const auto &onePixel : qAsConst(cold))
+    for (const auto &onePixel : std::as_const(cold))
     {
         QJsonObject oneObject = onePixel.toObject();
         m_ColdPixels.insert(BadPixel(oneObject["x"].toInt(), oneObject["y"].toInt(), oneObject["value"].toDouble()));

@@ -53,7 +53,11 @@ bool ServerManager::start()
 
     if (serverProcess.get() == nullptr)
     {
-        serverBuffer.open();
+        if (!serverBuffer.open())
+        {
+            qCCritical(KSTARS_INDI) << "Failed to open temporary server buffer:" << serverBuffer.errorString();
+            return false;
+        }
 
         serverProcess.reset(new QProcess(this));
 #ifdef Q_OS_MACOS
@@ -607,7 +611,11 @@ QString ServerManager::getLogBuffer()
     serverBuffer.flush();
     serverBuffer.close();
 
-    serverBuffer.open();
+    if (!serverBuffer.open())
+    {
+        qCWarning(KSTARS_INDI) << "Failed to reopen server buffer for reading:" << serverBuffer.errorString();
+        return QString();
+    }
     return serverBuffer.readAll();
 }
 

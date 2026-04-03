@@ -950,22 +950,21 @@ void Focus::getAbsFocusPosition()
 
     if (absMove)
     {
-        const auto &it = absMove->at(0);
-        currentPosition = static_cast<int>(it->getValue());
-        absMotionMax    = it->getMax();
-        absMotionMin    = it->getMin();
+        currentPosition = static_cast<int>(absMove[0].getValue());
+        absMotionMax    = absMove[0].getMax();
+        absMotionMin    = absMove[0].getMin();
 
-        absTicksSpin->setMinimum(it->getMin());
-        absTicksSpin->setMaximum(it->getMax());
-        absTicksSpin->setSingleStep(it->getStep());
+        absTicksSpin->setMinimum(absMove[0].getMin());
+        absTicksSpin->setMaximum(absMove[0].getMax());
+        absTicksSpin->setSingleStep(absMove[0].getStep());
 
         // Restrict the travel if needed
-        double const travel = std::abs(it->getMax() - it->getMin());
+        double const travel = std::abs(absMove[0].getMax() - absMove[0].getMin());
         m_OpsFocusMechanics->focusMaxTravel->setMaximum(travel);;
 
         absTicksLabel->setText(QString::number(currentPosition));
 
-        m_OpsFocusMechanics->focusTicks->setMaximum(it->getMax() / 2);
+        m_OpsFocusMechanics->focusTicks->setMaximum(absMove[0].getMax() / 2);
     }
 }
 
@@ -6680,8 +6679,15 @@ void Focus::initConnections()
     // CFZ Panel
     connect(m_CFZUI->resetToOTB, &QPushButton::clicked, this, &Ekos::Focus::resetCFZToOT);
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    connect(m_CFZUI->focusCFZDisplayVCurve, &QCheckBox::checkStateChanged, this, [this](Qt::CheckState)
+    {
+        calcCFZ();
+    });
+#else
     connect(m_CFZUI->focusCFZDisplayVCurve, static_cast<void (QCheckBox::*)(int)>(&QCheckBox::stateChanged), this,
             &Ekos::Focus::calcCFZ);
+#endif
 
     connect(m_CFZUI->focusCFZAlgorithm, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this,
             &Ekos::Focus::calcCFZ);
@@ -8098,13 +8104,13 @@ void Focus::refreshOpticalTrain(const int id)
         }
         else
         {
-            auto np = nvp->findWidgetByName("CCD_PIXEL_SIZE_X");
+            auto np = nvp.findWidgetByName("CCD_PIXEL_SIZE_X");
             if (np)
                 m_CcdPixelSizeX = np->getValue();
-            np = nvp->findWidgetByName("CCD_MAX_X");
+            np = nvp.findWidgetByName("CCD_MAX_X");
             if (np)
                 m_CcdWidth = np->getValue();
-            np = nvp->findWidgetByName("CCD_MAX_Y");
+            np = nvp.findWidgetByName("CCD_MAX_Y");
             if (np)
                 m_CcdHeight = np->getValue();
         }

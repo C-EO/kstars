@@ -277,7 +277,11 @@ void modCalcDayLength::slotRunBatch()
 void modCalcDayLength::processLines(QTextStream &istream)
 {
     QFile fOut(OutputFileBatch->url().toLocalFile());
-    fOut.open(QIODevice::WriteOnly);
+    if (!fOut.open(QIODevice::WriteOnly))
+    {
+        qWarning() << "Failed to open output file:" << fOut.fileName();
+        return;
+    }
     QTextStream ostream(&fOut);
 
     //Write header
@@ -339,7 +343,11 @@ void modCalcDayLength::processLines(QTextStream &istream)
 void modCalcDayLength::slotViewBatch()
 {
     QFile fOut(OutputFileBatch->url().toLocalFile());
-    fOut.open(QIODevice::ReadOnly);
+    if (!fOut.open(QIODevice::ReadOnly))
+    {
+        qWarning() << "Failed to open output file for viewing:" << fOut.fileName();
+        return;
+    }
     QTextStream istream(&fOut);
     QStringList text;
 

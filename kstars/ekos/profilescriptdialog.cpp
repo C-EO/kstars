@@ -131,7 +131,7 @@ void ProfileScriptDialog::parseSettings(const QByteArray &settings)
 
     m_ProfileScripts = doc.array();
 
-    for (const auto &oneRule : qAsConst(m_ProfileScripts))
+    for (const auto &oneRule : std::as_const(m_ProfileScripts))
         addJSONRule(oneRule.toObject());
 }
 
