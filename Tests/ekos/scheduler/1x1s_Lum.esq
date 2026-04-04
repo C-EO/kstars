@@ -34,7 +34,7 @@
 <GuideDitherPerJob>0</GuideDitherPerJob>
 <FITSDirectory>/var/tmp/kstars_tests</FITSDirectory>
 <PlaceholderFormat>/%t/%T/%t_%T_</PlaceholderFormat>
-<PlaceholderSuffix>1</PlaceholderSuffix>
+<PlaceholderSuffix>3</PlaceholderSuffix>
 <UploadMode>0</UploadMode>
 <Properties>
 </Properties>
