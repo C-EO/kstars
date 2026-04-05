@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkonq trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-04 02:09+0000\n"
+"POT-Creation-Date: 2026-04-05 02:05+0000\n"
 "PO-Revision-Date: 2008-12-25 22:33-0500\n"
 "Last-Translator: Manu S Madhav <manusmad@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -602,7 +602,7 @@ msgstr "വേണ്ട"
 #: ekos/align/opsastrometryindexfiles.cpp:652
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
-#: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
+#: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:36
 #: ekos/manager.cpp:1540 ekos/manager.cpp:1555 ekos/manager.cpp:1571
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:409
@@ -2131,7 +2131,7 @@ msgstr "നക്ഷത്രങ്ങള്‍"
 #: data/qml/mount/mountbox.qml:1073 ekos/align/polaralignmentassistant.cpp:28
 #: ekos/analyze/analyze.cpp:3512 ekos/auxiliary/buildfilteroffsets.cpp:153
 #: ekos/auxiliary/darklibrary.cpp:47 ekos/auxiliary/ledstatuswidget.cpp:19
-#: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:25
+#: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:36
 #: ekos/ekos.h:20 ekos/ekos.h:71 ekos/ekos.h:118 ekos/ekos.h:138
 #: ekos/ekos.h:161 ekos/ekos.h:198 ekos/guide/guidestatewidget.ui:38
 #: ekos/manager.cpp:1065 ekos/manager/guidemanager.cpp:135
@@ -10625,7 +10625,7 @@ msgid "Select input file"
 msgstr "തുടങ്ങാന്‍ തിരഞ്ഞെടുത്ത് പുറത്ത് കടക്കുക."
 
 #: ekos/analyze/analyze.cpp:663
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:232
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:243
 #, fuzzy, kde-format
 msgid "All Files (*)"
 msgstr "ഒരു അറ തെരഞ്ഞെടുക്കുക"
@@ -10694,7 +10694,7 @@ msgid ""
 msgstr ""
 
 #: ekos/analyze/analyze.cpp:3514 ekos/auxiliary/ledstatuswidget.cpp:78
-#: ekos/capture/sequencejob.cpp:25 ekos/ekos.h:21 ekos/ekos.h:72
+#: ekos/capture/sequencejob.cpp:36 ekos/ekos.h:21 ekos/ekos.h:72
 #: ekos/ekos.h:119 ekos/ekos.h:139 ekos/ekos.h:199
 #: ekos/scheduler/scheduler.cpp:1815
 #, fuzzy, kde-format
@@ -17435,13 +17435,13 @@ msgstr "ആവൃത്തി:"
 msgid "<comment>"
 msgstr "കമന്റ്"
 
-#: ekos/capture/sequencejob.cpp:25 ekos/ekos.h:71 ekos/ekos.h:119
+#: ekos/capture/sequencejob.cpp:36 ekos/ekos.h:71 ekos/ekos.h:119
 #: ekos/ekos.h:139
 #, fuzzy, kde-format
 msgid "In Progress"
 msgstr "ഗാനത്തിന്റെ മുന്നേറ്റം"
 
-#: ekos/capture/sequencejob.cpp:26 ekos/ekos.h:75 ekos/ekos.h:118
+#: ekos/capture/sequencejob.cpp:37 ekos/ekos.h:75 ekos/ekos.h:118
 #: ekos/ekos.h:138 ekos/scheduler/scheduler.cpp:1814
 #, fuzzy, kde-format
 msgid "Complete"
@@ -29528,32 +29528,32 @@ msgstr "ഗണനി"
 msgid "Device"
 msgstr "ഉപകരണം"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:31
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:42
 #, fuzzy, kde-format
 msgid "Customize Parameters"
 msgstr "ഇന്‍പുട്ട് ഡിവൈസുകള്‍"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:97
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:108
 #, fuzzy, kde-format
 msgid "Device: %1"
 msgstr "<b>ഉപകരണം</b>"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:225
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:236
 #, fuzzy, kde-format
 msgid "Browse..."
 msgstr "_ഫയലുകള്‍ പരതുക"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:230
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:241
 #, fuzzy, kde-format
 msgid "Select File"
 msgstr "ഒരു അറ തെരഞ്ഞെടുക്കുക"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:314
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:325
 #, fuzzy, kde-format
 msgid "Invalid Parameters"
 msgstr "ഇന്‍പുട്ട് ഡിവൈസുകള്‍"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:325
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:336
 #, kde-format
 msgid "No template specified"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-04 02:09+0000\n"
+"POT-Creation-Date: 2026-04-05 02:05+0000\n"
 "PO-Revision-Date: 2013-11-16 05:16+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -625,7 +625,7 @@ msgstr "Айну"
 #: ekos/align/opsastrometryindexfiles.cpp:652
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
-#: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
+#: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:36
 #: ekos/manager.cpp:1540 ekos/manager.cpp:1555 ekos/manager.cpp:1571
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:409
@@ -2149,7 +2149,7 @@ msgstr "Күй-жайы"
 #: data/qml/mount/mountbox.qml:1073 ekos/align/polaralignmentassistant.cpp:28
 #: ekos/analyze/analyze.cpp:3512 ekos/auxiliary/buildfilteroffsets.cpp:153
 #: ekos/auxiliary/darklibrary.cpp:47 ekos/auxiliary/ledstatuswidget.cpp:19
-#: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:25
+#: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:36
 #: ekos/ekos.h:20 ekos/ekos.h:71 ekos/ekos.h:118 ekos/ekos.h:138
 #: ekos/ekos.h:161 ekos/ekos.h:198 ekos/guide/guidestatewidget.ui:38
 #: ekos/manager.cpp:1065 ekos/manager/guidemanager.cpp:135
@@ -11256,7 +11256,7 @@ msgid "Select input file"
 msgstr "Кіріс файлдағы өрістерді таңдау"
 
 #: ekos/analyze/analyze.cpp:663
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:232
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:243
 #, fuzzy, kde-format
 #| msgid "Select Filenames"
 msgid "All Files (*)"
@@ -11328,7 +11328,7 @@ msgid ""
 msgstr ""
 
 #: ekos/analyze/analyze.cpp:3514 ekos/auxiliary/ledstatuswidget.cpp:78
-#: ekos/capture/sequencejob.cpp:25 ekos/ekos.h:21 ekos/ekos.h:72
+#: ekos/capture/sequencejob.cpp:36 ekos/ekos.h:21 ekos/ekos.h:72
 #: ekos/ekos.h:119 ekos/ekos.h:139 ekos/ekos.h:199
 #: ekos/scheduler/scheduler.cpp:1815
 #, kde-format
@@ -18634,14 +18634,14 @@ msgstr "Жиілігі:"
 msgid "<comment>"
 msgstr "Түсініктемесі"
 
-#: ekos/capture/sequencejob.cpp:25 ekos/ekos.h:71 ekos/ekos.h:119
+#: ekos/capture/sequencejob.cpp:36 ekos/ekos.h:71 ekos/ekos.h:119
 #: ekos/ekos.h:139
 #, fuzzy, kde-format
 #| msgid "In progress"
 msgid "In Progress"
 msgstr "Барысында"
 
-#: ekos/capture/sequencejob.cpp:26 ekos/ekos.h:75 ekos/ekos.h:118
+#: ekos/capture/sequencejob.cpp:37 ekos/ekos.h:75 ekos/ekos.h:118
 #: ekos/ekos.h:138 ekos/scheduler/scheduler.cpp:1814
 #, kde-format
 msgid "Complete"
@@ -32159,37 +32159,37 @@ msgstr "Биіктік қатесін түзеу"
 msgid "Device"
 msgstr "Құрылғы"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:31
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:42
 #, fuzzy, kde-format
 #| msgid "Input Parameters"
 msgid "Customize Parameters"
 msgstr "Кіріс параметрлері"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:97
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:108
 #, fuzzy, kde-format
 #| msgid "Device:"
 msgid "Device: %1"
 msgstr "Құрылғы:"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:225
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:236
 #, fuzzy, kde-format
 #| msgid "Browse Tree"
 msgid "Browse..."
 msgstr "Бұтақты ақтару"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:230
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:241
 #, fuzzy, kde-format
 #| msgid "Select Filenames"
 msgid "Select File"
 msgstr "Файл атауларын таңдау"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:314
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:325
 #, fuzzy, kde-format
 #| msgid "Input Parameters"
 msgid "Invalid Parameters"
 msgstr "Кіріс параметрлері"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:325
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:336
 #, kde-format
 msgid "No template specified"
 msgstr ""

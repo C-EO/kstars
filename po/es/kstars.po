@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-04 02:09+0000\n"
+"POT-Creation-Date: 2026-04-05 02:05+0000\n"
 "PO-Revision-Date: 2026-04-02 11:40+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -587,7 +587,7 @@ msgstr "Cancelar"
 #: ekos/align/opsastrometryindexfiles.cpp:652
 #: ekos/align/opsastrometryindexfiles.cpp:722
 #: ekos/align/opsastrometryindexfiles.cpp:743
-#: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:25
+#: ekos/align/opsastrometryindexfiles.cpp:753 ekos/capture/sequencejob.cpp:36
 #: ekos/manager.cpp:1540 ekos/manager.cpp:1555 ekos/manager.cpp:1571
 #: ekos/scheduler/scheduler.cpp:1816
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:409
@@ -2070,7 +2070,7 @@ msgstr "Estado:"
 #: data/qml/mount/mountbox.qml:1073 ekos/align/polaralignmentassistant.cpp:28
 #: ekos/analyze/analyze.cpp:3512 ekos/auxiliary/buildfilteroffsets.cpp:153
 #: ekos/auxiliary/darklibrary.cpp:47 ekos/auxiliary/ledstatuswidget.cpp:19
-#: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:25
+#: ekos/auxiliary/ledstatuswidget.cpp:27 ekos/capture/sequencejob.cpp:36
 #: ekos/ekos.h:20 ekos/ekos.h:71 ekos/ekos.h:118 ekos/ekos.h:138
 #: ekos/ekos.h:161 ekos/ekos.h:198 ekos/guide/guidestatewidget.ui:38
 #: ekos/manager.cpp:1065 ekos/manager/guidemanager.cpp:135
@@ -11030,7 +11030,7 @@ msgid "Select input file"
 msgstr "Seleccionar el archivo de entrada"
 
 #: ekos/analyze/analyze.cpp:663
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:232
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:243
 #, kde-format
 msgid "All Files (*)"
 msgstr "Todos los archivos (*)"
@@ -11104,7 +11104,7 @@ msgstr ""
 "detectarán las estrellas de las imágenes que capture."
 
 #: ekos/analyze/analyze.cpp:3514 ekos/auxiliary/ledstatuswidget.cpp:78
-#: ekos/capture/sequencejob.cpp:25 ekos/ekos.h:21 ekos/ekos.h:72
+#: ekos/capture/sequencejob.cpp:36 ekos/ekos.h:21 ekos/ekos.h:72
 #: ekos/ekos.h:119 ekos/ekos.h:139 ekos/ekos.h:199
 #: ekos/scheduler/scheduler.cpp:1815
 #, kde-format
@@ -18327,13 +18327,13 @@ msgstr "Editor de secuencia de captura"
 msgid "<comment>"
 msgstr "<comentario>"
 
-#: ekos/capture/sequencejob.cpp:25 ekos/ekos.h:71 ekos/ekos.h:119
+#: ekos/capture/sequencejob.cpp:36 ekos/ekos.h:71 ekos/ekos.h:119
 #: ekos/ekos.h:139
 #, kde-format
 msgid "In Progress"
 msgstr "En curso"
 
-#: ekos/capture/sequencejob.cpp:26 ekos/ekos.h:75 ekos/ekos.h:118
+#: ekos/capture/sequencejob.cpp:37 ekos/ekos.h:75 ekos/ekos.h:118
 #: ekos/ekos.h:138 ekos/scheduler/scheduler.cpp:1814
 #, kde-format
 msgid "Complete"
@@ -31526,32 +31526,32 @@ msgstr "Correlacionador"
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:31
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:42
 #, kde-format
 msgid "Customize Parameters"
 msgstr "Personalizar parámetros"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:97
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:108
 #, kde-format
 msgid "Device: %1"
 msgstr "Dispositivo: %1"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:225
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:236
 #, kde-format
 msgid "Browse..."
 msgstr "Explorar…"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:230
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:241
 #, kde-format
 msgid "Select File"
 msgstr "Seleccionar archivo"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:314
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:325
 #, kde-format
 msgid "Invalid Parameters"
 msgstr "Parámetros no válidos"
 
-#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:325
+#: ekos/scheduler/taskqueue/ui/parametercustomizationdialog.cpp:336
 #, kde-format
 msgid "No template specified"
 msgstr "No se ha indicado ninguna plantilla"
