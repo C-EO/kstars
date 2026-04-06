@@ -71267,7 +71267,7 @@ msgstr "فهرس المريخ الكامل"
 #, kde-kuit-format
 msgctxt "Image/info menu item (should be translated)"
 msgid "Welcome to Mars!"
-msgstr "مرحبا إلى المريخ!"
+msgstr "مرحبًا إلى المريخ!"
 
 #: kstars_i18n.cpp:4567
 #, kde-kuit-format
@@ -74317,7 +74317,7 @@ msgstr "إعدادات HiPS ..."
 #: kstarsinit.cpp:903
 #, kde-format
 msgid " Welcome to KStars "
-msgstr "مرحبا إلى «نجوم‌ك»"
+msgstr "مرحبًا إلى «نجوم‌ك»"
 
 #: kstarsinit.cpp:1000 kstarsliteinit.cpp:65 skymap.cpp:410 skymaplite.cpp:324
 #: widgets/infoboxwidget.cpp:112
@@ -75451,7 +75451,7 @@ msgstr "ش.غرب"
 #: kstarssplash.cpp:18
 #, kde-format
 msgid "Welcome to KStars. Please stand by while loading..."
-msgstr "مرحبا بك إلى «نجوم‌ك». الرجاء الانتظار خلال التحميل..."
+msgstr "مرحبًا بك إلى «نجوم‌ك». الرجاء الانتظار خلال التحميل..."
 
 #: libindi_strings.cpp:1
 #, kde-kuit-format
@@ -82478,7 +82478,7 @@ msgstr "صدر إلى الملف..."
 #: printing/pwizwelcome.ui:83
 #, kde-format
 msgid "Welcome to the KStars Printing Wizard"
-msgstr "مرحباً في مرشد الطباعة لبرنامج «نجوم‌ك»"
+msgstr "مرحبًا في مرشد الطباعة لبرنامج «نجوم‌ك»"
 
 #. i18n: ectx: property (text), widget (QLabel, stepText)
 #: printing/pwizwelcome.ui:107
@@ -88567,7 +88567,7 @@ msgid ""
 "to get started by selecting which object types you would like to be present "
 "in your observing list.</p></body></html>"
 msgstr ""
-"<html><head></head><body><p>مرحباً في مرشد تجهيز قائمة الرصد</p><p></p><p>من "
+"<html><head></head><body><p>مرحبًا في مرشد تجهيز قائمة الرصد</p><p></p><p>من "
 "خلال هذه الأداة يمكنك بناء قائمة رصد بفرز القائمة بطرق متعددة. أولاً، يمكنك "
 "اختيار الأجرام حسب  <span style=\" font-weight:600;\">النوع</span>. ثم "
 "تستطيع اختيار الأجرام الموجودة في <span style=\" font-weight:600;\">بقعة "
