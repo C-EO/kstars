@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-05 02:05+0000\n"
-"PO-Revision-Date: 2026-03-24 17:26+0100\n"
+"PO-Revision-Date: 2026-04-03 19:50+0200\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -6552,10 +6552,9 @@ msgstr "Il bersaglio è all'interno di %1 gradi di coordinate della soluzione."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2342
-#, fuzzy, kde-format
-#| msgid "%1 position angle is %2 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "L'angolo di posizione %1 è di %2 gradi."
+msgstr "L'angolo di posizione della fotocamera è di %1 gradi."
 
 #: ekos/align/align.cpp:2378 ekos/align/align.cpp:2518
 #, kde-format
@@ -6618,16 +6617,14 @@ msgstr ""
 "informazioni dettagliate sull'insuccesso."
 
 #: ekos/align/align.cpp:2619
-#, fuzzy, kde-format
-#| msgid "Setting %1 position angle to %2 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "Impostazione dell'angolo di posizione %1 a %2 gradi ..."
+msgstr "Impostazione dell'angolo di posizione della fotocamera a %1 gradi ..."
 
 #: ekos/align/align.cpp:2629
-#, fuzzy, kde-format
-#| msgid "%1 position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
-msgstr "L'angolo di posizione %1 è in un intervallo accettabile."
+msgstr "L'angolo di posizione della fotocamera è in un intervallo accettabile."
 
 #: ekos/align/align.cpp:2643
 #, kde-format
@@ -6757,10 +6754,9 @@ msgid "Load Image"
 msgstr "Carica immagine"
 
 #: ekos/align/align.cpp:3427
-#, fuzzy, kde-format
-#| msgid "%1: World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
-msgstr "%1: il sistema di coordinate mondiali (WCS) è abilitato."
+msgstr "Il sistema di coordinate mondiali (WCS) è abilitato."
 
 #: ekos/align/align.cpp:3432
 #, kde-format
@@ -24051,12 +24047,7 @@ msgstr "Rimuovi gioco DEC nella calibrazione guida"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been re-installed.</p></"
-#| "body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -24066,12 +24057,11 @@ msgstr ""
 "<html><head/><body><p>Se l'opzione è attivata, ricalibra sempre quando la "
 "guida è avviata. Spesso non è necessaria quando è stata raggiunta in "
 "precedenza una buona qualità di calibrazione e la fotocamera della guida non "
-"è stata reinstallata.</p></body></html>"
+"è stata ruotata o reinstallata.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset guide calibration after each mount slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr ""
 "Ripristina la calibrazione della guida dopo ciascuna rotazione della "
@@ -24079,11 +24069,7 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This even "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -24091,15 +24077,16 @@ msgid ""
 "above must be unchecked for this to be attempted.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Memorizza e tenta di riutilizzare le calibrazioni. "
-"Funziona anche sui lati opposti del meridiano se lo stato di puntamento può "
-"essere determinato automaticamente dalla tua montatura.</p></body></html>"
+"Funziona solo sui lati opposti del meridiano se lo stato di puntamento può "
+"essere determinato automaticamente dalla tua montatura. Per tentare questa "
+"operazione, l'opzione \"Ripristina la guide alla rotazione\" sopra deve "
+"essere disattivata.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible"
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
-msgstr "Memorizza e riutilizza la calibrazione della guida quando possibile"
+msgstr "Memorizza e riutilizza la calibrazione della guida quando possibile."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:405
@@ -31233,16 +31220,16 @@ msgid "Safety monitor initialized with connection string: %1"
 msgstr "Monitor della sicurezza inizializzato con stringa di connessione: %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4758
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Abilita esecuzione coda di avvio"
+msgstr ""
+"Si è verificato un errore sconosciuto durante l'esecuzione della coda di "
+"avvio."
 
 #: ekos/scheduler/schedulerprocess.cpp:4761
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "Coda di avvio non riuscita: %1"
+msgstr "Coda di avvio non riuscita"
 
 #: ekos/scheduler/schedulerprocess.cpp:4762
 #, kde-format
@@ -31254,6 +31241,12 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"La coda di avvio del pianificatore non si è avviata:\n"
+"\n"
+"%1\n"
+"\n"
+"Il pianificatore è stato interrotto. Controlla i dettagli dell'errore nel "
+"registro e correggi il problema prima di farlo ripartire."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -31950,10 +31943,9 @@ msgid "Pause"
 msgstr "Pausa"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Avanzamento"
+msgstr "Azzera avanzamento"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32011,6 +32003,7 @@ msgstr ""
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
 msgstr ""
+"Azzeramento della coda - tutte le operazioni impostate alla modalità sospesa"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format
@@ -33748,10 +33741,9 @@ msgid "Object major coordinate size in arcsmins"
 msgstr "Dimensione delle coordinate principali dell'oggetto in minuti d'arco"
 
 #: fitsviewer/fitstab.cpp:929
-#, fuzzy, kde-format
-#| msgid "RA"
+#, kde-format
 msgid "RAM"
-msgstr "AR"
+msgstr "RAM"
 
 #: fitsviewer/fitstab.cpp:1308 fitsviewer/fitstab.cpp:1453
 #, kde-format
@@ -43085,10 +43077,9 @@ msgstr "Moltiplicatore dell'angolo di posizione"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Angolo di posizione:"
+msgstr "Scostamento dell'angolo di posizione"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
