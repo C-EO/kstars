@@ -287,9 +287,9 @@ Manager::Manager(QWidget * parent) : QDialog(parent), m_networkManager(this)
     connect(dialog->button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &Ekos::Manager::updateDebugInterfaces);
 
     // Profiles
-    connect(addProfileB, &QPushButton::clicked, this, &Ekos::Manager::addProfile);
-    connect(editProfileB, &QPushButton::clicked, this, &Ekos::Manager::editProfile);
-    connect(deleteProfileB, &QPushButton::clicked, this, &Ekos::Manager::deleteProfile);
+    connect(addProfileB, &QPushButton::clicked, this, qOverload<>(&Ekos::Manager::addProfile));
+    connect(editProfileB, &QPushButton::clicked, this, qOverload<>(&Ekos::Manager::editProfile));
+    connect(deleteProfileB, &QPushButton::clicked, this, qOverload<>(&Ekos::Manager::deleteProfile));
     connect(profileCombo, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::currentTextChanged), this,
             [ = ](const QString & text)
     {
@@ -2972,6 +2972,26 @@ QJsonObject Manager::getNamedProfile(const QString &name)
     }
 
     return QJsonObject();
+}
+
+void Manager::addProfile(const QString &profileJSON)
+{
+    addNamedProfile(QJsonDocument::fromJson(profileJSON.toUtf8()).object());
+}
+
+void Manager::editProfile(const QString &profileJSON)
+{
+    editNamedProfile(QJsonDocument::fromJson(profileJSON.toUtf8()).object());
+}
+
+void Manager::deleteProfile(const QString &name)
+{
+    deleteNamedProfile(name);
+}
+
+QString Manager::getProfile(const QString &name)
+{
+    return QJsonDocument(getNamedProfile(name)).toJson(QJsonDocument::Compact);
 }
 
 QStringList Manager::getProfiles()

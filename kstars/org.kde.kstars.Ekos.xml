@@ -30,6 +30,22 @@
       <arg name="profileName" type="s" direction="in"/>
       <arg type="b" direction="out"/>
     </method>
+    <method name="addProfile">
+      <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+      <arg name="profileJSON" type="s" direction="in"/>
+    </method>
+    <method name="editProfile">
+      <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+      <arg name="profileJSON" type="s" direction="in"/>
+    </method>
+    <method name="deleteProfile">
+      <annotation name="org.freedesktop.DBus.Method.NoReply" value="true"/>
+      <arg name="name" type="s" direction="in"/>
+    </method>
+    <method name="getProfile">
+      <arg name="name" type="s" direction="in"/>
+      <arg type="s" direction="out"/>
+    </method>
     <method name="setEkosLiveConnected">
         <arg name="enabled" type="b" direction="in"/>
     </method>

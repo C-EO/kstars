@@ -167,32 +167,29 @@ class Manager : public QDialog, public Ui::Manager
         void activateModule(const QString &name, bool popup = false);
 
         /**
-         * @brief addProfile Add a new profile to the database.
-         * @param profileInfo Collection of profile parameters to include the following:
-         * 1. name: Profile name
-         * 2. auto_connect: True of False for Autoconnect?
-         * 3. Mode: "local" or "remote"
-         * 4. remote_host: Optional. remote host (default localhost)
-         * 5. remote_port: Optional. remote port (default 7624)
-         * 6. guiding: 0 for "Internal", 1 for "PHD2", or 2 for "LinGuider"
-         * 7. remote_guiding_host: Optional. remote host for guider application (default localhost)
-         * 8. remote_guide_port: Optional. remote port for guider application.
-         * 9. use_web_manager: True or False?
-         * 10. web_manager_port. Optional. INDI Web Manager port (default 8624)
-         * 12. primary_scope: ID of primary scope to use. This is the ID from OAL::Scope list in the database.
-         * 13. guide_scope: ID of guide scope to use. This is the ID from OAL::Scope list in the database.
-         * 14. mount: Mount driver label (default --).
-         * 15. ccd: CCD driver label (default --).
-         * 16. guider: Guider driver label (default --).
-         * 17. focuser: Focuser driver label (default --).
-         * 18. filter: Filter Wheel driver label (default --).
-         * 19. ao: Adaptive Optics driver label (default --).
-         * 20. dome: Dome driver label (default --).
-         * 21. Weather: Weather station driver label (default --).
-         * 22. aux1: aux1 driver label (default --).
-         * 23. aux2: aux2 driver label (default --).
-         * 24. aux3: aux3 driver label (default --).
-         * 25. aux4: aux4 driver label (default --).
+         * @brief addNamedProfile Add a new profile to the database.
+         * @param profileInfo Collection of profile parameters:
+         * - name: Profile name (required)
+         * - auto_connect: true or false for Auto-connect (default true)
+         * - port_selector: true or false for Port Selector (default false)
+         * - mode: "local" or "remote" (default "local")
+         * - remote_host: Remote host, only for remote mode (default "localhost")
+         * - remote_port: Remote port, only for remote mode (default "7624")
+         * - guiding: 0 for Internal, 1 for PHD2, 2 for LinGuider (default 0)
+         * - remote_guiding_host: External guider host (default "localhost")
+         * - remote_guiding_port: External guider port (default "4400")
+         * - use_web_manager: true or false for INDI Web Manager (default false)
+         * - web_manager_port: INDI Web Manager port (default 8624)
+         * - primary_scope: ID of primary scope from OAL::Scope database list
+         * - guide_scope: ID of guide scope from OAL::Scope database list
+         * - remote: Comma-separated list of remote drivers in "driver\@host:port" format
+         * - driver_source: Driver source, "system" or custom path (default "system")
+         * - drivers: Preferred format. Either:
+         *     * An array of driver labels: ["Telescope Simulator", "CCD Simulator", ...]
+         *     * An object keyed by device family: {"Telescopes": ["Telescope Simulator"], "CCDs": ["CCD Simulator"]}
+         *
+         * @note The legacy per-role keys (mount, ccd, guider, focuser, filter, ao, dome, weather, aux1..aux4)
+         *       are still accepted as a fallback but are deprecated. Use the "drivers" array instead.
          */
         void addNamedProfile(const QJsonObject &profileInfo);
 
@@ -233,6 +230,35 @@ class Manager : public QDialog, public Ui::Manager
          * @return List of device profiles
          */
         Q_SCRIPTABLE QStringList getProfiles();
+
+        /**
+         * DBUS interface function.
+         * @brief addProfile Add a new equipment profile from a JSON string.
+         * @param profileJSON JSON-encoded string with profile details. See addNamedProfile for the list of supported fields.
+         */
+        Q_SCRIPTABLE Q_NOREPLY void addProfile(const QString &profileJSON);
+
+        /**
+         * DBUS interface function.
+         * @brief editProfile Edit an existing equipment profile from a JSON string.
+         * @param profileJSON JSON-encoded string with profile details. Must include the "name" field to identify the profile.
+         */
+        Q_SCRIPTABLE Q_NOREPLY void editProfile(const QString &profileJSON);
+
+        /**
+         * DBUS interface function.
+         * @brief deleteProfile Delete an existing equipment profile by name.
+         * @param name Profile name. The "Simulators" profile and any currently running profile cannot be deleted.
+         */
+        Q_SCRIPTABLE Q_NOREPLY void deleteProfile(const QString &name);
+
+        /**
+         * DBUS interface function.
+         * @brief getProfile Get the details of a named equipment profile as a JSON string.
+         * @param name Profile name.
+         * @return JSON-encoded string of profile details, or an empty string if not found.
+         */
+        Q_SCRIPTABLE QString getProfile(const QString &name);
 
         /** @}*/
 
