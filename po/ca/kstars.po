@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-11 02:07+0000\n"
-"PO-Revision-Date: 2026-04-02 11:30+0200\n"
+"PO-Revision-Date: 2026-04-11 09:18+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -6625,6 +6625,8 @@ msgstr ""
 #, kde-format
 msgid "PA difference ~%1°, image is flipped. Preserving rotator angle."
 msgstr ""
+"La diferència d'AP és ~%1°, la imatge s'inverteix. Es manté l'angle del "
+"rotor."
 
 #: ekos/align/align.cpp:2636
 #, kde-format
