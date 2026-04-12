@@ -245,7 +245,9 @@ flatpak-arm64:
     - add-apt-repository --remove ppa:mutlaqja/ppa
     - add-apt-repository ppa:mutlaqja/ppa
     - apt update
-    - apt -y --no-install-recommends install libindi1 libindi-dev libindi-data indi-bin xplanet gsc phd2 libstellarsolver libstellarsolver-dev libcurl4-openssl-dev
+    - pkgs="libindi1 libindi-dev libindi-data indi-bin xplanet gsc phd2 libstellarsolver libstellarsolver-dev libcurl4-openssl-dev"
+    - existing=$(apt-cache pkgnames | grep -xFf <(printf '%s\n' $pkgs))
+    - if [ -n "$existing" ]; then apt -y --no-install-recommends install $existing; fi
     - mkdir -p kstars-build
   after_script:
     - ccache -s

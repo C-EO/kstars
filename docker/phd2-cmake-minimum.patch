@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f10d0f24..d2111648 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -34,7 +34,7 @@ else()
+   # If the system gtest is not available (especially Windows and Mac
+   # builds) gtest is incorporated using FetchContent which requires
+   # cmake 3.24
+-  cmake_minimum_required(VERSION 3.24)
++  cmake_minimum_required(VERSION 3.22)
+ endif()
+ 
+ # this must come before any enable_language() or project()
