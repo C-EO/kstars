@@ -16,6 +16,7 @@
 #include "indi/indipac.h"
 
 #include <QElapsedTimer>
+#include <limits>
 
 class AlignView;
 class QProgressIndicator;
@@ -313,5 +314,21 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
         bool m_CorrectionTimerStarted { false };
         // Elapsed-time tracker to enforce the correction timeout.
         QElapsedTimer m_CorrectionTimer;
+        // Stored errors from the previous correction iteration, used by Auto Change Direction logic.
+        // m_HasPrevCorrectionErrors becomes true after the first correction is sent.
+        bool m_HasPrevCorrectionErrors { false };
+        double m_PrevAzError  { 0.0 };
+        double m_PrevAltError { 0.0 };
+        // Direction-reversal may only be applied once per axis per session to prevent oscillation.
+        bool m_AzDirectionFlipped  { false };
+        bool m_AltDirectionFlipped { false };
+        // Set to true when an error increase is detected and we are waiting for a confirmation
+        // re-solve (no correction sent) before committing to a direction flip.
+        bool m_ConfirmationPending { false };
+        // No-improvement tracking: if total error fails to beat m_BestTotalError for this
+        // many consecutive iterations, the process is aborted.
+        double m_BestTotalError     { std::numeric_limits<double>::max() };
+        int    m_NoImprovementCount { 0 };
+        static constexpr int PAH_MAX_NO_IMPROVEMENT { 3 };
 };
 }

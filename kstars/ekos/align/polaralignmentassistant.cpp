@@ -78,6 +78,14 @@ PolarAlignmentAssistant::PolarAlignmentAssistant(Align *parent, const QSharedPoi
     // done button for manual slewing during polar alignment:
     connect(PAHManualDone, &QPushButton::clicked, this, &Ekos::PolarAlignmentAssistant::setPAHSlewDone);
 
+    // When the main Align "Stop" button fires an abort, make sure the PAH process is also
+    // cleanly stopped and all hardware (mount, PAC, solver) receives its abort command.
+    connect(m_AlignInstance, &Align::newStatus, this, [this](Ekos::AlignState state)
+    {
+        if (state == Ekos::ALIGN_ABORTED && m_PAHStage != PAH_IDLE)
+            stopPAHProcess();
+    });
+
     hemisphere = KStarsData::Instance()->geo()->lat()->Degrees() > 0 ? NORTH_HEMISPHERE : SOUTH_HEMISPHERE;
 
     label_PAHOrigErrorAz->setText("Az: ");
@@ -840,8 +848,16 @@ void PolarAlignmentAssistant::stopPAHProcess()
     qCInfo(KSTARS_EKOS_ALIGN) << "Stopping Polar Alignment Assistant process...";
 
 
-    if (m_CurrentTelescope && m_CurrentTelescope->isInMotion())
+    if (m_CurrentTelescope  && m_CurrentTelescope->isInMotion())
         m_CurrentTelescope->abort();
+
+    // Abort any in-progress PAC correction.
+    if (m_PAC)
+        m_PAC->abortCorrection();
+
+    // Stop the PAH's own internal plate-solve refresh solver if it is running.
+    if (m_Solver)
+        m_Solver->abort();
 
     setPAHStage(PAH_IDLE);
     polarAlignWidget->updatePAHStage(m_PAHStage);
@@ -1068,10 +1084,27 @@ void PolarAlignmentAssistant::startPAHRefreshProcess()
     refreshIteration = 0;
     imageNumber = 0;
     m_NumHealpixFailures = 0;
+    // During refresh the user is actively turning altitude/azimuth knobs, so the
+    // telescope's pointing shifts between captures.  The healpix cell recorded from
+    // the 3rd PAH capture may no longer contain the new field centre, causing the
+    // first two solves to fail (see MAX_NUM_HEALPIX_FAILURES logic in solverDone).
+    // Reset to -1 so prepareSolver() uses setIndexFolderPaths() (all index files)
+    // from the very first refresh attempt.  Once a refresh solve succeeds the
+    // correct healpix is re-populated automatically via getSolutionHealpix().
+    m_IndexToUse   = -1;
+    m_HealpixToUse = -1;
 
     // Reset automatic PAC correction state for new refresh session.
-    m_CorrectionTimerStarted = false;
-    m_AutoCorrectionActive = false;
+    m_CorrectionTimerStarted  = false;
+    m_AutoCorrectionActive    = false;
+    m_HasPrevCorrectionErrors = false;
+    m_PrevAzError             = 0.0;
+    m_PrevAltError            = 0.0;
+    m_AzDirectionFlipped      = false;
+    m_AltDirectionFlipped     = false;
+    m_ConfirmationPending     = false;
+    m_BestTotalError          = std::numeric_limits<double>::max();
+    m_NoImprovementCount      = 0;
 
     setPAHStage(PAH_REFRESH);
     polarAlignWidget->updatePAHStage(m_PAHStage);
@@ -1401,13 +1434,132 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
         return;
     }
 
+    // Determine corrected errors (direction may be flipped).
+    double correctedAzError  = azError;
+    double correctedAltError = altError;
+
+    // -----------------------------------------------------------------------
+    // CONFIRMATION PATH
+    // A confirmation re-solve was triggered last iteration because an axis
+    // error increased. We now check whether the increase is real (confirmed)
+    // or was just measurement noise (not confirmed). No correction was sent
+    // during the confirmation capture, so we intentionally skip the
+    // no-improvement counter here — the mount hasn't moved.
+    // -----------------------------------------------------------------------
+    if (m_ConfirmationPending)
+    {
+        m_ConfirmationPending = false;
+
+        if (Options::pAHAutoChangeDirection())
+        {
+            // Compare against the same m_Prev* values stored before the confirmation solve.
+            if (std::fabs(azError) > std::fabs(m_PrevAzError) && !m_AzDirectionFlipped)
+            {
+                correctedAzError     = -azError;
+                m_AzDirectionFlipped = true;
+                emit newLog(i18n("PAC: Az error increase confirmed (%1' → %2') – reversing Az direction.",
+                                 QString::number(m_PrevAzError * 60.0, 'f', 1),
+                                 QString::number(azError       * 60.0, 'f', 1)));
+            }
+            else
+            {
+                emit newLog(i18n("PAC: Az error increase not confirmed (likely noise) – keeping original direction."));
+            }
+
+            if (std::fabs(altError) > std::fabs(m_PrevAltError) && !m_AltDirectionFlipped)
+            {
+                correctedAltError     = -altError;
+                m_AltDirectionFlipped = true;
+                emit newLog(i18n("PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction.",
+                                 QString::number(m_PrevAltError * 60.0, 'f', 1),
+                                 QString::number(altError       * 60.0, 'f', 1)));
+            }
+            else
+            {
+                emit newLog(i18n("PAC: Alt error increase not confirmed (likely noise) – keeping original direction."));
+            }
+        }
+
+        // Update stored errors and fall through to send the (possibly flipped) correction.
+        m_PrevAzError             = azError;
+        m_PrevAltError            = altError;
+        m_HasPrevCorrectionErrors = true;
+    }
+    else
+    {
+        // -----------------------------------------------------------------------
+        // NORMAL PATH
+        // -----------------------------------------------------------------------
+
+        // No-improvement guard: counts iterations where a real correction was sent
+        // but total error still did not improve. Aborts after PAH_MAX_NO_IMPROVEMENT.
+        if (totalErrorArcMin < m_BestTotalError)
+        {
+            m_BestTotalError     = totalErrorArcMin;
+            m_NoImprovementCount = 0;
+        }
+        else
+        {
+            ++m_NoImprovementCount;
+            emit newLog(i18n("PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: %3').",
+                             m_NoImprovementCount,
+                             QString::number(m_BestTotalError, 'f', 1),
+                             QString::number(totalErrorArcMin, 'f', 1)));
+            if (m_NoImprovementCount >= PAH_MAX_NO_IMPROVEMENT)
+            {
+                emit newLog(i18n("PAC: No improvement after %1 consecutive iterations. "
+                                 "Best error reached: %2'. Stopping polar alignment.",
+                                 PAH_MAX_NO_IMPROVEMENT,
+                                 QString::number(m_BestTotalError, 'f', 1)));
+                stopPAHProcess();
+                return;
+            }
+        }
+
+        // Check whether any axis error increased compared with the previous correction.
+        // If so, request a confirmation re-solve (no correction sent) before flipping.
+        bool needConfirmation = false;
+        if (Options::pAHAutoChangeDirection() && m_HasPrevCorrectionErrors)
+        {
+            if (std::fabs(azError) > std::fabs(m_PrevAzError) && !m_AzDirectionFlipped)
+            {
+                needConfirmation = true;
+                emit newLog(i18n("PAC: Az error increased (%1' → %2') – re-solving to confirm before direction change.",
+                                 QString::number(m_PrevAzError * 60.0, 'f', 1),
+                                 QString::number(azError       * 60.0, 'f', 1)));
+            }
+            if (std::fabs(altError) > std::fabs(m_PrevAltError) && !m_AltDirectionFlipped)
+            {
+                needConfirmation = true;
+                emit newLog(i18n("PAC: Alt error increased (%1' → %2') – re-solving to confirm before direction change.",
+                                 QString::number(m_PrevAltError * 60.0, 'f', 1),
+                                 QString::number(altError       * 60.0, 'f', 1)));
+            }
+        }
+
+        if (needConfirmation)
+        {
+            // Trigger a confirmation re-solve without sending any correction.
+            // m_PrevAzError / m_PrevAltError are intentionally NOT updated here so
+            // the same baseline is used for comparison in the confirmation call.
+            m_ConfirmationPending = true;
+            emit captureAndSolve();
+            return;
+        }
+
+        // No confirmation needed: update stored errors and send correction.
+        m_PrevAzError             = azError;
+        m_PrevAltError            = altError;
+        m_HasPrevCorrectionErrors = true;
+    }
+
     // Command the PAC to apply the correction.
     m_AutoCorrectionActive = true;
     emit newLog(i18n("PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'",
-                     QString::number(azError * 60.0, 'f', 1),
-                     QString::number(altError * 60.0, 'f', 1),
-                     QString::number(totalErrorArcMin, 'f', 1)));
-    m_PAC->startCorrection(azError, altError);
+                     QString::number(correctedAzError  * 60.0, 'f', 1),
+                     QString::number(correctedAltError * 60.0, 'f', 1),
+                     QString::number(totalErrorArcMin,  'f', 1)));
+    m_PAC->startCorrection(correctedAzError, correctedAltError);
     // The next captureAndSolve() will be emitted by onPACStatusChanged() when PAC_CORRECTED fires.
 }
 

@@ -3033,6 +3033,10 @@
          <label>Enable automatic polar alignment correction using PAC device.</label>
          <default>true</default>
       </entry>
+      <entry name="PAHAutoChangeDirection" type="Bool">
+         <label>Automatically reverse the correction direction for an axis if its polar alignment error increases after the first PAC correction attempt.</label>
+         <default>true</default>
+      </entry>
       <entry name="PAHSuccessThreshold" type="Double">
          <label>Polar alignment success threshold in arcminutes. If total error is at or below this value, alignment is considered successful.</label>
          <default>30.0</default>

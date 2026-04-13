@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>519</width>
-    <height>333</height>
+    <height>480</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -397,11 +397,21 @@
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled and a PAC (Polar Alignment Corrector) device is connected, the system will automatically send correction commands to the PAC during the refresh phase instead of requiring manual knob adjustments.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="text">
-         <string>Enable Automatic PAC Correction</string>
+         <string>Automatic PAC Correction</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
+      <item row="1" column="0" colspan="3">
+       <widget class="QCheckBox" name="kcfg_PAHAutoChangeDirection">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When enabled, if the polar alignment error in an axis &lt;b&gt;increases&lt;/b&gt; after the first PAC correction, the system will automatically reverse the correction direction for that axis on the next attempt.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Auto Change Direction</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
        <widget class="QLabel" name="labelSuccessThreshold">
         <property name="toolTip">
          <string>If the total polar alignment error drops to or below this threshold, the alignment is considered successful and the process stops.</string>
@@ -411,7 +421,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
+      <item row="2" column="1">
        <widget class="QDoubleSpinBox" name="kcfg_PAHSuccessThreshold">
         <property name="toolTip">
          <string>Polar alignment success threshold in arcminutes. If the total error is at or below this value, alignment is considered successful.</string>
@@ -430,14 +440,14 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
+      <item row="2" column="2">
        <widget class="QLabel" name="labelSuccessThresholdUnit">
         <property name="text">
          <string>arcmin</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="3" column="0">
        <widget class="QLabel" name="labelCorrectionTimeout">
         <property name="toolTip">
          <string>If the system cannot reach the desired threshold within this period, it aborts the automatic correction.</string>
@@ -447,7 +457,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1">
+      <item row="3" column="1">
        <widget class="QSpinBox" name="kcfg_PAHCorrectionTimeout">
         <property name="toolTip">
          <string>Timeout in seconds for automatic polar alignment correction.</string>
@@ -466,7 +476,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="2">
+      <item row="3" column="2">
        <widget class="QLabel" name="labelCorrectionTimeoutUnit">
         <property name="text">
          <string>sec</string>
