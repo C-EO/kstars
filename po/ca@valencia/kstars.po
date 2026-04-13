@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-11 02:07+0000\n"
+"POT-Creation-Date: 2026-04-13 02:03+0000\n"
 "PO-Revision-Date: 2026-03-27 17:30+0100\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -785,7 +785,7 @@ msgstr ""
 "S'ha produït un error mentre s'escrivia en el fitxer de configuració intern "
 "de l'astrometria."
 
-#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2930
+#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2945
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -16809,7 +16809,7 @@ msgstr "Segur que voleu reiniciar el controlador de la càmera %1?"
 msgid "Driver Restart"
 msgstr "Reinicia el controlador"
 
-#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:42
+#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:72
 #, kde-format
 msgid "Capture operations timed out after %1 seconds."
 msgstr ""
@@ -17181,30 +17181,30 @@ msgid "Switch display to the graphical mode of capture counts display."
 msgstr ""
 "Canvia la pantalla al mode gràfic de visualització del nombre de captures."
 
-#: ekos/capture/capturedeviceadaptor.cpp:433
+#: ekos/capture/capturedeviceadaptor.cpp:437
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 "El gestor de filtres encara no està inicialitzat. Falta la roda de filtres "
 "del tren?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:687
+#: ekos/capture/capturedeviceadaptor.cpp:691
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Elimina la funda del telescopi per tal de continuar."
 
-#: ekos/capture/capturedeviceadaptor.cpp:688
+#: ekos/capture/capturedeviceadaptor.cpp:692
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Telescopi cobert"
 
-#: ekos/capture/capturedeviceadaptor.cpp:820
+#: ekos/capture/capturedeviceadaptor.cpp:824
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "%1 té un obturador?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:487
+#: ekos/capture/capturedeviceadaptor.cpp:825
+#: ekos/capture/sequencejobstate.cpp:540
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Exposició fosca"
@@ -18583,146 +18583,146 @@ msgstr "En curs"
 msgid "Complete"
 msgstr "Completada"
 
-#: ekos/capture/sequencejobstate.cpp:474
+#: ekos/capture/sequencejobstate.cpp:527
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Cobrix el telescopi amb una font de llum il·luminada uniformement."
 
-#: ekos/capture/sequencejobstate.cpp:475
+#: ekos/capture/sequencejobstate.cpp:528
 #, kde-format
 msgid "Flat Frame"
 msgstr "Fotograma pla"
 
-#: ekos/capture/sequencejobstate.cpp:486
+#: ekos/capture/sequencejobstate.cpp:539
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Cobrix el telescopi per tal de prendre una exposició fosca."
 
-#: ekos/capture/sequencejobstate.cpp:524 ekos/capture/sequencejobstate.cpp:733
+#: ekos/capture/sequencejobstate.cpp:577 ekos/capture/sequencejobstate.cpp:786
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "S'està desaparcant la tapa per la pols…"
 
-#: ekos/capture/sequencejobstate.cpp:524
+#: ekos/capture/sequencejobstate.cpp:577
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "S'està aparcant la tapa per la pols…"
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
+#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Encén el llum de la caixa de llum…"
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
-#: ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
+#: ekos/capture/sequencejobstate.cpp:772
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Apaga el llum de la caixa de llum…"
 
-#: ekos/capture/sequencejobstate.cpp:555 ekos/capture/sequencejobstate.cpp:633
+#: ekos/capture/sequencejobstate.cpp:608 ekos/capture/sequencejobstate.cpp:686
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "No s'ha pogut fer l'aparcament de la muntura. S'interromp…"
 
-#: ekos/capture/sequencejobstate.cpp:564
+#: ekos/capture/sequencejobstate.cpp:617
 #, kde-format
 msgid "Unparking mount..."
 msgstr "S'està desaparcant la muntura…"
 
-#: ekos/capture/sequencejobstate.cpp:573
+#: ekos/capture/sequencejobstate.cpp:626
 #, kde-format
 msgid "Mount unparked."
 msgstr "La muntura està desaparcada."
 
-#: ekos/capture/sequencejobstate.cpp:586
+#: ekos/capture/sequencejobstate.cpp:639
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr ""
 "S'està orientant la muntura cap a la posició de la paret (az =%1 alt =%2)"
 
-#: ekos/capture/sequencejobstate.cpp:598
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr ""
 "S'ha completat l'orientació cap a la posició de la paret, es para el "
 "seguiment."
 
-#: ekos/capture/sequencejobstate.cpp:602
+#: ekos/capture/sequencejobstate.cpp:655
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr ""
 "S'ha completat l'orientació cap a la posició de la paret, es para el "
 "seguiment."
 
-#: ekos/capture/sequencejobstate.cpp:642
+#: ekos/capture/sequencejobstate.cpp:695
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr ""
 "S'està aparcant la muntura abans de capturar els fotogrames de calibratge…"
 
-#: ekos/capture/sequencejobstate.cpp:661
+#: ekos/capture/sequencejobstate.cpp:714
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "No s'ha pogut fer l'aparcament de la cúpula. S'interromp…"
 
-#: ekos/capture/sequencejobstate.cpp:671
+#: ekos/capture/sequencejobstate.cpp:724
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr ""
 "S'està aparcant la cúpula abans de capturar els fotogrames de calibratge…"
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:978
+#: ekos/capture/sequencejobstate.cpp:1031
 #, kde-format
 msgid "Light box light turned on."
 msgstr "El llum de la caixa de llum està encés."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:981
+#: ekos/capture/sequencejobstate.cpp:1034
 #, kde-format
 msgid "Light box light turned off."
 msgstr "El llum de la caixa de llum està apagat."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:984
+#: ekos/capture/sequencejobstate.cpp:1037
 #, kde-format
 msgid "Light box busy."
 msgstr "Caixa de llum ocupada."
 
 # skip-rule: kct-box
-#: ekos/capture/sequencejobstate.cpp:987
+#: ekos/capture/sequencejobstate.cpp:1040
 #, kde-format
 msgid "Light box error."
 msgstr "Error amb la caixa de llum."
 
-#: ekos/capture/sequencejobstate.cpp:1011
+#: ekos/capture/sequencejobstate.cpp:1064
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "S'ha produït un error en la tapa per la pols."
 
-#: ekos/capture/sequencejobstate.cpp:1017
+#: ekos/capture/sequencejobstate.cpp:1070
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "La tapa per la pols està en espera."
 
-#: ekos/capture/sequencejobstate.cpp:1020
+#: ekos/capture/sequencejobstate.cpp:1073
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "La tapa per la pols està aparcada."
 
-#: ekos/capture/sequencejobstate.cpp:1023
+#: ekos/capture/sequencejobstate.cpp:1076
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "S'està aparcant la tapa per la pols…"
 
-#: ekos/capture/sequencejobstate.cpp:1026
+#: ekos/capture/sequencejobstate.cpp:1079
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "S'està desaparcant la tapa per la pols…"
 
-#: ekos/capture/sequencejobstate.cpp:1029
+#: ekos/capture/sequencejobstate.cpp:1082
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Estat desconegut de la tapa per la pols."
@@ -32877,81 +32877,81 @@ msgstr "Descripció del tipus d'objecte"
 msgid "Object Type Comments"
 msgstr "Comentaris del tipus d'objecte"
 
-#: fitsviewer/fitsdata.cpp:1910
+#: fitsviewer/fitsdata.cpp:1925
 #, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr ""
 "S'ha produït un error mentre es llegia la memòria intermèdia de FITS: %1."
 
-#: fitsviewer/fitsdata.cpp:1919
+#: fitsviewer/fitsdata.cpp:1934
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr "No s'ha pogut desempaquetar la FITS comprimida"
 
-#: fitsviewer/fitsdata.cpp:1949
+#: fitsviewer/fitsdata.cpp:1964
 #, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "S'ha produït un error mentre s'obria el fitxer FITS %1: %2"
 
-#: fitsviewer/fitsdata.cpp:1964
+#: fitsviewer/fitsdata.cpp:1979
 #, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr ""
 "S'ha produït un error mentre es llegia la memòria intermèdia de FITS: %1"
 
-#: fitsviewer/fitsdata.cpp:1978
+#: fitsviewer/fitsdata.cpp:1993
 #, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "No s'ha pogut localitzar la imatge HDU: %1"
 
-#: fitsviewer/fitsdata.cpp:1988
+#: fitsviewer/fitsdata.cpp:2003
 #, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr ""
 "S'ha produït un error mentre s'obria el fitxer FITS (fits_get_img_param): %1"
 
-#: fitsviewer/fitsdata.cpp:2002
+#: fitsviewer/fitsdata.cpp:2017
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr "KStars no admet les imatges FITS en 1D."
 
-#: fitsviewer/fitsdata.cpp:2050 fitsviewer/fitsdata.cpp:2759
+#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2774
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "La profunditat de bits %1 no està admesa."
 
-#: fitsviewer/fitsdata.cpp:2060
+#: fitsviewer/fitsdata.cpp:2075
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr "La imatge té dimensions no vàlides %1x%2"
 
-#: fitsviewer/fitsdata.cpp:2114
+#: fitsviewer/fitsdata.cpp:2129
 #, kde-format
 msgid "Error reading image: %1"
 msgstr "S'ha produït un error mentre es llegia la imatge: %1"
 
 # skip-rule: k-Alt-1
-#: fitsviewer/fitsdata.cpp:2521 fitsviewer/fitsdata.cpp:2719
+#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2734
 #, kde-format
 msgid "XISF file open error: "
 msgstr "S'ha produït un error mentre s'obria el fitxer XISF: "
 
-#: fitsviewer/fitsdata.cpp:2633
+#: fitsviewer/fitsdata.cpp:2648
 #, kde-format
 msgid "File contain no images"
 msgstr "El fitxer no conté cap imatge"
 
-#: fitsviewer/fitsdata.cpp:2662
+#: fitsviewer/fitsdata.cpp:2677
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "El format de mostra %1 no està admés."
 
-#: fitsviewer/fitsdata.cpp:2797
+#: fitsviewer/fitsdata.cpp:2812
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "S'ha produït un error mentre es guardava la imatge XISF"
 
-#: fitsviewer/fitsdata.cpp:2889 fitsviewer/fitsdata.cpp:3005
+#: fitsviewer/fitsdata.cpp:2904 fitsviewer/fitsdata.cpp:3020
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
@@ -32959,148 +32959,148 @@ msgstr ""
 "FITSData: No hi ha prou memòria per al canal «image_buffer». Es requerixen: "
 "%1 bytes "
 
-#: fitsviewer/fitsdata.cpp:2944
+#: fitsviewer/fitsdata.cpp:2959
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "No s'ha pogut obrir el fitxer %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2957
+#: fitsviewer/fitsdata.cpp:2972
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "No s'ha pogut la memòria intermèdia: %1"
 
-#: fitsviewer/fitsdata.cpp:2968
+#: fitsviewer/fitsdata.cpp:2983
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "No s'ha pogut fer «unpack_thumb»: %1"
 
-#: fitsviewer/fitsdata.cpp:2975
+#: fitsviewer/fitsdata.cpp:2990
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "No s'ha pogut fer «dcraw_process»: %1"
 
-#: fitsviewer/fitsdata.cpp:2983
+#: fitsviewer/fitsdata.cpp:2998
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "No s'ha pogut carregar a la memòria: %1"
 
-#: fitsviewer/fitsdata.cpp:3130
+#: fitsviewer/fitsdata.cpp:3145
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "No s'admet la guardada de fitxers comprimits."
 
-#: fitsviewer/fitsdata.cpp:3195
+#: fitsviewer/fitsdata.cpp:3210
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Ha fallat mentre es creava el fitxer: %1"
 
-#: fitsviewer/fitsdata.cpp:3210
+#: fitsviewer/fitsdata.cpp:3225
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Ha fallat mentre es creava la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:3219 fitsviewer/fitsdata.cpp:3226
+#: fitsviewer/fitsdata.cpp:3234 fitsviewer/fitsdata.cpp:3241
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Ha fallat mentre s'actualitzava la clau: %1"
 
-#: fitsviewer/fitsdata.cpp:3354
+#: fitsviewer/fitsdata.cpp:3369
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Ha fallat mentre s'actualitzava la data: %1"
 
-#: fitsviewer/fitsdata.cpp:3363
+#: fitsviewer/fitsdata.cpp:3378
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Ha fallat mentre s'actualitzava l'historial: %1"
 
-#: fitsviewer/fitsdata.cpp:3385
+#: fitsviewer/fitsdata.cpp:3400
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Ha fallat mentre s'escrivia la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:5156 fitsviewer/fitsdata.cpp:5167
-#: fitsviewer/fitsdata.cpp:5204 fitsviewer/fitsdata.cpp:5240
-#: fitsviewer/fitsdata.cpp:5374
+#: fitsviewer/fitsdata.cpp:5171 fitsviewer/fitsdata.cpp:5182
+#: fitsviewer/fitsdata.cpp:5219 fitsviewer/fitsdata.cpp:5255
+#: fitsviewer/fitsdata.cpp:5389
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "No s'ha trobat cap sistema de coordenades mundial."
 
-#: fitsviewer/fitsdata.cpp:5549 fitsviewer/fitsdata.cpp:5655
+#: fitsviewer/fitsdata.cpp:5564 fitsviewer/fitsdata.cpp:5670
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "S'ha produït un error mentre es consultava Simbad"
 
-#: fitsviewer/fitsdata.cpp:5564
+#: fitsviewer/fitsdata.cpp:5579
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "La consulta de Simbad ha excedit el temps"
 
-#: fitsviewer/fitsdata.cpp:6541 fitsviewer/fitsdata.cpp:6654
+#: fitsviewer/fitsdata.cpp:6556 fitsviewer/fitsdata.cpp:6669
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr ""
 "Només es permeten imatges de 8 i 16 bits construïdes amb el filtre mosaic de "
 "Bayer."
 
-#: fitsviewer/fitsdata.cpp:6549 fitsviewer/fitsdata.cpp:6660
+#: fitsviewer/fitsdata.cpp:6564 fitsviewer/fitsdata.cpp:6675
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Patró de Bayer desconegut %1"
 
-#: fitsviewer/fitsdata.cpp:6573 fitsviewer/fitsdata.cpp:6599
+#: fitsviewer/fitsdata.cpp:6588 fitsviewer/fitsdata.cpp:6614
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Patró de Bayer no implementat %1."
 
-#: fitsviewer/fitsdata.cpp:6607
+#: fitsviewer/fitsdata.cpp:6622
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Desplaçaments del filtre mosaic de Bayer no implementats %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6618 fitsviewer/fitsdata.cpp:6671
+#: fitsviewer/fitsdata.cpp:6633 fitsviewer/fitsdata.cpp:6686
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Paràmetres no vàlids de la reconstrucció de Bayer de dc1394."
 
-#: fitsviewer/fitsdata.cpp:6629 fitsviewer/fitsdata.cpp:6682
+#: fitsviewer/fitsdata.cpp:6644 fitsviewer/fitsdata.cpp:6697
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Paràmetres no vàlids de la reconstrucció de Bayer de l'OpenCV."
 
-#: fitsviewer/fitsdata.cpp:6638 fitsviewer/fitsdata.cpp:6691
+#: fitsviewer/fitsdata.cpp:6653 fitsviewer/fitsdata.cpp:6706
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Motor no vàlid per a la reconstrucció de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6945
+#: fitsviewer/fitsdata.cpp:6960
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 "Reconstrucció de 8 bits invocada amb paràmetres no vàlids de la "
 "reconstrucció de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6961 fitsviewer/fitsdata.cpp:7007
-#: fitsviewer/fitsdata.cpp:7065 fitsviewer/fitsdata.cpp:7111
+#: fitsviewer/fitsdata.cpp:6976 fitsviewer/fitsdata.cpp:7022
+#: fitsviewer/fitsdata.cpp:7080 fitsviewer/fitsdata.cpp:7126
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:6971 fitsviewer/fitsdata.cpp:7075
+#: fitsviewer/fitsdata.cpp:6986 fitsviewer/fitsdata.cpp:7090
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer."
 
-#: fitsviewer/fitsdata.cpp:6990 fitsviewer/fitsdata.cpp:7094
+#: fitsviewer/fitsdata.cpp:7005 fitsviewer/fitsdata.cpp:7109
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "La reconstrucció des de Bayer ha fallat (%1)"
 
-#: fitsviewer/fitsdata.cpp:7050
+#: fitsviewer/fitsdata.cpp:7065
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""

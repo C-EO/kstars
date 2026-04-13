@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-11 02:07+0000\n"
+"POT-Creation-Date: 2026-04-13 02:03+0000\n"
 "PO-Revision-Date: 2025-09-14 15:11+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -766,7 +766,7 @@ msgstr "Грешка при четене на астрометричен кон�
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Вътрешна грешка при запис на астрометричен конфигурационен файл."
 
-#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2930
+#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2945
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -16693,7 +16693,7 @@ msgstr "Сигурни ли сте, че искате да рестартира�
 msgid "Driver Restart"
 msgstr "Презареждане на драйвера"
 
-#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:42
+#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:72
 #, kde-format
 msgid "Capture operations timed out after %1 seconds."
 msgstr "Времето на операциите за заснемане изтече след %1 секунди."
@@ -17058,7 +17058,7 @@ msgstr ""
 "Превключване на дисплея в графичен режим на показване на броячите за "
 "заснемане."
 
-#: ekos/capture/capturedeviceadaptor.cpp:433
+#: ekos/capture/capturedeviceadaptor.cpp:437
 #, fuzzy, kde-format
 #| msgid ""
 #| "Filter manager is not initilized yet. Filter wheel missing from train?"
@@ -17067,23 +17067,23 @@ msgstr ""
 "Диспечерът на филтри все още не е инициализиран. Филтърното колело липсва от "
 "системата?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:687
+#: ekos/capture/capturedeviceadaptor.cpp:691
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Свалете капака на телескопа, за да продължите."
 
-#: ekos/capture/capturedeviceadaptor.cpp:688
+#: ekos/capture/capturedeviceadaptor.cpp:692
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Покрит телескоп"
 
-#: ekos/capture/capturedeviceadaptor.cpp:820
+#: ekos/capture/capturedeviceadaptor.cpp:824
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "Има ли %1 затвор?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:487
+#: ekos/capture/capturedeviceadaptor.cpp:825
+#: ekos/capture/sequencejobstate.cpp:540
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Тъмна експозиция"
@@ -18421,139 +18421,139 @@ msgstr "Изпълнява се"
 msgid "Complete"
 msgstr "Завършено"
 
-#: ekos/capture/sequencejobstate.cpp:474
+#: ekos/capture/sequencejobstate.cpp:527
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Осветете телескопа с равномерно разсеян източник на светлина."
 
-#: ekos/capture/sequencejobstate.cpp:475
+#: ekos/capture/sequencejobstate.cpp:528
 #, kde-format
 msgid "Flat Frame"
 msgstr "Плосък кадър"
 
-#: ekos/capture/sequencejobstate.cpp:486
+#: ekos/capture/sequencejobstate.cpp:539
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Покрийте телескопа, за да направите тъмна експозиция."
 
-#: ekos/capture/sequencejobstate.cpp:524 ekos/capture/sequencejobstate.cpp:733
+#: ekos/capture/sequencejobstate.cpp:577 ekos/capture/sequencejobstate.cpp:786
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "Разпаркиране на праховия капак.."
 
-#: ekos/capture/sequencejobstate.cpp:524
+#: ekos/capture/sequencejobstate.cpp:577
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Паркиране на праховия капак.."
 
-#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
+#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Включете светлината на светлинната кутия..."
 
-#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
-#: ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
+#: ekos/capture/sequencejobstate.cpp:772
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Изключете светлината на светлинната кутия..."
 
-#: ekos/capture/sequencejobstate.cpp:555 ekos/capture/sequencejobstate.cpp:633
+#: ekos/capture/sequencejobstate.cpp:608 ekos/capture/sequencejobstate.cpp:686
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Неуспешно монтиране при паркиране, прекъсване..."
 
-#: ekos/capture/sequencejobstate.cpp:564
+#: ekos/capture/sequencejobstate.cpp:617
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Разпаркиране на монтировката..."
 
-#: ekos/capture/sequencejobstate.cpp:573
+#: ekos/capture/sequencejobstate.cpp:626
 #, kde-format
 msgid "Mount unparked."
 msgstr "Монтировката е освободена от позиция."
 
-#: ekos/capture/sequencejobstate.cpp:586
+#: ekos/capture/sequencejobstate.cpp:639
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "Монтиране на завъртане към позиция на стената (az =%1 alt =%2)"
 
-#: ekos/capture/sequencejobstate.cpp:598
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr ""
 "Завъртането до позицията на стената е завършено, спиране на проследяването."
 
-#: ekos/capture/sequencejobstate.cpp:602
+#: ekos/capture/sequencejobstate.cpp:655
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr ""
 "Завъртането до позицията на стената е завършено, проследяването е спряно."
 
-#: ekos/capture/sequencejobstate.cpp:642
+#: ekos/capture/sequencejobstate.cpp:695
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Паркиране на монтировката преди заснемане на кадрите за калибриране..."
 
-#: ekos/capture/sequencejobstate.cpp:661
+#: ekos/capture/sequencejobstate.cpp:714
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Паркирането на купола е неуспешно, прекъсва се..."
 
-#: ekos/capture/sequencejobstate.cpp:671
+#: ekos/capture/sequencejobstate.cpp:724
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Паркиране на купола преди заснемане на кадри за калибриране..."
 
-#: ekos/capture/sequencejobstate.cpp:978
+#: ekos/capture/sequencejobstate.cpp:1031
 #, fuzzy, kde-format
 #| msgid "Turn light box light on..."
 msgid "Light box light turned on."
 msgstr "Включете светлината на светлинната кутия..."
 
-#: ekos/capture/sequencejobstate.cpp:981
+#: ekos/capture/sequencejobstate.cpp:1034
 #, fuzzy, kde-format
 #| msgid "Turn light box light off..."
 msgid "Light box light turned off."
 msgstr "Изключете светлината на светлинната кутия..."
 
-#: ekos/capture/sequencejobstate.cpp:984
+#: ekos/capture/sequencejobstate.cpp:1037
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box busy."
 msgstr "Включена е светлинната кутия."
 
-#: ekos/capture/sequencejobstate.cpp:987
+#: ekos/capture/sequencejobstate.cpp:1040
 #, fuzzy, kde-format
 #| msgid "Light box on."
 msgid "Light box error."
 msgstr "Включена е светлинната кутия."
 
-#: ekos/capture/sequencejobstate.cpp:1011
+#: ekos/capture/sequencejobstate.cpp:1064
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Възникна грешка в капачката за прах."
 
-#: ekos/capture/sequencejobstate.cpp:1017
+#: ekos/capture/sequencejobstate.cpp:1070
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Капачката за прах е в покой."
 
-#: ekos/capture/sequencejobstate.cpp:1020
+#: ekos/capture/sequencejobstate.cpp:1073
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Прахозащитната капачка е паркирана."
 
-#: ekos/capture/sequencejobstate.cpp:1023
+#: ekos/capture/sequencejobstate.cpp:1076
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Прахозащитната капачка е паркирана..."
 
-#: ekos/capture/sequencejobstate.cpp:1026
+#: ekos/capture/sequencejobstate.cpp:1079
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Капачката за прах се откопчава..."
 
-#: ekos/capture/sequencejobstate.cpp:1029
+#: ekos/capture/sequencejobstate.cpp:1082
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Състоянието на капачката за прах е неизвестно."
@@ -32706,222 +32706,222 @@ msgstr "Описание на тип обект"
 msgid "Object Type Comments"
 msgstr "Коментари за тип обект"
 
-#: fitsviewer/fitsdata.cpp:1910
+#: fitsviewer/fitsdata.cpp:1925
 #, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr "Грешка при четене на буфер: %1."
 
-#: fitsviewer/fitsdata.cpp:1919
+#: fitsviewer/fitsdata.cpp:1934
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr "Неуспешно разопаковане на компресирани fits"
 
-#: fitsviewer/fitsdata.cpp:1949
+#: fitsviewer/fitsdata.cpp:1964
 #, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "Грешка при отваряне на файла %1: %2"
 
-#: fitsviewer/fitsdata.cpp:1964
+#: fitsviewer/fitsdata.cpp:1979
 #, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr "Грешка при четене на буфер: %1"
 
-#: fitsviewer/fitsdata.cpp:1978
+#: fitsviewer/fitsdata.cpp:1993
 #, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "Не може да се намери HDU на изображението: %1"
 
-#: fitsviewer/fitsdata.cpp:1988
+#: fitsviewer/fitsdata.cpp:2003
 #, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr "Грешка при отваряне на FITS файл (fits_get_img_param): %1"
 
-#: fitsviewer/fitsdata.cpp:2002
+#: fitsviewer/fitsdata.cpp:2017
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr "1D FITS изображенията не се поддържат в KStars."
 
-#: fitsviewer/fitsdata.cpp:2050 fitsviewer/fitsdata.cpp:2759
+#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2774
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "Битова дълбочина %1 не се поддържа."
 
-#: fitsviewer/fitsdata.cpp:2060
+#: fitsviewer/fitsdata.cpp:2075
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr "Изображението има невалидни размери %1x%2"
 
-#: fitsviewer/fitsdata.cpp:2114
+#: fitsviewer/fitsdata.cpp:2129
 #, kde-format
 msgid "Error reading image: %1"
 msgstr "Грешка при четене на изображението: %1"
 
-#: fitsviewer/fitsdata.cpp:2521 fitsviewer/fitsdata.cpp:2719
+#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2734
 #, kde-format
 msgid "XISF file open error: "
 msgstr "Грешка при отваряне на XISF файл:"
 
-#: fitsviewer/fitsdata.cpp:2633
+#: fitsviewer/fitsdata.cpp:2648
 #, kde-format
 msgid "File contain no images"
 msgstr "Файлът не съдържа изображения"
 
-#: fitsviewer/fitsdata.cpp:2662
+#: fitsviewer/fitsdata.cpp:2677
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "Примерен формат %1 не се поддържа."
 
-#: fitsviewer/fitsdata.cpp:2797
+#: fitsviewer/fitsdata.cpp:2812
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Грешка при запазване на XISF изображение"
 
-#: fitsviewer/fitsdata.cpp:2889 fitsviewer/fitsdata.cpp:3005
+#: fitsviewer/fitsdata.cpp:2904 fitsviewer/fitsdata.cpp:3020
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
 msgstr ""
 "FITSData: Няма достатъчно памет за канала на image_buffer. Заявено: %1 байта "
 
-#: fitsviewer/fitsdata.cpp:2944
+#: fitsviewer/fitsdata.cpp:2959
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "Не може да се отвори файл %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2957
+#: fitsviewer/fitsdata.cpp:2972
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Не може да се отвори буфер: %1"
 
-#: fitsviewer/fitsdata.cpp:2968
+#: fitsviewer/fitsdata.cpp:2983
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "Не може да се разопакова_thumb: %1"
 
-#: fitsviewer/fitsdata.cpp:2975
+#: fitsviewer/fitsdata.cpp:2990
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "Не може да се извърши dcraw_process: %1"
 
-#: fitsviewer/fitsdata.cpp:2983
+#: fitsviewer/fitsdata.cpp:2998
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "Не може да се зареди в паметта: %1"
 
-#: fitsviewer/fitsdata.cpp:3130
+#: fitsviewer/fitsdata.cpp:3145
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "Запазването на компресирани файлове не се поддържа."
 
-#: fitsviewer/fitsdata.cpp:3195
+#: fitsviewer/fitsdata.cpp:3210
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Неуспешно създаване на файл: %1"
 
-#: fitsviewer/fitsdata.cpp:3210
+#: fitsviewer/fitsdata.cpp:3225
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Неуспешно създаване на изображение: %1"
 
-#: fitsviewer/fitsdata.cpp:3219 fitsviewer/fitsdata.cpp:3226
+#: fitsviewer/fitsdata.cpp:3234 fitsviewer/fitsdata.cpp:3241
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Неуспешно актуализиране на ключа: %1"
 
-#: fitsviewer/fitsdata.cpp:3354
+#: fitsviewer/fitsdata.cpp:3369
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Неуспешно актуализиране на датата: %1"
 
-#: fitsviewer/fitsdata.cpp:3363
+#: fitsviewer/fitsdata.cpp:3378
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Неуспешно актуализиране на хронологията: %1"
 
-#: fitsviewer/fitsdata.cpp:3385
+#: fitsviewer/fitsdata.cpp:3400
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Неуспешно записване на изображение: %1"
 
-#: fitsviewer/fitsdata.cpp:5156 fitsviewer/fitsdata.cpp:5167
-#: fitsviewer/fitsdata.cpp:5204 fitsviewer/fitsdata.cpp:5240
-#: fitsviewer/fitsdata.cpp:5374
+#: fitsviewer/fitsdata.cpp:5171 fitsviewer/fitsdata.cpp:5182
+#: fitsviewer/fitsdata.cpp:5219 fitsviewer/fitsdata.cpp:5255
+#: fitsviewer/fitsdata.cpp:5389
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "Няма намерени световни координатни системи."
 
-#: fitsviewer/fitsdata.cpp:5549 fitsviewer/fitsdata.cpp:5655
+#: fitsviewer/fitsdata.cpp:5564 fitsviewer/fitsdata.cpp:5670
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Грешка при запитване към Simbad"
 
-#: fitsviewer/fitsdata.cpp:5564
+#: fitsviewer/fitsdata.cpp:5579
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "Времето за изчакване на заявката за Simbad изтече"
 
-#: fitsviewer/fitsdata.cpp:6541 fitsviewer/fitsdata.cpp:6654
+#: fitsviewer/fitsdata.cpp:6556 fitsviewer/fitsdata.cpp:6669
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr "Поддържат се само 8 и 16-битови изображения на Bayer."
 
-#: fitsviewer/fitsdata.cpp:6549 fitsviewer/fitsdata.cpp:6660
+#: fitsviewer/fitsdata.cpp:6564 fitsviewer/fitsdata.cpp:6675
 #, fuzzy, kde-format
 #| msgid "Unsupported bayer pattern %1."
 msgid "Unknown bayer pattern %1"
 msgstr "Неподдържан модел на Bayer %1."
 
-#: fitsviewer/fitsdata.cpp:6573 fitsviewer/fitsdata.cpp:6599
+#: fitsviewer/fitsdata.cpp:6588 fitsviewer/fitsdata.cpp:6614
 #, fuzzy, kde-format
 #| msgid "Unsupported bayer pattern %1."
 msgid "Unsupported bayer pattern %1"
 msgstr "Неподдържан модел на Bayer %1."
 
-#: fitsviewer/fitsdata.cpp:6607
+#: fitsviewer/fitsdata.cpp:6622
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Неподдържани отмествания по Байер %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6618 fitsviewer/fitsdata.cpp:6671
+#: fitsviewer/fitsdata.cpp:6633 fitsviewer/fitsdata.cpp:6686
 #, fuzzy, kde-format
 #| msgid "Input Parameters"
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Входни параметри"
 
-#: fitsviewer/fitsdata.cpp:6629 fitsviewer/fitsdata.cpp:6682
+#: fitsviewer/fitsdata.cpp:6644 fitsviewer/fitsdata.cpp:6697
 #, fuzzy, kde-format
 #| msgid "Input Parameters"
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Входни параметри"
 
-#: fitsviewer/fitsdata.cpp:6638 fitsviewer/fitsdata.cpp:6691
+#: fitsviewer/fitsdata.cpp:6653 fitsviewer/fitsdata.cpp:6706
 #, fuzzy, kde-format
 #| msgid "Invalid response."
 msgid "Invalid debayer engine"
 msgstr "Невалиден отговор."
 
-#: fitsviewer/fitsdata.cpp:6945
+#: fitsviewer/fitsdata.cpp:6960
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 
-#: fitsviewer/fitsdata.cpp:6961 fitsviewer/fitsdata.cpp:7007
-#: fitsviewer/fitsdata.cpp:7065 fitsviewer/fitsdata.cpp:7111
+#: fitsviewer/fitsdata.cpp:6976 fitsviewer/fitsdata.cpp:7022
+#: fitsviewer/fitsdata.cpp:7080 fitsviewer/fitsdata.cpp:7126
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr "Не може да се разпредели памет за временен буфер на Bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:6971 fitsviewer/fitsdata.cpp:7075
+#: fitsviewer/fitsdata.cpp:6986 fitsviewer/fitsdata.cpp:7090
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr "Не може да се разпредели памет за временен буфер на Bayer."
 
-#: fitsviewer/fitsdata.cpp:6990 fitsviewer/fitsdata.cpp:7094
+#: fitsviewer/fitsdata.cpp:7005 fitsviewer/fitsdata.cpp:7109
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "Неуспешно прилагане на филтър на Bayer (%1)"
 
-#: fitsviewer/fitsdata.cpp:7050
+#: fitsviewer/fitsdata.cpp:7065
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""

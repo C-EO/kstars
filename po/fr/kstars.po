@@ -21,11 +21,11 @@
 # Steve <stax@ik.me>, 2022, 2023, 2024, 2025, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: kstars_3.8.0\n"
+"Project-Id-Version: kstars_3.8.2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-11 02:07+0000\n"
-"PO-Revision-Date: 2026-03-08 11:55+0100\n"
-"Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
+"POT-Creation-Date: 2026-04-13 02:03+0000\n"
+"PO-Revision-Date: 2026-04-10 09:43+0200\n"
+"Last-Translator: Stax <stax@ik.me>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -788,7 +788,7 @@ msgstr "Erreur de lecture du fichier de configuration d'astrométrie."
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Erreur interne d'écriture du fichier de configuration d'astrométrie."
 
-#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2930
+#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2945
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -6487,11 +6487,7 @@ msgid "Image received."
 msgstr "Image reçue."
 
 #: ekos/align/align.cpp:1961
-#, fuzzy, kde-format
-#| msgid ""
-#| "No index files were found on your system in the specified index file "
-#| "directories.  Please download some index files or add the correct "
-#| "directory to the list."
+#, kde-format
 msgid ""
 "No index files were found on your system in the specified index file "
 "directories.Please download some index files or add the correct directory to "
@@ -6579,10 +6575,9 @@ msgstr "La cible se trouve à %1 degrés des coordonnées de la solution."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2346
-#, fuzzy, kde-format
-#| msgid "Camera position angle is %1 degrees."
+#, kde-format
 msgid "Camera position angle is %1 degrees."
-msgstr "L'angle de position de l'appareil est de %1 degrés…"
+msgstr "L'angle de position de l'appareil est de %1 degrés."
 
 #: ekos/align/align.cpp:2382 ekos/align/align.cpp:2522
 #, kde-format
@@ -6649,14 +6644,12 @@ msgid "PA difference ~%1°, image is flipped. Preserving rotator angle."
 msgstr ""
 
 #: ekos/align/align.cpp:2636
-#, fuzzy, kde-format
-#| msgid "Setting camera position angle to %1 degrees ..."
+#, kde-format
 msgid "Setting camera position angle to %1 degrees ..."
-msgstr "Définition de l'angle de position de %1 degrés…"
+msgstr "Définition de l'angle de position à %1 degrés…"
 
 #: ekos/align/align.cpp:2646
-#, fuzzy, kde-format
-#| msgid "Camera position angle is within acceptable range."
+#, kde-format
 msgid "Camera position angle is within acceptable range."
 msgstr "L'angle de position de l'appareil se trouve dans une plage acceptable."
 
@@ -6789,16 +6782,14 @@ msgid "Load Image"
 msgstr "Charger une image"
 
 #: ekos/align/align.cpp:3444
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is enabled."
+#, kde-format
 msgid "World Coordinate System (WCS) is enabled."
 msgstr "Le système WCS est activé."
 
 #: ekos/align/align.cpp:3449
-#, fuzzy, kde-format
-#| msgid "World Coordinate System (WCS) is disabled."
+#, kde-format
 msgid "%1: World Coordinate System (WCS) is disabled."
-msgstr "Le système WCS est désactivé."
+msgstr "%1 : le système WCS est désactivé."
 
 #: ekos/align/align.cpp:3468
 #, kde-format
@@ -8402,10 +8393,9 @@ msgstr "Conserver l'angle de position"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBoxAutoPAC)
 #: ekos/align/opsalign.ui:379
-#, fuzzy, kde-format
-#| msgid "Legacy Polar Alignment"
+#, kde-format
 msgid "Automatic Polar Alignment"
-msgstr "Ancien alignement polaire"
+msgstr "Alignement polaire automatique"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:397
@@ -8416,13 +8406,16 @@ msgid ""
 "to the PAC during the refresh phase instead of requiring manual knob "
 "adjustments.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Lorsqu'il est activé et qu'un appareil PAC (Correcteur "
+"d'Alignement Polaire) est connecté, le système enverra automatiquement des "
+"commandes de correction au PAC pendant la phase de rafraîchissement au lieu "
+"de nécessiter des réglages manuels du bouton.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:400
-#, fuzzy, kde-format
-#| msgid "Enable directions"
+#, kde-format
 msgid "Enable Automatic PAC Correction"
-msgstr "Activer les directions"
+msgstr "Activer la correction automatique PAC"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:407
@@ -8431,13 +8424,14 @@ msgid ""
 "If the total polar alignment error drops to or below this threshold, the "
 "alignment is considered successful and the process stops."
 msgstr ""
+"Si l'erreur totale d'alignement polaire tombe à ce seuil ou en dessous, "
+"l'alignement est considéré comme réussi et le processus s'arrête."
 
 #. i18n: ectx: property (text), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:410
-#, fuzzy, kde-format
-#| msgid "Threshold:"
+#, kde-format
 msgid "Success Threshold:"
-msgstr "Seuil"
+msgstr "Seuil de réussite :"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_PAHSuccessThreshold)
 #: ekos/align/opsalign.ui:417
@@ -8446,6 +8440,9 @@ msgid ""
 "Polar alignment success threshold in arcminutes. If the total error is at or "
 "below this value, alignment is considered successful."
 msgstr ""
+"Seuil de réussite de l'alignement polaire en minutes d'arc. Si l'erreur "
+"totale est égale ou inférieure à cette valeur, l'alignement est considéré "
+"comme réussi."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelCorrectionTimeout)
 #: ekos/align/opsalign.ui:443
@@ -8454,22 +8451,22 @@ msgid ""
 "If the system cannot reach the desired threshold within this period, it "
 "aborts the automatic correction."
 msgstr ""
+"Si le système ne peut pas atteindre le seuil souhaité dans ce délai, il "
+"arrête la correction automatique."
 
 #. i18n: ectx: property (text), widget (QLabel, labelCorrectionTimeout)
 #: ekos/align/opsalign.ui:446
-#, fuzzy, kde-format
-#| msgid "Motion Timeout:"
+#, kde-format
 msgid "Correction Timeout:"
-msgstr "Délai de déplacement dépassé"
+msgstr "Délai de correction :"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_PAHCorrectionTimeout)
 #: ekos/align/opsalign.ui:453
-#, fuzzy, kde-format
-#| msgid "Timeout in seconds to wait for astrometry solver to complete."
+#, kde-format
 msgid "Timeout in seconds for automatic polar alignment correction."
 msgstr ""
-"Durée maximal en secondes d'attente pour que le résolveur d'astrométrie se "
-"termine."
+"Durée maximal en secondes d'attente pour la correction de l'alignement "
+"polaire."
 
 #. i18n: ectx: property (text), widget (QLabel, labelCorrectionTimeoutUnit)
 #. i18n: ectx: property (text), widget (QLabel, secLabel)
@@ -9168,8 +9165,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, openIndexFileDirectory)
 #: ekos/align/opsastrometryindexfiles.ui:276
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "opens astrometry index file directory"
 msgid "Open"
 msgstr "Ouvrir"
@@ -10395,42 +10391,45 @@ msgstr ""
 "démarré. "
 
 #: ekos/align/polaralignmentassistant.cpp:1331
-#, fuzzy, kde-format
-#| msgid "Job '%1' alignment is complete."
+#, kde-format
 msgid "PAC: Polar Alignment Corrector connected."
-msgstr "La tâche %1 d'alignement est terminée."
+msgstr "PAC : correction de l'alignement polaire connectée."
 
 #: ekos/align/polaralignmentassistant.cpp:1344
 #, kde-format
 msgid "PAC: Correction in progress – adjusting azimuth and altitude axes..."
 msgstr ""
+"PAC : correction en cours – ajustement des axes d'azimut et d'altitude…"
 
 #: ekos/align/polaralignmentassistant.cpp:1349
 #, kde-format
 msgid "PAC: Correction applied. Capturing next image to verify alignment..."
 msgstr ""
+"PAC : correction appliquée. Capturer la prochaine image pour vérifier "
+"l'alignement…"
 
 #: ekos/align/polaralignmentassistant.cpp:1355
-#, fuzzy, kde-format
-#| msgid "Mount rotation direction during polar alignment."
+#, kde-format
 msgid "PAC: Correction failed. Stopping polar alignment."
-msgstr "Direction de la rotation de la monture pendant l'alignement polaire."
+msgstr "PAC : correction échouée. Arrêt de l'alignement polaire"
 
 #: ekos/align/polaralignmentassistant.cpp:1386
 #, kde-format
 msgid ""
 "PAC: Polar alignment successful! Total error %1' is within threshold %2'."
 msgstr ""
+"PAC : alignement polaire réussi ! L'erreur totale %1' est dans le seuil %2'."
 
 #: ekos/align/polaralignmentassistant.cpp:1397
 #, kde-format
 msgid "PAC: Correction timeout (%1s) reached. Total error is %2'. Stopping."
 msgstr ""
+"PAC : délai de correction (%1s) atteint. L'erreur totale est de %2'. Arrêt."
 
 #: ekos/align/polaralignmentassistant.cpp:1406
 #, kde-format
 msgid "PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'"
-msgstr ""
+msgstr "PAC : correcteur commandant – Az : %1'  Alt : %2'  Total : %3'"
 
 #. i18n: ectx: property (toolTip), widget (QStackedWidget, PAHWidgets)
 #: ekos/align/polaralignmentassistant.ui:44
@@ -15145,8 +15144,7 @@ msgstr "Réinitialiser les paramètres de taille CCD à leurs valeurs par défau
 
 #. i18n: ectx: property (title), widget (QGroupBox, CaptureSettingsGroup)
 #: ekos/capture/camera.ui:258
-#, fuzzy, kde-format
-#| msgid "Capture Settings"
+#, kde-format
 msgctxt "camera capture settings section title"
 msgid "Capture Settings"
 msgstr "Options d'acquisition"
@@ -16623,7 +16621,7 @@ msgstr "Voulez-vous vraiment relancer le pilote de la camera %1 ?"
 msgid "Driver Restart"
 msgstr "Redémarrage du pilote"
 
-#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:42
+#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:72
 #, kde-format
 msgid "Capture operations timed out after %1 seconds."
 msgstr "L'acquisition a dépassé le délai d'attente après %1 secondes."
@@ -16993,30 +16991,30 @@ msgstr "Total"
 msgid "Switch display to the graphical mode of capture counts display."
 msgstr "(Dés)active l'affichage des compteurs d'acquisition en mode graphique."
 
-#: ekos/capture/capturedeviceadaptor.cpp:433
+#: ekos/capture/capturedeviceadaptor.cpp:437
 #, kde-format
 msgid "Filter manager is not initialized yet. Filter wheel missing from train?"
 msgstr ""
 "Le gestionnaire de filtres n'est pas encore initialisé. La roue à filtres "
 "fait-elle partie du train ?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:687
+#: ekos/capture/capturedeviceadaptor.cpp:691
 #, kde-format
 msgid "Remove cover from the telescope in order to continue."
 msgstr "Enlever le capuchon du télescope pour continuer."
 
-#: ekos/capture/capturedeviceadaptor.cpp:688
+#: ekos/capture/capturedeviceadaptor.cpp:692
 #, kde-format
 msgid "Telescope Covered"
 msgstr "Télescope couvert"
 
-#: ekos/capture/capturedeviceadaptor.cpp:820
+#: ekos/capture/capturedeviceadaptor.cpp:824
 #, kde-format
 msgid "Does %1 have a shutter?"
 msgstr "Est-ce que %1 possède un obturateur ?"
 
-#: ekos/capture/capturedeviceadaptor.cpp:821
-#: ekos/capture/sequencejobstate.cpp:487
+#: ekos/capture/capturedeviceadaptor.cpp:825
+#: ekos/capture/sequencejobstate.cpp:540
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Acquisition des dark"
@@ -18365,137 +18363,133 @@ msgstr "En cours"
 msgid "Complete"
 msgstr "Terminé"
 
-#: ekos/capture/sequencejobstate.cpp:474
+#: ekos/capture/sequencejobstate.cpp:527
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Couvrir le télescope avec une source de lumière uniforme."
 
-#: ekos/capture/sequencejobstate.cpp:475
+#: ekos/capture/sequencejobstate.cpp:528
 #, kde-format
 msgid "Flat Frame"
 msgstr "Flat"
 
-#: ekos/capture/sequencejobstate.cpp:486
+#: ekos/capture/sequencejobstate.cpp:539
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Couvrir le télescope pour faire un dark."
 
-#: ekos/capture/sequencejobstate.cpp:524 ekos/capture/sequencejobstate.cpp:733
+#: ekos/capture/sequencejobstate.cpp:577 ekos/capture/sequencejobstate.cpp:786
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "Ouverture du capuchon antipoussière…"
 
-#: ekos/capture/sequencejobstate.cpp:524
+#: ekos/capture/sequencejobstate.cpp:577
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Fermeture du capuchon antipoussière…"
 
-#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
+#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Allumer la boite à flat…"
 
-#: ekos/capture/sequencejobstate.cpp:536 ekos/capture/sequencejobstate.cpp:615
-#: ekos/capture/sequencejobstate.cpp:719
+#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
+#: ekos/capture/sequencejobstate.cpp:772
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Éteindre la boite à flat…"
 
-#: ekos/capture/sequencejobstate.cpp:555 ekos/capture/sequencejobstate.cpp:633
+#: ekos/capture/sequencejobstate.cpp:608 ekos/capture/sequencejobstate.cpp:686
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Échec du parcage de la monture. Annulation…"
 
-#: ekos/capture/sequencejobstate.cpp:564
+#: ekos/capture/sequencejobstate.cpp:617
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Le déparcage est en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:573
+#: ekos/capture/sequencejobstate.cpp:626
 #, kde-format
 msgid "Mount unparked."
 msgstr "Monture déparquée."
 
-#: ekos/capture/sequencejobstate.cpp:586
+#: ekos/capture/sequencejobstate.cpp:639
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "La monture tourne vers la position du mur (Az = %1 Alt = %2)"
 
-#: ekos/capture/sequencejobstate.cpp:598
+#: ekos/capture/sequencejobstate.cpp:651
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr "Pointage terminé vers la position du mur, arrêt du suivi."
 
-#: ekos/capture/sequencejobstate.cpp:602
+#: ekos/capture/sequencejobstate.cpp:655
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Pointage terminé vers la position du mur, arrêt du suivi."
 
-#: ekos/capture/sequencejobstate.cpp:642
+#: ekos/capture/sequencejobstate.cpp:695
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Parcage de la monture avant l'acquisition des poses de calibration…"
 
-#: ekos/capture/sequencejobstate.cpp:661
+#: ekos/capture/sequencejobstate.cpp:714
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Échec du parcage du dôme. Annulation…"
 
-#: ekos/capture/sequencejobstate.cpp:671
+#: ekos/capture/sequencejobstate.cpp:724
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Parcage du dôme avant acquisition des poses de calibration…"
 
-#: ekos/capture/sequencejobstate.cpp:978
-#, fuzzy, kde-format
-#| msgid "Turn light box light on..."
+#: ekos/capture/sequencejobstate.cpp:1031
+#, kde-format
 msgid "Light box light turned on."
-msgstr "Allumer la boite à flat…"
+msgstr "La boite à flat est allumée."
 
-#: ekos/capture/sequencejobstate.cpp:981
-#, fuzzy, kde-format
-#| msgid "Turn light box light off..."
+#: ekos/capture/sequencejobstate.cpp:1034
+#, kde-format
 msgid "Light box light turned off."
-msgstr "Éteindre la boite à flat…"
+msgstr "La boite à flat est éteinte."
 
-#: ekos/capture/sequencejobstate.cpp:984
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:1037
+#, kde-format
 msgid "Light box busy."
-msgstr "Boîte à flat allumée."
+msgstr "La boîte à flat est occupée."
 
-#: ekos/capture/sequencejobstate.cpp:987
-#, fuzzy, kde-format
-#| msgid "Light box on."
+#: ekos/capture/sequencejobstate.cpp:1040
+#, kde-format
 msgid "Light box error."
-msgstr "Boîte à flat allumée."
+msgstr "La boîte à flat a échoué."
 
-#: ekos/capture/sequencejobstate.cpp:1011
+#: ekos/capture/sequencejobstate.cpp:1064
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Une erreur du capuchon antipoussière s'est produite."
 
-#: ekos/capture/sequencejobstate.cpp:1017
+#: ekos/capture/sequencejobstate.cpp:1070
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Le capuchon antipoussière est au repos."
 
-#: ekos/capture/sequencejobstate.cpp:1020
+#: ekos/capture/sequencejobstate.cpp:1073
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Le capuchon antipoussière est parqué."
 
-#: ekos/capture/sequencejobstate.cpp:1023
+#: ekos/capture/sequencejobstate.cpp:1076
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Parcage du capuchon antipoussière en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:1026
+#: ekos/capture/sequencejobstate.cpp:1079
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Déparcage du capuchon antipoussière en cours…"
 
-#: ekos/capture/sequencejobstate.cpp:1029
+#: ekos/capture/sequencejobstate.cpp:1082
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "État du capuchon antipoussière inconnu."
@@ -22895,16 +22889,14 @@ msgid "Connection to the guide camera is lost."
 msgstr "La connexion à l'appareil de guidage est perdue."
 
 #: ekos/guide/guide.cpp:904
-#, fuzzy, kde-format
-#| msgid "PHD2: Guiding started."
+#, kde-format
 msgid "Guide streaming started."
-msgstr "PHD2 : démarrage du guidage."
+msgstr "Démarrage de l'enregistrement du guide."
 
 #: ekos/guide/guide.cpp:924
-#, fuzzy, kde-format
-#| msgid "Framing stopped"
+#, kde-format
 msgid "Guide streaming stopped."
-msgstr "Acquisition arrêtée"
+msgstr "Arrêt de l'enregistrement du guide."
 
 #: ekos/guide/guide.cpp:1072
 #, kde-format
@@ -23191,14 +23183,19 @@ msgid ""
 "Hz) required by harmonic drives. Not compatible with dark-frame subtraction."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Activer le mode guide en streaming. Lorsqu'il est "
+"coché et que la caméra prend en charge le streaming vidéo, le module de "
+"guidage capture les images via un flux vidéo continu au lieu de prises de "
+"vue individuelles. Cela réduit considérablement la surcharge par image et "
+"permet des fréquences de guidage plus élevées (par exemple 2–5 Hz) requises "
+"par les entraînements harmoniques. Non compatible avec la soustraction de "
+"trame sombre.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, guideStreamingEnabled)
 #: ekos/guide/guide.ui:242
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Stream On"
+#, kde-format
 msgid "Stream"
-msgstr "Transmission connectée"
+msgstr "Stream"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, manualDitherB)
 #: ekos/guide/guide.ui:274
@@ -23873,10 +23870,7 @@ msgid "Guiding calibration restored"
 msgstr "Calibration du guidage restaurée."
 
 #: ekos/guide/internalguide/internalguider.cpp:757
-#, fuzzy, kde-format
-#| msgid ""
-#| "Lost track of the guide star. Try increasing the square size or reducing "
-#| "pulse duration."
+#, kde-format
 msgid ""
 "Lost track of the guide star. Try increasing binning, square size or "
 "reducing pulse duration."
@@ -24126,12 +24120,7 @@ msgstr "Suppression du jeu DEC dans la calibration du guide"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:379
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
-#| "started. This is often not necessary when a good quality calibration has "
-#| "previously been done and the guide camera has not been rotated or re-"
-#| "installed.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>If checked,  always re-calibrate when guiding is "
 "started. This is often not necessary when a good quality calibration has "
@@ -24145,19 +24134,13 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ResetGuideCalibration)
 #: ekos/guide/opscalibration.ui:385
-#, fuzzy, kde-format
-#| msgid "Reset Guide Calibration After Each Mount Slew"
+#, kde-format
 msgid "Reset Guide Calibration After Each Mount Slew"
 msgstr "Réinitialiser la calibration du guide après chaque pointage"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:392
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
-#| "works on opposite sides of the meridian if the pier-side can be "
-#| "automatically determined from your mount. The \"Reset Guide on Slew\" "
-#| "option above must be unchecked for this to be attempted.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Store and attempt to reuse calibrations. This only "
 "works on opposite sides of the meridian if the pier-side can be "
@@ -24166,14 +24149,13 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Enregistrer les calibrations et tenter de les "
 "réutiliser. Cela ne fonctionne de part et d’autre du méridien que si le côté "
-"du pilier peut être déterminé automatiquement à partir de votre monture. "
-"Pour que cela soit tenté, l’option «&nbsp;Réinitialiser le guidage lors d’un "
+"du pied peut être déterminé automatiquement à partir de votre monture. Pour "
+"que cela soit tenté, l’option «&nbsp;Réinitialiser le guidage lors d’un "
 "déplacement&nbsp;» ci-dessus doit être décochée.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReuseGuideCalibration)
 #: ekos/guide/opscalibration.ui:398
-#, fuzzy, kde-format
-#| msgid "Store and reuse guide calibration when possible."
+#, kde-format
 msgid "Store and reuse guide calibration when possible."
 msgstr "Enregistrer et réutiliser la calibration si possible."
 
@@ -24194,14 +24176,12 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ReverseDecOnPierSideChange)
 #: ekos/guide/opscalibration.ui:411
-#, fuzzy, kde-format
-#| msgid ""
-#| "Reverse DEC guide pulses when changing pier-side and reusing calibration."
+#, kde-format
 msgid ""
 "Reverse DEC guide pulses when changing pier-side and reusing calibration."
 msgstr ""
-"Inverser les impulsions de guidage en DEC lors du changement de côté du "
-"pilier et de la réutilisation de la calibration."
+"Inverser les pulsations de la DEC du guide lors d'un changement de côté du "
+"pied et réutilisation de la calibration."
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, kcfg_DitherPixels)
 #: ekos/guide/opsdither.ui:43
@@ -25403,11 +25383,9 @@ msgid "Extension '%1': %2"
 msgstr "Extension %1 : %2"
 
 #: ekos/manager.cpp:940
-#, fuzzy, kde-format
-#| msgid "Starting profile on remote INDI Web Manager..."
+#, kde-format
 msgid "Imported profile '%1' from INDI Web Manager."
-msgstr ""
-"Démarrage d'un profil sur le gestionnaire Internet d'un serveur distant INDI…"
+msgstr "Profil %1 importé du gestionnaire Web d'INDI."
 
 #: ekos/manager.cpp:1094
 #, kde-format
@@ -25665,10 +25643,9 @@ msgid "%1 GPS is online."
 msgstr "Le module GPS du périphérique %1 est connecté."
 
 #: ekos/manager.cpp:2036
-#, fuzzy, kde-format
-#| msgid "%1 GPS is online."
+#, kde-format
 msgid "%1 PAC is online."
-msgstr "Le module GPS du périphérique %1 est connecté."
+msgstr "PAC %1 est en ligne."
 
 #: ekos/manager.cpp:2045
 #, kde-format
@@ -26653,8 +26630,7 @@ msgid "Shutter is opening..."
 msgstr "L'obturateur est en cours d'ouverture…"
 
 #: ekos/observatory/observatory.cpp:460 ekos/observatory/observatory.cpp:464
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "Shutter action"
 msgid "Open"
 msgstr "Ouvrir"
@@ -26670,8 +26646,7 @@ msgid "Shutter is closing..."
 msgstr "L'obturateur est en cours de fermeture…"
 
 #: ekos/observatory/observatory.cpp:581
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "Rolloff roof action"
 msgid "Open"
 msgstr "Ouvrir"
@@ -26855,8 +26830,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, shutterOpen)
 #: ekos/observatory/observatory.ui:673
-#, fuzzy, kde-format
-#| msgid "Open"
+#, kde-format
 msgctxt "opens dome shutter"
 msgid "Open"
 msgstr "Ouvrir"
@@ -29272,13 +29246,14 @@ msgstr "Période de sécurité météo"
 #. i18n: ectx: property (toolTip), widget (QSpinBox, kcfg_SchedulerWeatherGracePeriod)
 #. i18n: ectx: label, entry (SchedulerWeatherGracePeriod), group (Scheduler)
 #: ekos/scheduler/opsweathersettings.ui:55 kstars.kcfg:3555
-#, fuzzy, kde-format
-#| msgid "Wait this many minutes for the weather to improve before giving up."
+#, kde-format
 msgid ""
 "Wait this many minutes for the weather to improve before giving up. Set to 0 "
 "to wait indefinitely (scheduler keeps monitoring until weather improves)."
 msgstr ""
-"Attendre ce nombre de minutes que la météo ne s'améliore avant de renoncer."
+"Attendre ce nombre de minutes que la météo ne s'améliore avant de renoncer. "
+"Régler à 0 pour attendre indéfiniment (la surveillance continue jusqu'à ce "
+"que les conditions s'améliorent)."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, label)
 #: ekos/scheduler/opsweathersettings.ui:96
@@ -30538,6 +30513,8 @@ msgid ""
 "Weather grace period is set to indefinite wait. Weather is still not OK, "
 "continuing to monitor..."
 msgstr ""
+"La période de grâce météorologique est définie sur attente indéfinie. La "
+"météo n'est toujours pas OK, surveillance en cours…"
 
 #: ekos/scheduler/schedulerprocess.cpp:558
 #, kde-format
@@ -30560,10 +30537,9 @@ msgid "Scheduler is awake."
 msgstr "L'ordonnanceur est activé."
 
 #: ekos/scheduler/schedulerprocess.cpp:623
-#, fuzzy, kde-format
-#| msgid "Reset job status"
+#, kde-format
 msgid "Resetting startup state."
-msgstr "Réinitialiser l'état des tâches"
+msgstr "Réinitialisation de l'état des tâches."
 
 #: ekos/scheduler/schedulerprocess.cpp:655
 #, kde-format
@@ -30573,12 +30549,11 @@ msgstr ""
 "conditions de sécurité…"
 
 #: ekos/scheduler/schedulerprocess.cpp:662
-#, fuzzy, kde-format
-#| msgid "Executing post-startup tasks from %1 after safety recovery..."
+#, kde-format
 msgid "Post-startup queue empty or unloadable after safety recovery."
 msgstr ""
-"Exécution des tâches de post-démarrage depuis %1 après rétablissement des "
-"conditions de sécurité…"
+"La file d'attente post-démarrage est vide ou non-déchargeable après "
+"rétablissement des conditions de sécurité."
 
 #: ekos/scheduler/schedulerprocess.cpp:676
 #, kde-format
@@ -30897,11 +30872,12 @@ msgid "Failed to load pre-shutdown queue from %1"
 msgstr "Échec du chargement de la file d’attente pré-arrêt depuis %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:2115
-#, fuzzy, kde-format
-#| msgid "Post-shutdown queue is empty, shutdown complete."
+#, kde-format
 msgid ""
 "No pre-shutdown tasks during weather grace period; soft shutdown complete."
-msgstr "La file d’attente de post-arrêt est vide ; arrêt terminé."
+msgstr ""
+"Pas de tâche post-arrêt durant la période de grâce de la météo ; arrêt "
+"terminé."
 
 #: ekos/scheduler/schedulerprocess.cpp:2126
 #, kde-format
@@ -31081,6 +31057,8 @@ msgstr "Échec de la file d’attente post-arrêt : %1"
 #, kde-format
 msgid "Warning: task failed during job '%1': %2. Marking job aborted."
 msgstr ""
+"Avertissement : la tâche a échoué pendant le travail %1 : %2. Marquage du "
+"travail comme interrompu."
 
 #: ekos/scheduler/schedulerprocess.cpp:3453
 #, kde-format
@@ -31282,15 +31260,13 @@ msgstr ""
 "%1 secondes."
 
 #: ekos/scheduler/schedulerprocess.cpp:4133
-#, fuzzy, kde-format
-#| msgid ""
-#| "Observatory scheduled for soft shutdown until safety improves or until %1."
+#, kde-format
 msgid ""
 "Observatory scheduled for soft shutdown. Monitoring weather indefinitely "
 "until safety improves."
 msgstr ""
-"Observatoire programmé pour un arrêt progressif jusqu’à amélioration de la "
-"sécurité ou jusqu’à %1."
+"Observatoire programmé pour un arrêt doux. La météo est surveillée "
+"indéfiniment jusqu'à ce que la sécurité s'améliore."
 
 #: ekos/scheduler/schedulerprocess.cpp:4135
 #, kde-format
@@ -31333,16 +31309,16 @@ msgstr ""
 "Surveillance de la sécurité initialisée avec la chaîne de connexion : %1"
 
 #: ekos/scheduler/schedulerprocess.cpp:4758
-#, fuzzy, kde-format
-#| msgid "Enable startup queue execution"
+#, kde-format
 msgid "Unknown error occurred during startup queue execution."
-msgstr "Activer l’exécution de la file d’attente de démarrage"
+msgstr ""
+"Une erreur inconnue s'est produite durant l'exécution de la file d'attente "
+"de démarrage."
 
 #: ekos/scheduler/schedulerprocess.cpp:4761
-#, fuzzy, kde-format
-#| msgid "Startup queue failed: %1"
+#, kde-format
 msgid "Startup Queue Failed"
-msgstr "Échec de la file d’attente de démarrage : %1"
+msgstr "Échec de la file d’attente de démarrage"
 
 #: ekos/scheduler/schedulerprocess.cpp:4762
 #, kde-format
@@ -31354,6 +31330,13 @@ msgid ""
 "The scheduler has been stopped. Please check the log for details and correct "
 "the issue before restarting."
 msgstr ""
+"La file d'attente de démarrage de l'ordonnanceur s'est arrêtée. Veuillez "
+"consulter les journaux pour les détails et corriger le problème avant de "
+"recommencer.\n"
+"%1\n"
+"\n"
+"Le planificateur a été arrêté. Veuillez vérifier le journal pour plus de "
+"détails et corriger le problème avant de redémarrer."
 
 #: ekos/scheduler/schedulersafetymonitor.cpp:65
 #, kde-format
@@ -32053,10 +32036,9 @@ msgid "Pause"
 msgstr "Pause"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:102
-#, fuzzy, kde-format
-#| msgid "Progress"
+#, kde-format
 msgid "Reset Progress"
-msgstr "Progression"
+msgstr "Réinitialiser la progression"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:118
 #, kde-format
@@ -32114,6 +32096,8 @@ msgstr ""
 #, kde-format
 msgid "Queue reset - all tasks set to pending"
 msgstr ""
+"Réinitialisation de la file d'attente - toutes les tâches sont définies "
+"comme en attente"
 
 #: ekos/scheduler/taskqueue/ui/queueviewerwidget.cpp:393
 #, kde-format
@@ -32601,77 +32585,77 @@ msgstr "Description du type d'objet"
 msgid "Object Type Comments"
 msgstr "Commentaire du type d'objet"
 
-#: fitsviewer/fitsdata.cpp:1910
+#: fitsviewer/fitsdata.cpp:1925
 #, kde-format
 msgid "Error reading fits buffer: %1."
 msgstr "Erreur de lecture du tampon FITS : %1."
 
-#: fitsviewer/fitsdata.cpp:1919
+#: fitsviewer/fitsdata.cpp:1934
 #, kde-format
 msgid "Failed to unpack compressed fits"
 msgstr "Impossible d'ouvrir un fichier compressé FITS."
 
-#: fitsviewer/fitsdata.cpp:1949
+#: fitsviewer/fitsdata.cpp:1964
 #, kde-format
 msgid "Error opening fits file %1 : %2"
 msgstr "Erreur à l'ouverture du fichier FITS %1 : %2"
 
-#: fitsviewer/fitsdata.cpp:1964
+#: fitsviewer/fitsdata.cpp:1979
 #, kde-format
 msgid "Error reading fits buffer: %1"
 msgstr "Erreur de lecture du tampon FITS : %1"
 
-#: fitsviewer/fitsdata.cpp:1978
+#: fitsviewer/fitsdata.cpp:1993
 #, kde-format
 msgid "Could not locate image HDU: %1"
 msgstr "Impossible de trouver une image HDU : %1"
 
-#: fitsviewer/fitsdata.cpp:1988
+#: fitsviewer/fitsdata.cpp:2003
 #, kde-format
 msgid "FITS file open error (fits_get_img_param): %1"
 msgstr "Erreur à l'ouverture du fichier FITS (fits_get_img_param) : %1"
 
-#: fitsviewer/fitsdata.cpp:2002
+#: fitsviewer/fitsdata.cpp:2017
 #, kde-format
 msgid "1D FITS images are not supported in KStars."
 msgstr "Les images FITS 1D ne sont pas prises en charge dans KStars."
 
-#: fitsviewer/fitsdata.cpp:2050 fitsviewer/fitsdata.cpp:2759
+#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2774
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "La profondeur de bit %1 n'est pas prise en charge."
 
-#: fitsviewer/fitsdata.cpp:2060
+#: fitsviewer/fitsdata.cpp:2075
 #, kde-format
 msgid "Image has invalid dimensions %1x%2"
 msgstr "L'image a des dimensions non valables %1 x %2."
 
-#: fitsviewer/fitsdata.cpp:2114
+#: fitsviewer/fitsdata.cpp:2129
 #, kde-format
 msgid "Error reading image: %1"
 msgstr "Erreur de lecture de l'image : %1"
 
-#: fitsviewer/fitsdata.cpp:2521 fitsviewer/fitsdata.cpp:2719
+#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2734
 #, kde-format
 msgid "XISF file open error: "
 msgstr "Erreur à l'ouverture du fichier XISF"
 
-#: fitsviewer/fitsdata.cpp:2633
+#: fitsviewer/fitsdata.cpp:2648
 #, kde-format
 msgid "File contain no images"
 msgstr "Le fichier ne contient pas d'image"
 
-#: fitsviewer/fitsdata.cpp:2662
+#: fitsviewer/fitsdata.cpp:2677
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "Le format de l'échantillon %1 n'est pas pris en charge."
 
-#: fitsviewer/fitsdata.cpp:2797
+#: fitsviewer/fitsdata.cpp:2812
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Erreur à l'enregistrement de l'image XISF"
 
-#: fitsviewer/fitsdata.cpp:2889 fitsviewer/fitsdata.cpp:3005
+#: fitsviewer/fitsdata.cpp:2904 fitsviewer/fitsdata.cpp:3020
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
@@ -32679,143 +32663,143 @@ msgstr ""
 "Données FITS : mémoire insuffisante pour le canal image_buffer. Demandé : %1 "
 "octets"
 
-#: fitsviewer/fitsdata.cpp:2944
+#: fitsviewer/fitsdata.cpp:2959
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "Impossible d'ouvrir le fichier %1 : %2"
 
-#: fitsviewer/fitsdata.cpp:2957
+#: fitsviewer/fitsdata.cpp:2972
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Impossible d'ouvrir le tampon : %1"
 
-#: fitsviewer/fitsdata.cpp:2968
+#: fitsviewer/fitsdata.cpp:2983
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "Impossible de décompresser l'aperçu : %1"
 
-#: fitsviewer/fitsdata.cpp:2975
+#: fitsviewer/fitsdata.cpp:2990
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "Impossible de « dcraw_process » : %1"
 
-#: fitsviewer/fitsdata.cpp:2983
+#: fitsviewer/fitsdata.cpp:2998
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "Changement en mémoire impossible : %1"
 
-#: fitsviewer/fitsdata.cpp:3130
+#: fitsviewer/fitsdata.cpp:3145
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "L'enregistrement des fichiers compressés n'est pas pris en charge."
 
-#: fitsviewer/fitsdata.cpp:3195
+#: fitsviewer/fitsdata.cpp:3210
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Impossible de créer le fichier : %1"
 
-#: fitsviewer/fitsdata.cpp:3210
+#: fitsviewer/fitsdata.cpp:3225
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Impossible de créer l'image : %1"
 
-#: fitsviewer/fitsdata.cpp:3219 fitsviewer/fitsdata.cpp:3226
+#: fitsviewer/fitsdata.cpp:3234 fitsviewer/fitsdata.cpp:3241
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Impossible de mettre à jour la clé : %1"
 
-#: fitsviewer/fitsdata.cpp:3354
+#: fitsviewer/fitsdata.cpp:3369
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Impossible de mettre à jour la date : %1"
 
-#: fitsviewer/fitsdata.cpp:3363
+#: fitsviewer/fitsdata.cpp:3378
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Impossible de mettre à jour l'historique : %1"
 
-#: fitsviewer/fitsdata.cpp:3385
+#: fitsviewer/fitsdata.cpp:3400
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Impossible d'enregistrer l'image : %1"
 
-#: fitsviewer/fitsdata.cpp:5156 fitsviewer/fitsdata.cpp:5167
-#: fitsviewer/fitsdata.cpp:5204 fitsviewer/fitsdata.cpp:5240
-#: fitsviewer/fitsdata.cpp:5374
+#: fitsviewer/fitsdata.cpp:5171 fitsviewer/fitsdata.cpp:5182
+#: fitsviewer/fitsdata.cpp:5219 fitsviewer/fitsdata.cpp:5255
+#: fitsviewer/fitsdata.cpp:5389
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "Aucun système de coordonnées mondiales trouvé."
 
-#: fitsviewer/fitsdata.cpp:5549 fitsviewer/fitsdata.cpp:5655
+#: fitsviewer/fitsdata.cpp:5564 fitsviewer/fitsdata.cpp:5670
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Erreur de la requête de Simbad"
 
-#: fitsviewer/fitsdata.cpp:5564
+#: fitsviewer/fitsdata.cpp:5579
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "Fin du délai imparti pour la requête de Simbad"
 
-#: fitsviewer/fitsdata.cpp:6541 fitsviewer/fitsdata.cpp:6654
+#: fitsviewer/fitsdata.cpp:6556 fitsviewer/fitsdata.cpp:6669
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr "Seules des images de Bayer en 8 ou 16 bits sont prises en charge."
 
-#: fitsviewer/fitsdata.cpp:6549 fitsviewer/fitsdata.cpp:6660
+#: fitsviewer/fitsdata.cpp:6564 fitsviewer/fitsdata.cpp:6675
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Unknown bayer pattern %1"
 
-#: fitsviewer/fitsdata.cpp:6573 fitsviewer/fitsdata.cpp:6599
+#: fitsviewer/fitsdata.cpp:6588 fitsviewer/fitsdata.cpp:6614
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Motif de Bayer %1 non géré"
 
-#: fitsviewer/fitsdata.cpp:6607
+#: fitsviewer/fitsdata.cpp:6622
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Décalage de Bayer non pris en charge %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6618 fitsviewer/fitsdata.cpp:6671
+#: fitsviewer/fitsdata.cpp:6633 fitsviewer/fitsdata.cpp:6686
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Paramètres de dématriçage dc1394 non valides."
 
-#: fitsviewer/fitsdata.cpp:6629 fitsviewer/fitsdata.cpp:6682
+#: fitsviewer/fitsdata.cpp:6644 fitsviewer/fitsdata.cpp:6697
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Paramètres de dématriçage OpenCV non valides."
 
-#: fitsviewer/fitsdata.cpp:6638 fitsviewer/fitsdata.cpp:6691
+#: fitsviewer/fitsdata.cpp:6653 fitsviewer/fitsdata.cpp:6706
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Moteur de dématriçage non valide"
 
-#: fitsviewer/fitsdata.cpp:6945
+#: fitsviewer/fitsdata.cpp:6960
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr "debayer_8bit a été appelé avec des paramètres de dématriçage invalides"
 
-#: fitsviewer/fitsdata.cpp:6961 fitsviewer/fitsdata.cpp:7007
-#: fitsviewer/fitsdata.cpp:7065 fitsviewer/fitsdata.cpp:7111
+#: fitsviewer/fitsdata.cpp:6976 fitsviewer/fitsdata.cpp:7022
+#: fitsviewer/fitsdata.cpp:7080 fitsviewer/fitsdata.cpp:7126
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 "Impossible d'allouer de la mémoire pour le tampon temporaire de « Bayer » : "
 "%1"
 
-#: fitsviewer/fitsdata.cpp:6971 fitsviewer/fitsdata.cpp:7075
+#: fitsviewer/fitsdata.cpp:6986 fitsviewer/fitsdata.cpp:7090
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 "Impossible d'allouer de la mémoire pour le tampon temporaire de « Bayer »."
 
-#: fitsviewer/fitsdata.cpp:6990 fitsviewer/fitsdata.cpp:7094
+#: fitsviewer/fitsdata.cpp:7005 fitsviewer/fitsdata.cpp:7109
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "Échec du Debayer (%1)"
 
-#: fitsviewer/fitsdata.cpp:7050
+#: fitsviewer/fitsdata.cpp:7065
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""
@@ -33138,18 +33122,7 @@ msgstr ""
 "%2 = Non applicable"
 
 #: fitsviewer/fitsstackmonitor.h:220
-#, fuzzy, kde-format
-#| msgctxt "Stack monitor overall status help"
-#| msgid ""
-#| "%1 \n"
-#| "%2\n"
-#| "%3 = Processed Successfully\n"
-#| "%4\n"
-#| "%5\n"
-#| "%6\n"
-#| "%7\n"
-#| "%8\n"
-#| "%9"
+#, kde-format
 msgctxt "Stack monitor overall status help"
 msgid ""
 "%1 \n"
@@ -33171,7 +33144,7 @@ msgstr ""
 "%6\n"
 "%7\n"
 "%8\n"
-"%9"
+"%9%10"
 
 #: fitsviewer/fitsstackmonitor.h:240
 #, kde-format
@@ -33557,58 +33530,49 @@ msgid "Weight used in stacking"
 msgstr "Poids utilisé pour l'empilement"
 
 #: fitsviewer/fitsstackwebcast.cpp:34
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "LiveStack Webcast Controller"
-msgstr "Processus propre à l'empilement en direct"
+msgstr "Contrôleur Webcast propre à l'empilement en direct"
 
 #: fitsviewer/fitsstackwebcast.cpp:48
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select LHS Logo"
-msgstr "Sélectionner une étoile"
+msgstr "Sélectionner le logo LHS"
 
 #: fitsviewer/fitsstackwebcast.cpp:58
-#, fuzzy, kde-format
-#| msgid "Select Star"
+#, kde-format
 msgid "Select RHS Logo"
-msgstr "Sélectionner une étoile"
+msgstr "Sélectionner le logo RHS"
 
 #: fitsviewer/fitsstackwebcast.cpp:81
-#, fuzzy, kde-format
-#| msgid "Failed to set binning."
+#, kde-format
 msgid "Failed to start: Port %1 may be in use."
-msgstr "Il est impossible de définir un regroupement de pixels (binning)."
+msgstr "Impossible de démarrer : le port %1 est peut-être utilisé."
 
 #: fitsviewer/fitsstackwebcast.cpp:385
-#, fuzzy, kde-format
-#| msgid "Solving..."
+#, kde-format
 msgid "Resolving..."
 msgstr "Résolution…"
 
 #: fitsviewer/fitsstackwebcast.cpp:389 fitsviewer/fitsstackwebcast.cpp:1294
-#, fuzzy, kde-format
-#| msgid "Unknown Type"
+#, kde-format
 msgid "Unknown Device"
-msgstr "Type inconnu"
+msgstr "Périphérique inconnu"
 
 #: fitsviewer/fitsstackwebcast.cpp:443
-#, fuzzy, kde-format
-#| msgid "Stopped"
+#, kde-format
 msgid "Webcast Stopped"
-msgstr "Arrêté"
+msgstr "Webcast arrêté"
 
 #: fitsviewer/fitsstackwebcast.cpp:508
-#, fuzzy, kde-format
-#| msgid "Unknown"
+#, kde-format
 msgid "Unknown OS"
-msgstr "Inconnu"
+msgstr "OS inconnu"
 
 #: fitsviewer/fitsstackwebcast.cpp:509
-#, fuzzy, kde-format
-#| msgid "Unknown error"
+#, kde-format
 msgid "Unknown Browser"
-msgstr "Erreur inconnue"
+msgstr "Navigateur inconnu"
 
 #: fitsviewer/fitsstretchui.cpp:242
 #, kde-format
@@ -34654,12 +34618,13 @@ msgstr "Dossier luminance"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, WebcastB)
 #: fitsviewer/livestacking.ui:924
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Sharpen sigma.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start / Stop Webcasting stacked images</p></body></"
 "html>"
-msgstr "<html><head/><body><p>Sigma affiné.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Démarrer/Arrêter l'empilement en direct des images</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QToolButton, WebcastB)
 #. i18n: ectx: property (text), widget (QToolButton, previousYear)
@@ -35007,13 +34972,17 @@ msgid ""
 "alignment master prior to stacking. In addition, the image edges are "
 "normalized to maintain appropriate brightness.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Normaliser les images avant l'empilement :</p><p>- "
+"Aucune. Pas de normalisation.</p><p>- Linéaire. Normaliser chaque pose sous-"
+"jacente à la luminosité du maître d'alignement avant l'empilement. De plus, "
+"les bords de l'image sont normalisés pour maintenir une luminosité "
+"appropriée.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, NormalizationLabel)
 #: fitsviewer/livestacking.ui:1671
-#, fuzzy, kde-format
-#| msgid "Information"
+#, kde-format
 msgid "Normalization:"
-msgstr "Informations"
+msgstr "Normalisation :"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, StackingMinimized)
 #: fitsviewer/livestacking.ui:1713
@@ -35377,39 +35346,31 @@ msgstr " Highlighting"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, FitsStackWebcast)
 #: fitsviewer/livestackwebcast.ui:14
-#, fuzzy, kde-format
-#| msgid "KStars Live Stacker"
+#, kde-format
 msgid "KStars Live Stacker Webcast"
 msgstr "Empilement en direct de KStars"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoRBtn)
 #: fitsviewer/livestackwebcast.ui:20
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Left-to-Right Tilt Slider</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Right) file chooser.</p></body></html>"
-msgstr ""
-"<html><head/><body><p>Curseur de défilement de l'inclinaison gauche-droite</"
-"p></body></html>"
+msgstr "<html><head/><body><p>Choix du fichier logo droite</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, qrLabel)
 #: fitsviewer/livestackwebcast.ui:39
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the QR code here</p></body></"
 "html>"
 msgstr ""
-"<html><head/><body><p>Définir l'axe des valeurs comme l'intervalle courant "
-"de valeurs.</p></body></html>"
+"<html><head/><body><p>Démarrer le Webcast pour afficher le code QR ici</p></"
+"body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QToolButton, logoLBtn)
 #: fitsviewer/livestackwebcast.ui:55
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Logo (Left) file chooser.</p></body></html>"
-msgstr "<html><head/><body><p>Taille de pas</p></body></html>"
+msgstr "<html><head/><body><p>Choix du fichier logo gauche.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QSpinBox, throttle)
 #. i18n: ectx: property (toolTip), widget (QLabel, throttleLabel)
@@ -35420,6 +35381,10 @@ msgid ""
 "bandwidth. Set the number of seconds per update. More frequent updates are "
 "discarded. Set 0 for no throttle.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Limiter les mises à jour pour économiser le CPU et la "
+"bande passante réseau. Définissez le nombre de secondes par mise à jour. Les "
+"mises à jour plus fréquentes sont rejetées. Mettez 0 pour aucune limitation."
+"</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, portLabel)
 #. i18n: ectx: property (toolTip), widget (QSpinBox, port)
@@ -35430,86 +35395,79 @@ msgid ""
 "unless you have something else using this port in which case pick 8081, etc."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Port à utiliser pour le webdiffusion. Habituellement, "
+"8080 conviendra, sauf si vous avez quelque chose d'autre utilisant ce port, "
+"auquel cas choisissez 8081, etc.</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:109
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom out for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Left) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Zoom arrière sur l'axe des X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logo gauche pour l'événement Webcast.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoLLabel)
 #: fitsviewer/livestackwebcast.ui:112
 #, kde-format
 msgid "Logo L:"
-msgstr ""
+msgstr "Logo G :"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:155
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Start the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Taille de pas</p></body></html>"
+msgstr "<html><head/><body><p>Démarrer le Webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, startBtn)
 #: fitsviewer/livestackwebcast.ui:158
-#, fuzzy, kde-format
-#| msgid "Start Scan"
+#, kde-format
 msgid "Start Webcast"
-msgstr "Démarrer le balayage"
+msgstr "Démarrer le Webcast"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:171
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Stop the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Taille de pas</p></body></html>"
+msgstr "<html><head/><body><p>Arrêter le Webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, stopBtn)
 #: fitsviewer/livestackwebcast.ui:174
-#, fuzzy, kde-format
-#| msgid "Stop capturing"
+#, kde-format
 msgid "Stop Webcast"
-msgstr "Arrêt de l'acquisition"
+msgstr "Arrêt du Webcast"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, resetBtn)
 #: fitsviewer/livestackwebcast.ui:187
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Step size:</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Reset the webcast</p></body></html>"
-msgstr "<html><head/><body><p>Taille de pas</p></body></html>"
+msgstr "<html><head/><body><p>Réinitialiser le Webcast</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:203
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Check to display the Petzval surface.</p></body></"
-#| "html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Toggle display of webcast subcribers</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Cochez pour afficher la surface de Petzval.</p></"
-"body></html>"
+"<html><head/><body><p>Afficher les abonnés au Webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, subscribersBtn)
 #: fitsviewer/livestackwebcast.ui:206
 #, kde-format
 msgid "Subscribers"
-msgstr ""
+msgstr "Abonnés"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoRPathDisplay)
 #: fitsviewer/livestackwebcast.ui:222
 #, kde-format
 msgid "Logo (Right) for the webcast event."
-msgstr ""
+msgstr "Logo (à droite) pour l'événement webdiffusé."
 
 #. i18n: ectx: property (toolTip), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:235
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid "<html><head/><body><p>Title for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Zoom avant sur l'axe des X.</p></body></html>"
+msgstr "<html><head/><body><p>Titre de l'événement Webcast</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, titleLabel)
 #: fitsviewer/livestackwebcast.ui:238 printing/pwizchartconfig.ui:141
@@ -35519,72 +35477,63 @@ msgstr "Titre :"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, urlLabel)
 #: fitsviewer/livestackwebcast.ui:254
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Scale the value axis to the current value range.</"
-#| "p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Start the webcast to view the URL and port here</p></"
 "body></html>"
 msgstr ""
-"<html><head/><body><p>Définir l'axe des valeurs comme l'intervalle courant "
-"de valeurs.</p></body></html>"
+"<html><head/><body><p>Démarrer le Webcast pour afficher l'URL et le port ici."
+"</p></body></html>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, logoLPathDisplay)
 #: fitsviewer/livestackwebcast.ui:273
 #, kde-format
 msgid "Logo (Left) for the webcast event."
-msgstr ""
+msgstr "Logo (à gauche) pour l'événement webdiffusé."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:280
 #, kde-format
 msgid "Title for the webcast event."
-msgstr ""
+msgstr "Titre pour l'événement Webcast."
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, titleEntry)
 #: fitsviewer/livestackwebcast.ui:283
-#, fuzzy, kde-format
-#| msgid "Live Stacker own process"
+#, kde-format
 msgid "My LiveStacker Webcast"
-msgstr "Processus propre à l'empilement en direct"
+msgstr "Mon Webcast pour l'empilement en direct"
 
 #. i18n: ectx: property (text), widget (QLabel, throttleLabel)
 #: fitsviewer/livestackwebcast.ui:293
-#, fuzzy, kde-format
-#| msgid "Comets Update"
+#, kde-format
 msgid "Throttle Updates:"
-msgstr "Mise à jour des comètes"
+msgstr "Mise à jour de la limitation de vitesse"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:303
-#, fuzzy, kde-format
-#| msgid "<html><head/><body><p>Zoom in for the X-Axis.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Logo (Right) for the webcast event.</p></body></html>"
-msgstr "<html><head/><body><p>Zoom avant sur l'axe des X.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Logo (droite) de l'événement Webcast.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, logoRLabel)
 #: fitsviewer/livestackwebcast.ui:306
 #, kde-format
 msgid "Logo R:"
-msgstr ""
+msgstr "Logo R :"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:362
-#, fuzzy, kde-format
-#| msgctxt "Constellation name (optional)"
-#| msgid "WHIP"
+#, kde-format
 msgid "IP"
-msgstr "Fouet"
+msgstr "IP"
 
 #. i18n: ectx: property (text), widget (QTableWidget, subscribersTable)
 #: fitsviewer/livestackwebcast.ui:377
-#, fuzzy, kde-format
-#| msgctxt "string from libindi, used in the config dialog"
-#| msgid "Activate"
+#, kde-format
 msgid "Activity"
-msgstr "Activer"
+msgstr "Activité"
 
 #: fitsviewer/opsfits.cpp:111
 #, kde-format
@@ -37312,28 +37261,24 @@ msgid "Telescope Motion"
 msgstr "Mouvement du télescope"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connection"
+#, kde-format
 msgid "Correcting"
-msgstr "Connexion"
+msgstr "En cours de correction"
 
 #: indi/indipac.cpp:17
-#, fuzzy, kde-format
-#| msgid "Connected"
+#, kde-format
 msgid "Corrected"
-msgstr "Connecté"
+msgstr "Corrigé"
 
 #: indi/indipac.cpp:66
-#, fuzzy, kde-format
-#| msgid "Job '%1' alignment is complete."
+#, kde-format
 msgid "Polar alignment correction completed"
-msgstr "La tâche %1 d'alignement est terminée."
+msgstr "La correction de l'alignement polaire est terminée."
 
 #: indi/indipac.cpp:72
-#, fuzzy, kde-format
-#| msgid "Point calculation error."
+#, kde-format
 msgid "Polar alignment correction error"
-msgstr "Erreur lors du calcul sur le point."
+msgstr "Erreur de correction de l'alignement polaire."
 
 #: indi/indiproperty.cpp:223 tools/observinglist.cpp:101
 #, kde-format
@@ -41240,10 +41185,9 @@ msgstr ""
 
 #. i18n: ectx: label, entry (DomeSlitInverted), group (Colors)
 #: kstars.kcfg:1170
-#, fuzzy, kde-format
-#| msgid "Mode for rendering stars"
+#, kde-format
 msgid "Mode for filling dome slit"
-msgstr "Mode de rendu des étoiles"
+msgstr "Mode de remplissage du dôme divisé"
 
 #. i18n: ectx: whatsthis, entry (DomeSlitInverted), group (Colors)
 #: kstars.kcfg:1171
@@ -41252,6 +41196,8 @@ msgid ""
 "If disabled false dome slit is filled. If enabled true dome slit is open and "
 "the sky filled."
 msgstr ""
+"Si désactivé false la fente du dôme est remplie. Si activé true la fente du "
+"dôme est ouverte et le ciel rempli."
 
 #. i18n: ectx: label, entry (AngularRulerColor), group (Colors)
 #: kstars.kcfg:1175
@@ -42840,10 +42786,9 @@ msgstr "Pondération des images de l'empilement live"
 
 #. i18n: ectx: whatsthis, entry (fitsLSNormalization), group (FITSViewer)
 #: kstars.kcfg:1867
-#, fuzzy, kde-format
-#| msgid "Live Stacking Monitor"
+#, kde-format
 msgid "Live Stacking normalization"
-msgstr "Surveillance en direct de l'empilement"
+msgstr "Normalisation de l'empilement en direct"
 
 #. i18n: ectx: whatsthis, entry (fitsLSStackingMethod), group (FITSViewer)
 #: kstars.kcfg:1871
@@ -42969,38 +42914,34 @@ msgstr "Mise en surbrillance de la surveillance de l’empilement en direct."
 
 #. i18n: ectx: label, entry (fitsLSWebcastTitle), group (FITSViewer)
 #: kstars.kcfg:1957
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast title"
-msgstr "Master flat de l'empilement live"
+msgstr "Titre du Webcast de l'empilement en direct"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoL), group (FITSViewer)
 #: kstars.kcfg:1961
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast left logo pathname"
-msgstr "Master flat de l'empilement live"
+msgstr "Chemin du logo gauche du Webcast de l'empilement en direct"
 
 #. i18n: ectx: label, entry (fitsLSWebcastLogoR), group (FITSViewer)
 #: kstars.kcfg:1965
-#, fuzzy, kde-format
-#| msgid "Live Stacking master flat"
+#, kde-format
 msgid "Live Stacking Webcast right logo pathname"
-msgstr "Master flat de l'empilement live"
+msgstr "Chemin du logo droite du Webcast de l'empilement en direct"
 
 #. i18n: ectx: label, entry (fitsLSWebcastPort), group (FITSViewer)
 #: kstars.kcfg:1969
-#, fuzzy, kde-format
-#| msgid "Live Stacking master dark"
+#, kde-format
 msgid "Live Stacking Webcast port number"
-msgstr "Master dark de l'empilement live"
+msgstr "Numéro de port du Webcast de l'empilement en direct"
 
 #. i18n: ectx: label, entry (fitsLSWebcastThrottle), group (FITSViewer)
 #: kstars.kcfg:1973
-#, fuzzy, kde-format
-#| msgid "Live Stacking sharpen amount"
+#, kde-format
 msgid "Live Stacking Webcast throttle in milliseconds"
-msgstr "Quantité d'affinage pour l'empilement live"
+msgstr ""
+"Limitation de vitesse en millisecondes du Webcast de l'empilement en direct"
 
 #. i18n: ectx: label, entry (BortleClass), group (WISettings)
 #: kstars.kcfg:1979
@@ -43299,10 +43240,9 @@ msgstr "Multiplicateur pour l'angle de position"
 
 #. i18n: ectx: label, entry (PAOffset), group (Capture)
 #: kstars.kcfg:2172
-#, fuzzy, kde-format
-#| msgid "Position angle:"
+#, kde-format
 msgid "Position angle offset"
-msgstr "Angle de position :"
+msgstr "Décalage de l'angle de position"
 
 #. i18n: ectx: label, entry (PAPierSide), group (Capture)
 #: kstars.kcfg:2176
@@ -45006,10 +44946,11 @@ msgstr "Durée d'exposition en secondes de l'assistant d'alignement polaire."
 
 #. i18n: ectx: label, entry (PAHAutoPACCorrection), group (Align)
 #: kstars.kcfg:3033
-#, fuzzy, kde-format
-#| msgid "Mount homing in progress"
+#, kde-format
 msgid "Enable automatic polar alignment correction using PAC device."
-msgstr "Retour à la position par défaut de la monture en cours"
+msgstr ""
+"Activer la correction automatique de l'alignement polaire en utilisation un "
+"périphérique PAC."
 
 #. i18n: ectx: label, entry (PAHSuccessThreshold), group (Align)
 #: kstars.kcfg:3037
@@ -45018,6 +44959,9 @@ msgid ""
 "Polar alignment success threshold in arcminutes. If total error is at or "
 "below this value, alignment is considered successful."
 msgstr ""
+"Seuil de réussite de l'alignement polaire en minutes d'arc. Si l'erreur "
+"totale est égale ou inférieure à cette valeur, l'alignement est considéré "
+"comme réussi."
 
 #. i18n: ectx: label, entry (PAHCorrectionTimeout), group (Align)
 #: kstars.kcfg:3041
@@ -45026,6 +44970,8 @@ msgid ""
 "Timeout in seconds for automatic polar alignment correction. If the system "
 "cannot reach the desired threshold within this period, it aborts."
 msgstr ""
+"Délai en secondes pour la correction automatique de l'alignement polaire. Si "
+"le système ne peut pas atteindre le seuil souhaité dans ce délai, il échoue."
 
 #. i18n: ectx: label, entry (GuideExposure), group (Guide)
 #: kstars.kcfg:3047
@@ -81039,15 +80985,14 @@ msgstr ""
 "Robin Glover"
 
 #: main.cpp:221
-#, fuzzy, kde-format
-#| msgid "Projection"
+#, kde-format
 msgid "Project Nayuki"
-msgstr "Projection"
+msgstr "Project Nayuki"
 
 #: main.cpp:221
 #, kde-format
 msgid "QR Code generator library (MIT)"
-msgstr ""
+msgstr "Bibliothèque de générateur de code QR (MIT)"
 
 #: main.cpp:232
 #, kde-format
@@ -82529,10 +82474,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_DomeSlitInverted)
 #: options/opscolors.ui:188
-#, fuzzy, kde-format
-#| msgid "Dome Slit"
+#, kde-format
 msgid "Dome Slit Inverted"
-msgstr "Fente du dôme"
+msgstr "Fente du dôme inversée"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox_2)
 #: options/opscolors.ui:203
