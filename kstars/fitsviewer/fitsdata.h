@@ -751,6 +751,13 @@ class FITSData : public QObject
         bool stackLoadWCS();
 
         /**
+         * @brief Create WCS params for a stack sub if they don't already exist. Indi subs
+         * normally have WCS params set (if indi params set) but subs from other sources don't
+         * always have these set, e.g. Seestar
+         */
+        void stackCreateWCSParams();
+
+        /**
          * @brief injectStackWCS to inject a plate solved solution to WCS
          * @param orientation Solver orientation, degrees E of N.
          * @param ra J2000 Right Ascension

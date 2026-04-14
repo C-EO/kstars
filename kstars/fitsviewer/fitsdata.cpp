@@ -2553,6 +2553,9 @@ bool FITSData::stackLoadWCS()
         m_StackWCSHandle = nullptr;
     }
 
+    // Create any WCS params that may be missing
+    stackCreateWCSParams();
+
     // Get the FITS header in a format to do WCS processing...
     // We hold m_StackHeaderRecords with strings without quotes because when writing a FITS
     // header for example, CFITSIO quotes strings automatically. However, here the WCS function
@@ -2621,6 +2624,26 @@ bool FITSData::stackLoadWCS()
         return false;
     }
     return true;
+}
+
+// Check that we have all the WCS keywords we need - otherwise create them
+// Indi should set these up normally but if stacking subs from elsewhere these may be omitted
+void FITSData::stackCreateWCSParams()
+{
+    const QSet<QString> wcsKeys = { "CTYPE1", "CTYPE2", "CRVAL1", "CRVAL2", "CRPIX1", "CRPIX2", "CDELT1", "CDELT2" };
+
+    int keys = 0;
+    for (auto &fitsKeyword : m_StackHeaderRecords)
+    {
+        if (wcsKeys.contains(fitsKeyword.key))
+        {
+            if (++keys >= wcsKeys.size())
+                break;
+        }
+    }
+
+    if (keys < wcsKeys.size())
+        setupWCSParams(true);
 }
 #endif // !KSTARS_LITE
 
@@ -4290,6 +4313,8 @@ bool FITSData::parseSolution(FITSImage::Solution &solution, const bool stack) co
 
     // Reset all
     solution.fieldWidth = solution.fieldHeight = solution.pixscale = solution.ra = solution.dec = -1;
+    solution.raError = solution.decError = solution.orientation = 0.0;
+    solution.parity == FITSImage::NEGATIVE;
 
     // RA
     if (getRecordValue("OBJCTRA", value, stack))
@@ -4364,22 +4389,24 @@ bool FITSData::parseSolution(FITSImage::Solution &solution, const bool stack) co
 
     if (pixsize1 > 0 && pixsize2 > 0)
     {
+        double width = stack ? m_StackStatistics.stats.width : m_Statistics.width;
+        double height = stack ? m_StackStatistics.stats.height : m_Statistics.height;
         // If we have scale, then that's it
         if (scale > 0)
         {
             // Arcsecs per pixel
             solution.pixscale = scale;
             // Arcmins
-            solution.fieldWidth = (m_Statistics.width * scale) / 60.0;
+            solution.fieldWidth = (width * scale) / 60.0;
             // Arcmins, and account for pixel ratio if non-squared.
-            solution.fieldHeight = (m_Statistics.height * scale * (pixsize2 / pixsize1)) / 60.0;
+            solution.fieldHeight = (height * scale * (pixsize2 / pixsize1)) / 60.0;
         }
         else if (focal_length > 0)
         {
             // Arcmins
-            solution.fieldWidth = ((206264.8062470963552 * m_Statistics.width * (pixsize1 / 1000.0)) / (focal_length * binx)) / 60.0;
+            solution.fieldWidth = ((206264.8062470963552 * width * (pixsize1 / 1000.0)) / (focal_length * binx)) / 60.0;
             // Arsmins
-            solution.fieldHeight = ((206264.8062470963552 * m_Statistics.height * (pixsize2 / 1000.0)) / (focal_length * biny)) / 60.0;
+            solution.fieldHeight = ((206264.8062470963552 * height * (pixsize2 / 1000.0)) / (focal_length * biny)) / 60.0;
             // Arcsecs per pixel
             solution.pixscale = (206264.8062470963552 * (pixsize1 / 1000.0)) / (focal_length * binx);
         }

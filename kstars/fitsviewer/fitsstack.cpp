@@ -664,46 +664,81 @@ bool FITSStack::calcWarpMatrix(struct wcsprm * wcs1, struct wcsprm * wcs2, cv::M
 {
     try
     {
-        double X = m_Width - 1.0;
-        double Y = m_Height - 1.0;
+        std::vector<cv::Point2d> points1, points2;
+        int gridSize = 5;
 
-        // Define corners and centre of image 1 in pixels
-        std::vector<cv::Point2d> corners1;
-        corners1.push_back(cv::Point2d(0.0, 0.0));
-        corners1.push_back(cv::Point2d(X, 0.0));
-        corners1.push_back(cv::Point2d(X, Y));
-        corners1.push_back(cv::Point2d(0.0, Y));
-        corners1.push_back(cv::Point2d(X / 2.0, Y / 2.0));
-
-        // Convert pix points to world coordinates of image 1
-        double imgcrd[2], phi, theta, world[2], pixcrd[2];
-        int status, stat[2];
-        std::vector<cv::Point2d> worldCoords1;
-        for (unsigned int i = 0; i < corners1.size(); i++)
+        for (int i = 0; i < gridSize; i++)
         {
-            pixcrd[0] = corners1[i].x;
-            pixcrd[1] = corners1[i].y;
-            if ((status = wcsp2s(wcs1, 1, 2, pixcrd, imgcrd, &phi, &theta, world, stat)) != 0)
-                qCDebug(KSTARS_FITS) << QString("WCS wcsp2s error %1: %2").arg(status).arg(wcs_errmsg[status]);
-            worldCoords1.push_back(cv::Point2d(world[0], world[1]));
+            for (int j = 0; j < gridSize; j++)
+            {
+                // Calculate pixel coordinates (0-based)
+                double px = (double)i * (m_Width - 1.0) / (gridSize - 1);
+                double py = (double)j * (m_Height - 1.0) / (gridSize - 1);
+
+                double imgcrd[2], phi, theta, world[2], pixcrd[2];
+                int status, stat[2];
+
+                // Pixel (Ref) -> World
+                double pix1_fits[2] = { px + 1.0, py + 1.0 };
+                status = wcsp2s(wcs1, 1, 2, pix1_fits, imgcrd, &phi, &theta, world, stat);
+                if (status != 0)
+                {
+                    qCDebug(KSTARS_FITS) << QString("WCS wcsp2s error %1: %2").arg(status).arg(wcs_errmsg[status]);
+                    continue;
+                }
+
+                // World -> Pixel (Sub)
+                status = wcss2p(wcs2, 1, 2, world, &phi, &theta, imgcrd, pixcrd, stat);
+                if (status != 0)
+                {
+                    qCDebug(KSTARS_FITS) << QString("WCS wcss2p error %1: %2").arg(status).arg(wcs_errmsg[status]);
+                    continue;
+                }
+
+                points1.push_back(cv::Point2d(px, py));
+                points2.push_back(cv::Point2d(pixcrd[0] - 1.0, pixcrd[1] - 1.0));
+            }
         }
 
-        // Convert world coordinates to pixel coordinates in image 2
-        std::vector<cv::Point2d> corners2;
-        for (unsigned int i = 0; i < worldCoords1.size(); i++)
+        unsigned int minPoints = (gridSize * gridSize / 2) + 1;
+        if (points1.size() < minPoints)
         {
-            world[0] = worldCoords1[i].x;
-            world[1] = worldCoords1[i].y;
-            if ((status = wcss2p(wcs2, 1, 2, world, &phi, &theta, imgcrd, pixcrd, stat)) != 0)
-                qCDebug(KSTARS_FITS) << QString("WCS wcss2p error %1: %2").arg(status).arg(wcs_errmsg[status]);
-            corners2.push_back(cv::Point2d(pixcrd[0], pixcrd[1]));
+            qCDebug(KSTARS_FITS) << QString("Not enough datapoints [%1] to align image").arg(points1.size());
+            return false;
         }
 
-        // Compute the homography matrix using OpenCV to go from image 2 to image 1 (reference)
-        warp = cv::findHomography(corners2, corners1, 0);
-        if (warp.empty())
+        // Use estimateAffinePartial2D for a rigid (Rotation + Translation) transform
+        // This is much more stable for Alt-Az stacking than Homography.
+        cv::Mat inliers;
+        cv::Mat affine = cv::estimateAffinePartial2D(points2, points1, inliers, cv::RANSAC, 1.0);
+        if (affine.empty())
         {
-            qCDebug(KSTARS_FITS) << QString("openCV findHomography warp matrix empty");
+            qCDebug(KSTARS_FITS) << "openCV estimateAffinePartial2D matrix empty";
+            return false;
+        }
+
+        double inlierRatio = (double)cv::countNonZero(inliers) / points1.size();
+        if (inlierRatio < 0.8)
+        {
+            qCDebug(KSTARS_FITS) << "openCV estimateAffinePartial2D points do not form a consistent rigid body.";
+            return false;
+        }
+
+        // Convert the 2x3 Affine matrix to a 3x3 Homography matrix
+        warp = cv::Mat::eye(3, 3, CV_64F);
+        affine.copyTo(warp.rowRange(0, 2));
+
+        // Extract the Top-left 2x2 matrix to check for distortion
+        // The determinant of the rotation/scale part tells us the area scaling factor
+        cv::Mat linearPart = warp.rowRange(0, 2).colRange(0, 2);
+        double det = cv::determinant(linearPart);
+
+        // Apply a tolerance check to det
+        // Ideal is 1.0. 0.9975 to 1.0025 allows for small changes.
+        double tolerance = 0.0025;
+        if (std::abs(det - 1.0) > tolerance)
+        {
+            qCDebug(KSTARS_FITS) << QString("Sub-frame distortion too high (Det: %1), sub rejected").arg(det);
             return false;
         }
 
@@ -719,6 +754,7 @@ bool FITSStack::calcWarpMatrix(struct wcsprm * wcs1, struct wcsprm * wcs2, cv::M
             cv::invert(S, S_inv);
             warp = S * warp * S_inv;
         }
+
         // Uncomment to display warp matrix - useless for debugging alignment issues
         //cv::Ptr<cv::Formatter> fmt = cv::Formatter::get(cv::Formatter::FMT_DEFAULT);
         //std::cout << fmt->format(warp) << std::endl;
