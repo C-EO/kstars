@@ -685,6 +685,22 @@ void ArtificialHorizonComponent::removeRegion(const QString &regionName, bool li
     horizon.removeRegion(regionName, lineOnly);
 }
 
+void ArtificialHorizon::setRegionEnabled(const QString &regionName, bool enabled)
+{
+    ArtificialHorizonEntity *entity = findRegion(regionName);
+    if (entity)
+    {
+        entity->setEnabled(enabled);
+        resetPrecomputeConstraints();
+        checkForCeilings();
+    }
+}
+
+void ArtificialHorizonComponent::setRegionEnabled(const QString &regionName, bool enabled)
+{
+    horizon.setRegionEnabled(regionName, enabled);
+}
+
 void ArtificialHorizon::checkForCeilings()
 {
     noCeilingConstraints = true;

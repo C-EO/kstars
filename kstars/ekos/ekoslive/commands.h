@@ -261,6 +261,10 @@ enum COMMANDS
     LIVESTACKER_GET_ALL_SETTINGS,
     LIVESTACKER_SET_ALL_SETTINGS,
     NEW_LIVESTACKER_STATE,
+
+    // Artificial Horizon
+    ARTIFICIAL_HORIZON_IMPORT,
+    ARTIFICIAL_HORIZON_TOGGLE,
 };
 
 static QMap<COMMANDS, QString> const commands =
@@ -488,6 +492,9 @@ static QMap<COMMANDS, QString> const commands =
     {LIVESTACKER_GET_ALL_SETTINGS, "livestacker_get_all_settings"},
     {LIVESTACKER_SET_ALL_SETTINGS, "livestacker_set_all_settings"},
     {NEW_LIVESTACKER_STATE, "new_livestacker_state"},
+
+    {ARTIFICIAL_HORIZON_IMPORT, "artificial_horizon_import"},
+    {ARTIFICIAL_HORIZON_TOGGLE, "artificial_horizon_toggle"},
 };
 
 }

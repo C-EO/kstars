@@ -67,6 +67,7 @@ class ArtificialHorizon
         ArtificialHorizonEntity *findRegion(const QString &regionName);
         void addRegion(const QString &regionName, bool enabled, const std::shared_ptr<LineList> &list, bool ceiling);
         void removeRegion(const QString &regionName, bool lineOnly = false);
+        void setRegionEnabled(const QString &regionName, bool enabled);
         bool enabled(int i) const;
         void load(const QList<ArtificialHorizonEntity *> &list);
 
@@ -163,6 +164,7 @@ class ArtificialHorizonComponent : public NoPrecessIndex
         }
         void addRegion(const QString &regionName, bool enabled, const std::shared_ptr<LineList> &list, bool ceiling);
         void removeRegion(const QString &regionName, bool lineOnly = false);
+        void setRegionEnabled(const QString &regionName, bool enabled);
 
         const ArtificialHorizon &getHorizon()
         {

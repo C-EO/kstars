@@ -29,6 +29,8 @@
 #include "ekos_debug.h"
 #include "ksalmanac.h"
 #include "skymapcomposite.h"
+#include "skycomponents/artificialhorizoncomponent.h"
+#include "linelist.h"
 #include "catalogobject.h"
 #include "fitsviewer/fitsviewer.h"
 #include "fitsviewer/fitstab.h"
@@ -260,6 +262,8 @@ void Message::onTextReceived(const QString &message)
         processDSLRCommands(command, payload);
     else if (command.startsWith("file_"))
         processFileCommands(command, payload);
+    else if (command.startsWith("artificial_horizon_"))
+        processArtificialHorizonCommands(command, payload);
 
     if (m_Manager->getEkosStartingStatus() != Ekos::Success)
         return;
@@ -1902,26 +1906,26 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
 
         switch (objectType)
         {
-                // Stars
+            // Stars
             case SkyObject::STAR:
             case SkyObject::CATALOG_STAR:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::STAR));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::CATALOG_STAR));
                 break;
-                // Planets & Moon
+            // Planets & Moon
             case SkyObject::PLANET:
             case SkyObject::MOON:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::PLANET));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::MOON));
                 break;
-                // Comets & Asteroids
+            // Comets & Asteroids
             case SkyObject::COMET:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::COMET));
                 break;
             case SkyObject::ASTEROID:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::ASTEROID));
                 break;
-                // Clusters
+            // Clusters
             case SkyObject::OPEN_CLUSTER:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::OPEN_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
@@ -1930,7 +1934,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GLOBULAR_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
                 break;
-                // Nebuale
+            // Nebuale
             case SkyObject::GASEOUS_NEBULA:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GASEOUS_NEBULA, objectMaxMagnitude));
                 isDSO = true;
@@ -3536,6 +3540,93 @@ void Message::onLiveStackerJobChanged(const QSharedPointer<Ekos::SequenceJob> &j
         {"target",  newTarget},
         {"filter",  newFilter}
     });
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///
+///////////////////////////////////////////////////////////////////////////////////////////
+void Message::processArtificialHorizonCommands(const QString &command, const QJsonObject &payload)
+{
+    auto *horizonComponent = KStarsData::Instance()->skyComposite()->artificialHorizon();
+    if (!horizonComponent)
+        return;
+
+    if (command == commands[ARTIFICIAL_HORIZON_IMPORT])
+    {
+        // payload["data"] contains the raw horizon file content as a single string
+        const QString data = payload["data"].toString();
+        if (data.isEmpty())
+            return;
+
+        QString name;
+        bool isCeiling = false;
+        QList<SkyPoint> pts;
+
+        QTextStream in(const_cast<QString *>(&data), QIODevice::ReadOnly);
+        while (!in.atEnd())
+        {
+            const QString line = in.readLine().trimmed();
+            if (line.isEmpty() || line.startsWith('#'))
+                continue;
+            if (line.startsWith("Ceiling"))
+            {
+                isCeiling = true;
+                name = line.mid(static_cast<int>(strlen("Ceiling"))).trimmed();
+            }
+            else if (line.startsWith("Horizon"))
+            {
+                name = line.mid(static_cast<int>(strlen("Horizon"))).trimmed();
+            }
+            else
+            {
+                const QStringList cols = line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
+                if (cols.size() != 2 || cols[0].isEmpty() || cols[1].isEmpty())
+                    continue;
+                SkyPoint pt;
+                pt.setAz(dms::fromString(cols[0], true));
+                pt.setAlt(dms::fromString(cols[1], true));
+                pts.append(pt);
+            }
+        }
+
+        if (pts.size() < 2 || name.isEmpty())
+            return;
+
+        std::shared_ptr<LineList> list(new LineList());
+        for (const auto &pt : pts)
+        {
+            auto sp = std::make_shared<SkyPoint>();
+            sp->setAz(pt.az());
+            sp->setAlt(pt.alt());
+            sp->HorizontalToEquatorial(KStarsData::Instance()->lst(), KStarsData::Instance()->geo()->lat());
+            list->append(sp);
+        }
+
+        horizonComponent->removeRegion(name);
+        horizonComponent->addRegion(name, true, list, isCeiling);
+        horizonComponent->save();
+        SkyMap::Instance()->forceUpdateNow();
+    }
+    else if (command == commands[ARTIFICIAL_HORIZON_TOGGLE])
+    {
+        const bool enabled = payload["enabled"].toBool();
+        const QString region = payload["region"].toString();
+
+        if (region.isEmpty())
+        {
+            // Toggle all regions
+            for (auto *entity : *horizonComponent->getHorizon().horizonList())
+                horizonComponent->setRegionEnabled(entity->region(), enabled);
+        }
+        else
+        {
+            // Toggle a specific named region
+            horizonComponent->setRegionEnabled(region, enabled);
+        }
+
+        horizonComponent->save();
+        SkyMap::Instance()->forceUpdateNow();
+    }
 }
 
 }

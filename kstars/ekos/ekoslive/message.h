@@ -216,6 +216,9 @@ class Message : public QObject
         // Process file commands
         void processFileCommands(const QString &command, const QJsonObject &payload);
 
+        // Process Artificial Horizon commands
+        void processArtificialHorizonCommands(const QString &command, const QJsonObject &payload);
+
         // LiveStacker commands
         void processLiveStackerCommands(const QString &command, const QJsonObject &payload);
         void sendLiveStackerProgress(bool ok, int sub, int total, double meanSNR, double minSNR, double maxSNR);
