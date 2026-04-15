@@ -68,11 +68,11 @@ class SetAction : public TaskAction
         QJsonObject toJson() const override;
         static SetAction* fromJson(const QJsonObject &json, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void checkCompletion();
         void handleTimeout();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Handle property updates from device
          * @param prop Updated property

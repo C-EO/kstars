@@ -149,7 +149,7 @@ class SchedulerModuleState : public QObject
             if (newURL != m_preStartupScriptURL)
             {
                 m_preStartupScriptURL = newURL;
-                emit scriptsChanged();
+                Q_EMIT scriptsChanged();
             }
         }
 
@@ -162,7 +162,7 @@ class SchedulerModuleState : public QObject
             if (newURL != m_postStartupScriptURL)
             {
                 m_postStartupScriptURL = newURL;
-                emit scriptsChanged();
+                Q_EMIT scriptsChanged();
             }
         }
 
@@ -181,7 +181,7 @@ class SchedulerModuleState : public QObject
             if (newURL != m_preShutdownScriptURL)
             {
                 m_preShutdownScriptURL = newURL;
-                emit scriptsChanged();
+                Q_EMIT scriptsChanged();
             }
         }
 
@@ -194,7 +194,7 @@ class SchedulerModuleState : public QObject
             if (newURL != m_postShutdownScriptURL)
             {
                 m_postShutdownScriptURL = newURL;
-                emit scriptsChanged();
+                Q_EMIT scriptsChanged();
             }
         }
 
@@ -355,7 +355,7 @@ class SchedulerModuleState : public QObject
         void setIndiCommunicationStatus(CommunicationStatus newINDICommunicationStatus)
         {
             m_INDICommunicationStatus = newINDICommunicationStatus;
-            emit indiCommunicationStatusChanged(m_INDICommunicationStatus);
+            Q_EMIT indiCommunicationStatusChanged(m_INDICommunicationStatus);
         }
         // counters for failed INDI connection attempts
         void resetIndiConnectFailureCount(uint8_t newIndiConnectFailureCount = 0)
@@ -675,7 +675,7 @@ class SchedulerModuleState : public QObject
             return ++m_solverIteration;
         }
 
-    signals:
+    Q_SIGNALS:
         // ////////////////////////////////////////////////////////////////////
         // communication with the UI
         // ////////////////////////////////////////////////////////////////////

@@ -30,7 +30,7 @@ class TestGuideStars : public QObject
         /** @short Destructor */
         ~TestGuideStars() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
         void calibrationTest();
         void testFindGuideStar();

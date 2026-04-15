@@ -28,7 +28,7 @@ class modCalcEquinox : public QFrame, public Ui::modCalcEquinox
 
         double dmonth(int imonth);
 
-    private slots:
+    private Q_SLOTS:
         void slotCompute();
         void slotCheckFiles();
         void slotRunBatch();

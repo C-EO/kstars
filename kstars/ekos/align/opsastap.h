@@ -24,11 +24,11 @@ class OpsASTAP : public QWidget, public Ui::OpsASTAP
         explicit OpsASTAP(Align *parent);
         virtual ~OpsASTAP() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void slotApply();
         void slotSelectExecutable();
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

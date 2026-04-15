@@ -55,7 +55,7 @@ class ThumbnailPicker : public QDialog
             return ImageRect;
         }
 
-    private slots:
+    private Q_SLOTS:
         void slotEditImage();
         void slotUnsetImage();
         void slotSetFromList(int i);

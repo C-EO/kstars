@@ -77,11 +77,11 @@ void ScreenCapture::mouseReleaseEvent(QMouseEvent *event)
         QThread::msleep(100);
         QScreen *screen = QGuiApplication::primaryScreen();
         if (!screen)
-            emit aborted();
+            Q_EMIT aborted();
         else
         {
             QPixmap screenshot = screen->grabWindow(0, rect.x(), rect.y(), rect.width(), rect.height());
-            emit areaSelected(screenshot.toImage());
+            Q_EMIT areaSelected(screenshot.toImage());
         }
     }
 }
@@ -92,7 +92,7 @@ void ScreenCapture::keyPressEvent(QKeyEvent *event)
     {
         unsetCursor();
         close();
-        emit aborted();
+        Q_EMIT aborted();
     }
     else
     {

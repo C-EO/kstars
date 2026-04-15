@@ -97,7 +97,7 @@ void FileDownloader::dataFinished(QNetworkReply *pReply)
 
     if (m_verifyData(m_DownloadedData) == false)
     {
-        emit error(i18n("Data verification failed"));
+        Q_EMIT error(i18n("Data verification failed"));
         pReply->deleteLater();
         return;
     }
@@ -108,7 +108,7 @@ void FileDownloader::dataFinished(QNetworkReply *pReply)
 
         if (m_verifyFile(m_downloadTemporaryFile.fileName()) == false)
         {
-            emit error(i18n("File verification failed"));
+            Q_EMIT error(i18n("File verification failed"));
             pReply->deleteLater();
             return;
         }
@@ -120,7 +120,7 @@ void FileDownloader::dataFinished(QNetworkReply *pReply)
     }
 
     if (isCancelled == false)
-        emit downloaded();
+        Q_EMIT downloaded();
 
     pReply->deleteLater();
 }
@@ -142,11 +142,11 @@ void FileDownloader::slotError()
             m_downloadTemporaryFile.close();
             m_downloadTemporaryFile.remove();
         }
-        emit canceled();
+        Q_EMIT canceled();
     }
     else
     {
-        emit error(m_Reply->errorString());
+        Q_EMIT error(m_Reply->errorString());
     }
 }
 

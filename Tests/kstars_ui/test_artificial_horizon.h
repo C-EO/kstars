@@ -56,7 +56,7 @@ class TestArtificialHorizon : public QObject
     public:
         explicit TestArtificialHorizon(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

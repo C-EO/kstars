@@ -284,7 +284,7 @@ void SkyMapLite::setDestination(const dms &ra, const dms &dec)
 {
     destination()->set(ra, dec);
     destination()->EquatorialToHorizontal(data->lst(), data->geo()->lat());
-    emit destinationChanged();
+    Q_EMIT destinationChanged();
 }
 
 void SkyMapLite::setDestinationAltAz(const dms &alt, const dms &az, bool altIsRefracted)
@@ -300,7 +300,7 @@ void SkyMapLite::setDestinationAltAz(const dms &alt, const dms &az, bool altIsRe
     }
     destination()->setAz(az);
     destination()->HorizontalToEquatorial(data->lst(), data->geo()->lat());
-    emit destinationChanged();
+    Q_EMIT destinationChanged();
 }
 
 void SkyMapLite::setClickedPoint(SkyPoint *f)
@@ -393,7 +393,7 @@ void SkyMapLite::slotCenter()
     focusPoint()->EquatorialToHorizontal(data->lst(), data->geo()->lat());
 
     //display coordinates in statusBar
-    emit mousePointChanged(focusPoint());
+    Q_EMIT mousePointChanged(focusPoint());
     //showFocusCoords(); //update FocusBox
     //Lock center so that user could only zoom on touch-enabled devices
 }
@@ -598,7 +598,7 @@ void SkyMapLite::slotSelectObject(SkyObject *skyObj)
     }*/
     //Update selected SkyObject (used in FindDialog, DetailDialog)
     m_ClickedObjectLite->setObject(skyObj);
-    emit objectLiteChanged();
+    Q_EMIT objectLiteChanged();
     slotCenter();
 }
 
@@ -607,7 +607,7 @@ void SkyMapLite::setSkyRotation(double skyRotation)
     if (m_skyRotation != skyRotation)
     {
         m_skyRotation = skyRotation;
-        emit skyRotationChanged(skyRotation);
+        Q_EMIT skyRotationChanged(skyRotation);
 
         if (skyRotation >= 0 && skyRotation < 90)
         {
@@ -633,7 +633,7 @@ void SkyMapLite::setZoomFactor(double factor)
     Options::setZoomFactor(KSUtils::clamp(factor, MINZOOM, MAXZOOM));
 
     forceUpdate();
-    emit zoomChanged();
+    Q_EMIT zoomChanged();
 }
 
 void SkyMapLite::forceUpdate()
@@ -920,7 +920,7 @@ void SkyMapLite::addFOVSymbol(const QString &FOVName, bool initialState)
 {
     m_FOVSymbols.append(FOVName);
     //Emit signal whenever new value was added
-    emit symbolsFOVChanged(m_FOVSymbols);
+    Q_EMIT symbolsFOVChanged(m_FOVSymbols);
 
     m_FOVSymVisible.append(initialState);
 }
@@ -944,14 +944,14 @@ void SkyMapLite::setSlewing(bool newSlewing)
     if (m_slewing != newSlewing)
     {
         m_slewing = newSlewing;
-        emit slewingChanged(newSlewing);
+        Q_EMIT slewingChanged(newSlewing);
     }
 }
 
 void SkyMapLite::setCenterLocked(bool centerLocked)
 {
     m_centerLocked = centerLocked;
-    emit centerLockedChanged(centerLocked);
+    Q_EMIT centerLockedChanged(centerLocked);
 }
 
 void SkyMapLite::setAutomaticMode(bool automaticMode)

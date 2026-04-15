@@ -53,7 +53,7 @@ class KSMessageBox: public QMessageBox
          */
         bool selectResponse(const QString &button);
 
-    signals:
+    Q_SIGNALS:
         void newMessage(const QJsonObject &message);
 
     protected:
@@ -81,4 +81,3 @@ class KSMessageBox: public QMessageBox
 
         QTimer m_ProgressTimer;
 };
-

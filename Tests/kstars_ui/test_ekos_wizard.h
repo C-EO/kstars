@@ -12,7 +12,7 @@ class TestEkosWizard : public QObject
     public:
         explicit TestEkosWizard(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void init();
         void cleanup();
 

@@ -72,7 +72,7 @@ class TestEkosSimulator : public QObject
     public:
         explicit TestEkosSimulator(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

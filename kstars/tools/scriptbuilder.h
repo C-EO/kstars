@@ -68,7 +68,7 @@ class ScriptNameDialog : public QDialog
             return snw->AuthorName->text();
         }
 
-    private slots:
+    private Q_SLOTS:
         void slotEnableOkButton();
 
     private:
@@ -107,7 +107,7 @@ class ScriptBuilder : public QDialog
         void writeScript(QTextStream &ostream);
         bool parseFunction(const QString &fn_name, const QString &fn_args);
 
-    public slots:
+    public Q_SLOTS:
         void slotAddFunction();
         void slotMoveFunctionUp();
         void slotMoveFunctionDown();

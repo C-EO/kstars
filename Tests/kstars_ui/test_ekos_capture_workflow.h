@@ -79,7 +79,7 @@ class TestEkosCaptureWorkflow : public QObject
         QTemporaryDir *destination;
         QDir *imageLocation = nullptr;
 
-    protected slots:
+    protected Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 
@@ -135,7 +135,7 @@ class TestEkosCaptureWorkflow : public QObject
         QDir *getImageLocation();
 
 
-    private slots:
+    private Q_SLOTS:
         /** @brief Test if re-focusing is triggered after the configured delay. */
         void testCaptureRefocusDelay();
 

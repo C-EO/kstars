@@ -35,7 +35,7 @@ class LedStatusWidget : public QWidget, Ui::LedStatusWidget
             return statusText->text();
         }
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Handle new alignment state
          */

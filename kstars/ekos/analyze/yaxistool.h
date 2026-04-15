@@ -82,16 +82,16 @@ class YAxisTool : public QDialog
         void closeEvent(QCloseEvent *event) override;
         void showEvent(QShowEvent *event) override;
 
-    signals:
+    Q_SIGNALS:
         void axisChanged(QObject *key, const YAxisInfo &info);
         void axisColorChanged(QObject *key, const YAxisInfo &info, const QColor &color);
         void leftAxisChanged(QCPAxis *axis);
 
-    public slots:
+    public Q_SLOTS:
         void updateValues(const double value);
         void slotClosed();
 
-    private slots:
+    private Q_SLOTS:
         void slotSaveChanges();
 
     private:

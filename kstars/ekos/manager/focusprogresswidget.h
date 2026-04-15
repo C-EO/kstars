@@ -30,7 +30,7 @@ class FocusProgressWidget : public QWidget, public Ui::FocusProgressWidget
         void updateFocusDetailView();
         void reset();
 
-    public slots:
+    public Q_SLOTS:
         void updateFocusStatus(FocusState status);
         void updateFocusStarPixmap(QPixmap &starPixmap);
         void updateCurrentHFR(double newHFR);

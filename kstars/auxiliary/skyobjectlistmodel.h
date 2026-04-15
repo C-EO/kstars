@@ -54,7 +54,7 @@ class SkyObjectListModel : public QAbstractListModel
 
         void setSkyObjectsList(QVector<QPair<QString, const SkyObject *>> sObjects);
 
-    public slots:
+    public Q_SLOTS:
         void removeSkyObject(SkyObject *object);
 
     private:

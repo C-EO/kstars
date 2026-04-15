@@ -17,7 +17,7 @@ class TestKSPaths: public QObject
     public:
         explicit TestKSPaths(QObject * parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

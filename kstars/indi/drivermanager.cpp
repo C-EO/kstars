@@ -354,7 +354,7 @@ void DriverManager::startDevices(const QList<QSharedPointer<DriverInfo>> &dList)
 
         if (port <= 0)
         {
-            emit serverFailed(host, port, i18n("Cannot start INDI server: port error."));
+            Q_EMIT serverFailed(host, port, i18n("Cannot start INDI server: port error."));
             return;
         }
 
@@ -362,7 +362,7 @@ void DriverManager::startDevices(const QList<QSharedPointer<DriverInfo>> &dList)
 
         if (serverManager == nullptr)
         {
-            emit serverFailed(host, port, i18n("Failed to create local INDI server"));
+            Q_EMIT serverFailed(host, port, i18n("Failed to create local INDI server"));
             return;
         }
 
@@ -392,7 +392,7 @@ void DriverManager::startLocalDrivers(ServerManager *serverManager)
 
 void DriverManager::processDriverStartup(const QSharedPointer<DriverInfo> &driver)
 {
-    emit driverStarted(driver);
+    Q_EMIT driverStarted(driver);
 
     auto manager = driver->getServerManager();
     // Do we have more pending drivers?
@@ -418,7 +418,7 @@ void DriverManager::processDriverStartup(const QSharedPointer<DriverInfo> &drive
 
 void DriverManager::processDriverFailure(const QSharedPointer<DriverInfo> &driver, const QString &message)
 {
-    emit driverFailed(driver, message);
+    Q_EMIT driverFailed(driver, message);
 
     qCWarning(KSTARS_INDI) << "Driver" << driver->getName() << "failed to start. Retrying in 5 seconds...";
 
@@ -661,7 +661,7 @@ void DriverManager::setClientFailed(const QString &message)
 
     KNotification::beep();
 
-    emit clientFailed(host, port, message);
+    Q_EMIT clientFailed(host, port, message);
 
     GUIManager::Instance()->removeClient(client);
     INDIListener::Instance()->removeClient(client);
@@ -690,7 +690,7 @@ void DriverManager::setClientTerminated(const QString &message)
 
     KNotification::beep();
 
-    emit clientTerminated(host, port, message);
+    Q_EMIT clientTerminated(host, port, message);
 
     GUIManager::Instance()->removeClient(client);
     INDIListener::Instance()->removeClient(client);
@@ -710,7 +710,7 @@ void DriverManager::setServerStarted()
     auto manager = qobject_cast<ServerManager*>(sender());
     qCDebug(KSTARS_INDI) << "INDI: INDI Server started locally on port " << manager->getPort();
     startLocalDrivers(manager);
-    emit serverStarted(manager->getHost(), manager->getPort());
+    Q_EMIT serverStarted(manager->getHost(), manager->getPort());
 }
 
 void DriverManager::setServerFailed(const QString &message)
@@ -731,7 +731,7 @@ void DriverManager::setServerFailed(const QString &message)
     if (server->getMode() == SERVER_ONLY)
         KSNotification::error(message);
 
-    emit serverFailed(server->getHost(), server->getPort(), message);
+    Q_EMIT serverFailed(server->getHost(), server->getPort(), message);
     servers.removeOne(server);
     server->deleteLater();
 
@@ -756,7 +756,7 @@ void DriverManager::setServerTerminated(const QString &message)
     if (server->getMode() == SERVER_ONLY)
         KSNotification::error(message);
 
-    emit serverTerminated(server->getHost(), server->getPort(), message);
+    Q_EMIT serverTerminated(server->getHost(), server->getPort(), message);
     servers.removeOne(server);
     server->deleteLater();
 
@@ -829,7 +829,7 @@ void DriverManager::setClientStarted()
     KSNotification::event(QLatin1String("ConnectionSuccessful"),
                           i18n("Connected to INDI server"));
 
-    emit clientStarted(clientManager->getHost(), clientManager->getPort());
+    Q_EMIT clientStarted(clientManager->getHost(), clientManager->getPort());
 }
 
 bool DriverManager::disconnectRemoteHost(const QSharedPointer<DriverInfo> &driver)

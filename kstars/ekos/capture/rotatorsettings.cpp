@@ -121,7 +121,7 @@ void RotatorSettings::initRotator(const QString &train, const QSharedPointer<Eko
             updateRotator(RAngle);
             updateGaugeZeroPos(RotatorUtils::Instance()->getMountPierside());
             qCInfo(KSTARS_EKOS_CAPTURE()) << "Rotator Settings: Initial raw angle is" << RAngle << ".";
-            emit newLog(i18n("Initial rotator angle %1° is read in successfully.", RAngle));
+            Q_EMIT newLog(i18n("Initial rotator angle %1° is read in successfully.", RAngle));
         }
         else
             qCWarning(KSTARS_EKOS_CAPTURE()) << "Rotator Settings: Reading initial raw angle failed.";
@@ -242,4 +242,3 @@ void RotatorSettings::syncFOV(double PA)
         }
     }
 }
-

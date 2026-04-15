@@ -173,7 +173,7 @@ bool OpticalTrainDBusInterface::remove()
     if (train.isEmpty())
         return false;
 
-    emit removed();
+    Q_EMIT removed();
     return OpticalTrainManager::Instance()->removeOpticalTrain(train["name"].toString());
 }
 
@@ -193,7 +193,7 @@ void OpticalTrainDBusInterface::reset()
 ////////////////////////////////////////////////////////////////////////////
 void OpticalTrainDBusInterface::notifyUpdated()
 {
-    emit updated();
+    Q_EMIT updated();
 }
 
 } // namespace Ekos

@@ -337,7 +337,7 @@ void StreamWG::closeEvent(QCloseEvent * ev)
 
     ev->accept();
 
-    emit hidden();
+    Q_EMIT hidden();
 }
 
 void StreamWG::setColorFrame(bool color)

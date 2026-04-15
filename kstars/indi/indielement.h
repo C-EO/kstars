@@ -94,7 +94,7 @@ class INDI_E : public QWidget
             blobDirty = isDirty;
         }
 
-    public slots:
+    public Q_SLOTS:
         void spinChanged(double value);
         void sliderChanged(int value);
         void browseBlob();

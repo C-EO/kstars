@@ -160,11 +160,11 @@ Manager::Manager(QWidget * parent) : QDialog(parent), m_networkManager(this)
     ekosLiveClient.reset(new EkosLive::Client(this));
     connect(ekosLiveClient.get(), &EkosLive::Client::connected, this, [this]()
     {
-        emit ekosLiveStatusChanged(true);
+        Q_EMIT ekosLiveStatusChanged(true);
     });
     connect(ekosLiveClient.get(), &EkosLive::Client::disconnected, this, [this]()
     {
-        emit ekosLiveStatusChanged(false);
+        Q_EMIT ekosLiveStatusChanged(false);
     });
 
     // INDI Control Panel
@@ -314,7 +314,7 @@ Manager::Manager(QWidget * parent) : QDialog(parent), m_networkManager(this)
         if (m_settleStatus != Ekos::Success)
         {
             m_settleStatus = Ekos::Success;
-            emit settleStatusChanged(m_settleStatus);
+            Q_EMIT settleStatusChanged(m_settleStatus);
         }
     });
 
@@ -506,7 +506,7 @@ Manager::Manager(QWidget * parent) : QDialog(parent), m_networkManager(this)
                 disconnect(&extensionTimer, &QTimer::timeout, this, nullptr);
         }
         m_extensionStatus = state;
-        emit extensionStatusChanged();
+        Q_EMIT extensionStatusChanged();
     });
     connect(extensionCombo, &QComboBox::currentTextChanged, this, [this] (QString text)
     {
@@ -1040,17 +1040,17 @@ void Manager::reset()
     previousStatus = m_settleStatus;
     m_settleStatus = Ekos::Idle;
     if (previousStatus != m_settleStatus)
-        emit settleStatusChanged(m_settleStatus);
+        Q_EMIT settleStatusChanged(m_settleStatus);
 
     previousStatus = m_ekosStatus;
     m_ekosStatus   = Ekos::Idle;
     if (previousStatus != m_ekosStatus)
-        emit ekosStatusChanged(m_ekosStatus);
+        Q_EMIT ekosStatusChanged(m_ekosStatus);
 
     previousStatus = m_indiStatus;
     m_indiStatus = Ekos::Idle;
     if (previousStatus != m_indiStatus)
-        emit indiStatusChanged(m_indiStatus);
+        Q_EMIT indiStatusChanged(m_indiStatus);
 
     connectB->setEnabled(false);
     disconnectB->setEnabled(false);
@@ -1242,7 +1242,7 @@ void Manager::start()
             KSNotification::error(i18n("Ekos requires at least one Camera to operate."));
             managedDrivers.clear();
             m_ekosStatus = Ekos::Error;
-            emit ekosStatusChanged(m_ekosStatus);
+            Q_EMIT ekosStatusChanged(m_ekosStatus);
             return;
         }
 
@@ -1267,7 +1267,7 @@ void Manager::start()
             KSNotification::error(i18n("Ekos requires at least one Camera to operate."));
             m_DriverDevicesCount = 0;
             m_ekosStatus = Ekos::Error;
-            emit ekosStatusChanged(m_ekosStatus);
+            Q_EMIT ekosStatusChanged(m_ekosStatus);
             return;
         }
 
@@ -1345,7 +1345,7 @@ void Manager::start()
             appendLogText(i18n("Starting INDI services..."));
 
             m_ekosStatus = Ekos::Pending;
-            emit ekosStatusChanged(m_ekosStatus);
+            Q_EMIT ekosStatusChanged(m_ekosStatus);
 
             DriverManager::Instance()->startDevices(managedDrivers);
         };
@@ -1423,7 +1423,7 @@ void Manager::start()
         };
 
         m_ekosStatus = Ekos::Pending;
-        emit ekosStatusChanged(m_ekosStatus);
+        Q_EMIT ekosStatusChanged(m_ekosStatus);
 
         // If we need to use INDI Web Manager
         if (m_CurrentProfile->INDIWebManagerPort > 0)
@@ -1452,7 +1452,7 @@ void Manager::start()
                     appendLogText(message);
                     KSNotification::event(QLatin1String("IndiServerMessage"), message, KSNotification::General, KSNotification::Alert);
                     m_ekosStatus = Ekos::Error;
-                    emit ekosStatusChanged(m_ekosStatus);
+                    Q_EMIT ekosStatusChanged(m_ekosStatus);
                 }
 
             });
@@ -1536,7 +1536,7 @@ void Manager::setClientFailed(const QString &host, int port, const QString &erro
     //    qDeleteAll(managedDrivers);
     //    managedDrivers.clear();
     m_ekosStatus = Ekos::Error;
-    emit ekosStatusChanged(m_ekosStatus);
+    Q_EMIT ekosStatusChanged(m_ekosStatus);
     KSNotification::error(errorMessage, i18n("Error"), 15);
 }
 
@@ -1551,7 +1551,7 @@ void Manager::setClientTerminated(const QString &host, int port, const QString &
     //    qDeleteAll(managedDrivers);
     //    managedDrivers.clear();
     m_ekosStatus = Ekos::Error;
-    emit ekosStatusChanged(m_ekosStatus);
+    Q_EMIT ekosStatusChanged(m_ekosStatus);
     KSNotification::error(errorMessage, i18n("Error"), 15);
 }
 
@@ -1567,7 +1567,7 @@ void Manager::setServerFailed(const QString &host, int port, const QString &mess
     Q_UNUSED(port)
     managedDrivers.clear();
     m_ekosStatus = Ekos::Error;
-    emit ekosStatusChanged(m_ekosStatus);
+    Q_EMIT ekosStatusChanged(m_ekosStatus);
     KSNotification::error(message, i18n("Error"), 15);
 }
 
@@ -1626,7 +1626,7 @@ void Manager::checkINDITimeout()
     if (m_DriverDevicesCount <= 0)
     {
         m_ekosStatus = Ekos::Success;
-        emit ekosStatusChanged(m_ekosStatus);
+        Q_EMIT ekosStatusChanged(m_ekosStatus);
         return;
     }
 
@@ -1719,13 +1719,13 @@ bool Manager::isINDIReady()
     if (devices.count() == nConnected)
     {
         m_indiStatus = Ekos::Success;
-        emit indiStatusChanged(m_indiStatus);
+        Q_EMIT indiStatusChanged(m_indiStatus);
         return true;
     }
 
     m_indiStatus = Ekos::Pending;
     if (previousStatus != m_indiStatus)
-        emit indiStatusChanged(m_indiStatus);
+        Q_EMIT indiStatusChanged(m_indiStatus);
 
     return false;
 }
@@ -1832,7 +1832,7 @@ void Manager::processNewDevice(const QSharedPointer<ISD::GenericDevice> &device)
     // Always reset INDI Connection status if we receive a new device
     m_indiStatus = Ekos::Idle;
     if (previousStatus != m_indiStatus)
-        emit indiStatusChanged(m_indiStatus);
+        Q_EMIT indiStatusChanged(m_indiStatus);
 
     m_DriverDevicesCount--;
 
@@ -1862,7 +1862,7 @@ void Manager::processNewDevice(const QSharedPointer<ISD::GenericDevice> &device)
     if (m_DriverDevicesCount <= 0)
     {
         m_ekosStatus = Ekos::Success;
-        emit ekosStatusChanged(m_ekosStatus);
+        Q_EMIT ekosStatusChanged(m_ekosStatus);
 
         connectB->setEnabled(true);
         disconnectB->setEnabled(false);
@@ -1957,7 +1957,7 @@ void Manager::deviceDisconnected()
         m_indiStatus = Ekos::Idle;
 
     if (previousStatus != m_indiStatus)
-        emit indiStatusChanged(m_indiStatus);
+        Q_EMIT indiStatusChanged(m_indiStatus);
 
     connectB->setEnabled(true);
     disconnectB->setEnabled(false);
@@ -1972,7 +1972,7 @@ void Manager::addMount(ISD::Mount *device)
 
     appendLogText(i18n("%1 is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addCamera(ISD::Camera * device)
@@ -1981,7 +1981,7 @@ void Manager::addCamera(ISD::Camera * device)
 
     appendLogText(i18n("%1 is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addFilterWheel(ISD::FilterWheel * device)
@@ -1991,14 +1991,14 @@ void Manager::addFilterWheel(ISD::FilterWheel * device)
 
     createFilterManager(device);
 
-    emit newDevice(name, device->getDriverInterface());
+    Q_EMIT newDevice(name, device->getDriverInterface());
 }
 
 void Manager::addFocuser(ISD::Focuser *device)
 {
     appendLogText(i18n("%1 focuser is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addRotator(ISD::Rotator *device)
@@ -2007,35 +2007,35 @@ void Manager::addRotator(ISD::Rotator *device)
 
     // createRotatorControl(device);
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addDome(ISD::Dome * device)
 {
     appendLogText(i18n("%1 is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addWeather(ISD::Weather * device)
 {
     appendLogText(i18n("%1 Weather is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addGPS(ISD::GPS * device)
 {
     appendLogText(i18n("%1 GPS is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addPAC(ISD::PAC * device)
 {
     appendLogText(i18n("%1 PAC is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addDustCap(ISD::DustCap * device)
@@ -2044,14 +2044,14 @@ void Manager::addDustCap(ISD::DustCap * device)
 
     appendLogText(i18n("%1 Dust cap is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::addLightBox(ISD::LightBox * device)
 {
     appendLogText(i18n("%1 Light box is online.", device->getDeviceName()));
 
-    emit newDevice(device->getDeviceName(), device->getDriverInterface());
+    Q_EMIT newDevice(device->getDeviceName(), device->getDriverInterface());
 }
 
 void Manager::bindDeviceToModules(const QSharedPointer<ISD::GenericDevice> &device)
@@ -2396,7 +2396,7 @@ void Manager::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 
     updateLog();
 }
@@ -2435,7 +2435,7 @@ void Manager::initCapture()
 
     captureProcess.reset(new Capture());
 
-    emit newModule("Capture");
+    Q_EMIT newModule("Capture");
 
     // retrieve the meridian flip state machine from the mount module if the module is already present
     if (mountModule() != nullptr)
@@ -2492,7 +2492,7 @@ void Manager::initAlign()
 
     alignProcess.reset(new Ekos::Align(m_CurrentProfile));
 
-    emit newModule("Align");
+    Q_EMIT newModule("Align");
 
     int index = addModuleTab(EkosModule::Align, alignModule(), QIcon(":/icons/ekos_align.png"));
     toolsWidget->tabBar()->setTabToolTip(index, i18n("Align"));
@@ -2535,7 +2535,7 @@ void Manager::initFocus()
 
     focusProcess.reset(new Ekos::FocusModule());
 
-    emit newModule("Focus");
+    Q_EMIT newModule("Focus");
 
     int index    = addModuleTab(EkosModule::Focus, focusModule(), QIcon(":/icons/ekos_focus.png"));
 
@@ -2681,7 +2681,7 @@ void Manager::initMount()
     if (captureModule() != nullptr)
         captureModule()->setMeridianFlipState(mountModule()->getMeridianFlipState());
 
-    emit newModule("Mount");
+    Q_EMIT newModule("Mount");
 
     int index    = addModuleTab(EkosModule::Mount, mountModule(), QIcon(":/icons/ekos_mount.png"));
 
@@ -2751,7 +2751,7 @@ void Manager::initGuide()
     {
         guideProcess.reset(new Ekos::Guide());
 
-        emit newModule("Guide");
+        Q_EMIT newModule("Guide");
     }
 
     if (toolsWidget->indexOf(guideModule()) == -1)
@@ -2807,7 +2807,7 @@ void Manager::initObservatory()
         // Initialize the Observatory Module
         observatoryProcess.reset(new Ekos::Observatory());
 
-        emit newModule("Observatory");
+        Q_EMIT newModule("Observatory");
 
         int index = addModuleTab(EkosModule::Observatory, observatoryProcess.get(), QIcon(":/icons/ekos_observatory.png"));
         toolsWidget->tabBar()->setTabToolTip(index, i18n("Observatory"));

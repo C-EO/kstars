@@ -29,7 +29,7 @@ class OpsGPG : public QFrame, public Ui::OpsGPG
         explicit OpsGPG(InternalGuider *guiderObject);
         virtual ~OpsGPG() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void slotApply();
 
     private:

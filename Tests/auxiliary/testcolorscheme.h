@@ -21,7 +21,7 @@ class TestColorScheme : public QObject
     public:
         explicit TestColorScheme(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

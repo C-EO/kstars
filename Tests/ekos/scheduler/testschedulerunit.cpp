@@ -44,7 +44,7 @@ class TestSchedulerUnit : public QObject
         /** @short Destructor */
         ~TestSchedulerUnit() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void setupGeoAndTimeTest();
         void setupJobTest_data();
         void setupJobTest();

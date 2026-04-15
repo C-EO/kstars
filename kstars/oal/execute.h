@@ -35,7 +35,7 @@ class Execute : public QDialog
          */
         void init();
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @short Function to handle the UI when the 'next' button is pressed
          * This calls the corresponding functions based on the currentIndex

@@ -115,7 +115,7 @@ class TestEkosFilterWheel : public QObject
     private:
         QFileInfoList searchFITS(QDir const &dir) const;
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

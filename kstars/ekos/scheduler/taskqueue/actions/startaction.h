@@ -64,7 +64,7 @@ class StartAction : public TaskAction
         QJsonObject toJson() const override;
         static StartAction* fromJson(const QJsonObject &json, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void handleScheduledTimeReached();
         void checkScheduledTime();
 

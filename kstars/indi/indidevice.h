@@ -62,7 +62,7 @@ class INDI_D : public QWidget
             return m_Name;
         }
 
-    public slots:
+    public Q_SLOTS:
         bool buildProperty(INDI::Property prop);
         bool updateProperty(INDI::Property prop);
         bool removeProperty(INDI::Property prop);

@@ -269,7 +269,7 @@ class SkyMapComposite : public QObject, public SkyComposite
         {
             return m_StarHopRouteList;
         }
-    signals:
+    Q_SIGNALS:
         void progressText(const QString &message);
 
     private:

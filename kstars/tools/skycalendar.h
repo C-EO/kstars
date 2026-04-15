@@ -39,7 +39,7 @@ class SkyCalendar : public QDialog
         int year();
         GeoLocation *get_geo();
 
-    public slots:
+    public Q_SLOTS:
         void slotFillCalendar();
         void slotPrint();
         void slotLocation();

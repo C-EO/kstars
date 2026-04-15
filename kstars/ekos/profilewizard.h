@@ -41,7 +41,7 @@ class ProfileWizard : public QDialog, public Ui::ProfileWizard
         QStringList selectedAuxDrivers();
         int selectedExternalGuider();
 
-    protected slots:
+    protected Q_SLOTS:
         void reset();
         void processLocalEquipment();
         void processRemoteEquipmentSelection();

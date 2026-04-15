@@ -133,11 +133,11 @@ class QueueItem : public QObject
         QJsonObject toJson() const;
         bool loadFromJson(const QJsonObject &json);
 
-    signals:
+    Q_SIGNALS:
         void statusChanged(Status newStatus);
         void progressUpdated(int percent, const QString &message);
 
-    private slots:
+    private Q_SLOTS:
         void onTaskStatusChanged(Task::Status taskStatus);
         void onTaskProgress(const QString &message);
 

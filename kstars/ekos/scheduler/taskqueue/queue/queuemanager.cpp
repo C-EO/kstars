@@ -34,7 +34,7 @@ void QueueManager::addItem(QueueItem *item)
 
     item->setParent(this);
     m_items.append(item);
-    emit itemAdded(item, m_items.size() - 1);
+    Q_EMIT itemAdded(item, m_items.size() - 1);
 }
 
 void QueueManager::insertItem(int index, QueueItem *item)
@@ -44,7 +44,7 @@ void QueueManager::insertItem(int index, QueueItem *item)
 
     item->setParent(this);
     m_items.insert(index, item);
-    emit itemAdded(item, index);
+    Q_EMIT itemAdded(item, index);
 }
 
 bool QueueManager::removeItem(int index)
@@ -59,7 +59,7 @@ bool QueueManager::removeItem(int index)
         return false;
 
     m_items.removeAt(index);
-    emit itemRemoved(item, index);
+    Q_EMIT itemRemoved(item, index);
 
     // Delete the item
     item->deleteLater();
@@ -93,7 +93,7 @@ void QueueManager::clear()
     m_items.clear();
     m_currentItem = nullptr;
 
-    emit queueCleared();
+    Q_EMIT queueCleared();
 }
 
 bool QueueManager::moveItem(int fromIndex, int toIndex)
@@ -110,7 +110,7 @@ bool QueueManager::moveItem(int fromIndex, int toIndex)
         return false;
 
     m_items.move(fromIndex, toIndex);
-    emit itemMoved(fromIndex, toIndex);
+    Q_EMIT itemMoved(fromIndex, toIndex);
 
     return true;
 }
@@ -149,7 +149,7 @@ void QueueManager::setState(QueueState state)
     if (m_state != state)
     {
         m_state = state;
-        emit stateChanged(state);
+        Q_EMIT stateChanged(state);
     }
 }
 
@@ -158,7 +158,7 @@ void QueueManager::setCurrentItem(QueueItem *item)
     if (m_currentItem != item)
     {
         m_currentItem = item;
-        emit currentItemChanged(item);
+        Q_EMIT currentItemChanged(item);
     }
 }
 
@@ -335,7 +335,7 @@ void QueueManager::resetAllItems()
     m_state = IDLE;
     m_currentItem = nullptr;
 
-    emit itemsReset();
+    Q_EMIT itemsReset();
 }
 
 Task *QueueManager::createTaskFromTemplate(const QString &templateId, const QMap<QString, QVariant> &parameters)

@@ -26,7 +26,7 @@ class OpsSolarSystem : public QFrame, public Ui::OpsSolarSystem
         explicit OpsSolarSystem();
         virtual ~OpsSolarSystem() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void slotChangeMagDownload(double mag);
         void slotAllWidgets(bool on);
         void slotAsteroidWidgets(bool on);

@@ -48,6 +48,6 @@ class RotatorUtils : public QObject
         int    m_TimeFrame = 0;
         bool   m_initParameter, m_CCW = true;
 
-    signals:
+    Q_SIGNALS:
         void   changedPierside(ISD::Mount::PierSide index);
 };

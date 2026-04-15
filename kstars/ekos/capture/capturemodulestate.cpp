@@ -400,8 +400,8 @@ void CaptureModuleState::startDithering()
         }
 
     // dither
-    emit newLog(i18n("Dithering..."));
-    emit dither();
+    Q_EMIT newLog(i18n("Dithering..."));
+    Q_EMIT dither();
 }
 
 void CaptureModuleState::setupRestartPostMF()

@@ -107,7 +107,7 @@ void Node::onConnected()
     connect(&m_WebSocket, &QWebSocket::textMessageReceived,  this, &Node::onTextReceived, Qt::UniqueConnection);
     connect(&m_WebSocket, &QWebSocket::binaryMessageReceived,  this, &Node::onBinaryReceived, Qt::UniqueConnection);
 
-    emit connected();
+    Q_EMIT connected();
 }
 
 void Node::onDisconnected()
@@ -119,7 +119,7 @@ void Node::onDisconnected()
     disconnect(&m_WebSocket, &QWebSocket::textMessageReceived,  this, &Node::onTextReceived);
     disconnect(&m_WebSocket, &QWebSocket::binaryMessageReceived,  this, &Node::onBinaryReceived);
 
-    emit disconnected();
+    Q_EMIT disconnected();
 }
 
 void Node::onError(QAbstractSocket::SocketError error)

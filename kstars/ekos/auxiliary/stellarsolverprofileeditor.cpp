@@ -593,7 +593,7 @@ void StellarSolverProfileEditor::slotApply()
     optionsAreSaved = true;
 
     saveProfiles();
-    emit optionsProfilesUpdated();
+    Q_EMIT optionsProfilesUpdated();
 }
 
 }

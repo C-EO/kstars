@@ -153,7 +153,7 @@ class cgmath : public QObject
             return guideStars;
         }
 
-    signals:
+    Q_SIGNALS:
         void newAxisDelta(double delta_ra, double delta_dec);
         void newStarPosition(QVector3D, bool);
 

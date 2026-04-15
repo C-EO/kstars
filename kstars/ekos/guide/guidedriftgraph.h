@@ -33,7 +33,7 @@ class GuideDriftGraph : public QCustomPlot
         void resetTimer();
         void connectGuider(Ekos::GuideInterface *guider);
 
-    public slots:
+    public Q_SLOTS:
         void handleVerticalPlotSizeChange();
         void handleHorizontalPlotSizeChange();
 

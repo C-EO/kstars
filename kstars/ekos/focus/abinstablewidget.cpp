@@ -19,5 +19,5 @@ void AbInsTableWidget::leaveEvent(QEvent *event)
 {
     Q_UNUSED(event);
     // signal when the mouse cursor leaves the custom table widget
-    emit leaveTableEvent();
+    Q_EMIT leaveTableEvent();
 }

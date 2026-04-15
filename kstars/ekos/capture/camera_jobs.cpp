@@ -88,7 +88,7 @@ bool Camera::removeJob(int index)
     QJsonArray seqArray = state()->getSequence();
     seqArray.removeAt(index);
     state()->setSequence(seqArray);
-    emit sequenceChanged(seqArray);
+    Q_EMIT sequenceChanged(seqArray);
 
     if (state()->allJobs().empty())
         return true;
@@ -165,7 +165,7 @@ void Camera::editJobFinished()
     // Update the JSON object for the current row. Needs to be called after the new row has been filled
     QJsonObject jsonJob = createJsonJob(job, currentRow);
     state()->getSequence().replace(currentRow, jsonJob);
-    emit sequenceChanged(state()->getSequence());
+    Q_EMIT sequenceChanged(state()->getSequence());
 
     resetJobEdit();
     appendLogText(i18n("Job #%1 changes applied.", currentRow + 1));
@@ -299,7 +299,7 @@ void Camera::moveJob(bool up)
     QJsonObject currentJob = seqArray[currentRow].toObject();
     seqArray.replace(currentRow, seqArray[destinationRow]);
     seqArray.replace(destinationRow, currentJob);
-    emit sequenceChanged(seqArray);
+    Q_EMIT sequenceChanged(seqArray);
 
     queueTable->selectRow(destinationRow);
 
@@ -450,7 +450,7 @@ void Camera::clearSequenceQueue()
 
     while (state()->getSequence().count())
         state()->getSequence().pop_back();
-    emit sequenceChanged(state()->getSequence());
+    Q_EMIT sequenceChanged(state()->getSequence());
 }
 
 void Camera::updateJobTable(const QSharedPointer<SequenceJob> &job, bool full)
@@ -820,7 +820,7 @@ void Camera::createNewJobTableRow(const QSharedPointer<SequenceJob> &job)
     // Create a new JSON object. Needs to be called after the new row has been filled
     QJsonObject jsonJob = createJsonJob(job, currentRow);
     state()->getSequence().append(jsonJob);
-    emit sequenceChanged(state()->getSequence());
+    Q_EMIT sequenceChanged(state()->getSequence());
 
     removeFromQueueB->setEnabled(true);
 }

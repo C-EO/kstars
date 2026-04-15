@@ -51,7 +51,7 @@ class ViewsDialog : public QDialog
     public:
         explicit ViewsDialog(QWidget *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void slotNewView();
         void slotEditView();
         void slotRemoveView();
@@ -91,7 +91,7 @@ class NewView : public QDialog, private Ui::NewView
         /** Return the view struct. */
         const SkyMapView getView() const;
 
-    public slots:
+    public Q_SLOTS:
         void updateViewingAnglePreviews();
         virtual void done(int r) override;
 

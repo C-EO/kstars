@@ -36,7 +36,7 @@ class CustomDrivers : public QDialog, public Ui::CustomDrivers
         }
         void refreshFromDB();
 
-    protected slots:
+    protected Q_SLOTS:
         void syncDriver();
         void addDriver();
         void removeDriver();
@@ -49,4 +49,3 @@ class CustomDrivers : public QDialog, public Ui::CustomDrivers
         QSqlDatabase userdb;
         QPointer<QSqlTableModel> model;
 };
-

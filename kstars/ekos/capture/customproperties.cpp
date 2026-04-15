@@ -185,5 +185,5 @@ void CustomProperties::slotApply()
 
     customProperties = newMap;
     close();
-    emit valueChanged();
+    Q_EMIT valueChanged();
 }

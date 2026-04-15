@@ -466,7 +466,7 @@ void OpsAstrometryIndexFiles::downloadIndexFile(const QString &URL, const QStrin
             indexDownloadProgress->setValue(currentIndex * 100 / maxIndex);
         QString info = "(" + QString::number(currentIndex) + '/' + QString::number(maxIndex + 1) + ") ";
         indexDownloadInfo->setText(info);
-        emit newDownloadProgress(info);
+        Q_EMIT newDownloadProgress(info);
     }
 
     QString indexURL = URL;
@@ -500,7 +500,7 @@ void OpsAstrometryIndexFiles::downloadIndexFile(const QString &URL, const QStrin
             }
             QString info = QString::number(bytesReceived * 100 / bytesTotal) + '%';
             indexDownloadPerc->setText(info);
-            emit newDownloadProgress(info);
+            Q_EMIT newDownloadProgress(info);
         });
 
     }
@@ -527,7 +527,7 @@ void OpsAstrometryIndexFiles::downloadIndexFile(const QString &URL, const QStrin
         qDebug() << Q_FUNC_INFO << "Download Cancelled.";
         timeoutTimer.stop();
         disconnectDownload(cancelConnection, replyConnection, percentConnection);
-        emit newDownloadProgress(i18n("%1 download cancelled.", indexSeriesName));
+        Q_EMIT newDownloadProgress(i18n("%1 download cancelled.", indexSeriesName));
         if(response)
         {
             response->abort();
@@ -547,7 +547,7 @@ void OpsAstrometryIndexFiles::downloadIndexFile(const QString &URL, const QStrin
             response->deleteLater();
             if (response->error() != QNetworkReply::NoError)
             {
-                emit newDownloadProgress(response->errorString());
+                Q_EMIT newDownloadProgress(response->errorString());
                 KSNotification::error(response->errorString(), i18n("Error"), 10);
                 return;
             }
@@ -576,7 +576,7 @@ void OpsAstrometryIndexFiles::downloadIndexFile(const QString &URL, const QStrin
                     qDebug() << Q_FUNC_INFO << "Filesize: " << downloadedFileSize << ", time: " << dtime << ", inst speed: " <<
                              downloadedFileSize / dtime <<
                     ", averaged speed: " << actualdownloadSpeed;
-                    emit newDownloadProgress(i18n("%1 download complete.", indexSeriesName));
+                    Q_EMIT newDownloadProgress(i18n("%1 download complete.", indexSeriesName));
 
                 }
             }

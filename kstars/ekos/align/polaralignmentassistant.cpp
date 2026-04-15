@@ -119,7 +119,7 @@ void PolarAlignmentAssistant::setEnabled(bool enabled)
 {
     QWidget::setEnabled(enabled);
 
-    emit PAHEnabled(enabled);
+    Q_EMIT PAHEnabled(enabled);
     if (enabled)
     {
         PAHWidgets->setToolTip(QString());
@@ -193,14 +193,14 @@ void PolarAlignmentAssistant::solverDone(bool timedOut, bool success, const FITS
 
     if (timedOut)
     {
-        emit newLog(i18n("Refresh solver timed out: %1s", QString("%L1").arg(elapsedSeconds, 0, 'f', 1)));
-        emit captureAndSolve();
+        Q_EMIT newLog(i18n("Refresh solver timed out: %1s", QString("%L1").arg(elapsedSeconds, 0, 'f', 1)));
+        Q_EMIT captureAndSolve();
     }
     else if (!success)
     {
-        emit newLog(i18n("Refresh solver failed: %1s", QString("%L1").arg(elapsedSeconds, 0, 'f', 1)));
-        emit updatedErrorsChanged(-1, -1, -1);
-        emit captureAndSolve();
+        Q_EMIT newLog(i18n("Refresh solver failed: %1s", QString("%L1").arg(elapsedSeconds, 0, 'f', 1)));
+        Q_EMIT updatedErrorsChanged(-1, -1, -1);
+        Q_EMIT captureAndSolve();
     }
     else
     {
@@ -213,9 +213,9 @@ void PolarAlignmentAssistant::solverDone(bool timedOut, bool success, const FITS
         m_LastOrientation = solution.orientation;
         m_LastPixscale = solution.pixscale;
 
-        emit newLog(QString("Refresh solver success %1s: ra %2 dec %3 scale %4")
-                    .arg(elapsedSeconds, 0, 'f', 1).arg(ra, 0, 'f', 3)
-                    .arg(dec, 0, 'f', 3).arg(solution.pixscale));
+        Q_EMIT newLog(QString("Refresh solver success %1s: ra %2 dec %3 scale %4")
+                      .arg(elapsedSeconds, 0, 'f', 1).arg(ra, 0, 'f', 3)
+                      .arg(dec, 0, 'f', 3).arg(solution.pixscale));
 
         // RA is input in hours, not degrees!
         SkyPoint refreshCoords(ra / 15.0, dec);
@@ -234,10 +234,10 @@ void PolarAlignmentAssistant::solverDone(bool timedOut, bool success, const FITS
             return;
         }
         else
-            emit newLog(QString("Could not estimate mount rotation"));
+            Q_EMIT newLog(QString("Could not estimate mount rotation"));
     }
     // Start the next refresh capture (error estimation was not available).
-    emit captureAndSolve();
+    Q_EMIT captureAndSolve();
 }
 
 void PolarAlignmentAssistant::updatePlateSolveTriangle(const QSharedPointer<FITSData> &image)
@@ -429,8 +429,8 @@ void PolarAlignmentAssistant::updateRefreshDisplay(double azE, double altE)
     QString debugString = QString("PAA Refresh(%1): Corrected az: %2 alt: %4 total: %6")
                           .arg(refreshIteration).arg(azError.toDMSString())
                           .arg(altError.toDMSString()).arg(totalError.toDMSString());
-    emit newLog(debugString);
-    emit updatedErrorsChanged(totalError.Degrees(), azError.Degrees(), altError.Degrees());
+    Q_EMIT newLog(debugString);
+    Q_EMIT updatedErrorsChanged(totalError.Degrees(), azError.Degrees(), altError.Degrees());
 }
 
 void PolarAlignmentAssistant::processPAHRefresh()
@@ -470,8 +470,8 @@ void PolarAlignmentAssistant::processPAHRefresh()
                           .arg(refreshIteration).arg(correctionFrom.x()).arg(correctionFrom.y());
             qCDebug(KSTARS_EKOS_ALIGN) << debugString;
 
-            emit newAlignTableResult(Align::ALIGN_RESULT_FAILED);
-            emit captureAndSolve();
+            Q_EMIT newAlignTableResult(Align::ALIGN_RESULT_FAILED);
+            Q_EMIT captureAndSolve();
             return;
         }
 
@@ -496,8 +496,8 @@ void PolarAlignmentAssistant::processPAHRefresh()
                 if (clickedStarIndex >= 0)
                 {
                     setupCorrectionGraphics(QPointF(stars[clickedStarIndex].x, stars[clickedStarIndex].y));
-                    emit newCorrectionVector(QLineF(correctionFrom, correctionTo));
-                    emit newFrame(m_AlignView);
+                    Q_EMIT newCorrectionVector(QLineF(correctionFrom, correctionTo));
+                    Q_EMIT newFrame(m_AlignView);
                 }
             }
             else
@@ -571,11 +571,11 @@ void PolarAlignmentAssistant::processPAHRefresh()
         {
             debugString = QString("PAA Refresh(%1): Too few stars detected (%2)").arg(refreshIteration).arg(stars.size());
             qCDebug(KSTARS_EKOS_ALIGN) << debugString;
-            emit updatedErrorsChanged(-1, -1, -1);
+            Q_EMIT updatedErrorsChanged(-1, -1, -1);
         }
     }
     // Finally start the next capture
-    emit captureAndSolve();
+    Q_EMIT captureAndSolve();
 }
 
 bool PolarAlignmentAssistant::processSolverFailure()
@@ -588,14 +588,14 @@ bool PolarAlignmentAssistant::processSolverFailure()
             m_PAHStage == PAH_THIRD_SOLVE)
             && ++m_PAHRetrySolveCounter < 4)
     {
-        emit newLog(i18n("PAA: Solver failed, retrying."));
-        emit captureAndSolve();
+        Q_EMIT newLog(i18n("PAA: Solver failed, retrying."));
+        Q_EMIT captureAndSolve();
         return true;
     }
 
     if (m_PAHStage != PAH_IDLE)
     {
-        emit newLog(i18n("PAA: Stopping, solver failed too many times."));
+        Q_EMIT newLog(i18n("PAA: Stopping, solver failed too many times."));
         stopPAHProcess();
     }
 
@@ -608,7 +608,7 @@ void PolarAlignmentAssistant::setPAHStage(Stage stage)
     {
         m_PAHStage = stage;
         polarAlignWidget->updatePAHStage(stage);
-        emit newPAHStage(m_PAHStage);
+        Q_EMIT newPAHStage(m_PAHStage);
     }
 }
 
@@ -650,7 +650,7 @@ void PolarAlignmentAssistant::processMountRotation(const dms &ra, double settleD
     auto settle = [this, rotDoneMessage, settleDuration, nextCapture, nextSettle]()
     {
         m_CurrentTelescope->StopWE();
-        emit newLog(rotDoneMessage);
+        Q_EMIT newLog(rotDoneMessage);
 
         int settleDurationMsec = settleDuration;
 
@@ -662,7 +662,7 @@ void PolarAlignmentAssistant::processMountRotation(const dms &ra, double settleD
         setPAHStage(nextSettle);
         updateDisplay(m_PAHStage, getPAHMessage());
 
-        emit newLog(i18n("Settling..."));
+        Q_EMIT newLog(i18n("Settling..."));
         QTimer::singleShot(settleDurationMsec, [nextCapture, this]()
         {
             setPAHStage(nextCapture);
@@ -687,7 +687,7 @@ void PolarAlignmentAssistant::processMountRotation(const dms &ra, double settleD
                 if ( (traveledAngle < 0 && !goingWest) || (traveledAngle > 0 && goingWest))
                 {
                     m_CurrentTelescope->abort();
-                    emit newLog(i18n("Mount aborted. Reverse RA axis direction and try again."));
+                    Q_EMIT newLog(i18n("Mount aborted. Reverse RA axis direction and try again."));
                     stopPAHProcess();
                 }
                 // #2 Check if we travelled almost 90% of the desired rotation or more
@@ -745,7 +745,7 @@ void PolarAlignmentAssistant::updateDisplay(Stage stage, const QString &message)
                 polarAlignWidget->updatePAHStage(stage);
                 PAHWidgets->setCurrentWidget(PAHManualRotatePage);
                 manualRotateText->setText(message);
-                emit newPAHMessage(message);
+                Q_EMIT newPAHMessage(message);
                 return;
             }
         // fall through
@@ -758,7 +758,7 @@ void PolarAlignmentAssistant::updateDisplay(Stage stage, const QString &message)
             polarAlignWidget->updatePAHStage(stage);
             PAHWidgets->setCurrentWidget(PAHMessagePage);
             PAHMessageText->setText(message);
-            emit newPAHMessage(message);
+            Q_EMIT newPAHMessage(message);
             break;
 
         default:
@@ -776,11 +776,11 @@ void PolarAlignmentAssistant::startPAHProcess()
         setPAHStage(PAH_FIRST_CAPTURE);
 
         if (Options::limitedResourcesMode())
-            emit newLog(i18n("Warning: Equatorial Grid Lines will not be drawn due to limited resources mode."));
+            Q_EMIT newLog(i18n("Warning: Equatorial Grid Lines will not be drawn due to limited resources mode."));
 
         if (m_CurrentTelescope->hasAlignmentModel())
         {
-            emit newLog(i18n("Clearing mount Alignment Model..."));
+            Q_EMIT newLog(i18n("Clearing mount Alignment Model..."));
             m_CurrentTelescope->clearAlignmentModel();
         }
 
@@ -807,7 +807,7 @@ void PolarAlignmentAssistant::startPAHProcess()
         m_AlignView->setCorrectionParams(QPointF(), QPointF(), QPointF());
 
         m_PAHRetrySolveCounter = 0;
-        emit captureAndSolve();
+        Q_EMIT captureAndSolve();
     };
 
     // Right off the bat, check if this alignment might cause a pier crash.
@@ -866,12 +866,12 @@ void PolarAlignmentAssistant::stopPAHProcess()
     PAHStopB->setEnabled(false);
     PAHRefreshB->setEnabled(true);
     PAHWidgets->setCurrentWidget(PAHIntroPage);
-    emit newPAHMessage(introText->text());
+    Q_EMIT newPAHMessage(introText->text());
 
     m_AlignView->reset();
     m_AlignView->setRefreshEnabled(false);
 
-    emit newFrame(m_AlignView);
+    Q_EMIT newFrame(m_AlignView);
     disconnect(m_AlignView.get(), &AlignView::trackingStarSelected, this,
                &Ekos::PolarAlignmentAssistant::setPAHCorrectionOffset);
     disconnect(m_AlignView.get(), &AlignView::newCorrectionVector, this, &Ekos::PolarAlignmentAssistant::newCorrectionVector);
@@ -883,7 +883,7 @@ void PolarAlignmentAssistant::stopPAHProcess()
     if (Options::pAHAutoPark())
     {
         m_CurrentTelescope->park();
-        emit newLog(i18n("Parking the mount..."));
+        Q_EMIT newLog(i18n("Parking the mount..."));
     }
 }
 
@@ -926,8 +926,8 @@ void PolarAlignmentAssistant::rotatePAH()
     m_CurrentTelescope->MoveWE(westMeridian ? ISD::Mount::MOTION_WEST : ISD::Mount::MOTION_EAST,
                                ISD::Mount::MOTION_START);
 
-    emit newLog(i18n("Please wait until mount completes rotating to RA (%1) DE (%2)", targetPAH.ra().toHMSString(),
-                     targetPAH.dec().toDMSString()));
+    Q_EMIT newLog(i18n("Please wait until mount completes rotating to RA (%1) DE (%2)", targetPAH.ra().toHMSString(),
+                       targetPAH.dec().toDMSString()));
 }
 
 void PolarAlignmentAssistant::setupCorrectionGraphics(const QPointF &pixel)
@@ -974,7 +974,7 @@ bool PolarAlignmentAssistant::calculatePAHError()
 
     if (!polarAlign.findAxis())
     {
-        emit newLog(i18n("PAA: Failed to find RA Axis center."));
+        Q_EMIT newLog(i18n("PAA: Failed to find RA Axis center."));
         stopPAHProcess();
         return false;
     }
@@ -992,7 +992,7 @@ bool PolarAlignmentAssistant::calculatePAHError()
     QString msg = QString("%1. Azimuth: %2  Altitude: %3")
                   .arg(polarError.toDMSString()).arg(azError.toDMSString())
                   .arg(altError.toDMSString());
-    emit newLog(QString("Polar Alignment Error: %1").arg(msg));
+    Q_EMIT newLog(QString("Polar Alignment Error: %1").arg(msg));
 
     polarAlign.setMaxPixelSearchRange(polarError.Degrees() + 1);
 
@@ -1016,12 +1016,13 @@ bool PolarAlignmentAssistant::calculatePAHError()
     }
 
     connect(m_AlignView.get(), &AlignView::trackingStarSelected, this, &Ekos::PolarAlignmentAssistant::setPAHCorrectionOffset);
-    emit polarResultUpdated(QLineF(correctionFrom, correctionTo), polarError.Degrees(), azError.Degrees(), altError.Degrees());
+    Q_EMIT polarResultUpdated(QLineF(correctionFrom, correctionTo), polarError.Degrees(), azError.Degrees(),
+                              altError.Degrees());
 
     connect(m_AlignView.get(), &AlignView::newCorrectionVector, this, &Ekos::PolarAlignmentAssistant::newCorrectionVector,
             Qt::UniqueConnection);
     syncCorrectionVector();
-    emit newFrame(m_AlignView);
+    Q_EMIT newFrame(m_AlignView);
 
     return true;
 }
@@ -1030,7 +1031,7 @@ void PolarAlignmentAssistant::syncCorrectionVector()
 {
     if (pAHRefreshAlgorithm->currentIndex() == PLATE_SOLVE_ALGORITHM)
         return;
-    emit newCorrectionVector(QLineF(correctionFrom, correctionTo));
+    Q_EMIT newCorrectionVector(QLineF(correctionFrom, correctionTo));
     m_AlignView->setCorrectionParams(correctionFrom, correctionTo, correctionAltTo);
 }
 
@@ -1045,29 +1046,29 @@ void PolarAlignmentAssistant::setPAHCorrectionOffset(int x, int y)
 {
     if (m_PAHStage == PAH_REFRESH)
     {
-        emit newLog(i18n("Polar-alignment star cannot be updated during refresh phase as it might affect error measurements."));
+        Q_EMIT newLog(i18n("Polar-alignment star cannot be updated during refresh phase as it might affect error measurements."));
     }
     else
     {
         setupCorrectionGraphics(QPointF(x, y));
-        emit newCorrectionVector(QLineF(correctionFrom, correctionTo));
-        emit newFrame(m_AlignView);
+        Q_EMIT newCorrectionVector(QLineF(correctionFrom, correctionTo));
+        Q_EMIT newFrame(m_AlignView);
     }
 }
 
 void PolarAlignmentAssistant::setPAHSlewDone()
 {
-    emit newPAHMessage("Manual slew done.");
+    Q_EMIT newPAHMessage("Manual slew done.");
     switch(m_PAHStage)
     {
         case PAH_FIRST_ROTATE :
             setPAHStage(PAH_SECOND_CAPTURE);
-            emit newLog(i18n("First manual rotation done."));
+            Q_EMIT newLog(i18n("First manual rotation done."));
             updateDisplay(m_PAHStage, getPAHMessage());
             break;
         case PAH_SECOND_ROTATE :
             setPAHStage(PAH_THIRD_CAPTURE);
-            emit newLog(i18n("Second manual rotation done."));
+            Q_EMIT newLog(i18n("Second manual rotation done."));
             updateDisplay(m_PAHStage, getPAHMessage());
             break;
         default :
@@ -1110,7 +1111,7 @@ void PolarAlignmentAssistant::startPAHRefreshProcess()
     polarAlignWidget->updatePAHStage(m_PAHStage);
     auto message = getPAHMessage();
     refreshText->setText(message);
-    emit newPAHMessage(message);
+    Q_EMIT newPAHMessage(message);
 
     PAHRefreshB->setEnabled(false);
 
@@ -1124,7 +1125,7 @@ void PolarAlignmentAssistant::startPAHRefreshProcess()
     Options::setAutoWCS(false);
 
     // We for refresh, just capture really
-    emit captureAndSolve();
+    Q_EMIT captureAndSolve();
 }
 
 void PolarAlignmentAssistant::processPAHStage(double orientation, double ra, double dec, double pixscale,
@@ -1132,7 +1133,7 @@ void PolarAlignmentAssistant::processPAHStage(double orientation, double ra, dou
 {
     if (m_PAHStage == PAH_FIND_CP)
     {
-        emit newLog(
+        Q_EMIT newLog(
             i18n("Mount is synced to celestial pole. You can now continue Polar Alignment Assistant procedure."));
         setPAHStage(PAH_FIRST_CAPTURE);
         polarAlignWidget->updatePAHStage(m_PAHStage);
@@ -1152,7 +1153,7 @@ void PolarAlignmentAssistant::processPAHStage(double orientation, double ra, dou
         bool doWcs = (m_PAHStage == PAH_THIRD_SOLVE) || !Options::limitedResourcesMode();
         if (doWcs)
         {
-            emit newLog(i18n("Please wait while WCS data is processed..."));
+            Q_EMIT newLog(i18n("Please wait while WCS data is processed..."));
             PAHMessageText->setText(
                 m_PAHStage == PAH_FIRST_SOLVE
                 ? "Calculating WCS for the first image...</p>"
@@ -1183,7 +1184,7 @@ void PolarAlignmentAssistant::setImageData(const QSharedPointer<FITSData> &image
 
 void PolarAlignmentAssistant::setWCSToggled(bool result)
 {
-    emit newLog(i18n("WCS data processing is complete."));
+    Q_EMIT newLog(i18n("WCS data processing is complete."));
 
     disconnect(m_AlignView.get(), &AlignView::wcsToggled, this, &Ekos::PolarAlignmentAssistant::setWCSToggled);
 
@@ -1192,8 +1193,8 @@ void PolarAlignmentAssistant::setWCSToggled(bool result)
         // We need WCS to be synced first
         if (result == false && m_AlignInstance->wcsSynced() == true)
         {
-            emit newLog(i18n("WCS info is now valid. Capturing next frame..."));
-            emit captureAndSolve();
+            Q_EMIT newLog(i18n("WCS info is now valid. Capturing next frame..."));
+            Q_EMIT captureAndSolve();
             return;
         }
 
@@ -1206,7 +1207,7 @@ void PolarAlignmentAssistant::setWCSToggled(bool result)
         {
             msg = QString("Please rotate your mount about %1 deg in RA")
                   .arg(pAHRotation->value());
-            emit newLog(msg);
+            Q_EMIT newLog(msg);
         }
         updateDisplay(m_PAHStage, msg);
 
@@ -1221,7 +1222,7 @@ void PolarAlignmentAssistant::setWCSToggled(bool result)
         {
             msg = QString("Please rotate your mount about %1 deg in RA")
                   .arg(pAHRotation->value());
-            emit newLog(msg);
+            Q_EMIT newLog(msg);
         }
         updateDisplay(m_PAHStage, msg);
 
@@ -1234,7 +1235,7 @@ void PolarAlignmentAssistant::setWCSToggled(bool result)
         // Critical error
         if (result == false)
         {
-            emit newLog(i18n("Failed to process World Coordinate System: %1. Try again.", m_ImageData->getLastError()));
+            Q_EMIT newLog(i18n("Failed to process World Coordinate System: %1. Try again.", m_ImageData->getLastError()));
             return;
         }
 
@@ -1248,11 +1249,11 @@ void PolarAlignmentAssistant::setWCSToggled(bool result)
             polarAlignWidget->updatePAHStage(m_PAHStage);
             PAHWidgets->setCurrentWidget(PAHRefreshPage);
             refreshText->setText(getPAHMessage());
-            emit newPAHMessage(getPAHMessage());
+            Q_EMIT newPAHMessage(getPAHMessage());
         }
         else
         {
-            emit newLog(i18n("PAA: Failed to find the RA axis. Quitting."));
+            Q_EMIT newLog(i18n("PAA: Failed to find the RA axis. Quitting."));
             stopPAHProcess();
         }
     }
@@ -1327,13 +1328,13 @@ void PolarAlignmentAssistant::setPAHRefreshAlgorithm(RefreshAlgorithm value)
             && !starCorrespondencePAH.size())
     {
         pAHRefreshAlgorithm->setCurrentIndex(PLATE_SOLVE_ALGORITHM);
-        emit newLog(i18n("Cannot change to MoveStar algorithm once refresh has begun"));
+        Q_EMIT newLog(i18n("Cannot change to MoveStar algorithm once refresh has begun"));
         return;
     }
     if (m_PAHStage == PAH_REFRESH || m_PAHStage == PAH_STAR_SELECT)
     {
         refreshText->setText(getPAHMessage());
-        emit newPAHMessage(getPAHMessage());
+        Q_EMIT newPAHMessage(getPAHMessage());
     }
 
     showUpdatedError((value == PLATE_SOLVE_ALGORITHM) ||
@@ -1361,7 +1362,7 @@ void PolarAlignmentAssistant::setCurrentPAC(ISD::PAC *pac)
     {
         connect(m_PAC, &ISD::PAC::newStatus, this, &PolarAlignmentAssistant::onPACStatusChanged,
                 Qt::UniqueConnection);
-        emit newLog(i18n("PAC: Polar Alignment Corrector connected."));
+        Q_EMIT newLog(i18n("PAC: Polar Alignment Corrector connected."));
     }
 }
 
@@ -1374,18 +1375,18 @@ void PolarAlignmentAssistant::onPACStatusChanged(ISD::PAC::Status status)
     {
         case ISD::PAC::PAC_CORRECTING:
             // Axes are moving – log progress and wait for PAC_CORRECTED or PAC_ERROR.
-            emit newLog(i18n("PAC: Correction in progress – adjusting azimuth and altitude axes..."));
+            Q_EMIT newLog(i18n("PAC: Correction in progress – adjusting azimuth and altitude axes..."));
             break;
 
         case ISD::PAC::PAC_CORRECTED:
             m_AutoCorrectionActive = false;
-            emit newLog(i18n("PAC: Correction applied. Capturing next image to verify alignment..."));
-            emit captureAndSolve();
+            Q_EMIT newLog(i18n("PAC: Correction applied. Capturing next image to verify alignment..."));
+            Q_EMIT captureAndSolve();
             break;
 
         case ISD::PAC::PAC_ERROR:
             m_AutoCorrectionActive = false;
-            emit newLog(i18n("PAC: Correction failed. Stopping polar alignment."));
+            Q_EMIT newLog(i18n("PAC: Correction failed. Stopping polar alignment."));
             stopPAHProcess();
             break;
 
@@ -1399,7 +1400,7 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
     // If automatic PAC correction is not enabled, just request the next capture.
     if (!Options::pAHAutoPACCorrection() || m_PAC == nullptr)
     {
-        emit captureAndSolve();
+        Q_EMIT captureAndSolve();
         return;
     }
 
@@ -1416,9 +1417,9 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
     // Check success threshold.
     if (totalErrorArcMin <= Options::pAHSuccessThreshold())
     {
-        emit newLog(i18n("PAC: Polar alignment successful! Total error %1' is within threshold %2'.",
-                         QString::number(totalErrorArcMin, 'f', 1),
-                         QString::number(Options::pAHSuccessThreshold(), 'f', 1)));
+        Q_EMIT newLog(i18n("PAC: Polar alignment successful! Total error %1' is within threshold %2'.",
+                           QString::number(totalErrorArcMin, 'f', 1),
+                           QString::number(Options::pAHSuccessThreshold(), 'f', 1)));
         stopPAHProcess();
         return;
     }
@@ -1427,9 +1428,9 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
     const int timeoutMs = Options::pAHCorrectionTimeout() * 1000;
     if (m_CorrectionTimer.elapsed() >= timeoutMs)
     {
-        emit newLog(i18n("PAC: Correction timeout (%1s) reached. Total error is %2'. Stopping.",
-                         Options::pAHCorrectionTimeout(),
-                         QString::number(totalErrorArcMin, 'f', 1)));
+        Q_EMIT newLog(i18n("PAC: Correction timeout (%1s) reached. Total error is %2'. Stopping.",
+                           Options::pAHCorrectionTimeout(),
+                           QString::number(totalErrorArcMin, 'f', 1)));
         stopPAHProcess();
         return;
     }
@@ -1457,26 +1458,26 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
             {
                 correctedAzError     = -azError;
                 m_AzDirectionFlipped = true;
-                emit newLog(i18n("PAC: Az error increase confirmed (%1' → %2') – reversing Az direction.",
-                                 QString::number(m_PrevAzError * 60.0, 'f', 1),
-                                 QString::number(azError       * 60.0, 'f', 1)));
+                Q_EMIT newLog(i18n("PAC: Az error increase confirmed (%1' → %2') – reversing Az direction.",
+                                   QString::number(m_PrevAzError * 60.0, 'f', 1),
+                                   QString::number(azError       * 60.0, 'f', 1)));
             }
             else
             {
-                emit newLog(i18n("PAC: Az error increase not confirmed (likely noise) – keeping original direction."));
+                Q_EMIT newLog(i18n("PAC: Az error increase not confirmed (likely noise) – keeping original direction."));
             }
 
             if (std::fabs(altError) > std::fabs(m_PrevAltError) && !m_AltDirectionFlipped)
             {
                 correctedAltError     = -altError;
                 m_AltDirectionFlipped = true;
-                emit newLog(i18n("PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction.",
-                                 QString::number(m_PrevAltError * 60.0, 'f', 1),
-                                 QString::number(altError       * 60.0, 'f', 1)));
+                Q_EMIT newLog(i18n("PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction.",
+                                   QString::number(m_PrevAltError * 60.0, 'f', 1),
+                                   QString::number(altError       * 60.0, 'f', 1)));
             }
             else
             {
-                emit newLog(i18n("PAC: Alt error increase not confirmed (likely noise) – keeping original direction."));
+                Q_EMIT newLog(i18n("PAC: Alt error increase not confirmed (likely noise) – keeping original direction."));
             }
         }
 
@@ -1501,16 +1502,16 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
         else
         {
             ++m_NoImprovementCount;
-            emit newLog(i18n("PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: %3').",
-                             m_NoImprovementCount,
-                             QString::number(m_BestTotalError, 'f', 1),
-                             QString::number(totalErrorArcMin, 'f', 1)));
+            Q_EMIT newLog(i18n("PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: %3').",
+                               m_NoImprovementCount,
+                               QString::number(m_BestTotalError, 'f', 1),
+                               QString::number(totalErrorArcMin, 'f', 1)));
             if (m_NoImprovementCount >= PAH_MAX_NO_IMPROVEMENT)
             {
-                emit newLog(i18n("PAC: No improvement after %1 consecutive iterations. "
-                                 "Best error reached: %2'. Stopping polar alignment.",
-                                 PAH_MAX_NO_IMPROVEMENT,
-                                 QString::number(m_BestTotalError, 'f', 1)));
+                Q_EMIT newLog(i18n("PAC: No improvement after %1 consecutive iterations. "
+                                   "Best error reached: %2'. Stopping polar alignment.",
+                                   PAH_MAX_NO_IMPROVEMENT,
+                                   QString::number(m_BestTotalError, 'f', 1)));
                 stopPAHProcess();
                 return;
             }
@@ -1524,16 +1525,16 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
             if (std::fabs(azError) > std::fabs(m_PrevAzError) && !m_AzDirectionFlipped)
             {
                 needConfirmation = true;
-                emit newLog(i18n("PAC: Az error increased (%1' → %2') – re-solving to confirm before direction change.",
-                                 QString::number(m_PrevAzError * 60.0, 'f', 1),
-                                 QString::number(azError       * 60.0, 'f', 1)));
+                Q_EMIT newLog(i18n("PAC: Az error increased (%1' → %2') – re-solving to confirm before direction change.",
+                                   QString::number(m_PrevAzError * 60.0, 'f', 1),
+                                   QString::number(azError       * 60.0, 'f', 1)));
             }
             if (std::fabs(altError) > std::fabs(m_PrevAltError) && !m_AltDirectionFlipped)
             {
                 needConfirmation = true;
-                emit newLog(i18n("PAC: Alt error increased (%1' → %2') – re-solving to confirm before direction change.",
-                                 QString::number(m_PrevAltError * 60.0, 'f', 1),
-                                 QString::number(altError       * 60.0, 'f', 1)));
+                Q_EMIT newLog(i18n("PAC: Alt error increased (%1' → %2') – re-solving to confirm before direction change.",
+                                   QString::number(m_PrevAltError * 60.0, 'f', 1),
+                                   QString::number(altError       * 60.0, 'f', 1)));
             }
         }
 
@@ -1543,7 +1544,7 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
             // m_PrevAzError / m_PrevAltError are intentionally NOT updated here so
             // the same baseline is used for comparison in the confirmation call.
             m_ConfirmationPending = true;
-            emit captureAndSolve();
+            Q_EMIT captureAndSolve();
             return;
         }
 
@@ -1555,10 +1556,10 @@ void PolarAlignmentAssistant::checkAndApplyAutoCorrection(double azError, double
 
     // Command the PAC to apply the correction.
     m_AutoCorrectionActive = true;
-    emit newLog(i18n("PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'",
-                     QString::number(correctedAzError  * 60.0, 'f', 1),
-                     QString::number(correctedAltError * 60.0, 'f', 1),
-                     QString::number(totalErrorArcMin,  'f', 1)));
+    Q_EMIT newLog(i18n("PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'",
+                       QString::number(correctedAzError  * 60.0, 'f', 1),
+                       QString::number(correctedAltError * 60.0, 'f', 1),
+                       QString::number(totalErrorArcMin,  'f', 1)));
     m_PAC->startCorrection(correctedAzError, correctedAltError);
     // The next captureAndSolve() will be emitted by onPACStatusChanged() when PAC_CORRECTED fires.
 }

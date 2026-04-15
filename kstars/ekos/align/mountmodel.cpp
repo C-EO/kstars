@@ -304,8 +304,8 @@ bool MountModel::loadAlignmentPoints(const QString &fileURL)
             double sqVersion = atof(findXMLAttValu(root, "version"));
             if (sqVersion < AL_FORMAT_VERSION)
             {
-                emit newLog(i18n("Deprecated sequence file format version %1. Please construct a new sequence file.",
-                                 sqVersion));
+                Q_EMIT newLog(i18n("Deprecated sequence file format version %1. Please construct a new sequence file.",
+                                   sqVersion));
                 return false;
             }
 
@@ -429,7 +429,7 @@ bool MountModel::saveAlignmentPoints(const QString &path)
         outstream << "</AlignmentPoint>" << Qt::endl;
     }
     outstream << "</AlignmentList>" << Qt::endl;
-    emit newLog(i18n("Alignment List saved to %1", path));
+    Q_EMIT newLog(i18n("Alignment List saved to %1", path));
     file.close();
     return true;
 }
@@ -964,12 +964,12 @@ void MountModel::resetAlignmentProcedure()
     statusReport->setIcon(QIcon(":/icons/AlignWarning.svg"));
     alignTable->setItem(currentAlignmentPoint, 3, statusReport);
 
-    emit newLog(i18n("The Mount Model Tool is Reset."));
+    Q_EMIT newLog(i18n("The Mount Model Tool is Reset."));
     startAlignB->setIcon(
         QIcon::fromTheme("media-playback-start"));
     m_IsRunning     = false;
     currentAlignmentPoint = 0;
-    emit aborted();
+    Q_EMIT aborted();
 }
 
 bool MountModel::alignmentPointsAreBad()
@@ -1028,7 +1028,7 @@ void MountModel::startStopAlignmentProcedure()
             startAlignB->setIcon(
                 QIcon::fromTheme("media-playback-pause"));
             m_IsRunning = true;
-            emit newLog(i18n("The Mount Model Tool is Starting."));
+            Q_EMIT newLog(i18n("The Mount Model Tool is Starting."));
             startAlignmentPoint();
         }
     }
@@ -1037,8 +1037,8 @@ void MountModel::startStopAlignmentProcedure()
         startAlignB->setIcon(
             QIcon::fromTheme("media-playback-start"));
         alignTable->setCellWidget(currentAlignmentPoint, 3, new QWidget());
-        emit newLog(i18n("The Mount Model Tool is Paused."));
-        emit aborted();
+        Q_EMIT newLog(i18n("The Mount Model Tool is Paused."));
+        Q_EMIT aborted();
         m_IsRunning = false;
 
         QTableWidgetItem *statusReport = new QTableWidgetItem();
@@ -1096,7 +1096,7 @@ void MountModel::finishAlignmentPoint(bool solverSucceeded)
             m_IsRunning = false;
             startAlignB->setIcon(
                 QIcon::fromTheme("media-playback-start"));
-            emit newLog(i18n("The Mount Model Tool is Finished."));
+            Q_EMIT newLog(i18n("The Mount Model Tool is Finished."));
             currentAlignmentPoint = 0;
         }
     }

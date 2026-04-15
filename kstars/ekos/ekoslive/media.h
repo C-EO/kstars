@@ -42,7 +42,7 @@ class Media : public QObject
         // Convenience functions
         void sendDarkLibraryData(const QSharedPointer<FITSData> &data);
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
         void globalLogoutTriggered(const QUrl &url);
@@ -50,7 +50,7 @@ class Media : public QObject
         void newBoundingRect(QRect rect, QSize view, double currentZoom);
         void newImage(const QByteArray &image, const QString &uuid);
 
-    public slots:
+    public Q_SLOTS:
         // Capture
         void sendVideoFrame(const QSharedPointer<QImage> &frame);
 
@@ -71,7 +71,7 @@ class Media : public QObject
 
         void processNewBLOB(IBLOB *bp);
 
-    private slots:
+    private Q_SLOTS:
         // Connection
         void onConnected();
         void onDisconnected();

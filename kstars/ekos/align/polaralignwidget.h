@@ -43,7 +43,7 @@ class PolarAlignWidget : public QWidget, public Ui::PolarAlignWidget
         void updatePAHStage(PolarAlignmentAssistant::Stage stage);
 
 
-    public slots:
+    public Q_SLOTS:
 
     private:
         void setPreviousGreen(PAState state);

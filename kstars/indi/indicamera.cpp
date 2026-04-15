@@ -67,7 +67,7 @@ void Camera::setBLOBManager(const char *device, INDI::Property prop)
         return;
 
     if (getDeviceName() == device)
-        emit newBLOBManager(prop);
+        Q_EMIT newBLOBManager(prop);
 }
 
 void Camera::registerProperty(INDI::Property prop)
@@ -126,7 +126,7 @@ void Camera::registerProperty(INDI::Property prop)
         HasCooler = true;
         CanCool   = (nvp.getPermission() != IP_RO);
         if (nvp)
-            emit newTemperatureValue(nvp[0].getValue());
+            Q_EMIT newTemperatureValue(nvp[0].getValue());
     }
     else if (prop.isNameMatch("CCD_COOLER"))
     {
@@ -320,32 +320,32 @@ void Camera::processNumber(INDI::Property prop)
     {
         auto np = nvp.findWidgetByName("CCD_EXPOSURE_VALUE");
         if (np)
-            emit newExposureValue(primaryChip.get(), np->getValue(), nvp.getState());
+            Q_EMIT newExposureValue(primaryChip.get(), np->getValue(), nvp.getState());
         if (nvp.getState() == IPS_ALERT)
-            emit error(ERROR_CAPTURE);
+            Q_EMIT error(ERROR_CAPTURE);
     }
     else if (prop.isNameMatch("CCD_TEMPERATURE"))
     {
         HasCooler   = true;
         auto np = nvp.findWidgetByName("CCD_TEMPERATURE_VALUE");
         if (np)
-            emit newTemperatureValue(np->getValue());
+            Q_EMIT newTemperatureValue(np->getValue());
     }
     else if (prop.isNameMatch("GUIDER_EXPOSURE"))
     {
         auto np = nvp.findWidgetByName("GUIDER_EXPOSURE_VALUE");
         if (np)
-            emit newExposureValue(guideChip.get(), np->getValue(), nvp.getState());
+            Q_EMIT newExposureValue(guideChip.get(), np->getValue(), nvp.getState());
     }
     else if (prop.isNameMatch("FPS"))
     {
-        emit newFPS(nvp[0].getValue(), nvp[1].getValue());
+        Q_EMIT newFPS(nvp[0].getValue(), nvp[1].getValue());
     }
     else if (prop.isNameMatch("CCD_RAPID_GUIDE_DATA"))
     {
         if (nvp.getState() == IPS_ALERT)
         {
-            emit newGuideStarData(primaryChip.get(), -1, -1, -1);
+            Q_EMIT newGuideStarData(primaryChip.get(), -1, -1, -1);
         }
         else
         {
@@ -362,14 +362,14 @@ void Camera::processNumber(INDI::Property prop)
                 fit = np->getValue();
 
             if (dx >= 0 && dy >= 0 && fit >= 0)
-                emit newGuideStarData(primaryChip.get(), dx, dy, fit);
+                Q_EMIT newGuideStarData(primaryChip.get(), dx, dy, fit);
         }
     }
     else if (prop.isNameMatch("GUIDER_RAPID_GUIDE_DATA"))
     {
         if (nvp.getState() == IPS_ALERT)
         {
-            emit newGuideStarData(guideChip.get(), -1, -1, -1);
+            Q_EMIT newGuideStarData(guideChip.get(), -1, -1, -1);
         }
         else
         {
@@ -385,7 +385,7 @@ void Camera::processNumber(INDI::Property prop)
                 fit = np->getValue();
 
             if (dx >= 0 && dy >= 0 && fit >= 0)
-                emit newGuideStarData(guideChip.get(), dx, dy, fit);
+                Q_EMIT newGuideStarData(guideChip.get(), dx, dy, fit);
         }
     }
 }
@@ -398,7 +398,7 @@ void Camera::processSwitch(INDI::Property prop)
     {
         // Can turn cooling on/off
         HasCoolerControl = true;
-        emit coolerToggled(svp[0].getState() == ISS_ON);
+        Q_EMIT coolerToggled(svp[0].getState() == ISS_ON);
     }
     else if (QString(svp.getName()).endsWith("VIDEO_STREAM"))
     {
@@ -440,7 +440,7 @@ void Camera::processSwitch(INDI::Property prop)
                 }
             }
 
-            emit updateVideoWindow(streamW, streamH, svp[0].getState() == ISS_ON);
+            Q_EMIT updateVideoWindow(streamW, streamH, svp[0].getState() == ISS_ON);
         }
 
         m_isStreamEnabled = (svp[0].getState() == ISS_ON);
@@ -454,7 +454,7 @@ void Camera::processSwitch(INDI::Property prop)
             m_guideFrameSignalPending = false;
         }
 
-        emit videoStreamToggled(m_isStreamEnabled);
+        Q_EMIT videoStreamToggled(m_isStreamEnabled);
     }
     else if (svp.isNameMatch("CCD_CAPTURE_FORMAT"))
     {
@@ -475,7 +475,7 @@ void Camera::processSwitch(INDI::Property prop)
 
         if (recordOFF && recordOFF->s == ISS_ON)
         {
-            emit videoRecordToggled(false);
+            Q_EMIT videoRecordToggled(false);
             if (m_isStreamEnabled)
             {
                 m_isStreamEnabled = false;
@@ -484,7 +484,7 @@ void Camera::processSwitch(INDI::Property prop)
         }
         else if (m_isStreamEnabled == false)
         {
-            emit videoRecordToggled(true);
+            Q_EMIT videoRecordToggled(true);
             m_isStreamEnabled = true;
             KSNotification::event(QLatin1String("IndiServerMessage"), i18n("Video Recording Started"), KSNotification::INDI);
         }
@@ -507,8 +507,8 @@ void Camera::processSwitch(INDI::Property prop)
 
         if (dSwitch && dSwitch->getState() == ISS_ON)
         {
-            emit videoStreamToggled(false);
-            emit closeVideoWindow();
+            Q_EMIT videoStreamToggled(false);
+            Q_EMIT closeVideoWindow();
 
             // Clear the gain and offset properties on disconnect.
             m_GainProperty = INDI::Property();
@@ -530,7 +530,7 @@ void Camera::processText(INDI::Property prop)
     {
         auto filepath = tvp.findWidgetByName("FILE_PATH");
         if (filepath)
-            emit newRemoteFile(QString(filepath->getText()));
+            Q_EMIT newRemoteFile(QString(filepath->getText()));
     }
 }
 
@@ -608,7 +608,7 @@ void Camera::processStream(INDI::Property prop)
                         m_guideFrameSignalPending = false;
                     }
                     if (latest)
-                        emit newImage(latest, "stream");
+                        Q_EMIT newImage(latest, "stream");
                 }, Qt::QueuedConnection);
             }
         }
@@ -616,7 +616,7 @@ void Camera::processStream(INDI::Property prop)
     else
     {
         // Regular streaming — send to StreamWG as before
-        emit showVideoFrame(prop, streamW, streamH);
+        Q_EMIT showVideoFrame(prop, streamW, streamH);
     }
 }
 
@@ -878,7 +878,7 @@ bool Camera::processBLOB(INDI::Property prop)
             || !targetChip->isBatchMode()) &&
             !imageData->loadFromBuffer(buffer))
     {
-        emit error(ERROR_LOAD);
+        Q_EMIT error(ERROR_LOAD);
         return true;
     }
 
@@ -890,8 +890,8 @@ bool Camera::processBLOB(INDI::Property prop)
 
     // Retain a copy
     targetChip->setImageData(imageData);
-    emit propertyUpdated(prop);
-    emit newImage(imageData, QString(bvp[0].getFormat()).toLower());
+    Q_EMIT propertyUpdated(prop);
+    Q_EMIT newImage(imageData, QString(bvp[0].getFormat()).toLower());
 
     return true;
 }

@@ -45,7 +45,7 @@ class TestKStarsStartup : public QObject
         }
         const m_InitialConditions;
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

@@ -434,7 +434,7 @@ class FocusAdvisor : public QDialog, public Ui::focusAdvisorDialog
             HELP_MAX_COLS
         } HelpColID;
 
-    signals:
+    Q_SIGNALS:
         void newMessage(QString);
         void newStage(Stage);
 };

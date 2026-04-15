@@ -24,7 +24,7 @@ class modCalcGalCoord : public QFrame, public Ui::modCalcGalCoordDlg
         explicit modCalcGalCoord(QWidget *p);
         virtual ~modCalcGalCoord() override = default;
 
-    public slots:
+    public Q_SLOTS:
 
         void slotComputeCoords();
         void slotObject();

@@ -40,20 +40,20 @@ bool SetAction::start()
         QString msg = QString("%1.%2.%3 already at target value, skipping")
                       .arg(m_device).arg(m_property).arg(m_element);
         qCInfo(KSTARS_EKOS_SCHEDULER) << msg;
-        emit progress(msg);
+        Q_EMIT progress(msg);
         m_wasSkipped = true;
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
         return true;
     }
 
     setStatus(RUNNING);
-    emit started();
-    emit progress(QString("Setting %1.%2.%3 to %4")
-                  .arg(m_device)
-                  .arg(m_property)
-                  .arg(m_element)
-                  .arg(m_value.toString()));
+    Q_EMIT started();
+    Q_EMIT progress(QString("Setting %1.%2.%3 to %4")
+                    .arg(m_device)
+                    .arg(m_property)
+                    .arg(m_element)
+                    .arg(m_value.toString()));
 
     // Send the SET command
     if (!sendSetCommand())
@@ -62,14 +62,14 @@ bool SetAction::start()
         if (incrementRetry())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SET action" << m_currentRetry << "/" << m_retries;
-            emit progress(QString("Retry %1/%2").arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Retry %1/%2").arg(m_currentRetry).arg(m_retries));
             return start();  // Retry
         }
         else
         {
             setErrorMessage("Failed to send SET command after all retries");
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
             return false;
         }
     }
@@ -94,7 +94,7 @@ bool SetAction::start()
     {
         // Command sent, assume success immediately
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
     }
 
     return true;
@@ -286,9 +286,9 @@ void SetAction::onPropertyUpdated(INDI::Property prop)
         // Clear device pointer to prevent crashes during cleanup
         m_devicePtr.clear();
 
-        emit progress(QString("%1.%2.%3 set command acknowledged").arg(m_device).arg(m_property).arg(m_element));
+        Q_EMIT progress(QString("%1.%2.%3 set command acknowledged").arg(m_device).arg(m_property).arg(m_element));
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
     }
     else if (state == IPS_ALERT)
     {
@@ -298,8 +298,8 @@ void SetAction::onPropertyUpdated(INDI::Property prop)
 
         if (incrementRetry())
         {
-            emit progress(QString("Property in Alert state, retry %1/%2")
-                          .arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Property in Alert state, retry %1/%2")
+                            .arg(m_currentRetry).arg(m_retries));
             start();
         }
         else
@@ -308,7 +308,7 @@ void SetAction::onPropertyUpdated(INDI::Property prop)
             m_devicePtr.clear();
             setErrorMessage("Property entered Alert state");
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
         }
     }
 }
@@ -342,7 +342,7 @@ void SetAction::checkCompletion()
         m_devicePtr.clear();
 
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
     }
     else if (state == IPS_ALERT)
     {
@@ -352,8 +352,8 @@ void SetAction::checkCompletion()
 
         if (incrementRetry())
         {
-            emit progress(QString("Property in Alert state, retry %1/%2")
-                          .arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Property in Alert state, retry %1/%2")
+                            .arg(m_currentRetry).arg(m_retries));
             start();
         }
         else
@@ -362,7 +362,7 @@ void SetAction::checkCompletion()
             m_devicePtr.clear();
             setErrorMessage("Property entered Alert state");
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
         }
     }
 }
@@ -379,7 +379,7 @@ void SetAction::handleTimeout()
     if (incrementRetry())
     {
         qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SET action (timeout) -" << m_currentRetry << "/" << m_retries;
-        emit progress(QString("Timeout, retry %1/%2").arg(m_currentRetry).arg(m_retries));
+        Q_EMIT progress(QString("Timeout, retry %1/%2").arg(m_currentRetry).arg(m_retries));
         start();
     }
     else
@@ -389,7 +389,7 @@ void SetAction::handleTimeout()
         qCWarning(KSTARS_EKOS_SCHEDULER) << "SET action failed after all retries";
         setErrorMessage(QString("Timeout waiting for %1.%2 to complete").arg(m_property).arg(m_element));
         setStatus(FAILED);
-        emit failed(m_errorMessage);
+        Q_EMIT failed(m_errorMessage);
     }
 }
 

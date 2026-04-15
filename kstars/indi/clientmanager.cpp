@@ -56,7 +56,7 @@ void ClientManager::newDevice(INDI::BaseDevice dp)
             oneDriverInfo->addDevice(devInfo);
             qCDebug(KSTARS_INDI) << "Driver" << oneDriverInfo->getName() << "is adding device" << dp.getDeviceName() <<
                                     "(exact match by label)";
-            emit newINDIDevice(devInfo);
+            Q_EMIT newINDIDevice(devInfo);
             return;
         }
     }
@@ -71,7 +71,7 @@ void ClientManager::newDevice(INDI::BaseDevice dp)
             oneDriverInfo->addDevice(devInfo);
             qCDebug(KSTARS_INDI) << "Driver" << oneDriverInfo->getName() << "is adding device" << dp.getDeviceName() <<
                                     "(exact match by name)";
-            emit newINDIDevice(devInfo);
+            Q_EMIT newINDIDevice(devInfo);
             return;
         }
     }
@@ -86,7 +86,7 @@ void ClientManager::newDevice(INDI::BaseDevice dp)
             oneDriverInfo->addDevice(devInfo);
             qCDebug(KSTARS_INDI) << "Driver" << oneDriverInfo->getName() << "is adding device" << dp.getDeviceName() <<
                                     "(startsWith match)";
-            emit newINDIDevice(devInfo);
+            Q_EMIT newINDIDevice(devInfo);
             return;
         }
     }
@@ -106,7 +106,7 @@ void ClientManager::newDevice(INDI::BaseDevice dp)
             qCDebug(KSTARS_INDI) << "Driver" << oneDriverInfo->getName() << "is adding device" << dp.getDeviceName() <<
                                     "(heuristic match)";
             oneDriverInfo->addDevice(devInfo);
-            emit newINDIDevice(devInfo);
+            Q_EMIT newINDIDevice(devInfo);
             return;
         }
     }
@@ -122,23 +122,23 @@ void ClientManager::newProperty(INDI::Property property)
     }
 
     //IDLog("Received new property %s for device %s\n", prop->getName(), prop->getgetDeviceName());
-    emit newINDIProperty(property);
+    Q_EMIT newINDIProperty(property);
 }
 
 void ClientManager::updateProperty(INDI::Property property)
 {
-    emit updateINDIProperty(property);
+    Q_EMIT updateINDIProperty(property);
 }
 
 void ClientManager::removeProperty(INDI::Property prop)
 {
     const QString name = prop.getName();
     const QString device = prop.getDeviceName();
-    emit removeINDIProperty(prop);
+    Q_EMIT removeINDIProperty(prop);
 
     // If BLOB property is removed, remove its corresponding property if one exists.
     if (blobManagers.empty() == false && prop.getType() == INDI_BLOB && prop.getPermission() != IP_WO)
-        emit removeBLOBManager(device, name);
+        Q_EMIT removeBLOBManager(device, name);
 }
 
 void ClientManager::processRemoveBLOBManager(const QString &device, const QString &property)
@@ -168,7 +168,7 @@ void ClientManager::processNewProperty(INDI::Property prop)
         connect(bm, &BlobManager::connected, this, [prop, this]()
         {
             if (prop && prop.getRegistered())
-                emit newBLOBManager(prop.getDeviceName(), prop);
+                Q_EMIT newBLOBManager(prop.getDeviceName(), prop);
         });
         blobManagers.append(bm);
     }
@@ -206,7 +206,7 @@ void ClientManager::removeDevice(INDI::BaseDevice dp)
             {
                 qCDebug(KSTARS_INDI) << "Removing device" << deviceName;
 
-                emit removeINDIDevice(deviceName);
+                Q_EMIT removeINDIDevice(deviceName);
 
                 driverInfo->removeDevice(deviceInfo);
 
@@ -224,12 +224,12 @@ void ClientManager::removeDevice(INDI::BaseDevice dp)
 
 void ClientManager::newMessage(INDI::BaseDevice dp, int messageID)
 {
-    emit newINDIMessage(dp, messageID);
+    Q_EMIT newINDIMessage(dp, messageID);
 }
 
 void ClientManager::newUniversalMessage(std::string message)
 {
-    emit newINDIUniversalMessage(QString::fromStdString(message));
+    Q_EMIT newINDIUniversalMessage(QString::fromStdString(message));
 }
 
 
@@ -288,7 +288,7 @@ void ClientManager::serverConnected()
     m_PendingDisconnection = false;
     m_ConnectionRetries = MAX_RETRIES;
 
-    emit started();
+    Q_EMIT started();
 }
 
 void ClientManager::serverDisconnected(int exitCode)
@@ -361,13 +361,13 @@ void ClientManager::serverDisconnected(int exitCode)
         {
             m_PendingConnection = false;
             m_ConnectionRetries = MAX_RETRIES;
-            emit failed(i18n("Failed to connect to INDI server %1:%2", getHost(), getPort()));
+            Q_EMIT failed(i18n("Failed to connect to INDI server %1:%2", getHost(), getPort()));
         }
     }
     // Did server disconnect abnormally?
     else if (exitCode < 0)
-        emit terminated(i18n("Connection to INDI host at %1 on port %2 lost. Server disconnected: %3", getHost(), getPort(),
-                             exitCode));
+        Q_EMIT terminated(i18n("Connection to INDI host at %1 on port %2 lost. Server disconnected: %3", getHost(), getPort(),
+                               exitCode));
 }
 
 const QList<QSharedPointer<DriverInfo>> &ClientManager::getManagedDrivers() const

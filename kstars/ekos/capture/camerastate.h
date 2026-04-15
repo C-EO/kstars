@@ -942,7 +942,7 @@ class CameraState: public QObject
 
         void setPrepareComplete(bool success);
 
-    signals:
+    Q_SIGNALS:
         // controls for capture execution
         void captureBusy(bool busy);
         void startCapture();

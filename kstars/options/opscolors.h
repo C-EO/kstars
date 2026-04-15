@@ -36,7 +36,7 @@ class OpsColors : public QFrame, public Ui::OpsColors
         explicit OpsColors();
         virtual ~OpsColors() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void newColor(QListWidgetItem *item);
         void slotPreset(int i);
         void slotAddPreset();

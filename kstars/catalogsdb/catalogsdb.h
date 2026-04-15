@@ -856,7 +856,7 @@ class AsyncDBManager : public QObject
             m_result.emplace(
                 std::make_unique<CatalogObjectList>((m_manager.get()->*dbManagerMethod)(args...))
             );
-            emit resultReady();
+            Q_EMIT resultReady();
         }
 
         /**
@@ -872,15 +872,15 @@ class AsyncDBManager : public QObject
             m_result.emplace(
                 std::make_unique<CatalogObjectList>((m_manager.get()->find_objects_by_name)(name, limit, exactMatchOnly))
             );
-            emit resultReady();
+            Q_EMIT resultReady();
         }
 
-    signals:
+    Q_SIGNALS:
         void resultReady(void);
         void threadReady(void);
 
 
-    public slots:
+    public Q_SLOTS:
 
         void init()
         {
@@ -934,7 +934,7 @@ class AsyncDBManager : public QObject
             return result;
         }
 
-    private slots:
+    private Q_SLOTS:
 
         void cleanup()
         {
@@ -945,7 +945,7 @@ class AsyncDBManager : public QObject
 
         void emitReady()
         {
-            emit threadReady();
+            Q_EMIT threadReady();
         }
 
 };

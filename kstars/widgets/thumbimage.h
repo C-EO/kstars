@@ -38,7 +38,7 @@ class ThumbImage : public QLabel
             return CropRect.get();
         }
 
-    signals:
+    Q_SIGNALS:
         void cropRegionModified();
 
     protected:

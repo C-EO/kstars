@@ -60,7 +60,7 @@ class DeviceSelectionDialog : public QDialog
     protected:
         void accept() override;
 
-    private slots:
+    private Q_SLOTS:
         void onDeviceSelectionChanged();
         void onDeviceDoubleClicked(QListWidgetItem *item);
 

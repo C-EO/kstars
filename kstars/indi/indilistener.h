@@ -68,7 +68,7 @@ class INDIListener : public QObject
             return m_Devices.size();
         }
 
-    public slots:
+    public Q_SLOTS:
         void processDevice(DeviceInfo *dv);
         void removeDevice(const QString &deviceName);
 
@@ -88,7 +88,7 @@ class INDIListener : public QObject
         QList<QSharedPointer<ISD::GenericDevice>> m_Devices;
 
 
-    signals:
+    Q_SIGNALS:
         void newDevice(const QSharedPointer<ISD::GenericDevice> &device);
         void deviceRemoved(const QSharedPointer<ISD::GenericDevice> &device);
 };

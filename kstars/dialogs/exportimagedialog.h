@@ -53,7 +53,7 @@ class ExportImageDialog : public QDialog
             m_Size = size;
         }
 
-    private slots:
+    private Q_SLOTS:
         void switchLegendEnabled(bool enabled);
         void previewImage();
         void exportImage();

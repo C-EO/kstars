@@ -69,7 +69,7 @@ void SkyMapLite::mousePressEvent(QMouseEvent *e)
                 //kstars->statusBar()->changeItem(name, 0 );
                 //kstars->statusBar()->showMessage(name, 0 );
 
-                emit positionClicked(&m_MousePoint);*/
+                Q_EMIT positionClicked(&m_MousePoint);*/
             }
 
             break;
@@ -81,11 +81,11 @@ void SkyMapLite::mousePressEvent(QMouseEvent *e)
                 // Show popup menu
                 if (clickedObject())
                 {
-                    emit objectLiteChanged();
+                    Q_EMIT objectLiteChanged();
                 }
                 else
                 {
-                    emit pointLiteChanged();
+                    Q_EMIT pointLiteChanged();
                     /* pmenu->createEmptyMenu( clickedPoint() );
                         pmenu->popup( QCursor::pos() );*/
                 }
@@ -247,7 +247,7 @@ void SkyMapLite::mouseMoveEvent(QMouseEvent *e)
     {
         if (Options::useAltAz())
             m_MousePoint.EquatorialToHorizontal(data->lst(), data->geo()->lat());
-        emit mousePointChanged(&m_MousePoint);
+        Q_EMIT mousePointChanged(&m_MousePoint);
     }
 }
 
@@ -426,7 +426,7 @@ void SkyMapLite::touchEvent(QTouchEvent *e)
                     setSlewing(false);
                 tapBegan = false;
                 //Show tap animation
-                emit posClicked(point);
+                Q_EMIT posClicked(point);
                 //determine RA, Dec of touch
                 m_MousePoint = projector()->fromScreen(point, data);
                 setClickedPoint(&m_MousePoint);
@@ -445,11 +445,11 @@ void SkyMapLite::touchEvent(QTouchEvent *e)
 
                 if (clickedObject())
                 {
-                    emit objectLiteChanged();
+                    Q_EMIT objectLiteChanged();
                 }
                 else
                 {
-                    emit pointLiteChanged();
+                    Q_EMIT pointLiteChanged();
                 }
             }
         }
@@ -505,7 +505,7 @@ void SkyMapLite::setMagLim(double magLim)
             m_magLim = 5.75954;
         if (m_magLim < 1.18778)
             m_magLim = 1.18778;
-        emit magLimChanged(m_magLim);
+        Q_EMIT magLimChanged(m_magLim);
 
         Options::setStarDensity(pow(10, (m_magLim - 0.35) / 2.222));
         //printf("maglim set to %3.1f\n", m_magLim);
@@ -516,7 +516,7 @@ void SkyMapLite::setMagLim(double magLim)
 void SkyMapLite::stopTracking()
 {
     KStarsLite *kstars = KStarsLite::Instance();
-    emit positionChanged();
+    Q_EMIT positionChanged();
     if (kstars && Options::isTracking())
         kstars->slotTrack();
 }
@@ -532,7 +532,7 @@ void SkyMapLite::incMagLimit(const int modifier)
     m_magLim += magFactor(modifier);
     if (m_magLim > 5.75954)
         m_magLim = 5.75954;
-    emit magLimChanged(m_magLim);
+    Q_EMIT magLimChanged(m_magLim);
     Options::setStarDensity(pow(10, (m_magLim - 0.35) / 2.222));
     //printf("maglim set to %3.1f\n", m_magLim);
     forceUpdate();
@@ -544,7 +544,7 @@ void SkyMapLite::decMagLimit(const int modifier)
     m_magLim -= magFactor(modifier);
     if (m_magLim < 1.18778)
         m_magLim = 1.18778;
-    emit magLimChanged(m_magLim);
+    Q_EMIT magLimChanged(m_magLim);
     Options::setStarDensity(pow(10, (m_magLim - 0.35) / 2.222));
     //printf("maglim set to %3.1f\n", m_magLim);
     forceUpdate();

@@ -264,7 +264,7 @@ void DefectMap::filterPixels()
     else
         m_ColdPixelsCount = std::distance(m_ColdPixels.cbegin(), m_ColdPixelsThreshold);
 
-    emit pixelsUpdated(m_HotPixelsCount, m_ColdPixelsCount);
+    Q_EMIT pixelsUpdated(m_HotPixelsCount, m_ColdPixelsCount);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -273,7 +273,7 @@ void DefectMap::filterPixels()
 void DefectMap::setHotEnabled(bool enabled)
 {
     m_HotEnabled = enabled;
-    emit pixelsUpdated(m_HotEnabled ? m_HotPixelsCount : 0, m_ColdPixelsCount);
+    Q_EMIT pixelsUpdated(m_HotEnabled ? m_HotPixelsCount : 0, m_ColdPixelsCount);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -282,5 +282,5 @@ void DefectMap::setHotEnabled(bool enabled)
 void DefectMap::setColdEnabled(bool enabled)
 {
     m_ColdEnabled = enabled;
-    emit pixelsUpdated(m_HotPixelsCount, m_ColdEnabled ? m_ColdPixelsCount : 0);
+    Q_EMIT pixelsUpdated(m_HotPixelsCount, m_ColdEnabled ? m_ColdPixelsCount : 0);
 }

@@ -31,7 +31,7 @@ class DeviceOrientation : public QObject
         }
         void stopSensors();
         void startSensors();
-    signals:
+    Q_SIGNALS:
         //    void pitchChanged(int pitch);
         //    void azimuthChanged(int Azimuth);
         //    void rollChanged(int roll);

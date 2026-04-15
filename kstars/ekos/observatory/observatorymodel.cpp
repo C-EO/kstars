@@ -106,7 +106,7 @@ bool ObservatoryModel::isReady()
 
 void ObservatoryModel::updateStatus()
 {
-    emit newStatus(isReady());
+    Q_EMIT newStatus(isReady());
 }
 
 void ObservatoryModel::makeReady()

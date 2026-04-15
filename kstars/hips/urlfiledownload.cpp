@@ -32,7 +32,7 @@ void UrlFileDownload::begin(const QUrl &url, const pixCacheKey_t &key)
 
 void UrlFileDownload::abortAll()
 {
-    emit sigAbort();
+    Q_EMIT sigAbort();
 }
 
 void UrlFileDownload::downloadFinished(QNetworkReply *reply)
@@ -45,12 +45,12 @@ void UrlFileDownload::downloadFinished(QNetworkReply *reply)
     {
         QByteArray data = reply->readAll();
 
-        emit sigDownloadDone(reply->error(), data, key);
+        Q_EMIT sigDownloadDone(reply->error(), data, key);
     }
     else
     {
         QByteArray empty;
-        emit sigDownloadDone(reply->error(), empty, key);
+        Q_EMIT sigDownloadDone(reply->error(), empty, key);
     }
 
     reply->deleteLater();

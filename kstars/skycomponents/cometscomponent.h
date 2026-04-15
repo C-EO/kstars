@@ -41,7 +41,7 @@ class CometsComponent : public QObject, public SolarSystemListComponent
         void draw(SkyPainter *skyp) override;
         void updateDataFile(bool isAutoUpdate = false);
 
-    protected slots:
+    protected Q_SLOTS:
         void downloadReady();
         void downloadError(const QString &errorString);
 

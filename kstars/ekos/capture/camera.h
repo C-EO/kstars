@@ -444,7 +444,7 @@ class Camera : public QWidget, public Ui::Camera
             return m_cameraId;
         }
 
-    signals:
+    Q_SIGNALS:
         // communication with other modules
         void ready();
         void requestAction(int cameraID, CaptureWorkflowActionType action);
@@ -481,7 +481,7 @@ class Camera : public QWidget, public Ui::Camera
         void resumeGuiding();
         void driverTimedout(const QString &deviceName);
 
-    private slots:
+    private Q_SLOTS:
         // ////////////////////////////////////////////////////////////////////
         // slots handling device and module events
         // ////////////////////////////////////////////////////////////////////
@@ -825,7 +825,7 @@ class Camera : public QWidget, public Ui::Camera
         // ////////////////////////////////////////////////////////////////////
         void appendLogText(const QString &text)
         {
-            emit newLog(QString("[%1] ").arg(getCameraName()) + text);
+            Q_EMIT newLog(QString("[%1] ").arg(getCameraName()) + text);
         }
 
         // ////////////////////////////////////////////////////////////////////

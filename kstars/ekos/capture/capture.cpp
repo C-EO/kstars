@@ -320,13 +320,13 @@ void Capture::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS_CAPTURE) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 }
 
 void Capture::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void Capture::setFocusTemperatureDelta(double focusTemperatureDelta, double absTemperture, const QString &trainname)

@@ -263,7 +263,7 @@ class FITSStack : public QObject
             return (m_RunningStackImageData.numSubs == 0) ? m_StackImageData.size() : m_RunningStackImageData.numSubs;
         }
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief Update the Stack Monitor
          * @param subs is a vector of subs to update
@@ -271,7 +271,7 @@ class FITSStack : public QObject
          */
         void updateStackMon(const QVector<LiveStackFile> &subs, const QVector<LiveStackStageInfo> &infos);
 
-    public slots:
+    public Q_SLOTS:
     private:
         typedef enum
         {

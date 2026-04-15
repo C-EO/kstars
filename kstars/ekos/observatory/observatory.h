@@ -73,7 +73,7 @@ class Observatory : public QWidget, public Ui::Observatory
         void setWeatherSource(const QString &name);
 
 
-    signals:
+    Q_SIGNALS:
         Q_SCRIPTABLE void newLog(const QString &text);
         Q_SCRIPTABLE void newWeatherData(const QJsonArray &data);
         Q_SCRIPTABLE void newStatus(ISD::Weather::Status status);

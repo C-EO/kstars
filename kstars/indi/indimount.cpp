@@ -51,7 +51,7 @@ Mount::Mount(GenericDevice *parent) : ConcreteDevice(parent)
         if (isConnected())
         {
             currentCoords.EquatorialToHorizontal(KStarsData::Instance()->lst(), KStarsData::Instance()->geo()->lat());
-            emit newCoords(currentCoords, pierSide(), hourAngle());
+            Q_EMIT newCoords(currentCoords, pierSide(), hourAngle());
         }
     });
 
@@ -127,7 +127,7 @@ void Mount::registerProperty(INDI::Property prop)
         if (currentSide != m_PierSide)
         {
             m_PierSide = static_cast<PierSide>(currentSide);
-            emit pierSideChanged(m_PierSide);
+            Q_EMIT pierSideChanged(m_PierSide);
         }
     }
     else if (prop.isNameMatch("TELESCOPE_PARK"))
@@ -200,15 +200,15 @@ void Mount::updateJ2000Coordinates(SkyPoint *coords)
 
 void ISD::Mount::updateTarget()
 {
-    emit newTarget(currentCoords);
+    Q_EMIT newTarget(currentCoords);
     double maxrad = 0.1;
     currentObject = KStarsData::Instance()->skyComposite()->objectNearest(&currentCoords, maxrad);
     if (currentObject)
-        emit newTargetName(currentObject->name());
+        Q_EMIT newTargetName(currentObject->name());
     // If there is no object, we must clear target as it might give wrong
     // indication we are still on it.
     else
-        emit newTargetName(QString());
+        Q_EMIT newTargetName(QString());
 }
 
 void Mount::processNumber(INDI::Property prop)
@@ -348,7 +348,7 @@ void Mount::processSwitch(INDI::Property prop)
         if (currentSide != m_PierSide)
         {
             m_PierSide = static_cast<PierSide>(currentSide);
-            emit pierSideChanged(m_PierSide);
+            Q_EMIT pierSideChanged(m_PierSide);
         }
     }
     else if (svp->isNameMatch("TELESCOPE_TRACK_MODE"))
@@ -372,8 +372,8 @@ void Mount::processSwitch(INDI::Property prop)
         manualMotionChanged = true;
     else if (svp->isNameMatch("TELESCOPE_REVERSE_MOTION"))
     {
-        emit axisReversed(AXIS_DE, svp->at(0)->getState() == ISS_ON);
-        emit axisReversed(AXIS_RA, svp->at(1)->getState() == ISS_ON);
+        Q_EMIT axisReversed(AXIS_DE, svp->at(0)->getState() == ISS_ON);
+        Q_EMIT axisReversed(AXIS_RA, svp->at(1)->getState() == ISS_ON);
     }
     else if (svp->isNameMatch("TELESCOPE_HOME"))
     {
@@ -397,7 +397,7 @@ void Mount::processSwitch(INDI::Property prop)
             KSNotification::event(QLatin1String("MountHomingFailed"), i18n("Mount homing failed"), KSNotification::Mount,
                                   KSNotification::Alert);
         }
-        emit newHomeStatus(svp->getState());
+        Q_EMIT newHomeStatus(svp->getState());
     }
 
     if (manualMotionChanged)
@@ -479,7 +479,7 @@ void Mount::updateParkStatus()
         if (svp.getState() == IPS_ALERT)
         {
             // First, inform everyone watch this that an error occurred.
-            emit newParkStatus(PARK_ERROR);
+            Q_EMIT newParkStatus(PARK_ERROR);
             // JM 2021-03-08: Reset parking internal state to either PARKED or UNPARKED.
             // Whatever the current switch is set to
             m_ParkStatus = (sp->getState() == ISS_ON) ? PARK_PARKED : PARK_UNPARKED;
@@ -492,14 +492,14 @@ void Mount::updateParkStatus()
             KSNotification::event(QLatin1String("MountParking"), i18n("Mount parking is in progress"), KSNotification::Mount);
             currentObject = nullptr;
 
-            emit newParkStatus(m_ParkStatus);
+            Q_EMIT newParkStatus(m_ParkStatus);
         }
         else if (svp.getState() == IPS_BUSY && sp->getState() == ISS_OFF && m_ParkStatus != PARK_UNPARKING)
         {
             m_ParkStatus = PARK_UNPARKING;
             KSNotification::event(QLatin1String("MountUnParking"), i18n("Mount unparking is in progress"), KSNotification::Mount);
 
-            emit newParkStatus(m_ParkStatus);
+            Q_EMIT newParkStatus(m_ParkStatus);
         }
         else if (svp.getState() == IPS_OK && sp->getState() == ISS_ON && m_ParkStatus != PARK_PARKED)
         {
@@ -507,7 +507,7 @@ void Mount::updateParkStatus()
             KSNotification::event(QLatin1String("MountParked"), i18n("Mount parked"), KSNotification::Mount);
             currentObject = nullptr;
 
-            emit newParkStatus(m_ParkStatus);
+            Q_EMIT newParkStatus(m_ParkStatus);
 
             QAction *parkAction = KStars::Instance()->actionCollection()->action("telescope_park");
             if (parkAction)
@@ -516,8 +516,8 @@ void Mount::updateParkStatus()
             if (unParkAction)
                 unParkAction->setEnabled(true);
 
-            emit newTarget(currentCoords);
-            emit newTargetName(QString());
+            Q_EMIT newTarget(currentCoords);
+            Q_EMIT newTargetName(QString());
         }
         else if ( (svp.getState() == IPS_OK || svp.getState() == IPS_IDLE) && sp->getState() == ISS_OFF
                   && m_ParkStatus != PARK_UNPARKED)
@@ -526,7 +526,7 @@ void Mount::updateParkStatus()
             KSNotification::event(QLatin1String("MountUnparked"), i18n("Mount unparked"), KSNotification::Mount);
             currentObject = nullptr;
 
-            emit newParkStatus(m_ParkStatus);
+            Q_EMIT newParkStatus(m_ParkStatus);
 
             QAction *parkAction = KStars::Instance()->actionCollection()->action("telescope_park");
             if (parkAction)
@@ -712,13 +712,13 @@ bool Mount::sendCoords(SkyPoint * ScopeTarget)
         // communicate the new target only if a slew will be executed for the given coordinates
         if (slewDefined())
         {
-            emit newTarget(*ScopeTarget);
+            Q_EMIT newTarget(*ScopeTarget);
             if (currentObject)
-                emit newTargetName(currentObject->name());
+                Q_EMIT newTargetName(currentObject->name());
             // If there is no object, we must clear target as it might give wrong
             // indication we are still on it.
             else
-                emit newTargetName(QString());
+                Q_EMIT newTargetName(QString());
         }
 
         if (useEquatorialCoordinates)
@@ -1190,7 +1190,7 @@ bool Mount::setSlewRate(int index)
 
     sendNewProperty(slewRateSP);
 
-    emit slewRateChanged(index);
+    Q_EMIT slewRateChanged(index);
 
     return true;
 }
@@ -1557,7 +1557,7 @@ Mount::Status Mount::status(INDI::Property nvp)
     }
 
     if (previousMountStatus != newMountStatus)
-        emit newStatus(newMountStatus);
+        Q_EMIT newStatus(newMountStatus);
 
     previousMountStatus = newMountStatus;
     return newMountStatus;

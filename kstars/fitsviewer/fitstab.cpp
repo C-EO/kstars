@@ -221,7 +221,7 @@ void FITSTab::loadFile(const QUrl &imageURL, FITSMode mode, FITSScale filter)
     // check if the address points to an appropriate address
     if (imageURL.isEmpty() || !imageURL.isValid() || !QFileInfo::exists(imageURL.toLocalFile()))
     {
-        emit failed(i18nc("File not found: %1", imageURL.toString().toLatin1()));
+        Q_EMIT failed(i18nc("File not found: %1", imageURL.toString().toLatin1()));
         return;
     }
 
@@ -232,7 +232,7 @@ void FITSTab::loadFile(const QUrl &imageURL, FITSMode mode, FITSScale filter)
         connect(m_View.get(), &FITSView::loaded, this, [&]()
         {
             processData();
-            emit loaded();
+            Q_EMIT loaded();
         });
 
         connect(m_View.get(), &FITSView::updated, this, &FITSTab::updated);
@@ -254,7 +254,7 @@ void FITSTab::initStack(const QString &dir, FITSMode mode, FITSScale filter)
     // check if the address points to an appropriate address
     if (dir.isEmpty() || !QFileInfo(dir).isDir())
     {
-        emit failed(i18nc("Invalid directory: %1", dir.toLatin1()));
+        Q_EMIT failed(i18nc("Invalid directory: %1", dir.toLatin1()));
         return;
     }
 
@@ -264,7 +264,7 @@ void FITSTab::initStack(const QString &dir, FITSMode mode, FITSScale filter)
         connect(m_View.get(), &FITSView::loaded, this, [&]()
         {
             processData();
-            emit loaded();
+            Q_EMIT loaded();
         });
 
         connect(m_View.get(), &FITSView::updated, this, &FITSTab::updated);
@@ -411,7 +411,7 @@ void FITSTab::modifyFITSState(bool clean, const QUrl &imageURL)
     else
         mDirty = true;
 
-    emit changeStatus(clean, imageURL);
+    Q_EMIT changeStatus(clean, imageURL);
 }
 
 bool FITSTab::saveImage(const QString &filename)
@@ -1593,7 +1593,7 @@ bool FITSTab::saveFile()
             return false;
         }
 
-        emit newStatus(i18n("File saved to %1", currentURL.url()), FITS_MESSAGE);
+        Q_EMIT newStatus(i18n("File saved to %1", currentURL.url()), FITS_MESSAGE);
         modifyFITSState();
         return true;
     }
@@ -1636,8 +1636,8 @@ void FITSTab::tabPositionUpdated()
 {
     undoStack->setActive(true);
     m_View->emitZoom();
-    emit newStatus(QString("%1x%2").arg(m_View->imageData()->width()).arg(m_View->imageData()->height()),
-                   FITS_RESOLUTION);
+    Q_EMIT newStatus(QString("%1x%2").arg(m_View->imageData()->width()).arg(m_View->imageData()->height()),
+                     FITS_RESOLUTION);
 }
 
 void FITSTab::setStretchValues(double shadows, double midtones, double highlights)

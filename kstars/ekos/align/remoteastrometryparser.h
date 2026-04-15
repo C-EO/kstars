@@ -43,7 +43,7 @@ class RemoteAstrometryParser : public AstrometryParser
         bool sendArgs(const QStringList &args);
         bool setCCD(const QString &ccd);
 
-    public slots:
+    public Q_SLOTS:
         void checkStatus(INDI::Property prop);
         void checkResults(INDI::Property prop);
 

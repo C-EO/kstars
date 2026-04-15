@@ -136,7 +136,7 @@ void TestEkosSimulator::testMountSlew()
         if(dialog != nullptr)
         {
             under_horizon_or_close_to_sun = true;
-            emit dialog->reject();
+            Q_EMIT dialog->reject();
         }
     });
     dms ra = dms::fromString(RA, false);

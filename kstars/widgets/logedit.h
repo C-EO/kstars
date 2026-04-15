@@ -25,7 +25,7 @@ class LogEdit : public QTextEdit
         explicit LogEdit(QWidget *parent = nullptr);
         virtual ~LogEdit() override = default;
 
-    signals:
+    Q_SIGNALS:
         void focusOut();
 
     protected:

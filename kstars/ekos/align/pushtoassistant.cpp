@@ -40,7 +40,7 @@ PushToAssistant::PushToAssistant(QWidget *parent) : QDialog(parent)
     connect(loopSolvingB, &QPushButton::toggled, this, &PushToAssistant::repeatSolving);
     connect(&solvingTimer, &QTimer::timeout, [this]()
     {
-        emit captureAndSolve(false);
+        Q_EMIT captureAndSolve(false);
     });
     connect(refreshIntervalSB, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged), [&](double value)
     {
@@ -224,7 +224,7 @@ void PushToAssistant::toggleSolving()
         case ALIGN_ABORTED:
         case ALIGN_SUCCESSFUL:
             // start plate solving
-            emit captureAndSolve(true);
+            Q_EMIT captureAndSolve(true);
             updateToggleSolvingB(false);
             break;
         case ALIGN_PROGRESS:
@@ -233,7 +233,7 @@ void PushToAssistant::toggleSolving()
         case ALIGN_ROTATING:
         case ALIGN_SUSPENDED:
             // stop plate solving
-            emit abort();
+            Q_EMIT abort();
             updateToggleSolvingB(true);
             break;
     }
@@ -248,7 +248,7 @@ void PushToAssistant::repeatSolving(bool repeat)
         if(m_alignState == AlignState::ALIGN_IDLE || m_alignState == AlignState::ALIGN_COMPLETE)
         {
             updateToggleSolvingB(true);
-            emit captureAndSolve(false);
+            Q_EMIT captureAndSolve(false);
         }
     }
     else

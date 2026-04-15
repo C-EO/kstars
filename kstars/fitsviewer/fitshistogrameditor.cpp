@@ -177,7 +177,7 @@ void FITSHistogramEditor::applyScale()
     //        type = FITS_LOG;
     //    else
     type = FITS_LINEAR;
-    emit newHistogramCommand(new FITSHistogramCommand(m_ImageData, this, type, min, max));
+    Q_EMIT newHistogramCommand(new FITSHistogramCommand(m_ImageData, this, type, min, max));
 }
 
 void FITSHistogramEditor::applyFilter(FITSScale ftype)
@@ -186,7 +186,7 @@ void FITSHistogramEditor::applyFilter(FITSScale ftype)
     min.append(ui->minREdit->value());
     type = ftype;
 
-    emit newHistogramCommand(new FITSHistogramCommand(m_ImageData, this, type, min, max));
+    Q_EMIT newHistogramCommand(new FITSHistogramCommand(m_ImageData, this, type, min, max));
 }
 
 void FITSHistogramEditor::setImageData(const QSharedPointer<FITSData> &data)

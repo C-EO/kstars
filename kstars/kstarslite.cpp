@@ -514,7 +514,7 @@ void KStarsLite::setRunTutorial(bool runTutorial)
     if (Options::runStartupWizard() != runTutorial)
     {
         Options::setRunStartupWizard(runTutorial);
-        emit runTutorialChanged();
+        Q_EMIT runTutorialChanged();
     }
 }
 

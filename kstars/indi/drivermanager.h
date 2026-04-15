@@ -35,7 +35,7 @@ class DriverManagerUI : public QFrame, public Ui::DriverManager
     public:
         explicit DriverManagerUI(QWidget *parent = nullptr);
 
-    public slots:
+    public Q_SLOTS:
         void makePortEditable(QTreeWidgetItem *selectedItem, int column);
 
     public:
@@ -180,7 +180,7 @@ class DriverManager : public QDialog
         QStringList driversStringList;
         QPointer<CustomDrivers> m_CustomDrivers;
 
-    public slots:
+    public Q_SLOTS:
         void resizeDeviceColumn();
         void updateLocalTab();
         void updateClientTab();
@@ -212,7 +212,7 @@ class DriverManager : public QDialog
             m_CustomDrivers->show();
         }
 
-    signals:
+    Q_SIGNALS:
 
         // Server Signals
 

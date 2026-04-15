@@ -24,7 +24,7 @@ class modCalcPlanets : public QFrame, public Ui::modCalcPlanetsDlg
         explicit modCalcPlanets(QWidget *p);
         virtual ~modCalcPlanets() override = default;
 
-    public slots:
+    public Q_SLOTS:
 
         void slotLocation();
         void slotComputePosition();

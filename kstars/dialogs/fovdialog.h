@@ -40,7 +40,7 @@ class FOVDialog : public QDialog
     public:
         explicit FOVDialog(QWidget *parent = nullptr);
         ~FOVDialog() override;
-    private slots:
+    private Q_SLOTS:
         void slotNewFOV();
         void slotEditFOV();
         void slotRemoveFOV();
@@ -76,7 +76,7 @@ class NewFOV : public QDialog
             return f;
         }
 
-    public slots:
+    public Q_SLOTS:
         void slotBinocularFOVDistanceChanged(int index);
         void slotUpdateFOV();
         void slotComputeFOV();

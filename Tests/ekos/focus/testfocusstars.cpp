@@ -26,7 +26,7 @@ class TestFocusStars : public QObject
         TestFocusStars();
         ~TestFocusStars() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
 };
 

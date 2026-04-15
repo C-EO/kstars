@@ -360,7 +360,7 @@ class Mount : public QWidget, public Ui::Mount
         QVariantMap getAllSettings() const;
         void setAllSettings(const QVariantMap &settings);
 
-    public slots:
+    public Q_SLOTS:
 
         /**
              * @brief syncTelescopeInfo Update telescope information to reflect any property changes
@@ -500,12 +500,12 @@ class Mount : public QWidget, public Ui::Mount
          */
         void syncLocationSource();
 
-    private slots:
+    private Q_SLOTS:
         void startParkTimer();
         void stopParkTimer();
         void startAutoPark();
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &text);
         /**
          * @brief Update event with the current telescope position

@@ -99,7 +99,7 @@ void NodeManager::setConnected()
                                    "successfully re-authenticated and connected all nodes.";
             setIsReauthenticating(false);
         }
-        emit connected();
+        Q_EMIT connected();
     }
 }
 
@@ -115,7 +115,7 @@ void NodeManager::setDisconnected()
     // Only emit once all nodes are disconnected.
     if (isConnected() == false)
     {
-        emit disconnected();
+        Q_EMIT disconnected();
     }
 }
 
@@ -224,7 +224,7 @@ void NodeManager::onResult(QNetworkReply *reply)
         m_ReconnectTries = 0;
         // Reset flag on authentication error
         setIsReauthenticating(false);
-        emit authenticationError(i18n("Error authenticating with EkosLive server: %1", reply->errorString()));
+        Q_EMIT authenticationError(i18n("Error authenticating with EkosLive server: %1", reply->errorString()));
         reply->deleteLater();
         return;
     }
@@ -237,7 +237,7 @@ void NodeManager::onResult(QNetworkReply *reply)
     {
         // Reset flag on authentication error (parse error)
         setIsReauthenticating(false);
-        emit authenticationError(i18n("Error parsing server response: %1", error.errorString()));
+        Q_EMIT authenticationError(i18n("Error parsing server response: %1", error.errorString()));
         reply->deleteLater();
         return;
     }
@@ -249,7 +249,7 @@ void NodeManager::onResult(QNetworkReply *reply)
         // Reset flag on authentication error (server denied)
         m_tokenExpiryTimestamp = 0; // Clear any old expiry on auth failure
         setIsReauthenticating(false);
-        emit authenticationError(m_AuthResponse["message"].toString());
+        Q_EMIT authenticationError(m_AuthResponse["message"].toString());
         reply->deleteLater();
         return;
     }

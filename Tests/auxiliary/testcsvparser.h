@@ -22,7 +22,7 @@ class TestCSVParser : public QObject
         TestCSVParser();
         ~TestCSVParser() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
         void CSVMixedInputs();

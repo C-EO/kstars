@@ -31,7 +31,7 @@ class TestDefects : public QObject
         /** @short Destructor */
         ~TestDefects() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
 };
 

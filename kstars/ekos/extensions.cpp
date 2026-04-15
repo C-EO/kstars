@@ -15,15 +15,15 @@ extensions::extensions(QObject *parent) : QObject{ parent }
 
     connect(extensionProcess, &QProcess::started, this, [ = ]()
     {
-        emit extensionStateChanged(Ekos::EXTENSION_STARTED);
+        Q_EMIT extensionStateChanged(Ekos::EXTENSION_STARTED);
     });
     connect(extensionProcess, static_cast<void (QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, [ = ]()
     {
-        emit extensionStateChanged(Ekos::EXTENSION_STOPPED);
+        Q_EMIT extensionStateChanged(Ekos::EXTENSION_STOPPED);
     });
     connect(extensionProcess, &QProcess::readyRead, this, [this]
     {
-        emit extensionOutput(extensionProcess->readAll());
+        Q_EMIT extensionOutput(extensionProcess->readAll());
     });
 }
 
@@ -276,12 +276,12 @@ void extensions::run(const QString &extension)
         extensionProcess->setProcessChannelMode(QProcess::MergedChannels);
         extensionProcess->start(processPath, arguments);
     }
-    emit extensionStateChanged(Ekos::EXTENSION_START_REQUESTED);
+    Q_EMIT extensionStateChanged(Ekos::EXTENSION_START_REQUESTED);
 }
 
 void extensions::stop()
 {
-    emit extensionStateChanged(Ekos::EXTENSION_STOP_REQUESTED);
+    Q_EMIT extensionStateChanged(Ekos::EXTENSION_STOP_REQUESTED);
 }
 
 void extensions::kill()

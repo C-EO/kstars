@@ -178,7 +178,7 @@ void Manager::slotChangePalette()
 
     qApp->style()->polish(qApp);
 
-    emit signalThemeChanged();
+    Q_EMIT signalThemeChanged();
 }
 
 void Manager::setThemeMenuAction(QMenu* const action)

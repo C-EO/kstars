@@ -581,7 +581,7 @@ void cgmath::performProcessing(Ekos::GuideState state, QSharedPointer<FITSData> 
 
     // Emit the detected star center
     QVector3D starCenter(starPosition.x, starPosition.y, 0);
-    emit newStarPosition(starCenter, true);
+    Q_EMIT newStarPosition(starCenter, true);
 
     // If we're only calibrating, then we're done.
     if (state == Ekos::GUIDE_CALIBRATING)
@@ -731,8 +731,8 @@ void cgmath::emitStats()
     const int numStars = hasGuidestars ? guideStars.skybackground().starsDetected : 0;  // wait for rob's release
 
     // analyze.cpp uses only one RA/DEC-axis (up:+, down:-), hence RA is negated.
-    emit guideStats(-out_params.delta[GUIDE_RA], out_params.delta[GUIDE_DEC],
-                    pulseRA, pulseDEC, snr, skyBG, numStars);
+    Q_EMIT guideStats(-out_params.delta[GUIDE_RA], out_params.delta[GUIDE_DEC],
+                      pulseRA, pulseDEC, snr, skyBG, numStars);
 }
 
 void cgmath::calculateRmsError(void)

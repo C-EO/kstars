@@ -31,7 +31,7 @@ class GuideManager : public QWidget, public Ui::GuideManager
         void updateGuideDetailView();
         void reset();
 
-    public slots:
+    public Q_SLOTS:
         void updateGuideStatus(GuideState status);
         void updateGuideStarPixmap(QPixmap &starPix);
         void updateSigmas(double ra, double de);

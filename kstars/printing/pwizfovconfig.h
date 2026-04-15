@@ -84,7 +84,7 @@ class PWizFovConfigUI : public QFrame, public Ui::PWizFovConfig
             return static_cast<Legend::LEGEND_POSITION>(positionCombo->currentIndex());
         }
 
-    private slots:
+    private Q_SLOTS:
         /**
               * \brief Slot: enable or disable legend configuration fields.
               * \param enabled True if legend configuration fields should be enabled.

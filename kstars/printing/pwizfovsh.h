@@ -50,7 +50,7 @@ class PWizFovShUI : public QFrame, public Ui::PWizFovSh
               */
         void setBeginObject(SkyObject *obj);
 
-    private slots:
+    private Q_SLOTS:
         /**
               * \brief Slot: select beginning object from list.
               */

@@ -22,7 +22,7 @@ class FocusProfilePlot : public QCustomPlot
         }
         void clear();
 
-    public slots:
+    public Q_SLOTS:
         void drawProfilePlot(double currentHFR);
 
     private:

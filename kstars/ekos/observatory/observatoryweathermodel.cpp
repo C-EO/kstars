@@ -21,14 +21,14 @@ void ObservatoryWeatherModel::initModel(Weather *weather)
     connect(weatherInterface, &Weather::ready, this, [&]()
     {
         initialized = true;
-        emit updateWeatherStatus();
+        Q_EMIT updateWeatherStatus();
     });
     connect(weatherInterface, &Weather::newStatus, this, &ObservatoryWeatherModel::weatherChanged);
     connect(weatherInterface, &Weather::newWeatherData, this, &ObservatoryWeatherModel::updateWeatherData);
     connect(weatherInterface, &Weather::newWeatherData, this, &ObservatoryWeatherModel::newWeatherData);
     connect(weatherInterface, &Weather::disconnected, this, [&]()
     {
-        emit disconnected();
+        Q_EMIT disconnected();
         initialized = false;
     });
 
@@ -62,7 +62,7 @@ void ObservatoryWeatherModel::initModel(Weather *weather)
     });
 
     if (weatherInterface->status() != ISD::Weather::WEATHER_IDLE)
-        emit ready();
+        Q_EMIT ready();
 
     initialized = true;
 }
@@ -186,7 +186,7 @@ QString ObservatoryWeatherModel::getAlertActionsStatus()
 void ObservatoryWeatherModel::updateWeatherStatus()
 {
     weatherChanged(status());
-    emit ready();
+    Q_EMIT ready();
 }
 
 
@@ -209,7 +209,7 @@ void ObservatoryWeatherModel::weatherChanged(ISD::Weather::Status status)
         default:
             break;
     }
-    emit newStatus(status);
+    Q_EMIT newStatus(status);
 }
 
 void ObservatoryWeatherModel::updateWeatherData(const std::vector<ISD::Weather::WeatherData> &data)
@@ -226,7 +226,7 @@ void ObservatoryWeatherModel::updateWeatherData(const std::vector<ISD::Weather::
             m_WeatherData.push_back({QString(oneEntry.name), QString(oneEntry.label), oneEntry.value});
     }
     // update UI
-    emit newStatus(status());
+    Q_EMIT newStatus(status());
 }
 
 unsigned long ObservatoryWeatherModel::findWeatherData(const QString name)

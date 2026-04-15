@@ -710,7 +710,7 @@ void KStars::loadColorScheme(const QString &name)
 
     Options::setColorSchemeFile(name);
 
-    emit colorSchemeChanged();
+    Q_EMIT colorSchemeChanged();
 
     map()->forceUpdate();
 }

@@ -50,7 +50,7 @@ QMap<long double, dms> ApproachSolver::findClosestApproach(long double startJD,
     while (jd <= stopJD)
     {
         int progress = int(100.0 * (jd - startJD) / (stopJD - startJD));
-        emit solverMadeProgress(progress);
+        Q_EMIT solverMadeProgress(progress);
 
         Dist = updateAndFindDistance(jd);
         Sign = sgn(Dist - prevDist);
@@ -168,4 +168,3 @@ int ApproachSolver::sgn(dms a)
 
     return ((a.radians() > 0) ? 1 : ((a.radians() < 0) ? -1 : 0));
 }
-

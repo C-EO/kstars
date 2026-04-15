@@ -22,7 +22,7 @@ SequenceJobState::SequenceJobState(const QSharedPointer<CameraState> &sharedStat
     m_FlatSyncCheck.setInterval(1000);
     m_FlatSyncCheck.callOnTimeout(this, [this]()
     {
-        emit flatSyncFocus(targetFilterID);
+        Q_EMIT flatSyncFocus(targetFilterID);
     });
 
     // Monitor capture operations timeout
@@ -69,9 +69,9 @@ SequenceJobState::SequenceJobState(const QSharedPointer<CameraState> &sharedStat
             qCDebug(KSTARS_EKOS_CAPTURE) << "Capture operations timed out after" << Options::captureOperationsTimeout()
                                          << "seconds. Pending actions:" << pending.join(",")
                                          << "Prep state:" << m_PreparationState;
-            emit newLog(i18n("Capture operations timed out after %1 seconds.", Options::captureOperationsTimeout()));
+            Q_EMIT newLog(i18n("Capture operations timed out after %1 seconds.", Options::captureOperationsTimeout()));
             m_CaptureOperationsTimer.stop();
-            emit prepareComplete(false);
+            Q_EMIT prepareComplete(false);
         }
     });
 }
@@ -114,7 +114,7 @@ void SequenceJobState::prepareLightFrameCapture(bool enforceCCDTemp, bool isPrev
     setAllActionsReady();
 
     // disable batch mode for previews
-    emit setCCDBatchMode(!isPreview);
+    Q_EMIT setCCDBatchMode(!isPreview);
 
     // Check if we need to update temperature (only skip if the value is initialized and within the limits)
     prepareTemperatureCheck(enforceCCDTemp);
@@ -146,7 +146,7 @@ void SequenceJobState::prepareFlatFrameCapture(bool enforceCCDTemp, bool isPrevi
     setAllActionsReady();
 
     // disable batch mode for previews
-    emit setCCDBatchMode(!isPreview);
+    Q_EMIT setCCDBatchMode(!isPreview);
 
     // Check if we need to update temperature (only skip if the value is initialized and within the limits)
     prepareTemperatureCheck(enforceCCDTemp);
@@ -173,7 +173,7 @@ void SequenceJobState::prepareDarkFrameCapture(bool enforceCCDTemp, bool isPrevi
     setAllActionsReady();
 
     // disable batch mode for previews
-    emit setCCDBatchMode(!isPreview);
+    Q_EMIT setCCDBatchMode(!isPreview);
 
     // Check if we need to update temperature (only skip if the value is initialized and within the limits)
     prepareTemperatureCheck(enforceCCDTemp);
@@ -261,7 +261,7 @@ void SequenceJobState::checkAllActionsReady()
 
                         qCDebug(KSTARS_EKOS_CAPTURE) << "Light prep: complete, emitting prepareComplete()";
                         m_PreparationState = PREP_COMPLETED;
-                        emit prepareComplete();
+                        Q_EMIT prepareComplete();
                     }
                     break;
                 case FRAME_FLAT:
@@ -284,7 +284,7 @@ void SequenceJobState::checkAllActionsReady()
                     {
                         qCDebug(KSTARS_EKOS_CAPTURE) << "Flat prep: complete, emitting prepareComplete()";
                         m_PreparationState = PREP_COMPLETED;
-                        emit prepareComplete();
+                        Q_EMIT prepareComplete();
                     }
                     break;
                 // darks and bias frames are handled in the same way
@@ -302,12 +302,12 @@ void SequenceJobState::checkAllActionsReady()
                     {
                         qCDebug(KSTARS_EKOS_CAPTURE) << "Dark/Bias prep: complete, emitting prepareComplete()";
                         m_PreparationState = PREP_COMPLETED;
-                        emit prepareComplete();
+                        Q_EMIT prepareComplete();
                     }
                     break;
                 default:
                     // all other cases not refactored yet, preparation immediately completed
-                    emit prepareComplete();
+                    Q_EMIT prepareComplete();
                     break;
             }
             break;
@@ -322,7 +322,7 @@ void SequenceJobState::checkAllActionsReady()
                 // here would mean those signals bypass the guard and corrupt the state machine.
                 // The next call to initPreparation() will reset the state to PREP_NONE cleanly.
                 m_PreparationState = PREP_COMPLETED;
-                emit initCaptureComplete(m_fitsMode);
+                Q_EMIT initCaptureComplete(m_fitsMode);
             }
             break;
 
@@ -366,7 +366,7 @@ void SequenceJobState::prepareTargetFilter(CCDFrameType frameType, bool isPrevie
             if (isPreview || frameType != FRAME_LIGHT || autoFocusReady == false)
                 m_filterPolicy = static_cast<FilterManager::FilterPolicy>(m_filterPolicy & ~FilterManager::AUTOFOCUS_POLICY);
 
-            emit readFilterPosition();
+            Q_EMIT readFilterPosition();
         }
         else if (targetFilterID != m_CameraState->currentFilterID)
         {
@@ -380,8 +380,8 @@ void SequenceJobState::prepareTargetFilter(CCDFrameType frameType, bool isPrevie
             if (isPreview || frameType != FRAME_LIGHT || autoFocusReady == false)
                 m_filterPolicy = static_cast<FilterManager::FilterPolicy>(m_filterPolicy & ~FilterManager::AUTOFOCUS_POLICY);
 
-            emit changeFilterPosition(targetFilterID, m_filterPolicy);
-            emit prepareState(CAPTURE_CHANGING_FILTER);
+            Q_EMIT changeFilterPosition(targetFilterID, m_filterPolicy);
+            Q_EMIT prepareState(CAPTURE_CHANGING_FILTER);
         }
     }
 }
@@ -400,12 +400,12 @@ void SequenceJobState::prepareTemperatureCheck(bool enforceCCDTemp)
             // exactly this value no matter what the CCD temperature
             ignoreNextValue[CAPTURE_ACTION_TEMPERATURE] = true;
             // request setting temperature
-            emit setCCDTemperature(targetTemperature);
-            emit prepareState(CAPTURE_SETTING_TEMPERATURE);
+            Q_EMIT setCCDTemperature(targetTemperature);
+            Q_EMIT prepareState(CAPTURE_SETTING_TEMPERATURE);
         }
         // trigger setting current value first if not initialized
         else
-            emit readCurrentState(CAPTURE_SETTING_TEMPERATURE);
+            Q_EMIT readCurrentState(CAPTURE_SETTING_TEMPERATURE);
 
     }
 }
@@ -418,12 +418,12 @@ void SequenceJobState::prepareRotatorCheck()
         {
             prepareActions[CAPTURE_ACTION_ROTATOR] = false;
             double rawAngle = RotatorUtils::Instance()->calcRotatorAngle(targetPositionAngle);
-            emit prepareState(CAPTURE_SETTING_ROTATOR);
-            emit setRotatorAngle(rawAngle);
+            Q_EMIT prepareState(CAPTURE_SETTING_ROTATOR);
+            Q_EMIT setRotatorAngle(rawAngle);
         }
         // trigger setting current value first if not initialized
         else
-            emit readCurrentState(CAPTURE_SETTING_ROTATOR);
+            Q_EMIT readCurrentState(CAPTURE_SETTING_ROTATOR);
     }
 }
 
@@ -524,8 +524,8 @@ IPState SequenceJobState::checkManualCoverReady(bool lightSourceRequired)
             return IPS_BUSY;
 
         // request asking the user to cover the scope manually with a light source
-        emit askManualScopeCover(i18n("Cover the telescope with an evenly illuminated light source."),
-                                 i18n("Flat Frame"), true);
+        Q_EMIT askManualScopeCover(i18n("Cover the telescope with an evenly illuminated light source."),
+                                   i18n("Flat Frame"), true);
         coverQueryState = CAL_CHECK_CONFIRMATION;
 
         return IPS_BUSY;
@@ -536,8 +536,8 @@ IPState SequenceJobState::checkManualCoverReady(bool lightSourceRequired)
         if (coverQueryState == CAL_CHECK_CONFIRMATION)
             return IPS_BUSY;
 
-        emit askManualScopeCover(i18n("Cover the telescope in order to take a dark exposure."),
-                                 i18n("Dark Exposure"), false);
+        Q_EMIT askManualScopeCover(i18n("Cover the telescope in order to take a dark exposure."),
+                                   i18n("Dark Exposure"), false);
 
         coverQueryState = CAL_CHECK_CONFIRMATION;
 
@@ -573,8 +573,8 @@ IPState SequenceJobState::checkDustCapReady(CCDFrameType frameType)
         qCDebug(KSTARS_EKOS_CAPTURE) << "Dust cap state mismatch - current:" << m_CameraState->getDustCapState()
                                      << "target:" << targetCapState << "Initiating" << (captureLights ? "unpark" : "park");
         m_CameraState->setDustCapState(captureLights ? ISD::DustCap::CAP_UNPARKING : ISD::DustCap::CAP_PARKING);
-        emit parkDustCap(!captureLights);
-        emit newLog(captureLights ? i18n("Unparking dust cap...") : i18n("Parking dust cap..."));
+        Q_EMIT parkDustCap(!captureLights);
+        Q_EMIT newLog(captureLights ? i18n("Unparking dust cap...") : i18n("Parking dust cap..."));
         return IPS_BUSY;
     }
 
@@ -585,8 +585,8 @@ IPState SequenceJobState::checkDustCapReady(CCDFrameType frameType)
     if (m_CameraState->hasLightBox && m_CameraState->getLightBoxLightState() != targetLightBoxStatus)
     {
         m_CameraState->setLightBoxLightState(ISD::LightBox::LIGHT_BUSY);
-        emit setLightBoxLight(captureFlats);
-        emit newLog(captureFlats ? i18n("Turn light box light on...") : i18n("Turn light box light off..."));
+        Q_EMIT setLightBoxLight(captureFlats);
+        Q_EMIT newLog(captureFlats ? i18n("Turn light box light on...") : i18n("Turn light box light off..."));
         return IPS_BUSY;
     }
 
@@ -605,8 +605,8 @@ IPState SequenceJobState::checkWallPositionReady(CCDFrameType frametype)
             switch (m_CameraState->getScopeParkState())
             {
                 case ISD::PARK_ERROR:
-                    emit newLog(i18n("Parking mount failed, aborting..."));
-                    emit abortCapture();
+                    Q_EMIT newLog(i18n("Parking mount failed, aborting..."));
+                    Q_EMIT abortCapture();
                     return IPS_ALERT;
                 case ISD::PARK_UNPARKING:
                 case ISD::PARK_PARKING:
@@ -614,16 +614,16 @@ IPState SequenceJobState::checkWallPositionReady(CCDFrameType frametype)
                 case ISD::PARK_PARKED:
                     // unpark the scope
                     wpScopeStatus = WP_UNPARKING;
-                    emit newLog(i18n("Unparking mount..."));
-                    emit setScopeParked(false);
+                    Q_EMIT newLog(i18n("Unparking mount..."));
+                    Q_EMIT setScopeParked(false);
                     return IPS_BUSY;
                 case ISD::PARK_UNKNOWN:
                     // retrieve the mount park state
-                    emit readCurrentMountParkState();
+                    Q_EMIT readCurrentMountParkState();
                     return IPS_BUSY;
                 case ISD::PARK_UNPARKED:
                     wpScopeStatus = WP_UNPARKED;
-                    emit newLog(i18n("Mount unparked."));
+                    Q_EMIT newLog(i18n("Mount unparked."));
                     // check what to do next
                     checkWallPositionReady(frametype);
                     break;
@@ -635,9 +635,9 @@ IPState SequenceJobState::checkWallPositionReady(CCDFrameType frametype)
             wallCoord.HorizontalToEquatorial(KStarsData::Instance()->lst(),
                                              KStarsData::Instance()->geo()->lat());
             wpScopeStatus = WP_SLEWING;
-            emit slewTelescope(wallCoord);
-            emit newLog(i18n("Mount slewing to wall position (az =%1 alt =%2)",
-                             wallCoord.az().toDMSString(), wallCoord.alt().toDMSString()));
+            Q_EMIT slewTelescope(wallCoord);
+            Q_EMIT newLog(i18n("Mount slewing to wall position (az =%1 alt =%2)",
+                               wallCoord.az().toDMSString(), wallCoord.alt().toDMSString()));
             return IPS_BUSY;
         }
         // wait until actions completed
@@ -647,12 +647,12 @@ IPState SequenceJobState::checkWallPositionReady(CCDFrameType frametype)
         else if (wpScopeStatus == WP_SLEW_COMPLETED)
         {
             wpScopeStatus = WP_TRACKING_BUSY;
-            emit setScopeTracking(false);
-            emit newLog(i18n("Slew to wall position complete, stop tracking."));
+            Q_EMIT setScopeTracking(false);
+            Q_EMIT newLog(i18n("Slew to wall position complete, stop tracking."));
             return IPS_BUSY;
         }
         else if (wpScopeStatus == WP_TRACKING_OFF)
-            emit newLog(i18n("Slew to wall position complete, tracking stopped."));
+            Q_EMIT newLog(i18n("Slew to wall position complete, tracking stopped."));
 
         // wall position reached, check if we have a light box to turn on for flats and off otherwise
         bool captureFlats = (frametype == FRAME_FLAT);
@@ -664,8 +664,8 @@ IPState SequenceJobState::checkWallPositionReady(CCDFrameType frametype)
             if (m_CameraState->getLightBoxLightState() != targetLightState)
             {
                 m_CameraState->setLightBoxLightState(ISD::LightBox::LIGHT_BUSY);
-                emit setLightBoxLight(captureFlats);
-                emit newLog(captureFlats ? i18n("Turn light box light on...") : i18n("Turn light box light off..."));
+                Q_EMIT setLightBoxLight(captureFlats);
+                Q_EMIT newLog(captureFlats ? i18n("Turn light box light on...") : i18n("Turn light box light off..."));
                 return IPS_BUSY;
             }
         }
@@ -683,20 +683,20 @@ IPState SequenceJobState::checkPreMountParkReady()
             case ISD::PARK_PARKED:
                 break;
             case ISD::PARK_ERROR:
-                emit newLog(i18n("Parking mount failed, aborting..."));
-                emit abortCapture();
+                Q_EMIT newLog(i18n("Parking mount failed, aborting..."));
+                Q_EMIT abortCapture();
                 return IPS_ALERT;
             case ISD::PARK_PARKING:
                 return IPS_BUSY;
             case ISD::PARK_UNPARKED:
             case ISD::PARK_UNPARKING:
                 // park the scope
-                emit setScopeParked(true);
-                emit newLog(i18n("Parking mount prior to calibration frames capture..."));
+                Q_EMIT setScopeParked(true);
+                Q_EMIT newLog(i18n("Parking mount prior to calibration frames capture..."));
                 return IPS_BUSY;
             case ISD::PARK_UNKNOWN:
                 // retrieve the mount park state
-                emit readCurrentMountParkState();
+                Q_EMIT readCurrentMountParkState();
                 return IPS_BUSY;
         }
     }
@@ -711,8 +711,8 @@ IPState SequenceJobState::checkPreDomeParkReady()
     {
         if (m_CameraState->getDomeState() == ISD::Dome::DOME_ERROR)
         {
-            emit newLog(i18n("Parking dome failed, aborting..."));
-            emit abortCapture();
+            Q_EMIT newLog(i18n("Parking dome failed, aborting..."));
+            Q_EMIT abortCapture();
             return IPS_ALERT;
         }
         else if (m_CameraState->getDomeState() == ISD::Dome::DOME_PARKING)
@@ -720,8 +720,8 @@ IPState SequenceJobState::checkPreDomeParkReady()
         else if (m_CameraState->getDomeState() != ISD::Dome::DOME_PARKED)
         {
             m_CameraState->setDomeState(ISD::Dome::DOME_PARKING);
-            emit setDomeParked(true);
-            emit newLog(i18n("Parking dome prior to calibration frames capture..."));
+            Q_EMIT setDomeParked(true);
+            Q_EMIT newLog(i18n("Parking dome prior to calibration frames capture..."));
             return IPS_BUSY;
         }
     }
@@ -741,7 +741,7 @@ IPState SequenceJobState::checkFlatSyncFocus()
     if (m_frameType == FRAME_FLAT && Options::flatSyncFocus() && flatSyncStatus != FS_COMPLETED)
     {
         flatSyncStatus = FS_BUSY;
-        emit flatSyncFocus(targetFilterID);
+        Q_EMIT flatSyncFocus(targetFilterID);
         return IPS_BUSY;
     }
     // everything ready
@@ -756,7 +756,7 @@ IPState SequenceJobState::checkHasShutter()
         return IPS_OK;
     // query the status
     m_CameraState->shutterStatus = SHUTTER_BUSY;
-    emit queryHasShutter();
+    Q_EMIT queryHasShutter();
     return IPS_BUSY;
 }
 
@@ -768,8 +768,8 @@ IPState SequenceJobState::checkLightFrameScopeCoverOpen()
         if (m_CameraState->getLightBoxLightState() != ISD::LightBox::LIGHT_BUSY)
         {
             m_CameraState->setLightBoxLightState(ISD::LightBox::LIGHT_BUSY);
-            emit setLightBoxLight(false);
-            emit newLog(i18n("Turn light box light off..."));
+            Q_EMIT setLightBoxLight(false);
+            Q_EMIT newLog(i18n("Turn light box light off..."));
         }
         return IPS_BUSY;
     }
@@ -782,8 +782,8 @@ IPState SequenceJobState::checkLightFrameScopeCoverOpen()
             if (m_CameraState->getDustCapState() != ISD::DustCap::CAP_UNPARKING)
             {
                 m_CameraState->setDustCapState(ISD::DustCap::CAP_UNPARKING);
-                emit parkDustCap(false);
-                emit newLog(i18n("Unparking dust cap..."));
+                Q_EMIT parkDustCap(false);
+                Q_EMIT newLog(i18n("Unparking dust cap..."));
             }
             return IPS_BUSY;
         }
@@ -801,7 +801,7 @@ IPState SequenceJobState::checkLightFrameScopeCoverOpen()
         if (coverQueryState == CAL_CHECK_CONFIRMATION)
             return IPS_BUSY;
 
-        emit askManualScopeOpen(m_CameraState->m_ManualCoverState == CameraState::MANUAL_COVER_CLOSED_LIGHT);
+        Q_EMIT askManualScopeOpen(m_CameraState->m_ManualCoverState == CameraState::MANUAL_COVER_CLOSED_LIGHT);
 
         return IPS_BUSY;
     }
@@ -856,8 +856,8 @@ void SequenceJobState::setCurrentFilterID(int value)
             prepareActions[CAPTURE_ACTION_AUTOFOCUS] = false;
         }
 
-        emit changeFilterPosition(targetFilterID, m_filterPolicy);
-        emit prepareState(CAPTURE_CHANGING_FILTER);
+        Q_EMIT changeFilterPosition(targetFilterID, m_filterPolicy);
+        Q_EMIT prepareState(CAPTURE_CHANGING_FILTER);
     }
     setInitialized(CAPTURE_ACTION_FILTER, true);
 
@@ -871,7 +871,7 @@ void SequenceJobState::setCurrentFilterID(int value)
     else if (value < 0)
     {
         m_PreparationState = PREP_NONE;
-        emit prepareComplete(false);
+        Q_EMIT prepareComplete(false);
         return;
     }
 
@@ -974,7 +974,7 @@ void SequenceJobState::setFocusStatus(FocusState state)
         case FOCUS_FAILED:
             // Autofocus failed — clear the trigger flag and finish preparation with failure.
             m_filterAutofocusTriggered = false;
-            emit prepareComplete(false);
+            Q_EMIT prepareComplete(false);
             break;
         default:
             // in all other cases do nothing
@@ -1006,7 +1006,7 @@ void SequenceJobState::updateManualScopeCover(bool closed, bool success, bool li
         m_CameraState->shutterStatus = SHUTTER_UNKNOWN;
         coverQueryState = CAL_CHECK_TASK;
         // abort, no further checks
-        emit abortCapture();
+        Q_EMIT abortCapture();
     }
 }
 
@@ -1028,16 +1028,16 @@ void SequenceJobState::lightBoxStateChanged(ISD::LightBox::LightStatus status)
         switch (status)
         {
             case ISD::LightBox::LIGHT_ON:
-                emit newLog(i18n("Light box light turned on."));
+                Q_EMIT newLog(i18n("Light box light turned on."));
                 break;
             case ISD::LightBox::LIGHT_OFF:
-                emit newLog(i18n("Light box light turned off."));
+                Q_EMIT newLog(i18n("Light box light turned off."));
                 break;
             case ISD::LightBox::LIGHT_BUSY:
-                emit newLog(i18n("Light box busy."));
+                Q_EMIT newLog(i18n("Light box busy."));
                 break;
             case ISD::LightBox::LIGHT_ERROR:
-                emit newLog(i18n("Light box error."));
+                Q_EMIT newLog(i18n("Light box error."));
                 break;
             default:
                 break;
@@ -1061,25 +1061,25 @@ void SequenceJobState::dustCapStateChanged(ISD::DustCap::Status status)
         switch (status)
         {
             case ISD::DustCap::CAP_ERROR:
-                emit newLog(i18n("Dust cap error occurred."));
+                Q_EMIT newLog(i18n("Dust cap error occurred."));
                 // Only abort if we're in active preparation
                 if (!preparationCompleted())
-                    emit abortCapture();
+                    Q_EMIT abortCapture();
                 break;
             case ISD::DustCap::CAP_IDLE:
-                emit newLog(i18n("Dust cap is idle."));
+                Q_EMIT newLog(i18n("Dust cap is idle."));
                 break;
             case ISD::DustCap::CAP_PARKED:
-                emit newLog(i18n("Dust cap is parked."));
+                Q_EMIT newLog(i18n("Dust cap is parked."));
                 break;
             case ISD::DustCap::CAP_PARKING:
-                emit newLog(i18n("Dust cap is parking..."));
+                Q_EMIT newLog(i18n("Dust cap is parking..."));
                 break;
             case ISD::DustCap::CAP_UNPARKING:
-                emit newLog(i18n("Dust cap is unparking..."));
+                Q_EMIT newLog(i18n("Dust cap is unparking..."));
                 break;
             default:
-                emit newLog(i18n("Dust cap status unknown."));
+                Q_EMIT newLog(i18n("Dust cap status unknown."));
                 break;
         }
     }
@@ -1187,14 +1187,14 @@ void SequenceJobState::setFilterStatus(FilterState filterState)
             qCDebug(KSTARS_EKOS_CAPTURE) << "Filter status FILTER_AUTOFOCUS received. "
                                             "Waiting for FOCUS_COMPLETE to clear AUTOFOCUS.";
             prepareActions[CAPTURE_ACTION_AUTOFOCUS] = false;
-            emit prepareState(CAPTURE_FOCUSING);
+            Q_EMIT prepareState(CAPTURE_FOCUSING);
             break;
 
         case FILTER_OFFSET:
             // FilterManager is applying a focus offset — keep waiting.
             qCDebug(KSTARS_EKOS_CAPTURE) << "Filter status FILTER_OFFSET received. Waiting for focus to complete.";
             prepareActions[CAPTURE_ACTION_AUTOFOCUS] = false;
-            emit prepareState(CAPTURE_FOCUSING);
+            Q_EMIT prepareState(CAPTURE_FOCUSING);
             break;
 
         case FILTER_IDLE:

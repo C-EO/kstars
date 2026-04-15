@@ -44,7 +44,7 @@ class UnitSpinBoxWidget : public QWidget
         /** @brief value Returns value upon conversion */
         double value() const;
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Sets the given value
          * @param value The value to set

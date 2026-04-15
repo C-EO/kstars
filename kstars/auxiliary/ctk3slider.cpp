@@ -508,36 +508,36 @@ void ctk3Slider::setValues(int l, int m, int u)
     {
         if (emitMinPosChanged || emitMaxPosChanged || emitMidPosChanged)
         {
-            emit positionsChanged(d->m_MinimumPosition, d->m_MidPosition, d->m_MaximumPosition);
+            Q_EMIT positionsChanged(d->m_MinimumPosition, d->m_MidPosition, d->m_MaximumPosition);
         }
         if (emitMinPosChanged)
         {
-            emit minimumPositionChanged(d->m_MinimumPosition);
+            Q_EMIT minimumPositionChanged(d->m_MinimumPosition);
         }
         if (emitMaxPosChanged)
         {
-            emit maximumPositionChanged(d->m_MaximumPosition);
+            Q_EMIT maximumPositionChanged(d->m_MaximumPosition);
         }
         if (emitMidPosChanged)
         {
-            emit midPositionChanged(d->m_MidPosition);
+            Q_EMIT midPositionChanged(d->m_MidPosition);
         }
     }
     if (emitMinValChanged || emitMaxValChanged || emitMidValChanged)
     {
-        emit valuesChanged(d->m_MinimumValue, d->m_MidValue, d->m_MaximumValue);
+        Q_EMIT valuesChanged(d->m_MinimumValue, d->m_MidValue, d->m_MaximumValue);
     }
     if (emitMinValChanged)
     {
-        emit minimumValueChanged(d->m_MinimumValue);
+        Q_EMIT minimumValueChanged(d->m_MinimumValue);
     }
     if (emitMaxValChanged)
     {
-        emit maximumValueChanged(d->m_MaximumValue);
+        Q_EMIT maximumValueChanged(d->m_MaximumValue);
     }
     if (emitMidValChanged)
     {
-        emit midValueChanged(d->m_MidValue);
+        Q_EMIT midValueChanged(d->m_MidValue);
     }
     if (emitMinPosChanged || emitMaxPosChanged || emitMidPosChanged ||
             emitMinValChanged || emitMaxValChanged || emitMidValChanged)
@@ -625,19 +625,19 @@ void ctk3Slider::setPositions(int min, int mid, int max)
     {
         if (emitMinPosChanged)
         {
-            emit minimumPositionChanged(d->m_MinimumPosition);
+            Q_EMIT minimumPositionChanged(d->m_MinimumPosition);
         }
         if (emitMaxPosChanged)
         {
-            emit maximumPositionChanged(d->m_MaximumPosition);
+            Q_EMIT maximumPositionChanged(d->m_MaximumPosition);
         }
         if (emitMidPosChanged)
         {
-            emit midPositionChanged(d->m_MidPosition);
+            Q_EMIT midPositionChanged(d->m_MidPosition);
         }
         if (emitMinPosChanged || emitMaxPosChanged || emitMidPosChanged)
         {
-            emit positionsChanged(d->m_MinimumPosition, d->m_MidPosition, d->m_MaximumPosition);
+            Q_EMIT positionsChanged(d->m_MinimumPosition, d->m_MidPosition, d->m_MaximumPosition);
         }
     }
     if (this->hasTracking())
@@ -920,7 +920,7 @@ void ctk3Slider::mouseReleaseEvent(QMouseEvent* mouseEvent)
     setSliderDown(false);
     d->m_SelectedHandles = ctk3SliderPrivate::NoHandle;
 
-    emit released(d->m_MinimumValue, d->m_MidValue, d->m_MaximumValue);
+    Q_EMIT released(d->m_MinimumValue, d->m_MidValue, d->m_MaximumValue);
     this->update();
 }
 

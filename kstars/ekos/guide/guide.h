@@ -212,7 +212,7 @@ class Guide : public QWidget, public Ui::Guide
         QVariantMap getAllSettings() const;
         void setAllSettings(const QVariantMap &settings);
 
-    public slots:
+    public Q_SLOTS:
 
         /** DBUS interface function.
              * Start the autoguiding operation.
@@ -396,7 +396,7 @@ class Guide : public QWidget, public Ui::Guide
             opticalTrainCombo->setCurrentText(value);
         }
 
-    protected slots:
+    protected Q_SLOTS:
         void updateCCDBin(int index);
 
         /**
@@ -444,7 +444,7 @@ class Guide : public QWidget, public Ui::Guide
 
         void nonGuidedDither();
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &text);
         void newStatus(Ekos::GuideState status);
 

@@ -167,7 +167,7 @@ class SequenceJobState: public QObject
             m_status = status;
         }
 
-    public slots:
+    public Q_SLOTS:
         //////////////////////////////////////////////////////////////////////
         // Slots for device events that change the state.
         //////////////////////////////////////////////////////////////////////
@@ -248,7 +248,7 @@ class SequenceJobState: public QObject
          */
         void hasShutter(bool present);
 
-    signals:
+    Q_SIGNALS:
         // communicate that a preparation step needs to be executed
         void prepareState(Ekos::CaptureState state);
         // ask for the current device state

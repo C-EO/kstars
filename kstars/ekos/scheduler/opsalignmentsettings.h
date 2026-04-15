@@ -21,7 +21,7 @@ class OpsAlignmentSettings : public QFrame, public Ui::OpsAlignmentSettings
         explicit OpsAlignmentSettings();
         virtual ~OpsAlignmentSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

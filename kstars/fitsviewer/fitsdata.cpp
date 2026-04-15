@@ -389,7 +389,7 @@ bool FITSData::loadStack(const QStringList &inDir, const LiveStackData &params)
         {
             m_AlignMasterChosen = true;
             m_LiveStackData.alignMaster = subs[0].file;
-            emit alignMasterChosen(subs[0].file);
+            Q_EMIT alignMasterChosen(subs[0].file);
         }
     }
 
@@ -428,12 +428,12 @@ bool FITSData::loadStack(const QStringList &inDir, const LiveStackData &params)
     }
 
     // Initialize the Stack Monitor
-    emit initStackMon(QDateTime::currentDateTime(), subs);
+    Q_EMIT initStackMon(QDateTime::currentDateTime(), subs);
 
     if (m_StackSubs.size() == 0)
     {
         // No subs in the selected directory
-        emit stackReady();
+        Q_EMIT stackReady();
         return true;
     }
 
@@ -639,7 +639,7 @@ void FITSData::checkCancelStack()
         // Drain any subs in the work Q
         m_StackQ.clear();
 
-        emit stackReady(true);
+        Q_EMIT stackReady(true);
     }
 }
 
@@ -669,7 +669,7 @@ void FITSData::newStackSubs(QDateTime timestamp, const QVector<LiveStackFile> &n
         return;
 
     // Add the new files to the Stack Monitor
-    emit addStackMon(timestamp, lsfs);
+    Q_EMIT addStackMon(timestamp, lsfs);
     incrementalStack();
 }
 
@@ -732,7 +732,7 @@ void FITSData::incrementalStack()
     }
 
     m_CurrentStack->setStackInProgress(true);
-    emit stackInProgress();
+    Q_EMIT stackInProgress();
     nextStackAction();
 }
 
@@ -1185,7 +1185,7 @@ bool FITSData::processNextSub(LiveStackFile &sub)
     // Signal the Wait Load stage complete (i.e. we're now going to load the sub) to Stack Monitor
     QVector<LiveStackFile> subs { sub };
     QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::WaitLoad, LSStatus::LSStatusOK) };
-    emit updateStackMon(subs, infos);
+    Q_EMIT updateStackMon(subs, infos);
 
     m_CurrentStack->setupNextSub(sub);
     m_StackFITSAsync = stackFITSSub;
@@ -1244,7 +1244,7 @@ bool FITSData::processNextSub(LiveStackFile &sub)
         QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::Loaded,
                                             (ok) ? LSStatus::LSStatusOK : LSStatus::LSStatusError, extraData) };
         QVector<LiveStackFile> subs { sub };
-        emit updateStackMon(subs, infos);
+        Q_EMIT updateStackMon(subs, infos);
         return ok;
     });
 
@@ -1401,8 +1401,8 @@ void FITSData::stackFITSLoaded()
                 {
                     // Next step in the chain is to plate solve
                     qCDebug(KSTARS_FITS) << "Starting to plate solve align master...";
-                    emit plateSolveSub(m_StackSubRa, m_StackSubDec, m_StackSubPixscale, m_StackSubIndex,
-                                       m_StackSubHealpix, m_CurrentStack->getStackData().weighting);
+                    Q_EMIT plateSolveSub(m_StackSubRa, m_StackSubDec, m_StackSubPixscale, m_StackSubIndex,
+                                         m_StackSubHealpix, m_CurrentStack->getStackData().weighting);
                     return;
                 }
             }
@@ -1420,8 +1420,8 @@ void FITSData::stackFITSLoaded()
                 {
                     // Next step in the chain is to plate solve
                     qCDebug(KSTARS_FITS) << "Starting to plate solve sub...";
-                    emit plateSolveSub(m_StackSubRa, m_StackSubDec, m_StackSubPixscale, m_StackSubIndex,
-                                       m_StackSubHealpix, m_CurrentStack->getStackData().weighting);
+                    Q_EMIT plateSolveSub(m_StackSubRa, m_StackSubDec, m_StackSubPixscale, m_StackSubIndex,
+                                         m_StackSubHealpix, m_CurrentStack->getStackData().weighting);
                     return;
                 }
                 // We're not plate solving so update sub status to good and emit stats
@@ -1430,9 +1430,9 @@ void FITSData::stackFITSLoaded()
                     int totalStacked = 0;
                     for (auto &stack : m_Stacks)
                         if (stack) totalStacked += stack->getNumSubsStacked();
-                    emit stackUpdateStats(true, totalStacked, m_StackDirWatcher->getCurrentFiles().size(),
-                                          m_CurrentStack->getMeanSubSNR(), m_CurrentStack->getMinSubSNR(),
-                                          m_CurrentStack->getMaxSubSNR());
+                    Q_EMIT stackUpdateStats(true, totalStacked, m_StackDirWatcher->getCurrentFiles().size(),
+                                            m_CurrentStack->getMeanSubSNR(), m_CurrentStack->getMinSubSNR(),
+                                            m_CurrentStack->getMaxSubSNR());
                 }
             }
             else
@@ -1444,9 +1444,9 @@ void FITSData::stackFITSLoaded()
                     int totalStacked = 0;
                     for (auto &stack : m_Stacks)
                         if (stack) totalStacked += stack->getNumSubsStacked();
-                    emit stackUpdateStats(false, totalStacked, m_StackDirWatcher->getCurrentFiles().size(),
-                                          m_CurrentStack->getMeanSubSNR(), m_CurrentStack->getMinSubSNR(),
-                                          m_CurrentStack->getMaxSubSNR());
+                    Q_EMIT stackUpdateStats(false, totalStacked, m_StackDirWatcher->getCurrentFiles().size(),
+                                            m_CurrentStack->getMeanSubSNR(), m_CurrentStack->getMinSubSNR(),
+                                            m_CurrentStack->getMaxSubSNR());
                 }
             }
             nextStackAction();
@@ -1624,9 +1624,9 @@ void FITSData::solverDone(const bool timedOut, const bool success, const double 
             int totalStacked = 0;
             for (auto &stack : m_Stacks)
                 if (stack) totalStacked += stack->getNumSubsStacked();
-            emit stackUpdateStats(ok, totalStacked, m_StackDirWatcher->getCurrentFiles().size(),
-                                  m_CurrentStack->getMeanSubSNR(), m_CurrentStack->getMinSubSNR(),
-                                  m_CurrentStack->getMaxSubSNR());
+            Q_EMIT stackUpdateStats(ok, totalStacked, m_StackDirWatcher->getCurrentFiles().size(),
+                                    m_CurrentStack->getMeanSubSNR(), m_CurrentStack->getMinSubSNR(),
+                                    m_CurrentStack->getMaxSubSNR());
         }
 
         // Signal the Plate Solved stage complete to Stack Monitor
@@ -1638,7 +1638,7 @@ void FITSData::solverDone(const bool timedOut, const bool success, const double 
         QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::PlateSolved,
                                             (ok) ? LSStatus::LSStatusOK : LSStatus::LSStatusError, extraData) };
         QVector<LiveStackFile> subs { m_StackSubs[m_StackSubPos] };
-        emit updateStackMon(subs, infos);
+        Q_EMIT updateStackMon(subs, infos);
     }
     nextStackAction();
 }
@@ -1666,7 +1666,7 @@ void FITSData::nextStackAction()
             {
                 m_AlignMasterChosen = true;
                 m_LiveStackData.alignMaster = m_StackSubs[m_StackSubPos].file;
-                emit alignMasterChosen(m_StackSubs[m_StackSubPos].file);
+                Q_EMIT alignMasterChosen(m_StackSubs[m_StackSubPos].file);
             }
             done = processNextSub(m_StackSubs[m_StackSubPos]);
         }
@@ -1769,7 +1769,7 @@ void FITSData::prepareStackBufferAsync()
     {
         watcher->deleteLater();
         qCDebug(KSTARS_FITS) << "Stack buffer ready. Emitting stackReady().";
-        emit stackReady();
+        Q_EMIT stackReady();
     });
     watcher->setFuture(m_StackPrepareFuture);
 }
@@ -4821,7 +4821,7 @@ void FITSData::applyFilter(FITSScale type, uint8_t * image, QVector<double> * mi
     if (max != nullptr)
         *max = dataMax;
 
-    emit dataChanged();
+    Q_EMIT dataChanged();
 }
 
 template <typename T>
@@ -5594,7 +5594,7 @@ bool FITSData::findSimbadObjectsInImage(SkyPoint searchCenter, double radius)
     {
         qCDebug(KSTARS_FITS) << "Error:" << response->errorString() << " occured querying SIMBAD with" << simbadURL;
         m_CatQueryInProgress = false;
-        emit catalogQueryFailed(i18n("Error querying Simbad"));
+        Q_EMIT catalogQueryFailed(i18n("Error querying Simbad"));
         return false;
     }
 
@@ -5602,7 +5602,7 @@ bool FITSData::findSimbadObjectsInImage(SkyPoint searchCenter, double radius)
     m_CatQueryTimer.setSingleShot(true);
     connect(&m_CatQueryTimer, &QTimer::timeout, this, &FITSData::catTimeout);
     m_CatQueryTimer.start(60 * 1000);
-    emit loadingCatalogData();
+    Q_EMIT loadingCatalogData();
     return true;
 }
 
@@ -5611,7 +5611,7 @@ void FITSData::catTimeout()
     m_CatQueryInProgress = false;
     QString text = i18n("Simbad query timed out");
     qCDebug(KSTARS_FITS) << text;
-    emit catalogQueryFailed(text);
+    Q_EMIT catalogQueryFailed(text);
 }
 #endif
 
@@ -5700,7 +5700,7 @@ void FITSData::simbadResponseReady(QNetworkReply * simbadReply)
     {
         qCDebug(KSTARS_FITS) << "Error:" << simbadReply->errorString() << " occured in SIMBAD query reply";
         m_CatQueryInProgress = false;
-        emit catalogQueryFailed(i18n("Error querying Simbad"));
+        Q_EMIT catalogQueryFailed(i18n("Error querying Simbad"));
         return;
     }
 
@@ -5814,9 +5814,9 @@ void FITSData::simbadResponseReady(QNetworkReply * simbadReply)
     // Signal fitsview to update based on new data. Fitsview will signal fitstab
     m_CatObjectsSearched = false;
     // Signal FITSView that there is new data to process
-    emit dataChanged();
+    Q_EMIT dataChanged();
     // Signal FITSTab that there is new data to process
-    emit loadedCatalogData();
+    Q_EMIT loadedCatalogData();
     simbadReply->deleteLater();
 }
 #endif
@@ -5957,7 +5957,7 @@ void FITSData::filterCatObjects()
         }
     }
     if (changed)
-        emit dataChanged();
+        Q_EMIT dataChanged();
 #endif
 }
 
@@ -7740,7 +7740,7 @@ void FITSData::injectWCS(double orientation, double ra, double dec, double pixsc
         }
     }
 
-    emit headerChanged();
+    Q_EMIT headerChanged();
     m_WCSState = Idle;
 }
 
@@ -7808,7 +7808,7 @@ void FITSData::restoreStatistics(FITSImage::Statistic &other)
 {
     m_Statistics = other;
 
-    emit dataChanged();
+    Q_EMIT dataChanged();
 }
 
 void FITSData::constructHistogram()
@@ -7991,7 +7991,7 @@ template <typename T> void FITSData::constructHistogramInternal()
     qCDebug(KSTARS_FITS) << "FITHistogram: JMIndex " << m_JMIndex;
 
     m_HistogramConstructed = true;
-    emit histogramReady();
+    Q_EMIT histogramReady();
 }
 
 void FITSData::recordLastError(int errorCode)

@@ -151,7 +151,7 @@ TestAdapter::TestAdapter()
             double delta = std::min(1.0, std::abs(m_ccdtemperature - m_targetccdtemp));
             m_ccdtemperature += (m_targetccdtemp > m_ccdtemperature) ? delta : -delta;
             // publish new value
-            emit newCCDTemperature(m_ccdtemperature);
+            Q_EMIT newCCDTemperature(m_ccdtemperature);
         }
         else
             // finish if temperature has been reached
@@ -169,7 +169,7 @@ TestAdapter::TestAdapter()
             double delta = std::min(10.0, std::abs(m_rotatorangle - m_targetrotatorangle));
             m_rotatorangle += (m_rotatorangle < m_targetrotatorangle) ? delta : -delta;
             // publish new value
-            emit newRotatorAngle(m_rotatorangle, std::abs(m_rotatorangle - m_targetrotatorangle) > 1.0 ? IPS_BUSY : IPS_OK);
+            Q_EMIT newRotatorAngle(m_rotatorangle, std::abs(m_rotatorangle - m_targetrotatorangle) > 1.0 ? IPS_BUSY : IPS_OK);
         }
         else
             // finish if target angle has been reached
@@ -185,7 +185,7 @@ TestAdapter::TestAdapter()
         {
             m_guiding_dev /= 2;
             // publish new value
-            emit newGuiderDrift(m_guiding_dev);
+            Q_EMIT newGuiderDrift(m_guiding_dev);
         }
         else
             // finish if target angle has been reached
@@ -208,7 +208,7 @@ void TestAdapter::setCCDBatchMode(bool m_preview)
 void TestAdapter::setCCDTemperature(double value)
 {
     // simulate behaviour of the INDI server
-    emit newCCDTemperature(value);
+    Q_EMIT newCCDTemperature(value);
     // set the new target
     m_targetccdtemp = value;
     // start timer if not already running
@@ -231,10 +231,10 @@ void TestAdapter::readCurrentState(Ekos::CaptureState state)
     switch (state)
     {
         case Ekos::CAPTURE_SETTING_TEMPERATURE:
-            emit newCCDTemperature(m_ccdtemperature);
+            Q_EMIT newCCDTemperature(m_ccdtemperature);
             break;
         case Ekos::CAPTURE_SETTING_ROTATOR:
-            emit newRotatorAngle(m_rotatorangle, IPS_OK);
+            Q_EMIT newRotatorAngle(m_rotatorangle, IPS_OK);
             break;
         default:
             // do nothing

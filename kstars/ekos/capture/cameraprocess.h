@@ -695,7 +695,7 @@ class CameraProcess : public QObject
             return m_CaptureScript;
         }
 
-    signals:
+    Q_SIGNALS:
         // controls for capture execution
         void addJob (const QSharedPointer < SequenceJob > &job);
         void createJob(SequenceJob::SequenceJobType jobtype = SequenceJob::JOBTYPE_BATCH);

@@ -85,7 +85,7 @@ class AddLinkDialog : public QDialog
             ald->ImageRadio->setChecked(b);
         }
 
-    private slots:
+    private Q_SLOTS:
         /** Open the entered URL in the web browser */
         void checkURL(void);
 

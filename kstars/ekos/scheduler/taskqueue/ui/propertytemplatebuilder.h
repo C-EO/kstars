@@ -72,7 +72,7 @@ class PropertyTemplateBuilderDialog : public QDialog
     protected:
         void accept() override;
 
-    private slots:
+    private Q_SLOTS:
         void onDeviceSelected(int index);
         void onPropertySelected(int index);
         void onActionTypeChanged();

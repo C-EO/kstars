@@ -25,7 +25,7 @@ class ObserverAdd : public QDialog
         /** @short function to load the list of observers from the file */
         void loadObservers();
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @short function to add the new observer
          * to the observerList of the global logObject

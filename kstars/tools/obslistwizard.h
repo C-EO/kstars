@@ -54,7 +54,7 @@ class ObsListWizard : public QDialog
             return ObsList;
         }
 
-    private slots:
+    private Q_SLOTS:
         void slotNextPage();
         void slotPrevPage();
         void slotAllButton();
@@ -143,4 +143,3 @@ class ObsListWizard : public QDialog
         QPushButton *backB { nullptr };
 
 };
-

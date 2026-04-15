@@ -32,7 +32,7 @@ class OpsCatalog : public QFrame, public Ui::OpsCatalog
         explicit OpsCatalog();
         virtual ~OpsCatalog() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void slotStarWidgets(bool on);
         void slotDeepSkyWidgets(bool on);
         void slotApply();

@@ -296,6 +296,6 @@ class DriverInfo : public QObject
         QList<DeviceInfo *> devices;
         QJsonObject m_StartupShutdownRule;
 
-    signals:
+    Q_SIGNALS:
         void deviceStateChanged();
 };

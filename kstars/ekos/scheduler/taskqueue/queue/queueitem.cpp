@@ -85,7 +85,7 @@ void QueueItem::setStatus(Status status)
             m_endTime = QDateTime::currentDateTime();
         }
 
-        emit statusChanged(status);
+        Q_EMIT statusChanged(status);
     }
 }
 
@@ -137,7 +137,7 @@ void QueueItem::onTaskProgress(const QString &message)
         }
     }
 
-    emit progressUpdated(m_progress, m_progressMessage);
+    Q_EMIT progressUpdated(m_progress, m_progressMessage);
 }
 
 void QueueItem::reset()

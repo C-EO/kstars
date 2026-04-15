@@ -64,7 +64,7 @@ class Message : public QObject
         void sendSchedulerJobList(QJsonArray jobsList);
         void sendSchedulerStatus(const QJsonObject &status);
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
         void globalLogoutTriggered(const QUrl &url);
@@ -73,7 +73,7 @@ class Message : public QObject
         // Emitted when the native KStars livestacker starts (true) or stops (false)
         void liveStackingActiveChanged(bool active);
 
-    public slots:
+    public Q_SLOTS:
         // Connection
         void sendConnection();
         void sendModuleState(const QString &name);
@@ -149,7 +149,7 @@ class Message : public QObject
 
         void sendManualRotatorStatus(double currentPA, double targetPA, double threshold);
 
-    private slots:
+    private Q_SLOTS:
 
         // Connection
         void onConnected();

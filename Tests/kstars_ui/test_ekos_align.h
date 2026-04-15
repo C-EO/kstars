@@ -45,7 +45,7 @@ class TestEkosAlign : public QObject
          */
         bool trackSingleAlignment(bool lastPoint, bool moveMount);
 
-    protected slots:
+    protected Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 
@@ -153,7 +153,7 @@ class TestEkosAlign : public QObject
         // counter of solver results in a single test run
         int solver_count;
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Test a simple slew and a subsequent alignment
          */

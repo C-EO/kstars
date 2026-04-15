@@ -17,11 +17,11 @@ void ObservatoryDomeModel::initModel(Dome *dome)
     connect(domeInterface, &Dome::ready, this, [&]()
     {
         initialized = true;
-        emit ready();
+        Q_EMIT ready();
     });
     connect(domeInterface, &Dome::disconnected, this, [&]()
     {
-        emit disconnected();
+        Q_EMIT disconnected();
         initialized = false;
     });
     connect(domeInterface, &Dome::newStatus, this, &ObservatoryDomeModel::newStatus);
@@ -54,7 +54,7 @@ void ObservatoryDomeModel::park()
     if (domeInterface == nullptr)
         return;
 
-    emit newLog(i18n("Parking %1...", isRolloffRoof() ? i18n("rolloff roof") : i18n("dome")));
+    Q_EMIT newLog(i18n("Parking %1...", isRolloffRoof() ? i18n("rolloff roof") : i18n("dome")));
     domeInterface->park();
 }
 
@@ -64,7 +64,7 @@ void ObservatoryDomeModel::unpark()
     if (domeInterface == nullptr)
         return;
 
-    emit newLog(i18n("Unparking %1...", isRolloffRoof() ? i18n("rolloff roof") : i18n("dome")));
+    Q_EMIT newLog(i18n("Unparking %1...", isRolloffRoof() ? i18n("rolloff roof") : i18n("dome")));
     domeInterface->unpark();
 }
 
@@ -91,7 +91,7 @@ void ObservatoryDomeModel::setAutoSync(bool activate)
         return;
 
     if (domeInterface->setAutoSync(activate))
-        emit newLog(activate ? i18n("Slaving activated.") : i18n("Slaving deactivated."));
+        Q_EMIT newLog(activate ? i18n("Slaving activated.") : i18n("Slaving deactivated."));
 
 }
 
@@ -100,7 +100,7 @@ void ObservatoryDomeModel::abort()
     if (domeInterface == nullptr)
         return;
 
-    emit newLog(i18n("Aborting..."));
+    Q_EMIT newLog(i18n("Aborting..."));
     domeInterface->abort();
 }
 
@@ -109,7 +109,7 @@ void ObservatoryDomeModel::openShutter()
     if (domeInterface == nullptr)
         return;
 
-    emit newLog(i18n("Opening shutter..."));
+    Q_EMIT newLog(i18n("Opening shutter..."));
     domeInterface->controlShutter(true);
 }
 
@@ -118,7 +118,7 @@ void ObservatoryDomeModel::closeShutter()
     if (domeInterface == nullptr)
         return;
 
-    emit newLog(i18n("Closing shutter..."));
+    Q_EMIT newLog(i18n("Closing shutter..."));
     domeInterface->controlShutter(false);
 }
 
@@ -128,11 +128,11 @@ bool ObservatoryDomeModel::moveDome(bool moveCW, bool start)
         return false;
 
     if (isRolloffRoof())
-        emit newLog(i18nc("%2 dome or rolloff roof motion %1...", "%2 rolloff roof %1...",
-                          moveCW ? i18n("opening") : i18n("closing"), start ? i18n("Start") : i18n("Stop")));
+        Q_EMIT newLog(i18nc("%2 dome or rolloff roof motion %1...", "%2 rolloff roof %1...",
+                            moveCW ? i18n("opening") : i18n("closing"), start ? i18n("Start") : i18n("Stop")));
     else
-        emit newLog(i18nc("%2 dome or rolloff roof motion %1...", "%2 dome motion %1...",
-                          moveCW ? i18n("clockwise") : i18n("counter clockwise"), start ? i18n("Start") : i18n("Stop")));
+        Q_EMIT newLog(i18nc("%2 dome or rolloff roof motion %1...", "%2 dome motion %1...",
+                            moveCW ? i18n("clockwise") : i18n("counter clockwise"), start ? i18n("Start") : i18n("Stop")));
     return domeInterface->moveDome(moveCW, start);
 }
 

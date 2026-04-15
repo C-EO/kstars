@@ -122,7 +122,7 @@ void GenericDevice::handleTimeout()
     // unexpected delays. Therefore, the best solution is to keep the timer active.
     //m_ReadyTimer->disconnect(this);
     m_Ready = true;
-    emit ready();
+    Q_EMIT ready();
 }
 
 void GenericDevice::checkTimeUpdate()
@@ -195,13 +195,13 @@ void GenericDevice::registerProperty(INDI::Property prop)
         if (m_Connected == false && svp.getState() == IPS_OK && conSP->getState() == ISS_ON)
         {
             m_Connected = true;
-            emit Connected();
+            Q_EMIT Connected();
             createDeviceInit();
         }
         else if (m_Connected && conSP->getState() == ISS_OFF)
         {
             m_Connected = false;
-            emit Disconnected();
+            Q_EMIT Disconnected();
         }
         else
             m_Ready = (svp.getState() == IPS_OK && conSP->getState() == ISS_ON);
@@ -215,7 +215,7 @@ void GenericDevice::registerProperty(INDI::Property prop)
             if (tp)
             {
                 m_DriverInterface = static_cast<uint32_t>(atoi(tp->getText()));
-                emit interfaceDefined();
+                Q_EMIT interfaceDefined();
             }
 
             tp = tvp.findWidgetByName("DRIVER_VERSION");
@@ -237,7 +237,7 @@ void GenericDevice::registerProperty(INDI::Property prop)
             {
                 if (it.isNameMatch(port[0].getText()))
                 {
-                    emit systemPortDetected();
+                    Q_EMIT systemPortDetected();
                     break;
                 }
             }
@@ -277,7 +277,7 @@ void GenericDevice::registerProperty(INDI::Property prop)
         }
     }
 
-    emit propertyDefined(prop);
+    Q_EMIT propertyDefined(prop);
 }
 
 void GenericDevice::updateProperty(INDI::Property prop)
@@ -306,7 +306,7 @@ void GenericDevice::updateProperty(INDI::Property prop)
 
 void GenericDevice::removeProperty(INDI::Property prop)
 {
-    emit propertyDeleted(prop);
+    Q_EMIT propertyDeleted(prop);
 }
 
 void GenericDevice::processSwitch(INDI::Property prop)
@@ -324,7 +324,7 @@ void GenericDevice::processSwitch(INDI::Property prop)
             connect(m_ReadyTimer, &QTimer::timeout, this, &GenericDevice::handleTimeout, Qt::UniqueConnection);
 
             m_Connected = true;
-            emit Connected();
+            Q_EMIT Connected();
             createDeviceInit();
 
             if (watchDogTimer != nullptr)
@@ -344,13 +344,13 @@ void GenericDevice::processSwitch(INDI::Property prop)
             disconnect(m_ReadyTimer, &QTimer::timeout, this, &GenericDevice::handleTimeout);
             m_Connected = false;
             m_Ready = false;
-            emit Disconnected();
+            Q_EMIT Disconnected();
         }
         else
             m_Ready = (prop.getState() == IPS_OK && connectionOn->getState() == ISS_ON);
     }
 
-    emit propertyUpdated(prop);
+    Q_EMIT propertyUpdated(prop);
 }
 
 void GenericDevice::processNumber(INDI::Property prop)
@@ -448,7 +448,7 @@ void GenericDevice::processNumber(INDI::Property prop)
             watchDogTimer->stop();
     }
 
-    emit propertyUpdated(prop);
+    Q_EMIT propertyUpdated(prop);
 }
 
 void GenericDevice::processText(INDI::Property prop)
@@ -461,7 +461,7 @@ void GenericDevice::processText(INDI::Property prop)
         if (tp)
         {
             m_DriverInterface = static_cast<uint32_t>(atoi(tp->getText()));
-            emit interfaceDefined();
+            Q_EMIT interfaceDefined();
 
             // If devices were already created but we received an update to DRIVER_INTERFACE
             // then we need to re-generate the concrete devices to account for the change.
@@ -469,7 +469,7 @@ void GenericDevice::processText(INDI::Property prop)
             {
                 // If we generated ANY concrete device due to interface update, then we emit ready immediately.
                 if (generateDevices())
-                    emit ready();
+                    Q_EMIT ready();
             }
         }
 
@@ -536,17 +536,17 @@ void GenericDevice::processText(INDI::Property prop)
         geo->setTZ0(utcOffset);
     }
 
-    emit propertyUpdated(prop);
+    Q_EMIT propertyUpdated(prop);
 }
 
 void GenericDevice::processLight(INDI::Property prop)
 {
-    emit propertyUpdated(prop);
+    Q_EMIT propertyUpdated(prop);
 }
 
 void GenericDevice::processMessage(int messageID)
 {
-    emit messageUpdated(messageID);
+    Q_EMIT messageUpdated(messageID);
 }
 
 bool GenericDevice::processBLOB(INDI::Property prop)
@@ -657,7 +657,7 @@ bool GenericDevice::processBLOB(INDI::Property prop)
     if (dataType == DATA_OTHER)
         KStars::Instance()->statusBar()->showMessage(i18n("Data file saved to %1", filename), 0);
 
-    emit propertyUpdated(prop);
+    Q_EMIT propertyUpdated(prop);
     return true;
 }
 
@@ -1219,7 +1219,7 @@ bool GenericDevice::generateDevices()
         {
             mount->processProperties();
             mount->setProperty("dispatched", true);
-            emit newMount(mount);
+            Q_EMIT newMount(mount);
         }
         else
         {
@@ -1228,7 +1228,7 @@ bool GenericDevice::generateDevices()
                 if (!mount->property("dispatched").isValid())
                 {
                     mount->setProperty("dispatched", true);
-                    emit newMount(mount);
+                    Q_EMIT newMount(mount);
                 }
             });
         }
@@ -1247,8 +1247,8 @@ bool GenericDevice::generateDevices()
         {
             camera->processProperties();
             camera->setProperty("dispatched", true);
-            emit newCamera(camera);
-            emit ready();
+            Q_EMIT newCamera(camera);
+            Q_EMIT ready();
         }
         else
         {
@@ -1257,7 +1257,7 @@ bool GenericDevice::generateDevices()
                 if (!camera->property("dispatched").isValid())
                 {
                     camera->setProperty("dispatched", true);
-                    emit newCamera(camera);
+                    Q_EMIT newCamera(camera);
                 }
             });
         }
@@ -1276,7 +1276,7 @@ bool GenericDevice::generateDevices()
         {
             guider->processProperties();
             guider->setProperty("dispatched", true);
-            emit newGuider(guider);
+            Q_EMIT newGuider(guider);
         }
         else
         {
@@ -1285,7 +1285,7 @@ bool GenericDevice::generateDevices()
                 if (!guider->property("dispatched").isValid())
                 {
                     guider->setProperty("dispatched", true);
-                    emit newGuider(guider);
+                    Q_EMIT newGuider(guider);
                 }
             });
         }
@@ -1304,7 +1304,7 @@ bool GenericDevice::generateDevices()
         {
             focuser->processProperties();
             focuser->setProperty("dispatched", true);
-            emit newFocuser(focuser);
+            Q_EMIT newFocuser(focuser);
         }
         else
         {
@@ -1313,7 +1313,7 @@ bool GenericDevice::generateDevices()
                 if (!focuser->property("dispatched").isValid())
                 {
                     focuser->setProperty("dispatched", true);
-                    emit newFocuser(focuser);
+                    Q_EMIT newFocuser(focuser);
                 }
             });
         }
@@ -1332,7 +1332,7 @@ bool GenericDevice::generateDevices()
         {
             filterWheel->processProperties();
             filterWheel->setProperty("dispatched", true);
-            emit newFilterWheel(filterWheel);
+            Q_EMIT newFilterWheel(filterWheel);
         }
         else
         {
@@ -1341,7 +1341,7 @@ bool GenericDevice::generateDevices()
                 if (!filterWheel->property("dispatched").isValid())
                 {
                     filterWheel->setProperty("dispatched", true);
-                    emit newFilterWheel(filterWheel);
+                    Q_EMIT newFilterWheel(filterWheel);
                 }
             });
         }
@@ -1360,7 +1360,7 @@ bool GenericDevice::generateDevices()
         {
             dome->processProperties();
             dome->setProperty("dispatched", true);
-            emit newDome(dome);
+            Q_EMIT newDome(dome);
         }
         else
         {
@@ -1369,7 +1369,7 @@ bool GenericDevice::generateDevices()
                 if (!dome->property("dispatched").isValid())
                 {
                     dome->setProperty("dispatched", true);
-                    emit newDome(dome);
+                    Q_EMIT newDome(dome);
                 }
             });
         }
@@ -1388,7 +1388,7 @@ bool GenericDevice::generateDevices()
         {
             gps->processProperties();
             gps->setProperty("dispatched", true);
-            emit newGPS(gps);
+            Q_EMIT newGPS(gps);
         }
         else
         {
@@ -1397,7 +1397,7 @@ bool GenericDevice::generateDevices()
                 if (!gps->property("dispatched").isValid())
                 {
                     gps->setProperty("dispatched", true);
-                    emit newGPS(gps);
+                    Q_EMIT newGPS(gps);
                 }
             });
         }
@@ -1416,7 +1416,7 @@ bool GenericDevice::generateDevices()
         {
             weather->processProperties();
             weather->setProperty("dispatched", true);
-            emit newWeather(weather);
+            Q_EMIT newWeather(weather);
         }
         else
         {
@@ -1425,7 +1425,7 @@ bool GenericDevice::generateDevices()
                 if (!weather->property("dispatched").isValid())
                 {
                     weather->setProperty("dispatched", true);
-                    emit newWeather(weather);
+                    Q_EMIT newWeather(weather);
                 }
             });
         }
@@ -1444,7 +1444,7 @@ bool GenericDevice::generateDevices()
         {
             ao->processProperties();
             ao->setProperty("dispatched", true);
-            emit newAdaptiveOptics(ao);
+            Q_EMIT newAdaptiveOptics(ao);
         }
         else
         {
@@ -1453,7 +1453,7 @@ bool GenericDevice::generateDevices()
                 if (!ao->property("dispatched").isValid())
                 {
                     ao->setProperty("dispatched", true);
-                    emit newAdaptiveOptics(ao);
+                    Q_EMIT newAdaptiveOptics(ao);
                 }
             });
         }
@@ -1472,7 +1472,7 @@ bool GenericDevice::generateDevices()
         {
             dustCap->processProperties();
             dustCap->setProperty("dispatched", true);
-            emit newDustCap(dustCap);
+            Q_EMIT newDustCap(dustCap);
         }
         else
         {
@@ -1481,7 +1481,7 @@ bool GenericDevice::generateDevices()
                 if (!dustCap->property("dispatched").isValid())
                 {
                     dustCap->setProperty("dispatched", true);
-                    emit newDustCap(dustCap);
+                    Q_EMIT newDustCap(dustCap);
                 }
             });
         }
@@ -1500,7 +1500,7 @@ bool GenericDevice::generateDevices()
         {
             lightBox->processProperties();
             lightBox->setProperty("dispatched", true);
-            emit newLightBox(lightBox);
+            Q_EMIT newLightBox(lightBox);
         }
         else
         {
@@ -1509,7 +1509,7 @@ bool GenericDevice::generateDevices()
                 if (!lightBox->property("dispatched").isValid())
                 {
                     lightBox->setProperty("dispatched", true);
-                    emit newLightBox(lightBox);
+                    Q_EMIT newLightBox(lightBox);
                 }
             });
         }
@@ -1528,7 +1528,7 @@ bool GenericDevice::generateDevices()
         {
             rotator->processProperties();
             rotator->setProperty("dispatched", true);
-            emit newRotator(rotator);
+            Q_EMIT newRotator(rotator);
         }
         else
         {
@@ -1537,7 +1537,7 @@ bool GenericDevice::generateDevices()
                 if (!rotator->property("dispatched").isValid())
                 {
                     rotator->setProperty("dispatched", true);
-                    emit newRotator(rotator);
+                    Q_EMIT newRotator(rotator);
                 }
             });
         }
@@ -1556,7 +1556,7 @@ bool GenericDevice::generateDevices()
         {
             detector->processProperties();
             detector->setProperty("dispatched", true);
-            emit newDetector(detector);
+            Q_EMIT newDetector(detector);
         }
         else
         {
@@ -1565,7 +1565,7 @@ bool GenericDevice::generateDevices()
                 if (!detector->property("dispatched").isValid())
                 {
                     detector->setProperty("dispatched", true);
-                    emit newDetector(detector);
+                    Q_EMIT newDetector(detector);
                 }
             });
         }
@@ -1584,7 +1584,7 @@ bool GenericDevice::generateDevices()
         {
             spectrograph->processProperties();
             spectrograph->setProperty("dispatched", true);
-            emit newSpectrograph(spectrograph);
+            Q_EMIT newSpectrograph(spectrograph);
         }
         else
         {
@@ -1593,7 +1593,7 @@ bool GenericDevice::generateDevices()
                 if (!spectrograph->property("dispatched").isValid())
                 {
                     spectrograph->setProperty("dispatched", true);
-                    emit newSpectrograph(spectrograph);
+                    Q_EMIT newSpectrograph(spectrograph);
                 }
             });
         }
@@ -1612,7 +1612,7 @@ bool GenericDevice::generateDevices()
         {
             correlator->processProperties();
             correlator->setProperty("dispatched", true);
-            emit newCorrelator(correlator);
+            Q_EMIT newCorrelator(correlator);
         }
         else
         {
@@ -1621,7 +1621,7 @@ bool GenericDevice::generateDevices()
                 if (!correlator->property("dispatched").isValid())
                 {
                     correlator->setProperty("dispatched", true);
-                    emit newCorrelator(correlator);
+                    Q_EMIT newCorrelator(correlator);
                 }
             });
         }
@@ -1640,7 +1640,7 @@ bool GenericDevice::generateDevices()
         {
             aux->processProperties();
             aux->setProperty("dispatched", true);
-            emit newAuxiliary(aux);
+            Q_EMIT newAuxiliary(aux);
         }
         else
         {
@@ -1649,7 +1649,7 @@ bool GenericDevice::generateDevices()
                 if (!aux->property("dispatched").isValid())
                 {
                     aux->setProperty("dispatched", true);
-                    emit newAuxiliary(aux);
+                    Q_EMIT newAuxiliary(aux);
                 }
             });
         }
@@ -1669,7 +1669,7 @@ bool GenericDevice::generateDevices()
         {
             pac->processProperties();
             pac->setProperty("dispatched", true);
-            emit newPAC(pac);
+            Q_EMIT newPAC(pac);
         }
         else
         {
@@ -1678,7 +1678,7 @@ bool GenericDevice::generateDevices()
                 if (!pac->property("dispatched").isValid())
                 {
                     pac->setProperty("dispatched", true);
-                    emit newPAC(pac);
+                    Q_EMIT newPAC(pac);
                 }
             });
         }

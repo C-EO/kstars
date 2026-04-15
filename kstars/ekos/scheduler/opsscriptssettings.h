@@ -21,7 +21,7 @@ class OpsScriptsSettings : public QWidget, public Ui::OpsScriptsSettings
         explicit OpsScriptsSettings();
         virtual ~OpsScriptsSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

@@ -74,7 +74,7 @@ class GuideInterface : public QObject
             CALIBRATION_MESSAGE_ONLY
         };
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &);
         void newStatus(Ekos::GuideState);
         void newAxisDelta(double delta_ra, double delta_dec);

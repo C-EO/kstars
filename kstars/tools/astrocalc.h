@@ -31,7 +31,7 @@ class AstroCalc : public QDialog
 
         /** @return suggested size of calculator window. */
         QSize sizeHint() const override;
-    public slots:
+    public Q_SLOTS:
         // Q: Why is this public when we don't have access to navigationPanel anyway?
         // Also doesn't seem to be used from outside -- asimha
         /** Display calculator module or help text based on item selected. */

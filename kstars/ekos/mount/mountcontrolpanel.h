@@ -42,7 +42,7 @@ class MountControlPanel : public QDialog, public Ui::MountControlPanel
         bool processCoords(dms &ra, dms &de);
         bool m_isJ2000 {false};
 
-    signals:
+    Q_SIGNALS:
         void newMotionCommand(int command, int NS, int WE);
         void newSlewRate(int rate);
         void aborted();
@@ -59,4 +59,3 @@ class MountControlPanel : public QDialog, public Ui::MountControlPanel
 
 };
 }
-

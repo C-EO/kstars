@@ -114,9 +114,9 @@ void XPlanetImageLabel::wheelEvent(QWheelEvent *e)
     else
     {
         if (e->angleDelta().y() > 0)
-            emit zoomIn();
+            Q_EMIT zoomIn();
         else if (e->angleDelta().y() < 0)
-            emit zoomOut();
+            Q_EMIT zoomOut();
         e->accept();
     }
 }
@@ -139,9 +139,9 @@ bool XPlanetImageLabel::gestureEvent(QGestureEvent *event)
 void XPlanetImageLabel::pinchTriggered(QPinchGesture *gesture)
 {
     if (gesture->totalScaleFactor() > 1)
-        emit zoomIn();
+        Q_EMIT zoomIn();
     else
-        emit zoomOut();
+        Q_EMIT zoomOut();
 }
 
 
@@ -166,9 +166,9 @@ void XPlanetImageLabel::mouseMoveEvent(QMouseEvent *e)
         int dx = newPoint.x() - m_LastMousePoint.x();
         int dy = newPoint.y() - m_LastMousePoint.y();
         if(e->buttons() & Qt::RightButton)
-            emit changeLocation(QPoint(dx, dy));
+            Q_EMIT changeLocation(QPoint(dx, dy));
         if(e->buttons() & Qt::LeftButton)
-            emit changePosition(QPoint(dx, dy));
+            Q_EMIT changePosition(QPoint(dx, dy));
         m_LastMousePoint = newPoint;
     }
     e->accept();
@@ -1271,4 +1271,3 @@ void XPlanetImageViewer::invertColors()
     m_View->update();
 #endif
 }
-

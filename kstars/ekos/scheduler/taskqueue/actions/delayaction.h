@@ -63,7 +63,7 @@ class DelayAction : public TaskAction
         QJsonObject toJson() const override;
         static DelayAction* fromJson(const QJsonObject &json, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void handleDelayComplete();
 
     private:

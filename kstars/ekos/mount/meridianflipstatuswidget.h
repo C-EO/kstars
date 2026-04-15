@@ -31,7 +31,7 @@ class MeridianFlipStatusWidget : public QWidget, Ui::MeridianFlipStatusWidget
          */
         QString getStatus();
 
-    signals:
+    Q_SIGNALS:
 
 };
 

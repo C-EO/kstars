@@ -44,7 +44,7 @@ class Manager : public QObject
 
         void setIconTheme(IconTheme theme);
 
-    signals:
+    Q_SIGNALS:
 
         void signalThemeChanged();
 

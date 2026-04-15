@@ -25,7 +25,7 @@ class modCalcEclCoords : public QFrame, public Ui::modCalcEclCoordsDlg
         explicit modCalcEclCoords(QWidget *p);
         virtual ~modCalcEclCoords() override = default;
 
-    public slots:
+    public Q_SLOTS:
         void slotNow(void);
         void slotObject(void);
         void slotDateTimeChanged(const QDateTime &edt);

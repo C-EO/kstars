@@ -56,7 +56,7 @@ class FITSOverlay : public QObject
 
         QList < FOverlay * > fList;
 
-    private slots:
+    private Q_SLOTS:
         /**Make sure download has finished, then make sure file exists, then save the image */
         void downloadReady(KJob *);
 };

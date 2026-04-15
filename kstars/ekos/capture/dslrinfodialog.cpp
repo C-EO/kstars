@@ -46,5 +46,5 @@ void DSLRInfo::save()
 
     currentCCD->setConfig(SAVE_CONFIG);
 
-    emit infoChanged();
+    Q_EMIT infoChanged();
 }

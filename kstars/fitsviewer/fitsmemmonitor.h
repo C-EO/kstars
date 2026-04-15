@@ -74,7 +74,7 @@ class FITSMemoryMonitor : public QWidget
     protected:
         bool eventFilter(QObject *obj, QEvent *event) override;
 
-    private slots:
+    private Q_SLOTS:
         void updateMemoryDisplay();
         void onLabelDoubleClicked();
 

@@ -34,7 +34,7 @@ class OpsAstrometryIndexFiles : public QDialog, public Ui::OpsAstrometryIndexFil
     protected:
         void showEvent(QShowEvent *) override;
 
-    public slots:
+    public Q_SLOTS:
         void slotUpdate();
         void slotOpenIndexFileDirectory();
         void downloadOrDeleteIndexFiles(bool checked);
@@ -43,7 +43,7 @@ class OpsAstrometryIndexFiles : public QDialog, public Ui::OpsAstrometryIndexFil
         void updateIndexDirectoryList();
         void setCheckBoxStateProgrammatically(QCheckBox* checkbox, bool checked);
 
-    signals:
+    Q_SIGNALS:
         void newDownloadProgress(QString info);
 
     private:

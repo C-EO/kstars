@@ -22,7 +22,7 @@ class TestGeolocation : public QObject
     public:
         explicit TestGeolocation(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

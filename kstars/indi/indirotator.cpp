@@ -77,7 +77,7 @@ void Rotator::processNumber(INDI::Property prop)
         {
             m_AbsoluteAngle = nvp->at(0)->getValue();
             m_AbsoluteAngleState = nvp->getState();
-            emit newAbsoluteAngle(m_AbsoluteAngle, m_AbsoluteAngleState);
+            Q_EMIT newAbsoluteAngle(m_AbsoluteAngle, m_AbsoluteAngleState);
         }
     }
 }
@@ -91,7 +91,7 @@ void Rotator::processSwitch(INDI::Property prop)
         if (m_Reversed != reverse)
         {
             m_Reversed = reverse;
-            emit reverseToggled(m_Reversed);
+            Q_EMIT reverseToggled(m_Reversed);
         }
     }
 }

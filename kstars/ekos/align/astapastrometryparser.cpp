@@ -55,7 +55,7 @@ bool ASTAPAstrometryParser::startSolver(const QString &filename, const QStringLi
     connect(solver.data(), &QProcess::errorOccurred, this, [&]()
     {
         align->appendLogText(i18n("Error starting solver: %1", solver->errorString()));
-        emit solverFailed();
+        Q_EMIT solverFailed();
     });
 #else
     connect(solver, SIGNAL(error(QProcess::ProcessError)), this, SIGNAL(solverFailed()));
@@ -88,7 +88,7 @@ void ASTAPAstrometryParser::solverComplete(int exitCode, QProcess::ExitStatus ex
     if (!solution.open(QIODevice::ReadOnly))
     {
         qCritical(KSTARS_EKOS_ALIGN) << "Failed to open solution file" << QDir::tempPath() + "/solution.ini";
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return;
     }
 
@@ -99,7 +99,7 @@ void ASTAPAstrometryParser::solverComplete(int exitCode, QProcess::ExitStatus ex
     if (ini.count() <= 1 || ini[1] == "F")
     {
         align->appendLogText(i18n("Solver failed. Try again."));
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return;
     }
 
@@ -146,12 +146,12 @@ void ASTAPAstrometryParser::solverComplete(int exitCode, QProcess::ExitStatus ex
         }
         int elapsed = static_cast<int>(round(solverTimer.elapsed() / 1000.0));
         align->appendLogText(i18np("Solver completed in %1 second.", "Solver completed in %1 seconds.", elapsed));
-        emit solverFinished(orientation, ra, dec, pixscale, eastToTheRight);
+        Q_EMIT solverFinished(orientation, ra, dec, pixscale, eastToTheRight);
     }
     else
     {
         align->appendLogText(i18n("Solver failed. Try again."));
-        emit solverFailed();
+        Q_EMIT solverFailed();
     }
 }
 

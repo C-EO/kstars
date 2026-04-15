@@ -29,7 +29,7 @@ class TestEkosMeridianFlipState : public QObject
     public:
         explicit TestEkosMeridianFlipState(QObject *parent = nullptr) : QObject{parent} {}
 
-    protected slots:
+    protected Q_SLOTS:
         void init();
         /**
          * @brief Cleanup after the a single test case has finished.
@@ -47,7 +47,7 @@ class TestEkosMeridianFlipState : public QObject
          * @brief Initialisation before each single test case.
          */
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Test case for a simple meridian flip
          */
@@ -129,7 +129,7 @@ class MountSimulator : public QObject
 
         void setStatus(ISD::Mount::Status newStatus);
 
-    signals:
+    Q_SIGNALS:
         void newCoords(const SkyPoint &position, const ISD::Mount::PierSide pierside, const dms &ha);
         void newStatus(ISD::Mount::Status status);
 

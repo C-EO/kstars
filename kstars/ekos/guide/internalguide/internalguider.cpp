@@ -45,7 +45,7 @@ InternalGuider::InternalGuider()
     state = GUIDE_IDLE;
     m_DitherOrigin = QVector3D(0, 0, 0);
 
-    emit guideInfo("");
+    Q_EMIT guideInfo("");
 
     m_darkGuideTimer = std::make_unique<QTimer>(this);
     m_captureTimer = std::make_unique<QTimer>(this);
@@ -105,7 +105,7 @@ bool InternalGuider::guide()
     m_GuideFrame->disconnect(this);
 
     pmath->start();
-    emit guideInfo("");
+    Q_EMIT guideInfo("");
 
     m_starLostCounter = 0;
     m_highRMSCounter = 0;
@@ -123,9 +123,9 @@ bool InternalGuider::guide()
     }
     state = GUIDE_GUIDING;
 
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
-    emit frameCaptureRequested();
+    Q_EMIT frameCaptureRequested();
 
     startDarkGuiding();
 
@@ -147,7 +147,7 @@ bool InternalGuider::abort()
 
     logFile.close();
     guideLog.endGuiding();
-    emit guideInfo("");
+    Q_EMIT guideInfo("");
 
     if (state == GUIDE_CALIBRATING ||
             state == GUIDE_GUIDING ||
@@ -156,14 +156,14 @@ bool InternalGuider::abort()
             state == GUIDE_REACQUIRE)
     {
         if (state == GUIDE_DITHERING || state == GUIDE_MANUAL_DITHERING)
-            emit newStatus(GUIDE_DITHERING_ERROR);
-        emit newStatus(GUIDE_ABORTED);
+            Q_EMIT newStatus(GUIDE_DITHERING_ERROR);
+        Q_EMIT newStatus(GUIDE_ABORTED);
 
         qCDebug(KSTARS_EKOS_GUIDE) << "Aborting" << getGuideStatusString(state);
     }
     else
     {
-        emit newStatus(GUIDE_IDLE);
+        Q_EMIT newStatus(GUIDE_IDLE);
         qCDebug(KSTARS_EKOS_GUIDE) << "Stopping internal guider.";
     }
 
@@ -194,10 +194,10 @@ bool InternalGuider::suspend()
     state = GUIDE_SUSPENDED;
 
     resetDarkGuiding();
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     pmath->suspend(true);
-    emit guideInfo("");
+    Q_EMIT guideInfo("");
 
     return true;
 }
@@ -218,10 +218,10 @@ void InternalGuider::startDarkGuiding()
 bool InternalGuider::resume()
 {
     qCDebug(KSTARS_EKOS_GUIDE) << "Resuming...";
-    emit guideInfo("");
+    Q_EMIT guideInfo("");
     guideLog.resumeInfo();
     state = GUIDE_GUIDING;
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     pmath->suspend(false);
 
@@ -229,7 +229,7 @@ bool InternalGuider::resume()
 
     setExposureTime();
 
-    emit frameCaptureRequested();
+    Q_EMIT frameCaptureRequested();
 
     return true;
 }
@@ -271,7 +271,7 @@ bool InternalGuider::ditherXY(double x, double y)
     guideLog.ditherInfo(x, y, m_DitherTargetPosition.x, m_DitherTargetPosition.y);
 
     state = GUIDE_MANUAL_DITHERING;
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     processGuiding();
 
@@ -302,7 +302,7 @@ bool InternalGuider::dither(double pixels)
             return abortDither();
         }
         qCDebug(KSTARS_EKOS_GUIDE) << "Dither lost star. Trying again.";
-        emit frameCaptureRequested();
+        Q_EMIT frameCaptureRequested();
         return true;
     }
     else
@@ -361,7 +361,7 @@ bool InternalGuider::dither(double pixels)
             pmath->getGPG().startDithering(diff_x, diff_y, pmath->getCalibration());
 
         state = GUIDE_DITHERING;
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
 
         processGuiding();
 
@@ -402,7 +402,7 @@ bool InternalGuider::dither(double pixels)
         {
             state = GUIDE_DITHERING_SETTLE;
             guideLog.settleStartedInfo();
-            emit newStatus(state);
+            Q_EMIT newStatus(state);
         }
 
         if (Options::rAGuidePulseAlgorithm() == OpsGuide::GPG_ALGORITHM)
@@ -426,7 +426,7 @@ bool InternalGuider::onePulseDither(double pixels)
     qCDebug(KSTARS_EKOS_GUIDE) << "OnePulseDither(" << "pixels" << ")";
 
     // Cancel any current guide exposures.
-    emit abortExposure();
+    Q_EMIT abortExposure();
 
     double ret_x, ret_y;
     pmath->getTargetPosition(&ret_x, &ret_y);
@@ -482,7 +482,7 @@ bool InternalGuider::onePulseDither(double pixels)
         pmath->getGPG().startDithering(diff_x, diff_y, pmath->getCalibration());
 
     state = GUIDE_DITHERING;
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     const GuiderUtils::Vector xyMove(diff_x, diff_y, 0);
     const GuiderUtils::Vector raDecMove = pmath->getCalibration().rotateToRaDec(xyMove);
@@ -504,13 +504,13 @@ bool InternalGuider::onePulseDither(double pixels)
                                .arg(decPulse, 0, 'f', 0).arg(decDirString);
 
     // Don't capture because the single shot timer below will trigger a capture.
-    emit newMultiPulse(raDir, raPulse, decDir, decPulse, DontCaptureAfterPulses);
+    Q_EMIT newMultiPulse(raDir, raPulse, decDir, decPulse, DontCaptureAfterPulses);
 
     double totalMSecs = 1000.0 * Options::ditherSettle() + std::max(raPulse, decPulse) + 100;
 
     state = GUIDE_DITHERING_SETTLE;
     guideLog.settleStartedInfo();
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     if (Options::rAGuidePulseAlgorithm() == OpsGuide::GPG_ALGORITHM)
         pmath->getGPG().ditheringSettled(true);
@@ -523,20 +523,20 @@ bool InternalGuider::abortDither()
 {
     if (Options::ditherFailAbortsAutoGuide())
     {
-        emit newStatus(Ekos::GUIDE_DITHERING_ERROR);
+        Q_EMIT newStatus(Ekos::GUIDE_DITHERING_ERROR);
         abort();
         return false;
     }
     else
     {
-        emit newLog(i18n("Warning: Dithering failed. Autoguiding shall continue as set in the options in case "
-                         "of dither failure."));
+        Q_EMIT newLog(i18n("Warning: Dithering failed. Autoguiding shall continue as set in the options in case "
+                           "of dither failure."));
 
         if (Options::ditherSettle() > 0)
         {
             state = GUIDE_DITHERING_SETTLE;
             guideLog.settleStartedInfo();
-            emit newStatus(state);
+            Q_EMIT newStatus(state);
         }
 
         if (Options::rAGuidePulseAlgorithm() == OpsGuide::GPG_ALGORITHM)
@@ -585,7 +585,7 @@ bool InternalGuider::processManualDithering()
             {
                 state = GUIDE_DITHERING_SETTLE;
                 guideLog.settleStartedInfo();
-                emit newStatus(state);
+                Q_EMIT newStatus(state);
             }
 
             startDitherSettleTimer(Options::ditherSettle() * 1000);
@@ -599,13 +599,13 @@ bool InternalGuider::processManualDithering()
     {
         if (++m_DitherRetries > Options::ditherMaxIterations())
         {
-            emit newLog(i18n("Warning: Manual Dithering failed."));
+            Q_EMIT newLog(i18n("Warning: Manual Dithering failed."));
 
             if (Options::ditherSettle() > 0)
             {
                 state = GUIDE_DITHERING_SETTLE;
                 guideLog.settleStartedInfo();
-                emit newStatus(state);
+                Q_EMIT newStatus(state);
             }
 
             startDitherSettleTimer(Options::ditherSettle() * 1000);
@@ -639,7 +639,7 @@ void InternalGuider::setDitherSettled()
     if (state != GUIDE_IDLE && state != GUIDE_ABORTED && state != GUIDE_SUSPENDED)
     {
         guideLog.settleCompletedInfo();
-        emit newStatus(Ekos::GUIDE_DITHERING_SUCCESS);
+        Q_EMIT newStatus(Ekos::GUIDE_DITHERING_SUCCESS);
 
         // Back to guiding
         state = GUIDE_GUIDING;
@@ -688,7 +688,7 @@ bool InternalGuider::calibrate()
             new CalibrationProcess(calibrationStartX, calibrationStartY,
                                    !Options::twoAxisEnabled()));
         state = GUIDE_CALIBRATING;
-        emit newStatus(GUIDE_CALIBRATING);
+        Q_EMIT newStatus(GUIDE_CALIBRATING);
     }
 
     if (calibrationProcess->inProgress())
@@ -700,7 +700,7 @@ bool InternalGuider::calibrate()
     if (restoreCalibration())
     {
         calibrationProcess.reset();
-        emit newStatus(Ekos::GUIDE_CALIBRATION_SUCCESS);
+        Q_EMIT newStatus(Ekos::GUIDE_CALIBRATION_SUCCESS);
         KSNotification::event(QLatin1String("CalibrationRestored"),
                               i18n("Guiding calibration restored"), KSNotification::Guide);
         reset();
@@ -718,7 +718,7 @@ bool InternalGuider::calibrate()
     m_GuideFrame->disconnect(this);
 
     // Must reset dec swap before we run any calibration procedure!
-    emit DESwapChanged(false);
+    Q_EMIT DESwapChanged(false);
     pmath->setLostStar(false);
 
     if (Options::saveGuideLog())
@@ -750,15 +750,15 @@ void InternalGuider::iterateCalibration()
                    .arg(gs.getNumReferencesFound())
                    .arg(gs.getNumReferences());
         }
-        emit guideInfo(info);
+        Q_EMIT guideInfo(info);
 
         if (pmath->isStarLost())
         {
-            emit newLog(i18n("Lost track of the guide star. "
-                             "Try increasing binning, square size or reducing pulse duration."));
-            emit newStatus(Ekos::GUIDE_CALIBRATION_ERROR);
-            emit calibrationUpdate(GuideInterface::CALIBRATION_MESSAGE_ONLY,
-                                   i18n("Guide Star lost."));
+            Q_EMIT newLog(i18n("Lost track of the guide star. "
+                               "Try increasing binning, square size or reducing pulse duration."));
+            Q_EMIT newStatus(Ekos::GUIDE_CALIBRATION_ERROR);
+            Q_EMIT calibrationUpdate(GuideInterface::CALIBRATION_MESSAGE_ONLY,
+                                     i18n("Guide Star lost."));
             reset();
             return;
         }
@@ -769,18 +769,18 @@ void InternalGuider::iterateCalibration()
 
     auto status = calibrationProcess->getStatus();
     if (status != GUIDE_CALIBRATING)
-        emit newStatus(status);
+        Q_EMIT newStatus(status);
 
     QString logStatus = calibrationProcess->getLogStatus();
     if (logStatus.length())
-        emit newLog(logStatus);
+        Q_EMIT newLog(logStatus);
 
     QString updateMessage;
     double x, y;
     GuideInterface::CalibrationUpdateType type;
     calibrationProcess->getCalibrationUpdate(&type, &updateMessage, &x, &y);
     if (updateMessage.length())
-        emit calibrationUpdate(type, updateMessage, x, y);
+        Q_EMIT calibrationUpdate(type, updateMessage, x, y);
 
     GuideDirection pulseDirection;
     int pulseMsecs;
@@ -790,7 +790,7 @@ void InternalGuider::iterateCalibration()
         // In streaming mode frames arrive continuously — don't trigger an extra capture after
         // the pulse. In single-capture mode the pulse timer must request the next frame.
         const auto captureMode = m_StreamingMode ? DontCaptureAfterPulses : StartCaptureAfterPulses;
-        emit newSinglePulse(pulseDirection, pulseMsecs, captureMode);
+        Q_EMIT newSinglePulse(pulseDirection, pulseMsecs, captureMode);
     }
 
     if (status == GUIDE_CALIBRATION_ERROR)
@@ -803,7 +803,7 @@ void InternalGuider::iterateCalibration()
     {
         KSNotification::event(QLatin1String("CalibrationSuccessful"),
                               i18n("Guiding calibration completed successfully"), KSNotification::Guide);
-        emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
+        Q_EMIT DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
         pmath->setTargetPosition(calibrationStartX, calibrationStartY);
         reset();
     }
@@ -858,7 +858,7 @@ bool InternalGuider::restoreCalibration()
                        pierSide, Options::reverseDecOnPierSideChange(),
                        subBinX, subBinY, &mountDEC);
     if (success)
-        emit DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
+        Q_EMIT DESwapChanged(pmath->getCalibration().declinationSwapEnabled());
     return success;
 }
 
@@ -949,7 +949,7 @@ void InternalGuider::emitAxisPulse(const cproc_out_params * out)
     if(out->pulse_dir[GUIDE_DEC] == DEC_DEC_DIR)
         dePulse = -dePulse;
 
-    emit newAxisPulse(raPulse, dePulse);
+    Q_EMIT newAxisPulse(raPulse, dePulse);
 }
 
 bool InternalGuider::processGuiding()
@@ -990,7 +990,7 @@ bool InternalGuider::processGuiding()
                    .arg(gs.getNumReferencesFound())
                    .arg(gs.getNumReferences());
 
-            emit guideInfo(info);
+            Q_EMIT guideInfo(info);
         }
 
         // Restart the dark-guiding timer, so we get the full interval on its 1st timeout.
@@ -1002,7 +1002,7 @@ bool InternalGuider::processGuiding()
     {
         // In streaming mode the next frame is already on its way — no need to request a capture.
         if (!m_StreamingMode && Options::rAGuidePulseAlgorithm() == OpsGuide::GPG_ALGORITHM)
-            emit frameCaptureRequested();
+            Q_EMIT frameCaptureRequested();
         return true;
     }
     else
@@ -1032,13 +1032,13 @@ bool InternalGuider::processGuiding()
     if (sendPulses && (out->pulse_dir[GUIDE_RA] != NO_DIR || out->pulse_dir[GUIDE_DEC] != NO_DIR))
     {
         const auto captureMode = m_StreamingMode ? DontCaptureAfterPulses : StartCaptureAfterPulses;
-        emit newMultiPulse(out->pulse_dir[GUIDE_RA], out->pulse_length[GUIDE_RA],
-                           out->pulse_dir[GUIDE_DEC], out->pulse_length[GUIDE_DEC], captureMode);
+        Q_EMIT newMultiPulse(out->pulse_dir[GUIDE_RA], out->pulse_length[GUIDE_RA],
+                             out->pulse_dir[GUIDE_DEC], out->pulse_length[GUIDE_DEC], captureMode);
     }
     else if (!m_StreamingMode)
     {
         // In streaming mode there is nothing to request — frames keep coming continuously.
-        emit frameCaptureRequested();
+        Q_EMIT frameCaptureRequested();
     }
 
     if (state == GUIDE_DITHERING || state == GUIDE_MANUAL_DITHERING || state == GUIDE_DITHERING_SETTLE)
@@ -1053,12 +1053,12 @@ bool InternalGuider::processGuiding()
         // out->delta[] is saved as STAR drift in the camera sensor coordinate system in
         // gmath->processAxis(). To get these values in the RADEC system they have to be negated.
         // But we want the MOUNT drift (cf. PHD2) and hence the values have to be negated once more! So...
-        emit newAxisDelta(out->delta[GUIDE_RA], out->delta[GUIDE_DEC]);
+        Q_EMIT newAxisDelta(out->delta[GUIDE_RA], out->delta[GUIDE_DEC]);
 
     emitAxisPulse(out);
-    emit newAxisSigma(out->sigma[GUIDE_RA], out->sigma[GUIDE_DEC]);
+    Q_EMIT newAxisSigma(out->sigma[GUIDE_RA], out->sigma[GUIDE_DEC]);
     if (SEPMultiStarEnabled())
-        emit newSNR(pmath->getGuideStarSNR());
+        Q_EMIT newSNR(pmath->getGuideStarSNR());
 
     return true;
 }
@@ -1116,7 +1116,7 @@ void InternalGuider::darkGuide()
         pmath->performDarkGuiding(state, timeStep);
 
         out = pmath->getOutputParameters();
-        emit newSinglePulse(out->pulse_dir[GUIDE_RA], out->pulse_length[GUIDE_RA], DontCaptureAfterPulses);
+        Q_EMIT newSinglePulse(out->pulse_dir[GUIDE_RA], out->pulse_length[GUIDE_RA], DontCaptureAfterPulses);
 
         emitAxisPulse(out);
     }
@@ -1141,14 +1141,14 @@ bool InternalGuider::isPoorGuiding(const cproc_out_params * out)
                                    << "delta_rms" << delta_rms;
 
         if (m_starLostCounter > abortStarLostThreshold)
-            emit newLog(i18n("Lost track of the guide star. Searching for guide stars..."));
+            Q_EMIT newLog(i18n("Lost track of the guide star. Searching for guide stars..."));
         else
-            emit newLog(i18n("Delta RMS threshold value exceeded. Searching for guide stars..."));
+            Q_EMIT newLog(i18n("Delta RMS threshold value exceeded. Searching for guide stars..."));
 
         reacquireTimer.start();
         rememberState = state;
         state = GUIDE_REACQUIRE;
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
         return true;
     }
     return false;
@@ -1160,7 +1160,7 @@ bool InternalGuider::selectAutoStarSEPMultistar()
     QVector3D newStarCenter = pmath->selectGuideStar(m_ImageData);
     if (newStarCenter.x() >= 0)
     {
-        emit newStarPosition(newStarCenter, true);
+        Q_EMIT newStarPosition(newStarCenter, true);
         return true;
     }
     return false;
@@ -1293,7 +1293,7 @@ bool InternalGuider::selectAutoStar()
     if (useNativeDetection == false)
         qDeleteAll(starCenters);
 
-    emit newStarPosition(newStarCenter, true);
+    Q_EMIT newStarPosition(newStarCenter, true);
 
     return true;
 }
@@ -1313,7 +1313,7 @@ bool InternalGuider::reacquire()
             {
                 state = GUIDE_DITHERING_SETTLE;
                 guideLog.settleStartedInfo();
-                emit newStatus(state);
+                Q_EMIT newStatus(state);
             }
 
             startDitherSettleTimer(Options::ditherSettle() * 1000);
@@ -1321,13 +1321,13 @@ bool InternalGuider::reacquire()
         else
         {
             state = GUIDE_GUIDING;
-            emit newStatus(state);
+            Q_EMIT newStatus(state);
         }
 
     }
     else if (reacquireTimer.elapsed() > static_cast<int>(Options::guideLostStarTimeout() * 1000))
     {
-        emit newLog(i18n("Failed to find any suitable guide stars. Aborting..."));
+        Q_EMIT newLog(i18n("Failed to find any suitable guide stars. Aborting..."));
         abort();
         return false;
     }
@@ -1336,7 +1336,7 @@ bool InternalGuider::reacquire()
     // Emitting frameCaptureRequested() would trigger an unnecessary Guide::capture() call
     // that restarts the m_captureTimer and can disrupt GPG time-step accounting.
     if (!m_StreamingMode)
-        emit frameCaptureRequested();
+        Q_EMIT frameCaptureRequested();
     return rc;
 }
 

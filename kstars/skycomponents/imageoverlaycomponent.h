@@ -89,7 +89,7 @@ class ImageOverlayComponent : public QObject, public SkyComponent
             return m_TemporaryOverlays;
         }
 
-    public slots:
+    public Q_SLOTS:
         void startSolving();
         void abortSolving();
         void show();
@@ -100,10 +100,10 @@ class ImageOverlayComponent : public QObject, public SkyComponent
         };
         void addTemporaryImageOverlay(const ImageOverlay &overlay);
 
-    signals:
+    Q_SIGNALS:
         void updateLog(const QString &message);
 
-    private slots:
+    private Q_SLOTS:
         void tryAgain();
         void updateStatusDisplay(const QString &message);
 

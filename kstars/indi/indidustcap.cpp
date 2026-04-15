@@ -97,13 +97,13 @@ void DustCap::processSwitch(INDI::Property prop)
         if (currentStatus != m_Status)
         {
             m_Status = currentStatus;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
 
         if (currentParkStatus != m_ParkStatus)
         {
             m_ParkStatus = currentParkStatus;
-            emit newParkStatus(m_ParkStatus);
+            Q_EMIT newParkStatus(m_ParkStatus);
         }
 
 

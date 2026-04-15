@@ -25,7 +25,7 @@ class BuildFilterOffsets : public QDialog, public Ui::buildOffsetsDialog
         // Used by build filter offsets utility to process the completion of an AF run.
         void autoFocusComplete(FocusState completionState, int currentPosition, double currentTemperature, double currentAlt);
 
-    signals:
+    Q_SIGNALS:
         // Trigger Autofocus
         void runAutoFocus(AutofocusReason autofocusReason, const QString &reasonInfo);
         // User has elected to abort Autofocus, pass on signal to FilterManager
@@ -35,7 +35,7 @@ class BuildFilterOffsets : public QDialog, public Ui::buildOffsetsDialog
         // Emitted when filter change completed including all required actions
         void ready();
 
-    private slots:
+    private Q_SLOTS:
         void itemChanged(QStandardItem *item);
         void refChanged(QModelIndex index);
 

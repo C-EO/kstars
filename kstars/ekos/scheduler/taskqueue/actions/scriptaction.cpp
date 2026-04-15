@@ -54,20 +54,20 @@ bool ScriptAction::start()
         if (incrementRetry())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SCRIPT action" << m_currentRetry << "/" << m_retries;
-            emit progress(QString("Retry %1/%2").arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Retry %1/%2").arg(m_currentRetry).arg(m_retries));
             return start();  // Retry
         }
         else
         {
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
             return false;
         }
     }
 
     setStatus(RUNNING);
-    emit started();
-    emit progress(QString("Executing script: %1").arg(m_scriptPath));
+    Q_EMIT started();
+    Q_EMIT progress(QString("Executing script: %1").arg(m_scriptPath));
 
     // Start the script
     m_process->start(m_scriptPath);
@@ -80,13 +80,13 @@ bool ScriptAction::start()
         if (incrementRetry())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SCRIPT action" << m_currentRetry << "/" << m_retries;
-            emit progress(QString("Failed to start, retry %1/%2").arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Failed to start, retry %1/%2").arg(m_currentRetry).arg(m_retries));
             return start();  // Retry
         }
         else
         {
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
             return false;
         }
     }
@@ -170,7 +170,7 @@ void ScriptAction::processFinished(int exitCode, QProcess::ExitStatus exitStatus
         if (!line.isEmpty())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Script stdout:" << line;
-            emit progress(line);
+            Q_EMIT progress(line);
         }
         m_stdoutBuffer.clear();
     }
@@ -181,7 +181,7 @@ void ScriptAction::processFinished(int exitCode, QProcess::ExitStatus exitStatus
         if (!line.isEmpty())
         {
             qCWarning(KSTARS_EKOS_SCHEDULER) << "Script stderr:" << line;
-            emit progress(QString("Error: %1").arg(line));
+            Q_EMIT progress(QString("Error: %1").arg(line));
         }
         m_stderrBuffer.clear();
     }
@@ -197,22 +197,22 @@ void ScriptAction::processFinished(int exitCode, QProcess::ExitStatus exitStatus
         if (incrementRetry())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SCRIPT action (crashed)" << m_currentRetry << "/" << m_retries;
-            emit progress(QString("Script crashed, retry %1/%2").arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Script crashed, retry %1/%2").arg(m_currentRetry).arg(m_retries));
             start();
         }
         else
         {
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
         }
         return;
     }
 
     if (exitCode == 0)
     {
-        emit progress("Script completed successfully");
+        Q_EMIT progress("Script completed successfully");
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
     }
     else
     {
@@ -222,14 +222,14 @@ void ScriptAction::processFinished(int exitCode, QProcess::ExitStatus exitStatus
         if (incrementRetry())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SCRIPT action (non-zero exit)" << m_currentRetry << "/" << m_retries;
-            emit progress(QString("Script failed (exit code %1), retry %2/%3")
-                          .arg(exitCode).arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Script failed (exit code %1), retry %2/%3")
+                            .arg(exitCode).arg(m_currentRetry).arg(m_retries));
             start();
         }
         else
         {
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
         }
     }
 }
@@ -271,14 +271,14 @@ void ScriptAction::processError(QProcess::ProcessError error)
         if (incrementRetry())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SCRIPT action (process error)" << m_currentRetry << "/" << m_retries;
-            emit progress(QString("Process error (%1), retry %2/%3")
-                          .arg(errorString).arg(m_currentRetry).arg(m_retries));
+            Q_EMIT progress(QString("Process error (%1), retry %2/%3")
+                            .arg(errorString).arg(m_currentRetry).arg(m_retries));
             start();
         }
         else
         {
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
         }
     }
 }
@@ -298,7 +298,7 @@ void ScriptAction::readStandardOutput()
         if (!line.isEmpty())
         {
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Script stdout:" << line;
-            emit progress(line);
+            Q_EMIT progress(line);
         }
     }
 }
@@ -318,7 +318,7 @@ void ScriptAction::readStandardError()
         if (!line.isEmpty())
         {
             qCWarning(KSTARS_EKOS_SCHEDULER) << "Script stderr:" << line;
-            emit progress(QString("Error: %1").arg(line));
+            Q_EMIT progress(QString("Error: %1").arg(line));
         }
     }
 }
@@ -339,13 +339,13 @@ void ScriptAction::handleTimeout()
     if (incrementRetry())
     {
         qCInfo(KSTARS_EKOS_SCHEDULER) << "Retrying SCRIPT action (timeout)" << m_currentRetry << "/" << m_retries;
-        emit progress(QString("Timeout, retry %1/%2").arg(m_currentRetry).arg(m_retries));
+        Q_EMIT progress(QString("Timeout, retry %1/%2").arg(m_currentRetry).arg(m_retries));
         start();
     }
     else
     {
         setStatus(FAILED);
-        emit failed(m_errorMessage);
+        Q_EMIT failed(m_errorMessage);
     }
 }
 

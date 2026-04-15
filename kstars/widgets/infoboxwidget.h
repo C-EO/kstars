@@ -77,7 +77,7 @@ class InfoBoxWidget : public QWidget
         /** Adjust widget's position */
         void adjust();
 
-    public slots:
+    public Q_SLOTS:
         /** Set information about time. Data is taken from KStarsData. */
         void slotTimeChanged();
         /** Set information about location. Data is taken from KStarsData. */
@@ -86,7 +86,7 @@ class InfoBoxWidget : public QWidget
         void slotObjectChanged(SkyObject *obj);
         /** Set information about pointing. */
         void slotPointChanged(SkyPoint *p);
-    signals:
+    Q_SIGNALS:
         /** Emitted when widget is clicked */
         void clicked();
 

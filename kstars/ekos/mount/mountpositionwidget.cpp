@@ -27,9 +27,9 @@ MountPositionWidget::MountPositionWidget(QWidget *parent)
             this, [this](QAbstractButton * button)
     {
         if (button == j2000CheckObject)
-            emit J2000Enabled(true);
+            Q_EMIT J2000Enabled(true);
         else if (button == jnowCheckObject)
-            emit J2000Enabled(false);
+            Q_EMIT J2000Enabled(false);
     });
 }
 

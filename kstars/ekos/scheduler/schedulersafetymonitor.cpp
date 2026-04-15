@@ -62,8 +62,8 @@ void SchedulerSafetyMonitor::initStandaloneSafetyMonitor(const QString &connecti
         return;
     }
 
-    emit newLog(i18n("Initializing standalone safety monitor monitoring for %1@%2:%3",
-                     m_SafetyMonitorDeviceName, m_SafetyMonitorHostname, QString::number(m_SafetyMonitorPort)));
+    Q_EMIT newLog(i18n("Initializing standalone safety monitor monitoring for %1@%2:%3",
+                       m_SafetyMonitorDeviceName, m_SafetyMonitorHostname, QString::number(m_SafetyMonitorPort)));
 
     // Create client manager for safety monitor device
     m_SafetyMonitorClientManager = new ClientManager();
@@ -114,7 +114,7 @@ void SchedulerSafetyMonitor::parseConnectionString(const QString &connectionStri
 
     if (parts.size() < 1 || parts.size() > 2)
     {
-        emit newLog(i18n("Warning: Invalid safety monitor connection string format. Expected 'host' or 'host:port'"));
+        Q_EMIT newLog(i18n("Warning: Invalid safety monitor connection string format. Expected 'host' or 'host:port'"));
         qCWarning(KSTARS_EKOS_SCHEDULER) << "Invalid safety monitor connection string:" << connectionString;
         return;
     }
@@ -135,7 +135,7 @@ void SchedulerSafetyMonitor::parseConnectionString(const QString &connectionStri
         {
             // If invalid port, use default
             m_SafetyMonitorPort = 7624;
-            emit newLog(i18n("Invalid safety monitor port number, using default port 7624"));
+            Q_EMIT newLog(i18n("Invalid safety monitor port number, using default port 7624"));
             qCWarning(KSTARS_EKOS_SCHEDULER) << "Invalid port number:" << parts[1] << ", using default 7624";
         }
     }
@@ -164,8 +164,8 @@ void SchedulerSafetyMonitor::connectToStandaloneSafetyMonitor()
 
     if (m_SafetyMonitorConnectionRetries >= MAX_SAFETY_MONITOR_RETRIES)
     {
-        emit newLog(i18n("Failed to connect to standalone safety monitor after %1 attempts, giving up",
-                         MAX_SAFETY_MONITOR_RETRIES));
+        Q_EMIT newLog(i18n("Failed to connect to standalone safety monitor after %1 attempts, giving up",
+                           MAX_SAFETY_MONITOR_RETRIES));
         qCWarning(KSTARS_EKOS_SCHEDULER) << "Max safety monitor connection retries reached";
         return;
     }
@@ -179,8 +179,8 @@ void SchedulerSafetyMonitor::connectToStandaloneSafetyMonitor()
     m_SafetyMonitorClientManager->setServer(m_SafetyMonitorHostname.toLatin1().constData(), m_SafetyMonitorPort);
 
     // Use QString::number() to avoid locale-specific formatting of port number
-    emit newLog(i18n("Connecting to standalone safety monitor at %1:%2...", m_SafetyMonitorHostname,
-                     QString::number(m_SafetyMonitorPort)));
+    Q_EMIT newLog(i18n("Connecting to standalone safety monitor at %1:%2...", m_SafetyMonitorHostname,
+                       QString::number(m_SafetyMonitorPort)));
     m_SafetyMonitorClientManager->establishConnection();
 }
 
@@ -198,7 +198,7 @@ void SchedulerSafetyMonitor::handleNewGenericDevice(const QSharedPointer<ISD::Ge
 
         if (m_StandaloneSafetyMonitorDevice)
         {
-            emit newLog(i18n("Standalone safety monitor device %1 is ready", m_SafetyMonitorDeviceName));
+            Q_EMIT newLog(i18n("Standalone safety monitor device %1 is ready", m_SafetyMonitorDeviceName));
 
             // Connect to property updates
             connect(m_StandaloneSafetyMonitorDevice, &ISD::GenericDevice::propertyUpdated, this,
@@ -216,7 +216,7 @@ void SchedulerSafetyMonitor::handleNewGenericDevice(const QSharedPointer<ISD::Ge
         }
         else
         {
-            emit newLog(i18n("Warning: Device %1 is not valid", m_SafetyMonitorDeviceName));
+            Q_EMIT newLog(i18n("Warning: Device %1 is not valid", m_SafetyMonitorDeviceName));
             qCWarning(KSTARS_EKOS_SCHEDULER) << "Device is not valid";
         }
     }
@@ -232,7 +232,7 @@ void SchedulerSafetyMonitor::processSafetyProperty(INDI::Property property)
 
 void SchedulerSafetyMonitor::handleStandaloneSafetyMonitorDisconnection()
 {
-    emit newLog(i18n("Warning: Standalone safety monitor device %1 disconnected", m_SafetyMonitorDeviceName));
+    Q_EMIT newLog(i18n("Warning: Standalone safety monitor device %1 disconnected", m_SafetyMonitorDeviceName));
     qCWarning(KSTARS_EKOS_SCHEDULER) << "Standalone safety monitor device disconnected";
 
     m_StandaloneSafetyMonitorConnected = false;
@@ -246,13 +246,13 @@ void SchedulerSafetyMonitor::handleStandaloneSafetyMonitorDisconnection()
     if (m_SafetyMonitorConnectionRetries < MAX_SAFETY_MONITOR_RETRIES)
     {
         m_SafetyMonitorConnectionRetries++;
-        emit newLog(i18n("Will attempt to reconnect in 10 seconds (attempt %1 of %2)...",
-                         m_SafetyMonitorConnectionRetries, MAX_SAFETY_MONITOR_RETRIES));
+        Q_EMIT newLog(i18n("Will attempt to reconnect in 10 seconds (attempt %1 of %2)...",
+                           m_SafetyMonitorConnectionRetries, MAX_SAFETY_MONITOR_RETRIES));
         m_SafetyMonitorReconnectTimer.start(10000); // 10 seconds delay for reconnection
     }
     else
     {
-        emit newLog(i18n("Maximum reconnection attempts reached for standalone safety monitor"));
+        Q_EMIT newLog(i18n("Maximum reconnection attempts reached for standalone safety monitor"));
     }
 }
 
@@ -260,7 +260,7 @@ void SchedulerSafetyMonitor::attemptSafetyMonitorReconnection()
 {
     if (!m_StandaloneSafetyMonitorConnected && m_SafetyMonitorConnectionRetries < MAX_SAFETY_MONITOR_RETRIES)
     {
-        emit newLog(i18n("Attempting to reconnect to standalone safety monitor..."));
+        Q_EMIT newLog(i18n("Attempting to reconnect to standalone safety monitor..."));
         connectToStandaloneSafetyMonitor();
     }
 }
@@ -271,39 +271,39 @@ void SchedulerSafetyMonitor::setSafetyStatus(IPState status)
         return;
 
     m_SafetyStatus = status;
-    emit newSafetyStatus(status);
+    Q_EMIT newSafetyStatus(status);
 }
 
 void SchedulerSafetyMonitor::handleSafetyMonitorClientStarted()
 {
     qCInfo(KSTARS_EKOS_SCHEDULER) << "Standalone safety monitor client connected successfully";
-    emit newLog(i18n("Standalone safety monitor client connected successfully"));
+    Q_EMIT newLog(i18n("Standalone safety monitor client connected successfully"));
     m_SafetyMonitorConnectionRetries = 0;
 }
 
 void SchedulerSafetyMonitor::handleSafetyMonitorClientFailed(const QString &message)
 {
     qCWarning(KSTARS_EKOS_SCHEDULER) << "Standalone safety monitor client connection failed:" << message;
-    emit newLog(i18n("Standalone safety monitor client connection failed: %1", message));
+    Q_EMIT newLog(i18n("Standalone safety monitor client connection failed: %1", message));
 
     // Attempt to reconnect if we haven't exceeded retry limit
     if (m_SafetyMonitorConnectionRetries < MAX_SAFETY_MONITOR_RETRIES)
     {
         m_SafetyMonitorConnectionRetries++;
-        emit newLog(i18n("Will attempt to reconnect in 10 seconds (attempt %1 of %2)...",
-                         m_SafetyMonitorConnectionRetries, MAX_SAFETY_MONITOR_RETRIES));
+        Q_EMIT newLog(i18n("Will attempt to reconnect in 10 seconds (attempt %1 of %2)...",
+                           m_SafetyMonitorConnectionRetries, MAX_SAFETY_MONITOR_RETRIES));
         m_SafetyMonitorReconnectTimer.start(10000); // 10 seconds delay for reconnection
     }
     else
     {
-        emit newLog(i18n("Maximum reconnection attempts reached for standalone safety monitor"));
+        Q_EMIT newLog(i18n("Maximum reconnection attempts reached for standalone safety monitor"));
     }
 }
 
 void SchedulerSafetyMonitor::handleSafetyMonitorClientTerminated(const QString &message)
 {
     qCWarning(KSTARS_EKOS_SCHEDULER) << "Standalone safety monitor client terminated:" << message;
-    emit newLog(i18n("Standalone safety monitor client terminated: %1", message));
+    Q_EMIT newLog(i18n("Standalone safety monitor client terminated: %1", message));
 
     m_StandaloneSafetyMonitorConnected = false;
 
@@ -316,13 +316,13 @@ void SchedulerSafetyMonitor::handleSafetyMonitorClientTerminated(const QString &
     if (m_SafetyMonitorConnectionRetries < MAX_SAFETY_MONITOR_RETRIES)
     {
         m_SafetyMonitorConnectionRetries++;
-        emit newLog(i18n("Will attempt to reconnect in 10 seconds (attempt %1 of %2)...",
-                         m_SafetyMonitorConnectionRetries, MAX_SAFETY_MONITOR_RETRIES));
+        Q_EMIT newLog(i18n("Will attempt to reconnect in 10 seconds (attempt %1 of %2)...",
+                           m_SafetyMonitorConnectionRetries, MAX_SAFETY_MONITOR_RETRIES));
         m_SafetyMonitorReconnectTimer.start(10000); // 10 seconds delay for reconnection
     }
     else
     {
-        emit newLog(i18n("Maximum reconnection attempts reached for standalone safety monitor"));
+        Q_EMIT newLog(i18n("Maximum reconnection attempts reached for standalone safety monitor"));
     }
 }
 
@@ -367,16 +367,16 @@ void SchedulerSafetyMonitor::updateConnectionString(const QString &connectionStr
     // Log the change
     if (hostnameChanged || portChanged)
     {
-        emit newLog(i18n("Safety monitor connection string changed from %1:%2 to %3:%4",
-                         m_SafetyMonitorHostname, QString::number(m_SafetyMonitorPort), newHostname, QString::number(newPort)));
+        Q_EMIT newLog(i18n("Safety monitor connection string changed from %1:%2 to %3:%4",
+                           m_SafetyMonitorHostname, QString::number(m_SafetyMonitorPort), newHostname, QString::number(newPort)));
     }
 
     // Disconnect existing connection if any
     if (m_SafetyMonitorClientManager != nullptr)
     {
         qCInfo(KSTARS_EKOS_SCHEDULER) << "Disconnecting existing safety monitor before reconnecting to new address";
-        emit newLog(i18n("Disconnecting from existing safety monitor at %1:%2",
-                         m_SafetyMonitorHostname, QString::number(m_SafetyMonitorPort)));
+        Q_EMIT newLog(i18n("Disconnecting from existing safety monitor at %1:%2",
+                           m_SafetyMonitorHostname, QString::number(m_SafetyMonitorPort)));
 
         // Stop any pending reconnection attempts
         if (m_SafetyMonitorReconnectTimer.isActive())
@@ -407,7 +407,7 @@ void SchedulerSafetyMonitor::updateConnectionString(const QString &connectionStr
     else
     {
         qCDebug(KSTARS_EKOS_SCHEDULER) << "Empty connection string provided, safety monitor monitoring disabled";
-        emit newLog(i18n("Safety monitor monitoring disabled"));
+        Q_EMIT newLog(i18n("Safety monitor monitoring disabled"));
     }
 }
 

@@ -205,7 +205,7 @@ class TaskAction : public QObject
         virtual QJsonObject toJson() const;
         static TaskAction* fromJson(const QJsonObject &json, QObject *parent = nullptr);
 
-    signals:
+    Q_SIGNALS:
         /** @brief Emitted when action execution starts */
         void started();
 

@@ -698,7 +698,7 @@ void StarProfileViewer::updateSelectorBars(QPoint position)
 
 void StarProfileViewer::updateSampleSize(const QString &text)
 {
-    emit sampleSizeUpdated(text.toInt());
+    Q_EMIT sampleSizeUpdated(text.toInt());
 }
 
 void StarProfileViewer::enableTrackingBox(bool enable)
@@ -1019,4 +1019,3 @@ float StarProfileViewer::convertFromSliderValue(int value)
 {
     return qPow((float)value, 2) / 1000000.0;
 }
-

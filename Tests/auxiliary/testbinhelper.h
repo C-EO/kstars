@@ -22,7 +22,7 @@ class TestBinHelper : public QObject
     public:
         explicit TestBinHelper(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

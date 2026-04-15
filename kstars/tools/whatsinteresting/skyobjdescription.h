@@ -47,10 +47,10 @@ class SkyObjDescription : public QObject
             return m_url;
         }
 
-    signals:
+    Q_SIGNALS:
         void downloaded();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief parse downloaded data to extract description of SkyObject when downloading is finished
          *

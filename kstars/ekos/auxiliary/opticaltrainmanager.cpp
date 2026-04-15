@@ -66,7 +66,7 @@ OpticalTrainManager::OpticalTrainManager() : QDialog(KStars::Instance())
 
     connect(this, &QDialog::finished, this, [this]()
     {
-        emit configurationRequested(false);
+        Q_EMIT configurationRequested(false);
     });
 
     // Mount Combo
@@ -223,7 +223,7 @@ void OpticalTrainManager::initModel()
         trainNamesList->clear();
         trainNamesList->addItems(m_TrainNames);
         trainNamesList->setEditTriggers(QAbstractItemView::AllEditTriggers);
-        emit updated();
+        Q_EMIT updated();
     });
 }
 
@@ -233,7 +233,7 @@ void OpticalTrainManager::syncDevices()
     if (m_Profile)
     {
         refreshModel();
-        emit updated();
+        Q_EMIT updated();
     }
 }
 
@@ -448,17 +448,17 @@ void OpticalTrainManager::checkOpticalTrains()
 
         // Register DBus objects for the newly generated trains.
         syncDBusInterfaces();
-        emit updated();
+        Q_EMIT updated();
         show();
         raise();
-        emit configurationRequested(true);
+        Q_EMIT configurationRequested(true);
     }
     else
     {
         // Register / update DBus objects for the existing trains on every profile load.
         syncDBusInterfaces();
         m_CheckMissingDevicesTimer.start();
-        emit updated();
+        Q_EMIT updated();
     }
 }
 ////////////////////////////////////////////////////////////////////////////
@@ -545,7 +545,7 @@ bool OpticalTrainManager::setOpticalTrainValue(const QString &name, const QStrin
             oneTrain[field] = value;
             KStarsData::Instance()->userdb()->UpdateOpticalTrain(oneTrain, oneTrain["id"].toInt());
             syncActiveDevices();
-            emit updated();
+            Q_EMIT updated();
             return true;
         }
     }
@@ -878,7 +878,7 @@ void OpticalTrainManager::openEditor(const QString &name)
     QList<QListWidgetItem*> matches = trainNamesList->findItems(name, Qt::MatchExactly);
     if (matches.count() > 0)
         trainNamesList->setCurrentItem(matches.first());
-    emit configurationRequested(true);
+    Q_EMIT configurationRequested(true);
     show();
 }
 
@@ -1213,7 +1213,7 @@ void OpticalTrainManager::refreshTrains()
 {
     refreshModel();
     syncDBusInterfaces();
-    emit updated();
+    Q_EMIT updated();
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -1278,7 +1278,7 @@ void OpticalTrainManager::checkMissingDevices()
         }
         show();
         raise();
-        emit configurationRequested(true);
+        Q_EMIT configurationRequested(true);
     }
     // No missing devices? Time to export to DB
     else

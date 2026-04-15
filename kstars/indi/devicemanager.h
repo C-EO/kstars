@@ -87,13 +87,13 @@ class DeviceManager : public QObject
             return serverBuffer;
         }
 
-    public slots:
+    public Q_SLOTS:
         void dataReceived();
         void connectionSuccess();
         void connectionError();
         void processStandardError();
 
-    signals:
+    Q_SIGNALS:
         void newDevice(INDI_D *);
         void deviceManagerError(DeviceManager *);
         void newServerInput();

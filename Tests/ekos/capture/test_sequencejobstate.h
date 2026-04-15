@@ -25,7 +25,7 @@ class TestSequenceJobState : public QObject
     public:
         explicit TestSequenceJobState();
 
-    protected slots:
+    protected Q_SLOTS:
         /**
          * @brief Initialization at beginning of the run of the entire test suite.
          */
@@ -43,7 +43,7 @@ class TestSequenceJobState : public QObject
          */
         void cleanup();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Test case with temperature, rotator and guiding
          */
@@ -92,7 +92,7 @@ class TestAdapter : public QObject
         // flag if capture preparation is completed
         bool isCapturePreparationComplete = false;
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Slot that reads the requested device state and publishes the corresponding event
          * @param state device state that needs to be read directly
@@ -107,7 +107,7 @@ class TestAdapter : public QObject
             isCapturePreparationComplete = true;
         }
 
-    signals:
+    Q_SIGNALS:
         // signals to be forwarded to the state machine
         // trigger capture preparation steps
         void prepareCapture(CCDFrameType frameType, bool enforceCCDTemp, bool enforceStartGuiderDrift, bool isPreview);

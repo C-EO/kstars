@@ -84,7 +84,7 @@ class FindDialog : public QDialog
          */
         static CatalogObject *resolveAndAdd(CatalogsDB::DBManager &db_manager, const QString &query);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * When Text is entered in the QLineEdit, filter the List of objects
          * so that only objects which start with the filter text are shown.
@@ -105,7 +105,7 @@ class FindDialog : public QDialog
          */
         void slotResolve();
 
-    private slots:
+    private Q_SLOTS:
         /** Init object list after opening dialog. */
         void init();
 

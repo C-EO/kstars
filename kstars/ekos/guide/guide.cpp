@@ -657,7 +657,7 @@ void Guide::updateGuideParams()
     {
         auto effectiveFocaLength = m_Reducer * m_FocalLength;
         m_GuiderInstance->setGuiderParams(ccdPixelSizeX, ccdPixelSizeY, m_Aperture, effectiveFocaLength);
-        emit guideChipUpdated(targetChip);
+        Q_EMIT guideChipUpdated(targetChip);
 
         int x, y, w, h;
         if (targetChip->getFrame(&x, &y, &w, &h))
@@ -1115,7 +1115,7 @@ void Guide::processCaptureTimeout()
         QString via = m_Guider ? m_Guider->getDeviceName() : "";
         ISD::CameraChip *targetChip = m_Camera->getChip(useGuideHead ? ISD::CameraChip::GUIDE_CCD : ISD::CameraChip::PRIMARY_CCD);
         QVariantMap settings = frameSettings[targetChip];
-        emit driverTimedout(camera);
+        Q_EMIT driverTimedout(camera);
         QTimer::singleShot(5000, [ &, camera, settings]()
         {
             m_DeviceRestartCounter++;
@@ -1285,7 +1285,7 @@ void Guide::setCaptureComplete()
         case GUIDE_CAPTURE:
             qCDebug(KSTARS_EKOS_GUIDE) << "Guiding capture complete.";
             m_State = GUIDE_IDLE;
-            emit newStatus(m_State);
+            Q_EMIT newStatus(m_State);
             setBusy(false);
             break;
 
@@ -1334,8 +1334,8 @@ void Guide::setCaptureComplete()
             break;
     }
 
-    emit newImage(m_GuideView);
-    emit newStarPixmap(m_GuideView->getTrackingBoxPixmap(10));
+    Q_EMIT newImage(m_GuideView);
+    Q_EMIT newStarPixmap(m_GuideView->getTrackingBoxPixmap(10));
 }
 
 void Guide::appendLogText(const QString &text)
@@ -1345,13 +1345,13 @@ void Guide::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS_GUIDE) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 }
 
 void Guide::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void Guide::setDECSwap(bool enable)
@@ -1429,7 +1429,7 @@ bool Guide::calibrate()
     // Set status to idle and let the operations change it as they get executed
     m_State = GUIDE_IDLE;
     qCDebug(KSTARS_EKOS_GUIDE) << "Calibrating...";
-    emit newStatus(m_State);
+    Q_EMIT newStatus(m_State);
 
     if (guiderType == GUIDE_INTERNAL)
     {
@@ -1739,7 +1739,7 @@ void Guide::setStatus(Ekos::GuideState newState)
     {
         // pass through the aborted state
         if (newState == GUIDE_ABORTED)
-            emit newStatus(m_State);
+            Q_EMIT newStatus(m_State);
         return;
     }
 
@@ -1749,7 +1749,7 @@ void Guide::setStatus(Ekos::GuideState newState)
     if (newState != GUIDE_CONNECTED && newState != GUIDE_DISCONNECTED)
     {
         m_State = newState;
-        emit newStatus(m_State);
+        Q_EMIT newStatus(m_State);
     }
 
     switch (newState)
@@ -2394,7 +2394,7 @@ void Guide::setAxisDelta(double ra, double de)
     l_DeltaRA->setText(QString::number(ra, 'f', 2));
     l_DeltaDEC->setText(QString::number(de, 'f', 2));
 
-    emit newAxisDelta(ra, de);
+    Q_EMIT newAxisDelta(ra, de);
 }
 
 void Guide::calibrationUpdate(GuideInterface::CalibrationUpdateType type, const QString &message,
@@ -2455,7 +2455,7 @@ void Guide::setAxisSigma(double ra, double de)
     const double total = std::hypot(ra, de);
     l_TotalRMS->setText(QString::number(total, 'f', 2));
 
-    emit newAxisSigma(ra, de);
+    Q_EMIT newAxisSigma(ra, de);
 }
 
 QList<double> Guide::axisDelta()
@@ -2598,7 +2598,7 @@ bool Guide::executeOperationStack()
             }
             else
             {
-                emit newStatus(GUIDE_CALIBRATION_ERROR);
+                Q_EMIT newStatus(GUIDE_CALIBRATION_ERROR);
                 m_State = GUIDE_IDLE;
                 appendLogText(i18n("Calibration failed to start."));
                 setBusy(false);
@@ -2741,7 +2741,7 @@ bool Guide::executeOneOperation(GuideState operation)
         case GUIDE_STAR_SELECT:
         {
             m_State = GUIDE_STAR_SELECT;
-            emit newStatus(m_State);
+            Q_EMIT newStatus(m_State);
 
             if (guideAutoStar->isChecked() ||
                     // SEP MultiStar always uses an automated guide star.
@@ -2758,7 +2758,7 @@ bool Guide::executeOneOperation(GuideState operation)
                     appendLogText(i18n("Failed to select an auto star."));
                     actionRequired = true;
                     m_State = GUIDE_CALIBRATION_ERROR;
-                    emit newStatus(m_State);
+                    Q_EMIT newStatus(m_State);
                     setBusy(false);
                 }
             }
@@ -2895,14 +2895,14 @@ void Guide::nonGuidedDither()
         qCInfo(KSTARS_EKOS_GUIDE) << "Non-guiding dither successful.";
         QTimer::singleShot( (raMsec > decMsec ? raMsec : decMsec) + Options::ditherSettle() * 1000 + 100, this, [this]()
         {
-            emit newStatus(GUIDE_DITHERING_SUCCESS);
+            Q_EMIT newStatus(GUIDE_DITHERING_SUCCESS);
             m_State = GUIDE_IDLE;
         });
     }
     else
     {
         qCWarning(KSTARS_EKOS_GUIDE) << "Non-guiding dither failed.";
-        emit newStatus(GUIDE_DITHERING_ERROR);
+        Q_EMIT newStatus(GUIDE_DITHERING_ERROR);
         m_State = GUIDE_IDLE;
     }
 }
@@ -3162,7 +3162,7 @@ void Guide::initConnections()
     connect(captureB, &QPushButton::clicked, this, [this]()
     {
         m_State = GUIDE_CAPTURE;
-        emit newStatus(m_State);
+        Q_EMIT newStatus(m_State);
         setBusy(true);
 
         if(guiderType == GUIDE_PHD2)
@@ -3295,7 +3295,7 @@ void Guide::removeDevice(const QSharedPointer<ISD::GenericDevice> &device)
 void Guide::loop()
 {
     m_State = GUIDE_LOOPING;
-    emit newStatus(m_State);
+    Q_EMIT newStatus(m_State);
 
     setBusy(true);
 
@@ -3411,7 +3411,7 @@ void Guide::setAllSettings(const QVariantMap &settings)
         m_GlobalSettings[key] = value;
     }
 
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
 
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
@@ -3494,7 +3494,7 @@ void Guide::setupOpticalTrainManager()
         ProfileSettings::Instance()->setOneSetting(ProfileSettings::GuideOpticalTrain,
                 OpticalTrainManager::Instance()->id(opticalTrainCombo->itemText(index)));
         refreshOpticalTrain();
-        emit trainChanged();
+        Q_EMIT trainChanged();
     });
 }
 
@@ -3722,7 +3722,7 @@ void Guide::updateSetting(const QString &key, const QVariant &value)
 void Guide::settleSettings()
 {
     Options::self()->save();
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
     OpticalTrainSettings::Instance()->setOneSetting(OpticalTrainSettings::Guide, m_Settings);

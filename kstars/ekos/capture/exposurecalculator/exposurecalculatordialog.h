@@ -32,12 +32,12 @@ class ExposureCalculatorDialog : public QDialog
 
         ~ExposureCalculatorDialog();
 
-    public slots:
+    public Q_SLOTS:
         void applyInitialInputs();  // This method is acting as a "fill-in" for initiating the calculator with data from KStars ekos/indi
         void handleUserAdjustment();  // Change to gain, does not change exposure envelope, but does require recalculation of shot
         void handleStackCalculation();
 
-    private slots:
+    private Q_SLOTS:
         void on_downloadCameraB_clicked();
 
     private:

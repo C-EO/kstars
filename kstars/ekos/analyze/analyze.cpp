@@ -4169,13 +4169,13 @@ void Analyze::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS_ANALYZE) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 }
 
 void Analyze::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 }  // namespace Ekos

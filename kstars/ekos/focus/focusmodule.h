@@ -222,7 +222,7 @@ class FocusModule : public QWidget, public Ui::FocusManager
             return m_LogText.join("\n");
         }
 
-    public slots:
+    public Q_SLOTS:
         // ////////////////////////////////////////////////////////////////////
         // DBus interface
         // ////////////////////////////////////////////////////////////////////
@@ -257,7 +257,7 @@ class FocusModule : public QWidget, public Ui::FocusManager
 
 
 
-    signals:
+    Q_SIGNALS:
         Q_SCRIPTABLE void newLog(const QString &text);
         Q_SCRIPTABLE void newStatus(FocusState state, const QString &trainname);
         Q_SCRIPTABLE void newHFR(double hfr, int position, bool inAutofocus, const QString &trainname);

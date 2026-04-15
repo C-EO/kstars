@@ -558,7 +558,7 @@ class Align : public QWidget, public Ui::Align
             return opsAlign;
         }
 
-    private slots:
+    private Q_SLOTS:
         // Solver timeout
         void checkRemoteAlignmentTimeout();
         void setAlignTableResult(AlignResult result);
@@ -592,7 +592,7 @@ class Align : public QWidget, public Ui::Align
         // Rotator Timeout
         void checkRotatorTimeout();
 
-    protected slots:
+    protected Q_SLOTS:
         /**
              * @brief After a solver process is completed successfully, sync, slew to target, or do nothing as set by the user.
              */
@@ -605,10 +605,10 @@ class Align : public QWidget, public Ui::Align
 
         void processPAHStage(int stage);
 
-    private slots:
+    private Q_SLOTS:
         void onDustCapStatusChanged(ISD::DustCap::Status status); // New slot for dustcap status changes
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &text);
         void newStatus(Ekos::AlignState state);
         void newPAAStage(int stage);

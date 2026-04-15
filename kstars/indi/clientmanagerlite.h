@@ -170,7 +170,7 @@ class ClientManagerLite : public INDI::BaseClientQt
 
         void clearDevices();
 
-    private slots:
+    private Q_SLOTS:
 
         void connectNewDevice(const QString &device_name);
 
@@ -187,7 +187,7 @@ class ClientManagerLite : public INDI::BaseClientQt
         virtual void newLight(ILightVectorProperty *lvp) override;
         virtual void serverConnected() override {}
         virtual void serverDisconnected(int exit_code) override;
-    signals:
+    Q_SIGNALS:
         //Device
         void newINDIDevice(QString deviceName);
         void removeINDIDevice(QString deviceName);

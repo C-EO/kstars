@@ -29,15 +29,15 @@ class OpsAlign : public QWidget, public Ui::OpsAlign
         typedef enum { ROTATOR_ANGLE = 0, POSITION_ANGLE = 1 } FlipPriority;
         void setFlipPolicy(FlipPriority Priority);
 
-    public slots:
+    public Q_SLOTS:
         void reloadOptionsProfiles();
 
     protected:
 
-    private slots:
+    private Q_SLOTS:
         void slotApply();
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
         void needToLoadProfile(const QString &profile);
 

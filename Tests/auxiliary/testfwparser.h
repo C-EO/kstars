@@ -23,7 +23,7 @@ class TestFWParser : public QObject
     public:
         TestFWParser();
         ~TestFWParser() override = default;
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
         void MixedInputs();

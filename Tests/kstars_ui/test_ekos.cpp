@@ -329,7 +329,7 @@ void TestEkos::testManipulateProfiles()
         // This is not a regular dialog but a KStars-customized dialog, so we can't search for a yes button from QDialogButtonBox
         KSMessageBox * const dialog = qobject_cast <KSMessageBox*> (QApplication::activeModalWidget());
         QVERIFY(dialog != nullptr);
-        emit dialog->accept();
+        Q_EMIT dialog->accept();
 
         testIsSuccessful = true;
     });

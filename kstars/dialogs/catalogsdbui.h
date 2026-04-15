@@ -30,7 +30,7 @@ class CatalogsDBUI : public QDialog
         explicit CatalogsDBUI(QWidget *parent, const QString &db_path);
         ~CatalogsDBUI();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * Activates the appropriate buttons.
          */

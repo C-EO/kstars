@@ -27,7 +27,7 @@ class OpsINDI : public QFrame, public Ui::OpsINDI
         OpsINDI();
         virtual ~OpsINDI() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void saveFITSDirectory();
         void saveDriversDirectory();
         void slotShowLogFiles();

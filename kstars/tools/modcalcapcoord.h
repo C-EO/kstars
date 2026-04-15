@@ -28,7 +28,7 @@ class modCalcApCoord : public QFrame, public Ui::modCalcApCoordDlg
         //	void processLines( const QFile * f );
         void processLines(QTextStream &istream);
 
-    private slots:
+    private Q_SLOTS:
         void slotCompute();
         void slotObject();
 

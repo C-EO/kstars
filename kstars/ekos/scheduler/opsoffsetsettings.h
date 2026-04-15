@@ -21,7 +21,7 @@ class OpsOffsetSettings : public QFrame, public Ui::OpsOffsetSettings
         explicit OpsOffsetSettings();
         virtual ~OpsOffsetSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

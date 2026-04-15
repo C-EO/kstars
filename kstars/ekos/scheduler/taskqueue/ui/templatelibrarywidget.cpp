@@ -209,7 +209,7 @@ void TemplateLibraryWidget::onSelectionChanged()
     m_editButton->setEnabled(isUserTemplate);
     m_deleteButton->setEnabled(isUserTemplate);
 
-    emit selectionChanged(m_selectedTemplate);
+    Q_EMIT selectionChanged(m_selectedTemplate);
 }
 
 void TemplateLibraryWidget::onItemDoubleClicked(QTreeWidgetItem *item, int column)
@@ -219,7 +219,7 @@ void TemplateLibraryWidget::onItemDoubleClicked(QTreeWidgetItem *item, int colum
     TaskTemplate *tmpl = getTemplateFromItem(item);
     if (tmpl)
     {
-        emit addTemplateRequested(tmpl);
+        Q_EMIT addTemplateRequested(tmpl);
     }
 }
 
@@ -227,7 +227,7 @@ void TemplateLibraryWidget::onAddToQueueClicked()
 {
     if (m_selectedTemplate)
     {
-        emit addTemplateRequested(m_selectedTemplate);
+        Q_EMIT addTemplateRequested(m_selectedTemplate);
     }
 }
 

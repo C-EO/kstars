@@ -21,7 +21,7 @@ class OpsMiscSettings : public QWidget, public Ui::OpsMiscSettings
         explicit OpsMiscSettings();
         virtual ~OpsMiscSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

@@ -26,11 +26,11 @@ class extensions : public QObject
         };
         QMap<QString, extDetails>* found;
 
-    public slots:
+    public Q_SLOTS:
         QIcon getIcon(const QString &name);
         QString getTooltip(const QString &name);
 
-    signals:
+    Q_SIGNALS:
         void extensionStateChanged(Ekos::ExtensionState);
         void extensionOutput(const QString);
 

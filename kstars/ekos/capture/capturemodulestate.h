@@ -25,7 +25,7 @@ class CaptureModuleState : public QObject
 
         friend class Capture;
 
-    signals:
+    Q_SIGNALS:
         void dither();
         // new log text for the module log window
         void newLog(const QString &text);
@@ -226,4 +226,3 @@ class CaptureModuleState : public QObject
         const QSharedPointer<CameraState> leadState();
 };
 } // namespace Ekos
-

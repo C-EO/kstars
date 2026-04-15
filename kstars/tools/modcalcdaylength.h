@@ -31,7 +31,7 @@ class modCalcDayLength : public QFrame, public Ui::modCalcDayLengthDlg
 
         virtual ~modCalcDayLength() override = default;
 
-    public slots:
+    public Q_SLOTS:
         void slotLocation();
         void slotLocationBatch();
         void slotComputeAlmanac();

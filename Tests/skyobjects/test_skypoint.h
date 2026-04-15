@@ -42,7 +42,7 @@ class TestSkyPoint : public QObject
         void compare(QString msg, SkyPoint * sp, ln_equ_posn * lnp);
         void ln_get_equ_nut(ln_equ_posn * posn, double jd, bool reverse = false);
 
-    private slots:
+    private Q_SLOTS:
         void testPrecession();
 
         void compareNovas();

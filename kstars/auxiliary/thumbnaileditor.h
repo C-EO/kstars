@@ -30,7 +30,7 @@ class ThumbnailEditor : public QDialog
         ~ThumbnailEditor() override = default;
         QPixmap thumbnail();
 
-    private slots:
+    private Q_SLOTS:
         void slotUpdateCropLabel();
 
     private:

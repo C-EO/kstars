@@ -30,7 +30,7 @@ class qMDNS : public QObject
 {
         Q_OBJECT
 
-    signals:
+    Q_SIGNALS:
         void hostFound (const QHostInfo &info);
 
     public:
@@ -43,12 +43,12 @@ class qMDNS : public QObject
         explicit qMDNS();
         ~qMDNS();
 
-    public slots:
+    public Q_SLOTS:
         void setTTL (const quint32 ttl);
         void lookup (const QString &name);
         void setHostName (const QString &name);
 
-    private slots:
+    private Q_SLOTS:
         void onReadyRead();
         void readQuery (const QByteArray &data);
         void sendPacket (const QByteArray &data);

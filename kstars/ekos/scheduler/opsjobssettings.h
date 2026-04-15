@@ -22,7 +22,7 @@ class OpsJobsSettings : public QFrame, public Ui::OpsJobsSettings
         explicit OpsJobsSettings();
         virtual ~OpsJobsSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

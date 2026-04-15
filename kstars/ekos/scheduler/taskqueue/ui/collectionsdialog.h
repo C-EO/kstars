@@ -32,7 +32,7 @@ class CollectionsDialog : public QDialog
             return m_selectedCollection;
         }
 
-    private slots:
+    private Q_SLOTS:
         void onCollectionSelected(QListWidgetItem *current, QListWidgetItem *previous);
         void onLoadClicked();
 

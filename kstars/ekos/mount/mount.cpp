@@ -287,7 +287,7 @@ bool Mount::setMount(ISD::Mount *device)
     connect(m_Mount, &ISD::Mount::newParkStatus, this, [&](ISD::ParkStatus status)
     {
         m_ParkStatus = status;
-        emit newParkStatus(status);
+        Q_EMIT newParkStatus(status);
 
         setupParkUI();
 
@@ -309,11 +309,11 @@ bool Mount::setMount(ISD::Mount *device)
 
         // Send initial status
         m_Status = m_Mount->status();
-        emit newStatus(m_Status);
+        Q_EMIT newStatus(m_Status);
 
         m_ParkStatus = m_Mount->parkStatus();
-        emit newParkStatus(m_ParkStatus);
-        emit ready();
+        Q_EMIT newParkStatus(m_ParkStatus);
+        Q_EMIT ready();
     }
     // Otherwise, let's wait for mount to be ready
     else
@@ -329,11 +329,11 @@ bool Mount::setMount(ISD::Mount *device)
 
             // Send initial status
             m_Status = m_Mount->status();
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
 
             m_ParkStatus = m_Mount->parkStatus();
-            emit newParkStatus(m_ParkStatus);
-            emit ready();
+            Q_EMIT newParkStatus(m_ParkStatus);
+            Q_EMIT ready();
         });
     }
 
@@ -648,7 +648,7 @@ void Mount::updateTelescopeCoords(const SkyPoint &position, ISD::Mount::PierSide
         m_ControlPanel->statusTextObject->setProperty("text", m_Mount->statusString(currentStatus));
         m_Status = currentStatus;
         // forward
-        emit newStatus(m_Status);
+        Q_EMIT newStatus(m_Status);
 
         setupParkUI();
         m_ControlPanel->parkButtonObject->setEnabled(!m_Mount->isParked());
@@ -675,7 +675,7 @@ void Mount::updateTelescopeCoords(const SkyPoint &position, ISD::Mount::PierSide
         QTime remainingTime(0, 0, 0);
         remainingTime = remainingTime.addMSecs(autoParkTimer.remainingTime());
         countdownLabel->setText(remainingTime.toString("hh:mm:ss"));
-        emit autoParkCountdownUpdated(countdownLabel->text());
+        Q_EMIT autoParkCountdownUpdated(countdownLabel->text());
     }
 }
 
@@ -782,7 +782,7 @@ void Mount::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS_MOUNT) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 }
 
 void Mount::updateLog(int messageID)
@@ -793,13 +793,13 @@ void Mount::updateLog(int messageID)
     auto message = m_Mount->getMessage(messageID);
     m_LogText.insert(0, i18nc("Message shown in Ekos Mount module", "%1", message));
 
-    emit newLog(message);
+    Q_EMIT newLog(message);
 }
 
 void Mount::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void Mount::motionCommand(int command, int NS, int WE)
@@ -1189,7 +1189,7 @@ void Mount::setScopeStatus(ISD::Mount::Status status)
         m_ControlPanel->statusTextObject->setProperty("text", m_Mount->statusString(status));
         m_Status = status;
         // forward
-        emit newStatus(status);
+        Q_EMIT newStatus(status);
     }
 }
 
@@ -1341,7 +1341,7 @@ void Mount::stopParkTimer()
 {
     autoParkTimer.stop();
     countdownLabel->setText("00:00:00");
-    emit autoParkCountdownUpdated("00:00:00");
+    Q_EMIT autoParkCountdownUpdated("00:00:00");
     stopTimerB->setEnabled(false);
     startTimerB->setEnabled(true);
 }
@@ -1353,7 +1353,7 @@ void Mount::startAutoPark()
     startTimerB->setEnabled(true);
     stopTimerB->setEnabled(false);
     countdownLabel->setText("00:00:00");
-    emit autoParkCountdownUpdated("00:00:00");
+    Q_EMIT autoParkCountdownUpdated("00:00:00");
     if (m_Mount)
     {
         if (m_Mount->isParked() == false)
@@ -1384,7 +1384,7 @@ void Mount::setupOpticalTrainManager()
         ProfileSettings::Instance()->setOneSetting(ProfileSettings::MountOpticalTrain,
                 OpticalTrainManager::Instance()->id(opticalTrainCombo->itemText(index)));
         refreshOpticalTrain();
-        emit trainChanged();
+        Q_EMIT trainChanged();
     });
 }
 
@@ -1531,7 +1531,7 @@ void Mount::setAllSettings(const QVariantMap &settings)
         m_GlobalSettings[key] = value;
     }
 
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
 
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
@@ -1669,7 +1669,7 @@ void Mount::syncSettings()
 void Mount::settleSettings()
 {
     Options::self()->save();
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
     OpticalTrainSettings::Instance()->setOneSetting(OpticalTrainSettings::Mount, m_Settings);

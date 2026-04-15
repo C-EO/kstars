@@ -384,7 +384,7 @@ void HIPSManager::removeTimer(pixCacheKey_t &key)
 {
     m_downloadMap.remove(key);
     sender()->deleteLater();
-    emit sigRepaint();
+    Q_EMIT sigRepaint();
 }
 
 PixCache *HIPSManager::getCache()

@@ -43,7 +43,7 @@ void TelescopeLite::updateSlewRate(const QString &deviceName, const QString &pro
         {
             m_slewRateLabels.push_back(slewRateSP->at(i)->getLabel());
         }
-        emit slewRateUpdate(index, m_slewRateLabels.size());
+        Q_EMIT slewRateUpdate(index, m_slewRateLabels.size());
         setSlewRate(index);
     }
 }
@@ -57,7 +57,7 @@ void TelescopeLite::setSlewDecreasable(bool slewDecreasable)
     if (m_slewDecreasable != slewDecreasable)
     {
         m_slewDecreasable = slewDecreasable;
-        emit slewDecreasableChanged(slewDecreasable);
+        Q_EMIT slewDecreasableChanged(slewDecreasable);
     }
 }
 
@@ -66,7 +66,7 @@ void TelescopeLite::setSlewIncreasable(bool slewIncreasable)
     if (m_slewIncreasable != slewIncreasable)
     {
         m_slewIncreasable = slewIncreasable;
-        emit slewIncreasableChanged(slewIncreasable);
+        Q_EMIT slewIncreasableChanged(slewIncreasable);
     }
 }
 
@@ -75,7 +75,7 @@ void TelescopeLite::setSlewRateLabel(const QString &slewRateLabel)
     if (m_slewRateLabel != slewRateLabel)
     {
         m_slewRateLabel = slewRateLabel;
-        emit slewRateLabelChanged(slewRateLabel);
+        Q_EMIT slewRateLabelChanged(slewRateLabel);
     }
 }
 
@@ -84,7 +84,7 @@ void TelescopeLite::setDeviceName(const QString &deviceName)
     if (m_deviceName != deviceName)
     {
         m_deviceName = deviceName;
-        emit deviceNameChanged(deviceName);
+        Q_EMIT deviceNameChanged(deviceName);
     }
 }
 

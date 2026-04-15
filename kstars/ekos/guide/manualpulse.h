@@ -35,7 +35,7 @@ class ManualPulse : public QDialog, public Ui::ManualPulse
          */
         void setMountCoords(const SkyPoint &position);
 
-    signals:
+    Q_SIGNALS:
         void newSinglePulse(GuideDirection dir, int msecs, CaptureAfterPulses followWithCapture);
 
     private:

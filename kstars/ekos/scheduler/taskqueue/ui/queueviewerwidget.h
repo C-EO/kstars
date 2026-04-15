@@ -45,11 +45,11 @@ class QueueViewerWidget : public QWidget
         /** @brief Set the queue executor */
         void setQueueExecutor(QueueExecutor *executor);
 
-    public slots:
+    public Q_SLOTS:
         /** @brief Refresh the queue display */
         void refreshQueue();
 
-    private slots:
+    private Q_SLOTS:
         // Template and task management
         void onAddFromTemplate();
         void onTemplateSelected(TaskTemplate *tmpl);

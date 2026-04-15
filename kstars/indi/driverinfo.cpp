@@ -90,7 +90,7 @@ void DriverInfo::setServerState(bool inState)
     if (serverState == false)
         serverManager = nullptr;
 
-    emit deviceStateChanged();
+    Q_EMIT deviceStateChanged();
 }
 
 void DriverInfo::setClientState(bool inState)
@@ -103,7 +103,7 @@ void DriverInfo::setClientState(bool inState)
     if (clientState == false)
         clientManager = nullptr;
 
-    emit deviceStateChanged();
+    Q_EMIT deviceStateChanged();
 }
 
 void DriverInfo::addDevice(DeviceInfo *idv)

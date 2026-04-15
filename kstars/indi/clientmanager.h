@@ -116,7 +116,7 @@ class ClientManager : public QObject, public INDI::BaseClient
         QList<BlobManager *> blobManagers;
         ServerManager *sManager { nullptr };
 
-    signals:
+    Q_SIGNALS:
         // Client successfully connected to the server.
         void started();
         // Client failed to connect to the server.

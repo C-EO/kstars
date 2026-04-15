@@ -161,7 +161,7 @@ class Item : public QQuickItem
             if (m_color != color)
             {
                 m_color = color;
-                emit colorChanged();
+                Q_EMIT colorChanged();
                 update();
             }
         }
@@ -170,7 +170,7 @@ class Item : public QQuickItem
             return m_color;
         }
 
-    signals:
+    Q_SIGNALS:
         void colorChanged();
 
     private:

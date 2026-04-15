@@ -47,13 +47,13 @@ KSMessageBox::KSMessageBox() : QMessageBox()
     connect(this, &KSMessageBox::rejected, [this]()
     {
         m_ProgressTimer.stop();
-        emit newMessage(QJsonObject());
+        Q_EMIT newMessage(QJsonObject());
     });
 
     connect(this, &KSMessageBox::accepted, [this]()
     {
         m_ProgressTimer.stop();
-        emit newMessage(QJsonObject());
+        Q_EMIT newMessage(QJsonObject());
     });
 }
 
@@ -74,7 +74,7 @@ void KSMessageBox::error(const QString &message, const QString &title, quint32 t
     setupTimeout(timeout);
     open();
 
-    emit newMessage(createMessageObject());
+    Q_EMIT newMessage(createMessageObject());
 #endif
 }
 
@@ -95,7 +95,7 @@ void KSMessageBox::sorry(const QString &message, const QString &title, quint32 t
     setupTimeout(timeout);
     open();
 
-    emit newMessage(createMessageObject());
+    Q_EMIT newMessage(createMessageObject());
 #endif
 }
 
@@ -116,7 +116,7 @@ void KSMessageBox::info(const QString &message, const QString &title, quint32 ti
     setupTimeout(timeout);
     open();
 
-    emit newMessage(createMessageObject());
+    Q_EMIT newMessage(createMessageObject());
 
 
 #endif
@@ -200,7 +200,7 @@ void KSMessageBox::questionYesNo(const QString &message, const QString &title, q
 
     open();
 
-    emit newMessage(createMessageObject());
+    Q_EMIT newMessage(createMessageObject());
 }
 
 void KSMessageBox::warningContinueCancel(const QString &message, const QString &title, quint32 timeout,
@@ -230,7 +230,7 @@ void KSMessageBox::warningContinueCancel(const QString &message, const QString &
 
     open();
 
-    emit newMessage(createMessageObject());
+    Q_EMIT newMessage(createMessageObject());
 }
 
 void KSMessageBox::transient(const QString &message, const QString &title)

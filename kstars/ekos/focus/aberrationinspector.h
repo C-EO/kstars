@@ -106,7 +106,7 @@ class AberrationInspector : public QDialog, public Ui::aberrationInspectorDialog
                             const QVector < QPoint > &tileCenterOffset);
         ~AberrationInspector();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief mouse moved into table event. Used to show sensor graphic widget
          * @param row

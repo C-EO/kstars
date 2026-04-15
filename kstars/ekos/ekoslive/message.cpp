@@ -93,7 +93,7 @@ void Message::onConnected()
     m_PendingPropertiesTimer.start();
     sendConnection();
     sendProfiles();
-    emit connected();
+    Q_EMIT connected();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +110,7 @@ void Message::onDisconnected()
     if (isConnected() == false)
     {
         m_PendingPropertiesTimer.stop();
-        emit disconnected();
+        Q_EMIT disconnected();
     }
 }
 
@@ -144,7 +144,7 @@ void Message::onTextReceived(const QString &message)
     {
         qCInfo(KSTARS_EKOS) << "Received" << command << "from node" << node->url().toDisplayString()
                             << ". Emitting globalLogoutTriggered signal with URL.";
-        emit globalLogoutTriggered(node->url());
+        Q_EMIT globalLogoutTriggered(node->url());
         return;
     }
     else if (command == commands[SET_CLIENT_STATE])
@@ -1109,7 +1109,7 @@ void Message::processPolarCommands(const QString &command, const QJsonObject &pa
     }
     else if (command == commands[PAH_RESET_VIEW])
     {
-        emit resetPolarView();
+        Q_EMIT resetPolarView();
     }
     else if (command == commands[PAH_SET_CROSSHAIR])
     {
@@ -1428,7 +1428,7 @@ void Message::processOptionsCommands(const QString &command, const QJsonObject &
             Options::self()->setProperty(oneOption[QString("name")].toString().toLatin1(), oneOption[QString("value")].toVariant());
 
         Options::self()->save();
-        emit optionsUpdated();
+        Q_EMIT optionsUpdated();
     }
     else if (command == commands[OPTION_GET])
     {
@@ -3304,7 +3304,7 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
             }
         }
 
-        emit liveStackingActiveChanged(true);
+        Q_EMIT liveStackingActiveChanged(true);
         sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "started"}});
     }
     else if (command == commands[LIVESTACKER_STOP])
@@ -3340,7 +3340,7 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
             auto viewerTabs = m_LiveStackerViewer->tabs();
             if (!viewerTabs.isEmpty() && !viewerTabs.first().isNull())
                 viewerTabs.first()->stopProgrammatically();
-            emit liveStackingActiveChanged(false);
+            Q_EMIT liveStackingActiveChanged(false);
             sendResponse(commands[NEW_LIVESTACKER_STATE], QJsonObject{{"state", "stopped"}});
         }
     }
@@ -3367,7 +3367,7 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
         m_LiveStackerCurrentTarget.clear();
         m_LiveStackerCurrentFilter.clear();
 
-        emit liveStackingActiveChanged(false);
+        Q_EMIT liveStackingActiveChanged(false);
         if (m_LiveStackerViewer)
         {
             m_LiveStackerViewer->close();

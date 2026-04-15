@@ -27,7 +27,7 @@ class GuideTargetPlot: public QCustomPlot
         void connectGuider(Ekos::GuideInterface *guider);
         void resize(int w, int h);
 
-    public slots:
+    public Q_SLOTS:
         void handleVerticalPlotSizeChange();
         void handleHorizontalPlotSizeChange();
 
@@ -39,7 +39,7 @@ class GuideTargetPlot: public QCustomPlot
     protected:
         // virtual void resizeEvent(QResizeEvent *resize) override;
 
-    private slots:
+    private Q_SLOTS:
         void setAxisDelta(double ra, double de);
 
 

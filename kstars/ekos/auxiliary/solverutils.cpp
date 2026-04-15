@@ -197,12 +197,12 @@ void SolverUtils::solverDone()
         const bool success = m_StellarSolver->solvingDone() && !m_StellarSolver->failed();
         if (success)
             solution = m_StellarSolver->getSolution();
-        emit done(false, success, solution, elapsed);
+        Q_EMIT done(false, success, solution, elapsed);
     }
     else
     {
         const bool success = m_StellarSolver->extractionDone() && !m_StellarSolver->failed();
-        emit done(false, success, FITSImage::Solution(), elapsed);
+        Q_EMIT done(false, success, FITSImage::Solution(), elapsed);
     }
     if (!m_TemporaryFilename.isEmpty())
         QFile::remove(m_TemporaryFilename);
@@ -217,7 +217,7 @@ void SolverUtils::solverTimeout()
     abort();
 
     FITSImage::Solution empty;
-    emit done(true, false, empty, m_TimeoutMilliseconds / 1000.0);
+    Q_EMIT done(true, false, empty, m_TimeoutMilliseconds / 1000.0);
     if (!m_TemporaryFilename.isEmpty())
         QFile::remove(m_TemporaryFilename);
     m_TemporaryFilename.clear();

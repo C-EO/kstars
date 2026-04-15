@@ -21,7 +21,7 @@ class OpsWeatherSettings : public QFrame, public Ui::OpsWeatherSettings
         explicit OpsWeatherSettings();
         virtual ~OpsWeatherSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

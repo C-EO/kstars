@@ -134,14 +134,14 @@ KStarsData::~KStarsData()
 bool KStarsData::initialize()
 {
     //Load Time Zone Rules//
-    emit progressText(i18n("Reading time zone rules"));
+    Q_EMIT progressText(i18n("Reading time zone rules"));
     if (!readTimeZoneRulebook())
     {
         fatalErrorMessage("TZrules.dat");
         return false;
     }
 
-    emit progressText(
+    Q_EMIT progressText(
         i18n("Upgrade existing user city db to support geographic elevation."));
 
     QString dbfile = QDir(KSPaths::writableLocation(QStandardPaths::AppLocalDataLocation)).filePath("mycitydb.sqlite");
@@ -160,32 +160,32 @@ bool KStarsData::initialize()
             QSqlRecord r = fixcitydb.record("city");
             if (!r.contains("Elevation"))
             {
-                emit progressText(i18n("Adding \"Elevation\" column to city table."));
+                Q_EMIT progressText(i18n("Adding \"Elevation\" column to city table."));
 
                 QSqlQuery query(fixcitydb);
                 if (query.exec(
                             "alter table city add column Elevation real default -10;") ==
                         false)
                 {
-                    emit progressText(QString("failed to add Elevation column to city "
-                                              "table in mycitydb.sqlite: &1")
-                                      .arg(query.lastError().text()));
+                    Q_EMIT progressText(QString("failed to add Elevation column to city "
+                                                "table in mycitydb.sqlite: &1")
+                                        .arg(query.lastError().text()));
                 }
             }
             else
             {
-                emit progressText(i18n("City table already contains \"Elevation\"."));
+                Q_EMIT progressText(i18n("City table already contains \"Elevation\"."));
             }
         }
         else
         {
-            emit progressText(i18n("City table missing from database."));
+            Q_EMIT progressText(i18n("City table missing from database."));
         }
         fixcitydb.close();
     }
 
     //Load Cities//
-    emit progressText(i18n("Loading city data"));
+    Q_EMIT progressText(i18n("Loading city data"));
     if (!readCityData())
     {
         fatalErrorMessage("citydb.sqlite");
@@ -193,16 +193,16 @@ bool KStarsData::initialize()
     }
 
     //Initialize User Database//
-    emit progressText(i18n("Loading User Information"));
+    Q_EMIT progressText(i18n("Loading User Information"));
     m_ksuserdb.Initialize();
 
     //Initialize SkyMapComposite//
-    emit progressText(i18n("Loading sky objects"));
+    Q_EMIT progressText(i18n("Loading sky objects"));
     m_SkyComposite.reset(new SkyMapComposite());
     //Load Image URLs//
     //#ifndef Q_OS_ANDROID
     //On Android these 2 calls produce segfault. WARNING
-    emit progressText(i18n("Loading Image URLs"));
+    Q_EMIT progressText(i18n("Loading Image URLs"));
 
     // if (!readURLData("image_url.dat", SkyObjectUserdata::Type::image) &&
     //     !nonFatalErrorMessage("image_url.dat"))
@@ -305,7 +305,7 @@ void KStarsData::updateTime(GeoLocation *geo, const bool automaticDSTchange)
         //omit KSNumbers arg == just update Alt/Az coords // <-- Eh? -- asimha. Looks like this behavior / ideology has changed drastically.
         skyComposite()->update(&num);
 
-        emit skyUpdate(clock()->isManualMode());
+        Q_EMIT skyUpdate(clock()->isManualMode());
     }
 }
 
@@ -439,7 +439,7 @@ void KStarsData::setLocation(const GeoLocation &l)
             Options::setDST(key);
     }
 
-    emit geoChanged();
+    Q_EMIT geoChanged();
 }
 
 SkyObject *KStarsData::objectNamed(const QString &name)

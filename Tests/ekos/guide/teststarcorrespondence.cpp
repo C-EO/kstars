@@ -28,7 +28,7 @@ class TestStarCorrespondence : public QObject
         /** @short Destructor */
         ~TestStarCorrespondence() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
 };
 

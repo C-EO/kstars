@@ -40,7 +40,7 @@ class telescopeWizardProcess : public QDialog
         void establishLink();
         void Reset();
 
-    public slots:
+    public Q_SLOTS:
         void cancelCheck();
         void processNext();
         void processBack();

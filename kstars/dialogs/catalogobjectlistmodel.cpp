@@ -50,7 +50,7 @@ void CatalogObjectListModel::setObjects(std::vector<CatalogObject> objects)
 {
     beginResetModel();
     m_objects = std::move(objects);
-    emit endResetModel();
+    Q_EMIT endResetModel();
 }
 
 QVariant CatalogObjectListModel::headerData(int section, Qt::Orientation orientation,

@@ -168,7 +168,7 @@ DarkLibrary::DarkLibrary(QWidget *parent) : QDialog(parent)
             m_CurrentDefectMap->setProperty("HotPixelAggressiveness", aggresivenessHotSpin->value());
             m_CurrentDefectMap->setProperty("ColdPixelAggressiveness", aggresivenessColdSpin->value());
             m_CurrentDefectMap->filterPixels();
-            emit newFrame(m_DarkView);
+            Q_EMIT newFrame(m_DarkView);
         }
     });
     connect(resetMapParametersB, &QPushButton::clicked, this, [this]()
@@ -334,9 +334,9 @@ bool DarkLibrary::findDarkFrame(ISD::CameraChip *m_TargetChip, double duration, 
     }
 
     if (fabs(bestCandidate["duration"].toDouble() - duration) > 3)
-        emit i18n("Using available dark frame with %1 seconds exposure. Please take a dark frame with %1 seconds exposure for more accurate results.",
-                  QString::number(bestCandidate["duration"].toDouble(), 'f', 1),
-                  QString::number(duration, 'f', 1));
+        Q_EMIT i18n("Using available dark frame with %1 seconds exposure. Please take a dark frame with %1 seconds exposure for more accurate results.",
+                    QString::number(bestCandidate["duration"].toDouble(), 'f', 1),
+                    QString::number(duration, 'f', 1));
 
     QString filename = bestCandidate["filename"].toString();
 
@@ -344,7 +344,7 @@ bool DarkLibrary::findDarkFrame(ISD::CameraChip *m_TargetChip, double duration, 
     QDateTime frameTime = bestCandidate["timestamp"].toDateTime();
     if (frameTime.daysTo(QDateTime::currentDateTime()) > Options::darkLibraryDuration())
     {
-        emit i18n("Dark frame %s is expired. Please create new master dark.", filename);
+        Q_EMIT i18n("Dark frame %s is expired. Please create new master dark.", filename);
         return false;
     }
 
@@ -367,7 +367,7 @@ bool DarkLibrary::findDarkFrame(ISD::CameraChip *m_TargetChip, double duration, 
     }
 
     // Remove bad dark frame
-    emit newLog(i18n("Removing bad dark frame file %1", filename));
+    Q_EMIT newLog(i18n("Removing bad dark frame file %1", filename));
     m_CachedDarkFrames.remove(filename);
     QFile::remove(filename);
     KStarsData::Instance()->userdb()->DeleteDarkFrame(filename);
@@ -477,7 +477,7 @@ bool DarkLibrary::findDefectMap(ISD::CameraChip *m_TargetChip, double duration, 
     else
     {
         // Remove bad dark frame
-        emit newLog(i18n("Failed to load defect map %1", defectFilename));
+        Q_EMIT newLog(i18n("Failed to load defect map %1", defectFilename));
         return false;
     }
 }
@@ -497,7 +497,7 @@ bool DarkLibrary::cacheDefectMapFromFile(const QString &key, const QString &file
         return true;
     }
 
-    emit newLog(i18n("Failed to load defect map file %1", filename));
+    Q_EMIT newLog(i18n("Failed to load defect map file %1", filename));
     return false;
 }
 
@@ -517,7 +517,7 @@ bool DarkLibrary::cacheDarkFrameFromFile(const QString &filename)
     }
     else
     {
-        emit newLog(i18n("Failed to load dark frame file %1", filename));
+        Q_EMIT newLog(i18n("Failed to load dark frame file %1", filename));
     }
 
     return rc.result();
@@ -1283,7 +1283,7 @@ void DarkLibrary::initView()
     darkWidget->setLayout(vlayout);
     connect(m_DarkView.get(), &DarkView::loaded, this, [this]()
     {
-        emit newImage(m_DarkView->imageData());
+        Q_EMIT newImage(m_DarkView->imageData());
     });
 }
 
@@ -1385,7 +1385,7 @@ void DarkLibrary::generateMasterFrame(const QSharedPointer<FITSData> &data, cons
             break;
     }
 
-    emit newImage(data);
+    Q_EMIT newImage(data);
     // Reset Master Buffer
     m_DarkMasterBuffer.assign(m_DarkMasterBuffer.size(), 0);
 
@@ -1655,7 +1655,7 @@ void DarkLibrary::setupOpticalTrainManager()
         ProfileSettings::Instance()->setOneSetting(ProfileSettings::DarkLibraryOpticalTrain,
                 OpticalTrainManager::Instance()->id(opticalTrainCombo->itemText(index)));
         refreshOpticalTrain();
-        emit trainChanged();
+        Q_EMIT trainChanged();
     });
 }
 
@@ -1678,7 +1678,7 @@ void DarkLibrary::refreshOpticalTrain()
         // If train not found, select the first one available.
         if (OpticalTrainManager::Instance()->exists(id) == false)
         {
-            emit newLog(i18n("Optical train doesn't exist for id %1", id));
+            Q_EMIT newLog(i18n("Optical train doesn't exist for id %1", id));
             id = OpticalTrainManager::Instance()->id(opticalTrainCombo->itemText(0));
         }
 
@@ -1922,7 +1922,7 @@ void DarkLibrary::setAllSettings(const QVariantMap &settings)
         m_GlobalSettings[key] = value;
     }
 
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
 
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
@@ -2054,7 +2054,7 @@ void DarkLibrary::syncSettings()
 ///////////////////////////////////////////////////////////////////////////////////////////
 void DarkLibrary::settleSettings()
 {
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     Options::self()->save();
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
@@ -2088,4 +2088,3 @@ QJsonObject DarkLibrary::getDefectSettings()
 
 
 }
-

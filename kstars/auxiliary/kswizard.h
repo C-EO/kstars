@@ -92,7 +92,7 @@ class KSWizard : public QDialog
             return Geo;
         }
 
-    private slots:
+    private Q_SLOTS:
         void slotNextPage();
         void slotPrevPage();
 

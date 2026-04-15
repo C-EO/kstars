@@ -101,10 +101,10 @@ void telescopeWizardProcess::cancelCheck(void)
         case LOCAL_P:
         case PORT_P:
             if (KMessageBox::warningContinueCancel(0, i18n("Are you sure you want to cancel?")) == KMessageBox::Continue)
-                emit rejected();
+                Q_EMIT rejected();
             break;
         default:
-            emit rejected();
+            Q_EMIT rejected();
             break;
     }
 }

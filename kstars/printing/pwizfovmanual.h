@@ -25,7 +25,7 @@ class PWizFovManualUI : public QFrame, public Ui::PWizFovManual
               */
         explicit PWizFovManualUI(PrintingWizard *wizard, QWidget *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         /**
               * \brief Slot: enter manual FOV capture mode.
               */

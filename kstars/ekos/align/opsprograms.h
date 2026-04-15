@@ -26,11 +26,11 @@ class OpsPrograms : public QWidget, public Ui::OpsPrograms
         virtual ~OpsPrograms() override = default;
 
     protected:
-    private slots:
+    private Q_SLOTS:
         void loadDefaultPaths(int option);
         void slotApply();
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

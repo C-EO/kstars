@@ -49,13 +49,13 @@ class FileDownloader : public QObject
             m_verifyFile = verifyFile;
         }
 
-    signals:
+    Q_SIGNALS:
         void downloaded();
         void canceled();
         void error(const QString &errorString);
         void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
 
-    private slots:
+    private Q_SLOTS:
         void dataFinished(QNetworkReply *pReply);
         void dataReady();
         void slotError();

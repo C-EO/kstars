@@ -24,7 +24,7 @@ class PolarisHourAngle : public QDialog, public Ui::PolarisHourAngle
     protected:
         void paintEvent(QPaintEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
         void onTimeUpdated(QDateTime newDateTime);
 
     private:
@@ -34,4 +34,3 @@ class PolarisHourAngle : public QDialog, public Ui::PolarisHourAngle
         std::unique_ptr<QPixmap> m_reticle12;
         std::unique_ptr<QPixmap> m_reticle24;
 };
-

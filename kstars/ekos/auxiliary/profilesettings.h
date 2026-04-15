@@ -71,7 +71,7 @@ class ProfileSettings : public QObject
             return m_Profile->id;
         }
 
-    signals:
+    Q_SIGNALS:
         void updated();
 
     private:

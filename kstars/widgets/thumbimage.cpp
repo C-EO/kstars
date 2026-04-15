@@ -186,7 +186,7 @@ void ThumbImage::mouseMoveEvent(QMouseEvent *e)
                 CropRect->moveBottom(height());
         }
 
-        emit cropRegionModified();
+        Q_EMIT cropRegionModified();
         update();
     }
 }

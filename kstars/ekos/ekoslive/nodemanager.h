@@ -72,22 +72,22 @@ class NodeManager : public QObject
         bool isTokenNearlyExpired(int bufferSeconds = 300) const;
         void clearAuthentication();
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
         void authenticationError(QString);
 
-    public slots:
+    public Q_SLOTS:
         void authenticate();
         void disconnectNodes();
 
         void setConnected();
         void setDisconnected();
 
-    protected slots:
+    protected Q_SLOTS:
         void onResult(QNetworkReply *reply);
 
-    private slots:
+    private Q_SLOTS:
         void retryAuthentication();
 
     private:

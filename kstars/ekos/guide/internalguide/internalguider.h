@@ -136,16 +136,16 @@ class InternalGuider : public GuideInterface
         void setDarkGuideTimerInterval();
         void setTimer(std::unique_ptr<QTimer> &timer, Seconds seconds);
 
-    public slots:
+    public Q_SLOTS:
         void setDECSwap(bool enable);
 
 
-    protected slots:
+    protected Q_SLOTS:
         void trackingStarSelected(int x, int y);
         void setDitherSettled();
         void darkGuide();
 
-    signals:
+    Q_SIGNALS:
         void newMultiPulse(GuideDirection ra_dir, int ra_msecs, GuideDirection dec_dir, int dec_msecs,
                            CaptureAfterPulses followWithCapture);
         void newSinglePulse(GuideDirection dir, int msecs, CaptureAfterPulses followWithCapture);

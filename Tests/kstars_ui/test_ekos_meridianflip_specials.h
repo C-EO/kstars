@@ -20,7 +20,7 @@ class TestEkosMeridianFlipSpecials : public TestEkosMeridianFlipBase
         explicit TestEkosMeridianFlipSpecials(QObject *parent = nullptr);
         explicit TestEkosMeridianFlipSpecials(QString guider, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
 
         /** @brief Test a meridian flip where a guiding deviation aborts a capture and subsequently a flip
          * is executed. It is expected that capturing is restarted after the flip has been executed successfully.

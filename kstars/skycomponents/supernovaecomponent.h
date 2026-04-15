@@ -49,11 +49,11 @@ class SupernovaeComponent : public QObject, public ListComponent
         /** @note Basically copy pasted from StarComponent::zoomMagnitudeLimit() */
         static float zoomMagnitudeLimit();
 
-    public slots:
+    public Q_SLOTS:
         /** @short This initiates updating of the data file */
         void slotTriggerDataFileUpdate();
 
-    protected slots:
+    protected Q_SLOTS:
         void downloadReady();
         void downloadError(const QString &errorString);
 

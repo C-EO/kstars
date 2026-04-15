@@ -44,10 +44,10 @@ class OpsHIPS : public QFrame, public Ui::OpsHIPS
         explicit OpsHIPS();
         virtual ~OpsHIPS() override = default;
 
-    public slots:
+    public Q_SLOTS:
         void slotRefresh();
 
-    protected slots:
+    protected Q_SLOTS:
         void downloadReady();
         void downloadError(const QString &errorString);
         void previewReady();

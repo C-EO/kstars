@@ -83,7 +83,7 @@ class DetailDialog : public KPageDialog
             return Thumbnail.get();
         }
 
-    public slots:
+    public Q_SLOTS:
         /** @short Slot to add this object to the observing list. */
         void addToObservingList();
 

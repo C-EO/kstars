@@ -29,7 +29,7 @@ class OpsAstrometry : public QWidget, public Ui::OpsAstrometry
     protected:
         void showEvent(QShowEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
         void slotUpdatePosition();
         void slotUpdateScale();
         void slotApply();

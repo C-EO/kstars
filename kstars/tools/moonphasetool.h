@@ -42,7 +42,7 @@ class MoonPhaseTool : public QDialog
         explicit MoonPhaseTool(QWidget *p);
 
         /*
-            public slots:
+            public Q_SLOTS:
 
             void slotUpdate();
             void slotSetMonth();

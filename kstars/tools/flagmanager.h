@@ -48,7 +48,7 @@ class FlagManager : public QDialog
 
         void deleteFlagItem(int flagIdx);
 
-    public slots:
+    public Q_SLOTS:
         /** @short Verify coordinates and add a flag */
         void slotAddFlag();
 
@@ -61,7 +61,7 @@ class FlagManager : public QDialog
         /** @brief Center the selected flag in the telescope. */
         void slotCenterTelescope();
 
-    private slots:
+    private Q_SLOTS:
         void slotSaveChanges();
         void slotSetShownFlag(QModelIndex idx);
 

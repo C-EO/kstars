@@ -297,13 +297,13 @@ void MountSimulator::updatePosition()
         // slew finished
         m_position = m_targetPosition;
         m_pierside = m_targetPierside;
-        emit newCoords(m_position, m_pierside, calcHA(m_position));
+        Q_EMIT newCoords(m_position, m_pierside, calcHA(m_position));
         setStatus(ISD::Mount::MOUNT_TRACKING);
         qCInfo(KSTARS_EKOS_TEST) << "Mount tracking.";
     }
 
     // in any case, report the current position
-    emit newCoords(m_position, m_pierside, calcHA(m_position));
+    Q_EMIT newCoords(m_position, m_pierside, calcHA(m_position));
 }
 
 void MountSimulator::init(const SkyPoint &position)
@@ -343,14 +343,14 @@ void MountSimulator::Sync(const SkyPoint &position)
     if (m_pierside == ISD::Mount::PIER_UNKNOWN)
         m_pierside = calcPierSide(position);
 
-    emit newCoords(m_position, m_pierside, calcHA(position));
+    Q_EMIT newCoords(m_position, m_pierside, calcHA(position));
     setStatus(ISD::Mount::MOUNT_TRACKING);
 }
 
 void MountSimulator::setStatus(ISD::Mount::Status value)
 {
     if (m_status != value)
-        emit newStatus(value);
+        Q_EMIT newStatus(value);
 
     m_status = value;
 }

@@ -33,7 +33,7 @@ class AstrometryParser : public QObject
         virtual bool startSolver(const QString &filename, const QStringList &args, bool generated = true) = 0;
         virtual bool stopSolver()                                                                         = 0;
 
-    signals:
+    Q_SIGNALS:
         void solverFinished(double orientation, double ra, double dec, double pixscale, bool eastToTheRight);
         void solverFailed();
 };

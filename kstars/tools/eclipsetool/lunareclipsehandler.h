@@ -75,7 +75,7 @@ class LunarEclipseEvent : public EclipseEvent
             return false;    // false for now!
         }
 
-    public slots:
+    public Q_SLOTS:
         void slotShowDetails() override;
 
     private:

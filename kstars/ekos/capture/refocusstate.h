@@ -168,7 +168,7 @@ class RefocusState : public QObject
             m_ForceInSeqAF = newForceInSeqAF;
         }
 
-    signals:
+    Q_SIGNALS:
         // new log text for the module log window
         void newLog(const QString &text);
 

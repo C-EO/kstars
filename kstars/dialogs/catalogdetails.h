@@ -85,7 +85,7 @@ class CatalogDetails : public QDialog
          */
         CatalogObjectListModel m_model;
 
-    private slots:
+    private Q_SLOTS:
         /** Reload the catalog meta info display. */
         void reload_catalog();
 

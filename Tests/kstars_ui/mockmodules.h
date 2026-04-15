@@ -107,14 +107,14 @@ class MockFocus : public QObject
         void setStatus(Ekos::FocusState status)
         {
             m_Status = status;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
 
         static const QString mockPath;
 
-    public slots:
+    public Q_SLOTS:
 
-    signals:
+    Q_SIGNALS:
         void newStatus(Ekos::FocusState state, const QString &trainname = "MockCamera");
     private:
         Ekos::FocusState m_Status = Ekos::FOCUS_IDLE;
@@ -182,29 +182,29 @@ class MockMount : public QObject
 
         void sendReady()
         {
-            emit ready();
+            Q_EMIT ready();
         }
         void setStatus(ISD::Mount::Status status)
         {
             m_Status = status;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
         void setParkStatus(ISD::ParkStatus parkStatus)
         {
             m_ParkStatus = parkStatus;
-            emit newParkStatus(parkStatus);
+            Q_EMIT newParkStatus(parkStatus);
         }
 
         double lastRaHoursSlew = 0;
         double lastDecDegreesSlew = 0;
         static const QString mockPath;
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::Mount::Status status);
         void ready();
         void newParkStatus(ISD::ParkStatus status);
 
-    public slots:
+    public Q_SLOTS:
         void setMeridianFlipValues(bool activate, double hours)
         {
             Q_UNUSED(activate);
@@ -274,18 +274,18 @@ class MockCapture : public QObject
 
         void sendReady()
         {
-            emit ready();
+            Q_EMIT ready();
         }
         void setStatus(Ekos::CaptureState status)
         {
             m_Status = status;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
         QString m_fileURL;
 
         static const QString mockPath;
 
-    public slots:
+    public Q_SLOTS:
 
         Q_SCRIPTABLE Q_NOREPLY void abort(QString train = "")
         {
@@ -300,7 +300,7 @@ class MockCapture : public QObject
             return(m_opticalTrain);
         }
 
-    signals:
+    Q_SIGNALS:
         Q_SCRIPTABLE void newStatus(Ekos::CaptureState status, const QString &trainname = "MockCamera", int cameraID = 0);
         Q_SCRIPTABLE void captureComplete(const QVariantMap &metadata);
         void ready();
@@ -335,12 +335,12 @@ class MockAlign : public QObject
         void setStatus(Ekos::AlignState status)
         {
             m_Status = status;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
 
         static const QString mockPath;
 
-    public slots:
+    public Q_SLOTS:
         Q_SCRIPTABLE Q_NOREPLY void abort()
         {
             fprintf(stderr, "%d @@@MockAlign::abort()\n", __LINE__);
@@ -380,7 +380,7 @@ class MockAlign : public QObject
             return true;
         }
 
-    signals:
+    Q_SIGNALS:
         void newStatus(Ekos::AlignState state);
 
     private:
@@ -422,7 +422,7 @@ class MockGuide : public QObject
         void setStatus(Ekos::GuideState status)
         {
             m_Status = status;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
         bool connected { false };
 
@@ -431,7 +431,7 @@ class MockGuide : public QObject
 
         static const QString mockPath;
 
-    public slots:
+    public Q_SLOTS:
         Q_SCRIPTABLE Q_NOREPLY void clearCalibration() {}
         Q_SCRIPTABLE bool guide()
         {
@@ -445,7 +445,7 @@ class MockGuide : public QObject
             return true;
         }
 
-    signals:
+    Q_SIGNALS:
         void newStatus(Ekos::GuideState status);
 
     private:
@@ -504,27 +504,27 @@ class MockEkos : public QObject
         void setEkosStatus(Ekos::CommunicationStatus status)
         {
             m_EkosStatus = status;
-            emit ekosStatusChanged(status);
+            Q_EMIT ekosStatusChanged(status);
         }
         void setIndiStatus(Ekos::CommunicationStatus status)
         {
             m_INDIStatus = status;
-            emit indiStatusChanged(status);
+            Q_EMIT indiStatusChanged(status);
         }
         void addModule(const QString &name)
         {
-            emit newModule(name);
+            Q_EMIT newModule(name);
         }
 
         static const QString mockPath;
 
-    signals:
+    Q_SIGNALS:
         void ekosStatusChanged(Ekos::CommunicationStatus status);
         void indiStatusChanged(Ekos::CommunicationStatus status);
         void newModule(const QString &name);
 
     protected:
-    public slots:
+    public Q_SLOTS:
         Q_SCRIPTABLE Q_NOREPLY void connectDevices()
         {
             fprintf(stderr, "%d @@@MockEkos::connectDevices\n", __LINE__);
@@ -535,7 +535,7 @@ class MockEkos : public QObject
             fprintf(stderr, "%d @@@MockEkos::disconnectDevices\n", __LINE__);
             setIndiStatus(Ekos::Idle);
         }
-    private slots:
+    private Q_SLOTS:
     private:
         Ekos::CommunicationStatus m_EkosStatus {Ekos::Idle};
         Ekos::CommunicationStatus m_INDIStatus {Ekos::Idle};

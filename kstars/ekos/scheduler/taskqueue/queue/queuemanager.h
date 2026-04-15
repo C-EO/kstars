@@ -123,7 +123,7 @@ class QueueManager : public QObject
          */
         bool addDelayTask(int delaySeconds = 60);
 
-    signals:
+    Q_SIGNALS:
         void itemAdded(QueueItem *item, int index);
         void itemRemoved(QueueItem *item, int index);
         void itemMoved(int fromIndex, int toIndex);

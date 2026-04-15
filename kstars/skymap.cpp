@@ -360,9 +360,9 @@ SkyMap::~SkyMap()
 void SkyMap::showFocusCoords()
 {
     if (focusObject() && Options::isTracking())
-        emit objectChanged(focusObject());
+        Q_EMIT objectChanged(focusObject());
     else
-        emit positionChanged(focus());
+        Q_EMIT positionChanged(focus());
 }
 
 void SkyMap::updateInfoBoxes()
@@ -484,7 +484,7 @@ void SkyMap::slotCenter()
     foc->EquatorialToHorizontal(data->lst(), data->geo()->lat());
 
     //display coordinates in statusBar
-    emit mousePointChanged(foc);
+    Q_EMIT mousePointChanged(foc);
     showFocusCoords(); //update FocusBox
 }
 
@@ -901,7 +901,7 @@ void SkyMap::slotRemoveCustomObject()
     CatalogsDB::DBManager manager{ CatalogsDB::dso_db_path() };
     manager.remove_object(cat.id, object->getObjectId());
 
-    emit removeSkyObject(object);
+    Q_EMIT removeSkyObject(object);
     data->skyComposite()->removeFromNames(object);
     data->skyComposite()->removeFromLists(object);
     data->skyComposite()->reloadDeepSky();
@@ -1029,7 +1029,7 @@ void SkyMap::setDestination(const dms &ra, const dms &dec)
 {
     destination()->set(ra, dec);
     destination()->EquatorialToHorizontal(data->lst(), data->geo()->lat());
-    emit destinationChanged();
+    Q_EMIT destinationChanged();
 }
 
 void SkyMap::setDestinationAltAz(const dms &alt, const dms &az, bool altIsRefracted)
@@ -1045,7 +1045,7 @@ void SkyMap::setDestinationAltAz(const dms &alt, const dms &az, bool altIsRefrac
     }
     destination()->setAz(az);
     destination()->HorizontalToEquatorialNow();
-    emit destinationChanged();
+    Q_EMIT destinationChanged();
 }
 
 void SkyMap::setClickedPoint(const SkyPoint *f)
@@ -1207,7 +1207,7 @@ void SkyMap::setZoomFactor(double factor)
 {
     Options::setZoomFactor(KSUtils::clamp(factor, MINZOOM, MAXZOOM));
     forceUpdate();
-    emit zoomChanged();
+    Q_EMIT zoomChanged();
 }
 
 // force a new calculation of the skymap (used instead of update(), which may skip the redraw)

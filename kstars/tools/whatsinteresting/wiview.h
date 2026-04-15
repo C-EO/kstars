@@ -53,7 +53,7 @@ class WIView : public QWidget
             return m_BaseView;
         }
 
-    public slots:
+    public Q_SLOTS:
 
         /**
          * @brief public slot - Act upon signal emitted when category of sky-object is selected

@@ -26,9 +26,9 @@ class HIPSRenderer : public QObject
         void renderRec(bool allsky, int level, int pix, QImage *pDest);
         bool renderPix(bool allsky, int level, int pix, QImage *pDest);
 
-    signals:
+    Q_SIGNALS:
 
-    public slots:
+    public Q_SLOTS:
 
     private:
         int m_blocks { 0 };

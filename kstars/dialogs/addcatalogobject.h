@@ -58,7 +58,7 @@ class AddCatalogObject : public QDialog
         /** Guess the contents of the form by parsing the supplied text. */
         void guess_form_contents_from_text(QString text);
 
-    private slots:
+    private Q_SLOTS:
         /** Overload of the above that prompts for the text using an input box. */
         void guess_form_contents_from_text();
 };

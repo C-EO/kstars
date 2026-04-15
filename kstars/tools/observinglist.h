@@ -192,7 +192,7 @@ class ObservingList : public QDialog
 
         QSharedPointer<SkyObject> findObject(const SkyObject *o, bool session = false);
 
-    public slots:
+    public Q_SLOTS:
         /** @short add a new object to list
                 *@p o pointer to the object to add to the list
                 *@p session flag toggle adding the object to the session list
@@ -362,7 +362,7 @@ class ObservingList : public QDialog
              */
         void slotClearList();
 
-    protected slots:
+    protected Q_SLOTS:
         void slotClose();
         void downloadReady(bool success);
 

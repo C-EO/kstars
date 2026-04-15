@@ -109,7 +109,7 @@ class ImagingPlanner : public QDialog
 
         bool eventFilter(QObject *obj, QEvent *event) override;
 
-    public slots:
+    public Q_SLOTS:
         void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
         void setSelection(int flag, bool enabled);
 
@@ -126,7 +126,7 @@ class ImagingPlanner : public QDialog
         void reallyCenterOnSkymap();
         void takeScreenshot();
 
-    protected slots:
+    protected Q_SLOTS:
         void slotClose();
         void searchAstrobin();
         void searchWikipedia();
@@ -136,14 +136,14 @@ class ImagingPlanner : public QDialog
         void recompute();
         void sorry(const QString &message);
 
-    signals:
+    Q_SIGNALS:
         void popupSorry(const QString &message);
         void addRow(QList<QStandardItem *> itemList);
 
     protected:
         void showEvent(QShowEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
         void userNotesEditFinished();
         void keywordEditFinished();
         void loadImagedFile();
@@ -278,7 +278,7 @@ class ImagingPlanner : public QDialog
         QImage m_ScreenShotImage;
         void extractImage();
 
-    public slots:
+    public Q_SLOTS:
         void captureRegion(const QImage &screenshot);
 
 };
@@ -293,5 +293,3 @@ class ImagingPlannerPopup : public QMenu
         void init(ImagingPlanner *planner, const QStringList &names,
                   const bool *imaged, const bool *picked, const bool *ignored);
 };
-
-

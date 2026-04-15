@@ -229,7 +229,7 @@ class MeridianFlipState : public QObject
             m_hasCaptureInterface = present;
         }
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Slot for receiving an update of the capture status
          */
@@ -253,7 +253,7 @@ class MeridianFlipState : public QObject
          */
         void updateTelescopeCoord(const SkyPoint &position, ISD::Mount::PierSide pierSide, const dms &ha);
 
-    signals:
+    Q_SIGNALS:
         // mount meridian flip status update event
         void newMountMFStatus(MeridianFlipMountState status);
         // Communicate a new meridian flip mount status message

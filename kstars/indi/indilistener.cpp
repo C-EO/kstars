@@ -134,7 +134,7 @@ void INDIListener::processDevice(DeviceInfo *dv)
     }
 
     m_Devices.append(std::move(gd));
-    emit newDevice(m_Devices.last());
+    Q_EMIT newDevice(m_Devices.last());
 
 }
 
@@ -149,7 +149,7 @@ void INDIListener::removeDevice(const QString &deviceName)
             // Remove from list first
             m_Devices.removeOne(oneDevice);
             // Then emit a signal to inform subscribers that this device is removed.
-            emit deviceRemoved(oneDevice);
+            Q_EMIT deviceRemoved(oneDevice);
             return;
         }
     }

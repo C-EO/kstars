@@ -47,5 +47,5 @@ void SkyObjDescription::fileDownloaded(QNetworkReply *reply)
         }
     }
     reply->deleteLater();
-    emit downloaded();
+    Q_EMIT downloaded();
 }

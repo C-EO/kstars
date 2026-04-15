@@ -473,7 +473,7 @@ bool FITSStack::stack()
             QVector<LiveStackFile> subs { m_StackImageData[i].sub };
             QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::WaitStack,
                                                 LSStatus::LSStatusOK) };
-            emit updateStackMon(subs, infos);
+            Q_EMIT updateStackMon(subs, infos);
 
             // Calibrate sub
             if (!m_StackImageData[i].isCalibrated)
@@ -528,7 +528,7 @@ bool FITSStack::stack()
                 QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::Aligned,
                                                     ok ? LSStatus::LSStatusOK : LSStatus::LSStatusError, extraData) };
                 QVector<LiveStackFile> subs { m_StackImageData[i].sub };
-                emit updateStackMon(subs, infos);
+                Q_EMIT updateStackMon(subs, infos);
             }
         }
         // Stack the aligned subs
@@ -578,7 +578,7 @@ bool FITSStack::stackn()
             QVector<LiveStackFile> subs { m_StackImageData[i].sub };
             QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::WaitStack,
                                                 LSStatus::LSStatusOK) };
-            emit updateStackMon(subs, infos);
+            Q_EMIT updateStackMon(subs, infos);
 
             // Calibrate sub
             if (!m_StackImageData[i].isCalibrated)
@@ -633,7 +633,7 @@ bool FITSStack::stackn()
                 QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::Aligned,
                                                     ok ? LSStatus::LSStatusOK : LSStatus::LSStatusError, extraData) };
                 QVector<LiveStackFile> subs { m_StackImageData[i].sub };
-                emit updateStackMon(subs, infos);
+                Q_EMIT updateStackMon(subs, infos);
             }
         }
         // Stack the aligned subs
@@ -843,7 +843,7 @@ bool FITSStack::calibrateSub(const LiveStackFile &subFile, cv::Mat &sub)
     QVector<LiveStackFile> subs { subFile };
     QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::Calibrated,
                                         (ok) ? LSStatus::LSStatusOK : LSStatus::LSStatusError, extraData) };
-    emit updateStackMon(subs, infos);
+    Q_EMIT updateStackMon(subs, infos);
     return ok;
 }
 
@@ -934,7 +934,7 @@ bool FITSStack::correctSub(const LiveStackFile &subFile, cv::Mat &sub)
     QVector<LiveStackFile> subs { subFile };
     LSStatus status = (!ok) ? LSStatus::LSStatusError : (workToDo) ? LSStatus::LSStatusOK : LSStatus::LSStatusNA;
     QVector<LiveStackStageInfo> infos { LiveStackStageInfo::fromNow(-1, LSStage::Correction, status, extraData) };
-    emit updateStackMon(subs, infos);
+    Q_EMIT updateStackMon(subs, infos);
     return ok;
 }
 
@@ -1055,7 +1055,7 @@ bool FITSStack::stackSubs(const bool initial, float &totalWeight, cv::Mat &hitMa
             infos << LiveStackStageInfo::fromNow(-1, LSStage::Stacked,
                                                  ok ? LSStatus::LSStatusOK : LSStatus::LSStatusError, extraData);
         }
-        emit updateStackMon(subs, infos);
+        Q_EMIT updateStackMon(subs, infos);
     }
     return ok;
 }

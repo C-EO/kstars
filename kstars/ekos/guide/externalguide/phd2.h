@@ -219,7 +219,7 @@ class PHD2 : public GuideInterface
             currentCameraIsNotInEkos = enable;
         }
 
-    private slots:
+    private Q_SLOTS:
 
         void readPHD2();
         void displayError(QAbstractSocket::SocketError socketError);

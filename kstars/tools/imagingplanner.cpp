@@ -1981,7 +1981,7 @@ bool ImagingPlanner::addCatalogItem(const KSAlmanac &ksal, const QString &name, 
     }
 
     // Can't do UI in this thread, must move back to the UI thread.
-    emit addRow(itemList);
+    Q_EMIT addRow(itemList);
     return true;
 }
 
@@ -3778,7 +3778,7 @@ void ImagingPlanner::loadCatalogFromFile(QString path, bool reset)
     int numMissingImage = 0, numWithImage = 0;
     if (!inputFile.exists())
     {
-        emit popupSorry(i18n("Sorry, catalog file doesn't exist: \"%1\"", path));
+        Q_EMIT popupSorry(i18n("Sorry, catalog file doesn't exist: \"%1\"", path));
         return;
     }
     QStringList objectNames;
@@ -3914,7 +3914,7 @@ void ImagingPlanner::loadCatalogFromFile(QString path, bool reset)
     }
     else
     {
-        emit popupSorry(i18n("Sorry, couldn't open file: \"%1\"", path));
+        Q_EMIT popupSorry(i18n("Sorry, couldn't open file: \"%1\"", path));
     }
 }
 

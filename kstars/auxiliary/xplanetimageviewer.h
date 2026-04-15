@@ -50,13 +50,13 @@ class XPlanetImageLabel : public QFrame
         void invertPixels();
         void refreshImage();
 
-    public slots:
+    public Q_SLOTS:
         void wheelEvent(QWheelEvent *e) override;
         void mousePressEvent(QMouseEvent *e) override;
         void mouseReleaseEvent(QMouseEvent *e) override;
         void mouseMoveEvent(QMouseEvent *e) override;
 
-    signals:
+    Q_SIGNALS:
         void zoomIn();
         void zoomOut();
         void changePosition(QPoint);
@@ -191,7 +191,7 @@ class XPlanetImageViewer : public QDialog
         QTimer *m_XPlanetTimer {nullptr};
 
 
-    private slots:
+    private Q_SLOTS:
 
         /**
          * Display the downloaded image.  Resize the window to fit the image,  If the image is

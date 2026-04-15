@@ -98,7 +98,7 @@ class MountModel : public QDialog, public Ui::mountModel
              */
         void getFormattedCoords(double ra, double dec, QString &ra_str, QString &dec_str);
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &);
         void aborted();
 

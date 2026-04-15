@@ -40,7 +40,7 @@ class StarHopperDialog : public QDialog, public Ui::StarHopperDialog
          */
         void starHop(const SkyPoint &startHop, const SkyPoint &stopHop, float fov, float maglim);
 
-    private slots:
+    private Q_SLOTS:
         void slotNext();
         void slotGoto();
         void slotDetails();

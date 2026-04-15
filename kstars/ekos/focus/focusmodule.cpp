@@ -450,7 +450,7 @@ void FocusModule::syncCameraInfo(const char* devicename)
 void FocusModule::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void FocusModule::appendLogText(const QString &logtext)
@@ -460,7 +460,7 @@ void FocusModule::appendLogText(const QString &logtext)
 
     qCInfo(KSTARS_EKOS_FOCUS) << logtext;
 
-    emit newLog(logtext);
+    Q_EMIT newLog(logtext);
 }
 
 void FocusModule::appendFocusLogText(const QString &lines)

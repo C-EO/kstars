@@ -32,7 +32,7 @@ void BlobManager::serverDisconnected(int exit_code)
 void BlobManager::updateProperty(INDI::Property prop)
 {
     if (prop.getType() == INDI_BLOB)
-        emit propertyUpdated(prop);
+        Q_EMIT propertyUpdated(prop);
 }
 
 void BlobManager::newDevice(INDI::BaseDevice device)
@@ -43,7 +43,7 @@ void BlobManager::newDevice(INDI::BaseDevice device)
         setBLOBMode(B_ONLY, m_Device.toLatin1().constData(), m_Property.toLatin1().constData());
         // enable Direct Blob Access for faster BLOB loading.
         enableDirectBlobAccess(m_Device.toLatin1().constData(), m_Property.toLatin1().constData());
-        emit connected();
+        Q_EMIT connected();
     }
 }
 

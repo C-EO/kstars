@@ -391,7 +391,7 @@ class Manager : public QDialog, public Ui::Manager
          */
         Q_SCRIPTABLE void acceptPortSelection();
 
-    signals:
+    Q_SIGNALS:
         // Have to use full Ekos::CommunicationStatus for DBus signal to work
         void ekosStatusChanged(Ekos::CommunicationStatus status);
         void indiStatusChanged(Ekos::CommunicationStatus status);
@@ -409,7 +409,7 @@ class Manager : public QDialog, public Ui::Manager
         void showEvent(QShowEvent *) override;
         void resizeEvent(QResizeEvent *) override;
 
-    public slots:
+    public Q_SLOTS:
 
         /**
          * DBUS interface function.
@@ -452,7 +452,7 @@ class Manager : public QDialog, public Ui::Manager
 
         void restartDriver(const QString &deviceName);
 
-    private slots:
+    private Q_SLOTS:
 
         void changeAlwaysOnTop(Qt::ApplicationState state);
 

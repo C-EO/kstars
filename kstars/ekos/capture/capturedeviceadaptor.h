@@ -270,7 +270,7 @@ class CaptureDeviceAdaptor: public QObject
          */
         void queryHasShutter();
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief filterIdChanged Update of the currently selected filter ID
          */
@@ -353,7 +353,7 @@ class CaptureDeviceAdaptor: public QObject
          */
         void hasShutter(bool present);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Slot that reads the requested device state and publishes the corresponding event
          * @param state device state that needs to be read directly

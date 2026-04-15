@@ -109,7 +109,7 @@ class ModelManager : public QObject
             return tempModel;
         }
 
-    signals:
+    Q_SIGNALS:
         void loadProgressUpdated(double progress);
         void modelUpdated();
 

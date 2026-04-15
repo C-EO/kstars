@@ -39,7 +39,7 @@ class ASTAPAstrometryParser : public AstrometryParser
         virtual bool startSolver(const QString &filename, const QStringList &args, bool generated = true) override;
         virtual bool stopSolver() override;
 
-    public slots:
+    public Q_SLOTS:
         void solverComplete(int exitCode, QProcess::ExitStatus exitStatus);
 
     private:

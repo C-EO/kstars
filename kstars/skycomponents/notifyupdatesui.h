@@ -24,10 +24,9 @@ class NotifyUpdatesUI : public QDialog
         ~NotifyUpdatesUI();
         void addItems(QList<SkyObject *> updatesList);
 
-    private slots:
+    private Q_SLOTS:
         void slotCenter();
 
     private:
         Ui::NotifyUpdatesUI *ui;
 };
-

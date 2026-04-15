@@ -555,7 +555,7 @@ void Scheduler::setupScheduler(const QString &ekosPathStr, const QString &ekosIn
     m_JobUpdateDebounce.setInterval(1000);
     connect(&m_JobUpdateDebounce, &QTimer::timeout, this, [this]()
     {
-        emit jobsUpdated(moduleState()->getJSONJobs());
+        Q_EMIT jobsUpdated(moduleState()->getJSONJobs());
     });
 
     altGraph->setState(moduleState());
@@ -1050,7 +1050,7 @@ void Scheduler::addJob(SchedulerJob *job)
             moduleState()->setCurrentPosition(currentRow);
     }
 
-    emit jobsUpdated(moduleState()->getJSONJobs());
+    Q_EMIT jobsUpdated(moduleState()->getJSONJobs());
 }
 
 void Scheduler::updateJob(int index)
@@ -1064,7 +1064,7 @@ void Scheduler::updateJob(int index)
         // in any case, reset editing
         resetJobEdit();
 
-        emit jobsUpdated(moduleState()->getJSONJobs());
+        Q_EMIT jobsUpdated(moduleState()->getJSONJobs());
 
     }
 }
@@ -2546,7 +2546,7 @@ void Scheduler::setWeatherStatus(ISD::Weather::Status status)
 
     process()->appendLogText(statusString);
 
-    emit weatherChanged(moduleState()->weatherStatus());
+    Q_EMIT weatherChanged(moduleState()->weatherStatus());
 }
 
 void Scheduler::handleSchedulerSleeping(bool shutdown, bool sleep)
@@ -2583,7 +2583,7 @@ void Scheduler::handleSchedulerStateChanged(SchedulerState newState)
             break;
     }
     // forward the state chqnge
-    emit newStatus(newState);
+    Q_EMIT newStatus(newState);
 }
 
 void Scheduler::handleSetPaused()
@@ -2598,7 +2598,7 @@ void Scheduler::handleJobsUpdated(QJsonArray jobsList)
     updateJobTable();
     altGraph->plot();
 
-    emit jobsUpdated(jobsList);
+    Q_EMIT jobsUpdated(jobsList);
 }
 
 bool Scheduler::importMosaic(const QJsonObject &payload)

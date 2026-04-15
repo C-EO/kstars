@@ -52,7 +52,7 @@ void LightBox::processSwitch(INDI::Property prop)
         if (newStatus != m_LightStatus)
         {
             m_LightStatus = newStatus;
-            emit newLightStatus(m_LightStatus);
+            Q_EMIT newLightStatus(m_LightStatus);
         }
     }
 }

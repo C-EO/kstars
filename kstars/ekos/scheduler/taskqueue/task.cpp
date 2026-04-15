@@ -124,7 +124,7 @@ void Task::setStatus(Status status)
     if (m_status != status)
     {
         m_status = status;
-        emit statusChanged(status);
+        Q_EMIT statusChanged(status);
     }
 }
 

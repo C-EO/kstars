@@ -21,13 +21,13 @@ class UrlFileDownload : public QObject
         void begin(const QUrl &url, const pixCacheKey_t &key);
         void abortAll();
 
-    signals:
+    Q_SIGNALS:
         void sigDownloadDone(QNetworkReply::NetworkError error, QByteArray &data, pixCacheKey_t &key);
         void sigAbort();
 
-    public slots:
+    public Q_SLOTS:
 
-    private slots:
+    private Q_SLOTS:
         void downloadFinished(QNetworkReply *reply);
 
     private:

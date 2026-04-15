@@ -54,7 +54,7 @@ class OpsSatellites : public QFrame, public Ui::OpsSatellites
          */
         void saveSatellitesList();
 
-    private slots:
+    private Q_SLOTS:
         void slotUpdateTLEs();
         void slotShowSatellites(bool on);
         void slotApply();

@@ -164,7 +164,7 @@ class TestEkosFocus : public QObject
     public:
         explicit TestEkosFocus(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

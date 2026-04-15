@@ -406,7 +406,7 @@ void SkyMap::stopTracking()
 {
     KStars *kstars = KStars::Instance();
 
-    emit positionChanged(focus());
+    Q_EMIT positionChanged(focus());
     if (kstars && Options::isTracking())
         kstars->slotTrack();
 }
@@ -657,7 +657,7 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
                     dms dDec = m_MousePoint.dec() - clickedPoint()->dec();
 
                     // Emit difference between mouse point and clicked point.
-                    emit mosaicCenterChanged(dRA, dDec);
+                    Q_EMIT mosaicCenterChanged(dRA, dDec);
 
                     // Update mouse and clicked points.
                     m_MousePoint = projector()->fromScreen(QtCompat::mousePos(e).toPoint(), data);
@@ -710,7 +710,7 @@ void SkyMap::mouseMoveEvent(QMouseEvent *e)
     {
         if (Options::useAltAz())
             m_MousePoint.EquatorialToHorizontal(data->lst(), data->geo()->lat());
-        emit mousePointChanged(&m_MousePoint);
+        Q_EMIT mousePointChanged(&m_MousePoint);
     }
 }
 
@@ -871,14 +871,14 @@ void SkyMap::mousePressEvent(QMouseEvent *e)
                 if (clickedObject())
                 {
                     name = clickedObject()->translatedLongName();
-                    emit objectClicked(clickedObject());
+                    Q_EMIT objectClicked(clickedObject());
                 }
                 else
                     name = i18n("Empty sky");
                 //kstars->statusBar()->changeItem(name, 0 );
                 kstars->statusBar()->showMessage(name, 0);
 
-                emit positionClicked(&m_MousePoint);
+                Q_EMIT positionClicked(&m_MousePoint);
             }
 
             break;

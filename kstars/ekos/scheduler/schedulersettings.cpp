@@ -231,7 +231,7 @@ void Scheduler::syncSettings()
 ///////////////////////////////////////////////////////////////////////////////////////////
 void Scheduler::settleSettings()
 {
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     Options::self()->save();
 }
 

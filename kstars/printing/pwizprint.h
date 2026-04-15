@@ -25,7 +25,7 @@ class PWizPrintUI : public QFrame, public Ui::PWizPrint
         /** Constructor. */
         explicit PWizPrintUI(PrintingWizard *wizard, QWidget *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         /** Slot: show "Print preview" dialog window for finder chart. */
         void slotPreview();
 

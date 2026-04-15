@@ -207,7 +207,7 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
          */
         QStringList getOpticalTrainObjectPaths() const;
 
-    signals:
+    Q_SIGNALS:
         void updated();
         void configurationRequested(bool show);
 
@@ -215,7 +215,7 @@ class OpticalTrainManager : public QDialog, public Ui::OpticalTrain
         void initModel();
         QStringList getMissingDevices() const;
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Update an element value in the currently selected optical train
          * @param cb combo box holding the new value

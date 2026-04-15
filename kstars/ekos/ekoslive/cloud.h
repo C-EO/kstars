@@ -32,13 +32,13 @@ class Cloud : public QObject
         // Ekos Cloud Message to User
         void sendData(const QSharedPointer<FITSData> &data, const QString &uuid);
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
         void globalLogoutTriggered(const QUrl &url);
         void newImage(const QByteArray &image);
 
-    private slots:
+    private Q_SLOTS:
         // Connection
         void onConnected();
         void onDisconnected();

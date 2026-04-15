@@ -91,7 +91,7 @@ void Camera::startFraming()
 void Camera::updateDownloadProgress(double downloadTimeLeft, const QString &devicename)
 {
     frameRemainingTime->setText(state()->imageCountDown().toString("hh:mm:ss"));
-    emit newDownloadProgress(downloadTimeLeft, devicename);
+    Q_EMIT newDownloadProgress(downloadTimeLeft, devicename);
 }
 
 void Camera::updateCaptureCountDown(int deltaMillis)
@@ -166,8 +166,8 @@ void Camera::processingFITSfinished(bool success)
 
 void Camera::captureRunning()
 {
-    emit captureStarting(activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(),
-                         activeJob()->getCoreProperty(SequenceJob::SJ_Filter).toString());
+    Q_EMIT captureStarting(activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(),
+                           activeJob()->getCoreProperty(SequenceJob::SJ_Filter).toString());
     if (isActiveJobPreview())
         frameInfoLabel->setText("Expose (-/-):");
     else if (activeJob()->getFrameType() != FRAME_VIDEO)
@@ -260,7 +260,7 @@ void Camera::setTargetName(const QString &newTargetName)
                 state()->allJobs().at(pos)->setCoreProperty(SequenceJob::SJ_TargetName, newTargetName);
         }
 
-        emit captureTarget(newTargetName);
+        Q_EMIT captureTarget(newTargetName);
     }
 }
 

@@ -1769,7 +1769,7 @@ void ObservingList::slotUpdateAltitudes()
         m_WishListModel->setData(idx, replacement->data(Qt::UserRole), Qt::UserRole);
         delete replacement;
     }
-    emit m_WishListModel->dataChanged(
+    Q_EMIT m_WishListModel->dataChanged(
         m_WishListModel->index(0, m_WishListModel->columnCount() - 1),
         m_WishListModel->index(m_WishListModel->rowCount() - 1, m_WishListModel->columnCount() - 1));
 }

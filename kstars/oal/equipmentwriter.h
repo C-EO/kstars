@@ -23,7 +23,7 @@ class EquipmentWriter : public QDialog
         void saveEquipment();
         void loadEquipment();
 
-    public slots:
+    public Q_SLOTS:
         void slotAddScope();
         void slotAddEyepiece();
         void slotAddLens();
@@ -58,4 +58,3 @@ class EquipmentWriter : public QDialog
         bool newScope, newEyepiece, newLens, newFilter, newDSLRLens;
         int nextScope, nextEyepiece, nextLens, nextFilter, nextDSLRLens;
 };
-

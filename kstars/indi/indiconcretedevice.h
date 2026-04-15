@@ -118,7 +118,7 @@ class ConcreteDevice : public GDInterface
          */
         void processProperties();
 
-    signals:
+    Q_SIGNALS:
         // Connection
         void Connected();
         void Disconnected();

@@ -117,7 +117,7 @@ class KSPopupMenu : public QMenu
          */
         void createEmptyMenu(SkyPoint *nullObj);
 
-    private slots:
+    private Q_SLOTS:
         void slotEditFlag();
         void slotDeleteFlag();
         void slotEditFlag(QAction *action);

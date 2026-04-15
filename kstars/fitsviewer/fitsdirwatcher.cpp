@@ -182,7 +182,7 @@ void FITSDirWatcher::checkPendingFile(const QString &filePath)
         QVector<LiveStackFile> lsFiles { lsFile };
         qCDebug(KSTARS_FITS) << QString("File %1 stabilized after %2s").arg(filePath)
                              .arg(pending.firstDetected.msecsTo(now) / 1000.0);
-        emit newFilesDetected(QDateTime::currentDateTime(), lsFiles);
+        Q_EMIT newFilesDetected(QDateTime::currentDateTime(), lsFiles);
     }
     else
     {

@@ -33,7 +33,7 @@ class MountPositionWidget : public QWidget, public Ui::MountPositionWidget
         bool isJ2000Enabled();
         void setJ2000Enabled(bool enabled);
 
-    signals:
+    Q_SIGNALS:
         void J2000Enabled(bool enabled);
 
 };

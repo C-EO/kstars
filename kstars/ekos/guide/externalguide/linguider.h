@@ -68,7 +68,7 @@ class LinGuider : public GuideInterface
             return true;
         }
 
-    private slots:
+    private Q_SLOTS:
 
         void readLinGuider();
         void onConnected();

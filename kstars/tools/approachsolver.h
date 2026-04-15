@@ -74,7 +74,7 @@ class ApproachSolver : public QObject
             m_maxSeparation = sep.radians();
         }
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief solverMadeProgress
          * @param progress - progress in percent

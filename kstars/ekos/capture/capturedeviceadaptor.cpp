@@ -139,8 +139,8 @@ void CaptureDeviceAdaptor::setMount(ISD::Mount *device)
         connectMount(currentSequenceJobState.data());
 
         // update mount states
-        emit pierSideChanged(device->pierSide());
-        emit scopeParkStatusChanged(device->parkStatus());
+        Q_EMIT pierSideChanged(device->pierSide());
+        Q_EMIT scopeParkStatusChanged(device->parkStatus());
     }
 
     m_ActiveMount = device;
@@ -218,10 +218,10 @@ void CaptureDeviceAdaptor::setRotator(ISD::Rotator *device)
                 Qt::UniqueConnection);
         connectRotator(currentSequenceJobState.data());
 
-        emit newRotator(device->getDeviceName());
+        Q_EMIT newRotator(device->getDeviceName());
     }
     else
-        emit newRotator(""); // no real rotator present, so check if user wants to use "manual rotator"
+        Q_EMIT newRotator(""); // no real rotator present, so check if user wants to use "manual rotator"
 
 }
 
@@ -284,7 +284,7 @@ void CaptureDeviceAdaptor::reverseRotator(bool toggled)
 void CaptureDeviceAdaptor::readRotatorAngle()
 {
     if (m_ActiveRotator != nullptr)
-        emit newRotatorAngle(m_ActiveRotator->absoluteAngle(), m_ActiveRotator->absoluteAngleState());
+        Q_EMIT newRotatorAngle(m_ActiveRotator->absoluteAngle(), m_ActiveRotator->absoluteAngleState());
 }
 
 
@@ -313,11 +313,11 @@ void CaptureDeviceAdaptor::setActiveCamera(ISD::Camera *device)
                 &CaptureDeviceAdaptor::newCCDTemperatureValue, Qt::UniqueConnection);
         connect(m_ActiveCamera, &ISD::ConcreteDevice::Connected, this, [this]()
         {
-            emit CameraConnected(true);
+            Q_EMIT CameraConnected(true);
         });
         connect(m_ActiveCamera, &ISD::ConcreteDevice::Disconnected, this, [this]()
         {
-            emit CameraConnected(false);
+            Q_EMIT CameraConnected(false);
         });
 
         if (m_ActiveCamera->hasGuideHead())
@@ -326,7 +326,7 @@ void CaptureDeviceAdaptor::setActiveCamera(ISD::Camera *device)
     connectActiveCamera(currentSequenceJobState.data());
 
     // communicate new camera
-    emit newCamera(device == nullptr ? "" : device->getDeviceName());
+    Q_EMIT newCamera(device == nullptr ? "" : device->getDeviceName());
 }
 
 void CaptureDeviceAdaptor::setFilterWheel(ISD::FilterWheel *device)
@@ -346,16 +346,16 @@ void CaptureDeviceAdaptor::setFilterWheel(ISD::FilterWheel *device)
     {
         connect(m_ActiveFilterWheel, &ISD::ConcreteDevice::Connected, this, [this]()
         {
-            emit FilterWheelConnected(true);
+            Q_EMIT FilterWheelConnected(true);
         });
         connect(m_ActiveFilterWheel, &ISD::ConcreteDevice::Disconnected, this, [this]()
         {
-            emit FilterWheelConnected(false);
+            Q_EMIT FilterWheelConnected(false);
         });
     }
 
     // communicate new device
-    emit newFilterWheel(device == nullptr ? "" : device->getDeviceName());
+    Q_EMIT newFilterWheel(device == nullptr ? "" : device->getDeviceName());
 }
 
 void CaptureDeviceAdaptor::connectActiveCamera(SequenceJobState *state)
@@ -436,16 +436,16 @@ void Ekos::CaptureDeviceAdaptor::updateFilterPosition()
         KSNotification::event(QLatin1String("CaptureFailed"),
                               i18n("Filter manager is not initialized yet. Filter wheel missing from train?"), KSNotification::Capture,
                               KSNotification::Alert);
-        emit filterIdChanged(-1);
+        Q_EMIT filterIdChanged(-1);
     }
     else
-        emit filterIdChanged(m_FilterManager->getFilterPosition());
+        Q_EMIT filterIdChanged(m_FilterManager->getFilterPosition());
 }
 
 void Ekos::CaptureDeviceAdaptor::setFilterChangeFailed()
 {
     qWarning(KSTARS_EKOS_CAPTURE) << "Failed to change filter wheel to target position!";
-    emit filterIdChanged(-1);
+    Q_EMIT filterIdChanged(-1);
 }
 
 void CaptureDeviceAdaptor::readCurrentState(CaptureState state)
@@ -457,7 +457,7 @@ void CaptureDeviceAdaptor::readCurrentState(CaptureState state)
             {
                 double currentTemperature;
                 m_ActiveCamera->getTemperature(&currentTemperature);
-                emit newCCDTemperatureValue(currentTemperature);
+                Q_EMIT newCCDTemperatureValue(currentTemperature);
             }
             break;
         case CAPTURE_SETTING_ROTATOR:
@@ -476,7 +476,7 @@ void CaptureDeviceAdaptor::readCurrentState(CaptureState state)
 void CaptureDeviceAdaptor::readCurrentMountParkState()
 {
     if (m_ActiveMount != nullptr)
-        emit scopeParkStatusChanged(m_ActiveMount->parkStatus());
+        Q_EMIT scopeParkStatusChanged(m_ActiveMount->parkStatus());
 }
 
 void CaptureDeviceAdaptor::setCCDTemperature(double temp)
@@ -606,19 +606,19 @@ void CaptureDeviceAdaptor::askManualScopeCover(QString question, QString title, 
     // do not ask again
     if (light && m_ManualLightCoveringAsked == true)
     {
-        emit manualScopeCoverUpdated(true, true, true);
+        Q_EMIT manualScopeCoverUpdated(true, true, true);
         return;
     }
     else if (!light && m_ManualDarkCoveringAsked == true)
     {
-        emit manualScopeCoverUpdated(true, true, false);
+        Q_EMIT manualScopeCoverUpdated(true, true, false);
         return;
     }
 
     // Continue
     connect(KSMessageBox::Instance(), &KSMessageBox::accepted, this, [this, light]()
     {
-        emit manualScopeCoverUpdated(true, true, light);
+        Q_EMIT manualScopeCoverUpdated(true, true, light);
         KSMessageBox::Instance()->disconnect(this);
         m_ManualLightCoveringAsked = false;
         m_ManualLightOpeningAsked = false;
@@ -638,7 +638,7 @@ void CaptureDeviceAdaptor::askManualScopeCover(QString question, QString title, 
         else
             m_ManualDarkCoveringAsked = false;
 
-        emit manualScopeCoverUpdated(true, false, light);
+        Q_EMIT manualScopeCoverUpdated(true, false, light);
         KSMessageBox::Instance()->disconnect(this);
     });
 
@@ -651,12 +651,12 @@ void CaptureDeviceAdaptor::askManualScopeOpen(bool light)
     // do not ask again
     if (light && m_ManualLightOpeningAsked == true)
     {
-        emit manualScopeCoverUpdated(false, true, true);
+        Q_EMIT manualScopeCoverUpdated(false, true, true);
         return;
     }
     else if (!light && m_ManualDarkOpeningAsked == true)
     {
-        emit manualScopeCoverUpdated(false, true, false);
+        Q_EMIT manualScopeCoverUpdated(false, true, false);
         return;
     }
 
@@ -673,7 +673,7 @@ void CaptureDeviceAdaptor::askManualScopeOpen(bool light)
         else
             m_ManualDarkOpeningAsked = true;
 
-        emit manualScopeCoverUpdated(false, true, light);
+        Q_EMIT manualScopeCoverUpdated(false, true, light);
         KSMessageBox::Instance()->disconnect(this);
     });
 
@@ -684,7 +684,7 @@ void CaptureDeviceAdaptor::askManualScopeOpen(bool light)
             m_ManualLightOpeningAsked = false;
         else
             m_ManualDarkOpeningAsked = false;
-        emit manualScopeCoverUpdated(false, false, light);
+        Q_EMIT manualScopeCoverUpdated(false, false, light);
         KSMessageBox::Instance()->disconnect(this);
     });
 
@@ -696,7 +696,7 @@ void CaptureDeviceAdaptor::askManualScopeOpen(bool light)
 void CaptureDeviceAdaptor::setLightBoxLight(bool on)
 {
     m_ActiveLightBox->setLightEnabled(on);
-    emit lightBoxLight(on);
+    Q_EMIT lightBoxLight(on);
 }
 
 void CaptureDeviceAdaptor::parkDustCap(bool park)
@@ -704,14 +704,14 @@ void CaptureDeviceAdaptor::parkDustCap(bool park)
     // park
     if (park == true)
         if (m_ActiveDustCap->park())
-            emit dustCapStatusChanged(ISD::DustCap::CAP_PARKING);
+            Q_EMIT dustCapStatusChanged(ISD::DustCap::CAP_PARKING);
         else
-            emit dustCapStatusChanged(ISD::DustCap::CAP_ERROR);
+            Q_EMIT dustCapStatusChanged(ISD::DustCap::CAP_ERROR);
     // unpark
     else if (m_ActiveDustCap->unpark())
-        emit dustCapStatusChanged(ISD::DustCap::CAP_UNPARKING);
+        Q_EMIT dustCapStatusChanged(ISD::DustCap::CAP_UNPARKING);
     else
-        emit dustCapStatusChanged(ISD::DustCap::CAP_ERROR);
+        Q_EMIT dustCapStatusChanged(ISD::DustCap::CAP_ERROR);
 }
 
 void CaptureDeviceAdaptor::slewTelescope(SkyPoint &target)
@@ -719,7 +719,7 @@ void CaptureDeviceAdaptor::slewTelescope(SkyPoint &target)
     if (m_ActiveMount != nullptr)
     {
         m_ActiveMount->Slew(&target);
-        emit scopeStatusChanged(ISD::Mount::MOUNT_SLEWING);
+        Q_EMIT scopeStatusChanged(ISD::Mount::MOUNT_SLEWING);
     }
 }
 
@@ -728,7 +728,7 @@ void CaptureDeviceAdaptor::setScopeTracking(bool on)
     if (m_ActiveMount != nullptr)
     {
         m_ActiveMount->setTrackEnabled(on);
-        emit scopeStatusChanged(on ? ISD::Mount::MOUNT_TRACKING : ISD::Mount::MOUNT_IDLE);
+        Q_EMIT scopeStatusChanged(on ? ISD::Mount::MOUNT_TRACKING : ISD::Mount::MOUNT_IDLE);
     }
 }
 
@@ -739,14 +739,14 @@ void CaptureDeviceAdaptor::setScopeParked(bool parked)
         if (parked == true)
         {
             if (m_ActiveMount->park())
-                emit scopeStatusChanged(ISD::Mount::MOUNT_PARKING);
+                Q_EMIT scopeStatusChanged(ISD::Mount::MOUNT_PARKING);
             else
-                emit scopeStatusChanged(ISD::Mount::MOUNT_ERROR);
+                Q_EMIT scopeStatusChanged(ISD::Mount::MOUNT_ERROR);
         }
         else
         {
             if (m_ActiveMount->unpark() == false)
-                emit scopeStatusChanged(ISD::Mount::MOUNT_ERROR);
+                Q_EMIT scopeStatusChanged(ISD::Mount::MOUNT_ERROR);
         }
     }
 }
@@ -758,14 +758,14 @@ void CaptureDeviceAdaptor::setDomeParked(bool parked)
         if (parked == true)
         {
             if (m_ActiveDome->park())
-                emit domeStatusChanged(ISD::Dome::DOME_PARKING);
+                Q_EMIT domeStatusChanged(ISD::Dome::DOME_PARKING);
             else
-                emit domeStatusChanged(ISD::Dome::DOME_ERROR);
+                Q_EMIT domeStatusChanged(ISD::Dome::DOME_ERROR);
         }
         else
         {
             if (m_ActiveDome->unpark() == false)
-                emit domeStatusChanged(ISD::Dome::DOME_ERROR);
+                Q_EMIT domeStatusChanged(ISD::Dome::DOME_ERROR);
         }
     }
 
@@ -774,16 +774,16 @@ void CaptureDeviceAdaptor::setDomeParked(bool parked)
 void CaptureDeviceAdaptor::flatSyncFocus(int targetFilterID)
 {
     if (m_FilterManager.isNull() || m_FilterManager->syncAbsoluteFocusPosition(targetFilterID - 1))
-        emit flatSyncFocusChanged(true);
+        Q_EMIT flatSyncFocusChanged(true);
     else
-        emit flatSyncFocusChanged(false);
+        Q_EMIT flatSyncFocusChanged(false);
 }
 
 void CaptureDeviceAdaptor::queryHasShutter()
 {
     if (m_ActiveCamera == nullptr)
     {
-        emit hasShutter(false);
+        Q_EMIT hasShutter(false);
         return;
     }
     QStringList shutterfulCCDs  = Options::shutterfulCCDs();
@@ -795,9 +795,9 @@ void CaptureDeviceAdaptor::queryHasShutter()
     bool noShutterFound = shutterlessCCDs.contains(deviceName);
 
     if (shutterFound == true)
-        emit hasShutter(true);
+        Q_EMIT hasShutter(true);
     else if (noShutterFound == true)
-        emit hasShutter(false);
+        Q_EMIT hasShutter(false);
     else
     {
         // If we have no information, we ask before we proceed.
@@ -809,7 +809,7 @@ void CaptureDeviceAdaptor::queryHasShutter()
             QStringList shutterfulCCDs  = Options::shutterfulCCDs();
             shutterfulCCDs.append(m_ActiveCamera->getDeviceName());
             Options::setShutterfulCCDs(shutterfulCCDs);
-            emit hasShutter(true);
+            Q_EMIT hasShutter(true);
         });
         // No, has no shutter
         connect(KSMessageBox::Instance(), &KSMessageBox::rejected, this, [this]()
@@ -818,7 +818,7 @@ void CaptureDeviceAdaptor::queryHasShutter()
             QStringList shutterlessCCDs = Options::shutterlessCCDs();
             shutterlessCCDs.append(m_ActiveCamera->getDeviceName());
             Options::setShutterlessCCDs(shutterlessCCDs);
-            emit hasShutter(false);
+            Q_EMIT hasShutter(false);
         });
 
         KSMessageBox::Instance()->questionYesNo(i18n("Does %1 have a shutter?", deviceName),

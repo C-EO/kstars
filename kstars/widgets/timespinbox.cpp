@@ -242,5 +242,5 @@ float TimeSpinBox::timeScale(void) const
 void TimeSpinBox::reportChange()
 {
     qCDebug(KSTARS) << "Reporting new timestep value: " << timeScale();
-    emit scaleChanged(timeScale());
+    Q_EMIT scaleChanged(timeScale());
 }

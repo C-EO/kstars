@@ -32,7 +32,7 @@ class TestPlaceholderPath : public QObject
         TestPlaceholderPath();
         ~TestPlaceholderPath() override;
 
-    private slots:
+    private Q_SLOTS:
 
         void initTestCase();
         void testSchedulerProcessJobInfo_data();

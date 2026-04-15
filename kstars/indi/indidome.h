@@ -224,7 +224,7 @@ class Dome : public ConcreteDevice
          */
         double getOTAOffset() const;
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::Dome::Status status);
         void newParkStatus(ISD::ParkStatus status);
         void newShutterStatus(ISD::Dome::ShutterStatus status);

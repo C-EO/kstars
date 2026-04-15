@@ -57,7 +57,7 @@ void ModelManager::loadLists()
     if (KStars::Closing)
         return;
 
-    emit loadProgressUpdated(0);
+    Q_EMIT loadProgressUpdated(0);
     KStarsData *data = KStarsData::Instance();
     QVector<QPair<QString, const SkyObject *>> listStars;
     listStars.append(data->skyComposite()->objectLists(SkyObject::STAR));
@@ -117,35 +117,35 @@ void ModelManager::loadLists()
         }
     }
 
-    emit loadProgressUpdated(0.20);
+    Q_EMIT loadProgressUpdated(0.20);
     //Asteroids Loading is causing a crash.  FIX ME!!
     //loadObjectList(m_ObjectList[Asteroids], SkyObject::ASTEROID);
-    emit loadProgressUpdated(0.30);
+    Q_EMIT loadProgressUpdated(0.30);
     loadObjectList(m_ObjectList[Comets], SkyObject::COMET);
-    emit loadProgressUpdated(0.40);
+    Q_EMIT loadProgressUpdated(0.40);
     loadObjectList(m_ObjectList[Satellites], SkyObject::SATELLITE);
     loadObjectList(m_ObjectList[Supernovas], SkyObject::SUPERNOVA);
-    emit loadProgressUpdated(0.50);
+    Q_EMIT loadProgressUpdated(0.50);
     loadObjectList(m_ObjectList[Constellations], SkyObject::CONSTELLATION);
-    emit loadProgressUpdated(0.55);
+    Q_EMIT loadProgressUpdated(0.55);
     loadObjectList(m_ObjectList[Planets], SkyObject::PLANET);
-    emit loadProgressUpdated(0.60);
+    Q_EMIT loadProgressUpdated(0.60);
 
     loadObjectList(m_ObjectList[Galaxies], SkyObject::GALAXY);
-    emit loadProgressUpdated(0.70);
+    Q_EMIT loadProgressUpdated(0.70);
 
     loadObjectList(m_ObjectList[Clusters], SkyObject::OPEN_CLUSTER);
     loadObjectList(m_ObjectList[Clusters], SkyObject::GLOBULAR_CLUSTER);
     loadObjectList(m_ObjectList[Clusters], SkyObject::GALAXY_CLUSTER);
-    emit loadProgressUpdated(0.80);
+    Q_EMIT loadProgressUpdated(0.80);
 
     loadObjectList(m_ObjectList[Nebulas], SkyObject::PLANETARY_NEBULA);
     loadObjectList(m_ObjectList[Nebulas], SkyObject::SUPERNOVA_REMNANT);
     loadObjectList(m_ObjectList[Nebulas], SkyObject::GASEOUS_NEBULA);
     loadObjectList(m_ObjectList[Nebulas], SkyObject::DARK_NEBULA);
 
-    emit loadProgressUpdated(0.90);
-    emit loadProgressUpdated(1);
+    Q_EMIT loadProgressUpdated(0.90);
+    Q_EMIT loadProgressUpdated(1);
 }
 
 void ModelManager::updateAllModels(ObsConditions *obs)
@@ -174,7 +174,7 @@ void ModelManager::updateModel(ObsConditions *obs, QString modelName)
             loadObjectsIntoModel(*m_ModelList[modelNumber], favoriteClusters);
         else
             loadObjectsIntoModel(*m_ModelList[modelNumber], m_ObjectList[modelNumber]);
-        emit modelUpdated();
+        Q_EMIT modelUpdated();
     }
 }
 
@@ -308,5 +308,5 @@ void ModelManager::loadCatalog(const QString &name)
         p_lst.append(&obj);
 
     updateModel(m_ObsConditions, name);
-    emit loadProgressUpdated(1);
+    Q_EMIT loadProgressUpdated(1);
 };

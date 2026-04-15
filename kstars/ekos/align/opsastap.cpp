@@ -33,7 +33,7 @@ OpsASTAP::OpsASTAP(Align *parent) : QWidget(KStars::Instance())
 
 void OpsASTAP::slotApply()
 {
-    emit settingsUpdated();
+    Q_EMIT settingsUpdated();
 }
 
 void OpsASTAP::slotSelectExecutable()

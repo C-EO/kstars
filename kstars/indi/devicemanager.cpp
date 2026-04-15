@@ -186,7 +186,7 @@ void DeviceManager::connectionError()
                      .arg(serverSocket.errorString());
     KMessageBox::error(nullptr, errMsg);
 
-    emit deviceManagerError(this);
+    Q_EMIT deviceManagerError(this);
 }
 
 void DeviceManager::appendManagedDevices(QList<IDevice *> &processed_devices)
@@ -207,7 +207,7 @@ void DeviceManager::processStandardError()
         return;
 
     serverBuffer.append(serverProcess->readAllStandardError());
-    emit newServerInput();
+    Q_EMIT newServerInput();
 }
 
 void DeviceManager::dataReceived()
@@ -402,7 +402,7 @@ INDI_D *DeviceManager::addDevice(XMLEle *dep, QString &errmsg)
 
     dp = new INDI_D(parent, this, device_name, unique_label, targetDevice);
     indi_dev.append(dp);
-    emit newDevice(dp);
+    Q_EMIT newDevice(dp);
 
     enableBLOB(true, device_name);
 

@@ -450,7 +450,7 @@ class SkyMapLite : public QQuickItem
             return m_skyRotation;
         }
 
-    public slots:
+    public Q_SLOTS:
         /** Called whenever wrappers' width or height are changed. Probably will be used to
             * update positions of items.
             */
@@ -517,7 +517,7 @@ class SkyMapLite : public QQuickItem
 
         void setSkyRotation(double skyRotation);
 
-    signals:
+    Q_SIGNALS:
         /** Emitted by setDestination(), and connected to slewFocus().  Whenever the Destination
              * point is changed, slewFocus() will iteratively step the Focus toward Destination
              * until it is reached.
@@ -618,7 +618,7 @@ class SkyMapLite : public QQuickItem
              */
         virtual void touchEvent(QTouchEvent *e) override;
 
-    private slots:
+    private Q_SLOTS:
         /** @short display tooltip for object under cursor. It's called by m_HoverTimer.
              *  if mouse didn't moved for last HOVER_INTERVAL milliseconds.
              */

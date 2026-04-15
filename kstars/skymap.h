@@ -373,7 +373,7 @@ class SkyMap : public QGraphicsView
             return m_fovExtraRotation;
         }
 
-    public slots:
+    public Q_SLOTS:
         /** Recalculates the positions of objects in the sky, and then repaints the sky map.
              * If the positions don't need to be recalculated, use update() instead of forceUpdate().
              * This saves a lot of CPU time.
@@ -563,7 +563,7 @@ class SkyMap : public QGraphicsView
 
         void slotCaptureFov();
 
-    signals:
+    Q_SIGNALS:
         /** Emitted by setDestination(), and connected to slewFocus().  Whenever the Destination
              * point is changed, slewFocus() will iteratively step the Focus toward Destination
              * until it is reached.
@@ -652,7 +652,7 @@ class SkyMap : public QGraphicsView
              */
         void resizeEvent(QResizeEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
         /** @short display tooltip for object under cursor. It's called by m_HoverTimer.
              *  if mouse didn't moved for last HOVER_INTERVAL milliseconds.
              */

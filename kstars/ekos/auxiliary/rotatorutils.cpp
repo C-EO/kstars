@@ -54,7 +54,7 @@ void RotatorUtils::initRotatorUtils(const QString &train)
         connect(m_Mount, &ISD::Mount::pierSideChanged, this, [this] (ISD::Mount::PierSide Side)
         {
             m_flippedMount = (Side != m_CalPierside);
-            emit changedPierside(Side);
+            Q_EMIT changedPierside(Side);
         });
     }
 }

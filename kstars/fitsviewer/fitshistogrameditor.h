@@ -43,10 +43,10 @@ class FITSHistogramEditor : public QDialog
     protected:
         void showEvent(QShowEvent * event) override;
 
-    signals:
+    Q_SIGNALS:
         void newHistogramCommand(FITSHistogramCommand *command);
 
-    public slots:
+    public Q_SLOTS:
         void applyScale();
         void resizePlot();
 

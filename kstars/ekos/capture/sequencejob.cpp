@@ -388,7 +388,7 @@ QString SequenceJob::setCameraDeviceProperties()
         {
             qCWarning(KSTARS_EKOS_CAPTURE()) << "Cannot set binning to " << "x =" << binning.x() << ", y =" << binning.y();
             setStatus(JOB_ERROR);
-            emit captureStarted(CAPTURE_BIN_ERROR);
+            Q_EMIT captureStarted(CAPTURE_BIN_ERROR);
         }
         else
             logentry.append(QString(", binning = %1x%2").arg(binning.x()).arg(binning.y()));
@@ -410,7 +410,7 @@ QString SequenceJob::setCameraDeviceProperties()
             qCWarning(KSTARS_EKOS_CAPTURE()) << "Cannot set ROI to " << "x =" << roi.x() << ", y =" << roi.y() << ", width =" <<
                                              roi.width() << "height =" << roi.height();
             setStatus(JOB_ERROR);
-            emit captureStarted(CAPTURE_FRAME_ERROR);
+            Q_EMIT captureStarted(CAPTURE_FRAME_ERROR);
         }
         else
             logentry.append(QString(", ROI = (%1+%2, %3+%4)").arg(roi.x()).arg(roi.width()).arg(roi.y()).arg(roi.width()));
@@ -439,7 +439,7 @@ void SequenceJob::capture(FITSMode mode)
         if (! success)
         {
             qCWarning(KSTARS_EKOS_CAPTURE) << "Start recording failed!";
-            emit captureStarted(CAPTURE_FRAME_ERROR);
+            Q_EMIT captureStarted(CAPTURE_FRAME_ERROR);
             return;
         }
 
@@ -458,7 +458,7 @@ void SequenceJob::capture(FITSMode mode)
         devices.data()->getActiveChip()->capture(m_ExposeLeft);
     }
 
-    emit captureStarted(CAPTURE_OK);
+    Q_EMIT captureStarted(CAPTURE_OK);
 
     // create log entry with settings
     qCInfo(KSTARS_EKOS_CAPTURE) << logentry;
@@ -638,13 +638,13 @@ void SequenceJob::prepareCapture()
 void SequenceJob::processPrepareComplete(bool success)
 {
     qDebug(KSTARS_EKOS_CAPTURE) << "Sequence job: capture preparation" << (success ? "succeeded" : "failed");
-    emit prepareComplete(success);
+    Q_EMIT prepareComplete(success);
 }
 
 void SequenceJob::processAbortCapture()
 {
     disconnectDeviceAdaptor();
-    emit abortCapture();
+    Q_EMIT abortCapture();
 }
 
 IPState SequenceJob::checkFlatFramePendingTasksCompleted()

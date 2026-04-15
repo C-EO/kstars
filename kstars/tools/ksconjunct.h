@@ -41,7 +41,7 @@ class KSConjunct : public ApproachSolver
             m_opposition = opposition;
         }
 
-    signals:
+    Q_SIGNALS:
         void madeProgress(int);
 
     protected:
@@ -56,4 +56,3 @@ class KSConjunct : public ApproachSolver
         KSPlanetBase_s m_object2;
         bool m_opposition { false };
 };
-

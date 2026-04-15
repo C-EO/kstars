@@ -22,7 +22,7 @@ class TestFOV : public QObject
     public:
         explicit TestFOV(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

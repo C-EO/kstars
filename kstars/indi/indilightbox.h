@@ -58,10 +58,10 @@ class LightBox : public ConcreteDevice
 
         static const QString getStatusString(LightStatus status, bool translated = true);
 
-    signals:
+    Q_SIGNALS:
         void newLightStatus(ISD::LightBox::LightStatus status);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief SetBrightness Set light box brightness levels if dimmable.
          * @param val Value of brightness level.

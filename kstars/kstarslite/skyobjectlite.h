@@ -36,7 +36,7 @@ class SkyObjectLite : public SkyPointLite
         {
             return object;
         }
-    signals:
+    Q_SIGNALS:
         void translatedNameChanged(QString translatedName);
 
     private:

@@ -42,7 +42,7 @@ class FovEditorDialog : public QDialog
          */
         explicit FovEditorDialog(PrintingWizard *wizard, QWidget *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         /**
          * \brief Slot: switch to next FOV snapshot.
          */

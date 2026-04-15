@@ -101,7 +101,7 @@ class INDI_P : public QWidget
             return dataProp;
         }
 
-    public slots:
+    public Q_SLOTS:
         void processSetButton();
         void newSwitch(QAbstractButton *button);
         void newSwitch(int index);

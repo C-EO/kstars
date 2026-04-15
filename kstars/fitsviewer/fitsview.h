@@ -335,7 +335,7 @@ class FITSView : public QScrollArea
             m_LiveStackWebcast = LSWebcast;
         }
 
-    public slots:
+    public Q_SLOTS:
         void wheelEvent(QWheelEvent *event) override;
         void resizeEvent(QResizeEvent *event) override;
         void ZoomIn();
@@ -381,7 +381,7 @@ class FITSView : public QScrollArea
              */
         void syncWCSState();
 
-    protected slots:
+    protected Q_SLOTS:
         bool event(QEvent *event) override;
         bool gestureEvent(QGestureEvent *event);
         void pinchTriggered(QPinchGesture *gesture);
@@ -541,7 +541,7 @@ class FITSView : public QScrollArea
         QString m_StackDir;
         LiveStackWebcast * m_LiveStackWebcast { nullptr };
 
-    signals:
+    Q_SIGNALS:
         void newStatus(const QString &msg, FITSBar id);
         void newStretch(const StretchParams &params);
         void debayerToggled(bool);

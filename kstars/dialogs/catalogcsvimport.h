@@ -96,7 +96,7 @@ class CatalogCSVImport : public QDialog
         {
             return m_objects;
         };
-    private slots:
+    private Q_SLOTS:
         /** Selects a CSV file and opens it. Calls `init_mapping_selectors`. */
         void select_file();
 

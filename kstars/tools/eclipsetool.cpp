@@ -219,7 +219,7 @@ QVariant EclipseModel::data(const QModelIndex &index, int role) const
 void EclipseModel::slotAddEclipse(EclipseEvent_s eclipse)
 {
     m_eclipses.append(eclipse);
-    emit layoutChanged(); // there must be a better way
+    Q_EMIT layoutChanged(); // there must be a better way
 }
 
 void EclipseModel::exportAsCsv()
@@ -290,6 +290,6 @@ QVariant EclipseModel::headerData(int section, Qt::Orientation orientation, int 
 
 void EclipseModel::reset()
 {
-    emit beginResetModel();
-    emit endResetModel();
+    Q_EMIT beginResetModel();
+    Q_EMIT endResetModel();
 }

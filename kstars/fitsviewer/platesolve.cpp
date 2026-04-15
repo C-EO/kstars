@@ -103,11 +103,11 @@ void PlateSolve::setup()
         {
             SolveButton->setText(i18n("Aborting..."));
             m_Solver->abort();
-            emit solverFailed();
+            Q_EMIT solverFailed();
             return;
         }
 
-        emit clicked();
+        Q_EMIT clicked();
     });
     initSolverUI();
 }
@@ -120,7 +120,7 @@ void PlateSolve::enableAuxButton(const QString &label, const QString &toolTip)
     disconnect(auxButton);
     connect(auxButton, &QPushButton::clicked, this, [this]()
     {
-        emit auxClicked();
+        Q_EMIT auxClicked();
     });
 }
 
@@ -328,7 +328,7 @@ void PlateSolve::extractorDone(bool timedOut, bool success, const FITSImage::Sol
 
         // Can't run the solver. Just reset.
         SolveButton->setText("Solve");
-        emit extractorFailed();
+        Q_EMIT extractorFailed();
         return;
     }
     else if (!success)
@@ -338,7 +338,7 @@ void PlateSolve::extractorDone(bool timedOut, bool success, const FITSImage::Sol
 
         // Can't run the solver. Just reset.
         SolveButton->setText(i18n("Solve"));
-        emit extractorFailed();
+        Q_EMIT extractorFailed();
         return;
     }
     else
@@ -374,7 +374,7 @@ void PlateSolve::extractorDone(bool timedOut, bool success, const FITSImage::Sol
             starCenters.append(oneEdge);
         }
         m_imageData->setStarCenters(starCenters);
-        emit extractorSuccess();
+        Q_EMIT extractorSuccess();
     }
 }
 
@@ -386,13 +386,13 @@ void PlateSolve::subExtractorDone(bool timedOut, bool success, const FITSImage::
     if (timedOut)
     {
         qCDebug(KSTARS_FITS) << QString("Extractor timed out: %1s").arg(elapsedSeconds, 0, 'f', 1);
-        emit subExtractorFailed();
+        Q_EMIT subExtractorFailed();
         return;
     }
     else if (!success)
     {
         qCDebug(KSTARS_FITS) << QString("Extractor failed: %1s").arg(elapsedSeconds, 0, 'f', 1);
-        emit subExtractorFailed();
+        Q_EMIT subExtractorFailed();
         return;
     }
 
@@ -413,7 +413,7 @@ void PlateSolve::subExtractorDone(bool timedOut, bool success, const FITSImage::
         medianHFR = medianStar.HFR;
     }
     // Set the stars in the FITSData object so the user can view them.
-    emit subExtractorSuccess(medianHFR, starList.size());
+    Q_EMIT subExtractorSuccess(medianHFR, starList.size());
 }
 
 void PlateSolve::solverDone(bool timedOut, bool success, const FITSImage::Solution &solution, double elapsedSeconds)
@@ -429,13 +429,13 @@ void PlateSolve::solverDone(bool timedOut, bool success, const FITSImage::Soluti
     {
         const QString result = i18n("Solver timed out: %1s", QString("%L1").arg(elapsedSeconds, 0, 'f', 1));
         Solution2->setText(result);
-        emit solverFailed();
+        Q_EMIT solverFailed();
     }
     else if (!success)
     {
         const QString result = i18n("Solver failed: %1s", QString("%L1").arg(elapsedSeconds, 0, 'f', 1));
         Solution2->setText(result);
-        emit solverFailed();
+        Q_EMIT solverFailed();
     }
     else
     {
@@ -480,7 +480,7 @@ void PlateSolve::solverDone(bool timedOut, bool success, const FITSImage::Soluti
                             "Temporarily overlay the image on the SkyMap. The overlay is not permanent, but just lasts for this KStars instance.");
             connect(this, &PlateSolve::auxClicked, this, &PlateSolve::overlayImage, Qt::UniqueConnection);
         }
-        emit solverSuccess();
+        Q_EMIT solverSuccess();
     }
 }
 
@@ -501,13 +501,13 @@ void PlateSolve::subSolverDone(bool timedOut, bool success, const FITSImage::Sol
     if (timedOut)
     {
         qCDebug(KSTARS_FITS) << QString("subSolver timed out: %1s").arg(elapsedSeconds, 0, 'f', 1);
-        emit subSolverFailed();
+        Q_EMIT subSolverFailed();
         return;
     }
     if (!success)
     {
         qCDebug(KSTARS_FITS) << QString("subSolver failed: %1s").arg(elapsedSeconds, 0, 'f', 1);
-        emit subSolverFailed();
+        Q_EMIT subSolverFailed();
         return;
     }
 
@@ -518,7 +518,7 @@ void PlateSolve::subSolverDone(bool timedOut, bool success, const FITSImage::Sol
     const bool eastToTheRight = solution.parity == FITSImage::POSITIVE ? false : true;
     m_imageData->injectStackWCS(solution.orientation, solution.ra, solution.dec, solution.pixscale, eastToTheRight);
     m_imageData->stackLoadWCS();
-    emit subSolverSuccess();
+    Q_EMIT subSolverSuccess();
 #endif // !KSTARS_LITE
 }
 

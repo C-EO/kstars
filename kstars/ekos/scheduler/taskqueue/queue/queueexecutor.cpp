@@ -94,10 +94,10 @@ bool QueueExecutor::start()
     m_paused = false;
     m_abortRequested = false;
 
-    emit newLog(i18n("Starting task queue with %1 items", m_manager->count()));
+    Q_EMIT newLog(i18n("Starting task queue with %1 items", m_manager->count()));
 
     m_manager->setState(QueueManager::RUNNING);
-    emit started();
+    Q_EMIT started();
 
     // Start executing from first pending item
     executeNext();
@@ -112,7 +112,7 @@ void QueueExecutor::pause()
 
     m_paused = true;
     m_manager->setState(QueueManager::PAUSED);
-    emit paused();
+    Q_EMIT paused();
 }
 
 void QueueExecutor::resume()
@@ -122,7 +122,7 @@ void QueueExecutor::resume()
 
     m_paused = false;
     m_manager->setState(QueueManager::RUNNING);
-    emit resumed();
+    Q_EMIT resumed();
 
     // Continue execution
     if (!m_currentItem)
@@ -143,7 +143,7 @@ void QueueExecutor::stop()
     m_currentActionIndex = -1;
 
     m_manager->setState(QueueManager::IDLE);
-    emit stopped();
+    Q_EMIT stopped();
 }
 
 void QueueExecutor::abort()
@@ -161,7 +161,7 @@ void QueueExecutor::abort()
     }
 
     m_manager->setState(QueueManager::ABORTED);
-    emit aborted();
+    Q_EMIT aborted();
 
     stop();
 }
@@ -188,7 +188,7 @@ void QueueExecutor::executeNext()
         // Queue completed
         m_running = false;
         m_manager->setState(QueueManager::COMPLETED);
-        emit completed();
+        Q_EMIT completed();
         return;
     }
 
@@ -287,7 +287,7 @@ void QueueExecutor::executeItem(QueueItem *item)
                             qCWarning(KSTARS_EKOS_SCHEDULER) << "Aborting queue due to missing device (failure_action: abort_queue)";
                             item->setErrorMessage(errorMsg);
                             item->setStatus(QueueItem::FAILED);
-                            emit itemFailed(item, errorMsg);
+                            Q_EMIT itemFailed(item, errorMsg);
                             m_currentItem = nullptr;
                             executeNext();
                             return;
@@ -302,7 +302,7 @@ void QueueExecutor::executeItem(QueueItem *item)
     qCInfo(KSTARS_EKOS_SCHEDULER) << "Starting task:" << item->task()->name()
                                   << "with" << item->task()->actions().size() << "actions";
 
-    emit itemStarted(item);
+    Q_EMIT itemStarted(item);
 
     // Start executing actions
     if (task->actions().isEmpty())
@@ -335,7 +335,7 @@ void QueueExecutor::executeAction(TaskAction *action)
                                   << "of" << m_currentItem->task()->actions().size()
                                   << "- Type:" << action->type();
 
-    emit actionStarted(action);
+    Q_EMIT actionStarted(action);
 
     // Reset retry counter before first execution
     action->resetRetryCounter();
@@ -384,7 +384,7 @@ void QueueExecutor::onActionStatusChanged(TaskAction::Status status)
             disconnect(action, nullptr, this, nullptr);
 
             qCInfo(KSTARS_EKOS_SCHEDULER) << "Action" << (m_currentActionIndex + 1) << "completed successfully";
-            emit actionCompleted(action);
+            Q_EMIT actionCompleted(action);
             updateProgress();
 
             // Move to next action
@@ -406,7 +406,7 @@ void QueueExecutor::onActionStatusChanged(TaskAction::Status status)
             disconnect(action, nullptr, this, nullptr);
 
             qCWarning(KSTARS_EKOS_SCHEDULER) << "Action" << (m_currentActionIndex + 1) << "failed:" << action->errorMessage();
-            emit actionFailed(action, action->errorMessage());
+            Q_EMIT actionFailed(action, action->errorMessage());
             handleActionFailure(action);
             break;
 
@@ -429,7 +429,7 @@ void QueueExecutor::onActionStatusChanged(TaskAction::Status status)
 void QueueExecutor::onActionProgress(const QString &message)
 {
     updateProgress();
-    emit progress(m_currentItem->progress(), message);
+    Q_EMIT progress(m_currentItem->progress(), message);
 }
 
 void QueueExecutor::handleItemCompletion(QueueItem *item)
@@ -443,7 +443,7 @@ void QueueExecutor::handleItemCompletion(QueueItem *item)
     item->setProgress(100);
 
     item->setStatus(QueueItem::COMPLETED);
-    emit itemCompleted(item);
+    Q_EMIT itemCompleted(item);
 
     m_currentItem = nullptr;
     m_currentAction = nullptr;
@@ -462,7 +462,7 @@ void QueueExecutor::handleItemFailure(QueueItem *item)
                                      << "- Error:" << item->errorMessage();
 
     item->setStatus(QueueItem::FAILED);
-    emit itemFailed(item, item->errorMessage());
+    Q_EMIT itemFailed(item, item->errorMessage());
 
     m_currentItem = nullptr;
     m_currentAction = nullptr;

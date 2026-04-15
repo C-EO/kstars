@@ -51,7 +51,7 @@ class PAC : public ConcreteDevice
 
         static const QString getStatusString(Status status, bool translated = true);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief startCorrection Start an automated polar alignment correction.
          * @param azError Azimuth error in degrees (positive = polar axis displaced East).
@@ -85,7 +85,7 @@ class PAC : public ConcreteDevice
             return m_Status;
         }
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::PAC::Status status);
 
     private:

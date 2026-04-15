@@ -87,7 +87,7 @@ class ObservatoryDomeModel: public QObject
 
         bool moveDome(bool moveCW, bool start);
 
-    public slots:
+    public Q_SLOTS:
         void execute(WeatherActions actions);
 
 
@@ -95,7 +95,7 @@ class ObservatoryDomeModel: public QObject
         Dome *domeInterface;
         bool initialized = false;
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::Dome::Status state);
         void newParkStatus(ISD::ParkStatus status);
         void newShutterStatus(ISD::Dome::ShutterStatus status);

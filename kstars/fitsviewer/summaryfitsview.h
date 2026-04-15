@@ -25,7 +25,7 @@ class SummaryFITSView : public FITSView
         // process information widget
         QWidget *processInfoWidget;
 
-    public slots:
+    public Q_SLOTS:
         // process information
         void showProcessInfo(bool show);
         void toggleShowProcessInfo()

@@ -55,7 +55,7 @@ class TimeDialog : public QDialog
         /** @returns a KStarsDateTime object with the selected date and time */
         KStarsDateTime selectedDateTime(void);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * When the "Now" button is pressed, read the time and date from the system clock.
          * Change the selected date in the KDatePicker to the system's date, and the displayed time

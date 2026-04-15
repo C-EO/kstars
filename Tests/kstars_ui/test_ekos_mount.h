@@ -75,7 +75,7 @@
     if (!track) \
         QTimer::singleShot(1000, [&]{ \
         QDialog * const dialog = qobject_cast <QDialog*> (QApplication::activeModalWidget()); \
-        if(dialog != nullptr) emit dialog->accept(); }); \
+        if(dialog != nullptr) Q_EMIT dialog->accept(); }); \
     Ekos::Manager::Instance()->mountModule()->setTrackEnabled(track); \
     if (track) \
         QTRY_VERIFY_WITH_TIMEOUT(Ekos::Manager::Instance()->mountModule()->status() == ISD::Mount::Status::MOUNT_TRACKING, 30000); \
@@ -101,7 +101,7 @@
     if (!track) \
         QTimer::singleShot(1000, [&]{ \
         QDialog * const dialog = qobject_cast <QDialog*> (QApplication::activeModalWidget()); \
-        if(dialog != nullptr) emit dialog->accept(); }); \
+        if(dialog != nullptr) Q_EMIT dialog->accept(); }); \
     Ekos::Manager::Instance()->mountModule()->setTrackEnabled(track); \
     if (track) \
         QTRY_VERIFY_WITH_TIMEOUT(Ekos::Manager::Instance()->mountModule()->status() == ISD::Mount::Status::MOUNT_TRACKING, 30000); \
@@ -114,7 +114,7 @@ class TestEkosMount : public QObject
     public:
         explicit TestEkosMount(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

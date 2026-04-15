@@ -23,7 +23,7 @@ class OpsXplanet : public QFrame, public Ui::OpsXplanet
 
         QString XPlanetShareDirectory();
 
-    private slots:
+    private Q_SLOTS:
         void showXPlanetMapsDirectory();
         void slotConfigFileWidgets(bool on);
         void slotStarmapFileWidgets(bool on);

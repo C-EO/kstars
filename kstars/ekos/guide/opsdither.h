@@ -27,7 +27,7 @@ class OpsDither : public QFrame, public Ui::OpsDither
         explicit OpsDither();
         virtual ~OpsDither() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

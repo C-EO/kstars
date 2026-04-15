@@ -247,7 +247,7 @@ void KSDssDownloader::startSingleDownload(const QUrl srcUrl, const QString &dest
 void KSDssDownloader::downloadError(const QString &errorString)
 {
     qDebug() << Q_FUNC_INFO << "Error " << errorString << " downloading DSS images!";
-    emit downloadComplete(false);
+    Q_EMIT downloadComplete(false);
     downloadJob->deleteLater();
 }
 
@@ -256,7 +256,7 @@ void KSDssDownloader::singleDownloadFinished()
     if (!m_TempFile.open())
     {
         qWarning() << "Failed to open temporary file";
-        emit downloadComplete(false);
+        Q_EMIT downloadComplete(false);
         downloadJob->deleteLater();
         return;
     }
@@ -270,11 +270,11 @@ void KSDssDownloader::singleDownloadFinished()
     if (mt.name().contains("image", Qt::CaseInsensitive))
     {
         qDebug() << Q_FUNC_INFO << "DSS download was successful";
-        emit downloadComplete(writeImageWithMetadata(m_TempFile.fileName(), m_FileName, m_AttemptData));
+        Q_EMIT downloadComplete(writeImageWithMetadata(m_TempFile.fileName(), m_FileName, m_AttemptData));
         return;
     }
     else
-        emit downloadComplete(false);
+        Q_EMIT downloadComplete(false);
 }
 
 void KSDssDownloader::downloadAttemptFinished()
@@ -282,7 +282,7 @@ void KSDssDownloader::downloadAttemptFinished()
     if (m_AttemptData.src == KSDssImage::Metadata::SDSS)
     {
         // FIXME: do SDSS-y things
-        emit downloadComplete(false);
+        Q_EMIT downloadComplete(false);
         deleteLater();
         downloadJob->deleteLater();
         return;
@@ -292,7 +292,7 @@ void KSDssDownloader::downloadAttemptFinished()
         if (!m_TempFile.open())
         {
             qWarning() << "Failed to open temporary file";
-            emit downloadComplete(false);
+            Q_EMIT downloadComplete(false);
             deleteLater();
             downloadJob->deleteLater();
             return;
@@ -307,7 +307,7 @@ void KSDssDownloader::downloadAttemptFinished()
         if (mt.name().contains("image", Qt::CaseInsensitive))
         {
             qDebug() << Q_FUNC_INFO << "DSS download was successful";
-            emit downloadComplete(writeImageFile());
+            Q_EMIT downloadComplete(writeImageFile());
             deleteLater();
             return;
         }
@@ -319,7 +319,7 @@ void KSDssDownloader::downloadAttemptFinished()
         {
             // Nothing downloaded... very strange. Fail.
             qDebug() << Q_FUNC_INFO << "Error downloading DSS images: All alternatives failed!";
-            emit downloadComplete(false);
+            Q_EMIT downloadComplete(false);
             deleteLater();
             return;
         }

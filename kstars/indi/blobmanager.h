@@ -54,7 +54,7 @@ class BlobManager : public QObject, public INDI::BaseClient
         virtual void serverConnected() override {}
         virtual void serverDisconnected(int exit_code) override;
 
-    signals:
+    Q_SIGNALS:
         void propertyUpdated(INDI::Property prop);
         void connected();
         void connectionFailure();

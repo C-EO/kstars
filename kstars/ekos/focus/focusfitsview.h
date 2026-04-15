@@ -103,7 +103,7 @@ class FocusFITSView : public FITSView
 
         QSharedPointer<CaptureHistoryNavigation> m_focusHistoryNavigation;
 
-    public slots:
+    public Q_SLOTS:
         void resizeEvent(QResizeEvent *event) override;
 
         // ******************* history navigation ********************* //

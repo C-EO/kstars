@@ -30,7 +30,7 @@ class modCalcSidTime : public QFrame, public Ui::modCalcSidTimeDlg
     public:
         explicit modCalcSidTime(QWidget *p);
 
-    private slots:
+    private Q_SLOTS:
         void slotChangeLocation();
         void slotChangeDate();
         void slotConvertST(const QTime &lt);

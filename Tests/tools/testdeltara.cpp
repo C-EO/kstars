@@ -25,7 +25,7 @@ class TestDeltaRA : public QObject
         TestDeltaRA();
         ~TestDeltaRA() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicDeltaTest();
         void crossZeroTest();
         void edgeCasesTest();

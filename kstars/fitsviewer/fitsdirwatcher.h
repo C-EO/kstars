@@ -57,11 +57,11 @@ class FITSDirWatcher : public QObject
             return m_CurrentFiles;
         };
 
-    signals:
+    Q_SIGNALS:
         // Signal the list of new files added since the previous signal (or since the directory watching began)
         void newFilesDetected(QDateTime timestamp, const QVector<LiveStackFile> &lsFile);
 
-    private slots:
+    private Q_SLOTS:
         // Something changed in the watched directory, so process for any new files
         void onDirChanged(const QString &path);
 

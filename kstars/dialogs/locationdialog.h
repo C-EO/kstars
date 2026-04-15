@@ -114,7 +114,7 @@ class LocationDialog : public QDialog
             return SelectedCity->translatedCountry();
         }
 
-    public slots:
+    public Q_SLOTS:
         /**
          * When text is entered in the City/Province/Country Filter KLineEdits, the List of cities is
          * trimmed to show only cities beginning with the entered text.  Also, the QMemArray of ID
@@ -178,7 +178,7 @@ class LocationDialog : public QDialog
         void dataChanged();
         void slotOk();
 
-    protected slots:
+    protected Q_SLOTS:
         // FIXME Disable this until Qt5 works with Geoclue2
 #ifdef HAVE_GEOCLUE_2
         void processLocationNameData(QNetworkReply *rep);

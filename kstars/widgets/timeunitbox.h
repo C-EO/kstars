@@ -102,10 +102,10 @@ class TimeUnitBox : public QWidget
             return DecreaseAction;
         }
 
-    signals:
+    Q_SIGNALS:
         void valueChanged(int);
 
-    private slots:
+    private Q_SLOTS:
         /** Increment the internal time-unit value */
         void increase();
         /** Decrement the internal time-unit value */

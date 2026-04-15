@@ -227,7 +227,7 @@ class GenericDevice : public GDInterface
         Q_SCRIPTABLE Q_NOREPLY void Disconnect();
         bool setProperty(QObject *);
 
-    protected slots:
+    protected Q_SLOTS:
         virtual void resetWatchdog();
 
     protected:
@@ -248,7 +248,7 @@ class GenericDevice : public GDInterface
         QString m_DriverVersion;
         QMap<uint32_t, QSharedPointer<ConcreteDevice >> m_ConcreteDevices;
 
-    signals:
+    Q_SIGNALS:
         void Connected();
         void Disconnected();
 

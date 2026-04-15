@@ -60,7 +60,7 @@ class QueueExecutor : public QObject
             return m_currentAction;
         }
 
-    signals:
+    Q_SIGNALS:
         void started();
         void paused();
         void resumed();
@@ -79,7 +79,7 @@ class QueueExecutor : public QObject
         void progress(int percent, const QString &message);
         void newLog(const QString &message);
 
-    private slots:
+    private Q_SLOTS:
         void executeNext();
         void onItemStatusChanged(QueueItem::Status status);
         void onActionStatusChanged(TaskAction::Status status);

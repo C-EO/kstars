@@ -587,7 +587,7 @@ class SchedulerProcess : public QObject, public ModuleLogger
 
         QStringList logText();
 
-    signals:
+    Q_SIGNALS:
         // new log text for the module log window
         void newLog(const QString &text);
         // status updates
@@ -617,7 +617,7 @@ class SchedulerProcess : public QObject, public ModuleLogger
         void jobEnded(const QString &jobName, const QString &endReason);
 
 
-    private slots:
+    private Q_SLOTS:
         void setINDICommunicationStatus(Ekos::CommunicationStatus status);
         void setEkosCommunicationStatus(Ekos::CommunicationStatus status);
 

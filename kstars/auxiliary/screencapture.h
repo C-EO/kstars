@@ -26,7 +26,7 @@ class ScreenCapture : public QWidget
         void mouseReleaseEvent(QMouseEvent *event) override;
         void keyPressEvent(QKeyEvent *event) override;
 
-    signals:
+    Q_SIGNALS:
         void areaSelected(const QImage &image);
         void aborted();
 

@@ -355,7 +355,7 @@ void Client::onConnected()
         connectB->setText(i18n("Disconnect"));
         connectionState->setPixmap(QIcon::fromTheme("state-ok").pixmap(QSize(64, 64)));
         selectServersB->setEnabled(false);
-        emit connected();
+        Q_EMIT connected();
     }
 
     // Update individual manager status icons regardless
@@ -401,7 +401,7 @@ void Client::onDisconnected()
         connectB->setText(i18n("Connect"));
         connectionState->setPixmap(QIcon::fromTheme("state-offline").pixmap(QSize(64, 64)));
         selectServersB->setEnabled(true);
-        emit disconnected(); // Emit client disconnected signal
+        Q_EMIT disconnected(); // Emit client disconnected signal
 
         bool wasUserDisconnect = m_userRequestedDisconnect;
 

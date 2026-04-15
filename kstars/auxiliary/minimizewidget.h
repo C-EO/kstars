@@ -76,12 +76,12 @@ class MinimizeWidget : public QWidget
         }
         void setMinimized(bool minimized);
 
-    signals:
+    Q_SIGNALS:
         void changed(bool minimized);
 
     protected:
 
-    private slots:
+    private Q_SLOTS:
         void maximize();
         void minimize();
 

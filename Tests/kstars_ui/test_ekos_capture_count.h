@@ -112,7 +112,7 @@ class TestEkosCaptureCount : public QObject
         }
 
 
-    protected slots:
+    protected Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 
@@ -163,7 +163,7 @@ class TestEkosCaptureCount : public QObject
          */
         bool checkCapturedFrames();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Test whether the capture module produces exactly the diff between the capture frames map and the defined frame counts.
          */

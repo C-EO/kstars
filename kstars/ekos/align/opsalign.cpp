@@ -34,7 +34,7 @@ OpsAlign::OpsAlign(Align *parent) : QWidget(KStars::Instance())
     editSolverProfile->setAttribute(Qt::WA_LayoutUsesWidgetRect);
     connect(editSolverProfile, &QAbstractButton::clicked, this, [this]
     {
-        emit needToLoadProfile(kcfg_SolveOptionsProfile->currentText());
+        Q_EMIT needToLoadProfile(kcfg_SolveOptionsProfile->currentText());
     });
 
     reloadOptionsProfiles();
@@ -51,7 +51,7 @@ void OpsAlign::setFlipPolicy(const Ekos::OpsAlign::FlipPriority Priority)
     else if (Priority == Ekos::OpsAlign::POSITION_ANGLE)
         FlipRotationNotAllowed->setChecked(true);
     OpsAlign::update();
-    emit m_ConfigDialog->button(QDialogButtonBox::Apply)->click();
+    Q_EMIT m_ConfigDialog->button(QDialogButtonBox::Apply)->click();
 }
 
 void OpsAlign::reloadOptionsProfiles()
@@ -79,6 +79,6 @@ void OpsAlign::reloadOptionsProfiles()
 
 void OpsAlign::slotApply()
 {
-    emit settingsUpdated();
+    Q_EMIT settingsUpdated();
 }
 }

@@ -39,7 +39,7 @@ OpsPrograms::OpsPrograms(Align *parent) : QWidget(KStars::Instance())
 
 void OpsPrograms::slotApply()
 {
-    emit settingsUpdated();
+    Q_EMIT settingsUpdated();
 }
 
 void OpsPrograms::loadDefaultPaths(int option)

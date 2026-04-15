@@ -52,7 +52,7 @@ class DustCap : public ConcreteDevice
 
         static const QString getStatusString(Status status, bool translated = true);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Park Close dust cap
          * @return True if operation is successful, false otherwise.
@@ -74,7 +74,7 @@ class DustCap : public ConcreteDevice
             return m_ParkStatus;
         }
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::DustCap::Status status);
         void newParkStatus(ISD::ParkStatus status);
 

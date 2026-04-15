@@ -17,7 +17,7 @@ class TestDMS : public QObject
 
         void checkCtor_data();
 
-    private slots:
+    private Q_SLOTS:
         void defaultCtor();
         void explicitSexigesimalCtor();
         void angleCtor();

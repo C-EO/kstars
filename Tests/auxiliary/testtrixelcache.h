@@ -23,7 +23,7 @@ class TestTrixelCache : public QObject
         Q_OBJECT
     private:
         TestCache m_cache{ 10, 5 };
-    private slots:
+    private Q_SLOTS:
         void init()
         {
             // a fresh cache for each test

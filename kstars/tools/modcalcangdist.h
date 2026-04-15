@@ -29,7 +29,7 @@ class modCalcAngDist : public QFrame, public Ui::modCalcAngDistDlg
 
         virtual ~modCalcAngDist() override = default;
 
-    public slots:
+    public Q_SLOTS:
         void slotValidatePositions();
         void slotObjectButton();
         void slotResetTitle();

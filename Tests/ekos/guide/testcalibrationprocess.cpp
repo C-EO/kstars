@@ -56,7 +56,7 @@ class TestCalibrationProcess : public QObject
         TestCalibrationProcess();
         ~TestCalibrationProcess() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
 
     private:

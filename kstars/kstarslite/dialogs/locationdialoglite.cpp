@@ -81,7 +81,7 @@ void LocationDialogLite::processLocationNameData(QNetworkReply *networkReply)
                 QString country =
                     val.toArray()[0].toObject()["address_components"].toArray()[4].toObject()["long_name"].toString();
 
-                emit newNameFromCoordinates(city, region, country);
+                Q_EMIT newNameFromCoordinates(city, region, country);
             }
             else
             {
@@ -549,7 +549,7 @@ void LocationDialogLite::setCurrentLocation(const QString &loc)
     if (m_currentLocation != loc)
     {
         m_currentLocation = loc;
-        emit currentLocationChanged(loc);
+        Q_EMIT currentLocationChanged(loc);
     }
 }
 

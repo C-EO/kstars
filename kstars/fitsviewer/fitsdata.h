@@ -863,7 +863,7 @@ class FITSData : public QObject
             return m_LiveStackMetadata;
         }
 
-    signals:
+    Q_SIGNALS:
         void converted(QImage);
 
         /**
@@ -947,7 +947,7 @@ class FITSData : public QObject
          */
         void updateStackMon(const QVector<LiveStackFile> &subs, const QVector<LiveStackStageInfo> &infos);
 
-    public slots:
+    public Q_SLOTS:
         void makeRoiBuffer(QRect roi);
 
         /**

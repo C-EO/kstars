@@ -22,7 +22,7 @@ class OpsDslrSettings : public QWidget, public Ui::OpsDslrSettings
         explicit OpsDslrSettings();
         virtual ~OpsDslrSettings() override = default;
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     private:

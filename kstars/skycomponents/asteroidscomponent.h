@@ -44,7 +44,7 @@ class AsteroidsComponent : public QObject, public SolarSystemListComponent,
 
         void updateDataFile(bool isAutoUpdate = false);
 
-    protected slots:
+    protected Q_SLOTS:
         void downloadReady();
         void downloadError(const QString &errorString);
 

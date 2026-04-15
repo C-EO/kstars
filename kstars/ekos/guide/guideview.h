@@ -64,5 +64,5 @@ class GuideView : public FITSView
 
         // True if neighbors have been added but not yet displayed.
         bool newNeighbors { false };
-    signals:
+    Q_SIGNALS:
 };

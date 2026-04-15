@@ -50,7 +50,7 @@ void WSMedia::onConnected()
     m_isConnected = true;
     m_ReconnectTries = 0;
 
-    emit connected();
+    Q_EMIT connected();
 }
 
 void WSMedia::onDisconnected()
@@ -63,7 +63,7 @@ void WSMedia::onDisconnected()
 
     m_sendBlobs = true;
 
-    emit disconnected();
+    Q_EMIT disconnected();
 }
 
 void WSMedia::onError(QAbstractSocket::SocketError error)
@@ -84,7 +84,7 @@ void WSMedia::onTextReceived(const QString &message)
 
 void WSMedia::onBinaryReceived(const QByteArray &message)
 {
-    emit newFile(message, extension);
+    Q_EMIT newFile(message, extension);
 }
 
 }

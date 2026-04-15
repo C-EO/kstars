@@ -63,7 +63,7 @@ void MountTargetWidget::setTargetPosition(SkyPoint *position)
     updateJ2000Coordinates(currentTarget());
     updateTargetDisplay();
     // send a signal that a new target is set
-    emit newTarget();
+    Q_EMIT newTarget();
 }
 
 void MountTargetWidget::setTargetName(const QString &name)
@@ -209,14 +209,14 @@ void MountTargetWidget::processSlew()
 {
     dms ra, de;
     if (processCoords(ra, de))
-        emit slew(ra.Hours(), de.Degrees());
+        Q_EMIT slew(ra.Hours(), de.Degrees());
 }
 
 void MountTargetWidget::processSync()
 {
     dms ra, de;
     if (processCoords(ra, de))
-        emit sync(ra.Hours(), de.Degrees());
+        Q_EMIT sync(ra.Hours(), de.Degrees());
 }
 
 void MountTargetWidget::findTarget()
@@ -237,7 +237,7 @@ void MountTargetWidget::findTarget()
             m_currentTarget = o;
             updateTargetDisplay();
             // send a signal that a new target is set
-            emit newTarget();
+            Q_EMIT newTarget();
         }
     }
 

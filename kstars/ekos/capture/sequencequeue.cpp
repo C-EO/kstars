@@ -53,8 +53,8 @@ bool SequenceQueue::load(const QString &fileURL, const QString &targetName,
             double sqVersion = cLocale.toDouble(findXMLAttValu(root, "version"));
             if (sqVersion < SQ_COMPAT_VERSION)
             {
-                emit newLog(i18n("Deprecated sequence file format version %1. Please construct a new sequence file.",
-                                 sqVersion));
+                Q_EMIT newLog(i18n("Deprecated sequence file format version %1. Please construct a new sequence file.",
+                                   sqVersion));
                 return false;
             }
 
@@ -158,7 +158,7 @@ bool SequenceQueue::load(const QString &fileURL, const QString &targetName,
                     // meridian flip is managed by the mount only
                     // older files might nevertheless contain MF settings
                     if (! strcmp(findXMLAttValu(ep, "enabled"), "true"))
-                        emit newLog(
+                        Q_EMIT newLog(
                             i18n("Meridian flip configuration has been shifted to the mount module. Please configure the meridian flip there."));
                 }
                 else
@@ -171,7 +171,7 @@ bool SequenceQueue::load(const QString &fileURL, const QString &targetName,
         }
         else if (errmsg[0])
         {
-            emit newLog(QString(errmsg));
+            Q_EMIT newLog(QString(errmsg));
             delLilXML(xmlParser);
             return false;
         }
@@ -295,7 +295,7 @@ bool SequenceQueue::save(const QString &path, const QString &observerName)
 
     outstream << "</SequenceQueue>" << Qt::endl;
 
-    emit newLog(i18n("Sequence queue saved to %1", path));
+    Q_EMIT newLog(i18n("Sequence queue saved to %1", path));
     file.flush();
     file.close();
 
@@ -303,4 +303,3 @@ bool SequenceQueue::save(const QString &path, const QString &observerName)
 }
 
 }
-

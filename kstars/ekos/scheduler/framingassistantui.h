@@ -195,7 +195,7 @@ class FramingAssistantUI : public QDialog
         // Sanitize target name
         void sanitizeTarget();
 
-    public slots:
+    public Q_SLOTS:
         void updateTargetFOVFromGrid();
         void updateGridFromTargetFOV();
         void constructMosaic();
@@ -206,7 +206,7 @@ class FramingAssistantUI : public QDialog
         void setMountState(ISD::Mount::Status value);
         void setAlignState(AlignState value);
 
-    signals:
+    Q_SIGNALS:
         void gridSizeChanged(const QSize &value);
         void overlapChanged(double value);
         void positionAngleChanged(double value);

@@ -55,7 +55,7 @@ class FocusDialog : public QDialog
         /** Show the Az/Alt page instead of the RA/Dec page. */
         void activateAzAltPage() const;
 
-    public slots:
+    public Q_SLOTS:
         /** If text has been entered in both KLineEdits, enable the Ok button. */
         void checkLineEdits();
 

@@ -22,9 +22,9 @@ class TerrainRenderer : public QObject
 
         // Render terrainImage according to the loaded image and the projection.
         bool render(uint16_t w, uint16_t h, QImage *terrainImage, const Projector *proj);
-    signals:
+    Q_SIGNALS:
 
-    public slots:
+    public Q_SLOTS:
 
     private:
         // Constructor is private. Only make it with Instance().

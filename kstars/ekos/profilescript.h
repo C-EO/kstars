@@ -44,7 +44,7 @@ class ProfileScript : public QWidget
         QPushButton *m_PreScriptB {nullptr}, *m_PostScriptB {nullptr}, *m_RemoveB {nullptr}, *m_StoppingScriptB {nullptr},
                     *m_StoppedScriptB {nullptr};
 
-    signals:
+    Q_SIGNALS:
         void removedRequested();
 
     protected:
@@ -54,4 +54,3 @@ class ProfileScript : public QWidget
         void selectStoppedScript();
 
 };
-

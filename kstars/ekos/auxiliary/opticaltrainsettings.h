@@ -69,7 +69,7 @@ class OpticalTrainSettings : public QObject
             return m_Settings;
         }
 
-    signals:
+    Q_SIGNALS:
         void updated();
 
     private:

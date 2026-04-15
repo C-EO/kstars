@@ -89,7 +89,7 @@ class DeviceManagerUI : public QFrame, public Ui::devManager
         QIcon localMode;
         QIcon serverMode;
 
-    public slots:
+    public Q_SLOTS:
         void makePortEditable(QTreeWidgetItem *selectedItem, int column);
 };
 
@@ -130,7 +130,7 @@ class INDIDriver : public QDialog
         void processRemoteTree(IDevice::DeviceStatus dev_request);
         IDevice *findDeviceByLabel(const QString &label);
 
-    public slots:
+    public Q_SLOTS:
         void enableDevice(INDI_D *device);
         void disableDevice(INDI_D *device);
 
@@ -161,7 +161,7 @@ class INDIDriver : public QDialog
         int currentPort { 0 };
         IDevice::XMLSource xmlSource;
 
-    signals:
+    Q_SIGNALS:
         void newDevice();
         void newTelescope();
         void newCCD();

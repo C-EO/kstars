@@ -33,7 +33,7 @@ class MoonPhaseCalendar : public QCalendarWidget
         /** @return a suggested size for the widget */
         virtual QSize sizeHint() const;
 
-    public slots:
+    public Q_SLOTS:
 
         /**
          * Set the geometry of the moon phase calendar (overloaded from QWidget).

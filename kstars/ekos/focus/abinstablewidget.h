@@ -34,7 +34,7 @@ class AbInsTableWidget : public QTableWidget
          */
         void leaveEvent(QEvent * event) override;
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief signal mouse left the widget boundary
          */

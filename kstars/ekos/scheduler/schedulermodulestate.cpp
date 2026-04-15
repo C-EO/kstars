@@ -49,7 +49,7 @@ void SchedulerModuleState::setCurrentProfile(const QString &newName, bool signal
     }
     // update the UI
     if (signal && changed)
-        emit currentProfileChanged();
+        Q_EMIT currentProfileChanged();
 }
 
 void SchedulerModuleState::updateProfiles(const QStringList &newProfiles)
@@ -62,7 +62,7 @@ void SchedulerModuleState::updateProfiles(const QStringList &newProfiles)
     m_profiles = allProfiles;
     // ensure that the selected profile still exists
     setCurrentProfile(selected, false);
-    emit profilesChanged();
+    Q_EMIT profilesChanged();
 }
 
 SchedulerJob *SchedulerModuleState::activeJob(const QString &trainname) const
@@ -112,12 +112,12 @@ void SchedulerModuleState::updateJobStage(SchedulerJobStage stage)
 {
     if (activeJob() == nullptr)
     {
-        emit jobStageChanged(SCHEDSTAGE_IDLE);
+        Q_EMIT jobStageChanged(SCHEDSTAGE_IDLE);
     }
     else
     {
         activeJob()->setStage(stage);
-        emit jobStageChanged(stage);
+        Q_EMIT jobStageChanged(stage);
     }
 }
 
@@ -134,13 +134,13 @@ QJsonArray SchedulerModuleState::getJSONJobs()
 void SchedulerModuleState::setSchedulerState(const SchedulerState &newState)
 {
     m_schedulerState = newState;
-    emit schedulerStateChanged(newState);
+    Q_EMIT schedulerStateChanged(newState);
 }
 
 void SchedulerModuleState::setCurrentPosition(int newCurrentPosition)
 {
     m_currentPosition = newCurrentPosition;
-    emit currentPositionChanged(newCurrentPosition);
+    Q_EMIT currentPositionChanged(newCurrentPosition);
 }
 
 void SchedulerModuleState::setStartupState(StartupState state)
@@ -148,7 +148,7 @@ void SchedulerModuleState::setStartupState(StartupState state)
     if (m_startupState != state)
     {
         m_startupState = state;
-        emit startupStateChanged(state);
+        Q_EMIT startupStateChanged(state);
     }
 }
 
@@ -157,7 +157,7 @@ void SchedulerModuleState::setShutdownState(ShutdownState state)
     if (m_shutdownState != state)
     {
         m_shutdownState = state;
-        emit shutdownStateChanged(state);
+        Q_EMIT shutdownStateChanged(state);
     }
 }
 
@@ -166,7 +166,7 @@ void SchedulerModuleState::setParkWaitState(ParkWaitState state)
     if (m_parkWaitState != state)
     {
         m_parkWaitState = state;
-        emit parkWaitStateChanged(state);
+        Q_EMIT parkWaitStateChanged(state);
     }
 }
 
@@ -182,14 +182,14 @@ bool SchedulerModuleState::removeJob(const int currentRow)
     // Can't delete the currently running job
     if (job == m_activeJob)
     {
-        emit newLog(i18n("Cannot delete currently running job '%1'.", job->getName()));
+        Q_EMIT newLog(i18n("Cannot delete currently running job '%1'.", job->getName()));
         return false;
     }
     else if (job == nullptr || (activeJob() == nullptr && schedulerState() != SCHEDULER_IDLE))
     {
         // Don't allow delete--worried that we're about to schedule job that's being deleted.
-        emit newLog(i18n("Cannot delete job. Scheduler state: %1",
-                         getSchedulerStatusString(schedulerState(), true)));
+        Q_EMIT newLog(i18n("Cannot delete job. Scheduler state: %1",
+                           getSchedulerStatusString(schedulerState(), true)));
         return false;
     }
 
@@ -294,7 +294,7 @@ void SchedulerModuleState::setEkosState(EkosState state)
     {
         qCDebug(KSTARS_EKOS_SCHEDULER) << "EKOS state changed from" << m_ekosState << "to" << state;
         m_ekosState = state;
-        emit ekosStateChanged(state);
+        Q_EMIT ekosStateChanged(state);
     }
 }
 
@@ -400,7 +400,7 @@ void SchedulerModuleState::setIndiState(INDIState state)
     {
         qCDebug(KSTARS_EKOS_SCHEDULER) << "INDI state changed from" << m_indiState << "to" << state;
         m_indiState = state;
-        emit indiStateChanged(state);
+        Q_EMIT indiStateChanged(state);
     }
 }
 
@@ -532,7 +532,7 @@ void SchedulerModuleState::calculateDawnDusk()
     calculateDawnDusk(QDateTime(), m_Dawn, m_Dusk);
 
     m_PreDawnDateTime = m_Dawn.addSecs(-60.0 * abs(Options::preDawnTime()));
-    emit updateNightTime();
+    Q_EMIT updateNightTime();
 }
 
 const GeoLocation *SchedulerModuleState::getGeo()
@@ -587,7 +587,7 @@ uint SchedulerModuleState::maxFailureAttempts()
 void SchedulerModuleState::clearLog()
 {
     logText().clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 bool SchedulerModuleState::checkRepeatSequence()

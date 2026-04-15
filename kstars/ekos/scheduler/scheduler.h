@@ -280,7 +280,7 @@ class Scheduler : public QWidget, public Ui::Scheduler
          */
         void updateCellStyle(SchedulerJob *job, QTableWidgetItem *cell);
 
-    protected slots:
+    protected Q_SLOTS:
 
         /**
          * @brief checkInterfaceReady Sometimes syncProperties() is not sufficient since the ready signal could have fired already
@@ -459,7 +459,7 @@ class Scheduler : public QWidget, public Ui::Scheduler
              */
         void checkTwilightWarning(bool enabled);
 
-    signals:
+    Q_SIGNALS:
         void newStatus(Ekos::SchedulerState state);
         void weatherChanged(ISD::Weather::Status state);
         void newTarget(const QString &);

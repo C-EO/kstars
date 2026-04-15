@@ -173,7 +173,7 @@ void SchedulerProcess::findNextJob()
 
     if (activeJob()->getState() == SCHEDJOB_ERROR || activeJob()->getState() == SCHEDJOB_ABORTED)
     {
-        emit jobEnded(activeJob()->getName(), activeJob()->getStopReason());
+        Q_EMIT jobEnded(activeJob()->getName(), activeJob()->getStopReason());
         moduleState()->resetCaptureBatch();
         // Stop Guiding if it was used
         stopGuiding();
@@ -211,7 +211,7 @@ void SchedulerProcess::findNextJob()
             // wait the given delay until the jobs will be evaluated again
             moduleState()->setupNextIteration(RUN_WAKEUP, std::lround((Options::errorHandlingStrategyDelay() * 1000) /
                                               KStarsData::Instance()->clock()->scale()));
-            emit changeSleepLabel(i18n("Scheduler waits for a retry."));
+            Q_EMIT changeSleepLabel(i18n("Scheduler waits for a retry."));
             return;
         }
 
@@ -221,7 +221,7 @@ void SchedulerProcess::findNextJob()
     }
     else if (activeJob()->getState() == SCHEDJOB_IDLE)
     {
-        emit jobEnded(activeJob()->getName(), activeJob()->getStopReason());
+        Q_EMIT jobEnded(activeJob()->getName(), activeJob()->getStopReason());
 
         // job constraints no longer valid, start re-evaluation
         moduleState()->setActiveJob(nullptr);
@@ -231,7 +231,7 @@ void SchedulerProcess::findNextJob()
     // In any case, we're done whether the job completed successfully or not.
     else if (activeJob()->getCompletionCondition() == FINISH_SEQUENCE)
     {
-        emit jobEnded(activeJob()->getName(), activeJob()->getStopReason());
+        Q_EMIT jobEnded(activeJob()->getName(), activeJob()->getStopReason());
 
         // FINISH_SEQUENCE jobs are complete and should not restart
         // Mark them as COMPLETE (not IDLE) to prevent them from being marked as ABORTED on scheduler stop
@@ -282,7 +282,7 @@ void SchedulerProcess::findNextJob()
 
             if (activeJob() != nullptr)
             {
-                emit jobEnded(activeJob()->getName(), activeJob()->getStopReason());
+                Q_EMIT jobEnded(activeJob()->getName(), activeJob()->getStopReason());
                 appendLogText(i18np("Job '%1' is complete after #%2 batch.",
                                     "Job '%1' is complete after #%2 batches.",
                                     activeJob()->getName(), activeJob()->getRepeatsRequired()));
@@ -386,7 +386,7 @@ void SchedulerProcess::findNextJob()
     {
         if (SchedulerModuleState::getLocalTime().secsTo(activeJob()->getFinishAtTime()) <= 0)
         {
-            emit jobEnded(activeJob()->getName(), activeJob()->getStopReason());
+            Q_EMIT jobEnded(activeJob()->getName(), activeJob()->getStopReason());
 
             /* Mark the job idle as well as all its duplicates for re-evaluation */
             for (auto a_job : moduleState()->jobs())
@@ -550,7 +550,7 @@ void SchedulerProcess::wakeUpScheduler()
                     // Keep the scheduler's timer alive with a safety-net interval.
                     // Real recovery happens event-driven via setWeatherStatus() → RUN_WAKEUP in 10ms.
                     moduleState()->setupNextIteration(RUN_WAKEUP, 5 * 60 * 1000);
-                    emit schedulerSleeping(false, true);
+                    Q_EMIT schedulerSleeping(false, true);
                     return;
                 }
 
@@ -690,7 +690,7 @@ void SchedulerProcess::start()
     for (auto j : moduleState()->jobs())
     {
         j->setState(SCHEDJOB_IDLE);
-        emit updateJobTable(j);
+        Q_EMIT updateJobTable(j);
     }
 
     // Reset startup state only if it's in an error or intermediate state.
@@ -776,7 +776,7 @@ void SchedulerProcess::stop()
                                           std::lround(((nextObservationTime + 1) * 1000)
                                                   / KStarsData::Instance()->clock()->scale()));
         // report success
-        emit schedulerStopped();
+        Q_EMIT schedulerStopped();
         return;
     }
 
@@ -788,12 +788,12 @@ void SchedulerProcess::stop()
     // The queue manager handles script execution.
 
     // report success
-    emit schedulerStopped();
+    Q_EMIT schedulerStopped();
 }
 
 void SchedulerProcess::removeAllJobs()
 {
-    emit clearJobTable();
+    Q_EMIT clearJobTable();
 
     qDeleteAll(moduleState()->jobs());
     moduleState()->mutlableJobs().clear();
@@ -809,7 +809,7 @@ bool SchedulerProcess::loadScheduler(const QString &fileURL)
 
 void SchedulerProcess::setSequence(const QString &sequenceFileURL)
 {
-    emit changeCurrentSequence(sequenceFileURL);
+    Q_EMIT changeCurrentSequence(sequenceFileURL);
 }
 
 void SchedulerProcess::resetAllJobs()
@@ -883,7 +883,7 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
                                           std::lround(((nextObservationTime + 1) * 1000) / KStarsData::Instance()->clock()->scale()));
 
         checkShutdownState();
-        emit schedulerSleeping(true, false);
+        Q_EMIT schedulerSleeping(true, false);
         return true;
     }
     // Otherwise, sleep until job is ready
@@ -925,7 +925,7 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
         moduleState()->setupNextIteration(RUN_WAKEUP,
                                           std::lround(((nextObservationTime + 1) * 1000)
                                                   / KStarsData::Instance()->clock()->scale()));
-        emit schedulerSleeping(false, true);
+        Q_EMIT schedulerSleeping(false, true);
         return true;
     }
     else if (nextObservationTime > Options::leadTime() * 60)
@@ -953,7 +953,7 @@ bool SchedulerProcess::shouldSchedulerSleep(SchedulerJob * job)
         moduleState()->setupNextIteration(RUN_WAKEUP,
                                           std::lround(((nextObservationTime + 1) * 1000) / KStarsData::Instance()->clock()->scale()));
 
-        emit schedulerSleeping(false, true);
+        Q_EMIT schedulerSleeping(false, true);
         return true;
     }
 
@@ -1857,7 +1857,7 @@ bool SchedulerProcess::completeShutdown()
                                        ? static_cast<int>(Options::schedulerWeatherGracePeriod() * 60000)
                                        : 5 * 60 * 1000;
         moduleState()->setupNextIteration(RUN_WAKEUP, monitoringInterval);
-        emit schedulerSleeping(false, true);
+        Q_EMIT schedulerSleeping(false, true);
         return true;
     }
 
@@ -2180,7 +2180,7 @@ void SchedulerProcess::setPaused()
 {
     moduleState()->setupNextIteration(RUN_NOTHING);
     appendLogText(i18n("Scheduler paused."));
-    emit schedulerPaused();
+    Q_EMIT schedulerPaused();
 }
 
 void SchedulerProcess::resetJobs()
@@ -2334,7 +2334,7 @@ void SchedulerProcess::evaluateJobs(bool evaluateOnly)
         qCDebug(KSTARS_EKOS_SCHEDULER) << "evaluateJobs: evaluateOnly is" << evaluateOnly << "or scheduler is not running.";
     }
 
-    emit jobsUpdated(moduleState()->getJSONJobs());
+    Q_EMIT jobsUpdated(moduleState()->getJSONJobs());
     qCDebug(KSTARS_EKOS_SCHEDULER) << "evaluateJobs: Finished evaluation.";
 }
 
@@ -2399,7 +2399,7 @@ bool SchedulerProcess::checkStatus()
                                            ? static_cast<int>(Options::schedulerWeatherGracePeriod() * 60000)
                                            : 5 * 60 * 1000;
             moduleState()->setupNextIteration(RUN_WAKEUP, monitoringInterval);
-            emit schedulerSleeping(false, true);
+            Q_EMIT schedulerSleeping(false, true);
             moduleState()->setActiveJob(nullptr);
             return false;
         }
@@ -2472,7 +2472,7 @@ bool SchedulerProcess::checkStatus()
         // N.B. We explicitly do not check for return result here because regardless of execution result
         // we do not have any pending tasks further down.
         executeJob(activeJob());
-        emit updateJobTable();
+        Q_EMIT updateJobTable();
     }
 
     return true;
@@ -2598,7 +2598,7 @@ void SchedulerProcess::iterate()
             if (moduleState() && moduleState()->currentlySleeping())
             {
                 moduleState()->tickleTimer().start(oneHour);
-                emit updateJobTable(nullptr);
+                Q_EMIT updateJobTable(nullptr);
             }
         });
         tickleTimer.setSingleShot(true);
@@ -2672,7 +2672,7 @@ void SchedulerProcess::checkJobStage()
             checkJobStageCounter = 0;
     }
 
-    emit syncGreedyParams();
+    Q_EMIT syncGreedyParams();
     if (!getGreedyScheduler()->checkJob(moduleState()->leadJobs(), SchedulerModuleState::getLocalTime(), activeJob()))
     {
         activeJob()->setState(SCHEDJOB_IDLE);
@@ -2707,7 +2707,7 @@ void SchedulerProcess::checkJobStageEpilogue()
     {
         case SCHEDSTAGE_IDLE:
             // Job is just starting.
-            emit jobStarted(activeJob()->getName());
+            Q_EMIT jobStarted(activeJob()->getName());
             getNextAction();
             break;
 
@@ -2928,7 +2928,7 @@ bool SchedulerProcess::executeJob(SchedulerJob * job)
     qCInfo(KSTARS_EKOS_SCHEDULER) << "Executing Job " << activeJob()->getName();
 
     activeJob()->setState(SCHEDJOB_BUSY);
-    emit jobsUpdated(moduleState()->getJSONJobs());
+    Q_EMIT jobsUpdated(moduleState()->getJSONJobs());
 
     KSNotification::event(QLatin1String("EkosSchedulerJobStart"),
                           i18n("Ekos job started (%1)", activeJob()->getName()), KSNotification::Scheduler);
@@ -3272,7 +3272,7 @@ void SchedulerProcess::solverDone(bool timedOut, bool success, const FITSImage::
                                             alignCoord.dec().toDMSString(),
                                             healpixString,
                                             QString("%L1").arg(elapsedSeconds, 0, 'f', 2));
-        emit targetDistance(diffTotal);
+        Q_EMIT targetDistance(diffTotal);
 
         // If we exceed align check threshold, we abort and re-align.
         if (diffTotal / 60 > Options::alignCheckThreshold())
@@ -3470,7 +3470,7 @@ bool SchedulerProcess::appendEkosScheduleList(const QString &fileURL)
                             break;
                     }
 
-                    emit addJob(newJob);
+                    Q_EMIT addJob(newJob);
                 }
                 else if (!strcmp(tag, "Mosaic"))
                 {
@@ -3549,7 +3549,7 @@ bool SchedulerProcess::appendEkosScheduleList(const QString &fileURL)
                 }
             }
             delXMLEle(root);
-            emit syncGUIToGeneralSettings();
+            Q_EMIT syncGUIToGeneralSettings();
         }
         else if (errmsg[0])
         {
@@ -3562,7 +3562,7 @@ bool SchedulerProcess::appendEkosScheduleList(const QString &fileURL)
 
     moduleState()->setDirty(false);
     delLilXML(xmlParser);
-    emit updateSchedulerURL(fileURL);
+    Q_EMIT updateSchedulerURL(fileURL);
 
     moduleState()->setSchedulerState(old_state);
     return true;
@@ -3583,13 +3583,13 @@ void SchedulerProcess::appendLogText(const QString &logentry)
 
     qCInfo(KSTARS_EKOS_SCHEDULER) << logentry;
 
-    emit newLog(logentry);
+    Q_EMIT newLog(logentry);
 }
 
 void SchedulerProcess::clearLog()
 {
     moduleState()->logText().clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void SchedulerProcess::setAlignStatus(AlignState status)
@@ -4107,7 +4107,7 @@ void SchedulerProcess::setWeatherStatus(ISD::Weather::Status status, bool fromSt
     }
 
     // forward weather state
-    emit newWeatherStatus(status);
+    Q_EMIT newWeatherStatus(status);
 }
 
 void SchedulerProcess::startShutdownDueToWeather()
@@ -4120,7 +4120,7 @@ void SchedulerProcess::startShutdownDueToWeather()
         if (activeJob())
         {
             stopCurrentJobAction();
-            emit updateJobTable();
+            Q_EMIT updateJobTable();
         }
 
         // Park mount, dome, etc. but don't exit completely
@@ -4141,7 +4141,7 @@ void SchedulerProcess::startShutdownDueToWeather()
                                           std::lround(((gracePeriodSeconds + 1) * 1000) / KStarsData::Instance()->clock()->scale()));
 
         // Initiate shutdown procedure
-        emit schedulerSleeping(true, true);
+        Q_EMIT schedulerSleeping(true, true);
         moduleState()->setShutdownState(SHUTDOWN_IDLE);
         checkShutdownState();
     }
@@ -4395,7 +4395,7 @@ void SchedulerProcess::checkInterfaceReady(QDBusInterface * iface)
             moduleState()->setCaptureReady(true);
     }
     // communicate state to UI
-    emit interfaceReady(iface);
+    Q_EMIT interfaceReady(iface);
 }
 
 void SchedulerProcess::registerNewModule(const QString &name)

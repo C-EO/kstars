@@ -285,13 +285,13 @@ FramingAssistantUI::FramingAssistantUI(): QDialog(KStars::Instance()), ui(new Ui
             [this](double value)
     {
         m_GridSize.setWidth(value);
-        emit gridSizeChanged(m_GridSize);
+        Q_EMIT gridSizeChanged(m_GridSize);
     });
     connect(ui->mosaicHSpin, QOverload<int>::of(&QSpinBox::valueChanged), this,
             [this](double value)
     {
         m_GridSize.setHeight(value);
-        emit gridSizeChanged(m_GridSize);
+        Q_EMIT gridSizeChanged(m_GridSize);
     });
     connect(ui->overlapSpin, QOverload<double>::of(&QDoubleSpinBox::valueChanged), this,
             &Ekos::FramingAssistantUI::setOverlap);
@@ -943,7 +943,7 @@ void FramingAssistantUI::setGridSize(const QSize &value)
     m_GridSize = value;
     ui->mosaicWSpin->setValue(value.width());
     ui->mosaicHSpin->setValue(value.height());
-    emit gridSizeChanged(m_GridSize);
+    Q_EMIT gridSizeChanged(m_GridSize);
 }
 
 void FramingAssistantUI::setOverlap(double value)
@@ -953,7 +953,7 @@ void FramingAssistantUI::setOverlap(double value)
 
     m_Overlap = value;
     ui->overlapSpin->setValue(value);
-    emit overlapChanged(m_Overlap);
+    Q_EMIT overlapChanged(m_Overlap);
 }
 
 void FramingAssistantUI::setPositionAngle(double value)
@@ -963,7 +963,7 @@ void FramingAssistantUI::setPositionAngle(double value)
 
     m_PA = value;
     ui->positionAngleSpin->setValue(value);
-    emit positionAngleChanged(m_PA);
+    Q_EMIT positionAngleChanged(m_PA);
 }
 
 void FramingAssistantUI::setSequenceFile(const QString &value)
@@ -973,7 +973,7 @@ void FramingAssistantUI::setSequenceFile(const QString &value)
 
     m_SequenceFile = value;
     ui->sequenceEdit->setText(value);
-    emit sequenceFileChanged(m_SequenceFile);
+    Q_EMIT sequenceFileChanged(m_SequenceFile);
 }
 
 void FramingAssistantUI::setOutputDirectory(const QString &value)
@@ -983,7 +983,7 @@ void FramingAssistantUI::setOutputDirectory(const QString &value)
 
     m_OutputDirectory = value;
     ui->directoryEdit->setText(value);
-    emit outputDirectoryChanged(m_OutputDirectory);
+    Q_EMIT outputDirectoryChanged(m_OutputDirectory);
 }
 
 void FramingAssistantUI::setTargetName(const QString &value)
@@ -993,7 +993,7 @@ void FramingAssistantUI::setTargetName(const QString &value)
 
     m_TargetName = value;
     ui->targetEdit->setText(value);
-    emit targetNameChanged(m_TargetName);
+    Q_EMIT targetNameChanged(m_TargetName);
 }
 
 void FramingAssistantUI::setFocusEveryN(int value)
@@ -1003,7 +1003,7 @@ void FramingAssistantUI::setFocusEveryN(int value)
 
     m_FocusEveryN = value;
     ui->focusEvery->setValue(value);
-    emit focusEveryNChanged(m_FocusEveryN);
+    Q_EMIT focusEveryNChanged(m_FocusEveryN);
 }
 
 void FramingAssistantUI::setAlignEveryN(int value)
@@ -1013,7 +1013,7 @@ void FramingAssistantUI::setAlignEveryN(int value)
 
     m_AlignEveryN = value;
     ui->alignEvery->setValue(value);
-    emit alignEveryNChanged(m_AlignEveryN);
+    Q_EMIT alignEveryNChanged(m_AlignEveryN);
 }
 
 void FramingAssistantUI::setIsTrackChecked(bool value)
@@ -1023,7 +1023,7 @@ void FramingAssistantUI::setIsTrackChecked(bool value)
 
     m_IsTrackChecked = value;
     ui->trackStepCheck->setChecked(value);
-    emit isTrackCheckedChanged(m_IsTrackChecked);
+    Q_EMIT isTrackCheckedChanged(m_IsTrackChecked);
 }
 
 void FramingAssistantUI::setIsFocusChecked(bool value)
@@ -1033,7 +1033,7 @@ void FramingAssistantUI::setIsFocusChecked(bool value)
 
     m_IsFocusChecked = value;
     ui->focusStepCheck->setChecked(value);
-    emit isFocusCheckedChanged(m_IsFocusChecked);
+    Q_EMIT isFocusCheckedChanged(m_IsFocusChecked);
 }
 
 void FramingAssistantUI::setIsAlignChecked(bool value)
@@ -1043,7 +1043,7 @@ void FramingAssistantUI::setIsAlignChecked(bool value)
 
     m_IsAlignChecked = value;
     ui->alignStepCheck->setChecked(value);
-    emit isAlignCheckedChanged(m_IsAlignChecked);
+    Q_EMIT isAlignCheckedChanged(m_IsAlignChecked);
 }
 
 void FramingAssistantUI::setIsGuideChecked(bool value)
@@ -1053,7 +1053,7 @@ void FramingAssistantUI::setIsGuideChecked(bool value)
 
     m_IsGuideChecked = value;
     ui->guideStepCheck->setChecked(value);
-    emit isGuideCheckedChanged(m_IsGuideChecked);
+    Q_EMIT isGuideCheckedChanged(m_IsGuideChecked);
 }
 
 void FramingAssistantUI::setCompletionCondition(const QString &value)
@@ -1070,7 +1070,7 @@ void FramingAssistantUI::setCompletionCondition(const QString &value)
     else if (m_CompletionCondition == "FinishLoop")
         ui->loopCompletionR->setChecked(true);
 
-    emit completionConditionChanged(m_CompletionCondition);
+    Q_EMIT completionConditionChanged(m_CompletionCondition);
 }
 
 void FramingAssistantUI::setCompletionConditionArg(const QString &value)
@@ -1083,7 +1083,7 @@ void FramingAssistantUI::setCompletionConditionArg(const QString &value)
     if (m_CompletionCondition == "FinishRepeat")
         ui->repeatsSpin->setValue(m_CompletionConditionArg.toInt());
 
-    emit completionConditionArgChanged(m_CompletionConditionArg);
+    Q_EMIT completionConditionArgChanged(m_CompletionConditionArg);
 }
 
 void FramingAssistantUI::setCenter(double ra0, double dec0)

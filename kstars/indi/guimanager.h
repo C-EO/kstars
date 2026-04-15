@@ -74,7 +74,7 @@ class GUIManager : public QWidget
         QList<ClientManager *> clients;
         QList<INDI_D *> guidevices;
 
-    public slots:
+    public Q_SLOTS:
         void changeAlwaysOnTop(Qt::ApplicationState state);
         void clearLog();
         void buildDevice(DeviceInfo *di);

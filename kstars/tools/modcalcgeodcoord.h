@@ -32,7 +32,7 @@ class modCalcGeodCoord : public QFrame, public Ui::modCalcGeodCoordDlg
         void showSpheGeoCoords(void);
         void showCartGeoCoords(void);
 
-    public slots:
+    public Q_SLOTS:
 
         void slotComputeGeoCoords(void);
         void slotClearGeoCoords(void);

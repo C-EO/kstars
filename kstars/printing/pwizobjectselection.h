@@ -38,7 +38,7 @@ class PWizObjectSelectionUI : public QFrame, public Ui::PWizObjectSelection
               */
         static QString objectInfoString(SkyObject *obj);
 
-    private slots:
+    private Q_SLOTS:
         /**
               * \brief Slot: open "Find Object" dialog to select SkyObject.
               */

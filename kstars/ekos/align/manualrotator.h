@@ -26,7 +26,7 @@ class ManualRotator : public QDialog, public Ui::ManualRotator
 
     private:
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &);
         void captureAndSolve();
 

@@ -17,6 +17,6 @@ LogEdit::LogEdit(QWidget *parent) : QTextEdit(parent)
 
 void LogEdit::focusOutEvent(QFocusEvent *e)
 {
-    emit focusOut();
+    Q_EMIT focusOut();
     QWidget::focusOutEvent(e);
 }

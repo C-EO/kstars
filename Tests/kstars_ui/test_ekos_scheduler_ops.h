@@ -47,7 +47,7 @@ class TestEkosSchedulerOps : public QObject
     public:
         explicit TestEkosSchedulerOps(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

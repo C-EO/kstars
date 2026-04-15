@@ -371,12 +371,12 @@ void INDIDriver::processRemoteTree(IDevice::DeviceStatus dev_request)
 
 void INDIDriver::newTelescopeDiscovered()
 {
-    emit newTelescope();
+    Q_EMIT newTelescope();
 }
 
 void INDIDriver::newCCDDiscovered()
 {
-    emit newCCD();
+    Q_EMIT newCCD();
 }
 
 void INDIDriver::resizeDeviceColumn()

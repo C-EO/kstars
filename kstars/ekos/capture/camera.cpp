@@ -165,7 +165,7 @@ Camera::~Camera()
 void Camera::updateCameraStatus(CaptureState status)
 {
     // forward a status change
-    emit newStatus(status, opticalTrain(), cameraId());
+    Q_EMIT newStatus(status, opticalTrain(), cameraId());
 }
 
 ISD::Camera *Camera::activeCamera()
@@ -414,19 +414,19 @@ void Camera::initCamera()
     connect(m_cameraState.data(), &CameraState::runAutoFocus, this,
             [&](AutofocusReason autofocusReason, const QString & reasonInfo)
     {
-        emit runAutoFocus(autofocusReason, reasonInfo, opticalTrain());
+        Q_EMIT runAutoFocus(autofocusReason, reasonInfo, opticalTrain());
     });
     connect(m_cameraState.data(), &CameraState::resetFocusFrame, this, [&]()
     {
-        emit resetFocusFrame(opticalTrain());
+        Q_EMIT resetFocusFrame(opticalTrain());
     });
     connect(m_cameraState.data(), &CameraState::adaptiveFocus, this, [&]()
     {
-        emit adaptiveFocus(opticalTrain());
+        Q_EMIT adaptiveFocus(opticalTrain());
     });
     connect(m_cameraProcess.data(), &CameraProcess::abortFocus, this, [&]()
     {
-        emit abortFocus(opticalTrain());
+        Q_EMIT abortFocus(opticalTrain());
     });
     connect(m_cameraState.data(), &CameraState::newMeridianFlipStage, this, &Camera::updateMeridianFlipStage);
     connect(m_cameraState.data(), &CameraState::guideAfterMeridianFlip, this, &Camera::guideAfterMeridianFlip);
@@ -434,12 +434,12 @@ void Camera::initCamera()
     {
         // only the main camera sends guiding controls
         if (cameraId() == 0)
-            emit resetNonGuidedDither();
+            Q_EMIT resetNonGuidedDither();
     });
     connect(m_cameraState.data(), &CameraState::newStatus, this, &Camera::updateCameraStatus);
     connect(m_cameraState.data(), &CameraState::meridianFlipStarted, this, [&]()
     {
-        emit meridianFlipStarted(opticalTrain());
+        Q_EMIT meridianFlipStarted(opticalTrain());
     });
     // process engine connections
     connect(m_cameraProcess.data(), &CameraProcess::refreshCamera, this, &Camera::updateCamera);
@@ -447,20 +447,20 @@ void Camera::initCamera()
     connect(m_cameraProcess.data(), &CameraProcess::addJob, this, &Camera::addJob);
     connect(m_cameraProcess.data(), &CameraProcess::newExposureProgress, this, [&](const QSharedPointer<SequenceJob> &job)
     {
-        emit newExposureProgress(job, opticalTrain());
+        Q_EMIT newExposureProgress(job, opticalTrain());
     });
     connect(m_cameraProcess.data(), &CameraProcess::newDownloadProgress, this, [&](double downloadTimeLeft)
     {
-        emit updateDownloadProgress(downloadTimeLeft, opticalTrain());
+        Q_EMIT updateDownloadProgress(downloadTimeLeft, opticalTrain());
     });
     connect(m_cameraProcess.data(), &CameraProcess::newImage, this, [&](const QSharedPointer<SequenceJob> &job,
             const QSharedPointer<FITSData> data)
     {
-        emit newImage(job, data, opticalTrain());
+        Q_EMIT newImage(job, data, opticalTrain());
     });
     connect(m_cameraProcess.data(), &CameraProcess::captureComplete, this, [&](const QVariantMap & metadata)
     {
-        emit captureComplete(metadata, opticalTrain());
+        Q_EMIT captureComplete(metadata, opticalTrain());
     });
     connect(m_cameraProcess.data(), &CameraProcess::updateCaptureCountDown, this, &Camera::updateCaptureCountDown);
     connect(m_cameraProcess.data(), &CameraProcess::processingFITSfinished, this, &Camera::processingFITSfinished);
@@ -498,7 +498,7 @@ void Camera::initCamera()
     });
     connect(m_cameraProcess.data(), &CameraProcess::requestAction, this, [&](CaptureWorkflowActionType action)
     {
-        emit requestAction(m_cameraId, action);
+        Q_EMIT requestAction(m_cameraId, action);
     });
 
     // connections between state machine and process engine
@@ -508,16 +508,16 @@ void Camera::initCamera()
             &CameraProcess::captureStarted);
     connect(m_cameraState.data(), &CameraState::requestAction, this, [&](CaptureWorkflowActionType action)
     {
-        emit requestAction(m_cameraId, action);
+        Q_EMIT requestAction(m_cameraId, action);
     });
     connect(m_cameraState.data(), &CameraState::checkFocus, this, [&](double hfr)
     {
-        emit checkFocus(hfr, opticalTrain());
+        Q_EMIT checkFocus(hfr, opticalTrain());
     });
     connect(m_cameraState.data(), &CameraState::resetNonGuidedDither, this, [&]()
     {
         if (m_cameraId == 0)
-            emit resetNonGuidedDither();
+            Q_EMIT resetNonGuidedDither();
     });
 
     // device adaptor connections

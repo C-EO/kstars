@@ -102,7 +102,7 @@ void FITSView::doStretch(QImage *outputImage)
     {
         // Compute new auto-stretch params.
         stretchParams = stretch.computeParams(m_ImageData->getImageBuffer(), m_AutoStretchPreset);
-        emit newStretch(stretchParams);
+        Q_EMIT newStretch(stretchParams);
         tempParams = stretchParams;
     }
     else
@@ -465,17 +465,17 @@ void FITSView::loadStack(const QStringList &inDir, const LiveStackData &params)
     connect(m_ImageData.data(), &FITSData::plateSolveSub, this, [this](const double ra, const double dec,
             const double pixScale, const int index, const int healpix, const LiveStackFrameWeighting weighting)
     {
-        emit plateSolveSub(ra, dec, pixScale, index, healpix, weighting);
+        Q_EMIT plateSolveSub(ra, dec, pixScale, index, healpix, weighting);
     });
 
     connect(m_ImageData.data(), &FITSData::alignMasterChosen, this, [this](const QString alignMaster)
     {
-        emit alignMasterChosen(alignMaster);
+        Q_EMIT alignMasterChosen(alignMaster);
     });
 
     connect(m_ImageData.data(), &FITSData::stackInProgress, this, [this]()
     {
-        emit stackInProgress();
+        Q_EMIT stackInProgress();
     });
 
     connect(m_ImageData.data(), &FITSData::stackReady, this, &FITSView::stackReady);
@@ -483,7 +483,7 @@ void FITSView::loadStack(const QStringList &inDir, const LiveStackData &params)
     connect(m_ImageData.data(), &FITSData::stackUpdateStats, this, [this](const bool ok, const int sub,
             const int total, const double meanSNR, const double minSNR, const double maxSNR)
     {
-        emit stackUpdateStats(ok, sub, total, meanSNR, minSNR, maxSNR);
+        Q_EMIT stackUpdateStats(ok, sub, total, meanSNR, minSNR, maxSNR);
     });
 
     // Register the metatypes for use in signals to Stack Monitor
@@ -537,11 +537,11 @@ void FITSView::stackReady(const bool cancelled)
             fitsWatcher.setFuture(m_ImageData->loadFromFile(":/images/noimage.png"));
         else
         {
-            emit updateStackSNR(m_ImageData->getStackSNR());
+            Q_EMIT updateStackSNR(m_ImageData->getStackSNR());
             fitsWatcher.setFuture(m_ImageData->loadStackBuffer());
         }
     }
-    emit resetStack(cancelled);
+    Q_EMIT resetStack(cancelled);
 }
 
 void FITSView::clearData()
@@ -584,12 +584,12 @@ bool FITSView::loadData(const QSharedPointer<FITSData> &data)
 
     if (processData())
     {
-        emit loaded();
+        Q_EMIT loaded();
         return true;
     }
     else
     {
-        emit failed(m_LastError);
+        Q_EMIT failed(m_LastError);
         return false;
     }
 }
@@ -608,23 +608,23 @@ bool FITSView::processData()
 
     connect(m_ImageData.data(), &FITSData::headerChanged, this, [this]()
     {
-        emit headerChanged();
+        Q_EMIT headerChanged();
     });
 
     connect(m_ImageData.data(), &FITSData::loadingCatalogData, this, [this]()
     {
-        emit catQueried();
+        Q_EMIT catQueried();
     });
 
     connect(m_ImageData.data(), &FITSData::catalogQueryFailed, this, [this](QString text)
     {
-        emit catQueryFailed(text);
+        Q_EMIT catQueryFailed(text);
     });
 
     connect(m_ImageData.data(), &FITSData::loadedCatalogData, this, [this]()
     {
         // Signal FITSTab to load the new data in the table
-        emit catLoaded();
+        Q_EMIT catLoaded();
         // Reprocess FITSView
         rescale(ZOOM_KEEP_LEVEL);
         updateFrame();
@@ -720,7 +720,7 @@ bool FITSView::processData()
         syncWCSState();
 
     if (isVisible())
-        emit newStatus(QString("%1x%2").arg(image_width).arg(image_height), FITS_RESOLUTION);
+        Q_EMIT newStatus(QString("%1x%2").arg(image_width).arg(image_height), FITS_RESOLUTION);
 
     if (showStarProfile)
     {
@@ -758,7 +758,7 @@ void FITSView::loadInFrame()
     // It can wind up being null if the file is manually deleted.
     if (m_ImageData.isNull())
     {
-        emit failed("No image file.");
+        Q_EMIT failed("No image file.");
         return;
     }
 
@@ -767,17 +767,17 @@ void FITSView::loadInFrame()
     // Check if the loading was OK
     if (fitsWatcher.result() == false)
     {
-        emit failed(m_LastError);
+        Q_EMIT failed(m_LastError);
         return;
     }
 
     // Notify if there is debayer data.
-    emit debayerToggled(m_ImageData->hasDebayer());
+    Q_EMIT debayerToggled(m_ImageData->hasDebayer());
 
     if (processData())
-        emit loaded();
+        Q_EMIT loaded();
     else
-        emit failed(m_LastError);
+        Q_EMIT failed(m_LastError);
 
     // If stack has just been processed, plate solve and check for more subs...
 #if !defined (KSTARS_LITE)
@@ -799,7 +799,7 @@ void FITSView::loadInFrame()
                                      << "to:" << fullPath;
                 const int savedIndex = m_ImageData->getStackSavedFrameCount();
                 m_ImageData->incrementStackSavedFrameCount();
-                emit stackFrameSaved(savedIndex, fullPath);
+                Q_EMIT stackFrameSaved(savedIndex, fullPath);
             }
             else
             {
@@ -877,7 +877,7 @@ bool FITSView::rescale(FITSZoom type)
     currentHeight = image_height;
 
     if (isVisible())
-        emit newStatus(QString("%1x%2").arg(image_width).arg(image_height), FITS_RESOLUTION);
+        Q_EMIT newStatus(QString("%1x%2").arg(image_width).arg(image_height), FITS_RESOLUTION);
 
     switch (type)
     {
@@ -903,7 +903,7 @@ bool FITSView::rescale(FITSZoom type)
                 currentHeight = image_height * (currentZoom / ZOOM_DEFAULT);
 
                 if (currentZoom <= ZOOM_MIN)
-                    emit actionUpdated("view_zoom_out", false);
+                    Q_EMIT actionUpdated("view_zoom_out", false);
             }
             else
             {
@@ -940,7 +940,7 @@ void FITSView::emitZoom()
 {
     // Don't need to display full float precision. Limit to 2 decimal places at most.
     double zoom = std::round(currentZoom * 100.0) / 100.0;
-    emit newStatus(i18nc("%1 is the value, % is the percent sign", "%1%", zoom), FITS_ZOOM);
+    Q_EMIT newStatus(i18nc("%1 is the value, % is the percent sign", "%1%", zoom), FITS_ZOOM);
 }
 
 void FITSView::ZoomIn()
@@ -950,7 +950,7 @@ void FITSView::ZoomIn()
 
     if (currentZoom >= ZOOM_DEFAULT && Options::limitedResourcesMode())
     {
-        emit newStatus(i18n("Cannot zoom in further due to active limited resources mode."), FITS_MESSAGE);
+        Q_EMIT newStatus(i18n("Cannot zoom in further due to active limited resources mode."), FITS_MESSAGE);
         return;
     }
 
@@ -959,11 +959,11 @@ void FITSView::ZoomIn()
     else
         currentZoom += ZOOM_HIGH_INCR;
 
-    emit actionUpdated("view_zoom_out", true);
+    Q_EMIT actionUpdated("view_zoom_out", true);
     if (currentZoom >= zoomMax)
     {
         currentZoom = zoomMax;
-        emit actionUpdated("view_zoom_in", false);
+        Q_EMIT actionUpdated("view_zoom_in", false);
     }
 
     currentWidth  = m_ImageData->width() * (currentZoom / ZOOM_DEFAULT);
@@ -974,7 +974,7 @@ void FITSView::ZoomIn()
     updateFrame(true);
 
     emitZoom();
-    emit zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
+    Q_EMIT zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
 }
 
 void FITSView::ZoomOut()
@@ -990,10 +990,10 @@ void FITSView::ZoomOut()
     if (currentZoom <= ZOOM_MIN)
     {
         currentZoom = ZOOM_MIN;
-        emit actionUpdated("view_zoom_out", false);
+        Q_EMIT actionUpdated("view_zoom_out", false);
     }
 
-    emit actionUpdated("view_zoom_in", true);
+    Q_EMIT actionUpdated("view_zoom_in", true);
 
     currentWidth  = m_ImageData->width() * (currentZoom / ZOOM_DEFAULT);
     currentHeight = m_ImageData->height() * (currentZoom / ZOOM_DEFAULT);
@@ -1003,7 +1003,7 @@ void FITSView::ZoomOut()
     updateFrame(true);
 
     emitZoom();
-    emit zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
+    Q_EMIT zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
 }
 
 void FITSView::ZoomToFit()
@@ -1016,7 +1016,7 @@ void FITSView::ZoomToFit()
         rescale(ZOOM_FIT_WINDOW);
         updateFrame(true);
     }
-    emit zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
+    Q_EMIT zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
 }
 
 
@@ -1096,7 +1096,7 @@ void FITSView::updateFrame(bool now)
         if (m_QueueUpdate && m_StretchingInProgress == false)
         {
             m_QueueUpdate = false;
-            emit updated();
+            Q_EMIT updated();
         }
     }
     else
@@ -1375,17 +1375,17 @@ void FITSView::drawClipping(QPainter *painter)
             break;
     }
     if (m_NumClipped < 0)
-        emit newStatus(QString("Clip:failed"), FITS_CLIP);
+        Q_EMIT newStatus(QString("Clip:failed"), FITS_CLIP);
     else
-        emit newStatus(QString("Clip:%1").arg(m_NumClipped), FITS_CLIP);
+        Q_EMIT newStatus(QString("Clip:%1").arg(m_NumClipped), FITS_CLIP);
 }
 
 void FITSView::ZoomDefault()
 {
     if (m_ImageFrame)
     {
-        emit actionUpdated("view_zoom_out", true);
-        emit actionUpdated("view_zoom_in", true);
+        Q_EMIT actionUpdated("view_zoom_out", true);
+        Q_EMIT actionUpdated("view_zoom_in", true);
 
         currentZoom   = ZOOM_DEFAULT;
         currentWidth  = m_ImageData->width();
@@ -2200,7 +2200,7 @@ void FITSView::processRectangleFixed(int s)
     topLeft = QPoint(c.x() - round(s / 2.0), c.y() - round(s / 2.0));
     botRight = QPoint(c.x() + round(s / 2.0), c.y() + round(s / 2.0));
 
-    emit setRubberBand(QRect(topLeft, botRight));
+    Q_EMIT setRubberBand(QRect(topLeft, botRight));
     processRectangle(topLeft, botRight, true);
 }
 
@@ -2233,7 +2233,7 @@ void FITSView::processRectangle(QPoint p1, QPoint p2, bool calculate)
         if(m_ImageData)
         {
             m_ImageData->makeRoiBuffer(selectionRectangleRaw);
-            emit rectangleUpdated(selectionRectangleRaw);
+            Q_EMIT rectangleUpdated(selectionRectangleRaw);
         }
     }
     //updateFrameRoi();
@@ -2338,14 +2338,14 @@ void FITSView::toggleSelectionMode()
 {
     showSelectionRect = !showSelectionRect;
     if (!showSelectionRect)
-        emit rectangleUpdated(QRect());
+        Q_EMIT rectangleUpdated(QRect());
     else if (m_ImageData)
     {
         m_ImageData->makeRoiBuffer(selectionRectangleRaw);
-        emit rectangleUpdated(selectionRectangleRaw);
+        Q_EMIT rectangleUpdated(selectionRectangleRaw);
     }
 
-    emit showRubberBand(showSelectionRect);
+    Q_EMIT showRubberBand(showSelectionRect);
     if (m_ImageFrame)
         updateFrame();
 
@@ -2371,7 +2371,7 @@ void FITSView::toggleObjects()
         if (showObjects)
             m_ImageData->searchObjects();
         else
-            emit catReset();
+            Q_EMIT catReset();
 #endif
         updateFrame();
     }
@@ -2435,7 +2435,7 @@ void FITSView::toggleStarProfile()
             starProfileWidget->close();
             starProfileWidget = nullptr;
         }
-        emit starProfileWindowClosed();
+        Q_EMIT starProfileWindowClosed();
     }
     updateFrame();
 #endif
@@ -2526,7 +2526,7 @@ void FITSView::searchStars()
         return;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    emit newStatus(i18n("Finding stars..."), FITS_MESSAGE);
+    Q_EMIT newStatus(i18n("Finding stars..."), FITS_MESSAGE);
     qApp->processEvents();
 
 #ifdef HAVE_STELLARSOLVER
@@ -2540,14 +2540,14 @@ void FITSView::searchStars()
     result.waitForFinished();
     if (result.result() && isVisible())
     {
-        emit newStatus("", FITS_MESSAGE);
+        Q_EMIT newStatus("", FITS_MESSAGE);
     }
     QApplication::restoreOverrideCursor();
 }
 
 void FITSView::processPointSelection(int x, int y)
 {
-    emit trackingStarSelected(x, y);
+    Q_EMIT trackingStarSelected(x, y);
 }
 
 void FITSView::processMarkerSelection(int x, int y)
@@ -2597,7 +2597,7 @@ void FITSView::processHighlight(int x, int y)
     if (candidate >= 0)
     {
         m_ImageData->highlightCatObject(candidate, -1);
-        emit catHighlightChanged(candidate);
+        Q_EMIT catHighlightChanged(candidate);
         updateFrame();
     }
 }
@@ -2648,7 +2648,7 @@ void FITSView::wheelEvent(QWheelEvent * event)
         event->accept();
         cleanUpZoom(mouseCenter);
     }
-    emit zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
+    Q_EMIT zoomRubberBand(getCurrentZoom() / ZOOM_DEFAULT);
 }
 
 /**
@@ -2776,7 +2776,7 @@ void FITSView::pinchTriggered(QPinchGesture * gesture)
     //bool hasWCS = wcsWatcher.result();
     if(m_ImageData->hasWCS())
         this->updateFrame();
-    emit wcsToggled(m_ImageData->hasWCS());
+    Q_EMIT wcsToggled(m_ImageData->hasWCS());
 }*/
 
 void FITSView::syncWCSState()
@@ -2792,7 +2792,7 @@ void FITSView::syncWCSState()
     if (hasWCS && wcsLoaded)
         this->updateFrame();
 
-    emit wcsToggled(hasWCS);
+    Q_EMIT wcsToggled(hasWCS);
 
     if (toggleEQGridAction != nullptr)
         toggleEQGridAction->setEnabled(hasWCS);
@@ -2993,4 +2993,3 @@ void FITSView::setAutoStretch()
     if (!getAutoStretch())
         setAutoStretchParams();
 }
-

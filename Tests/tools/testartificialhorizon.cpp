@@ -35,7 +35,7 @@ class TestArtificialHorizon : public QObject
         /** @short Destructor */
         ~TestArtificialHorizon() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void artificialHorizonTest();
         void artificialCeilingTest();
         void greatCircleTest();

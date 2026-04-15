@@ -1728,7 +1728,7 @@ bool Align::captureAndSolve(bool initialCall)
     RotatorGOTO = false;
 
     setState(ALIGN_PROGRESS);
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
     solverFOV->setProperty("visible", true);
 
     // If we're just refreshing, then we're done
@@ -1886,12 +1886,12 @@ void Align::setCaptureComplete()
 {
     if (matchPAHStage(PAA::PAH_REFRESH))
     {
-        emit newFrame(m_AlignView);
+        Q_EMIT newFrame(m_AlignView);
         m_PolarAlignmentAssistant->processPAHRefresh();
         return;
     }
 
-    emit newImage(m_AlignView);
+    Q_EMIT newImage(m_AlignView);
 
     solverFOV->setImage(m_AlignView->getDisplayImage());
 
@@ -2129,7 +2129,7 @@ void Align::startSolving()
         errOut->clear();
 
     setState(ALIGN_PROGRESS);
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 }
 
 void Align::solverDone(bool timedOut, bool success, const FITSImage::Solution &solution, double elapsedSeconds)
@@ -2341,7 +2341,7 @@ void Align::solverFinished(double orientation, double ra, double dec, double pix
                 qCDebug(KSTARS_EKOS_ALIGN) << "Raw Rotator Angle:" << sRawAngle << "Rotator PA:" << solverPA
                                            << "Rotator Offset:" << OffsetAngle << "Direction:" << reverseStatus;
                 // Flow is: newSolverResults() -> capture: setAlignresult() -> RotatorSettings: refresh()
-                emit newSolverResults(solverPA, ra, dec, pixscale);
+                Q_EMIT newSolverResults(solverPA, ra, dec, pixscale);
                 // appendLogText(i18n("Camera offset angle is %1 degrees.", OffsetAngle));
                 appendLogText(i18n("Camera position angle is %1 degrees.", RotatorUtils::Instance()->calcCameraAngle(sRawAngle, false)));
             }
@@ -2364,7 +2364,7 @@ void Align::solverFinished(double orientation, double ra, double dec, double pix
         {"PA", solverPA},
         {"fov", FOVOut->text()},
     };
-    emit newSolution(solution.toVariantMap());
+    Q_EMIT newSolution(solution.toVariantMap());
 
     // Adjust dynamic threshold if enabled
     if (Options::astrometryDynamicThreshold())
@@ -2385,7 +2385,7 @@ void Align::solverFinished(double orientation, double ra, double dec, double pix
     }
 
     setState(ALIGN_SUCCESSFUL);
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
     solverIterations = 0;
     KSNotification::event(QLatin1String("AlignSuccessful"), i18n("Astrometry alignment completed successfully"),
                           KSNotification::Align);
@@ -2470,7 +2470,7 @@ void Align::solverFinished(double orientation, double ra, double dec, double pix
 
         // We are done!
         setState(ALIGN_COMPLETE);
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
 
         solveB->setEnabled(true);
         loadSlewB->setEnabled(true);
@@ -2581,7 +2581,7 @@ void Align::solverFailed()
     useBlindDynamicThreshold = BLIND_IDLE;
 
     setState(ALIGN_FAILED);
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     solverFOV->setProperty("visible", false);
 
@@ -2632,10 +2632,10 @@ bool Align::checkIfRotationRequired()
                             Options::astrometryRotatorThreshold())
                     {
                         // Signal flow: newSolverResults() -> capture: setAlignresult() -> RS: refresh()
-                        emit newSolverResults(m_TargetPositionAngle, 0, 0, 0);
+                        Q_EMIT newSolverResults(m_TargetPositionAngle, 0, 0, 0);
                         appendLogText(i18n("Setting camera position angle to %1 degrees ...", m_TargetPositionAngle));
                         setState(ALIGN_ROTATING);
-                        emit newStatus(state); // Evoke 'updateProperty()' (where the same check is executed again)
+                        Q_EMIT newStatus(state); // Evoke 'updateProperty()' (where the same check is executed again)
                         // Start rotator timeout timer and check
                         m_RotatorTimer.start();
                         QTimer::singleShot(1000, this, &Align::checkRotatorTimeout);
@@ -2659,7 +2659,7 @@ bool Align::checkIfRotationRequired()
 
                     appendLogText(i18n("Current PA is %1; Target PA is %2; diff: %3", current, target, diff));
 
-                    emit manualRotatorChanged(current, target, threshold);
+                    Q_EMIT manualRotatorChanged(current, target, threshold);
 
                     m_ManualRotator->setRotatorDiff(current, target, diff);
                     if (fabs(diff) > threshold)
@@ -2668,7 +2668,7 @@ bool Align::checkIfRotationRequired()
                         m_ManualRotator->show();
                         m_ManualRotator->raise();
                         setState(ALIGN_ROTATING);
-                        emit newStatus(state);
+                        Q_EMIT newStatus(state);
                         // Start rotator timeout timer and check
                         m_RotatorTimer.start();
                         QTimer::singleShot(1000, this, &Align::checkRotatorTimeout);
@@ -2745,7 +2745,7 @@ void Align::stop(Ekos::AlignState mode)
     }
 
     setState(mode);
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     setAlignTableResult(ALIGN_RESULT_FAILED);
 }
@@ -2788,13 +2788,13 @@ void Align::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS_ALIGN) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 }
 
 void Align::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void Align::updateProperty(INDI::Property prop)
@@ -2870,7 +2870,7 @@ void Align::updateProperty(INDI::Property prop)
                             KSNotification::event(QLatin1String("AlignSuccessful"),
                                                   i18n("Astrometry alignment completed successfully"), KSNotification::Align);
                             setState(ALIGN_COMPLETE);
-                            emit newStatus(state);
+                            Q_EMIT newStatus(state);
                             solverIterations = 0;
                             loadSlewB->setEnabled(true);
                         }
@@ -2895,7 +2895,7 @@ void Align::updateProperty(INDI::Property prop)
                             qCDebug(KSTARS_EKOS_ALIGN) << "Solving from file: Setting target PA to" << m_TargetPositionAngle;
 
                             setState(ALIGN_PROGRESS);
-                            emit newStatus(state);
+                            Q_EMIT newStatus(state);
 
                             if (alignSettlingTime->value() >= DELAY_THRESHOLD_NOTIFY)
                                 appendLogText(i18n("Settling..."));
@@ -2913,7 +2913,7 @@ void Align::updateProperty(INDI::Property prop)
                             targetAccuracyNotMet = false;
 
                             setState(ALIGN_PROGRESS);
-                            emit newStatus(state);
+                            Q_EMIT newStatus(state);
 
                             if (alignSettlingTime->value() >= DELAY_THRESHOLD_NOTIFY)
                                 appendLogText(i18n("Settling..."));
@@ -2994,7 +2994,7 @@ void Align::updateProperty(INDI::Property prop)
             appendLogText(i18n("Rotator error detected. Aborting alignment."));
             m_RotatorTimer.invalidate();
             setState(ALIGN_FAILED);
-            emit newStatus(state);
+            Q_EMIT newStatus(state);
             solveB->setEnabled(true);
             loadSlewB->setEnabled(true);
             return;
@@ -3025,7 +3025,7 @@ void Align::updateProperty(INDI::Property prop)
                     {
                         appendLogText(i18n("Rotator failed to arrive at the requested position angle (Deviation %1 arcmin).", diff));
                         setState(ALIGN_FAILED);
-                        emit newStatus(state);
+                        Q_EMIT newStatus(state);
                         solveB->setEnabled(true);
                         loadSlewB->setEnabled(true);
                     }
@@ -3107,14 +3107,14 @@ void Align::Sync()
 
     if (m_Mount->Sync(&m_AlignCoord))
     {
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
         appendLogText(
             i18n("Syncing to RA (%1) DEC (%2)", m_AlignCoord.ra().toHMSString(), m_AlignCoord.dec().toDMSString()));
     }
     else
     {
         setState(ALIGN_IDLE);
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
         appendLogText(i18n("Syncing failed."));
     }
 }
@@ -3122,7 +3122,7 @@ void Align::Sync()
 void Align::Slew()
 {
     setState(ALIGN_SLEWING);
-    emit newStatus(state);
+    Q_EMIT newStatus(state);
 
     //qCDebug(KSTARS_EKOS_ALIGN) << "## Before SLEW command: wasSlewStarted -->" << m_wasSlewStarted;
     //m_wasSlewStarted = currentTelescope->Slew(&m_targetCoord);
@@ -3142,7 +3142,7 @@ void Align::Slew()
                            m_TargetCoord.ra().toHMSString(),
                            m_TargetCoord.dec().toDMSString()));
         setState(ALIGN_FAILED);
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
         solveB->setEnabled(true);
         loadSlewB->setEnabled(true);
     }
@@ -3926,7 +3926,7 @@ void Align::zoomAlignView()
     // So emit updated frame in 500ms
     QTimer::singleShot(500, this, [this]()
     {
-        emit newFrame(m_AlignView);
+        Q_EMIT newFrame(m_AlignView);
     });
 }
 
@@ -3941,7 +3941,7 @@ void Align::setAlignZoom(double scale)
     // So emit updated frame in 500ms
     QTimer::singleShot(500, this, [this]()
     {
-        emit newFrame(m_AlignView);
+        Q_EMIT newFrame(m_AlignView);
     });
 }
 
@@ -4181,7 +4181,7 @@ void Align::exportSolutionPoints()
                   << deDMS.Degrees() << ',' << objNameCell->text() << ',' << raErrorCell->text().remove('\"') << ','
                   << deErrorCell->text().remove('\"') << Qt::endl;
     }
-    emit newLog(i18n("Solution Points Saved as: %1", path));
+    Q_EMIT newLog(i18n("Solution Points Saved as: %1", path));
     file.close();
 }
 
@@ -4290,7 +4290,7 @@ void Align::processPAHStage(int stage)
         case PAA::PAH_SECOND_CAPTURE:
         case PAA::PAH_THIRD_CAPTURE:
             if (alignSettlingTime->value() >= DELAY_THRESHOLD_NOTIFY)
-                emit newLog(i18n("Settling..."));
+                Q_EMIT newLog(i18n("Settling..."));
             m_CaptureTimer.start(alignSettlingTime->value());
             break;
 
@@ -4298,7 +4298,7 @@ void Align::processPAHStage(int stage)
             break;
     }
 
-    emit newPAAStage(stage);
+    Q_EMIT newPAAStage(stage);
 }
 
 bool Align::matchPAHStage(uint32_t stage)
@@ -4329,7 +4329,7 @@ void Align::setupOpticalTrainManager()
         ProfileSettings::Instance()->setOneSetting(ProfileSettings::AlignOpticalTrain,
                 OpticalTrainManager::Instance()->id(opticalTrainCombo->itemText(index)));
         refreshOpticalTrain();
-        emit trainChanged();
+        Q_EMIT trainChanged();
     });
 }
 
@@ -4474,7 +4474,7 @@ void Align::syncSettings()
 ///////////////////////////////////////////////////////////////////////////////////////////
 void Align::settleSettings()
 {
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
     OpticalTrainSettings::Instance()->setOneSetting(OpticalTrainSettings::Align, m_Settings);
@@ -4697,7 +4697,7 @@ void Align::setAllSettings(const QVariantMap &settings)
         m_GlobalSettings[key] = value;
     }
 
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
 
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
@@ -4831,7 +4831,7 @@ void Align::checkRotatorTimeout()
                            Options::captureOperationsTimeout()));
         m_RotatorTimer.invalidate();
         setState(ALIGN_FAILED);
-        emit newStatus(state);
+        Q_EMIT newStatus(state);
         solveB->setEnabled(true);
         loadSlewB->setEnabled(true);
     }

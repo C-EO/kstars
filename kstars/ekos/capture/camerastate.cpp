@@ -142,7 +142,7 @@ void CameraState::initCapturePreparation()
     initPlaceholderPath();
 
     if (Options::enforceGuideDeviation() && isGuidingOn() == false)
-        emit newLog(i18n("Warning: Guide deviation is selected but autoguide process was not started."));
+        Q_EMIT newLog(i18n("Warning: Guide deviation is selected but autoguide process was not started."));
 }
 
 void CameraState::setCaptureState(CaptureState value)
@@ -153,7 +153,7 @@ void CameraState::setCaptureState(CaptureState value)
     {
         case CAPTURE_IDLE:
         case CAPTURE_ABORTED:
-            emit resetNonGuidedDither();
+            Q_EMIT resetNonGuidedDither();
         /* Fall through */
         case CAPTURE_SUSPENDED:
         case CAPTURE_PAUSED:
@@ -166,7 +166,7 @@ void CameraState::setCaptureState(CaptureState value)
             pause_planned = (m_CaptureState == CAPTURE_PAUSE_PLANNED);
             break;
         case CAPTURE_DITHERING:
-            emit requestAction(CAPTURE_ACTION_DITHER_REQUEST);
+            Q_EMIT requestAction(CAPTURE_ACTION_DITHER_REQUEST);
         default:
             // do nothing
             break;
@@ -179,12 +179,12 @@ void CameraState::setCaptureState(CaptureState value)
                                            m_CaptureState) << "to" << getCaptureStatusString(value);
         m_CaptureState = value;
         getMeridianFlipState()->setCaptureState(m_CaptureState);
-        emit newStatus(m_CaptureState);
+        Q_EMIT newStatus(m_CaptureState);
         // reset to planned state if necessary
         if (pause_planned)
         {
             m_CaptureState = CAPTURE_PAUSE_PLANNED;
-            emit newStatus(m_CaptureState);
+            Q_EMIT newStatus(m_CaptureState);
         }
     }
 }
@@ -289,13 +289,13 @@ void CameraState::dustCapStateChanged(ISD::DustCap::Status status)
     switch (status)
     {
         case ISD::DustCap::CAP_ERROR:
-            emit newLog(i18n("Dust cap error."));
+            Q_EMIT newLog(i18n("Dust cap error."));
             break;
         case ISD::DustCap::CAP_PARKED:
-            emit newLog(i18n("Dust cap parked."));
+            Q_EMIT newLog(i18n("Dust cap parked."));
             break;
         case ISD::DustCap::CAP_IDLE:
-            emit newLog(i18n("Dust cap unparked."));
+            Q_EMIT newLog(i18n("Dust cap unparked."));
             break;
         default:
             break;
@@ -333,7 +333,7 @@ void CameraState::setObserverName(const QString &value)
 void CameraState::setBusy(bool busy)
 {
     m_Busy = busy;
-    emit captureBusy(busy);
+    Q_EMIT captureBusy(busy);
 }
 
 
@@ -473,7 +473,7 @@ void CameraState::updateMeridianFlipStage(const MeridianFlipState::MFStage &stag
             break;
 
         case MeridianFlipState::MF_INITIATED:
-            emit meridianFlipStarted();
+            Q_EMIT meridianFlipStarted();
             break;
 
         case MeridianFlipState::MF_COMPLETED:
@@ -510,7 +510,7 @@ void CameraState::updateMeridianFlipStage(const MeridianFlipState::MFStage &stag
             break;
     }
     // forward the new stage
-    emit newMeridianFlipStage(stage);
+    Q_EMIT newMeridianFlipStage(stage);
 }
 
 bool CameraState::checkMeridianFlipActive()
@@ -540,7 +540,7 @@ bool CameraState::checkMeridianFlipReady()
     // Reset frame if we need to do focusing later on
     if (m_refocusState->isInSequenceFocus() ||
             (Options::enforceRefocusEveryN() && m_refocusState->getRefocusEveryNTimerElapsedSec() > 0))
-        emit resetFocusFrame();
+        Q_EMIT resetFocusFrame();
 
     // signal that meridian flip may take place
     if (getMeridianFlipState()->getMeridianFlipStage() == MeridianFlipState::MF_REQUESTED)
@@ -641,7 +641,7 @@ bool CameraState::checkGuidingAfterFlip()
         setCaptureState(CAPTURE_CALIBRATING);
 
         getMeridianFlipState()->updateMeridianFlipStage(MeridianFlipState::MF_GUIDING);
-        emit guideAfterMeridianFlip();
+        Q_EMIT guideAfterMeridianFlip();
         return true;
     }
     else if (m_CaptureState == CAPTURE_CALIBRATING)
@@ -651,7 +651,7 @@ bool CameraState::checkGuidingAfterFlip()
             // restart guiding after failure
             qCDebug(KSTARS_EKOS_CAPTURE) << "Post-MF guiding: Calibration error or aborted, restarting guiding...";
             appendLogText(i18n("Post meridian flip calibration error. Restarting..."));
-            emit guideAfterMeridianFlip();
+            Q_EMIT guideAfterMeridianFlip();
             return true;
         }
         else if (getGuideState() != GUIDE_GUIDING)
@@ -691,14 +691,14 @@ void CameraState::processGuidingFailed()
               m_CaptureState == CAPTURE_SUSPENDED || m_CaptureState == CAPTURE_PAUSED))
     {
         appendLogText(i18n("Autoguiding stopped. Aborting..."));
-        emit abortCapture();
+        Q_EMIT abortCapture();
     }
     else if (getMeridianFlipState()->getMeridianFlipStage() == MeridianFlipState::MF_GUIDING)
     {
         if (increaseAlignmentRetries() >= 3)
         {
             appendLogText(i18n("Post meridian flip calibration error. Aborting..."));
-            emit abortCapture();
+            Q_EMIT abortCapture();
         }
     }
 }
@@ -719,7 +719,7 @@ void CameraState::updateAdaptiveFocusState(bool success)
         m_activeJob->setAutoFocusReady(true);
 
     setFocusState(FOCUS_COMPLETE);
-    emit newLog(i18n(success ? "Adaptive focus complete." : "Adaptive focus failed. Continuing..."));
+    Q_EMIT newLog(i18n(success ? "Adaptive focus complete." : "Adaptive focus failed. Continuing..."));
 }
 
 void CameraState::updateFocusState(FocusState state)
@@ -742,9 +742,9 @@ void CameraState::updateFocusState(FocusState state)
             {
                 // Meridian flip will abort focusing. In this case, after the meridian flip has completed capture
                 // will restart the re-focus attempt. Therefore we only abort capture if meridian flip is not running.
-                emit newFocusStatus(state);
+                Q_EMIT newFocusStatus(state);
                 appendLogText(i18n("Autofocus failed. Aborting exposure..."));
-                emit abortCapture();
+                Q_EMIT abortCapture();
             }
             break;
         case FOCUS_COMPLETE:
@@ -764,7 +764,7 @@ void CameraState::updateFocusState(FocusState state)
                 m_refocusState->addHFRValue(getFocusFilterName());
                 updateHFRThreshold();
             }
-            emit newFocusStatus(state);
+            Q_EMIT newFocusStatus(state);
             break;
         default:
             break;
@@ -843,7 +843,7 @@ bool CameraState::startFocusIfRequired()
         {
             qCDebug(KSTARS_EKOS_CAPTURE) << "Post-MF focus: Resetting filter from position" << getCurrentFilterPosition()
                                          << "to target position" << targetFilterPosition;
-            emit newFilterPosition(targetFilterPosition);
+            Q_EMIT newFilterPosition(targetFilterPosition);
         }
     }
 
@@ -863,7 +863,7 @@ bool CameraState::startFocusIfRequired()
 
     m_refocusState->setRefocusAfterMeridianFlip(false);
 
-    emit abortFastExposure();
+    Q_EMIT abortFastExposure();
     updateFocusState(FOCUS_PROGRESS);
     QString reasonInfo;
     AutofocusReason afReason;
@@ -872,12 +872,12 @@ bool CameraState::startFocusIfRequired()
     {
         case RefocusState::REFOCUS_HFR:
             m_refocusState->resetInSequenceFocusCounter();
-            emit checkFocus(Options::hFRDeviation());
+            Q_EMIT checkFocus(Options::hFRDeviation());
             qCDebug(KSTARS_EKOS_CAPTURE) << "In-sequence focusing started (HFR check)...";
             break;
         case RefocusState::REFOCUS_ADAPTIVE:
             m_refocusState->setAdaptiveFocusDone(true);
-            emit adaptiveFocus();
+            Q_EMIT adaptiveFocus();
             qCDebug(KSTARS_EKOS_CAPTURE) << "Adaptive focus started...";
             break;
         case RefocusState::REFOCUS_USER_REQUEST:
@@ -888,12 +888,12 @@ bool CameraState::startFocusIfRequired()
             if (m_refocusState->getRefocusEveryNTimerElapsedSec() >= 1800)
             {
                 qCDebug(KSTARS_EKOS_CAPTURE) << "Refocus: Resetting focus frame (last focus > 30 mins ago)";
-                emit resetFocusFrame();
+                Q_EMIT resetFocusFrame();
             }
 
             // force refocus
             afReason = getAFReason(reason, reasonInfo);
-            emit runAutoFocus(afReason, reasonInfo);
+            Q_EMIT runAutoFocus(afReason, reasonInfo);
             // restart in sequence counting
             m_refocusState->resetInSequenceFocusCounter();
             if (reason == RefocusState::REFOCUS_POST_MF)
@@ -937,7 +937,7 @@ void CameraState::updateHFRThreshold()
     }
     value += value * (Options::hFRThresholdPercentage() / 100.0);
     Options::setHFRDeviation(value);
-    emit newLimitFocusHFR(value); // Updates the limits UI with the new HFR threshold
+    Q_EMIT newLimitFocusHFR(value); // Updates the limits UI with the new HFR threshold
 }
 
 QString CameraState::getFocusFilterName()
@@ -1014,7 +1014,7 @@ void CameraState::checkGuideDeviationTimeout()
 void CameraState::setGuideDeviation(double deviation_rms)
 {
     // communicate the new guiding deviation
-    emit newGuiderDrift(deviation_rms);
+    Q_EMIT newGuiderDrift(deviation_rms);
 
     const QString deviationText = QString("%1").arg(deviation_rms, 0, 'f', 3);
 
@@ -1049,7 +1049,7 @@ void CameraState::setGuideDeviation(double deviation_rms)
             // Check if we need to start meridian flip. If yes, we need to start capturing
             // to ensure that capturing is recovered after the flip
             if (checkMeridianFlipReady())
-                emit startCapture();
+                Q_EMIT startCapture();
         }
 
         // in any case, do not proceed
@@ -1079,13 +1079,13 @@ void CameraState::setGuideDeviation(double deviation_rms)
         {
             appendLogText(i18n("Guiding deviation at capture startup %1 exceeded limit %2 arcsecs.",
                                deviationText, Options::startGuideDeviation()));
-            emit suspendCapture();
+            Q_EMIT suspendCapture();
             setGuidingDeviationDetected(true);
 
             // Check if we need to start meridian flip. If yes, we need to start capturing
             // to ensure that capturing is recovered after the flip
             if (checkMeridianFlipReady())
-                emit startCapture();
+                Q_EMIT startCapture();
             else
                 getGuideDeviationTimer().start();
             return;
@@ -1124,7 +1124,7 @@ void CameraState::setGuideDeviation(double deviation_rms)
                                    QString("%L1").arg(getGuideDeviationTimer().interval() / 1000.0, 0, 'f', 3),
                                    Options::guideDeviationReps()));
 
-                emit suspendCapture();
+                Q_EMIT suspendCapture();
 
                 resetSpikesDetected();
                 setGuidingDeviationDetected(true);
@@ -1132,7 +1132,7 @@ void CameraState::setGuideDeviation(double deviation_rms)
                 // Check if we need to start meridian flip. If yes, we need to start capturing
                 // to ensure that capturing is recovered after the flip
                 if (checkMeridianFlipReady())
-                    emit startCapture();
+                    Q_EMIT startCapture();
                 else
                     getGuideDeviationTimer().start();
             }
@@ -1173,7 +1173,7 @@ void CameraState::setGuideDeviation(double deviation_rms)
                                            "resuming exposure in %3 seconds.",
                                            deviationText, Options::startGuideDeviation(), seqDelay / 1000.0));
 
-                    emit startCapture();
+                    Q_EMIT startCapture();
                 }
             }
             return;
@@ -1493,7 +1493,7 @@ void CameraState::changeSequenceValue(int index, QString key, QString value)
     oneSequence[key] = value;
     seqArray.replace(index, oneSequence);
     setSequence(seqArray);
-    emit sequenceChanged(seqArray);
+    Q_EMIT sequenceChanged(seqArray);
 }
 
 void CameraState::addCapturedFrame(const QString &signature)
@@ -1521,7 +1521,7 @@ void CameraState::removeCapturedFrameCount(const QString &signature, uint16_t co
 void CameraState::appendLogText(const QString &message)
 {
     qCInfo(KSTARS_EKOS_CAPTURE()) << message;
-    emit newLog(message);
+    Q_EMIT newLog(message);
 }
 
 bool CameraState::isGuidingOn()
@@ -1584,7 +1584,7 @@ void CameraState::setAlignState(AlignState value)
                 if (increaseAlignmentRetries() >= 3)
                 {
                     appendLogText(i18n("Post-flip alignment failed."));
-                    emit abortCapture();
+                    Q_EMIT abortCapture();
                 }
                 else
                 {
@@ -1611,13 +1611,13 @@ void CameraState::setPrepareComplete(bool success)
     {
         qDebug(KSTARS_EKOS_CAPTURE) << "Capture preparation succeeded, start capturing.";
         setCaptureState(CAPTURE_PROGRESS);
-        emit executeActiveJob();
+        Q_EMIT executeActiveJob();
     }
     else
     {
         qWarning(KSTARS_EKOS_CAPTURE) << "Capture preparation failed, aborting.";
         setCaptureState(CAPTURE_ABORTED);
-        emit abortCapture();
+        Q_EMIT abortCapture();
     }
 
 }

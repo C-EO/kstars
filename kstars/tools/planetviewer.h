@@ -60,7 +60,7 @@ class PlanetViewer : public QDialog
         void keyPressEvent(QKeyEvent *e) override;
         void paintEvent(QPaintEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
         void initPlotObjects();
         void tick();
         void setTimeScale(float);

@@ -31,7 +31,7 @@ class ImagingPlannerOptions : public QDialog
     protected:
         void showEvent(QShowEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
         void slotIndependentWindow(bool checked);
         void slotCenterOnSkyMap(bool checked);
         void slotStartSolvingImmediately(bool checked);
@@ -39,4 +39,3 @@ class ImagingPlannerOptions : public QDialog
     private:
         ImagingPlannerOptionsUI *ui { nullptr };
 };
-

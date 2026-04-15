@@ -46,9 +46,8 @@ class SchedulerAltitudeGraph : public QFrame, public Ui::SchedulerAltitudeGraph
         // Tells plot to increment the day to be plotted by this many days.
         int m_AltGraphDay { 0 };
 
-    protected slots:
+    protected Q_SLOTS:
         void next();
         void prev();
 };
 }
-

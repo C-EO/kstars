@@ -34,7 +34,7 @@ void SimClock::tick()
     if (m_RealTime)
     {
         m_UTC = KStarsDateTime(QDateTime::currentDateTimeUtc());
-        emit timeAdvanced();
+        Q_EMIT timeAdvanced();
     }
     else if (!m_ManualMode) //only tick if ManualMode is false
     {
@@ -59,7 +59,7 @@ void SimClock::tick()
         // 			" mselapsed = " << mselapsed << " scale = " << Scale <<
         // 			"  scaledsec = " << double(scaledsec);
 
-        emit timeAdvanced();
+        Q_EMIT timeAdvanced();
     }
 }
 
@@ -91,21 +91,21 @@ void SimClock::setRealTime(bool on)
         return;
 
     m_RealTime = on;
-    emit realtimeToogled(m_RealTime);
+    Q_EMIT realtimeToogled(m_RealTime);
     if (m_RealTime)
     {
         m_InternalTimer.start(TimerInterval);
-        emit clockToggled(false);
-        emit scaleChanged(1.0);
-        emit timeChanged();
+        Q_EMIT clockToggled(false);
+        Q_EMIT scaleChanged(1.0);
+        Q_EMIT timeChanged();
     }
     else
     {
         m_SystemMark.start();
         m_JulianMark  = m_UTC.djd();
         m_LastElapsed = 0;
-        emit scaleChanged(m_Scale);
-        emit timeChanged();
+        Q_EMIT scaleChanged(m_Scale);
+        Q_EMIT timeChanged();
     }
 }
 
@@ -141,14 +141,14 @@ void SimClock::stop()
     if (m_ManualMode && m_ManualActive)
     {
         m_ManualActive = false;
-        emit clockToggled(true);
+        Q_EMIT clockToggled(true);
     }
 
     if (!m_ManualMode && m_InternalTimer.isActive())
     {
         qCDebug(KSTARS) << "Stopping the timer";
         m_InternalTimer.stop();
-        emit clockToggled(true);
+        Q_EMIT clockToggled(true);
     }
 }
 
@@ -163,9 +163,9 @@ void SimClock::start()
         m_SystemMark.start();
         m_JulianMark  = m_UTC.djd();
         m_LastElapsed = 0;
-        emit clockToggled(false);
+        Q_EMIT clockToggled(false);
         //emit timeChanged() in order to restart calls to updateTime()
-        emit timeChanged();
+        Q_EMIT timeChanged();
     }
     else if (!m_ManualMode && !m_InternalTimer.isActive())
     {
@@ -174,7 +174,7 @@ void SimClock::start()
         m_JulianMark  = m_UTC.djd();
         m_LastElapsed = 0;
         m_InternalTimer.start(TimerInterval);
-        emit clockToggled(false);
+        Q_EMIT clockToggled(false);
     }
 }
 
@@ -199,7 +199,7 @@ void SimClock::setUTC(const KStarsDateTime &newtime)
 
         // N.B. Too much log spam when in manual mode
         //qCInfo(KSTARS) << QString("Setting clock:  UTC: %1  JD: %2").arg(UTC.toString(), QLocale().toString((double)UTC.djd(), 'f', 2));
-        emit timeChanged();
+        Q_EMIT timeChanged();
     }
     else
     {
@@ -212,7 +212,7 @@ void SimClock::setClockScale(double scale)
     if (m_Scale != scale && !m_RealTime)
     {
         qCInfo(KSTARS) << "New clock scale: " << scale << " sec";
-        emit scaleChanged(scale);
+        Q_EMIT scaleChanged(scale);
         m_Scale = scale;
         if (m_InternalTimer.isActive())
         {

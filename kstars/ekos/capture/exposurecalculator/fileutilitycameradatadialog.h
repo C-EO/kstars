@@ -47,7 +47,7 @@ class FileUtilityCameraDataDialog : public QDialog
         void decrementDownloadFileCounter();
 
 
-    private slots:
+    private Q_SLOTS:
         void startCameraDownload();
 
     private:

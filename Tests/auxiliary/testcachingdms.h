@@ -24,7 +24,7 @@ class TestCachingDms : public QObject
         /** @short Destructor */
         ~TestCachingDms() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void defaultCtor();
         void explicitSexigesimalCtor();
         void angleCtor();

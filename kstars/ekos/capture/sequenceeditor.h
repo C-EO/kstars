@@ -27,11 +27,11 @@ class SequenceEditor : public QDialog, public Ui::SequenceEditorUI
 
         bool loadSequenceQueue(const QString &fileURL, QString targetName = "");
 
-    public slots:
+    public Q_SLOTS:
 
-    signals:
+    Q_SIGNALS:
 
-    private slots:
+    private Q_SLOTS:
 
     private:
         QSharedPointer<Camera> m_camera;

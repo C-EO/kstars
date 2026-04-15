@@ -76,7 +76,7 @@ void Media::onConnected()
 
     qCInfo(KSTARS_EKOS) << "Connected to Media Websocket server at" << node->url().toDisplayString();
 
-    emit connected();
+    Q_EMIT connected();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ void Media::onDisconnected()
             QFile::remove(oneFile);
         temporaryFiles.clear();
 
-        emit disconnected();
+        Q_EMIT disconnected();
     }
 }
 
@@ -127,12 +127,12 @@ void Media::onTextReceived(const QString &message)
         {
             qCInfo(KSTARS_EKOS) << "Media: Received" << command << "from node" << node->url().toDisplayString()
                                 << ". Emitting globalLogoutTriggered signal with URL.";
-            emit globalLogoutTriggered(node->url());
+            Q_EMIT globalLogoutTriggered(node->url());
         }
         else
         {
             qCWarning(KSTARS_EKOS) << "Media: Received" << command << "but could not identify sender node.";
-            emit globalLogoutTriggered(QUrl());
+            Q_EMIT globalLogoutTriggered(QUrl());
         }
         return; // Logout command processed
     }
@@ -205,7 +205,7 @@ void Media::onTextReceived(const QString &message)
                     centerImage.save(&buffer, "jpg", 90);
                     buffer.close();
 
-                    emit newImage(jpegData, uuid);
+                    Q_EMIT newImage(jpegData, uuid);
                 }
             }
         }
@@ -265,7 +265,7 @@ void Media::onTextReceived(const QString &message)
             centerImage.save(&buffer, "jpg", 95);
             buffer.close();
 
-            emit newImage(jpegData, "skypoint_hips");
+            Q_EMIT newImage(jpegData, "skypoint_hips");
         }
     }
 }
@@ -463,7 +463,7 @@ void Media::upload(const QSharedPointer<FITSView> &view, const QString &uuid)
 
     buffer.close();
 
-    emit newImage(jpegData, uuid);
+    Q_EMIT newImage(jpegData, uuid);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -537,7 +537,7 @@ void Media::upload(const QSharedPointer<FITSData> &data, const QImage &image, co
 
     buffer.close();
 
-    emit newImage(jpegData, uuid);
+    Q_EMIT newImage(jpegData, uuid);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -623,7 +623,7 @@ void Media::sendUpdatedFrame(const QSharedPointer<FITSView> &view)
         boundingRectable.moveTo(topLeft);
         boundingRectable = boundingRectable.intersected(scaledImage.rect());
 
-        emit newBoundingRect(boundingRectable, scaledImage.size(), currentZoom);
+        Q_EMIT newBoundingRect(boundingRectable, scaledImage.size(), currentZoom);
 
         scaledImage = scaledImage.copy(boundingRectable);
     }
@@ -632,12 +632,12 @@ void Media::sendUpdatedFrame(const QSharedPointer<FITSView> &view)
         scaledImage = view->getDisplayPixmap().width() > HB_IMAGE_WIDTH / 2 ?
                       view->getDisplayPixmap().scaledToWidth(HB_IMAGE_WIDTH / 2, Qt::FastTransformation) :
                       view->getDisplayPixmap();
-        emit newBoundingRect(QRect(), QSize(), 100);
+        Q_EMIT newBoundingRect(QRect(), QSize(), 100);
     }
 
     scaledImage.save(&buffer, ext.toLatin1().constData(), HB_IMAGE_QUALITY);
     buffer.close();
-    emit newImage(jpegData, "+A");
+    Q_EMIT newImage(jpegData, "+A");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////

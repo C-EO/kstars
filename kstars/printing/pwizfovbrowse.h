@@ -25,7 +25,7 @@ class PWizFovBrowseUI : public QFrame, public Ui::PWizFovBrowse
               */
         explicit PWizFovBrowseUI(PrintingWizard *wizard, QWidget *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         /**
               * \brief Slot: open FOV editor window.
               */

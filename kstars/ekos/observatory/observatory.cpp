@@ -847,7 +847,7 @@ void Observatory::setWeatherStatus(ISD::Weather::Status status)
 
         weatherStatusLabel->setPixmap(QIcon::fromTheme(label).pixmap(QSize(28, 28)));
         m_WeatherStatus = status;
-        emit newStatus(m_WeatherStatus);
+        Q_EMIT newStatus(m_WeatherStatus);
     }
 
     // update weather sensor data
@@ -1050,13 +1050,13 @@ void Observatory::appendLogText(const QString &text)
 
     qCInfo(KSTARS_EKOS_OBSERVATORY) << text;
 
-    emit newLog(text);
+    Q_EMIT newLog(text);
 }
 
 void Observatory::clearLog()
 {
     m_LogText.clear();
-    emit newLog(QString());
+    Q_EMIT newLog(QString());
 }
 
 void Observatory::setWarningActionsActive(bool active)

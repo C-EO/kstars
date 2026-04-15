@@ -40,7 +40,7 @@ class TestCatalogsDB_DBManager : public QObject
             return db_file;
         }
 
-    private slots:
+    private Q_SLOTS:
         void init()
         {
             // A fresh manager for each test.

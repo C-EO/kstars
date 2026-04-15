@@ -266,7 +266,7 @@ class Focus : public QWidget, public Ui::Focus
             return m_FocusView->captureHistory(run);
         }
 
-    public slots:
+    public Q_SLOTS:
 
         /** \addtogroup FocusDBusInterface
              *  @{
@@ -488,7 +488,7 @@ class Focus : public QWidget, public Ui::Focus
         void addPlotPosition(int pos, double hfr, bool plot = true);
         void showEvent(QShowEvent *event) override;
 
-    private slots:
+    private Q_SLOTS:
         /**
              * @brief toggleSubframe Process enabling and disabling subfrag.
              * @param enable If true, subframing is enabled. If false, subframing is disabled. Even if subframing is enabled, it must be supported by the CCD driver.
@@ -523,10 +523,10 @@ class Focus : public QWidget, public Ui::Focus
 
         void resetHFRPlot();
 
-    private slots:
+    private Q_SLOTS:
         void onDustCapStatusChanged(ISD::DustCap::Status status); // New slot for dustcap status changes
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &text);
         void newFocusLog(const QString &text);
         void newStatus(Ekos::FocusState state, const QString &trainname, const bool update = true);

@@ -35,7 +35,7 @@ class TestPolarAlign : public QObject
         TestPolarAlign();
         ~TestPolarAlign() override;
 
-    private slots:
+    private Q_SLOTS:
         void testRunPAA();
         void testRefreshCoords();
         void testRefreshCoords2();

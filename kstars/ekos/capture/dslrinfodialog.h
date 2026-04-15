@@ -28,10 +28,10 @@ class DSLRInfo : public QDialog, public Ui::DSLRInfo
     public:
         explicit DSLRInfo(QWidget *parent, ISD::Camera *ccd);
 
-    protected slots:
+    protected Q_SLOTS:
         void save();
 
-    signals:
+    Q_SIGNALS:
         void infoChanged();
 
     private:

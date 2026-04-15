@@ -100,11 +100,11 @@ class KSDssDownloader : public QObject
         /** @short Write image metadata into file */
         static bool writeImageWithMetadata(const QString &srcFile, const QString &destFile, const KSDssImage::Metadata &md);
 
-    signals:
+    Q_SIGNALS:
         void downloadComplete(bool success);
         void downloadCanceled();
 
-    private slots:
+    private Q_SLOTS:
         void downloadAttemptFinished();
         void singleDownloadFinished();
         void downloadError(const QString &errorString);

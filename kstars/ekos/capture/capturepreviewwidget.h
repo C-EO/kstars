@@ -82,7 +82,7 @@ class CapturePreviewWidget : public QWidget, public Ui::CapturePreviewWidget
          */
         void setTargetName(QString name);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief update display when the capture status changes
          */

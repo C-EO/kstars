@@ -31,13 +31,13 @@ class RemoveTimer : public QTimer
 
         pixCacheKey_t m_key { 0, 0, 0 };
 
-    signals:
+    Q_SIGNALS:
         void remove(pixCacheKey_t &key);
 
-    private slots:
+    private Q_SLOTS:
         void done()
         {
-            emit remove(m_key);
+            Q_EMIT remove(m_key);
             deleteLater();
         }
 };
@@ -97,14 +97,14 @@ class HIPSManager : public QObject
         }
         void setOfflineLevels(const QStringList &value);
 
-    public slots:
+    public Q_SLOTS:
         bool setCurrentSource(const QString &title);
         void showSettings();
 
-    signals:
+    Q_SIGNALS:
         void sigRepaint();
 
-    private slots:
+    private Q_SLOTS:
         void slotDone(QNetworkReply::NetworkError error, QByteArray &data, pixCacheKey_t &key);
         void slotApply();
         void removeTimer(pixCacheKey_t &key);

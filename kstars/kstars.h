@@ -608,7 +608,7 @@ class KStars : public KXmlGuiWindow
 
         /** @}*/
 
-    signals:
+    Q_SIGNALS:
         /** DBUS interface notification. Color scheme was updated.
          */
         void colorSchemeChanged();
@@ -702,7 +702,7 @@ class KStars : public KXmlGuiWindow
         /** action slot: open KNewStuff window to download extra data. */
         void slotDownload();
 
-    private slots:
+    private Q_SLOTS:
         /** action slot: open a dialog for setting the time and date */
         void slotSetTime();
 

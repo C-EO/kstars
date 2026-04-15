@@ -60,7 +60,7 @@ class MountTargetWidget : public QWidget, public Ui::MountTargetWidget
          */
         void updateJ2000Coordinates(SkyPoint *coords, bool updateJ2000 = true, bool updateHorizontal = true);
 
-    signals:
+    Q_SIGNALS:
         void sync(double RA, double DE);
         void slew(double RA, double DE);
         void newTarget();

@@ -623,7 +623,7 @@ class StackMonitor : public QWidget
          */
         void saveSettings();
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Initialize the Monitor
          * @param timestamp of call

@@ -14,7 +14,7 @@ void SkyObjectLite::setObject(SkyObject *obj)
     if (obj)
     {
         setPoint(obj);
-        emit translatedNameChanged(obj->translatedName());
+        Q_EMIT translatedNameChanged(obj->translatedName());
     }
 }
 

@@ -24,13 +24,13 @@ ConcreteDevice::ConcreteDevice(ISD::GenericDevice *parent) : GDInterface(parent)
         m_ReadyTimer->setInterval(250);
         m_ReadyTimer->setSingleShot(true);
         connect(m_ReadyTimer.get(), &QTimer::timeout, this, &ConcreteDevice::ready);
-        emit Connected();
+        Q_EMIT Connected();
     });
     connect(parent, &GenericDevice::Disconnected, this, [this]()
     {
         // Invalidate dispatched.
         setProperty("dispatched", QVariant());
-        emit Disconnected();
+        Q_EMIT Disconnected();
     });
 
     // Signal --> Slots

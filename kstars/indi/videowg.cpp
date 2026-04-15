@@ -94,7 +94,7 @@ bool VideoWG::newFrame(IBLOB *bp)
         setPixmap(kPix);
     }
 
-    emit imageChanged(streamImage);
+    Q_EMIT imageChanged(streamImage);
 
     return rc;
 }
@@ -150,7 +150,7 @@ void VideoWG::mouseReleaseEvent(QMouseEvent *event)
 
         if (event->button() == Qt::RightButton)
         {
-            emit newSelection(QRect());
+            Q_EMIT newSelection(QRect());
             return;
         }
 
@@ -168,7 +168,7 @@ void VideoWG::mouseReleaseEvent(QMouseEvent *event)
         finalSelection.setWidth(rawSelection.width() * scaleX);
         finalSelection.setHeight(rawSelection.height() * scaleY);
 
-        emit newSelection(finalSelection);
+        Q_EMIT newSelection(finalSelection);
         // determine selection, for example using QRect::intersects()
         // and QRect::contains().
     }
@@ -254,7 +254,7 @@ bool VideoWG::debayer1394(const IBLOB *bp, const BayerParameters &params, const 
         setPixmap(kPix);
     }
 
-    emit imageChanged(streamImage);
+    Q_EMIT imageChanged(streamImage);
 
     delete[] destinationBuffer;
     auto end = std::chrono::high_resolution_clock::now();
@@ -324,7 +324,7 @@ bool VideoWG::debayerCV(const IBLOB *bp, const BayerParameters &params)
             setPixmap(kPix);
         }
 
-        emit imageChanged(streamImage);
+        Q_EMIT imageChanged(streamImage);
 
         auto end = std::chrono::high_resolution_clock::now();
         qCDebug(KSTARS) << "Stack Debayer (openCV) using algo:" << BayerUtils::openCVAlgoToString(algo)

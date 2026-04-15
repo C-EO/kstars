@@ -30,7 +30,7 @@ class TestFocus : public QObject
         /** @short Destructor */
         ~TestFocus() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
         void restartTest();
         void L1PHyperbolaTest();

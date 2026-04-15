@@ -52,17 +52,17 @@ class Node : public QObject
             m_AuthResponse = response;
         }
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
         void onTextReceived(const QString &message);
         void onBinaryReceived(const QByteArray &message);
 
-    public slots:
+    public Q_SLOTS:
         void connectServer();
         void disconnectServer();
 
-    private slots:
+    private Q_SLOTS:
         // Connection
         void onConnected();
         void onDisconnected();

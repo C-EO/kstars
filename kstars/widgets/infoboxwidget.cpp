@@ -241,7 +241,7 @@ void InfoBoxWidget::mouseMoveEvent(QMouseEvent *event)
 
 void InfoBoxWidget::mousePressEvent(QMouseEvent *)
 {
-    emit clicked();
+    Q_EMIT clicked();
 }
 
 void InfoBoxWidget::showEvent(QShowEvent *)

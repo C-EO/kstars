@@ -26,7 +26,7 @@ bool DelayAction::start()
     m_currentRetry = 0;
 
     setStatus(RUNNING);
-    emit started();
+    Q_EMIT started();
 
     int durationMs = getDurationMs();
 
@@ -44,7 +44,7 @@ bool DelayAction::start()
             break;
     }
 
-    emit progress(QString("Delaying for %1 %2").arg(m_duration).arg(unitStr));
+    Q_EMIT progress(QString("Delaying for %1 %2").arg(m_duration).arg(unitStr));
 
     // Start the delay timer
     m_delayTimer->start(durationMs);
@@ -84,9 +84,9 @@ int DelayAction::getDurationMs() const
 
 void DelayAction::handleDelayComplete()
 {
-    emit progress("Delay completed");
+    Q_EMIT progress("Delay completed");
     setStatus(COMPLETED);
-    emit completed();
+    Q_EMIT completed();
 }
 
 QJsonObject DelayAction::toJson() const

@@ -30,14 +30,14 @@ bool StartAction::start()
     m_currentRetry = 0;
 
     setStatus(RUNNING);
-    emit started();
+    Q_EMIT started();
 
     if (m_scheduleType == ASAP)
     {
         // Start immediately
-        emit progress("Starting immediately");
+        Q_EMIT progress("Starting immediately");
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
         return true;
     }
     else if (m_scheduleType == SCHEDULED)
@@ -47,7 +47,7 @@ bool StartAction::start()
         {
             setErrorMessage("Invalid scheduled time");
             setStatus(FAILED);
-            emit failed(m_errorMessage);
+            Q_EMIT failed(m_errorMessage);
             return false;
         }
 
@@ -56,14 +56,14 @@ bool StartAction::start()
         if (msUntilStart <= 0)
         {
             // Scheduled time has already passed
-            emit progress("Scheduled time has passed, starting now");
+            Q_EMIT progress("Scheduled time has passed, starting now");
             setStatus(COMPLETED);
-            emit completed();
+            Q_EMIT completed();
             return true;
         }
 
         // Wait until scheduled time
-        emit progress(QString("Waiting until %1").arg(m_scheduledTime.toString(Qt::ISODate)));
+        Q_EMIT progress(QString("Waiting until %1").arg(m_scheduledTime.toString(Qt::ISODate)));
 
         // If wait time is very long, use a check timer to update progress
         if (msUntilStart > 60000)  // More than 1 minute
@@ -78,7 +78,7 @@ bool StartAction::start()
     // Unknown schedule type
     setErrorMessage("Unknown schedule type");
     setStatus(FAILED);
-    emit failed(m_errorMessage);
+    Q_EMIT failed(m_errorMessage);
     return false;
 }
 
@@ -113,9 +113,9 @@ void StartAction::handleScheduledTimeReached()
     if (m_checkTimer && m_checkTimer->isActive())
         m_checkTimer->stop();
 
-    emit progress("Scheduled time reached");
+    Q_EMIT progress("Scheduled time reached");
     setStatus(COMPLETED);
-    emit completed();
+    Q_EMIT completed();
 }
 
 void StartAction::checkScheduledTime()
@@ -134,16 +134,16 @@ void StartAction::checkScheduledTime()
         if (minutesRemaining > 60)
         {
             int hoursRemaining = minutesRemaining / 60;
-            emit progress(QString("Waiting - %1 hours remaining").arg(hoursRemaining));
+            Q_EMIT progress(QString("Waiting - %1 hours remaining").arg(hoursRemaining));
         }
         else if (minutesRemaining > 0)
         {
-            emit progress(QString("Waiting - %1 minutes remaining").arg(minutesRemaining));
+            Q_EMIT progress(QString("Waiting - %1 minutes remaining").arg(minutesRemaining));
         }
         else
         {
             int secondsRemaining = static_cast<int>(msRemaining / 1000);
-            emit progress(QString("Waiting - %1 seconds remaining").arg(secondsRemaining));
+            Q_EMIT progress(QString("Waiting - %1 seconds remaining").arg(secondsRemaining));
         }
     }
 }

@@ -63,7 +63,7 @@ class PushToAssistant : public QDialog, public Ui::PushToAssistant
          */
         void setAlignState(AlignState state);
 
-    signals:
+    Q_SIGNALS:
         void sync(double RA, double DE);
         void abort();
         void captureAndSolve(bool initialCall = true);

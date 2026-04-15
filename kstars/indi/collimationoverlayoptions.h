@@ -114,13 +114,13 @@ class CollimationOverlayOptions: public QDialog, public Ui::collimationOptions
          */
         QString name(int id) const;
 
-    signals:
+    Q_SIGNALS:
         void updated();
 
     protected:
         void initModel();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief Update a value in the currently selected element
          * @param cb combo box holding the new value

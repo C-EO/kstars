@@ -60,7 +60,7 @@ void Cloud::onConnected()
 
     qCInfo(KSTARS_EKOS) << "Connected to Cloud Websocket server at" << node->url().toDisplayString();
 
-    emit connected();
+    Q_EMIT connected();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ void Cloud::onDisconnected()
         QFile::remove(oneFile);
     temporaryFiles.clear();
 
-    emit disconnected();
+    Q_EMIT disconnected();
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -116,7 +116,7 @@ void Cloud::onTextReceived(const QString &message)
         {
             qCInfo(KSTARS_EKOS) << "Cloud: Received" << command << "from node" << node->url().toDisplayString()
                                 << ". Emitting globalLogoutTriggered signal with URL.";
-            emit globalLogoutTriggered(node->url());
+            Q_EMIT globalLogoutTriggered(node->url());
         }
         else
         {
@@ -124,7 +124,7 @@ void Cloud::onTextReceived(const QString &message)
             // Fallback: if sender node can't be identified, emit without URL,
             // which might trigger a broader logout in the client if not handled carefully.
             // Or, decide to do nothing if URL is essential. For now, let's emit.
-            emit globalLogoutTriggered(QUrl());
+            Q_EMIT globalLogoutTriggered(QUrl());
         }
         // Do not return here, let other processing for LOGOUT/SESSION_EXPIRED happen if any.
         // However, typically, after emitting logout, further processing for this command might not be needed.
@@ -196,7 +196,7 @@ void Cloud::dispatch(const QSharedPointer<FITSData> &data, const QString &uuid)
     if (compressedImage.open(QIODevice::ReadOnly))
     {
         image += compressedImage.readAll();
-        emit newImage(image);
+        Q_EMIT newImage(image);
         qCInfo(KSTARS_EKOS) << "Uploaded" << compressedFile << " to the cloud";
     }
 

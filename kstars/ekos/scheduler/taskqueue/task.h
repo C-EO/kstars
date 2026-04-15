@@ -145,7 +145,7 @@ class Task : public QObject
         QJsonObject toJson() const;
         bool loadFromJson(const QJsonObject &json);
 
-    signals:
+    Q_SIGNALS:
         void statusChanged(Status status);
         void actionStarted(TaskAction *action, int index);
         void actionCompleted(TaskAction *action, int index);

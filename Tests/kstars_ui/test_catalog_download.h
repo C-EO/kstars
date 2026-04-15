@@ -16,7 +16,7 @@ class TestCatalogDownload: public QObject
     public:
         explicit TestCatalogDownload(QObject* parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

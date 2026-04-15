@@ -54,7 +54,7 @@ class ObservatoryModel : public QObject
          */
         bool isReady();
 
-    public slots:
+    public Q_SLOTS:
         // call this slot in case that the weather or dome status has changed
         void updateStatus();
 
@@ -64,7 +64,7 @@ class ObservatoryModel : public QObject
          */
         void makeReady();
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief Signal a new observatory status
          * @param isReady

@@ -38,7 +38,7 @@ class TestEkosCapture : public QObject
     private:
         TestEkosCaptureHelper *m_CaptureHelper = new TestEkosCaptureHelper();
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

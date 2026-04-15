@@ -31,7 +31,7 @@ class FITSLabel : public QLabel
         bool getMouseButtonDown();
         void updatePersistentRoiLabel(const QRect &roiGeometry);
 
-    public slots:
+    public Q_SLOTS:
         void setRubberBand(QRect rect);
         void showRubberBand(bool on);
         void zoomRubberBand(double scale);
@@ -43,7 +43,7 @@ class FITSLabel : public QLabel
         virtual void mouseDoubleClickEvent(QMouseEvent *e) override;
         virtual void leaveEvent(QEvent *e) override;
 
-    private slots:
+    private Q_SLOTS:
         void handleImageDataUpdated();
 
     private:
@@ -66,7 +66,7 @@ class FITSLabel : public QLabel
         QPoint prevPoint;
 
 
-    signals:
+    Q_SIGNALS:
         void newStatus(const QString &msg, FITSBar id);
         void pointSelected(int x, int y);
         void highlightSelected(int x, int y);

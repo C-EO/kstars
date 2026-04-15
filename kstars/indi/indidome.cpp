@@ -70,7 +70,7 @@ void Dome::processNumber(INDI::Property prop)
     auto nvp = prop.getNumber();
     if (nvp->isNameMatch("ABS_DOME_POSITION"))
     {
-        emit positionChanged(nvp->at(0)->getValue());
+        Q_EMIT positionChanged(nvp->at(0)->getValue());
     }
 }
 
@@ -103,7 +103,7 @@ void Dome::processSwitch(INDI::Property prop)
             if (svp->getState() == IPS_ALERT)
             {
                 m_ParkStatus = PARK_ERROR;
-                emit newParkStatus(PARK_ERROR);
+                Q_EMIT newParkStatus(PARK_ERROR);
 
                 // If alert, set park status to whatever it was opposite to. That is, if it was parking and failed
                 // then we set status to unparked since it did not successfully complete parking.
@@ -120,12 +120,12 @@ void Dome::processSwitch(INDI::Property prop)
                 m_ParkStatus = PARK_PARKING;
                 KSNotification::event(QLatin1String("DomeParking"), i18n("Dome parking is in progress"), KSNotification::Observatory,
                                       KSNotification::Info);
-                emit newParkStatus(m_ParkStatus);
+                Q_EMIT newParkStatus(m_ParkStatus);
 
                 if (m_Status != DOME_PARKING)
                 {
                     m_Status = DOME_PARKING;
-                    emit newStatus(m_Status);
+                    Q_EMIT newStatus(m_Status);
                 }
             }
             else if (svp->getState() == IPS_BUSY && sp->getState() == ISS_OFF && m_ParkStatus != PARK_UNPARKING)
@@ -133,12 +133,12 @@ void Dome::processSwitch(INDI::Property prop)
                 m_ParkStatus = PARK_UNPARKING;
                 KSNotification::event(QLatin1String("DomeUnparking"), i18n("Dome unparking is in progress"), KSNotification::Observatory,
                                       KSNotification::Info);
-                emit newParkStatus(m_ParkStatus);
+                Q_EMIT newParkStatus(m_ParkStatus);
 
                 if (m_Status != DOME_UNPARKING)
                 {
                     m_Status = DOME_UNPARKING;
-                    emit newStatus(m_Status);
+                    Q_EMIT newStatus(m_Status);
                 }
             }
             else if (svp->getState() == IPS_OK && sp->getState() == ISS_ON && m_ParkStatus != PARK_PARKED)
@@ -146,7 +146,7 @@ void Dome::processSwitch(INDI::Property prop)
                 m_ParkStatus = PARK_PARKED;
                 KSNotification::event(QLatin1String("DomeParked"), i18n("Dome parked"), KSNotification::Observatory,
                                       KSNotification::Info);
-                emit newParkStatus(m_ParkStatus);
+                Q_EMIT newParkStatus(m_ParkStatus);
 
                 QAction *parkAction = KStars::Instance()->actionCollection()->action("dome_park");
                 if (parkAction)
@@ -158,7 +158,7 @@ void Dome::processSwitch(INDI::Property prop)
                 if (m_Status != DOME_PARKED)
                 {
                     m_Status = DOME_PARKED;
-                    emit newStatus(m_Status);
+                    Q_EMIT newStatus(m_Status);
                 }
 
             }
@@ -175,12 +175,12 @@ void Dome::processSwitch(INDI::Property prop)
                 if (unParkAction)
                     unParkAction->setEnabled(false);
 
-                emit newParkStatus(m_ParkStatus);
+                Q_EMIT newParkStatus(m_ParkStatus);
 
                 if (m_Status != DOME_IDLE)
                 {
                     m_Status = DOME_IDLE;
-                    emit newStatus(m_Status);
+                    Q_EMIT newStatus(m_Status);
                 }
             }
         }
@@ -194,36 +194,36 @@ void Dome::processSwitch(INDI::Property prop)
                 && lastStatus != DOME_UNPARKING)
         {
             m_Status = svp->at(0)->getState() == ISS_ON ? DOME_MOVING_CW : DOME_MOVING_CCW;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
 
             // rolloff roofs: cw = opening = unparking, ccw = closing = parking
             if (!canAbsoluteMove() && !canRelativeMove())
             {
                 m_ParkStatus = (m_Status == DOME_MOVING_CW) ? PARK_UNPARKING : PARK_PARKING;
-                emit newParkStatus(m_ParkStatus);
+                Q_EMIT newParkStatus(m_ParkStatus);
             }
         }
         else if (svp->getState() == IPS_OK && (lastStatus == DOME_MOVING_CW || lastStatus == DOME_MOVING_CCW))
         {
             m_Status = DOME_TRACKING;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
         else if (svp->getState() == IPS_IDLE && lastStatus != DOME_IDLE)
         {
             m_Status = DOME_IDLE;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
         else if (svp->getState() == IPS_ALERT)
         {
             m_Status = DOME_ERROR;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
     }
     else if (svp->isNameMatch("DOME_SHUTTER"))
     {
         if (svp->getState() == IPS_ALERT)
         {
-            emit newShutterStatus(SHUTTER_ERROR);
+            Q_EMIT newShutterStatus(SHUTTER_ERROR);
 
             // If alert, set shutter status to whatever it was opposite to. That is, if it was opening and failed
             // then we set status to closed since it did not successfully complete opening.
@@ -232,7 +232,7 @@ void Dome::processSwitch(INDI::Property prop)
             else
                 m_ShutterStatus = SHUTTER_CLOSED;
 
-            emit newShutterStatus(m_ShutterStatus);
+            Q_EMIT newShutterStatus(m_ShutterStatus);
         }
 
         ShutterStatus status = parseShutterStatus(prop);
@@ -245,7 +245,7 @@ void Dome::processSwitch(INDI::Property prop)
                     m_ShutterStatus = SHUTTER_CLOSING;
                     KSNotification::event(QLatin1String("ShutterClosing"), i18n("Shutter closing is in progress"), KSNotification::Observatory,
                                           KSNotification::Info);
-                    emit newShutterStatus(m_ShutterStatus);
+                    Q_EMIT newShutterStatus(m_ShutterStatus);
                 }
                 break;
             case SHUTTER_OPENING:
@@ -254,7 +254,7 @@ void Dome::processSwitch(INDI::Property prop)
                     m_ShutterStatus = SHUTTER_OPENING;
                     KSNotification::event(QLatin1String("ShutterOpening"), i18n("Shutter opening is in progress"), KSNotification::Observatory,
                                           KSNotification::Info);
-                    emit newShutterStatus(m_ShutterStatus);
+                    Q_EMIT newShutterStatus(m_ShutterStatus);
                 }
                 break;
             case SHUTTER_CLOSED:
@@ -263,7 +263,7 @@ void Dome::processSwitch(INDI::Property prop)
                     m_ShutterStatus = SHUTTER_CLOSED;
                     KSNotification::event(QLatin1String("ShutterClosed"), i18n("Shutter closed"), KSNotification::Observatory,
                                           KSNotification::Info);
-                    emit newShutterStatus(m_ShutterStatus);
+                    Q_EMIT newShutterStatus(m_ShutterStatus);
                 }
                 break;
             case SHUTTER_OPEN:
@@ -272,7 +272,7 @@ void Dome::processSwitch(INDI::Property prop)
                     m_ShutterStatus = SHUTTER_OPEN;
                     KSNotification::event(QLatin1String("ShutterOpened"), i18n("Shutter opened"), KSNotification::Observatory,
                                           KSNotification::Info);
-                    emit newShutterStatus(m_ShutterStatus);
+                    Q_EMIT newShutterStatus(m_ShutterStatus);
                 }
                 break;
             default:
@@ -286,7 +286,7 @@ void Dome::processSwitch(INDI::Property prop)
     {
         auto sp = svp->findWidgetByName("DOME_AUTOSYNC_ENABLE");
         if (sp != nullptr)
-            emit newAutoSyncStatus(sp->s == ISS_ON);
+            Q_EMIT newAutoSyncStatus(sp->s == ISS_ON);
     }
 }
 

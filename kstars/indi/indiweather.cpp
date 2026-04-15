@@ -33,7 +33,7 @@ void Weather::processLight(INDI::Property prop)
         if (currentStatus != m_WeatherStatus)
         {
             m_WeatherStatus = currentStatus;
-            emit newStatus(m_WeatherStatus);
+            Q_EMIT newStatus(m_WeatherStatus);
         }
     }
 }
@@ -58,8 +58,8 @@ void Weather::processNumber(INDI::Property prop)
             };
             m_Data.push_back(sensor);
         }
-        emit newData(m_Data);
-        emit newJSONData(QJsonDocument(m_Data).toJson());
+        Q_EMIT newData(m_Data);
+        Q_EMIT newJSONData(QJsonDocument(m_Data).toJson());
     }
 }
 

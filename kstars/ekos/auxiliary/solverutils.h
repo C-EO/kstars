@@ -67,7 +67,7 @@ class SolverUtils : public QObject
         // with multiAlgorithm==MULTI_AUTO && use_scale && !use_position. This disables that.
         static void patchMultiAlgorithm(StellarSolver *solver);
 
-    signals:
+    Q_SIGNALS:
         void done(bool timedOut, bool success, const FITSImage::Solution &solution, double elapsedSeconds);
         void newLog(const QString &logText);
 
@@ -104,4 +104,3 @@ class SolverUtils : public QObject
         SSolver::ProcessType m_Type = SSolver::SOLVE;
         std::mutex deleteSolverMutex;
 };
-

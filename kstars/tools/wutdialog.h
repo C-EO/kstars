@@ -54,14 +54,14 @@ class WUTDialog : public QDialog
          */
         bool checkVisibility(const SkyObject *o);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @short Determine which objects are visible, and store them in
          * an array of lists, classified by object type
          */
         void init();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @short Load the list of visible objects for selected object type.
          * @p category the string describing the type of object

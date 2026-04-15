@@ -196,7 +196,7 @@ class TestEkosMeridianFlipBase : public QObject
         // astrometry files available?
         bool astrometry_available = true;
 
-    protected slots:
+    protected Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 
@@ -205,4 +205,3 @@ class TestEkosMeridianFlipBase : public QObject
 };
 
 #endif // HAVE_INDI
-

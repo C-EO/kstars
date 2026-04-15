@@ -33,7 +33,7 @@ class TestGreatCircle : public QObject
         /** @short Destructor */
         ~TestGreatCircle() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void greatCircleTest_data();
         void greatCircleTest();
 

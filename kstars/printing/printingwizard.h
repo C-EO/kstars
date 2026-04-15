@@ -234,7 +234,7 @@ class PrintingWizard : public QDialog
               */
         void recaptureFov(int idx);
 
-    private slots:
+    private Q_SLOTS:
         /**
               * \brief Slot: go to the previous page of Printing Wizard.
               */

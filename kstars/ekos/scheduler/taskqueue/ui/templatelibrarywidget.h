@@ -47,7 +47,7 @@ class TemplateLibraryWidget : public QWidget
          */
         void refreshLibrary();
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief Emitted when user wants to add a template to queue
          * @param tmpl Template to add
@@ -60,7 +60,7 @@ class TemplateLibraryWidget : public QWidget
          */
         void selectionChanged(TaskTemplate *tmpl);
 
-    private slots:
+    private Q_SLOTS:
         void onSelectionChanged();
         void onItemDoubleClicked(QTreeWidgetItem *item, int column);
         void onAddToQueueClicked();

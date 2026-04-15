@@ -24,10 +24,10 @@ class CustomProperties : public QDialog, public Ui::CustomProperties
         QMap<QString, QMap<QString, QVariant> > getCustomProperties() const;
         void setCustomProperties(const QMap<QString, QMap<QString, QVariant> > &value);
 
-    signals:
+    Q_SIGNALS:
         void valueChanged();
 
-    private slots:
+    private Q_SLOTS:
         void slotAdd();
         void slotRemove();
         void slotClear();

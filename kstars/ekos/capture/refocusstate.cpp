@@ -135,7 +135,7 @@ void RefocusState::addHFRValue(const QString &filter)
 void RefocusState::appendLogText(const QString &message)
 {
     qCInfo(KSTARS_EKOS_CAPTURE()) << message;
-    emit newLog(message);
+    Q_EMIT newLog(message);
 }
 
 

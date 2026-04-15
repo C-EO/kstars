@@ -23,7 +23,7 @@ class OpsGuides : public QFrame, public Ui::OpsGuides
         explicit OpsGuides();
         virtual ~OpsGuides() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void slotApply();
         void slotToggleConstellOptions(bool state);
         void slotToggleConstellationArt(bool state);
@@ -35,4 +35,3 @@ class OpsGuides : public QFrame, public Ui::OpsGuides
         KConfigDialog *m_ConfigDialog { nullptr };
         bool isDirty { false };
 };
-

@@ -25,11 +25,10 @@ class OpsTerrain : public QFrame, public Ui::OpsTerrain
         virtual ~OpsTerrain() override = default;
         void syncOptions();
 
-    private slots:
+    private Q_SLOTS:
         void slotApply();
         void saveTerrainFilename();
 
     private:
         KConfigDialog *m_ConfigDialog { nullptr };
 };
-

@@ -82,7 +82,7 @@ class ObservatoryWeatherModel : public QObject
         }
         void setAutoScaleValues(bool show);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief Activate or deactivate the weather warning actions
          */
@@ -108,11 +108,11 @@ class ObservatoryWeatherModel : public QObject
         void updateWeatherData(const std::vector<ISD::Weather::WeatherData> &data);
         unsigned long findWeatherData(QString name);
 
-    private slots:
+    private Q_SLOTS:
         void weatherChanged(ISD::Weather::Status status);
         void updateWeatherStatus();
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::Weather::Status status);
         void newWeatherData(const std::vector<ISD::Weather::WeatherData> &data);
         void ready();

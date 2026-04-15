@@ -35,7 +35,7 @@ class TestPoleAxis : public QObject
         TestPoleAxis();
         ~TestPoleAxis() override;
 
-    private slots:
+    private Q_SLOTS:
         void testDirCos_data();
         void testDirCos();
         void testPriSec_data();

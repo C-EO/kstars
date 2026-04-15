@@ -112,7 +112,7 @@ class FITSViewer : public KXmlGuiWindow
         bool eventFilter(QObject *watched, QEvent *event) override;
 
 
-    public slots:
+    public Q_SLOTS:
         void changeAlwaysOnTop(Qt::ApplicationState state);
         void openFile();
         void blink();
@@ -198,7 +198,7 @@ class FITSViewer : public KXmlGuiWindow
         void createLiveStackingOnly();
         LiveStackWebcast *m_LiveStackWebcast { nullptr };
 
-    signals:
+    Q_SIGNALS:
         void trackingStarSelected(int x, int y);
         void loaded(int tabUID);
         void closed(int tabUID);

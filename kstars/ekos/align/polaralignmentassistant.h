@@ -190,7 +190,7 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
          */
         void updateRefreshDisplay(double azError, double altError);
 
-    signals:
+    Q_SIGNALS:
         // Report new log
         void newLog(const QString &);
         // Request new capture and solve
@@ -212,7 +212,7 @@ class PolarAlignmentAssistant : public QWidget, public Ui::PolarAlignmentAssista
         // Report that the align view was updated.
         void newFrame(const QSharedPointer<FITSView> &view);
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief onPACStatusChanged Handle PAC device status changes.
          * When the PAC reports PAC_CORRECTED, the next capture-and-solve cycle is triggered.

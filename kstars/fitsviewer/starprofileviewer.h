@@ -65,14 +65,14 @@ class StarProfileViewer : public QDialog
         void updateSelectorBars(QPoint position);
         void toggleCutoffEnabled(bool enable);
 
-    public slots:
+    public Q_SLOTS:
         void changeSelectionType(int type);
         void zoomViewTo(int where);
         void updateSampleSize(const QString &text);
         void updateColor(int selection);
         void updateBarSpacing(int value);
 
-    signals:
+    Q_SIGNALS:
         void sampleSizeUpdated(int size);
     private:
         Q3DBars *m_graph { nullptr };

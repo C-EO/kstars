@@ -69,6 +69,6 @@ class AlignView : public FITSView
         // The position of a star being tracked in the polar-alignment routine.
         QPointF starCircle;
 
-    signals:
+    Q_SIGNALS:
         void newCorrectionVector(QLineF correctionVector);
 };

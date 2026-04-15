@@ -38,7 +38,7 @@ class EclipseModel : public QAbstractTableModel
         QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
         QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief reset
          * @short resets the data and the model
@@ -68,7 +68,7 @@ class EclipseModel : public QAbstractTableModel
             return m_eclipses.at(index);
         }
 
-    private slots:
+    private Q_SLOTS:
         // reimplemented to clear the data
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
         void resetInternalData() override
@@ -98,7 +98,7 @@ class EclipseTool : public QFrame
         explicit EclipseTool(QWidget *parent = nullptr);
         ~EclipseTool();
 
-    private slots:
+    private Q_SLOTS:
         /**
          * @brief slotLocation
          * @short slot for setting the geolocation

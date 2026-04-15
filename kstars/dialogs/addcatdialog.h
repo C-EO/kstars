@@ -42,7 +42,7 @@ class AddCatDialog : public QDialog
             return acd->CatalogURL->url().toLocalFile();
         }
 
-    private slots:
+    private Q_SLOTS:
         /** Display contents of the import file. */
         void slotShowDataFile();
 

@@ -107,7 +107,7 @@ class TestEkosGuide : public QObject
         QString const guider_port { "4400" };
         void stopPHD2();
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

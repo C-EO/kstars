@@ -175,7 +175,7 @@ class KStarsLite : public QObject
 
         /** @} */ // end of kconfigwrappers group
 
-    signals:
+    Q_SIGNALS:
         /** Sent when KStarsData finishes loading data */
         void dataLoadFinished();
 
@@ -224,7 +224,7 @@ class KStarsLite : public QObject
         /** start tracking clickedPoint or stop tracking if we are already tracking some object **/
         void slotTrack();
 
-    private slots:
+    private Q_SLOTS:
         /** finish setting up after the KStarsData has finished */
         void datainitFinished();
 

@@ -21,9 +21,9 @@ class MosaicRenderer : public QObject
         explicit MosaicRenderer();
         bool render(uint16_t w, uint16_t h, QImage *image, const Projector *m_proj);
 
-    signals:
+    Q_SIGNALS:
 
-    public slots:
+    public Q_SLOTS:
 
     private:
 

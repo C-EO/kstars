@@ -90,7 +90,7 @@ class ServerManager : public QObject
             return m_ManagedDrivers.size();
         }
 
-    public slots:
+    public Q_SLOTS:
         void processServerError(QProcess::ProcessError);
         void processStandardError();
         void connectScriptDriver(const QSharedPointer<DriverInfo> &driver);
@@ -116,7 +116,7 @@ class ServerManager : public QObject
 
         QFile indiFIFO;
 
-    signals:
+    Q_SIGNALS:
         void started();
         void stopped();
         void failed(const QString &message);

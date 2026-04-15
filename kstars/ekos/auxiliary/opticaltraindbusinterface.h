@@ -83,7 +83,7 @@ class OpticalTrainDBusInterface : public QObject
         double  reducer()    const;
         QString guider()     const;
 
-    public slots:
+    public Q_SLOTS:
         // ── Setter methods (exposed over DBus) ──────────────────────────────
         bool setMount(const QString &name);
         bool setCamera(const QString &name);
@@ -108,7 +108,7 @@ class OpticalTrainDBusInterface : public QObject
          */
         void notifyUpdated();
 
-    signals:
+    Q_SIGNALS:
         /** Emitted when the train configuration changes. */
         void updated();
 

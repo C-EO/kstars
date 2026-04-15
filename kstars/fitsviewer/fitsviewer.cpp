@@ -465,7 +465,7 @@ void FITSViewer::closeEvent(QCloseEvent * /*event*/)
         }
     }
 
-    emit terminated();
+    Q_EMIT terminated();
 
     if (m_Mode == Mode::LiveStacking)
         qApp->quit();
@@ -655,7 +655,7 @@ void FITSViewer::loadFiles()
         QApplication::restoreOverrideCursor();
         led.setColor(Qt::red);
         m_Tabs.removeLast();
-        emit failed(errorMessage);
+        Q_EMIT failed(errorMessage);
         if (m_Tabs.size() == 0)
         {
             // Close FITS Viewer and let KStars know it is no longer needed in memory.
@@ -669,7 +669,7 @@ void FITSViewer::loadFiles()
     connect(tab, &FITSTab::loaded, this, [ = ]()
     {
         if (addFITSCommon(m_Tabs.last(), imageName, FITS_NORMAL, ""))
-            emit loaded(fitsID++);
+            Q_EMIT loaded(fitsID++);
         else
             m_Tabs.removeLast();
 
@@ -695,7 +695,7 @@ int FITSViewer::loadFile(const QUrl &imageName, FITSMode mode, FITSScale filter,
         QApplication::restoreOverrideCursor();
         led.setColor(Qt::red);
         m_Tabs.removeLast();
-        emit failed(errorMessage);
+        Q_EMIT failed(errorMessage);
         if (m_Tabs.size() == 0)
         {
             // Close FITS Viewer and let KStars know it is no longer needed in memory.
@@ -706,7 +706,7 @@ int FITSViewer::loadFile(const QUrl &imageName, FITSMode mode, FITSScale filter,
     connect(tab, &FITSTab::loaded, this, [ = ]()
     {
         if (addFITSCommon(m_Tabs.last(), imageName, mode, previewText))
-            emit loaded(fitsID++);
+            Q_EMIT loaded(fitsID++);
         else
             m_Tabs.removeLast();
     });
@@ -731,7 +731,7 @@ bool FITSViewer::loadData(const QSharedPointer<FITSData> &data, const QUrl &imag
         QApplication::restoreOverrideCursor();
         led.setColor(Qt::red);
         m_Tabs.removeLast();
-        emit failed(errorMessage);
+        Q_EMIT failed(errorMessage);
         if (m_Tabs.size() == 0)
         {
             // Close FITS Viewer and let KStars know it is no longer needed in memory.
@@ -783,7 +783,7 @@ void FITSViewer::updateFile(const QUrl &imageName, int fitsUID, FITSScale filter
     if (tab.isNull())
     {
         QString message = i18n("Cannot find tab with UID %1 in the FITS Viewer", fitsUID);
-        emit failed(message);
+        Q_EMIT failed(message);
         updateBusy = false;
         return;
     }
@@ -798,7 +798,7 @@ void FITSViewer::updateFile(const QUrl &imageName, int fitsUID, FITSScale filter
         if (updateFITSCommon(tab, imageName))
         {
             QObject::disconnect(*conn);
-            emit loaded(tab->getUID());
+            Q_EMIT loaded(tab->getUID());
             updateBusy = false;
         }
     });
@@ -1498,7 +1498,7 @@ void FITSViewer::closeTab(int index)
         saveFileAsAction->setEnabled(false);
     }
 
-    emit closed(UID);
+    Q_EMIT closed(UID);
 }
 
 /**
@@ -1655,7 +1655,7 @@ void FITSViewer::customROIInputWindow()
             botRight.setX((botRight.x() + newwidth / 2));
             botRight.setY((botRight.y() + newheight / 2));
 
-            emit currentView->setRubberBand(QRect(topLeft, botRight));
+            Q_EMIT currentView->setRubberBand(QRect(topLeft, botRight));
             currentView->processRectangle(topLeft, botRight, true);
         }
     }

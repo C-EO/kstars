@@ -91,7 +91,7 @@ void MinimizeWidget::maximize()
     m_MinimizedWidget->setVisible(false);
     m_MaximizedWidget->setVisible(true);
     m_isMinimized = false;
-    emit changed(false);
+    Q_EMIT changed(false);
 }
 
 void MinimizeWidget::minimize()
@@ -101,7 +101,7 @@ void MinimizeWidget::minimize()
     m_MaximizedWidget->setVisible(false);
     m_MinimizedWidget->setVisible(true);
     m_isMinimized = true;
-    emit changed(true);
+    Q_EMIT changed(true);
 }
 
 void MinimizeWidget::setMinimized(bool minimized)
@@ -111,4 +111,3 @@ void MinimizeWidget::setMinimized(bool minimized)
     else
         maximize();
 }
-

@@ -29,7 +29,7 @@ class MountMotionWidget  : public QWidget, public Ui::MountMotionWidget
         void keyPressEvent(QKeyEvent *event) override;
         void keyReleaseEvent(QKeyEvent *event) override;
 
-    signals:
+    Q_SIGNALS:
         void newMotionCommand(int command, int NS, int WE);
         void newSlewRate(int rate);
         void aborted();

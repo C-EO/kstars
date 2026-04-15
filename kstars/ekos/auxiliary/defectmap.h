@@ -91,7 +91,7 @@ class DefectMap : public QObject
         }
 
         void filterPixels();
-    signals:
+    Q_SIGNALS:
         //        void hotPixelsUpdated(const BadPixelSet::const_iterator &start, const BadPixelSet::const_iterator &end);
         //        void coldPixelsUpdated(const BadPixelSet::const_iterator &start, const BadPixelSet::const_iterator &end);
         void pixelsUpdated(uint32_t hotPixelsCount, uint32_t coldPixelsCount);
@@ -115,4 +115,3 @@ class DefectMap : public QObject
         QSharedPointer<FITSData> m_DarkData;
 
 };
-

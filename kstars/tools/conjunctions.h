@@ -40,7 +40,7 @@ class ConjunctionsTool : public QFrame, public Ui::ConjunctionsDlg
         explicit ConjunctionsTool(QWidget *p);
         virtual ~ConjunctionsTool() override = default;
 
-    public slots:
+    public Q_SLOTS:
 
         void slotLocation();
         void slotCompute();

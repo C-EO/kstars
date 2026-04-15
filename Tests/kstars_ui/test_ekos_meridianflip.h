@@ -22,7 +22,7 @@ class TestEkosMeridianFlip : public TestEkosMeridianFlipBase
         explicit TestEkosMeridianFlip(QObject *parent = nullptr);
         explicit TestEkosMeridianFlip(QString guider, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         /** @brief Test a meridian flip without running capture sequence. */
         void testSimpleMF();
 
@@ -88,4 +88,3 @@ class TestEkosMeridianFlip : public TestEkosMeridianFlipBase
 };
 
 #endif // HAVE_INDI
-

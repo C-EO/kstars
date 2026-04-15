@@ -399,7 +399,7 @@ class KStarsData : public QObject
         }
         void syncUpdateIDs();
 
-    signals:
+    Q_SIGNALS:
         /** Signal that specifies the text that should be drawn in the KStarsSplash window. */
         void progressText(const QString &text);
 
@@ -412,7 +412,7 @@ class KStarsData : public QObject
         /** Emitted when geo location changed */
         void geoChanged();
 
-    public slots:
+    public Q_SLOTS:
         /** @short send a message to the console*/
         void slotConsoleMessage(QString s)
         {

@@ -35,7 +35,7 @@ class OpsLogs : public QFrame, public Ui::OpsLogs
         }
 
 
-    private slots:
+    private Q_SLOTS:
         void refreshInterface();
         void slotToggleVerbosityOptions();
         void slotToggleOutputOptions();

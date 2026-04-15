@@ -414,7 +414,7 @@ class SequenceJob : public QObject
         void saveTo(QTextStream &outstream, const QLocale &cLocale) const;
         void loadFrom(XMLEle *root, const QString &targetName, SequenceJobType jobType);
 
-    signals:
+    Q_SIGNALS:
         // All preparations necessary for capturing are completed
         void prepareComplete(bool success = true);
         // Manage the result when capturing has been started

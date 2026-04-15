@@ -130,7 +130,7 @@ class LiveStackWebcast : public QWidget
         /** Intercept the window manager's close signal */
         void closeEvent(QCloseEvent *event) override;
 
-    private slots:
+    private Q_SLOTS:
         /** @brief Update UI widgets */
         void updateUI();
 

@@ -29,7 +29,7 @@ class RecordOptions : public QDialog, public Ui::recordingOptions
     public:
         explicit RecordOptions(QWidget *parent);
 
-    public slots:
+    public Q_SLOTS:
         void selectRecordDirectory();
 
     private:
@@ -71,17 +71,17 @@ class StreamWG : public QDialog, public Ui::streamForm
         void showEvent(QShowEvent *ev) override;
         QSize sizeHint() const override;
 
-    public slots:
+    public Q_SLOTS:
         void toggleRecord();
         void updateRecordStatus(bool enabled);
         void resetFrame();
         void syncDebayerParameters();
 
-    protected slots:
+    protected Q_SLOTS:
         void setStreamingFrame(QRect newFrame);
         void updateFPS(double instantFPS, double averageFPS);
 
-    signals:
+    Q_SIGNALS:
         void hidden();
         void imageChanged(const QSharedPointer<QImage> &frame);
 

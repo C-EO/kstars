@@ -14,7 +14,7 @@ ManualPulse::ManualPulse(QWidget *parent) : QDialog(parent)
 
     connect(northPulseB, &QPushButton::clicked, this, [this]()
     {
-        emit newSinglePulse(DEC_INC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
+        Q_EMIT newSinglePulse(DEC_INC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
         northPulseB->setEnabled(false);
         QTimer::singleShot(pulseDuration->value(), this, [this]()
         {
@@ -24,7 +24,7 @@ ManualPulse::ManualPulse(QWidget *parent) : QDialog(parent)
 
     connect(southPulseB, &QPushButton::clicked, this, [this]()
     {
-        emit newSinglePulse(DEC_DEC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
+        Q_EMIT newSinglePulse(DEC_DEC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
         southPulseB->setEnabled(false);
         QTimer::singleShot(pulseDuration->value(), this, [this]()
         {
@@ -34,7 +34,7 @@ ManualPulse::ManualPulse(QWidget *parent) : QDialog(parent)
 
     connect(westPulseB, &QPushButton::clicked, this, [this]()
     {
-        emit newSinglePulse(RA_DEC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
+        Q_EMIT newSinglePulse(RA_DEC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
         westPulseB->setEnabled(false);
         QTimer::singleShot(pulseDuration->value(), this, [this]()
         {
@@ -44,7 +44,7 @@ ManualPulse::ManualPulse(QWidget *parent) : QDialog(parent)
 
     connect(eastPulseB, &QPushButton::clicked, this, [this]()
     {
-        emit newSinglePulse(RA_INC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
+        Q_EMIT newSinglePulse(RA_INC_DIR, pulseDuration->value(), DontCaptureAfterPulses);
         eastPulseB->setEnabled(false);
         QTimer::singleShot(pulseDuration->value(), this, [this]()
         {

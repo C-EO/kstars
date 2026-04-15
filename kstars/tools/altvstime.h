@@ -99,7 +99,7 @@ class AltVsTime : public QDialog
 
         void drawGradient();
 
-    public slots:
+    public Q_SLOTS:
         /** @short Update the plot to reflec new Date and Location settings. */
         void slotUpdateDateLoc();
 

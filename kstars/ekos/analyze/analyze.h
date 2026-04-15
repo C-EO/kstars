@@ -197,7 +197,7 @@ class Analyze : public QWidget, public Ui::Analyze
             return m_LogText.join("\n");
         }
 
-    public slots:
+    public Q_SLOTS:
         // These slots are messages received from the different Ekos processes
         // used to gather data about those processes.
 
@@ -243,9 +243,9 @@ class Analyze : public QWidget, public Ui::Analyze
 
         void appendLogText(const QString &);
 
-    private slots:
+    private Q_SLOTS:
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &text);
 
     private:

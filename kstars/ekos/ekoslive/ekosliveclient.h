@@ -70,11 +70,11 @@ class Client : public QDialog, public Ui::EkosLiveDialog
     protected:
         void showSelectServersDialog();
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
 
-    private slots:
+    private Q_SLOTS:
         void onConnected();
         void onDisconnected();
         void processGlobalLogoutTrigger(const QUrl &url);

@@ -25,16 +25,16 @@ class WSMedia : public QObject
             m_URL = url;
         }
 
-    signals:
+    Q_SIGNALS:
         void connected();
         void disconnected();
         void newFile(const QByteArray &message, const QString &extension);
 
-    public slots:
+    public Q_SLOTS:
         void connectServer();
         void disconnectServer();
 
-    private slots:
+    private Q_SLOTS:
 
         // Connection
         void onConnected();

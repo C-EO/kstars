@@ -30,7 +30,7 @@ class KStarsSplash : public QSplashScreen
 
         virtual ~KStarsSplash() override = default;
 
-    public slots:
+    public Q_SLOTS:
         /**
          * Display the text argument in the Splash Screen's status label.
          * This is connected to KStarsData::progressText(QString)

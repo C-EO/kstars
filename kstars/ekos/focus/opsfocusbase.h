@@ -24,7 +24,7 @@ class OpsFocusBase : public QFrame
         }
 
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
     protected:

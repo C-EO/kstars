@@ -38,7 +38,7 @@ void PAC::processSwitch(INDI::Property prop)
             if (m_Status != PAC_IDLE)
             {
                 m_Status = PAC_IDLE;
-                emit newStatus(m_Status);
+                Q_EMIT newStatus(m_Status);
             }
         }
     }
@@ -81,7 +81,7 @@ void PAC::processNumber(INDI::Property prop)
         if (currentStatus != m_Status)
         {
             m_Status = currentStatus;
-            emit newStatus(m_Status);
+            Q_EMIT newStatus(m_Status);
         }
     }
 }

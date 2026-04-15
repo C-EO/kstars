@@ -39,7 +39,7 @@ class TestStarObject : public QObject
         void compare(QString msg, double ra1, double dec1, double ra2, double dec2, double err = 0.0001);
         void compare(QString msg, double number1, double number2, double tolerance);
 
-    private slots:
+    private Q_SLOTS:
         void testUpdateCoordsStepByStep();
         void testUpdateCoords();
 #ifdef HAVE_LIBERFA

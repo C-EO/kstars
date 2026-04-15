@@ -46,13 +46,13 @@ void YAxisTool::updateValues(const double value)
     info.rescale = ui->autoLimitsCB->isChecked();
     m_Info = info;
     updateSpins();
-    emit axisChanged(m_Key, m_Info);
+    Q_EMIT axisChanged(m_Key, m_Info);
 }
 
 void YAxisTool::updateLeftAxis()
 {
     ui->leftAxisCB->setEnabled(!ui->leftAxisCB->isChecked());
-    emit leftAxisChanged(m_Info.axis);
+    Q_EMIT leftAxisChanged(m_Info.axis);
 }
 
 void YAxisTool::computeAutoLimits()
@@ -87,7 +87,7 @@ void YAxisTool::updateToDefaults()
     m_Info.color = m_Info.initialColor;
     replot(ui->leftAxisCB->isChecked());
     computeAutoLimits();
-    emit axisChanged(m_Key, m_Info);
+    Q_EMIT axisChanged(m_Key, m_Info);
 }
 
 void YAxisTool::replot(bool isLeftAxis)
@@ -122,7 +122,7 @@ void YAxisTool::updateColor()
     {
         ui->colorLabel->setStyleSheet(QString("QLabel { background-color : %1; }").arg(color.name()));
         m_Info.color = color;
-        emit axisColorChanged(m_Key, m_Info, color);
+        Q_EMIT axisColorChanged(m_Key, m_Info, color);
     }
     return;
 }
@@ -165,4 +165,3 @@ void YAxisTool::slotClosed()
 void YAxisTool::slotSaveChanges()
 {
 }
-

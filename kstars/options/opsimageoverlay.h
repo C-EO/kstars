@@ -34,7 +34,7 @@ class OpsImageOverlay : public QFrame, public Ui::OpsImageOverlay
         QPushButton *solvePushButton();
         QComboBox *solverProfile();
 
-    private slots:
+    private Q_SLOTS:
         void slotApply();
 
     private:
@@ -42,4 +42,3 @@ class OpsImageOverlay : public QFrame, public Ui::OpsImageOverlay
         QSharedPointer<Ekos::StellarSolverProfileEditor> m_ProfileEditor;
         QSharedPointer<KConfigDialog> m_EditorDialog;
 };
-

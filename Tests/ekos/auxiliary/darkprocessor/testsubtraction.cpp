@@ -25,7 +25,7 @@ class TestSubtraction : public QObject
         TestSubtraction();
         ~TestSubtraction() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void basicTest();
 };
 

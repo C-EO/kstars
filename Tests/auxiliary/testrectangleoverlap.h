@@ -16,9 +16,7 @@ class TestRectangleOverlap: public QObject
     public:
         explicit TestRectangleOverlap(QObject * parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void testBasic_data();
         void testBasic();
 };
-
-

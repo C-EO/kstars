@@ -210,7 +210,7 @@ class FilterManager : public QDialog, public Ui::FilterSettings
          */
         void buildFilterOffsets();
 
-    public slots:
+    public Q_SLOTS:
         // Position. if applyPolicy is true then all filter offsets and autofocus & lock policies are applied.
         bool setFilterPosition(uint8_t position, Ekos::FilterManager::FilterPolicy policy = ALL_POLICIES);
         // Change filter names
@@ -239,7 +239,7 @@ class FilterManager : public QDialog, public Ui::FilterSettings
         // Signal from Focus that Autofocus has completed - used by BuildFilterOffsets utility
         void autoFocusComplete(FocusState completionState, int currentPosition, double currentTemperature, double currentAlt);
 
-    signals:
+    Q_SIGNALS:
         // Emitted only when there is a change in the filter slot number
         void positionChanged(int);
         // Emitted when filter change operation completed successfully including any focus offsets or auto-focus operation
@@ -269,7 +269,7 @@ class FilterManager : public QDialog, public Ui::FilterSettings
         // Pass on Autofocus completed signal to Build Filter Offsets
         void autoFocusDone(FocusState completionState, int currentPosition, double currentTemperature, double currentAlt);
 
-    private slots:
+    private Q_SLOTS:
         void updateProperty(INDI::Property prop);
         void processDisconnect();
 

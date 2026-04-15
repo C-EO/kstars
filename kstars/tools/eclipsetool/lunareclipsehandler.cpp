@@ -36,7 +36,7 @@ EclipseHandler::EclipseVector LunarEclipseHandler::computeEclipses(long double s
         if (tmpProgress > progress)
         {
             progress = tmpProgress;
-            emit signalProgress(static_cast<int>(progress));
+            Q_EMIT signalProgress(static_cast<int>(progress));
         }
     });
 
@@ -62,16 +62,16 @@ EclipseHandler::EclipseVector LunarEclipseHandler::computeEclipses(long double s
             }
 
             EclipseEvent_s event = std::make_shared<LunarEclipseEvent>(JD, *getGeoLocation(), type, extended_type);
-            emit signalEventFound(event);
+            Q_EMIT signalEventFound(event);
             eclipses.append(event);
         });
 
         progress++;
-        emit signalProgress(static_cast<int>(roundf(100 * (progress / total))));
+        Q_EMIT signalProgress(static_cast<int>(roundf(100 * (progress / total))));
     }
 
-    emit signalProgress(100);
-    emit signalComputationFinished();
+    Q_EMIT signalProgress(100);
+    Q_EMIT signalComputationFinished();
     return eclipses;
 }
 

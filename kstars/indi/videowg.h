@@ -48,12 +48,12 @@ class VideoWG : public QLabel
         void wheelEvent(QWheelEvent *event) override;
         void initOverlayModel();
 
-    public slots:
+    public Q_SLOTS:
         void modelChanged();
         void toggleOverlay();
         void resetFrame();
 
-    signals:
+    Q_SIGNALS:
         void newSelection(QRect);
         void imageChanged(const QSharedPointer<QImage> &frame);
 

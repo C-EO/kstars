@@ -57,7 +57,7 @@ class HorizonManager : public QDialog
         void closeEvent(QCloseEvent *event) override;
         void showEvent(QShowEvent *event) override;
 
-    public slots:
+    public Q_SLOTS:
         /** @short Add region */
         void slotAddRegion();
 
@@ -79,7 +79,7 @@ class HorizonManager : public QDialog
         void setSelectPoints(bool);
         void slotCurrentPointChanged(const QModelIndex &current, const QModelIndex &previous);
 
-    private slots:
+    private Q_SLOTS:
         void verifyItemValue(QStandardItem *item);
         void slotSaveChanges();
         void slotSetShownRegion(QModelIndex idx);

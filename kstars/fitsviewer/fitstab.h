@@ -174,7 +174,7 @@ class FITSTab : public QWidget
         void setPreviewText(const QString &value);
         bool shouldComputeHFR() const;
 
-    public slots:
+    public Q_SLOTS:
         void modifyFITSState(bool clean = true, const QUrl &imageURL = QUrl());
         void ZoomIn();
         void ZoomOut();
@@ -335,7 +335,7 @@ class FITSTab : public QWidget
         // Stack Monitor
         StackMonitor *m_StackMonitor = nullptr;
 
-    signals:
+    Q_SIGNALS:
         void debayerToggled(bool);
         void newStatus(const QString &msg, FITSBar id);
         void changeStatus(bool clean, const QUrl &imageUrl);

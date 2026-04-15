@@ -132,14 +132,14 @@ class TelescopeLite : public QObject
     protected:
         bool sendCoords(SkyPoint *ScopeTarget);
 
-    public slots:
+    public Q_SLOTS:
         Q_INVOKABLE bool abort();
         bool park();
         bool unPark();
         bool setSlewRate(int index);
         void updateSlewRate(const QString &deviceName, const QString &propName);
 
-    signals:
+    Q_SIGNALS:
         void slewDecreasableChanged(bool);
         void slewIncreasableChanged(bool);
         void slewRateLabelChanged(QString);

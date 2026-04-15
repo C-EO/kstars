@@ -292,7 +292,7 @@ class Mount : public ConcreteDevice
          */
         void updateTarget();
 
-    public slots:
+    public Q_SLOTS:
         bool abort();
         bool park();
         bool unpark();
@@ -301,7 +301,7 @@ class Mount : public ConcreteDevice
         bool setCustomTrackRate(double raRate, double deRate);
         bool setTrackMode(uint8_t index);
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief The mount has finished the slew to a new target.
          * @param currentCoords exact position where the mount is positioned

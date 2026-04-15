@@ -48,7 +48,7 @@ class ScriptAction : public TaskAction
         QJsonObject toJson() const override;
         static ScriptAction* fromJson(const QJsonObject &json, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
         void processError(QProcess::ProcessError error);
         void readStandardOutput();

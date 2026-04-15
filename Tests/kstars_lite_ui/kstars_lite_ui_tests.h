@@ -19,7 +19,7 @@ class KStarsLiteUiTests : public QObject
         KStarsLiteUiTests();
         virtual ~KStarsLiteUiTests() = default;
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
         void openToolbars();

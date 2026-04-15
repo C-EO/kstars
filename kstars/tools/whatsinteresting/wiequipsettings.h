@@ -62,7 +62,7 @@ class WIEquipSettings : public QFrame, public Ui::WIEquipSettings
         /// Telescope type
         ObsConditions::TelescopeType m_TelType { ObsConditions::Invalid };
 
-    private slots:
+    private Q_SLOTS:
         /** Private slot - Equipment type selected - Telescope */
         void slotTelescopeCheck(bool on);
 

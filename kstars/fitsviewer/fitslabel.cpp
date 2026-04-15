@@ -109,21 +109,21 @@ void FITSLabel::mouseReleaseEvent(QMouseEvent *e)
         if( isRoiSelected && view->isSelectionRectShown())
         {
             QRect roiRaw = roiRB->geometry();
-            emit rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
+            Q_EMIT rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
             // updateROIToolTip(e->globalPosition().toPoint());
             updatePersistentRoiLabel(roiRB->geometry());
         }
         if( e->modifiers () == Qt::ShiftModifier && view->isSelectionRectShown())
         {
             QRect roiRaw = roiRB->geometry();
-            emit rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
+            Q_EMIT rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
             // updateROIToolTip(e->globalPosition().toPoint());
             updatePersistentRoiLabel(roiRB->geometry());
         }
         isRoiSelected = false;
         // Only process the circle if relevant to Catalog Objects and a query is not already in progress
         if (view->showObjects && !view->m_ImageData->getCatQueryInProgress() && e->modifiers () == Qt::ShiftModifier)
-            emit circleSelected(m_p1, m_p2);
+            Q_EMIT circleSelected(m_p1, m_p2);
     }
 
 }
@@ -132,7 +132,7 @@ void FITSLabel::leaveEvent(QEvent *e)
 {
     Q_UNUSED(e)
     view->updateMagnifyingGlass(-1, -1);
-    emit mouseOverPixel(-1, -1);
+    Q_EMIT mouseOverPixel(-1, -1);
 }
 
 /**
@@ -186,7 +186,7 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
             // Opting to update stats on the go is extremely laggy for large images, only update if small image
             if(!view->isLargeImage())
             {
-                emit rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
+                Q_EMIT rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
                 updatePersistentRoiLabel(roiRB->geometry());
             }
         }
@@ -199,7 +199,7 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
             // Opting to update stats on the go is extremely laggy for large images, only update if small image
             if(!view->isLargeImage())
             {
-                emit rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
+                Q_EMIT rectangleSelected(roiRaw.topLeft() / prevscale, roiRaw.bottomRight() / prevscale, true);
                 updatePersistentRoiLabel(roiRB->geometry());
             }
         }
@@ -224,13 +224,13 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
     x = KSUtils::clamp(x, 1.0, m_Width);
     y = KSUtils::clamp(y, 1.0, m_Height);
 
-    emit newStatus(QString("X:%1 Y:%2").arg(static_cast<int>(x)).arg(static_cast<int>(y)), FITS_POSITION);
+    Q_EMIT newStatus(QString("X:%1 Y:%2").arg(static_cast<int>(x)).arg(static_cast<int>(y)), FITS_POSITION);
 
     // Range is 0 to dim-1 when accessing array
     x -= 1;
     y -= 1;
 
-    emit mouseOverPixel(x, y);
+    Q_EMIT mouseOverPixel(x, y);
 
     int index = y * m_Width + x;
     QString stringValue;
@@ -285,7 +285,7 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
             updatePersistentRoiLabel(roiRB->geometry());
     }
 
-    emit newStatus(stringValue, FITS_VALUE);
+    Q_EMIT newStatus(stringValue, FITS_VALUE);
 
     if (imageData->hasWCS() &&
             !view->isSelectionRectShown() &&
@@ -297,7 +297,7 @@ void FITSLabel::mouseMoveEvent(QMouseEvent *e)
         {
             m_RA = wcsCoord.ra0();
             m_DE = wcsCoord.dec0();
-            emit newStatus(QString("%1 , %2").arg(m_RA.toHMSString(), m_DE.toDMSString()), FITS_WCS);
+            Q_EMIT newStatus(QString("%1 , %2").arg(m_RA.toHMSString(), m_DE.toDMSString()), FITS_WCS);
         }
 
         bool objFound = false;
@@ -438,18 +438,18 @@ void FITSLabel::mousePressEvent(QMouseEvent *e)
         }
 
         if (fabs(view->markerCrosshair.x() - x) <= 15 && fabs(view->markerCrosshair.y() - y) <= 15)
-            emit markerSelected(0, 0);
+            Q_EMIT markerSelected(0, 0);
     }
 #endif
 
     if  (e->buttons() & Qt::LeftButton)
     {
         if (view->getCursorMode() == FITSView::selectCursor)
-            emit pointSelected(x, y);
+            Q_EMIT pointSelected(x, y);
         else if (view->getCursorMode() == FITSView::crosshairCursor)
-            emit pointSelected(x + 5 / scale, y + 5 / scale);
+            Q_EMIT pointSelected(x + 5 / scale, y + 5 / scale);
         else if (view->showObjects)
-            emit highlightSelected(x, y);
+            Q_EMIT highlightSelected(x, y);
     }
 }
 
@@ -463,7 +463,7 @@ void FITSLabel::mouseDoubleClickEvent(QMouseEvent *e)
     x = KSUtils::clamp(x, 1.0, m_Width);
     y = KSUtils::clamp(y, 1.0, m_Height);
 
-    emit markerSelected(x, y);
+    Q_EMIT markerSelected(x, y);
 
     return;
 }
@@ -670,7 +670,7 @@ void FITSLabel::handleImageDataUpdated()
                 // FITSView::processRectangle will call FITSData::calculateROIStatistics()
                 // and then emit FITSView::rectangleUpdated() or FITSView::updated() again.
                 // The third parameter must be true to ensure statistics are calculated.
-                emit rectangleSelected(rawRoiRect.topLeft(), rawRoiRect.bottomRight(), true);
+                Q_EMIT rectangleSelected(rawRoiRect.topLeft(), rawRoiRect.bottomRight(), true);
 
                 // It's expected that after FITSView processes this, it will emit a signal
                 // (like `updated` or `rectangleUpdated`) which will lead to

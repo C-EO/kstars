@@ -35,7 +35,7 @@ class GenericCalendarWidget : public QWidget, public Ui::GenericCalendarWidgetUi
         /** @short Returns the selected date */
         const QDate &date() const;
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @short Set the month
          * @param month  The month to choose
@@ -60,14 +60,14 @@ class GenericCalendarWidget : public QWidget, public Ui::GenericCalendarWidgetUi
          */
         bool setDate(const QDate &date_);
 
-    signals:
+    Q_SIGNALS:
         /**
          * @short Emitted when the date has been changed
          * @note Emitted by dateTableDateChanged() which subscribes to KDateTable::dateChanged()
          */
         void dateChanged(const QDate &date_);
 
-    private slots:
+    private Q_SLOTS:
 
         /** @short Called when the previous / next year / month buttons are clicked */
         void previousYearClicked();

@@ -30,7 +30,7 @@ class FITSDebayer : public QDialog
 
         void setBayerParams(BayerParameters *param);
 
-    public slots:
+    public Q_SLOTS:
         void applyDebayer();
 
     private:

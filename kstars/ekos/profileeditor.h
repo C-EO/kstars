@@ -57,11 +57,11 @@ class ProfileEditor : public QDialog
 
         void setSettings(const QJsonObject &profile);
 
-    public slots:
+    public Q_SLOTS:
         void saveProfile();
         void setRemoteMode(bool enable);
 
-    private slots:
+    private Q_SLOTS:
         void updateGuiderSelection(int id);
         void scanNetwork();
         void executeScriptEditor();

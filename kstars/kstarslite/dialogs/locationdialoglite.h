@@ -88,13 +88,13 @@ class LocationDialogLite : public QObject
          */
         Q_INVOKABLE void getNameFromCoordinates(double latitude, double longitude);
 
-    public slots:
+    public Q_SLOTS:
         void initCityList();
         void updateCurrentLocation();
 
         void processLocationNameData(QNetworkReply *rep);
 
-    signals:
+    Q_SIGNALS:
         void currentLocationChanged(QString);
         void TZListChanged(QStringList);
         void DSTRulesChanged(QStringList);

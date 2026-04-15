@@ -64,7 +64,7 @@ class FITSHistogram : public QDialog
         void showEvent(QShowEvent * event) override;
         void driftMouseOverLine(QMouseEvent * event);
 
-    public slots:
+    public Q_SLOTS:
         void applyScale();
         void resizePlot();
 

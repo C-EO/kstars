@@ -38,7 +38,7 @@ class TestKStarsDateTime : public QObject
         TestKStarsDateTime();
         ~TestKStarsDateTime() override = default;
 
-    private slots:
+    private Q_SLOTS:
         // ----- Constructors -----
         void testDefaultConstructor();
         void testJdConstructor();

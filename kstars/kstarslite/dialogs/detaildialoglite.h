@@ -131,7 +131,7 @@ class DetailDialogLite : public QObject
          */
         Q_INVOKABLE QString getImageURL(int index);
 
-    public slots:
+    public Q_SLOTS:
         /** Update properties that are shown on "General" tab */
         void createGeneralTab();
 
@@ -147,7 +147,7 @@ class DetailDialogLite : public QObject
         /** Save the User's text in the Log Tab to the userlog.dat file. */
         void saveLogData(const QString &userLog);
 
-    signals:
+    Q_SIGNALS:
         //General
         void nameChanged(QString);
         void magnitudeChanged(QString);

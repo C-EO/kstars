@@ -33,14 +33,14 @@ class FITSHistogramView : public QCustomPlot
         void showEvent(QShowEvent * event) override;
         void driftMouseOverLine(QMouseEvent * event);
 
-    signals:
+    Q_SIGNALS:
         void constructed();
 
-    private slots:
+    private Q_SLOTS:
         void onXRangeChanged(const QCPRange &range);
         void onYRangeChanged(const QCPRange &range);
 
-    public slots:
+    public Q_SLOTS:
         //void applyScale();
         void resizePlot();
 

@@ -15,7 +15,7 @@ class modCalcSimple : public QFrame, public Ui::modCalcSimple
         explicit modCalcSimple(QWidget *p);
         virtual ~modCalcSimple() override = default;
 
-    public slots:
+    public Q_SLOTS:
         void slotCompute1();
         void slotCompute2();
 };

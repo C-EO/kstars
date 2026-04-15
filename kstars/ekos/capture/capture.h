@@ -492,7 +492,7 @@ class Capture : public QWidget, public Ui::Capture
             return moduleState()->cameras();
         }
 
-    public slots:
+    public Q_SLOTS:
         // ////////////////////////////////////////////////////////////////////
         // Main capturing actions
         // ////////////////////////////////////////////////////////////////////
@@ -706,13 +706,13 @@ class Capture : public QWidget, public Ui::Capture
         Q_SCRIPTABLE void clearLog();
         void appendLogText(const QString &);
 
-    private slots:
+    private Q_SLOTS:
 
         // ////////////////////////////////////////////////////////////////////
         // UI controls
         // ////////////////////////////////////////////////////////////////////
 
-    signals:
+    Q_SIGNALS:
         Q_SCRIPTABLE void newLog(const QString &text);
         Q_SCRIPTABLE void meridianFlipStarted(const QString &trainname);
         Q_SCRIPTABLE void guideAfterMeridianFlip();

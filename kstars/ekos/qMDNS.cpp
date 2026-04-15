@@ -395,7 +395,7 @@ void qMDNS::readResponse (const QByteArray &data)
 
         qCInfo(KSTARS) << "Found service on" << host;
 
-        emit hostFound (info);
+        Q_EMIT hostFound (info);
     }
 }
 

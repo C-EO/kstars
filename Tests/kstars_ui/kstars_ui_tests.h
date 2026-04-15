@@ -122,7 +122,7 @@ class KStarsUiTests : public QObject
         static void notifierMessage(QString, QString);
         static void notifierEnd();
 
-    private slots:
+    private Q_SLOTS:
 
         /** @brief Members "initTestCase" and "cleanupTestCase" trigger when the framework processes this class.
          * Member "initTestCase" is executed before any other declared test.

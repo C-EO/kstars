@@ -44,7 +44,7 @@ class Rotator : public ConcreteDevice
             return m_AbsoluteAngleState;
         }
 
-    signals:
+    Q_SIGNALS:
         void newAbsoluteAngle(double value, IPState state);
         void reverseToggled(bool enabled);
 

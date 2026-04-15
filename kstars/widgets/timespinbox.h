@@ -51,13 +51,13 @@ class TimeSpinBox : public QSpinBox
             return DaysOnly;
         }
 
-    signals:
+    Q_SIGNALS:
         void scaleChanged(float s);
 
-    public slots:
+    public Q_SLOTS:
         void changeScale(float s);
 
-    protected slots:
+    protected Q_SLOTS:
         void reportChange();
 
     private:

@@ -45,7 +45,7 @@ class MapCanvas : public QFrame
         {
             ld = loc;
         }
-    public slots:
+    public Q_SLOTS:
         /**Set the geometry of the map widget (overloaded from QWidget).
              * Resizes the size of the map pixmap to match the widget, and resets
              * the Origin QPoint so it remains at the center of the widget.

@@ -219,7 +219,7 @@ bool SubStatsModel::setData(const QModelIndex &index, const QVariant &highlight,
         else
             m_HighlightedCells.remove(persistent);
 
-        emit dataChanged(index, index, {Qt::BackgroundRole, Qt::ForegroundRole});
+        Q_EMIT dataChanged(index, index, {Qt::BackgroundRole, Qt::ForegroundRole});
         return true;
     }
 
@@ -232,7 +232,7 @@ bool SubStatsModel::setData(const QModelIndex &index, const QVariant &highlight,
         else
             m_HighlightedIDs.remove(sub.id);
 
-        emit dataChanged(this->index(index.row(), 0), this->index(index.row(), columnCount() - 1),
+        Q_EMIT dataChanged(this->index(index.row(), 0), this->index(index.row(), columnCount() - 1),
         {Qt::BackgroundRole, Qt::ForegroundRole});
         return true;
     }
@@ -279,7 +279,7 @@ void SubStatsModel::updateSubStats(int id, const SubStats &stats)
             m_subStatsList[i] = stats;
             QModelIndex topLeft = index(i, 0);
             QModelIndex bottomRight = index(i, columnCount() - 1);
-            emit dataChanged(topLeft, bottomRight);
+            Q_EMIT dataChanged(topLeft, bottomRight);
             break;
         }
     }
@@ -289,7 +289,7 @@ void SubStatsModel::setAlignmentMasterRow(int row)
 {
     m_AlignmentMasterRow = row;
     // Emit dataChanged so view refreshes the row
-    emit dataChanged(index(row, 0), index(row, columnCount() - 1), {Qt::BackgroundRole});
+    Q_EMIT dataChanged(index(row, 0), index(row, columnCount() - 1), {Qt::BackgroundRole});
 }
 
 void SubStatsModel::clear()

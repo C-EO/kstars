@@ -32,7 +32,7 @@ class OpsCalibration : public QFrame, public Ui::OpsCalibration
     protected:
         void showEvent(QShowEvent *) override;
 
-    private slots:
+    private Q_SLOTS:
 
         void slotApply();
 

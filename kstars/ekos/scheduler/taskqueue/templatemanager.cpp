@@ -432,8 +432,8 @@ QString TemplateManager::createUserTemplate(const QString &systemTemplateId,
     // Save user templates
     saveUserTemplates();
 
-    emit templateAdded(newId);
-    emit templatesChanged();
+    Q_EMIT templateAdded(newId);
+    Q_EMIT templatesChanged();
 
     return newId;
 }
@@ -476,8 +476,8 @@ bool TemplateManager::deleteUserTemplate(const QString &templateId)
     // Update the combined user templates file (for backward compatibility)
     saveUserTemplates();
 
-    emit templateRemoved(templateId);
-    emit templatesChanged();
+    Q_EMIT templateRemoved(templateId);
+    Q_EMIT templatesChanged();
 
     return true;
 }

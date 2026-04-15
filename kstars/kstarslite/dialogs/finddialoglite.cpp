@@ -35,7 +35,7 @@ FindDialogLite::FindDialogLite()
     m_filterModel.append(i18n("Constellations"));
     m_filterModel.append(i18n("Supernovae"));
     m_filterModel.append(i18n("Satellites"));
-    emit filterModelChanged();
+    Q_EMIT filterModelChanged();
 
     fModel      = new SkyObjectListModel(this);
     m_sortModel = new QSortFilterProxyModel(this);
@@ -185,7 +185,7 @@ bool FindDialogLite::isInList(QString searchQuery)
 
 void FindDialogLite::resolveInInternet(QString searchQuery)
 {
-    emit notifyMessage(i18n("Not Implemented.", searchQuery));
+    Q_EMIT notifyMessage(i18n("Not Implemented.", searchQuery));
 }
 
 void FindDialogLite::setIsResolveEnabled(bool isResolveEnabled)
@@ -193,6 +193,6 @@ void FindDialogLite::setIsResolveEnabled(bool isResolveEnabled)
     if (m_isResolveEnabled != isResolveEnabled)
     {
         m_isResolveEnabled = isResolveEnabled;
-        emit isResolveEnabledChanged(isResolveEnabled);
+        Q_EMIT isResolveEnabledChanged(isResolveEnabled);
     }
 }

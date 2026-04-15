@@ -50,15 +50,15 @@ class StellarSolverProfileEditor : public QWidget, public Ui::StellarSolverProfi
 
         void connectOptionsProfileComboBox();
         void disconnectOptionsProfileComboBox();
-    public slots:
+    public Q_SLOTS:
         void loadProfile(const QString &profile);
         void showEvent(QShowEvent *e) override;
 
-    signals:
+    Q_SIGNALS:
         void optionsProfilesUpdated();
     protected:
 
-    private slots:
+    private Q_SLOTS:
 
         void slotApply();
 

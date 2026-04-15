@@ -61,7 +61,7 @@ class Weather : public ConcreteDevice
             return QJsonDocument(m_Data).toJson();
         }
 
-    signals:
+    Q_SIGNALS:
         void newStatus(ISD::Weather::Status status);
         void newData(const QJsonArray &data);
         void newJSONData(QByteArray data);

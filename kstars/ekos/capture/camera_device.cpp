@@ -270,7 +270,7 @@ void Camera::createDSLRDialog()
 
     m_DSLRInfoDialog->show();
 
-    emit dslrInfoRequested(devices()->getActiveCamera()->getDeviceName());
+    Q_EMIT dslrInfoRequested(devices()->getActiveCamera()->getDeviceName());
 }
 
 void Camera::cullToDSLRLimits()
@@ -556,11 +556,11 @@ void Camera::updateCamera(bool isValid)
     {
         auto name = activeCamera()->getDeviceName();
         opticalTrainCombo->setToolTip(QString("%1 @ %2").arg(name, currentScope()["name"].toString()));
-        emit settingsUpdated(getAllSettings());
-        emit refreshCamera(m_cameraId, true);
+        Q_EMIT settingsUpdated(getAllSettings());
+        Q_EMIT refreshCamera(m_cameraId, true);
     }
     else
-        emit refreshCamera(m_cameraId, false);
+        Q_EMIT refreshCamera(m_cameraId, false);
 
 }
 

@@ -98,7 +98,7 @@ class TemplateManager : public QObject
          */
         bool saveUserTemplates();
 
-    signals:
+    Q_SIGNALS:
         void templatesChanged();
         void templateAdded(const QString &templateId);
         void templateRemoved(const QString &templateId);

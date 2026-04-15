@@ -48,7 +48,7 @@ bool RemoteAstrometryParser::startSolver(const QString &filename, const QStringL
     if (fp.open(QIODevice::ReadOnly) == false)
     {
         align->appendLogText(i18n("Cannot open file %1 for reading.", filename));
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return false;
     }
 
@@ -59,7 +59,7 @@ bool RemoteAstrometryParser::startSolver(const QString &filename, const QStringL
     {
         align->appendLogText(i18n("Failed to find solver properties."));
         fp.close();
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return false;
     }
 
@@ -84,7 +84,7 @@ bool RemoteAstrometryParser::startSolver(const QString &filename, const QStringL
     {
         align->appendLogText(i18n("Not enough memory for file %1.", filename));
         fp.close();
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return false;
     }
 
@@ -110,7 +110,7 @@ bool RemoteAstrometryParser::sendArgs(const QStringList &args)
     if (!solverSettings)
     {
         align->appendLogText(i18n("Failed to find solver settings."));
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return false;
     }
 
@@ -246,7 +246,7 @@ void RemoteAstrometryParser::checkStatus(INDI::Property prop)
     {
         stopSolver();
         align->appendLogText(i18n("Solver failed. Try again."));
-        emit solverFailed();
+        Q_EMIT solverFailed();
         return;
     }
 }
@@ -284,7 +284,7 @@ void RemoteAstrometryParser::checkResults(INDI::Property prop)
     if (pixscale != -1000 && ra != -1000 && de != -1000 && orientation != -1000)
     {
         stopSolver();
-        emit solverFinished(orientation, ra, de, pixscale, parity != FITSImage::POSITIVE);
+        Q_EMIT solverFinished(orientation, ra, de, pixscale, parity != FITSImage::POSITIVE);
     }
 }
 }

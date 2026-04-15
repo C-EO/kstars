@@ -233,15 +233,15 @@ class Camera : public ConcreteDevice
         bool saveCurrentImage(QString &filename);
 
 
-    public slots:
+    public Q_SLOTS:
         void StreamWindowHidden();
         // Blob manager
         void setBLOBManager(const char *device, INDI::Property prop);
 
-    protected slots:
+    protected Q_SLOTS:
         void setWSBLOB(const QByteArray &message, const QString &extension);
 
-    signals:
+    Q_SIGNALS:
         void newTemperatureValue(double value);
         void newExposureValue(ISD::CameraChip *chip, double value, IPState state);
         void newGuideStarData(ISD::CameraChip *chip, double dx, double dy, double fit);

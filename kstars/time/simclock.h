@@ -141,7 +141,7 @@ class SimClock : public QObject
          */
         void setRealTime(bool on = true);
 
-    signals:
+    Q_SIGNALS:
         /** The time has changed (emitted by setUTC() ) */
         void timeChanged();
 

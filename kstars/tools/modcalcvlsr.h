@@ -30,7 +30,7 @@ class modCalcVlsr : public QFrame, public Ui::modCalcVlsrDlg
         explicit modCalcVlsr(QWidget *p);
         virtual ~modCalcVlsr() override = default;
 
-    private slots:
+    private Q_SLOTS:
         void slotNow();
         void slotLocation();
         void slotFindObject();

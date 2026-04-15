@@ -47,7 +47,7 @@ class PlateSolve: public QDialog, public Ui::PlateSolveUI
             m_overlayDisabled = true;
         }
 
-    public slots:
+    public Q_SLOTS:
         void extractImage(const QSharedPointer<FITSData> &imageData);
         void solveImage(const QSharedPointer<FITSData> &imageData);
         void solveImage(const QString &filename);
@@ -55,7 +55,7 @@ class PlateSolve: public QDialog, public Ui::PlateSolveUI
                            const double pixScale, const int index, const int healpix,
                            const SSolver::ProcessType solveType);
 
-    signals:
+    Q_SIGNALS:
         void clicked();
         void extractorSuccess();
         void subExtractorSuccess(const double medianHFR, const int numStars);
@@ -96,4 +96,3 @@ class PlateSolve: public QDialog, public Ui::PlateSolveUI
         QSharedPointer<SkyObject> m_SolvedObject;
         bool m_overlayDisabled { false };
 };
-

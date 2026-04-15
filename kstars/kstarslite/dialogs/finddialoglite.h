@@ -78,12 +78,12 @@ class FindDialogLite : public QObject
 
         /** Setter for isResolveEnabled **/
         void setIsResolveEnabled(bool isResolveEnabled);
-    signals:
+    Q_SIGNALS:
         void filterModelChanged();
         void notifyMessage(QString message);
         void isResolveEnabledChanged(bool);
 
-    public slots:
+    public Q_SLOTS:
         /**
          * When Text is entered in the QLineEdit, filter the List of objects
          * so that only objects which start with the filter text are shown.

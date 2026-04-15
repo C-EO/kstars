@@ -175,7 +175,7 @@ bool FocusAdvisor::start()
     {
         updateParams();
         focusAdvUpdateParamsLabel->setText(i18n("Done"));
-        emit newStage(UpdatingParameters);
+        Q_EMIT newStage(UpdatingParameters);
     }
 
     m_inFindStars = focusAdvFindStars->isChecked();
@@ -203,7 +203,7 @@ bool FocusAdvisor::start()
 void FocusAdvisor::stop()
 {
     abort(i18n("Focus Advisor stopped"));
-    emit newStage(Idle);
+    Q_EMIT newStage(Idle);
 }
 
 // Focus Advisor help popup
@@ -663,7 +663,7 @@ void FocusAdvisor::initFindStars(const int startPos)
     }
 
     focusAdvFindStarsLabel->setText(i18n("In progress..."));
-    emit newStage(FindingStars);
+    Q_EMIT newStage(FindingStars);
 
     // Set the initial position, which we'll fallback to in case of failure
     m_focus->initialFocuserAbsPosition = startPos;
@@ -694,7 +694,7 @@ void FocusAdvisor::initFindStars(const int startPos)
 
     addResultsTable(i18n("Find Stars"), m_findStarsRunNum, startPos, m_jumpSize,
                     m_focus->m_OpsFocusMechanics->focusAFOverscan->value(), "");
-    emit m_focus->setTitle(QString(i18n("Find Stars: Scanning for stars...")), true);
+    Q_EMIT m_focus->setTitle(QString(i18n("Find Stars: Scanning for stars...")), true);
     if (!m_focus->changeFocus(startPos - m_focus->currentPosition))
         abort(i18n("Find Stars: Failed"));
 }
@@ -706,8 +706,8 @@ void FocusAdvisor::initFindStars(const int startPos)
 void FocusAdvisor::findStars()
 {
     // Plot the datapoint
-    emit m_focus->newHFRPlotPosition(static_cast<double>(m_focus->currentPosition), m_focus->getLastMeasure(),
-                                     std::pow(m_focus->getLastWeight(), -0.5), false, m_jumpSize, true);
+    Q_EMIT m_focus->newHFRPlotPosition(static_cast<double>(m_focus->currentPosition), m_focus->getLastMeasure(),
+                                       std::pow(m_focus->getLastWeight(), -0.5), false, m_jumpSize, true);
 
     int offset = 0;
     bool starsExist = starsFound();
@@ -772,7 +772,7 @@ void FocusAdvisor::findStars()
             else
             {
                 m_focus->absTicksSpin->setValue(zoneCentre);
-                emit m_focus->setTitle(QString(i18n("Stars detected, range centre %1", zoneCentre)), true);
+                Q_EMIT m_focus->setTitle(QString(i18n("Stars detected, range centre %1", zoneCentre)), true);
                 complete(false, i18n("Focus Advisor Find Stars completed"));
             }
             return;
@@ -829,7 +829,7 @@ void FocusAdvisor::findStars()
     if (m_findStarsRange)
     {
         // Collect more data to find the range of focuser motion with stars
-        emit m_focus->setTitle(QString(i18n("Stars detected, centering range")), true);
+        Q_EMIT m_focus->setTitle(QString(i18n("Stars detected, centering range")), true);
         updateResultsTable(i18n("Stars detected, centering range"));
         int nextPos;
         if (m_findStarsRangeIn)
@@ -851,14 +851,14 @@ void FocusAdvisor::findStars()
         }
         m_findStarsJumpsInSector = m_jumpsToGo;
         m_findStarsSector = 1;
-        emit m_focus->setTitle(QString(i18n("Find Stars Run %1: No stars at start %2, scanning...", m_findStarsRunNum,
-                                            m_focus->currentPosition)), true);
+        Q_EMIT m_focus->setTitle(QString(i18n("Find Stars Run %1: No stars at start %2, scanning...", m_findStarsRunNum,
+                                              m_focus->currentPosition)), true);
     }
     else if (m_jumpsToGo > 0)
     {
         // Collect more data in the current sweep
-        emit m_focus->setTitle(QString(i18n("Find Stars Run %1 Sector %2: Scanning %3/%4", m_findStarsRunNum, m_findStarsSector,
-                                            m_jumpsToGo, m_findStarsJumpsInSector)), true);
+        Q_EMIT m_focus->setTitle(QString(i18n("Find Stars Run %1 Sector %2: Scanning %3/%4", m_findStarsRunNum, m_findStarsSector,
+                                              m_jumpsToGo, m_findStarsJumpsInSector)), true);
         updateResultsTable(i18n("Find Stars Run %1: Scanning Sector %2", m_findStarsRunNum, m_findStarsSector));
         int nextPos = std::max(m_focus->currentPosition - m_jumpSize, static_cast<int>(m_focus->absMotionMin));
         deltaPos = nextPos - m_focus->currentPosition;
@@ -943,8 +943,8 @@ void FocusAdvisor::findStars()
         }
         m_findStarsSector++;
         m_findStarsJumpsInSector = m_jumpsToGo;
-        emit m_focus->setTitle(QString(i18n("Find Stars Run %1 Sector %2: scanning %3/%4", m_findStarsRunNum, m_findStarsSector,
-                                            m_jumpsToGo, m_findStarsJumpsInSector)), true);
+        Q_EMIT m_focus->setTitle(QString(i18n("Find Stars Run %1 Sector %2: scanning %3/%4", m_findStarsRunNum, m_findStarsSector,
+                                              m_jumpsToGo, m_findStarsJumpsInSector)), true);
     }
     if (!m_findStarsRange)
         m_jumpsToGo--;
@@ -977,7 +977,7 @@ void FocusAdvisor::initPreAFAdj(const int startPos)
     }
 
     focusAdvCoarseAdjLabel->setText(i18n("In progress..."));
-    emit newStage(CoarseAdjustments);
+    Q_EMIT newStage(CoarseAdjustments);
 
     m_focus->initialFocuserAbsPosition = startPos;
     m_focus->absIterations = 0;
@@ -989,7 +989,7 @@ void FocusAdvisor::initPreAFAdj(const int startPos)
 
     // Reset the v-curve - otherwise there's too much data to see what's going on
     m_focus->clearDataPoints();
-    emit m_focus->setTitle(QString(i18n("Coarse Adjustment Scan...")), true);
+    Q_EMIT m_focus->setTitle(QString(i18n("Coarse Adjustment Scan...")), true);
 
     // Setup a sweep of m_jumpSize either side of startPos
     m_jumpSize = m_focus->m_OpsFocusMechanics->focusTicks->value() * NUM_STEPS_PRE_AF;
@@ -1070,8 +1070,8 @@ void FocusAdvisor::preAFAdj()
         }
     }
 
-    emit m_focus->newHFRPlotPosition(static_cast<double>(m_focus->currentPosition), m_focus->getLastMeasure(),
-                                     std::pow(m_focus->getLastWeight(), -0.5), false, step, true);
+    Q_EMIT m_focus->newHFRPlotPosition(static_cast<double>(m_focus->currentPosition), m_focus->getLastMeasure(),
+                                       std::pow(m_focus->getLastWeight(), -0.5), false, step, true);
 
     // See if we need to extend the sweep
     if (m_focus->currentPosition - step < m_preAFInner && starsExist)
@@ -1090,7 +1090,7 @@ void FocusAdvisor::preAFAdj()
     if (m_focus->currentPosition - step >= m_preAFInner)
     {
         // Collect more data in the current sweep
-        emit m_focus->setTitle(QString(i18n("Coarse Adjustment Run %1 scan...", m_preAFRunNum)), true);
+        Q_EMIT m_focus->setTitle(QString(i18n("Coarse Adjustment Run %1 scan...", m_preAFRunNum)), true);
         deltaPos = -step;
     }
     else
@@ -1274,7 +1274,7 @@ void FocusAdvisor::initAFAdj(const int startPos, const bool retryOverscan)
     }
 
     focusAdvFineAdjLabel->setText(i18n("In progress..."));
-    emit newStage(FineAdjustments);
+    Q_EMIT newStage(FineAdjustments);
 
     // The preAF routine will have estimated AF Overscan but because its a crude measure its likely to be an overestimate.
     // We will try and refine the estimate by halving the current Overscan
@@ -1404,7 +1404,7 @@ bool FocusAdvisor::analyseAF()
         m_inAFAdj = false;
         focusAdvFineAdjLabel->setText(i18n("Done"));
         complete(true, i18n("Focus Advisor Fine Adjustment completed"));
-        emit newStage(Idle);
+        Q_EMIT newStage(Idle);
     }
     return runAgain;
 }
@@ -1519,7 +1519,7 @@ void FocusAdvisor::addResultsTable(QString section, int run, int startPos, int s
     QTableWidgetItem *itemText = new QTableWidgetItem(text);
     focusAdvTable->setItem(0, RESULTS_TEXT, itemText);
 
-    emit newMessage(text);
+    Q_EMIT newMessage(text);
 
     if (focusAdvTable->rowCount() == 1)
     {

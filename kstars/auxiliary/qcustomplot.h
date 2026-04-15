@@ -912,7 +912,7 @@ class QCP_LIB_DECL QCPLayerable : public QObject
         // non-property methods:
         bool realVisibility() const;
 
-    signals:
+    Q_SIGNALS:
         void layerChanged(QCPLayer *newLayer);
 
     protected:
@@ -1400,7 +1400,7 @@ class QCP_LIB_DECL QCPSelectionRect : public QCPLayerable
         // non-property methods:
         Q_SLOT void cancel();
 
-    signals:
+    Q_SIGNALS:
         void started(QMouseEvent *event);
         void changed(const QRect &rect, QMouseEvent *event);
         void canceled(const QRect &rect, QInputEvent *event);
@@ -2845,7 +2845,7 @@ class QCP_LIB_DECL QCPAxis : public QCPLayerable
         }
         static AxisType opposite(AxisType type);
 
-    signals:
+    Q_SIGNALS:
         void rangeChanged(const QCPRange &newRange);
         void rangeChanged(const QCPRange &newRange, const QCPRange &oldRange);
         void scaleTypeChanged(QCPAxis::ScaleType scaleType);
@@ -4232,7 +4232,7 @@ class QCP_LIB_DECL QCPAbstractPlottable : public QCPLayerable
         bool removeFromLegend(QCPLegend *legend) const;
         bool removeFromLegend() const;
 
-    signals:
+    Q_SIGNALS:
         void selectionChanged(bool selected);
         void selectionChanged(const QCPDataSelection &selection);
         void selectableChanged(QCP::SelectionType selectable);
@@ -4477,7 +4477,7 @@ class QCP_LIB_DECL QCPAbstractItem : public QCPLayerable
         QCPItemAnchor *anchor(const QString &name) const;
         bool hasAnchor(const QString &name) const;
 
-    signals:
+    Q_SIGNALS:
         void selectionChanged(bool selected);
         void selectableChanged(bool selectable);
 
@@ -4733,7 +4733,7 @@ class QCP_LIB_DECL QCustomPlot : public QWidget
         QCPAxis *xAxis, *yAxis, *xAxis2, *yAxis2;
         QCPLegend *legend;
 
-    signals:
+    Q_SIGNALS:
         void mouseDoubleClick(QMouseEvent *event);
         void mousePress(QMouseEvent *event);
         void mouseMove(QMouseEvent *event);
@@ -6016,7 +6016,7 @@ class QCP_LIB_DECL QCPAbstractLegendItem : public QCPLayoutElement
         // reimplemented virtual methods:
         virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details = nullptr) const Q_DECL_OVERRIDE;
 
-    signals:
+    Q_SIGNALS:
         void selectionChanged(bool selected);
         void selectableChanged(bool selectable);
 
@@ -6196,7 +6196,7 @@ class QCP_LIB_DECL QCPLegend : public QCPLayoutGrid
         void clearItems();
         QList<QCPAbstractLegendItem*> selectedItems() const;
 
-    signals:
+    Q_SIGNALS:
         void selectionChanged(QCPLegend::SelectableParts parts);
         void selectableChanged(QCPLegend::SelectableParts parts);
 
@@ -6312,7 +6312,7 @@ class QCP_LIB_DECL QCPTextElement : public QCPLayoutElement
         virtual void mouseReleaseEvent(QMouseEvent *event, const QPointF &startPos) Q_DECL_OVERRIDE;
         virtual void mouseDoubleClickEvent(QMouseEvent *event, const QVariant &details) Q_DECL_OVERRIDE;
 
-    signals:
+    Q_SIGNALS:
         void selectionChanged(bool selected);
         void selectableChanged(bool selectable);
         void clicked(QMouseEvent *event);
@@ -6443,7 +6443,7 @@ class QCP_LIB_DECL QCPColorScale : public QCPLayoutElement
         // reimplemented virtual methods:
         virtual void update(UpdatePhase phase) Q_DECL_OVERRIDE;
 
-    signals:
+    Q_SIGNALS:
         void dataRangeChanged(const QCPRange &newRange);
         void dataScaleTypeChanged(QCPAxis::ScaleType scaleType);
         void gradientChanged(const QCPColorGradient &newGradient);
@@ -7369,7 +7369,7 @@ class QCP_LIB_DECL QCPColorMap : public QCPAbstractPlottable
         virtual QCPRange getValueRange(bool &foundRange, QCP::SignDomain inSignDomain = QCP::sdBoth,
                                        const QCPRange &inKeyRange = QCPRange()) const Q_DECL_OVERRIDE;
 
-    signals:
+    Q_SIGNALS:
         void dataRangeChanged(const QCPRange &newRange);
         void dataScaleTypeChanged(QCPAxis::ScaleType scaleType);
         void gradientChanged(const QCPColorGradient &newGradient);
@@ -8737,7 +8737,7 @@ class QCP_LIB_DECL QCPPolarAxisRadial : public QCPLayerable
         double radiusToCoord(double radius) const;
         SelectablePart getPartAt(const QPointF &pos) const;
 
-    signals:
+    Q_SIGNALS:
         void rangeChanged(const QCPRange &newRange);
         void rangeChanged(const QCPRange &newRange, const QCPRange &oldRange);
         void scaleTypeChanged(QCPPolarAxisRadial::ScaleType scaleType);
@@ -9183,7 +9183,7 @@ class QCP_LIB_DECL QCPPolarAxisAngular : public QCPLayoutElement
             return mRadius;
         }
 
-    signals:
+    Q_SIGNALS:
         void rangeChanged(const QCPRange &newRange);
         void rangeChanged(const QCPRange &newRange, const QCPRange &oldRange);
         void selectionChanged(const QCPPolarAxisAngular::SelectableParts &parts);
@@ -9550,7 +9550,7 @@ class QCP_LIB_DECL QCPPolarGraph : public QCPLayerable
         virtual QCPRange getValueRange(bool &foundRange, QCP::SignDomain inSignDomain = QCP::sdBoth,
                                        const QCPRange &inKeyRange = QCPRange()) const;
 
-    signals:
+    Q_SIGNALS:
         void selectionChanged(bool selected);
         void selectionChanged(const QCPDataSelection &selection);
         void selectableChanged(QCP::SelectionType selectable);
@@ -9615,4 +9615,3 @@ class QCP_LIB_DECL QCPPolarGraph : public QCPLayerable
 
 
 #endif // QCUSTOMPLOT_H
-

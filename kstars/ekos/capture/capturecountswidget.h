@@ -42,7 +42,7 @@ class CaptureCountsWidget : public QWidget, public Ui::CaptureCountsWidget
 
         void setCurrentTrainName(const QString &name);
 
-    public slots:
+    public Q_SLOTS:
 
         /**
          * @brief display the progress of the current exposure (remaining time etc.)

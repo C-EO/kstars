@@ -90,7 +90,7 @@ bool ServerManager::start()
 
     if (mkfifo(fifoFile.toLatin1(), S_IRUSR | S_IWUSR) < 0)
     {
-        emit failed(i18n("Error making FIFO file %1: %2.", fifoFile, strerror(errno)));
+        Q_EMIT failed(i18n("Error making FIFO file %1: %2.", fifoFile, strerror(errno)));
         return false;
     }
 
@@ -99,7 +99,7 @@ bool ServerManager::start()
     if (!indiFIFO.open(QIODevice::ReadWrite | QIODevice::Text))
     {
         qCCritical(KSTARS_INDI) << "Unable to create INDI FIFO file: " << fifoFile;
-        emit failed(i18n("Unable to create INDI FIFO file %1", fifoFile));
+        Q_EMIT failed(i18n("Unable to create INDI FIFO file %1", fifoFile));
         return false;
     }
 
@@ -123,11 +123,11 @@ bool ServerManager::start()
     {
         connect(serverProcess.get(), &QProcess::errorOccurred, this, &ServerManager::processServerError);
         connect(serverProcess.get(), &QProcess::readyReadStandardError, this, &ServerManager::processStandardError);
-        emit started();
+        Q_EMIT started();
     }
     else
     {
-        emit failed(i18n("INDI server failed to start: %1", serverProcess->errorString()));
+        Q_EMIT failed(i18n("INDI server failed to start: %1", serverProcess->errorString()));
     }
 
     qCDebug(KSTARS_INDI) << "INDI Server Started? " << connected;
@@ -212,7 +212,7 @@ void ServerManager::startDriver(const QSharedPointer<DriverInfo> &driver)
 
         if (script.exitCode() != 0)
         {
-            emit driverFailed(driver, i18n("Pre driver startup script failed with exit code: %1", script.exitCode()));
+            Q_EMIT driverFailed(driver, i18n("Pre driver startup script failed with exit code: %1", script.exitCode()));
             return;
         }
     }
@@ -236,9 +236,9 @@ void ServerManager::startDriver(const QSharedPointer<DriverInfo> &driver)
         {
             if (QStandardPaths::findExecutable(driver->getExecutable(), paths).isEmpty())
             {
-                emit driverFailed(driver, i18n("Driver %1 was not found on the system. Please make sure the package that "
-                                               "provides the '%1' binary is installed.",
-                                               driver->getExecutable()));
+                Q_EMIT driverFailed(driver, i18n("Driver %1 was not found on the system. Please make sure the package that "
+                                                 "provides the '%1' binary is installed.",
+                                                 driver->getExecutable()));
                 return;
             }
         }
@@ -263,7 +263,7 @@ void ServerManager::startDriver(const QSharedPointer<DriverInfo> &driver)
     // Sleep for PostDelay seconds if required.
     if (PostDelay > 0)
     {
-        emit scriptDriverStarted(driver);
+        Q_EMIT scriptDriverStarted(driver);
         qCDebug(KSTARS_INDI) << driver->getUniqueLabel() << ": Executing post-driver delay for" << PreDelay << "second(s)";
         std::this_thread::sleep_for(std::chrono::seconds(PostDelay));
     }
@@ -283,7 +283,7 @@ void ServerManager::startDriver(const QSharedPointer<DriverInfo> &driver)
 
         if (script.exitCode() != 0)
         {
-            emit driverFailed(driver, i18n("Post driver startup script failed with exit code: %1", script.exitCode()));
+            Q_EMIT driverFailed(driver, i18n("Post driver startup script failed with exit code: %1", script.exitCode()));
             return;
         }
     }
@@ -296,7 +296,7 @@ void ServerManager::startDriver(const QSharedPointer<DriverInfo> &driver)
             return driver == oneDriver;
         }), m_PendingDrivers.end());
     }
-    emit driverStarted(driver);
+    Q_EMIT driverStarted(driver);
 }
 
 void ServerManager::stopDriver(const QSharedPointer<DriverInfo> &driver)
@@ -320,7 +320,7 @@ void ServerManager::stopDriver(const QSharedPointer<DriverInfo> &driver)
 
         if (script.exitCode() != 0)
         {
-            emit driverFailed(driver, i18n("Pre driver shutdown script failed with exit code: %1", script.exitCode()));
+            Q_EMIT driverFailed(driver, i18n("Pre driver shutdown script failed with exit code: %1", script.exitCode()));
             return;
         }
     }
@@ -366,7 +366,7 @@ void ServerManager::stopDriver(const QSharedPointer<DriverInfo> &driver)
     // Sleep for StoppedDelay seconds if required.
     if (StoppedDelay > 0)
     {
-        emit scriptDriverStarted(driver);
+        Q_EMIT scriptDriverStarted(driver);
         qCDebug(KSTARS_INDI) << driver->getUniqueLabel() << ": Executing post-driver shutdown delay for" << StoppedDelay <<
                                                             "second(s)";
         std::this_thread::sleep_for(std::chrono::seconds(StoppedDelay));
@@ -387,11 +387,11 @@ void ServerManager::stopDriver(const QSharedPointer<DriverInfo> &driver)
 
         if (script.exitCode() != 0)
         {
-            emit driverFailed(driver, i18n("Post driver shutdown script failed with exit code: %1", script.exitCode()));
+            Q_EMIT driverFailed(driver, i18n("Post driver shutdown script failed with exit code: %1", script.exitCode()));
             return;
         }
     }
-    emit driverStopped(driver);
+    Q_EMIT driverStopped(driver);
 }
 
 
@@ -500,7 +500,7 @@ bool ServerManager::restartDriver(const QSharedPointer<DriverInfo> &driver)
         }
     });
 
-    emit driverRestarted(driver);
+    Q_EMIT driverRestarted(driver);
     return true;
 }
 
@@ -531,15 +531,15 @@ void ServerManager::stop()
 
     indiFIFO.close();
     QFile::remove(indiFIFO.fileName());
-    emit stopped();
+    Q_EMIT stopped();
 
 }
 
 void ServerManager::processServerError(QProcess::ProcessError err)
 {
     Q_UNUSED(err)
-    emit terminated(i18n("Connection to INDI server %1:%2 terminated: %3.",
-                         getHost(), getPort(), serverProcess.get()->errorString()));
+    Q_EMIT terminated(i18n("Connection to INDI server %1:%2 terminated: %3.",
+                           getHost(), getPort(), serverProcess.get()->errorString()));
 }
 
 void ServerManager::processStandardError()
@@ -554,7 +554,7 @@ void ServerManager::processStandardError()
         qCDebug(KSTARS_INDI) << "INDI Server: " << msg;
 
     serverBuffer.write(stderr.toLatin1());
-    emit newServerLog();
+    Q_EMIT newServerLog();
 
     //if (driverCrashed == false && (stderr.contains("stdin EOF") || stderr.contains("stderr EOF")))
     QRegularExpression re("Driver (.*): Terminated after #0 restarts");

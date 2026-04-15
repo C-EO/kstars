@@ -479,7 +479,7 @@ void BuildFilterOffsets::processQItem(const buildOffsetsQItem currentItem)
         const int run = m_colIdx - getColumn(BFO_AF_RUN_1) + 1;
         const int numRuns = m_BFOModel.item(m_rowIdx, getColumn(BFO_NUM_FOCUS_RUNS))->text().toInt();
         buildOffsetsStatusBar->showMessage(i18n("Running Autofocus on %1 (%2/%3)...", currentItem.color, run, numRuns));
-        emit runAutoFocus(AutofocusReason::FOCUS_FILTER_OFFSETS, "");
+        Q_EMIT runAutoFocus(AutofocusReason::FOCUS_FILTER_OFFSETS, "");
     }
 }
 
@@ -527,7 +527,7 @@ void BuildFilterOffsets::autoFocusComplete(FocusState completionState, int posit
         buildOffsetsTableView->selectionModel()->select(index, QItemSelectionModel::ClearAndSelect);
     }
     // Signal the next processing step
-    emit ready();
+    Q_EMIT ready();
 }
 
 // Called to store the AF position details. The raw AF position is passed in (from Focus)
@@ -730,7 +730,7 @@ void BuildFilterOffsets::stopProcessing()
         // AF run is currently in progress so signal an abort
         buildOffsetsStatusBar->showMessage(i18n("Aborting Autofocus..."));
         m_abortAFPending = true;
-        emit abortAutoFocus();
+        Q_EMIT abortAutoFocus();
     }
 }
 

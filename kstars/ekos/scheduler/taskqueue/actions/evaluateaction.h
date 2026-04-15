@@ -115,7 +115,7 @@ class EvaluateAction : public TaskAction
         QJsonObject toJson() const override;
         static EvaluateAction* fromJson(const QJsonObject &json, QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void checkCondition();
         void handleTimeout();
 

@@ -114,7 +114,7 @@ class DarkLibrary : public QDialog, public Ui::DarkLibrary
     protected:
         virtual void closeEvent(QCloseEvent *ev) override;
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &message);
         void newImage(const QSharedPointer<FITSData> &data);
         void newFrame(const QSharedPointer<FITSView> &view);
@@ -122,14 +122,14 @@ class DarkLibrary : public QDialog, public Ui::DarkLibrary
         void settingsUpdated(const QVariantMap &settings);
         void trainChanged();
 
-    public slots:
+    public Q_SLOTS:
         void processNewImage(const QSharedPointer<SequenceJob> &job, const QSharedPointer<FITSData> &data);
         void updateProperty(INDI::Property prop);
         void loadIndexInView(int row);
         void clearRow(int row = -1);
 
 
-    private slots:
+    private Q_SLOTS:
         void clearAll();
         void clearExpired();
         void openDarksFolder();

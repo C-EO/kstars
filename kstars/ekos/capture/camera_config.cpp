@@ -206,7 +206,7 @@ void Camera::syncLimitSettings()
 void Camera::settleSettings()
 {
     state()->setDirty(true);
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     // Save to optical train specific settings as well
     const int id = OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText());
     OpticalTrainSettings::Instance()->setOpticalTrainID(id);
@@ -480,7 +480,7 @@ void Camera::setAllSettings(const QVariantMap &settings, const QVariantMap * sta
             m_settings[k] = (*standAloneSettings)[k];
     }
 
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
 
     // Save to optical train specific settings as well
     if (!m_standAlone)
@@ -600,7 +600,7 @@ void Camera::setupOpticalTrainManager()
             ProfileSettings::Instance()->setOneSetting(ProfileSettings::CaptureOpticalTrain, id);
         }
         refreshOpticalTrain(id);
-        emit trainChanged();
+        Q_EMIT trainChanged();
     });
 }
 
@@ -697,7 +697,7 @@ void Camera::setupFilterManager()
 
     connect(filterManager().get(), &FilterManager::updated, this, [this]()
     {
-        emit filterManagerUpdated(devices()->filterWheel());
+        Q_EMIT filterManagerUpdated(devices()->filterWheel());
     });
 
     // display capture status changes
@@ -814,7 +814,7 @@ void Camera::setFilterWheel(QString name)
     refreshFilterSettings();
 
     if (devices()->filterWheel())
-        emit settingsUpdated(getAllSettings());
+        Q_EMIT settingsUpdated(getAllSettings());
 }
 
 void Camera::editFilterName()
@@ -1056,7 +1056,7 @@ void Camera::generatePreviewFilename()
     {
         placeholderFormatT->setToolTip(previewFilename( fileUploadModeS->currentIndex() == ISD::Camera::UPLOAD_REMOTE ?
                                        FILENAME_REMOTE_PREVIEW : FILENAME_LOCAL_PREVIEW ));
-        emit newLocalPreview(placeholderFormatT->toolTip());
+        Q_EMIT newLocalPreview(placeholderFormatT->toolTip());
 
         if (fileUploadModeS->currentIndex() != ISD::Camera::UPLOAD_CLIENT)
             fileRemoteDirT->setToolTip(previewFilename( FILENAME_REMOTE_PREVIEW ));

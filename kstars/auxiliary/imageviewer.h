@@ -104,7 +104,7 @@ class ImageViewer : public QDialog
         // Share among image viewers
         static QUrl lastURL;
 
-    private slots:
+    private Q_SLOTS:
         /** Initialize (common part of onstructors) */
         void init(QString caption, QString capText);
         /** Make sure download has finished, then make sure file exists, then display the image */

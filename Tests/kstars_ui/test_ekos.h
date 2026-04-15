@@ -142,7 +142,7 @@ class TestEkos: public QObject
     public:
         explicit TestEkos(QObject *parent = nullptr);
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

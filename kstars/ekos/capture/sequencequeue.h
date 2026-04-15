@@ -143,7 +143,7 @@ class SequenceQueue : public QObject
             m_RefocusAfterMeridianFlip = value;
         }
 
-    signals:
+    Q_SIGNALS:
         void newLog(const QString &message);
 
     private:

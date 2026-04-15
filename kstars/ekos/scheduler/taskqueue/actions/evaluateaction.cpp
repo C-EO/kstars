@@ -36,7 +36,7 @@ bool EvaluateAction::start()
     {
         setErrorMessage(QString("Device %1 not found").arg(m_device));
         setStatus(FAILED);
-        emit failed(m_errorMessage);
+        Q_EMIT failed(m_errorMessage);
         return false;
     }
 
@@ -44,7 +44,7 @@ bool EvaluateAction::start()
     {
         setErrorMessage(QString("Device %1 not connected").arg(m_device));
         setStatus(FAILED);
-        emit failed(m_errorMessage);
+        Q_EMIT failed(m_errorMessage);
         return false;
     }
 
@@ -53,14 +53,14 @@ bool EvaluateAction::start()
     {
         QString msg = QString("%1.%2.%3 condition already met, skipping")
                       .arg(m_device).arg(m_property).arg(m_element);
-        emit progress(msg);
+        Q_EMIT progress(msg);
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
         return true;
     }
 
     setStatus(RUNNING);
-    emit started();
+    Q_EMIT started();
 
     QString conditionStr;
     switch (m_condition)
@@ -94,12 +94,12 @@ bool EvaluateAction::start()
             break;
     }
 
-    emit progress(QString("Evaluating %1.%2.%3 %4 %5")
-                  .arg(m_device)
-                  .arg(m_property)
-                  .arg(m_element)
-                  .arg(conditionStr)
-                  .arg(m_target.toString()));
+    Q_EMIT progress(QString("Evaluating %1.%2.%3 %4 %5")
+                    .arg(m_device)
+                    .arg(m_property)
+                    .arg(m_element)
+                    .arg(conditionStr)
+                    .arg(m_target.toString()));
 
     // Connect to property updates for reactive monitoring
     m_deviceConnection = connect(m_devicePtr.get(),
@@ -371,9 +371,9 @@ void EvaluateAction::onPropertyUpdated(INDI::Property prop)
         // Clear device pointer to prevent crashes during cleanup
         m_devicePtr.clear();
 
-        emit progress(QString("%1.%2.%3 condition met").arg(m_device).arg(m_property).arg(m_element));
+        Q_EMIT progress(QString("%1.%2.%3 condition met").arg(m_device).arg(m_property).arg(m_element));
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
     }
 }
 
@@ -387,9 +387,9 @@ void EvaluateAction::checkCondition()
         // Clear device pointer to prevent crashes during cleanup
         m_devicePtr.clear();
 
-        emit progress(QString("%1.%2.%3 condition met").arg(m_device).arg(m_property).arg(m_element));
+        Q_EMIT progress(QString("%1.%2.%3 condition met").arg(m_device).arg(m_property).arg(m_element));
         setStatus(COMPLETED);
-        emit completed();
+        Q_EMIT completed();
     }
     // If condition not met, continue polling
 }
@@ -403,7 +403,7 @@ void EvaluateAction::handleTimeout()
 
     if (incrementRetry())
     {
-        emit progress(QString("Timeout, retry %1/%2").arg(m_currentRetry).arg(m_retries));
+        Q_EMIT progress(QString("Timeout, retry %1/%2").arg(m_currentRetry).arg(m_retries));
         start();
     }
     else
@@ -412,7 +412,7 @@ void EvaluateAction::handleTimeout()
         m_devicePtr.clear();
         setErrorMessage(QString("Timeout evaluating %1.%2").arg(m_property).arg(m_element));
         setStatus(FAILED);
-        emit failed(m_errorMessage);
+        Q_EMIT failed(m_errorMessage);
     }
 }
 

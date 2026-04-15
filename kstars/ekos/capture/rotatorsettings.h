@@ -59,6 +59,6 @@ class RotatorSettings : public QDialog, public Ui::RotatorDialog
         void   commitRotatorDirection(bool Reverse);
         void   syncFOV(double PA);
 
-    signals:
+    Q_SIGNALS:
         void   newLog(const QString &text);
 };

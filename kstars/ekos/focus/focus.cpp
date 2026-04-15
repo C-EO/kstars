@@ -766,7 +766,7 @@ bool Focus::setFocuser(ISD::Focuser *device)
     }
 
     checkFocuser();
-    emit focuserChanged(m_focuserId, device != nullptr);
+    Q_EMIT focuserChanged(m_focuserId, device != nullptr);
     return true;
 }
 
@@ -986,11 +986,11 @@ void Focus::processTemperatureSource(INDI::Property prop)
         if (m_LastSourceAutofocusTemperature != INVALID_VALUE)
         {
             delta = currentTemperatureSourceElement->value - m_LastSourceAutofocusTemperature;
-            emit newFocusTemperatureDelta(abs(delta), currentTemperatureSourceElement->value, opticalTrain());
+            Q_EMIT newFocusTemperatureDelta(abs(delta), currentTemperatureSourceElement->value, opticalTrain());
         }
         else
         {
-            emit newFocusTemperatureDelta(0, currentTemperatureSourceElement->value, opticalTrain());
+            Q_EMIT newFocusTemperatureDelta(0, currentTemperatureSourceElement->value, opticalTrain());
         }
 
         absoluteTemperatureLabel->setText(QString("%1 °C").arg(currentTemperatureSourceElement->value, 0, 'f', 2));
@@ -1012,7 +1012,7 @@ void Focus::setLastFocusTemperature()
     deltaTemperatureLabel->setText(QString("0 °C"));
     deltaTemperatureLabel->setStyleSheet("color: lightgreen");
 
-    emit newFocusTemperatureDelta(0, -1e6, opticalTrain());
+    Q_EMIT newFocusTemperatureDelta(0, -1e6, opticalTrain());
 }
 
 void Focus::setLastFocusAlt()
@@ -1208,7 +1208,7 @@ void Focus::runAutoFocus(AutofocusReason autofocusReason, const QString &reasonI
     if (autofocusReason == AutofocusReason::FOCUS_USER_REQUEST)
     {
         forceInSeqAF->setChecked(false);
-        emit inSequenceAF(false, opticalTrain());
+        Q_EMIT inSequenceAF(false, opticalTrain());
     }
 
     inAutoFocus = true;
@@ -1378,7 +1378,7 @@ void Focus::runAutoFocus(AutofocusReason autofocusReason, const QString &reasonI
                                << " FWHM (θ):" << m_CFZUI->focusCFZSeeing->value();
 
     const double temperature = (currentTemperatureSourceElement) ? currentTemperatureSourceElement->value : INVALID_VALUE;
-    emit autofocusStarting(temperature, filter(), m_AutofocusReason, m_AutofocusReasonInfo);
+    Q_EMIT autofocusStarting(temperature, filter(), m_AutofocusReason, m_AutofocusReasonInfo);
 
     appendLogText(i18n("Autofocus starting..."));
 
@@ -1388,7 +1388,7 @@ void Focus::runAutoFocus(AutofocusReason autofocusReason, const QString &reasonI
     if (m_GuidingSuspended == false && m_OpsFocusSettings->focusSuspendGuiding->isChecked())
     {
         m_GuidingSuspended = true;
-        emit suspendGuiding();
+        Q_EMIT suspendGuiding();
     }
 
     //emit statusUpdated(true);
@@ -1853,7 +1853,7 @@ void Focus::stop(Ekos::FocusState completionState)
 
     if (m_GuidingSuspended)
     {
-        emit resumeGuiding();
+        Q_EMIT resumeGuiding();
         m_GuidingSuspended = false;
     }
 }
@@ -2215,7 +2215,7 @@ void Focus::handleFocusMotionTimeout()
     {
         QString focuser = m_Focuser->getDeviceName();
         appendLogText(i18n("Focus motion timed out (%1). Restarting focus driver %2", m_FocusMotionTimerCounter, focuser));
-        emit focuserTimedout(focuser);
+        Q_EMIT focuserTimedout(focuser);
 
         QTimer::singleShot(5000, this, [ &, focuser]()
         {
@@ -2671,19 +2671,20 @@ void Focus::settle(const FocusState completionState, const bool autoFocusUsed, c
                                       KSNotification::Focus);
             // Pass consistent Autofocus temperature to analyze
             if (m_FocusAlgorithm == FOCUS_LINEAR1PASS && curveFitting != nullptr)
-                emit autofocusComplete(m_LastSourceAutofocusTemperature, filter(), getAnalyzeData(),
-                                       m_OpsFocusProcess->focusUseWeights->isChecked(),
-                                       curveFitting->serialize(), linearFocuser->getTextStatus(R2));
+                Q_EMIT autofocusComplete(m_LastSourceAutofocusTemperature, filter(), getAnalyzeData(),
+                                         m_OpsFocusProcess->focusUseWeights->isChecked(),
+                                         curveFitting->serialize(), linearFocuser->getTextStatus(R2));
             else
-                emit autofocusComplete(m_LastSourceAutofocusTemperature, filter(), getAnalyzeData(),
-                                       m_OpsFocusProcess->focusUseWeights->isChecked());
+                Q_EMIT autofocusComplete(m_LastSourceAutofocusTemperature, filter(), getAnalyzeData(),
+                                         m_OpsFocusProcess->focusUseWeights->isChecked());
         }
         else
         {
             if (failCode != FOCUS_FAIL_ADVISOR_COMPLETE)
                 KSNotification::event(QLatin1String("FocusFailed"), i18n("Autofocus operation failed"),
                                       KSNotification::Focus, KSNotification::Alert);
-            emit autofocusAborted(filter(), getAnalyzeData(), m_OpsFocusProcess->focusUseWeights->isChecked(), failCode, failCodeInfo);
+            Q_EMIT autofocusAborted(filter(), getAnalyzeData(), m_OpsFocusProcess->focusUseWeights->isChecked(), failCode,
+                                    failCodeInfo);
         }
     }
 
@@ -2747,7 +2748,7 @@ void Focus::completeFocusProcedure(FocusState completionState, AutofocusFailReas
         {
             // Usually we'll record the AF information except for certain FocusAdvisor activities that are not complete AF runs
             if (plot)
-                emit redrawHFRPlot(polynomialFit.get(), currentPosition, lastFrame().hfr);
+                Q_EMIT redrawHFRPlot(polynomialFit.get(), currentPosition, lastFrame().hfr);
 
             appendLogText(i18np("Focus procedure completed after %1 iteration.",
                                 "Focus procedure completed after %1 iterations.", plot_position.count()));
@@ -2800,7 +2801,8 @@ void Focus::completeFocusProcedure(FocusState completionState, AutofocusFailReas
             // Bypass the rest of the function if we retry - we will fail if we could not move the focuser
             if (retry_focusing)
             {
-                emit autofocusAborted(filter(), getAnalyzeData(), m_OpsFocusProcess->focusUseWeights->isChecked(), failCode, failCodeInfo);
+                Q_EMIT autofocusAborted(filter(), getAnalyzeData(), m_OpsFocusProcess->focusUseWeights->isChecked(), failCode,
+                                        failCodeInfo);
                 return;
             }
             else
@@ -2826,7 +2828,7 @@ void Focus::completeFocusProcedure(FocusState completionState, AutofocusFailReas
 
     // Refresh display if needed
     if (m_FocusAlgorithm == FOCUS_POLYNOMIAL && plot)
-        emit drawPolynomial(polynomialFit.get(), isVShapeSolution, true);
+        Q_EMIT drawPolynomial(polynomialFit.get(), isVShapeSolution, true);
 
     // Enforce settling duration. Note stop resets m_GuidingSuspended
     int const settleTime = m_GuidingSuspended ? m_OpsFocusSettings->focusGuideSettleTime->value() : 0;
@@ -2881,9 +2883,9 @@ void Focus::updateMeasurements()
     // Let signal the current HFR now depending on whether the focuser is absolute or relative
     // Outside of Focus we continue to rely on HFR and independent of which measure the user selected we always calculate HFR
     if (canAbsMove)
-        emit newHFR(lastFrame().hfr, currentPosition, inAutoFocus, opticalTrain());
+        Q_EMIT newHFR(lastFrame().hfr, currentPosition, inAutoFocus, opticalTrain());
     else
-        emit newHFR(lastFrame().hfr, -1, inAutoFocus, opticalTrain());
+        Q_EMIT newHFR(lastFrame().hfr, -1, inAutoFocus, opticalTrain());
 
     // update display of the measured values
     refreshMeasuresDisplay();
@@ -3184,9 +3186,9 @@ void Focus::setCaptureComplete()
     checkMosaicMaskLimits();
 
     // Emit the whole image
-    emit newImage(m_FocusView);
+    Q_EMIT newImage(m_FocusView);
     // Emit the tracking (bounding) box view. Used in Summary View
-    emit newStarPixmap(m_FocusView->getTrackingBoxPixmap(10));
+    Q_EMIT newStarPixmap(m_FocusView->getTrackingBoxPixmap(10));
 
     // If we are not looping; OR
     // If we are looping but we already have tracking box enabled; OR
@@ -3502,9 +3504,9 @@ QString Focus::getyAxisLabel(StarMeasure starMeasure)
 
 void Ekos::Focus::resetHFRPlot()
 {
-    emit initHFRPlot(getyAxisLabel(m_StarMeasure), getStarUnits(m_StarMeasure, m_StarUnits),
-                     m_OptDir == CurveFitting::OPTIMISATION_MINIMISE, m_OpsFocusProcess->focusUseWeights->isChecked(),
-                     inFocusLoop == false && inSingleCaptureMode == false && isPositionBased());
+    Q_EMIT initHFRPlot(getyAxisLabel(m_StarMeasure), getStarUnits(m_StarMeasure, m_StarUnits),
+                       m_OptDir == CurveFitting::OPTIMISATION_MINIMISE, m_OpsFocusProcess->focusUseWeights->isChecked(),
+                       inFocusLoop == false && inSingleCaptureMode == false && isPositionBased());
 }
 
 void Focus::clearDataPoints()
@@ -3619,15 +3621,15 @@ void Focus::plotLinearFocus()
 
     const bool outlier = false;
     if (incrementalChange)
-        emit newHFRPlotPosition(static_cast<double>(positions.last()), values.last(), (pow(weights.last(), -0.5)),
-                                outlier, params.initialStepSize, plt);
+        Q_EMIT newHFRPlotPosition(static_cast<double>(positions.last()), values.last(), (pow(weights.last(), -0.5)),
+                                  outlier, params.initialStepSize, plt);
     else
     {
-        emit initHFRPlot(getyAxisLabel(m_StarMeasure), getStarUnits(m_StarMeasure, m_StarUnits),
-                         m_OptDir == CurveFitting::OPTIMISATION_MINIMISE, params.useWeights, plt);
+        Q_EMIT initHFRPlot(getyAxisLabel(m_StarMeasure), getStarUnits(m_StarMeasure, m_StarUnits),
+                           m_OptDir == CurveFitting::OPTIMISATION_MINIMISE, params.useWeights, plt);
         for (int i = 0; i < positions.size(); ++i)
-            emit newHFRPlotPosition(static_cast<double>(positions[i]), values[i], (pow(weights.last(), -0.5)),
-                                    outlier, params.initialStepSize, plt);
+            Q_EMIT newHFRPlotPosition(static_cast<double>(positions[i]), values[i], (pow(weights.last(), -0.5)),
+                                      outlier, params.initialStepSize, plt);
     }
 
     // Plot the polynomial, if there are enough points.
@@ -3650,20 +3652,20 @@ void Focus::plotLinearFocus()
 
             if (polynomialFit->findMinimum(params.startPosition, searchMin, searchMax, &minPosition, &minValue))
             {
-                emit drawPolynomial(polynomialFit.get(), true, true, plt);
+                Q_EMIT drawPolynomial(polynomialFit.get(), true, true, plt);
 
                 // Only plot the first pass' min position if we're not done.
                 // Once we have a result, we don't want to display an intermediate minimum.
                 if (linearFocuser->isDone())
-                    emit minimumFound(-1, -1, plt);
+                    Q_EMIT minimumFound(-1, -1, plt);
                 else
-                    emit minimumFound(minPosition, minValue, plt);
+                    Q_EMIT minimumFound(minPosition, minValue, plt);
             }
             else
             {
                 // Didn't get a good polynomial fit.
-                emit drawPolynomial(polynomialFit.get(), false, false, plt);
-                emit minimumFound(-1, -1, plt);
+                Q_EMIT drawPolynomial(polynomialFit.get(), false, false, plt);
+                Q_EMIT minimumFound(-1, -1, plt);
             }
 
         }
@@ -3673,16 +3675,16 @@ void Focus::plotLinearFocus()
                                          params.optimisationDirection))
             {
                 R2 = curveFitting->calculateR2(static_cast<CurveFitting::CurveFit>(params.curveFit));
-                emit drawCurve(curveFitting.get(), true, true, plt);
+                Q_EMIT drawCurve(curveFitting.get(), true, true, plt);
 
                 // For Linear 1 Pass always display the minimum on the graph
-                emit minimumFound(minPosition, minValue, plt);
+                Q_EMIT minimumFound(minPosition, minValue, plt);
             }
             else
             {
                 // Didn't get a good fit.
-                emit drawCurve(curveFitting.get(), false, false, plt);
-                emit minimumFound(-1, -1, plt);
+                Q_EMIT drawCurve(curveFitting.get(), false, false, plt);
+                Q_EMIT minimumFound(-1, -1, plt);
             }
         }
     }
@@ -3690,7 +3692,7 @@ void Focus::plotLinearFocus()
     // Linear focuser might change the latest hfr with its relativeHFR scheme.
     HFROut->setText(QString("%1").arg(lastFrame().hfr * getStarUnits(m_StarMeasure, m_StarUnits), 0, 'f', 2));
 
-    emit setTitle(linearFocuser->getTextStatus(R2));
+    Q_EMIT setTitle(linearFocuser->getTextStatus(R2));
 
     if (!plt) HFRPlot->replot();
 }
@@ -3716,10 +3718,10 @@ void Focus::plotLinearFinalUpdates()
     if (!m_OpsFocusProcess->focusRefineCurveFit->isChecked())
     {
         // Display the CFZ on the graph
-        emit drawCFZ(linearFocuser->solution(), linearFocuser->solutionValue(), m_cfzSteps,
-                     m_CFZUI->focusCFZDisplayVCurve->isChecked());
+        Q_EMIT drawCFZ(linearFocuser->solution(), linearFocuser->solutionValue(), m_cfzSteps,
+                       m_CFZUI->focusCFZDisplayVCurve->isChecked());
         // Final updates to the graph title
-        emit finalUpdates(linearFocuser->getTextStatus(R2), plt);
+        Q_EMIT finalUpdates(linearFocuser->getTextStatus(R2), plt);
     }
     else
     {
@@ -3732,23 +3734,23 @@ void Focus::plotLinearFinalUpdates()
         linearFocuser->getPass1Measurements(&pass1Positions, &pass1Values, &pass1Weights, &pass1Outliers);
         const FocusAlgorithmInterface::FocusParams &params = linearFocuser->getParams();
 
-        emit initHFRPlot(getyAxisLabel(m_StarMeasure), getStarUnits(m_StarMeasure, m_StarUnits),
-                         m_OptDir == CurveFitting::OPTIMISATION_MINIMISE, m_OpsFocusProcess->focusUseWeights->isChecked(), plt);
+        Q_EMIT initHFRPlot(getyAxisLabel(m_StarMeasure), getStarUnits(m_StarMeasure, m_StarUnits),
+                           m_OptDir == CurveFitting::OPTIMISATION_MINIMISE, m_OpsFocusProcess->focusUseWeights->isChecked(), plt);
 
         for (int i = 0; i < pass1Positions.size(); ++i)
-            emit newHFRPlotPosition(static_cast<double>(pass1Positions[i]), pass1Values[i], (pow(pass1Weights[i], -0.5)),
-                                    pass1Outliers[i], params.initialStepSize, plt);
+            Q_EMIT newHFRPlotPosition(static_cast<double>(pass1Positions[i]), pass1Values[i], (pow(pass1Weights[i], -0.5)),
+                                      pass1Outliers[i], params.initialStepSize, plt);
 
         R2 = curveFitting->calculateR2(static_cast<CurveFitting::CurveFit>(params.curveFit));
-        emit drawCurve(curveFitting.get(), true, true, false);
+        Q_EMIT drawCurve(curveFitting.get(), true, true, false);
 
         // For Linear 1 Pass always display the minimum on the graph
-        emit minimumFound(linearFocuser->solution(), linearFocuser->solutionValue(), plt);
+        Q_EMIT minimumFound(linearFocuser->solution(), linearFocuser->solutionValue(), plt);
         // Display the CFZ on the graph
-        emit drawCFZ(linearFocuser->solution(), linearFocuser->solutionValue(), m_cfzSteps,
-                     m_CFZUI->focusCFZDisplayVCurve->isChecked());
+        Q_EMIT drawCFZ(linearFocuser->solution(), linearFocuser->solutionValue(), m_cfzSteps,
+                       m_CFZUI->focusCFZDisplayVCurve->isChecked());
         // Update the graph title
-        emit setTitle(linearFocuser->getTextStatus(R2), plt);
+        Q_EMIT setTitle(linearFocuser->getTextStatus(R2), plt);
     }
 }
 
@@ -3808,7 +3810,7 @@ bool Focus::initScanStartPos(const bool force, const int initialPosition)
     m_scanPosition.clear();
 
     appendLogText(i18n("Starting scan for initial focuser position."));
-    emit setTitle(QString(i18n("Scanning for starting position...")), true);
+    Q_EMIT setTitle(QString(i18n("Scanning for starting position...")), true);
 
     if (!changeFocus(initialPosition - currentPosition))
         completeFocusProcedure(Ekos::FOCUS_ABORTED, Ekos::FOCUS_FAIL_FOCUSER_NO_MOVE);
@@ -3852,13 +3854,13 @@ void Focus::scanStartPos()
     const int step = m_scanPosition.size();
     const int maxSteps = m_OpsFocusProcess->focusScanDatapoints->value();
     const int stepSize = m_OpsFocusMechanics->focusTicks->value() * m_OpsFocusProcess->focusScanStepSizeFactor->value();
-    emit newHFRPlotPosition(static_cast<double>(currentPosition), getLastMeasure(), pow(getLastMeasure(), -0.5), false,
-                            stepSize,
-                            true);
+    Q_EMIT newHFRPlotPosition(static_cast<double>(currentPosition), getLastMeasure(), pow(getLastMeasure(), -0.5), false,
+                              stepSize,
+                              true);
     if (step < maxSteps)
     {
         // Collect more data
-        emit setTitle(QString(i18n("Scanning for starting position %1/%2", step, maxSteps)), true);
+        Q_EMIT setTitle(QString(i18n("Scanning for starting position %1/%2", step, maxSteps)), true);
         deltaPos = step * stepSize * std::pow(-1, step + 1);
     }
     else
@@ -3872,7 +3874,7 @@ void Focus::scanStartPos()
             deltaPos = m_scanPosition[min] - currentPosition;
             m_scanPosition.clear();
             m_scanMeasure.clear();
-            emit setTitle(QString(i18n("No scan minimum - widening search...")), true);
+            Q_EMIT setTitle(QString(i18n("No scan minimum - widening search...")), true);
         }
         else
         {
@@ -3885,7 +3887,7 @@ void Focus::scanStartPos()
             inScanStartPos = false;
             absIterations = 0;
             deltaPos = linearRequestedPosition - currentPosition;
-            emit setTitle(QString(i18n("Scan Start Position %1 Found", initialPosition)), true);
+            Q_EMIT setTitle(QString(i18n("Scan Start Position %1 Found", initialPosition)), true);
             appendLogText(i18n("Scan Start Position %1 found", initialPosition));
         }
     }
@@ -4188,12 +4190,12 @@ void Focus::autoFocusAbs()
                             targetPosition = round(min_position);
                             appendLogText(i18n("Found polynomial solution @ %1", QString::number(min_position, 'f', 0)));
 
-                            emit drawPolynomial(polynomialFit.get(), isVShapeSolution, true);
-                            emit minimumFound(min_position, min_hfr);
+                            Q_EMIT drawPolynomial(polynomialFit.get(), isVShapeSolution, true);
+                            Q_EMIT minimumFound(min_position, min_hfr);
                         }
                         else
                         {
-                            emit drawPolynomial(polynomialFit.get(), isVShapeSolution, false);
+                            Q_EMIT drawPolynomial(polynomialFit.get(), isVShapeSolution, false);
                         }
                     }
                 }
@@ -4339,7 +4341,7 @@ void Focus::addPlotPosition(int pos, double value, bool plot)
     plot_position.append(pos);
     plot_value.append(value);
     if (plot)
-        emit newHFRPlotPosition(static_cast<double>(pos), value, 1.0, false, pulseDuration);
+        Q_EMIT newHFRPlotPosition(static_cast<double>(pos), value, 1.0, false, pulseDuration);
 }
 
 void Focus::showEvent(QShowEvent *event)
@@ -4659,7 +4661,7 @@ void Focus::updateProperty(INDI::Property prop)
                 qCDebug(KSTARS_EKOS_FOCUS) << "Abs Focuser position changed to " << currentPosition << "State:" << pstateStr(
                                                currentPositionState);
                 absTicksLabel->setText(QString::number(currentPosition));
-                emit absolutePositionChanged(currentPosition);
+                Q_EMIT absolutePositionChanged(currentPosition);
             }
         }
         else
@@ -4687,7 +4689,7 @@ void Focus::updateProperty(INDI::Property prop)
                 if (focuserAdditionalMovement == 0)
                 {
                     inAdjustFocus = false;
-                    emit focusPositionAdjusted();
+                    Q_EMIT focusPositionAdjusted();
                     return;
                 }
             }
@@ -4697,7 +4699,7 @@ void Focus::updateProperty(INDI::Property prop)
                 if (focuserAdditionalMovement == 0)
                 {
                     inAFOptimise = false;
-                    emit focusAFOptimise();
+                    Q_EMIT focusAFOptimise();
                     return;
                 }
             }
@@ -4775,7 +4777,7 @@ void Focus::updateProperty(INDI::Property prop)
 
             currentPosition += pos->value;
             absTicksLabel->setText(QString::number(static_cast<int>(currentPosition)));
-            emit absolutePositionChanged(currentPosition);
+            Q_EMIT absolutePositionChanged(currentPosition);
         }
 
         if (inAdjustFocus && newState == IPS_OK)
@@ -4783,7 +4785,7 @@ void Focus::updateProperty(INDI::Property prop)
             if (focuserAdditionalMovement == 0)
             {
                 inAdjustFocus = false;
-                emit focusPositionAdjusted();
+                Q_EMIT focusPositionAdjusted();
                 return;
             }
         }
@@ -4793,7 +4795,7 @@ void Focus::updateProperty(INDI::Property prop)
             if (focuserAdditionalMovement == 0)
             {
                 inAFOptimise = false;
-                emit focusAFOptimise();
+                Q_EMIT focusAFOptimise();
                 return;
             }
         }
@@ -4857,7 +4859,7 @@ void Focus::updateProperty(INDI::Property prop)
                     << QString("Rel Focuser position moved %1 by %2 to %3")
                     .arg((m_LastFocusDirection == FOCUS_IN) ? "in" : "out").arg(pos->value).arg(currentPosition);
             absTicksLabel->setText(QString::number(static_cast<int>(currentPosition)));
-            emit absolutePositionChanged(currentPosition);
+            Q_EMIT absolutePositionChanged(currentPosition);
         }
 
         if (inAdjustFocus && newState == IPS_OK)
@@ -4865,7 +4867,7 @@ void Focus::updateProperty(INDI::Property prop)
             if (focuserAdditionalMovement == 0)
             {
                 inAdjustFocus = false;
-                emit focusPositionAdjusted();
+                Q_EMIT focusPositionAdjusted();
                 return;
             }
         }
@@ -4875,7 +4877,7 @@ void Focus::updateProperty(INDI::Property prop)
             if (focuserAdditionalMovement == 0)
             {
                 inAFOptimise = false;
-                emit focusAFOptimise();
+                Q_EMIT focusAFOptimise();
                 return;
             }
         }
@@ -4976,7 +4978,7 @@ void Focus::updateProperty(INDI::Property prop)
                 if (focuserAdditionalMovement == 0)
                 {
                     inAdjustFocus = false;
-                    emit focusPositionAdjusted();
+                    Q_EMIT focusPositionAdjusted();
                     return;
                 }
             }
@@ -4986,7 +4988,7 @@ void Focus::updateProperty(INDI::Property prop)
                 if (focuserAdditionalMovement == 0)
                 {
                     inAFOptimise = false;
-                    emit focusAFOptimise();
+                    Q_EMIT focusAFOptimise();
                     return;
                 }
             }
@@ -5012,7 +5014,7 @@ void Focus::updateProperty(INDI::Property prop)
 void Focus::appendLogText(const QString &text)
 {
     const QString logtext(m_Focuser == nullptr ? text : QString("[%1] %2").arg(m_Focuser->getDeviceName()).arg(text));
-    emit newLog(logtext);
+    Q_EMIT newLog(logtext);
 }
 
 void Focus::appendFocusLogText(const QString &text)
@@ -5020,7 +5022,7 @@ void Focus::appendFocusLogText(const QString &text)
     if (Options::focusLogging())
     {
         const QString logtext(m_Focuser == nullptr ? text : QString("[%1] %2").arg(m_Focuser->getDeviceName()).arg(text));
-        emit newFocusLog(logtext);
+        Q_EMIT newFocusLog(logtext);
     }
 }
 
@@ -5305,7 +5307,7 @@ void Focus::selectFocusStarFraction(double x, double y)
     // Focus view timer takes 50ms second to update, so let's emit afterwards.
     QTimer::singleShot(250, this, [this]()
     {
-        emit newImage(m_FocusView);
+        Q_EMIT newImage(m_FocusView);
     });
 }
 
@@ -5742,7 +5744,7 @@ void Focus::adjustFocusOffset(int value, bool useAbsoluteOffset)
         }
 
         qCDebug(KSTARS_EKOS_FOCUS) << "adjustFocusOffset called whilst" << str << "in progress. Ignoring...";
-        emit focusPositionAdjusted();
+        Q_EMIT focusPositionAdjusted();
         return;
     }
 
@@ -5922,7 +5924,7 @@ void Focus::setupFilterManager()
             if (m_GuidingSuspended == false && m_OpsFocusSettings->focusSuspendGuiding->isChecked())
             {
                 m_GuidingSuspended = true;
-                emit suspendGuiding();
+                Q_EMIT suspendGuiding();
             }
         }
     });
@@ -6018,7 +6020,7 @@ void Focus::connectFilterManager()
             QTimer::singleShot(m_OpsFocusMechanics->focusSettleTime->value() * 1000, this, [this]()
             {
                 m_GuidingSuspended = false;
-                emit resumeGuiding();
+                Q_EMIT resumeGuiding();
             });
         }
     });
@@ -6296,7 +6298,7 @@ void Focus::syncSettings()
 ///////////////////////////////////////////////////////////////////////////////////////////
 void Focus::settleSettings()
 {
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
     OpticalTrainSettings::Instance()->setOneSetting(OpticalTrainSettings::Focus, m_Settings);
@@ -6611,7 +6613,7 @@ void Focus::initConnections()
 
     connect(forceInSeqAF, &QCheckBox::toggled, this, [&](bool enabled)
     {
-        emit inSequenceAF(enabled, opticalTrain());
+        Q_EMIT inSequenceAF(enabled, opticalTrain());
     });
 
     // Update the focuser star detection if the detection algorithm selection changes.
@@ -7719,8 +7721,8 @@ void Focus::calcCFZ()
             break;
     }
     if (linearFocuser != nullptr && linearFocuser->isDone())
-        emit drawCFZ(linearFocuser->solution(), linearFocuser->solutionValue(), m_cfzSteps,
-                     m_CFZUI->focusCFZDisplayVCurve->isChecked());
+        Q_EMIT drawCFZ(linearFocuser->solution(), linearFocuser->solutionValue(), m_cfzSteps,
+                       m_CFZUI->focusCFZDisplayVCurve->isChecked());
 }
 
 // Calculate the CFZ of the camera in microns using
@@ -7761,7 +7763,7 @@ void Focus::setState(FocusState newState, const bool update)
     qCDebug(KSTARS_EKOS_FOCUS) << "Focus State changes from" << getFocusStatusString(m_state) << "to" << getFocusStatusString(
                                    newState);
     m_state = newState;
-    emit newStatus(m_state, opticalTrain(), update);
+    Q_EMIT newStatus(m_state, opticalTrain(), update);
 }
 
 void Focus::initView()
@@ -7914,7 +7916,7 @@ void Focus::setAllSettings(QVariantMap &settings)
         m_GlobalSettings[key] = value;
     }
 
-    emit settingsUpdated(getAllSettings());
+    Q_EMIT settingsUpdated(getAllSettings());
 
     // Save to optical train specific settings as well
     OpticalTrainSettings::Instance()->setOpticalTrainID(OpticalTrainManager::Instance()->id(opticalTrainCombo->currentText()));
@@ -8025,7 +8027,7 @@ void Focus::setupOpticalTrainManager()
             ProfileSettings::Instance()->setOneSetting(ProfileSettings::FocusOpticalTrain, id);
         }
         refreshOpticalTrain(id);
-        emit trainChanged();
+        Q_EMIT trainChanged();
     });
 }
 

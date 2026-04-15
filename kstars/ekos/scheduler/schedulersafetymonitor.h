@@ -69,7 +69,7 @@ class SchedulerSafetyMonitor : public QObject
             return m_SafetyMonitorDeviceName;
         }
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief Emitted when safety status changes
          */
@@ -80,7 +80,7 @@ class SchedulerSafetyMonitor : public QObject
          */
         void newLog(const QString &message);
 
-    private slots:
+    private Q_SLOTS:
         // INDI Listener signal handlers
         void handleDeviceRemovedFromListener(const QSharedPointer<ISD::GenericDevice> &device);
         void handleNewGenericDevice(const QSharedPointer<ISD::GenericDevice> &device);

@@ -69,18 +69,18 @@ CameraProcess::CameraProcess(QSharedPointer<CameraState> newModuleState,
     connect(&m_CaptureScript, &QProcess::errorOccurred, this, [this](QProcess::ProcessError error)
     {
         Q_UNUSED(error)
-        emit newLog(m_CaptureScript.errorString());
+        Q_EMIT newLog(m_CaptureScript.errorString());
         scriptFinished(-1, QProcess::NormalExit);
     });
     connect(&m_CaptureScript, &QProcess::readyReadStandardError, this,
             [this]()
     {
-        emit newLog(m_CaptureScript.readAllStandardError());
+        Q_EMIT newLog(m_CaptureScript.readAllStandardError());
     });
     connect(&m_CaptureScript, &QProcess::readyReadStandardOutput, this,
             [this]()
     {
-        emit newLog(m_CaptureScript.readAllStandardOutput());
+        Q_EMIT newLog(m_CaptureScript.readAllStandardOutput());
     });
 }
 
@@ -235,7 +235,7 @@ void CameraProcess::toggleSequence()
         if (capturestate == CAPTURE_PAUSE_PLANNED)
             state()->setCaptureState(CAPTURE_CAPTURING);
 
-        emit newLog(i18n("Sequence resumed."));
+        Q_EMIT newLog(i18n("Sequence resumed."));
 
         // Call from where ever we have left of when we paused
         switch (state()->getContinueAction())
@@ -256,7 +256,7 @@ void CameraProcess::toggleSequence()
     }
     else
     {
-        emit stopCapture(CAPTURE_ABORTED);
+        Q_EMIT stopCapture(CAPTURE_ABORTED);
     }
 }
 
@@ -268,16 +268,16 @@ void CameraProcess::startNextPendingJob()
         if (nextJob != nullptr)
         {
             startJob(nextJob);
-            emit jobStarting();
+            Q_EMIT jobStarting();
         }
         else // do nothing if no job is pending
-            emit newLog(i18n("No pending jobs found. Please add a job to the sequence queue."));
+            Q_EMIT newLog(i18n("No pending jobs found. Please add a job to the sequence queue."));
     }
     else
     {
         // Add a new job from the current capture settings.
         // If this succeeds, Capture will call this function again.
-        emit createJob();
+        Q_EMIT createJob();
     }
 }
 
@@ -285,7 +285,7 @@ void CameraProcess::jobCreated(QSharedPointer<SequenceJob> newJob)
 {
     if (newJob.isNull())
     {
-        emit newLog(i18n("No new job created."));
+        Q_EMIT newLog(i18n("No new job created."));
         return;
     }
     // a job has been created successfully
@@ -308,17 +308,17 @@ void CameraProcess::capturePreview(bool loop)
 {
     if (state()->getFocusState() >= FOCUS_PROGRESS)
     {
-        emit newLog(i18n("Cannot capture while focus module is busy."));
+        Q_EMIT newLog(i18n("Cannot capture while focus module is busy."));
     }
     else if (activeJob() == nullptr)
     {
         if (loop && !state()->isLooping())
         {
             state()->setLooping(true);
-            emit newLog(i18n("Starting framing..."));
+            Q_EMIT newLog(i18n("Starting framing..."));
         }
         // create a preview job
-        emit createJob(SequenceJob::JOBTYPE_PREVIEW);
+        Q_EMIT createJob(SequenceJob::JOBTYPE_PREVIEW);
     }
     else
     {
@@ -369,9 +369,9 @@ void CameraProcess::stopCapturing(CaptureState targetState)
                     resetJobStatus(JOB_IDLE);
                     break;
             }
-            emit captureAborted(activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble());
+            Q_EMIT captureAborted(activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble());
             KSNotification::event(QLatin1String("CaptureFailed"), stopText, KSNotification::Capture, eventType);
-            emit newLog(stopText);
+            Q_EMIT newLog(stopText);
 
             // special case: if pausing has been requested, we pause
             if (state()->getCaptureState() == CAPTURE_PAUSE_PLANNED &&
@@ -383,7 +383,7 @@ void CameraProcess::stopCapturing(CaptureState targetState)
             {
                 int index = state()->allJobs().indexOf(activeJob());
                 state()->changeSequenceValue(index, "Status", "Aborted");
-                emit updateJobTable(activeJob());
+                Q_EMIT updateJobTable(activeJob());
             }
         }
 
@@ -406,7 +406,7 @@ void CameraProcess::stopCapturing(CaptureState targetState)
 
     // stop focusing if capture is aborted
     if (state()->getCaptureState() == CAPTURE_FOCUSING && targetState == CAPTURE_ABORTED)
-        emit abortFocus();
+        Q_EMIT abortFocus();
 
     state()->setCaptureState(targetState);
 
@@ -433,7 +433,7 @@ void CameraProcess::stopCapturing(CaptureState targetState)
         devices()->getActiveChip()->abortExposure();
 
     // communicate successful stop
-    emit captureStopped();
+    Q_EMIT captureStopped();
 }
 
 void CameraProcess::pauseCapturing()
@@ -443,14 +443,14 @@ void CameraProcess::pauseCapturing()
         // Ensure that the pause function is only called during frame capturing
         // Handling it this way is by far easier than trying to enable/disable the pause button
         // Fixme: make pausing possible at all stages. This makes it necessary to separate the pausing states from CaptureState.
-        emit newLog(i18n("Pausing only possible while frame capture is running."));
+        Q_EMIT newLog(i18n("Pausing only possible while frame capture is running."));
         qCInfo(KSTARS_EKOS_CAPTURE) << "Pause button pressed while not capturing.";
         return;
     }
     // we do not decide at this stage how to resume, since pause is only planned here
     state()->setContinueAction(CAPTURE_CONTINUE_ACTION_NONE);
     state()->setCaptureState(CAPTURE_PAUSE_PLANNED);
-    emit newLog(i18n("Sequence shall be paused after current exposure is complete."));
+    Q_EMIT newLog(i18n("Sequence shall be paused after current exposure is complete."));
 }
 
 void CameraProcess::startJob(const QSharedPointer<SequenceJob> &job)
@@ -463,7 +463,7 @@ void CameraProcess::prepareJob(const QSharedPointer<SequenceJob> &job)
 {
     if (activeCamera() == nullptr || activeCamera()->isConnected() == false)
     {
-        emit newLog(i18n("No camera detected. Check train configuration and connection settings."));
+        Q_EMIT newLog(i18n("No camera detected. Check train configuration and connection settings."));
         job->abort();
         return;
     }
@@ -573,11 +573,11 @@ void CameraProcess::prepareJob(const QSharedPointer<SequenceJob> &job)
         {
             updatedCaptureCompleted(activeJob()->getCoreProperty(
                                         SequenceJob::SJ_Count).toInt());
-            emit newLog(i18n("Job requires %1-second %2 images, has already %3/%4 captures and does not need to run.",
-                             QString("%L1").arg(job->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(), 0, 'f', 3),
-                             job->getCoreProperty(SequenceJob::SJ_Filter).toString(),
-                             activeJob()->getCompleted(),
-                             activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt()));
+            Q_EMIT newLog(i18n("Job requires %1-second %2 images, has already %3/%4 captures and does not need to run.",
+                               QString("%L1").arg(job->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(), 0, 'f', 3),
+                               job->getCoreProperty(SequenceJob::SJ_Filter).toString(),
+                               activeJob()->getCompleted(),
+                               activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt()));
             processJobCompletion2();
 
             /* FIXME: find a clearer way to exit here */
@@ -588,11 +588,11 @@ void CameraProcess::prepareJob(const QSharedPointer<SequenceJob> &job)
             if (activeJob()->getFrameType() != FRAME_VIDEO)
             {
                 // There are captures to process
-                emit newLog(i18n("Job requires %1-second %2 images, has %3/%4 frames captured and will be processed.",
-                                 QString("%L1").arg(job->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(), 0, 'f', 3),
-                                 job->getCoreProperty(SequenceJob::SJ_Filter).toString(),
-                                 activeJob()->getCompleted(),
-                                 activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt()));
+                Q_EMIT newLog(i18n("Job requires %1-second %2 images, has %3/%4 frames captured and will be processed.",
+                                   QString("%L1").arg(job->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(), 0, 'f', 3),
+                                   job->getCoreProperty(SequenceJob::SJ_Filter).toString(),
+                                   activeJob()->getCompleted(),
+                                   activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt()));
 
                 // Emit progress update - done a few lines below
                 // emit newImage(nullptr, activeJob());
@@ -601,10 +601,10 @@ void CameraProcess::prepareJob(const QSharedPointer<SequenceJob> &job)
             }
             else
             {
-                emit newLog(i18n("Job requires %1 x %2-second %3 video and will be processed.",
-                                 activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt(),
-                                 QString("%L1").arg(activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(), 0, 'f', 3),
-                                 activeJob()->getCoreProperty(SequenceJob::SJ_Filter).toString()));
+                Q_EMIT newLog(i18n("Job requires %1 x %2-second %3 video and will be processed.",
+                                   activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt(),
+                                   QString("%L1").arg(activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble(), 0, 'f', 3),
+                                   activeJob()->getCoreProperty(SequenceJob::SJ_Filter).toString()));
             }
         }
     }
@@ -641,7 +641,7 @@ void CameraProcess::prepareJob(const QSharedPointer<SequenceJob> &job)
         }
     }
 
-    emit jobPrepared(job);
+    Q_EMIT jobPrepared(job);
 
     prepareActiveJobStage1();
 
@@ -671,7 +671,7 @@ void CameraProcess::prepareActiveJobStage2()
         qWarning(KSTARS_EKOS_CAPTURE) << "prepareActiveJobStage2 with null activeJob().";
     }
     else
-        emit newImage(activeJob(), state()->imageData());
+        Q_EMIT newImage(activeJob(), state()->imageData());
 
 
     /* Disable this restriction, let the sequence run even if focus did not run prior to the capture.
@@ -724,7 +724,7 @@ void CameraProcess::executeJob()
     state()->setUseGuideHead((devices()->getActiveChip()->getType() == ISD::CameraChip::PRIMARY_CCD) ?
                              false : true);
 
-    emit syncGUIToJob(activeJob());
+    Q_EMIT syncGUIToJob(activeJob());
 
     // If the job is a dark flat, let's find the optimal exposure from prior
     // flat exposures.
@@ -769,7 +769,7 @@ void CameraProcess::prepareJobExecution()
     activeJob()->prepareCapture();
 
     // update the UI
-    emit jobExecutionPreparationStarted();
+    Q_EMIT jobExecutionPreparationStarted();
 }
 
 void CameraProcess::refreshOpticalTrain(QString name)
@@ -840,8 +840,8 @@ IPState CameraProcess::checkLightFramePendingTasks()
     // JM 2023.12.20: Must make to resume if we have a light frame.
     if (state()->getGuideState() == GUIDE_SUSPENDED && activeJob()->getFrameType() == FRAME_LIGHT)
     {
-        emit newLog(i18n("Autoguiding resumed."));
-        emit resumeGuiding();
+        Q_EMIT newLog(i18n("Autoguiding resumed."));
+        Q_EMIT resumeGuiding();
         // No need to return IPS_BUSY here, we can continue immediately.
         // In the case that the capturing sequence has a guiding limit,
         // capturing will be interrupted by setGuideDeviation().
@@ -877,24 +877,24 @@ void CameraProcess::captureStarted(CaptureResult rc)
                 if (index >= 0 && index < state()->getSequence().count())
                     state()->changeSequenceValue(index, "Status", "In Progress");
 
-                emit updateJobTable(activeJob());
+                Q_EMIT updateJobTable(activeJob());
             }
-            emit captureRunning();
+            Q_EMIT captureRunning();
         }
         break;
 
         case CAPTURE_FRAME_ERROR:
-            emit newLog(i18n("Failed to set sub frame."));
+            Q_EMIT newLog(i18n("Failed to set sub frame."));
             stopCapturing(CAPTURE_ABORTED);
             break;
 
         case CAPTURE_BIN_ERROR:
-            emit newLog((i18n("Failed to set binning.")));
+            Q_EMIT newLog((i18n("Failed to set binning.")));
             stopCapturing(CAPTURE_ABORTED);
             break;
 
         case CAPTURE_FOCUS_ERROR:
-            emit newLog((i18n("Cannot capture while focus module is busy.")));
+            Q_EMIT newLog((i18n("Cannot capture while focus module is busy.")));
             stopCapturing(CAPTURE_ABORTED);
             break;
     }
@@ -981,7 +981,7 @@ IPState CameraProcess::resumeSequence()
                 state()->getMeridianFlipState()->checkMeridianFlipActive() == false)
         {
             qCInfo(KSTARS_EKOS_CAPTURE) << "Resuming guiding...";
-            emit resumeGuiding();
+            Q_EMIT resumeGuiding();
         }
 
         // If looping, we just increment the file system image count
@@ -1092,7 +1092,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
         if (data)
             qCWarning(KSTARS_EKOS_CAPTURE) << blobInfo << "Ignoring received FITS as active job is null.";
 
-        emit processingFITSfinished(false);
+        Q_EMIT processingFITSfinished(false);
         return;
     }
 
@@ -1101,7 +1101,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
         if (data)
             qCWarning(KSTARS_EKOS_CAPTURE) << blobInfo << "Ignoring Received FITS as meridian flip stage is" <<
                                            state()->getMeridianFlipState()->getMeridianFlipStage();
-        emit processingFITSfinished(false);
+        Q_EMIT processingFITSfinished(false);
         return;
     }
 
@@ -1115,7 +1115,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
             qCWarning(KSTARS_EKOS_CAPTURE) << blobInfo << "Ignoring Received FITS as current capture state is not active" <<
                                            state()->getCaptureState();
 
-            emit processingFITSfinished(false);
+            Q_EMIT processingFITSfinished(false);
             return;
         }
 
@@ -1128,7 +1128,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
                     qCWarning(KSTARS_EKOS_CAPTURE) << blobInfo << "Ignoring Received FITS as it does not correspond to the target chip"
                                                    << devices()->getActiveChip()->getType();
 
-                emit processingFITSfinished(false);
+                Q_EMIT processingFITSfinished(false);
                 return;
             }
         }
@@ -1139,7 +1139,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
             qCWarning(KSTARS_EKOS_CAPTURE) << blobInfo << "Ignoring Received FITS as it has the wrong capture mode" <<
                                            devices()->getActiveChip()->getCaptureMode();
 
-            emit processingFITSfinished(false);
+            Q_EMIT processingFITSfinished(false);
             return;
         }
 
@@ -1149,7 +1149,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
             qCWarning(KSTARS_EKOS_CAPTURE) << blobInfo << "Ignoring Received FITS as the blob device name does not equal active camera"
                                            << activeCamera()->getDeviceName();
 
-            emit processingFITSfinished(false);
+            Q_EMIT processingFITSfinished(false);
             return;
         }
 
@@ -1266,7 +1266,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
     // When looping/framing, continueFramingAction() is called immediately after and emits its
     // own newImage — skip here to avoid firing the signal twice for the same frame.
     if (!state()->isLooping())
-        emit newImage(thejob, state()->imageData());
+        Q_EMIT newImage(thejob, state()->imageData());
 
     // Check if we need to execute post capture script first
     if (runCaptureScript(SCRIPT_POST_CAPTURE) == IPS_BUSY)
@@ -1277,7 +1277,7 @@ void CameraProcess::processFITSData(const QSharedPointer<FITSData> &data, const 
         resumeSequence();
 
     // hand over to the capture module
-    emit processingFITSfinished(true);
+    Q_EMIT processingFITSfinished(true);
 }
 
 void CameraProcess::showFITSPreview(const QSharedPointer<FITSData> &data)
@@ -1289,7 +1289,7 @@ void CameraProcess::showFITSPreview(const QSharedPointer<FITSData> &data)
 
 void CameraProcess::processNewRemoteFile(QString file)
 {
-    emit newLog(i18n("Remote image saved to %1", file));
+    Q_EMIT newLog(i18n("Remote image saved to %1", file));
     // call processing steps without image data if the image is stored only remotely
     QString nothing("");
     if (activeCamera() && activeCamera()->getUploadMode() == ISD::Camera::UPLOAD_REMOTE)
@@ -1315,8 +1315,8 @@ IPState CameraProcess::processPreCaptureCalibrationStage()
     if (activeJob()->getFrameType() != FRAME_LIGHT
             && state()->getGuideState() == GUIDE_GUIDING)
     {
-        emit newLog(i18n("Autoguiding suspended."));
-        emit suspendGuiding();
+        Q_EMIT newLog(i18n("Autoguiding suspended."));
+        Q_EMIT suspendGuiding();
     }
 
     // Run necessary tasks for each frame type
@@ -1345,7 +1345,7 @@ void CameraProcess::updatePreCaptureCalibrationStatus()
     // If process was aborted or stopped by the user
     if (state()->isBusy() == false)
     {
-        emit newLog(i18n("Warning: Calibration process was prematurely terminated."));
+        Q_EMIT newLog(i18n("Warning: Calibration process was prematurely terminated."));
         return;
     }
 
@@ -1396,13 +1396,13 @@ void CameraProcess::processJobCompletion2()
             oneSequence["Status"] = "Complete";
             seqArray.replace(index, oneSequence);
             state()->setSequence(seqArray);
-            emit sequenceChanged(seqArray);
-            emit updateJobTable(activeJob());
+            Q_EMIT sequenceChanged(seqArray);
+            Q_EMIT updateJobTable(activeJob());
         }
     }
     // stopping clears the planned state, therefore skip if pause planned
     if (state()->getCaptureState() != CAPTURE_PAUSE_PLANNED)
-        emit stopCapture();
+        Q_EMIT stopCapture();
 
     // Check if there are more pending jobs and execute them
     if (resumeSequence() == IPS_OK)
@@ -1413,12 +1413,12 @@ void CameraProcess::processJobCompletion2()
         KSNotification::event(QLatin1String("CaptureSuccessful"), i18n("Camera capture sequence completed"),
                               KSNotification::Capture);
 
-        emit stopCapture(CAPTURE_COMPLETE);
+        Q_EMIT stopCapture(CAPTURE_COMPLETE);
 
         //Resume guiding if it was suspended before
         //if (isAutoGuiding && currentCCD->getChip(ISD::CameraChip::GUIDE_CCD) == guideChip)
         if (state()->getGuideState() == GUIDE_SUSPENDED && state()->suspendGuidingOnDownload())
-            emit resumeGuiding();
+            Q_EMIT resumeGuiding();
     }
 
 }
@@ -1447,7 +1447,7 @@ IPState CameraProcess::startNextJob()
                 state()->getMeridianFlipState()->checkMeridianFlipActive() == false)
         {
             qCDebug(KSTARS_EKOS_CAPTURE) << "Resuming guiding...";
-            emit resumeGuiding();
+            Q_EMIT resumeGuiding();
         }
 
         return IPS_OK;
@@ -1467,8 +1467,8 @@ void CameraProcess::captureImage()
     // Bail out if we have no CCD anymore
     if (!activeCamera() || !activeCamera()->isConnected())
     {
-        emit newLog(i18n("Error: Lost connection to camera."));
-        emit stopCapture(CAPTURE_ABORTED);
+        Q_EMIT newLog(i18n("Error: Lost connection to camera."));
+        Q_EMIT stopCapture(CAPTURE_ABORTED);
         return;
     }
 
@@ -1495,8 +1495,8 @@ void CameraProcess::captureImage()
             if (activeCamera()->getEncodingFormat() != "FITS" &&
                     activeCamera()->getEncodingFormat() != "XISF")
             {
-                emit newLog(i18n("Cannot calculate ADU levels in non-FITS images."));
-                emit stopCapture(CAPTURE_ABORTED);
+                Q_EMIT newLog(i18n("Cannot calculate ADU levels in non-FITS images."));
+                Q_EMIT stopCapture(CAPTURE_ABORTED);
                 return;
             }
 
@@ -1588,8 +1588,8 @@ void CameraProcess::captureImage()
         activeCamera()->setFastExposureEnabled(true);
     }
 
-    emit captureTarget(activeJob()->getCoreProperty(SequenceJob::SJ_TargetName).toString());
-    emit captureImageStarted();
+    Q_EMIT captureTarget(activeJob()->getCoreProperty(SequenceJob::SJ_TargetName).toString());
+    Q_EMIT captureImageStarted();
 }
 
 void CameraProcess::resetFrame()
@@ -1599,7 +1599,7 @@ void CameraProcess::resetFrame()
                                  ISD::CameraChip::GUIDE_CCD) :
                              devices()->getActiveCamera()->getChip(ISD::CameraChip::PRIMARY_CCD));
     devices()->getActiveChip()->resetFrame();
-    emit updateFrameProperties(1);
+    Q_EMIT updateFrameProperties(1);
 }
 
 void CameraProcess::setExposureProgress(ISD::CameraChip *tChip, double value, IPState ipstate)
@@ -1614,14 +1614,14 @@ void CameraProcess::setExposureProgress(ISD::CameraChip *tChip, double value, IP
         return;
 
     double deltaMS = std::ceil(1000.0 * value - state()->lastRemainingFrameTimeMS());
-    emit updateCaptureCountDown(int(deltaMS));
+    Q_EMIT updateCaptureCountDown(int(deltaMS));
     state()->setLastRemainingFrameTimeMS(state()->lastRemainingFrameTimeMS() + deltaMS);
 
     if (activeJob())
     {
         activeJob()->setExposeLeft(value);
 
-        emit newExposureProgress(activeJob());
+        Q_EMIT newExposureProgress(activeJob());
     }
 
     if (activeJob() && ipstate == IPS_ALERT)
@@ -1630,7 +1630,7 @@ void CameraProcess::setExposureProgress(ISD::CameraChip *tChip, double value, IP
 
         activeJob()->setCaptureRetires(retries);
 
-        emit newLog(i18n("Capture failed. Check INDI Control Panel for details."));
+        Q_EMIT newLog(i18n("Capture failed. Check INDI Control Panel for details."));
 
         if (retries >= 3)
         {
@@ -1638,7 +1638,7 @@ void CameraProcess::setExposureProgress(ISD::CameraChip *tChip, double value, IP
             return;
         }
 
-        emit newLog((i18n("Restarting capture attempt #%1", retries)));
+        Q_EMIT newLog((i18n("Restarting capture attempt #%1", retries)));
 
         state()->setNextSequenceID(1);
 
@@ -1656,7 +1656,7 @@ void CameraProcess::setExposureProgress(ISD::CameraChip *tChip, double value, IP
         {
             if (activeJob()->getStatus() == JOB_BUSY)
             {
-                emit processingFITSfinished(false);
+                Q_EMIT processingFITSfinished(false);
                 return;
             }
         }
@@ -1665,10 +1665,10 @@ void CameraProcess::setExposureProgress(ISD::CameraChip *tChip, double value, IP
                 && state()->suspendGuidingOnDownload())
         {
             qCDebug(KSTARS_EKOS_CAPTURE) << "Autoguiding suspended until primary camera chip completes downloading...";
-            emit suspendGuiding();
+            Q_EMIT suspendGuiding();
         }
 
-        emit downloadingFrame();
+        Q_EMIT downloadingFrame();
 
         //This will start the clock to see how long the download takes.
         state()->downloadTimer().start();
@@ -1686,7 +1686,7 @@ void CameraProcess::setDownloadProgress()
         {
             state()->imageCountDown().setHMS(0, 0, 0);
             state()->imageCountDownAddMSecs(int(std::ceil(downloadTimeLeft * 1000)));
-            emit newDownloadProgress(downloadTimeLeft);
+            Q_EMIT newDownloadProgress(downloadTimeLeft);
         }
     }
 
@@ -1694,7 +1694,7 @@ void CameraProcess::setDownloadProgress()
 
 IPState CameraProcess::continueFramingAction(const QSharedPointer<FITSData> &imageData)
 {
-    emit newImage(activeJob(), imageData);
+    Q_EMIT newImage(activeJob(), imageData);
     // If fast exposure is on, do not capture again, it will be captured by the driver.
     if (activeCamera()->isFastExposureEnabled() == false)
     {
@@ -1730,7 +1730,7 @@ IPState CameraProcess::updateDownloadTimesAction()
 
         QString dLTimeString = QString::number(currentDownloadTime, 'd', 2);
         QString estimatedTimeString = QString::number(state()->averageDownloadTime(), 'd', 2);
-        emit newLog(i18n("Download Time: %1 s, New Download Time Estimate: %2 s.", dLTimeString, estimatedTimeString));
+        Q_EMIT newLog(i18n("Download Time: %1 s, New Download Time Estimate: %2 s.", dLTimeString, estimatedTimeString));
     }
     return IPS_OK;
 }
@@ -1743,9 +1743,9 @@ IPState CameraProcess::previewImageCompletedAction()
         activeCamera()->setUploadMode(activeJob()->getUploadMode());
         // Reset active job pointer
         state()->setActiveJob(nullptr);
-        emit stopCapture(CAPTURE_COMPLETE);
+        Q_EMIT stopCapture(CAPTURE_COMPLETE);
         if (state()->getGuideState() == GUIDE_SUSPENDED && state()->suspendGuidingOnDownload())
-            emit resumeGuiding();
+            Q_EMIT resumeGuiding();
         return IPS_OK;
     }
     else
@@ -1796,8 +1796,8 @@ void CameraProcess::updateCompletedCaptureCountersAction()
     state()->addCapturedFrame(activeJob()->getSignature());
 
     // report that the image has been received
-    emit newLog(i18n("Received image %1 out of %2.", activeJob()->getCompleted(),
-                     activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt()));
+    Q_EMIT newLog(i18n("Received image %1 out of %2.", activeJob()->getCompleted(),
+                       activeJob()->getCoreProperty(SequenceJob::SJ_Count).toInt()));
 
     // Invalidate the timer so that it would be restart next time it is triggered.
     m_CaptureOperationsTimer.invalidate();
@@ -1833,12 +1833,12 @@ IPState CameraProcess::updateImageMetadataAction(QSharedPointer<FITSData> imageD
 
         // avoid logging that we captured a temporary file
         if (state()->isLooping() == false && activeJob() != nullptr && activeJob()->jobType() != SequenceJob::JOBTYPE_PREVIEW)
-            emit newLog(i18n("Captured %1", filename));
+            Q_EMIT newLog(i18n("Captured %1", filename));
 
         auto remainingPlaceholders = PlaceholderPath::remainingPlaceholders(filename);
         if (remainingPlaceholders.size() > 0)
         {
-            emit newLog(
+            Q_EMIT newLog(
                 i18n("WARNING: remaining and potentially unknown placeholders %1 in %2",
                      remainingPlaceholders.join(", "), filename));
         }
@@ -1865,7 +1865,7 @@ IPState CameraProcess::updateImageMetadataAction(QSharedPointer<FITSData> imageD
                  "starCount =" << metadata["starCount"].toInt() << "median =" << metadata["median"].toInt() << "eccentricity =" <<
                                      metadata["eccentricity"].toDouble();
 
-        emit captureComplete(metadata);
+        Q_EMIT captureComplete(metadata);
     }
     return IPS_OK;
 }
@@ -1882,7 +1882,7 @@ IPState CameraProcess::runCaptureScript(ScriptTypes scriptType, bool precond)
             m_CaptureScript.write(generateScriptInput());
             m_CaptureScript.closeWriteChannel();
             //m_CaptureScript.start("/bin/bash", QStringList() << captureScript);
-            emit newLog(i18n("Executing capture script %1", captureScript));
+            Q_EMIT newLog(i18n("Executing capture script %1", captureScript));
             return IPS_BUSY;
         }
     }
@@ -1897,7 +1897,7 @@ void CameraProcess::scriptFinished(int exitCode, QProcess::ExitStatus status)
     switch (state()->captureScriptType())
     {
         case SCRIPT_PRE_CAPTURE:
-            emit newLog(i18n("Pre capture script finished with code %1.", exitCode));
+            Q_EMIT newLog(i18n("Pre capture script finished with code %1.", exitCode));
             if (activeJob() && activeJob()->getStatus() == JOB_IDLE)
                 prepareJobExecution();
             else
@@ -1908,7 +1908,7 @@ void CameraProcess::scriptFinished(int exitCode, QProcess::ExitStatus status)
             break;
 
         case SCRIPT_POST_CAPTURE:
-            emit newLog(i18n("Post capture script finished with code %1.", exitCode));
+            Q_EMIT newLog(i18n("Post capture script finished with code %1.", exitCode));
 
             // If we're done, proceed to completion.
             if (activeJob() == nullptr
@@ -1920,7 +1920,7 @@ void CameraProcess::scriptFinished(int exitCode, QProcess::ExitStatus status)
             // Else check if meridian condition is met.
             else if (state()->checkMeridianFlipReady())
             {
-                emit newLog(i18n("Processing meridian flip..."));
+                Q_EMIT newLog(i18n("Processing meridian flip..."));
             }
             // Then if nothing else, just resume sequence.
             else
@@ -1930,12 +1930,12 @@ void CameraProcess::scriptFinished(int exitCode, QProcess::ExitStatus status)
             break;
 
         case SCRIPT_PRE_JOB:
-            emit newLog(i18n("Pre job script finished with code %1.", exitCode));
+            Q_EMIT newLog(i18n("Pre job script finished with code %1.", exitCode));
             prepareActiveJobStage2();
             break;
 
         case SCRIPT_POST_JOB:
-            emit newLog(i18n("Post job script finished with code %1.", exitCode));
+            Q_EMIT newLog(i18n("Post job script finished with code %1.", exitCode));
             processJobCompletion2();
             break;
 
@@ -1955,10 +1955,10 @@ void CameraProcess::selectCamera(QString name)
         if (activeCamera() && activeCamera()->getDeviceName() == name)
             checkCamera();
 
-        emit refreshCamera(true);
+        Q_EMIT refreshCamera(true);
     }
     else
-        emit refreshCamera(false);
+        Q_EMIT refreshCamera(false);
 
 }
 
@@ -1990,7 +1990,7 @@ void CameraProcess::checkCamera()
         devices()->setActiveChip(activeCamera()->getChip(ISD::CameraChip::PRIMARY_CCD));
     }
 
-    emit refreshCameraSettings();
+    Q_EMIT refreshCameraSettings();
 }
 
 void CameraProcess::syncDSLRToTargetChip(const QString &model)
@@ -2108,7 +2108,7 @@ void CameraProcess::removeDevice(const QSharedPointer<ISD::GenericDevice> &devic
 
         QTimer::singleShot(1000, this, [this]()
         {
-            emit refreshFilterSettings();
+            Q_EMIT refreshFilterSettings();
         });
     }
 }
@@ -2121,18 +2121,18 @@ void CameraProcess::processCaptureTimeout()
     {
         state()->setCaptureTimeoutCounter(0);
         state()->setDeviceRestartCounter(0);
-        emit newLog(i18n("Exposure timeout. Aborting..."));
-        emit stopCapture(CAPTURE_ABORTED);
+        Q_EMIT newLog(i18n("Exposure timeout. Aborting..."));
+        Q_EMIT stopCapture(CAPTURE_ABORTED);
         return;
     }
 
     if (state()->captureTimeoutCounter() > 3 && activeCamera())
     {
-        emit newLog(i18n("Exposure timeout. More than 3 have been detected, will restart driver."));
+        Q_EMIT newLog(i18n("Exposure timeout. More than 3 have been detected, will restart driver."));
         QString camera = activeCamera()->getDeviceName();
         QString fw = (devices()->filterWheel() != nullptr) ?
                      devices()->filterWheel()->getDeviceName() : "";
-        emit driverTimedout(camera);
+        Q_EMIT driverTimedout(camera);
         QTimer::singleShot(5000, this, [ &, camera, fw]()
         {
             state()->setDeviceRestartCounter(state()->deviceRestartCounter() + 1);
@@ -2146,7 +2146,7 @@ void CameraProcess::processCaptureTimeout()
         if (activeCamera() && activeJob())
         {
             setCamera(true);
-            emit newLog(i18n("Exposure timeout. Restarting exposure..."));
+            Q_EMIT newLog(i18n("Exposure timeout. Restarting exposure..."));
             activeCamera()->setEncodingFormat("FITS");
             auto rememberState = state()->getCaptureState();
             state()->setCaptureState(CAPTURE_IDLE);
@@ -2172,8 +2172,8 @@ void CameraProcess::processCaptureTimeout()
         {
             state()->setCaptureTimeoutCounter(0);
             state()->setDeviceRestartCounter(0);
-            emit newLog(i18n("Exposure timeout. Too many. Aborting..."));
-            emit stopCapture(CAPTURE_ABORTED);
+            Q_EMIT newLog(i18n("Exposure timeout. Too many. Aborting..."));
+            Q_EMIT stopCapture(CAPTURE_ABORTED);
             return;
         }
     }
@@ -2191,15 +2191,15 @@ void CameraProcess::processCaptureError(ISD::Camera::ErrorType type)
 
         activeJob()->setCaptureRetires(retries);
 
-        emit newLog(i18n("Capture failed. Check INDI Control Panel for details."));
+        Q_EMIT newLog(i18n("Capture failed. Check INDI Control Panel for details."));
 
         if (retries >= 3)
         {
-            emit stopCapture(CAPTURE_ABORTED);
+            Q_EMIT stopCapture(CAPTURE_ABORTED);
             return;
         }
 
-        emit newLog(i18n("Restarting capture attempt #%1", retries));
+        Q_EMIT newLog(i18n("Restarting capture attempt #%1", retries));
 
         state()->setNextSequenceID(1);
 
@@ -2208,7 +2208,7 @@ void CameraProcess::processCaptureError(ISD::Camera::ErrorType type)
     }
     else
     {
-        emit stopCapture(CAPTURE_ABORTED);
+        Q_EMIT stopCapture(CAPTURE_ABORTED);
     }
 }
 
@@ -2253,10 +2253,10 @@ bool CameraProcess::checkFlatCalibration(QSharedPointer<FITSData> imageData, dou
 
     if (outOfRange)
     {
-        emit newLog(i18n("Flat calibration failed. Captured image is only %1-bit while requested ADU is %2.",
-                         QString::number(imageData->bpp())
-                         , QString::number(activeJob()->getCoreProperty(SequenceJob::SJ_TargetADU).toDouble(), 'f', 2)));
-        emit stopCapture(CAPTURE_ABORTED);
+        Q_EMIT newLog(i18n("Flat calibration failed. Captured image is only %1-bit while requested ADU is %2.",
+                           QString::number(imageData->bpp())
+                           , QString::number(activeJob()->getCoreProperty(SequenceJob::SJ_TargetADU).toDouble(), 'f', 2)));
+        Q_EMIT stopCapture(CAPTURE_ABORTED);
         return false;
     }
     else if (saturated)
@@ -2264,8 +2264,8 @@ bool CameraProcess::checkFlatCalibration(QSharedPointer<FITSData> imageData, dou
         double nextExposure = activeJob()->getCoreProperty(SequenceJob::SJ_Exposure).toDouble() * 0.1;
         nextExposure = qBound(exp_min, nextExposure, exp_max);
 
-        emit newLog(i18n("Current image is saturated (%1). Next exposure is %2 seconds.",
-                         QString::number(currentADU, 'f', 0), QString("%L1").arg(nextExposure, 0, 'f', 6)));
+        Q_EMIT newLog(i18n("Current image is saturated (%1). Next exposure is %2 seconds.",
+                           QString::number(currentADU, 'f', 0), QString("%L1").arg(nextExposure, 0, 'f', 6)));
 
         activeJob()->setCalibrationStage(SequenceJobState::CAL_CALIBRATION);
         activeJob()->setCoreProperty(SequenceJob::SJ_Exposure, nextExposure);
@@ -2285,7 +2285,7 @@ bool CameraProcess::checkFlatCalibration(QSharedPointer<FITSData> imageData, dou
     {
         if (activeJob()->getCalibrationStage() == SequenceJobState::CAL_CALIBRATION)
         {
-            emit newLog(
+            Q_EMIT newLog(
                 i18n("Current ADU %1 within target ADU tolerance range.", QString::number(currentADU, 'f', 0)));
             activeCamera()->setUploadMode(activeJob()->getUploadMode());
             auto placeholderPath = PlaceholderPath();
@@ -2314,17 +2314,17 @@ bool CameraProcess::checkFlatCalibration(QSharedPointer<FITSData> imageData, dou
 
     if (nextExposure <= 0 || std::isnan(nextExposure))
     {
-        emit newLog(
+        Q_EMIT newLog(
             i18n("Unable to calculate optimal exposure settings, please capture the flats manually."));
-        emit stopCapture(CAPTURE_ABORTED);
+        Q_EMIT stopCapture(CAPTURE_ABORTED);
         return false;
     }
 
     // Limit to minimum and maximum values
     nextExposure = qBound(exp_min, nextExposure, exp_max);
 
-    emit newLog(i18n("Current ADU is %1 Next exposure is %2 seconds.", QString::number(currentADU, 'f', 0),
-                     QString("%L1").arg(nextExposure, 0, 'f', 6)));
+    Q_EMIT newLog(i18n("Current ADU is %1 Next exposure is %2 seconds.", QString::number(currentADU, 'f', 0),
+                       QString("%L1").arg(nextExposure, 0, 'f', 6)));
 
     activeJob()->setCalibrationStage(SequenceJobState::CAL_CALIBRATION);
     activeJob()->setCoreProperty(SequenceJob::SJ_Exposure, nextExposure);
@@ -2517,12 +2517,12 @@ void CameraProcess::updateFITSViewer(const QSharedPointer<FITSData> data, const 
                     auto tabs = getFITSViewer()->tabs();
                     if (tabIndex < tabs.size() && captureMode == FITS_NORMAL)
                     {
-                        emit newView(tabs[tabIndex]->getView());
+                        Q_EMIT newView(tabs[tabIndex]->getView());
                         tabs[tabIndex]->disconnect(this);
                         connect(tabs[tabIndex], &FITSTab::updated, this, [this]
                         {
                             auto tab = qobject_cast<FITSTab *>(sender());
-                            emit newView(tab->getView());
+                            Q_EMIT newView(tab->getView());
                         });
                     }
                 }
@@ -2624,7 +2624,7 @@ bool CameraProcess::loadSequenceQueue(const QString &fileURL,
     }
 
     for (auto j : state()->allJobs())
-        emit addJob(j);
+        Q_EMIT addJob(j);
 
     return true;
 }
@@ -2681,7 +2681,7 @@ bool CameraProcess::checkPausing(CaptureContinueAction continueAction)
 {
     if (state()->getCaptureState() == CAPTURE_PAUSE_PLANNED)
     {
-        emit newLog(i18n("Sequence paused."));
+        Q_EMIT newLog(i18n("Sequence paused."));
         state()->setCaptureState(CAPTURE_PAUSED);
         // disconnect camera device
         setCamera(false);
@@ -2745,7 +2745,7 @@ const QSharedPointer<SequenceJob> CameraProcess::findNextPendingJob()
     // Scheduler will never ignore job progress and doesn't use this path
     else if (state()->ignoreJobProgress())
     {
-        emit newLog(i18n("Warning: option \"Always Reset Sequence When Starting\" is enabled and resets the sequence counts."));
+        Q_EMIT newLog(i18n("Warning: option \"Always Reset Sequence When Starting\" is enabled and resets the sequence counts."));
         resetAllJobs();
     }
 
@@ -2757,7 +2757,7 @@ void CameraProcess::resetJobStatus(JOBStatus newStatus)
     if (activeJob() != nullptr)
     {
         activeJob()->resetStatus(newStatus);
-        emit updateJobTable(activeJob());
+        Q_EMIT updateJobTable(activeJob());
     }
 }
 
@@ -2770,13 +2770,13 @@ void CameraProcess::resetAllJobs()
     // clear existing job counts
     m_State->clearCapturedFramesMap();
     // update the entire job table
-    emit updateJobTable(nullptr);
+    Q_EMIT updateJobTable(nullptr);
 }
 
 void CameraProcess::updatedCaptureCompleted(int count)
 {
     activeJob()->setCompleted(count);
-    emit updateJobTable(activeJob());
+    Q_EMIT updateJobTable(activeJob());
 }
 
 void CameraProcess::updateVideoRecordStatus(bool enabled)
@@ -2974,7 +2974,7 @@ void CameraProcess::restartCamera(const QString &name)
     {
         KSMessageBox::Instance()->disconnect(this);
         stopCapturing(CAPTURE_ABORTED);
-        emit driverTimedout(name);
+        Q_EMIT driverTimedout(name);
     });
     connect(KSMessageBox::Instance(), &KSMessageBox::rejected, this, [this]()
     {
@@ -3129,7 +3129,7 @@ void CameraProcess::checkCaptureOperationsTimeout(const std::function<void()> &s
     // If capture operations timer exceeds timeout, then abort.
     if (m_CaptureOperationsTimer.elapsed() >= Options::captureOperationsTimeout() * 1000)
     {
-        emit newLog(i18n("Capture operations timed out after %1 seconds.", Options::captureOperationsTimeout()));
+        Q_EMIT newLog(i18n("Capture operations timed out after %1 seconds.", Options::captureOperationsTimeout()));
         stopCapturing(CAPTURE_ABORTED);
     }
     else

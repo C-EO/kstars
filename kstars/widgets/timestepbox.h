@@ -49,10 +49,10 @@ class TimeStepBox : public QWidget
         }
         void setDaysOnly(bool daysonly);
 
-    signals:
+    Q_SIGNALS:
         void scaleChanged(float);
 
-    private slots:
+    private Q_SLOTS:
         /**
          * Set the TimeSpinBox value according to the current UnitBox value.
          * This is connected to the UnitBox valueChanged() Signal.

@@ -617,4 +617,3 @@ int FindDialog::execWithoutDetails()
     m_DetailsB->setEnabled(true);
     return result;
 }
-

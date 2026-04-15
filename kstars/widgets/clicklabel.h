@@ -22,14 +22,14 @@ class ClickLabel : public QLabel
         explicit ClickLabel(QWidget *parent = nullptr, const char *name = nullptr);
         ~ClickLabel() override = default;
 
-    signals:
+    Q_SIGNALS:
         void clicked();
 
     protected:
         void mousePressEvent(QMouseEvent *e) override
         {
             if (e->button() == Qt::LeftButton)
-                emit clicked();
+                Q_EMIT clicked();
         }
 };
 

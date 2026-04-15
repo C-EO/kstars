@@ -97,7 +97,7 @@ class DarkProcessor : public QObject
         template <typename T>
         T median3x3Filter(uint16_t x, uint16_t y, uint32_t width, T *buffer);
 
-    signals:
+    Q_SIGNALS:
         void darkFrameCompleted(bool);
         void newLog(const QString &message);
 
@@ -121,4 +121,3 @@ class DarkProcessor : public QObject
 };
 
 }
-

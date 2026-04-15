@@ -24,7 +24,7 @@ class TestFitsData : public QObject
     private:
         void initGenericDataFixture();
 
-    private slots:
+    private Q_SLOTS:
         void initTestCase();
         void cleanupTestCase();
 

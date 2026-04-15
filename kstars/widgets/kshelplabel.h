@@ -44,7 +44,7 @@ class KSHelpLabel : public QLabel
             return m_anchor;
         }
 
-    private slots:
+    private Q_SLOTS:
         /** Open AstroInfo definition of the terms
              * @param term jargon term */
         void slotShowDefinition(const QString &term);

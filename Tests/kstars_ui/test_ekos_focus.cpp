@@ -74,7 +74,7 @@ class KFocusProcedureSteps: public QObject
             disconnect(guiding);
             disconnect(quantifying);
         };
-    public slots:
+    public Q_SLOTS:
         void handleAutofocusCompleteRestartOnce()
         {
             complete = true;
@@ -96,7 +96,7 @@ class KFocusProcedureSteps: public QObject
             }
         }
 
-    private slots:
+    private Q_SLOTS:
         void handleAutofocusStarting()
         {
             started = true;
@@ -137,7 +137,7 @@ class KFocusStateList: public QObject, public QList <Ekos::FocusState>
         {};
         virtual ~KFocusStateList() {};
 
-    private slots:
+    private Q_SLOTS:
         void onNewState(Ekos::FocusState s, const QString &)
         {
             append(s);

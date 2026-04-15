@@ -396,29 +396,29 @@ void ctkRangeSlider::setValues(int l, int u)
     {
         if (emitMinPosChanged || emitMaxPosChanged)
         {
-            emit positionsChanged(d->m_MinimumPosition, d->m_MaximumPosition);
+            Q_EMIT positionsChanged(d->m_MinimumPosition, d->m_MaximumPosition);
         }
         if (emitMinPosChanged)
         {
-            emit minimumPositionChanged(d->m_MinimumPosition);
+            Q_EMIT minimumPositionChanged(d->m_MinimumPosition);
         }
         if (emitMaxPosChanged)
         {
-            emit maximumPositionChanged(d->m_MaximumPosition);
+            Q_EMIT maximumPositionChanged(d->m_MaximumPosition);
         }
     }
     if (emitMinValChanged || emitMaxValChanged)
     {
-        emit valuesChanged(d->m_MinimumValue,
-                           d->m_MaximumValue);
+        Q_EMIT valuesChanged(d->m_MinimumValue,
+                             d->m_MaximumValue);
     }
     if (emitMinValChanged)
     {
-        emit minimumValueChanged(d->m_MinimumValue);
+        Q_EMIT minimumValueChanged(d->m_MinimumValue);
     }
     if (emitMaxValChanged)
     {
-        emit maximumValueChanged(d->m_MaximumValue);
+        Q_EMIT maximumValueChanged(d->m_MaximumValue);
     }
     if (emitMinPosChanged || emitMaxPosChanged ||
             emitMinValChanged || emitMaxValChanged)
@@ -483,15 +483,15 @@ void ctkRangeSlider::setPositions(int min, int max)
     {
         if (emitMinPosChanged)
         {
-            emit minimumPositionChanged(d->m_MinimumPosition);
+            Q_EMIT minimumPositionChanged(d->m_MinimumPosition);
         }
         if (emitMaxPosChanged)
         {
-            emit maximumPositionChanged(d->m_MaximumPosition);
+            Q_EMIT maximumPositionChanged(d->m_MaximumPosition);
         }
         if (emitMinPosChanged || emitMaxPosChanged)
         {
-            emit positionsChanged(d->m_MinimumPosition, d->m_MaximumPosition);
+            Q_EMIT positionsChanged(d->m_MinimumPosition, d->m_MaximumPosition);
         }
     }
     if (this->hasTracking())

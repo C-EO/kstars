@@ -19,7 +19,7 @@ DarkProcessor::DarkProcessor(QObject *parent) : QObject(parent)
 {
     connect(&m_Watcher, &QFutureWatcher<bool>::finished, this, [this]()
     {
-        emit darkFrameCompleted(m_Watcher.result());
+        Q_EMIT darkFrameCompleted(m_Watcher.result());
     });
 
 }
@@ -275,7 +275,7 @@ bool DarkProcessor::denoiseInternal(bool useDefect)
                                    << info.targetData->width() << "x" << info.targetData->height()
                                    << "vs dark" << darkData->width() << "x" << darkData->height();
             darkData.clear();
-            emit newLog(i18n("No suitable dark frames or defect maps found. Please run the Dark Library wizard in Capture module."));
+            Q_EMIT newLog(i18n("No suitable dark frames or defect maps found. Please run the Dark Library wizard in Capture module."));
             return false;
         }
         subtractDarkData(darkData, info.targetData, info.offsetX, info.offsetY);
@@ -290,7 +290,7 @@ bool DarkProcessor::denoiseInternal(bool useDefect)
                            << info.targetChip->getCCD()->getDeviceName()
                            << "duration:" << info.duration << "s"
                            << "binning:" << binX << "x" << binY;
-    emit newLog(i18n("No suitable dark frames or defect maps found. Please run the Dark Library wizard in Capture module."));
+    Q_EMIT newLog(i18n("No suitable dark frames or defect maps found. Please run the Dark Library wizard in Capture module."));
     return false;
 }
 

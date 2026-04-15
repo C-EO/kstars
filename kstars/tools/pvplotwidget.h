@@ -16,11 +16,11 @@ class PVPlotWidget : public KPlotWidget
     public:
         explicit PVPlotWidget(QWidget *parent = nullptr);
 
-    public slots:
+    public Q_SLOTS:
         void slotZoomIn();
         void slotZoomOut();
 
-    signals:
+    Q_SIGNALS:
         void doubleClicked(double, double);
 
     protected:

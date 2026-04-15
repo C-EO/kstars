@@ -165,7 +165,7 @@ void FilterManager::createFilterModel()
     {
         reloadFilters();
         if (topLeft.column() == FM_EXPOSURE)
-            emit exposureChanged(m_FilterModel->data(topLeft).toDouble());
+            Q_EMIT exposureChanged(m_FilterModel->data(topLeft).toDouble());
         else if (topLeft.column() == FM_LOCK_FILTER)
         {
             // Don't allow the lock filter to be set to the current filter - circular dependancy
@@ -189,11 +189,11 @@ void FilterManager::createFilterModel()
             lockDelegate->setValues(getLockDelegates());
         }
         else if (topLeft.column() == FM_TICKS_PER_TEMP)
-            emit ticksPerTempChanged();
+            Q_EMIT ticksPerTempChanged();
         else if (topLeft.column() == FM_TICKS_PER_ALT)
-            emit ticksPerAltChanged();
+            Q_EMIT ticksPerAltChanged();
         else if (topLeft.column() == FM_WAVELENGTH)
-            emit wavelengthChanged();
+            Q_EMIT wavelengthChanged();
     });
 }
 
@@ -396,7 +396,7 @@ void FilterManager::refreshFilterLabels()
         m_currentFilterLabels = filters;
         refreshFilterModel();
 
-        emit labelsChanged(filters);
+        Q_EMIT labelsChanged(filters);
 
         // refresh position after filter changes
         refreshFilterPosition();
@@ -410,7 +410,7 @@ void FilterManager::refreshFilterPosition()
     if (pos != m_currentFilterPosition)
     {
         m_currentFilterPosition = pos;
-        emit positionChanged(pos);
+        Q_EMIT positionChanged(pos);
     }
 }
 
@@ -450,7 +450,7 @@ void FilterManager::updateProperty(INDI::Property prop)
         // fail immediately.
         if (state == FILTER_CHANGE && prop.getState() == IPS_ALERT)
         {
-            emit failed();
+            Q_EMIT failed();
             return;
         }
 
@@ -534,8 +534,8 @@ bool FilterManager::executeOperationQueue()
     if (operationQueue.isEmpty())
     {
         state = FILTER_IDLE;
-        emit newStatus(state);
-        emit ready();
+        Q_EMIT newStatus(state);
+        Q_EMIT ready();
         return false;
     }
 
@@ -557,7 +557,7 @@ bool FilterManager::executeOperationQueue()
                 targetFilterPosition = m_ActiveFilters.indexOf(targetFilter) + 1;
             m_FilterWheel->setPosition(targetFilterPosition);
 
-            emit newStatus(state);
+            Q_EMIT newStatus(state);
 
             if (m_FilterConfirmSet)
             {
@@ -597,8 +597,8 @@ bool FilterManager::executeOperationQueue()
                 actionRequired = false;
             else
             {
-                emit newFocusOffset(targetFilterOffset, false);
-                emit newStatus(state);
+                Q_EMIT newFocusOffset(targetFilterOffset, false);
+                Q_EMIT newStatus(state);
             }
         }
         break;
@@ -606,8 +606,8 @@ bool FilterManager::executeOperationQueue()
         case FILTER_AUTOFOCUS:
             state = FILTER_AUTOFOCUS;
             qCDebug(KSTARS) << "FilterManager.cpp is triggering autofocus.";
-            emit newStatus(state);
-            emit runAutoFocus(AutofocusReason::FOCUS_FILTER, "");
+            Q_EMIT newStatus(state);
+            Q_EMIT runAutoFocus(AutofocusReason::FOCUS_FILTER, "");
             break;
 
         default:
@@ -864,11 +864,11 @@ void FilterManager::setFocusStatus(Ekos::FocusState focusState)
                 if (++retries == 3)
                 {
                     retries = 0;
-                    emit failed();
+                    Q_EMIT failed();
                     return;
                 }
                 // Restart again
-                emit runAutoFocus(AutofocusReason::FOCUS_FILTER, "");
+                Q_EMIT runAutoFocus(AutofocusReason::FOCUS_FILTER, "");
                 break;
 
             default:
@@ -916,7 +916,7 @@ bool FilterManager::syncAbsoluteFocusPosition(int index)
     else if (m_FocusAbsPositionPending == false)
     {
         m_FocusAbsPositionPending = true;
-        emit newFocusOffset(absFocusPos, true);
+        Q_EMIT newFocusOffset(absFocusPos, true);
     }
 
     return false;
@@ -1018,20 +1018,20 @@ void FilterManager::buildFilterOffsets()
 void FilterManager::signalRunAutoFocus(AutofocusReason autofocusReason, const QString &reasonInfo)
 {
     // BuildFilterOffsets signalled runAutoFocus so pass signal to Focus
-    emit runAutoFocus(autofocusReason, reasonInfo);
+    Q_EMIT runAutoFocus(autofocusReason, reasonInfo);
 }
 
 void FilterManager::autoFocusComplete(FocusState completionState, int currentPosition, double currentTemperature,
                                       double currentAlt)
 {
     // Focus signalled Autofocus completed so pass signal to BuildFilterOffsets
-    emit autoFocusDone(completionState, currentPosition, currentTemperature, currentAlt);
+    Q_EMIT autoFocusDone(completionState, currentPosition, currentTemperature, currentAlt);
 }
 
 void FilterManager::signalAbortAutoFocus()
 {
     // BuildFilterOffsets signalled abortAutoFocus so pass signal to Focus
-    emit abortAutoFocus();
+    Q_EMIT abortAutoFocus();
 }
 
 void FilterManager::checkFilterChangeTimeout()
@@ -1039,7 +1039,7 @@ void FilterManager::checkFilterChangeTimeout()
     if (state == FILTER_CHANGE)
     {
         qCWarning(KSTARS) << "FilterManager.cpp filter change timed out.";
-        emit failed();
+        Q_EMIT failed();
     }
 }
 }

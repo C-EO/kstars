@@ -351,7 +351,7 @@ void MeridianFlipState::startMeridianFlip()
     updateMFMountState(MeridianFlipState::MOUNT_FLIP_RUNNING);
 
     // start the re-slew to the current target expecting that the mount firmware changes the pier side
-    emit slewTelescope(targetPosition.position);
+    Q_EMIT slewTelescope(targetPosition.position);
 }
 
 bool MeridianFlipState::resetMeridianFlip()
@@ -395,7 +395,7 @@ void MeridianFlipState::setMeridianFlipMountState(MeridianFlipMountState newMeri
 void MeridianFlipState::appendLogText(QString message)
 {
     qCInfo(KSTARS_EKOS_MOUNT) << message;
-    emit newLog(message);
+    Q_EMIT newLog(message);
 }
 
 void MeridianFlipState::updateMinMeridianFlipEndTime()
@@ -415,7 +415,7 @@ void MeridianFlipState::updateMFMountState(MeridianFlipMountState status)
         }
         // in all other cases, handle it straight forward
         setMeridianFlipMountState(status);
-        emit newMountMFStatus(status);
+        Q_EMIT newMountMFStatus(status);
     }
 }
 
@@ -462,7 +462,7 @@ void MeridianFlipState::publishMFMountStatusText(QString text)
     // avoid double entries
     if (text != m_lastStatusText)
     {
-        emit newMeridianFlipMountStatusText(text);
+        Q_EMIT newMeridianFlipMountStatusText(text);
         m_lastStatusText = text;
     }
 }
@@ -583,4 +583,3 @@ double MeridianFlipState::initialPositionHA() const
 
 
 } // namespace
-

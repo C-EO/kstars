@@ -46,10 +46,10 @@ class OpsGuide : public QFrame, public Ui::OpsGuide
             GPG_ALGORITHM
         };
 
-    signals:
+    Q_SIGNALS:
         void settingsUpdated();
 
-    private slots:
+    private Q_SLOTS:
         void setRAGuidePulseAlg(int index);
         void setDECGuidePulseAlg(int index);
 

@@ -312,7 +312,7 @@ void CollimationOverlayOptions::initModel()
         elementNamesList->clear();
         elementNamesList->addItems(m_ElementNames);
         elementNamesList->setEditTriggers(QAbstractItemView::AllEditTriggers);
-        emit updated();
+        Q_EMIT updated();
     });
     refreshModel();
 }
@@ -347,7 +347,7 @@ QString CollimationOverlayOptions::addElement(const QString &name)
     element["Thickness"] = thicknessSpinBox->value();
 
     KStarsData::Instance()->userdb()->AddCollimationOverlayElement(element);
-    emit updated();
+    Q_EMIT updated();
     return element["Name"].toString();
 }
 
@@ -366,7 +366,7 @@ bool CollimationOverlayOptions::setCollimationOverlayElementValue(const QString 
             // Update field and database.
             oneElement[field] = value;
             KStarsData::Instance()->userdb()->UpdateCollimationOverlayElement(oneElement, oneElement["id"].toInt());
-            emit updated();
+            Q_EMIT updated();
             return true;
         }
     }
@@ -540,7 +540,7 @@ const QVariantMap CollimationOverlayOptions::getCollimationOverlayElement(const 
 void CollimationOverlayOptions::refreshElements()
 {
     refreshModel();
-    emit updated();
+    Q_EMIT updated();
 }
 
 int CollimationOverlayOptions::id(const QString &name) const

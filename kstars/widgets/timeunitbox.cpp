@@ -87,7 +87,7 @@ void TimeUnitBox::increase()
     if (value() < maxValue())
     {
         setValue(value() + 1);
-        emit valueChanged(value());
+        Q_EMIT valueChanged(value());
         DecreaseAction->setEnabled(true);
     }
     else
@@ -101,7 +101,7 @@ void TimeUnitBox::decrease()
     if (value() > minValue())
     {
         setValue(value() - 1);
-        emit valueChanged(value());
+        Q_EMIT valueChanged(value());
         IncreaseAction->setEnabled(true);
     }
     else

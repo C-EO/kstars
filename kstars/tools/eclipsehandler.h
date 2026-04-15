@@ -102,7 +102,7 @@ class EclipseEvent : public QObject
             return false;
         }
 
-    public slots:
+    public Q_SLOTS:
         /**
          * @brief showDetails
          * @short (if implemented) shows a widget with details about the eclipse
@@ -166,7 +166,7 @@ class EclipseHandler : public ApproachSolver
             return m_events;
         }
 
-    signals:
+    Q_SIGNALS:
         /**
          * @brief signalEventFound
          * @short A signal to be dispatched as soon as a new Event is found.

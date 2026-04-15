@@ -292,13 +292,13 @@ void ClientManagerLite::setConnectedHost(const QString &connectedHost)
     m_connectedHost = connectedHost;
     setConnected(m_connectedHost.size() > 0);
 
-    emit connectedHostChanged(connectedHost);
+    Q_EMIT connectedHostChanged(connectedHost);
 }
 
 void ClientManagerLite::setConnected(bool connected)
 {
     m_connected = connected;
-    emit connectedChanged(connected);
+    Q_EMIT connectedChanged(connected);
 }
 
 QString ClientManagerLite::syncLED(const QString &device, const QString &property, const QString &name)
@@ -400,7 +400,7 @@ void ClientManagerLite::buildTextGUI(Property *property)
                 write = true;
                 break;
         }
-        emit createINDIText(property->getDeviceName(), property->getName(), label, name, text, read, write);
+        Q_EMIT createINDIText(property->getDeviceName(), property->getName(), label, name, text, read, write);
     }
 }
 
@@ -462,8 +462,8 @@ void ClientManagerLite::buildNumberGUI(Property *property)
                 write = true;
                 break;
         }
-        emit createINDINumber(property->getDeviceName(), property->getName(), label, name, text, read, write,
-                              scale);
+        Q_EMIT createINDINumber(property->getDeviceName(), property->getName(), label, name, text, read, write,
+                                scale);
     }
 }
 
@@ -547,7 +547,7 @@ void ClientManagerLite::buildSwitch(bool buttonGroup, ISwitch *sw, INDI::Propert
         bool isSelected = false;
         if (sw->s == ISS_ON)
             isSelected = true;
-        emit createINDIMenu(property->getDeviceName(), property->getName(), label, sw->name, isSelected);
+        Q_EMIT createINDIMenu(property->getDeviceName(), property->getName(), label, sw->name, isSelected);
         return;
     }
 
@@ -559,13 +559,13 @@ void ClientManagerLite::buildSwitch(bool buttonGroup, ISwitch *sw, INDI::Propert
     switch (guiType)
     {
         case PG_BUTTONS:
-            emit createINDIButton(property->getDeviceName(), property->getName(), label, name, true, true, exclusive,
-                                  sw->s == ISS_ON, enabled);
+            Q_EMIT createINDIButton(property->getDeviceName(), property->getName(), label, name, true, true, exclusive,
+                                    sw->s == ISS_ON, enabled);
             break;
 
         case PG_RADIO:
-            emit createINDIRadio(property->getDeviceName(), property->getName(), label, name, true, true, exclusive,
-                                 sw->s == ISS_ON, enabled);
+            Q_EMIT createINDIRadio(property->getDeviceName(), property->getName(), label, name, true, true, exclusive,
+                                   sw->s == ISS_ON, enabled);
         /*check_w = new QCheckBox(label, guiProp->getGroup()->getContainer());
         groupB->addButton(check_w);
 
@@ -606,7 +606,7 @@ void ClientManagerLite::buildLightGUI(INDI::Property property)
         if (label == "(I18N_EMPTY_MESSAGE)")
             label = it.getName();;
 
-        emit createINDILight(property->getDeviceName(), property->getName(), label, name);
+        Q_EMIT createINDILight(property->getDeviceName(), property->getName(), label, name);
     }
 }
 
@@ -801,11 +801,11 @@ bool ClientManagerLite::saveDisplayImage()
     {
         if (displayImage.save(filename))
         {
-            emit newINDIMessage("File " + filename + " was successfully saved");
+            Q_EMIT newINDIMessage("File " + filename + " was successfully saved");
             return true;
         }
     }
-    emit newINDIMessage("Couldn't save file " + filename);
+    Q_EMIT newINDIMessage("Couldn't save file " + filename);
     return false;
 }
 
@@ -839,7 +839,7 @@ void ClientManagerLite::newDevice(INDI::BaseDevice *dp)
 
     if (Options::verboseLogging())
         qDebug() << "Received new device " << deviceName;
-    emit newINDIDevice(deviceName);
+    Q_EMIT newINDIDevice(deviceName);
 
     DeviceInfoLite *devInfo = new DeviceInfoLite(dp);
     //Think about it!
@@ -854,7 +854,7 @@ void ClientManagerLite::newDevice(INDI::BaseDevice *dp)
 
 void ClientManagerLite::removeDevice(BaseDevice *dp)
 {
-    emit removeINDIDevice(QString(dp->getDeviceName()));
+    Q_EMIT removeINDIDevice(QString(dp->getDeviceName()));
 }
 
 void ClientManagerLite::newProperty(INDI::Property property)
@@ -882,18 +882,18 @@ void ClientManagerLite::newProperty(INDI::Property property)
         {
             devInfo->telescope.reset(new TelescopeLite(devInfo->device));
             m_telescope = devInfo->telescope.get();
-            emit telescopeAdded(m_telescope);
+            Q_EMIT telescopeAdded(m_telescope);
             // The connected signal must be emitted for already connected scopes otherwise
             // the motion control page remains disabled.
             if (devInfo->telescope->isConnected())
             {
-                emit deviceConnected(devInfo->telescope->getDeviceName(), true);
-                emit telescopeConnected(devInfo->telescope.get());
+                Q_EMIT deviceConnected(devInfo->telescope->getDeviceName(), true);
+                Q_EMIT telescopeConnected(devInfo->telescope.get());
             }
         }
     }
 
-    emit newINDIProperty(deviceName, name, groupName, type, label);
+    Q_EMIT newINDIProperty(deviceName, name, groupName, type, label);
     PGui guiType;
     switch (property->getType())
     {
@@ -936,7 +936,7 @@ void ClientManagerLite::removeProperty(INDI::Property property)
     if (property == nullptr)
         return;
 
-    emit removeINDIProperty(property->getDeviceName(), property->getGroupName(), property->getName());
+    Q_EMIT removeINDIProperty(property->getDeviceName(), property->getGroupName(), property->getName());
 
     DeviceInfoLite *devInfo = nullptr;
     for (auto di : m_devices)
@@ -953,7 +953,7 @@ void ClientManagerLite::removeProperty(INDI::Property property)
         {
             if (devInfo->telescope.get() != nullptr)
             {
-                emit telescopeRemoved(devInfo->telescope.get());
+                Q_EMIT telescopeRemoved(devInfo->telescope.get());
             }
             KStarsLite::Instance()->map()->update(); // Update SkyMap if position of telescope is changed
         }
@@ -963,7 +963,7 @@ void ClientManagerLite::removeProperty(INDI::Property property)
 void ClientManagerLite::newBLOB(IBLOB *bp)
 {
     processBLOBasCCD(bp);
-    emit newLEDState(bp->bvp->device, bp->name);
+    Q_EMIT newLEDState(bp->bvp->device, bp->name);
 }
 
 bool ClientManagerLite::processBLOBasCCD(IBLOB *bp)
@@ -1099,9 +1099,9 @@ bool ClientManagerLite::processBLOBasCCD(IBLOB *bp)
             }
             else
             {
-                emit newINDIMessage(
+                Q_EMIT newINDIMessage(
                     i18n("Unable to find dcraw and cjpeg. Please install the required tools to convert CR2 to JPEG."));
-                emit newINDIBLOBImage(deviceName, false);
+                Q_EMIT newINDIBLOBImage(deviceName, false);
                 return false;
             }
 #endif
@@ -1110,7 +1110,7 @@ bool ClientManagerLite::processBLOBasCCD(IBLOB *bp)
         displayImage.load(filename);
         QFile::remove(filename);
         KStarsLite::Instance()->imageProvider()->addImage("ccdPreview", displayImage);
-        emit newINDIBLOBImage(deviceName, true);
+        Q_EMIT newINDIBLOBImage(deviceName, true);
         return true;
     }
     else if (BType == BLOB_FITS)
@@ -1118,10 +1118,10 @@ bool ClientManagerLite::processBLOBasCCD(IBLOB *bp)
         displayImage = FITSData::FITSToImage(filename);
         QFile::remove(filename);
         KStarsLite::Instance()->imageProvider()->addImage("ccdPreview", displayImage);
-        emit newINDIBLOBImage(deviceName, true);
+        Q_EMIT newINDIBLOBImage(deviceName, true);
         return true;
     }
-    emit newINDIBLOBImage(deviceName, false);
+    Q_EMIT newINDIBLOBImage(deviceName, false);
     return false;
 }
 
@@ -1132,23 +1132,23 @@ void ClientManagerLite::newSwitch(ISwitchVectorProperty *svp)
         ISwitch *sw = &(svp->sp[i]);
         if (QString(sw->name) == QString("CONNECT"))
         {
-            emit deviceConnected(svp->device, sw->s == ISS_ON);
+            Q_EMIT deviceConnected(svp->device, sw->s == ISS_ON);
             if (m_telescope && m_telescope->getDeviceName() == svp->device)
             {
                 if (sw->s == ISS_ON)
                 {
-                    emit telescopeConnected(m_telescope);
+                    Q_EMIT telescopeConnected(m_telescope);
                 }
                 else
                 {
-                    emit telescopeDisconnected();
+                    Q_EMIT telescopeDisconnected();
                 }
             }
         }
         if (sw != nullptr)
         {
-            emit newINDISwitch(svp->device, svp->name, sw->name, sw->s == ISS_ON);
-            emit newLEDState(svp->device, svp->name);
+            Q_EMIT newINDISwitch(svp->device, svp->name, sw->name, sw->s == ISS_ON);
+            Q_EMIT newLEDState(svp->device, svp->name);
         }
     }
 }
@@ -1169,8 +1169,8 @@ void ClientManagerLite::newNumber(INumberVectorProperty *nvp)
         numberFormat(buf, num.format, num.value);
         QString numberName = num.name;
 
-        emit newINDINumber(deviceName, propName, numberName, QString(buf).trimmed());
-        emit newLEDState(deviceName, propName);
+        Q_EMIT newINDINumber(deviceName, propName, numberName, QString(buf).trimmed());
+        Q_EMIT newLEDState(deviceName, propName);
     }
 }
 
@@ -1183,20 +1183,20 @@ void ClientManagerLite::newText(ITextVectorProperty *tvp)
         IText text        = tvp->tp[i];
         QString fieldName = text.name;
 
-        emit newINDIText(deviceName, propName, fieldName, text.text);
-        emit newLEDState(deviceName, propName);
+        Q_EMIT newINDIText(deviceName, propName, fieldName, text.text);
+        Q_EMIT newLEDState(deviceName, propName);
     }
 }
 
 void ClientManagerLite::newLight(ILightVectorProperty *lvp)
 {
-    emit newINDILight(lvp->device, lvp->name);
-    emit newLEDState(lvp->device, lvp->name);
+    Q_EMIT newINDILight(lvp->device, lvp->name);
+    Q_EMIT newLEDState(lvp->device, lvp->name);
 }
 
 void ClientManagerLite::newMessage(INDI::BaseDevice *dp, int messageID)
 {
-    emit newINDIMessage(QString::fromStdString(dp->messageQueue(messageID)));
+    Q_EMIT newINDIMessage(QString::fromStdString(dp->messageQueue(messageID)));
 }
 
 void ClientManagerLite::serverDisconnected(int exit_code)
@@ -1213,7 +1213,7 @@ void ClientManagerLite::clearDevices()
     {
         if (devInfo->telescope.get() != nullptr)
         {
-            emit telescopeRemoved(devInfo->telescope.get());
+            Q_EMIT telescopeRemoved(devInfo->telescope.get());
         }
         delete devInfo;
     }
