@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-14 02:09+0000\n"
-"PO-Revision-Date: 2026-04-11 09:18+0200\n"
+"POT-Creation-Date: 2026-04-15 02:05+0000\n"
+"PO-Revision-Date: 2026-04-14 17:08+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -778,7 +778,7 @@ msgstr "Error de lectura del fitxer de configuració d'astrometria."
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "Error d'escriptura en el fitxer de configuració intern d'astrometria."
 
-#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2945
+#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2968
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -8400,36 +8400,29 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:400
-#, fuzzy, kde-format
-#| msgid "Enable Automatic PAC Correction"
+#, kde-format
 msgid "Automatic PAC Correction"
-msgstr "Activa la correcció automàtica del PAC"
+msgstr "Correcció automàtica del PAC"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PAHAutoChangeDirection)
 #: ekos/align/opsalign.ui:407
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>When enabled and a PAC (Polar Alignment Corrector) "
-#| "device is connected, the system will automatically send correction "
-#| "commands to the PAC during the refresh phase instead of requiring manual "
-#| "knob adjustments.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>When enabled, if the polar alignment error in an axis "
 "<b>increases</b> after the first PAC correction, the system will "
 "automatically reverse the correction direction for that axis on the next "
 "attempt.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Quan s'activa i es connecta un dispositiu PAC («Polar "
-"Alignment Corrector», Corrector d'alineació de la polar), el sistema enviarà "
-"automàticament ordres de correcció a la PAC durant la fase d'actualització "
-"en lloc de requerir ajustos manuals de la roda.</p></body></html>"
+"<html><head/><body><p>Quan està activat, si l'error de l'alineació polar en "
+"un eix <b>augmenta</b> després de la primera correcció del PAC, el sistema "
+"invertirà automàticament la direcció de la correcció d'aquest eix a l'intent "
+"següent.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoChangeDirection)
 #: ekos/align/opsalign.ui:410
-#, fuzzy, kde-format
-#| msgid "Change Location..."
+#, kde-format
 msgid "Auto Change Direction"
-msgstr "Canvia l'emplaçament..."
+msgstr "Canvia la direcció automàticament"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:417
@@ -10460,10 +10453,13 @@ msgstr ""
 "PAC: S'ha arribat al temps d'espera de la correcció (%1s). L'error total és "
 "%2'. S'atura."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1460
 #, kde-format
 msgid "PAC: Az error increase confirmed (%1' → %2') – reversing Az direction."
 msgstr ""
+"PAC: S'ha confirmat l'augment de l'error Az (%1' → %2'): s'inverteix la "
+"direcció Az."
 
 #: ekos/align/polaralignmentassistant.cpp:1466
 #, kde-format
@@ -10471,12 +10467,17 @@ msgid ""
 "PAC: Az error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
+"PAC: No s'ha confirmat l'augment de l'error Az (segurament és soroll): es "
+"manté la direcció original."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1473
 #, kde-format
 msgid ""
 "PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction."
 msgstr ""
+"PAC: S'ha confirmat l'augment de l'error Alt (%1' → %2'): s'inverteix la "
+"direcció Alt."
 
 #: ekos/align/polaralignmentassistant.cpp:1479
 #, kde-format
@@ -10484,6 +10485,8 @@ msgid ""
 "PAC: Alt error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
+"PAC: No s'ha confirmat l'augment de l'error Alt (segurament és soroll): es "
+"manté la direcció original."
 
 #: ekos/align/polaralignmentassistant.cpp:1504
 #, kde-format
@@ -10491,6 +10494,8 @@ msgid ""
 "PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: "
 "%3')."
 msgstr ""
+"PAC: No hi ha millores durant %1 iteració/ons consecutiva/es (millor: %2', "
+"actual: %3')."
 
 #: ekos/align/polaralignmentassistant.cpp:1510
 #, kde-format
@@ -10498,20 +10503,28 @@ msgid ""
 "PAC: No improvement after %1 consecutive iterations. Best error reached: "
 "%2'. Stopping polar alignment."
 msgstr ""
+"PAC: No hi ha millores durant %1 iteració/ons consecutiva/es. El millor "
+"error assolit: %2'. S'atura l'alineació polar."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1527
 #, kde-format
 msgid ""
 "PAC: Az error increased (%1' → %2') – re-solving to confirm before direction "
 "change."
 msgstr ""
+"PAC: L'error Az ha augmentat (%1' → %2'): es trona a solucionar per a "
+"confirmar abans del canvi de direcció."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1534
 #, kde-format
 msgid ""
 "PAC: Alt error increased (%1' → %2') – re-solving to confirm before "
 "direction change."
 msgstr ""
+"PAC: L'error Alt ha augmentat (%1' → %2'): es trona a solucionar per a "
+"confirmar abans del canvi de direcció."
 
 # skip-rule: t-apo_fim, t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1558
@@ -18826,12 +18839,12 @@ msgstr "Connectat"
 msgid "Offline"
 msgstr "Desconnectat"
 
-#: ekos/ekoslive/message.cpp:784
+#: ekos/ekoslive/message.cpp:788
 #, kde-format
 msgid "target"
 msgstr "objectiu"
 
-#: ekos/ekoslive/message.cpp:1072
+#: ekos/ekoslive/message.cpp:1076
 #, kde-format
 msgid "Mosaic import failed."
 msgstr "Ha fallat la importació del mosaic."
@@ -32641,7 +32654,7 @@ msgstr "S'ha produït un error en obrir el fitxer FITS (fits_get_img_param): %1"
 msgid "1D FITS images are not supported in KStars."
 msgstr "El KStars no admet les imatges FITS 1D."
 
-#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2774
+#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2797
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "La profunditat de bits %1 no està admesa."
@@ -32657,27 +32670,27 @@ msgid "Error reading image: %1"
 msgstr "Error en llegir la imatge: %1"
 
 # skip-rule: k-Alt-1
-#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2734
+#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2757
 #, kde-format
 msgid "XISF file open error: "
 msgstr "Error en obrir el fitxer XISF: "
 
-#: fitsviewer/fitsdata.cpp:2648
+#: fitsviewer/fitsdata.cpp:2671
 #, kde-format
 msgid "File contain no images"
 msgstr "El fitxer no conté cap imatge"
 
-#: fitsviewer/fitsdata.cpp:2677
+#: fitsviewer/fitsdata.cpp:2700
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "El format de mostra %1 no està admès."
 
-#: fitsviewer/fitsdata.cpp:2812
+#: fitsviewer/fitsdata.cpp:2835
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "Error en desar la imatge XISF"
 
-#: fitsviewer/fitsdata.cpp:2904 fitsviewer/fitsdata.cpp:3020
+#: fitsviewer/fitsdata.cpp:2927 fitsviewer/fitsdata.cpp:3043
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
@@ -32685,147 +32698,147 @@ msgstr ""
 "FITSData: No hi ha prou memòria per al canal «image_buffer». Sol·licitats: "
 "%1 bytes "
 
-#: fitsviewer/fitsdata.cpp:2959
+#: fitsviewer/fitsdata.cpp:2982
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "No s'ha pogut obrir el fitxer %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2972
+#: fitsviewer/fitsdata.cpp:2995
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "No s'ha pogut la memòria intermèdia: %1"
 
-#: fitsviewer/fitsdata.cpp:2983
+#: fitsviewer/fitsdata.cpp:3006
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "No s'ha pogut fer el «unpack_thumb»: %1"
 
-#: fitsviewer/fitsdata.cpp:2990
+#: fitsviewer/fitsdata.cpp:3013
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "No s'ha pogut fer el «dcraw_process»: %1"
 
-#: fitsviewer/fitsdata.cpp:2998
+#: fitsviewer/fitsdata.cpp:3021
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "No s'ha pogut carregar a la memòria: %1"
 
-#: fitsviewer/fitsdata.cpp:3145
+#: fitsviewer/fitsdata.cpp:3168
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "No s'admet el desament de fitxers comprimits."
 
-#: fitsviewer/fitsdata.cpp:3213
+#: fitsviewer/fitsdata.cpp:3232
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Ha fallat en crear el fitxer: %1"
 
-#: fitsviewer/fitsdata.cpp:3228
+#: fitsviewer/fitsdata.cpp:3254
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Ha fallat en crear la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:3237 fitsviewer/fitsdata.cpp:3244
+#: fitsviewer/fitsdata.cpp:3263 fitsviewer/fitsdata.cpp:3270
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Ha fallat en actualitzar la clau: %1"
 
-#: fitsviewer/fitsdata.cpp:3372
+#: fitsviewer/fitsdata.cpp:3398
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Ha fallat en actualitzar la data: %1"
 
-#: fitsviewer/fitsdata.cpp:3381
+#: fitsviewer/fitsdata.cpp:3407
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Ha fallat en actualitzar l'historial: %1"
 
-#: fitsviewer/fitsdata.cpp:3403
+#: fitsviewer/fitsdata.cpp:3429
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Ha fallat en escriure la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:5174 fitsviewer/fitsdata.cpp:5185
-#: fitsviewer/fitsdata.cpp:5222 fitsviewer/fitsdata.cpp:5258
-#: fitsviewer/fitsdata.cpp:5392
+#: fitsviewer/fitsdata.cpp:5204 fitsviewer/fitsdata.cpp:5215
+#: fitsviewer/fitsdata.cpp:5252 fitsviewer/fitsdata.cpp:5288
+#: fitsviewer/fitsdata.cpp:5422
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "No s'ha trobat cap sistema de coordenades mundial."
 
-#: fitsviewer/fitsdata.cpp:5567 fitsviewer/fitsdata.cpp:5673
+#: fitsviewer/fitsdata.cpp:5597 fitsviewer/fitsdata.cpp:5703
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Error en consultar el Simbad"
 
-#: fitsviewer/fitsdata.cpp:5582
+#: fitsviewer/fitsdata.cpp:5612
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "La consulta del Simbad ha excedit el temps límit"
 
-#: fitsviewer/fitsdata.cpp:6559 fitsviewer/fitsdata.cpp:6672
+#: fitsviewer/fitsdata.cpp:6589 fitsviewer/fitsdata.cpp:6702
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr ""
 "Només es permeten imatges de 8 i 16 bits construïdes amb el filtre mosaic de "
 "Bayer."
 
-#: fitsviewer/fitsdata.cpp:6567 fitsviewer/fitsdata.cpp:6678
+#: fitsviewer/fitsdata.cpp:6597 fitsviewer/fitsdata.cpp:6708
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Patró de Bayer desconegut %1"
 
-#: fitsviewer/fitsdata.cpp:6591 fitsviewer/fitsdata.cpp:6617
+#: fitsviewer/fitsdata.cpp:6621 fitsviewer/fitsdata.cpp:6647
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Patró de Bayer no implementat %1"
 
-#: fitsviewer/fitsdata.cpp:6625
+#: fitsviewer/fitsdata.cpp:6655
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Desplaçaments del filtre mosaic de Bayer no implementats %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6636 fitsviewer/fitsdata.cpp:6689
+#: fitsviewer/fitsdata.cpp:6666 fitsviewer/fitsdata.cpp:6719
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Paràmetres no vàlids de reconstrucció des de Bayer del dc1394."
 
-#: fitsviewer/fitsdata.cpp:6647 fitsviewer/fitsdata.cpp:6700
+#: fitsviewer/fitsdata.cpp:6677 fitsviewer/fitsdata.cpp:6730
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Paràmetres no vàlids de reconstrucció des de Bayer de l'OpenCV."
 
-#: fitsviewer/fitsdata.cpp:6656 fitsviewer/fitsdata.cpp:6709
+#: fitsviewer/fitsdata.cpp:6686 fitsviewer/fitsdata.cpp:6739
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Motor no vàlid de reconstrucció des de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6963
+#: fitsviewer/fitsdata.cpp:6993
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 "debayer_8bit invocat amb paràmetres no vàlids de reconstrucció des de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6979 fitsviewer/fitsdata.cpp:7025
-#: fitsviewer/fitsdata.cpp:7083 fitsviewer/fitsdata.cpp:7129
+#: fitsviewer/fitsdata.cpp:7009 fitsviewer/fitsdata.cpp:7055
+#: fitsviewer/fitsdata.cpp:7113 fitsviewer/fitsdata.cpp:7159
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:6989 fitsviewer/fitsdata.cpp:7093
+#: fitsviewer/fitsdata.cpp:7019 fitsviewer/fitsdata.cpp:7123
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer."
 
-#: fitsviewer/fitsdata.cpp:7008 fitsviewer/fitsdata.cpp:7112
+#: fitsviewer/fitsdata.cpp:7038 fitsviewer/fitsdata.cpp:7142
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "La reconstrucció des de Bayer ha fallat (%1)"
 
-#: fitsviewer/fitsdata.cpp:7068
+#: fitsviewer/fitsdata.cpp:7098
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""
@@ -44996,6 +45009,8 @@ msgid ""
 "Automatically reverse the correction direction for an axis if its polar "
 "alignment error increases after the first PAC correction attempt."
 msgstr ""
+"Inverteix automàticament la direcció de correcció d'un eix si el seu error "
+"d'alineació polar augmenta després del primer intent de correcció PAC."
 
 #. i18n: ectx: label, entry (PAHSuccessThreshold), group (Align)
 #: kstars.kcfg:3041
@@ -93781,639 +93796,3 @@ msgstr "Color de fons:"
 #, kde-format
 msgid "Set the color for the background."
 msgstr "Estableix el color de fons."
-
-#~ msgid "Main PA: %1, Main offset: %2, Guide offset: %3"
-#~ msgstr ""
-#~ "AP principal: %1, desplaçament principal: %2, desplaçament del guiatge: %3"
-
-#~ msgid ""
-#~ "Vertically reflected image detected: Try to check option 'Use reflected "
-#~ "guide frames' in [Guide Options/Calibration]"
-#~ msgstr ""
-#~ "S'ha detectat una imatge reflectida verticalment: proveu de marcar "
-#~ "l'opció «Utilitza els fotogrames de guia reflectits» a [Opcions de "
-#~ "guiatge/Calibratge]"
-
-#~ msgid "Internal guider could not find WCS rotation property of %1..."
-#~ msgstr ""
-#~ "El sistema de guiatge intern no ha pogut trobar la propietat de gir del "
-#~ "WCS %1..."
-
-#~ msgid "Error while updating pierside for camera rotation: Pierside unknown!"
-#~ msgstr ""
-#~ "Error en actualitzar el costat del moll segons el gir de la càmera: "
-#~ "costat del moll desconegut!"
-
-#~ msgid "Pierside is now "
-#~ msgstr "Ara el costat del moll està "
-
-#~ msgid "%1 rotation is now %2 (calibration with %3)"
-#~ msgstr "El gir de %1 ara és %2 (Calibratge original amb %3)"
-
-#~ msgid "RApulse now %1ms/arcsec calculated for DEC = %2"
-#~ msgstr "Pols RA ara %1ms/arcsec calculat amb DEC = %2"
-
-#~ msgid ""
-#~ "<html><head/><body><p>These are the current calibration parameters.</p></"
-#~ "body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Aquests són els paràmetres actuals de calibratge.</"
-#~ "p></body></html>"
-
-#~ msgid "DEC Rotation"
-#~ msgstr "Rotació Dec"
-
-#~ msgid "RA Pulse"
-#~ msgstr "Pols AR"
-
-#~ msgid "RA Rotation"
-#~ msgstr "Rotació AR"
-
-#~ msgid "DEC Pulse"
-#~ msgstr "Pols Dec"
-
-#~ msgid "Rotation Offset"
-#~ msgstr "Desplaçament de la rotació"
-
-# Pier side = https://www.gralak.com/apdriver/help/pier_side.htm
-#~ msgid "Mount reverses DEC pulses after changing pierside"
-#~ msgstr ""
-#~ "La muntura inverteix els polsos DEC després de canviar el costat del moll"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Reflect the guide images on x-axis before passing "
-#~ "them to the guider process.<br/>This ensures a correct analysis of the "
-#~ "mount drift in case of mirrored captures (e.g. with an OAG or ONAG-train)."
-#~ "</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Reflecteix les imatges de guiatge a l'eix x abans "
-#~ "de passar-les al procés de guiatge.<br/>Això assegura una anàlisi "
-#~ "correcta de la deriva de la muntura en cas de captures reflectides (p. "
-#~ "ex., amb un OAG o un tren ONAG).</p></body></html>"
-
-#~ msgid "Use reflected guide frames"
-#~ msgstr "Usa fotogrames de guiatge reflectits"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Check this option if you want to reuse the guide "
-#~ "calibration, but there is no rotator device and the guide camera is "
-#~ "manually rotated together with the imaging camera (e.g. with a OAG "
-#~ "train). <br/>Please note that an active option &quot;Automatic and Manual "
-#~ "Rotator Control&quot; in Rotator Settings is a precondition.</p></body></"
-#~ "html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Marqueu aquesta opció si voleu reutilitzar el "
-#~ "calibratge del guiatge, però no hi ha cap dispositiu de rotor i la càmera "
-#~ "guia es gira manualment juntament amb la càmera d'imatges (p. ex. amb un "
-#~ "tren OAG). <br/>Tingueu en compte que cal activar l'opció «Control "
-#~ "automàtic i manual del rotor» a la configuració del rotor com una "
-#~ "condició prèvia.</p></body></html>"
-
-#~ msgid "Couple guide camera on \"Manual Rotator\""
-#~ msgstr "Acobla la càmera de guiatge al «Rotor manual»"
-
-#~ msgid "Position angle offset of capture camera"
-#~ msgstr "Desplaçament de l'angle de posició de la càmera de captura"
-
-#~ msgid "Position angle offset of guide camera"
-#~ msgstr "Desplaçament de l'angle de posició de la càmera de guiatge"
-
-#~ msgid ""
-#~ "Guide frames are reflected vertically before passing them to the guider "
-#~ "process."
-#~ msgstr ""
-#~ "Els fotogrames guia es reflecteixen verticalment abans de passar-los al "
-#~ "procés de guiatge."
-
-#~ msgid ""
-#~ "Guide camera is rotated together with main camera in \"Manual Rotator\" "
-#~ "mode."
-#~ msgstr ""
-#~ "La càmera guia gira juntament amb la càmera principal en el mode «Rotor "
-#~ "manual»."
-
-#~ msgid "Warning: Camera module & Align module have to use the same train!"
-#~ msgstr ""
-#~ "Avís: el mòdul de Càmera i el mòdul d'Alineació cal que facin servir el "
-#~ "mateix tren!"
-
-#~ msgid ""
-#~ "Warning: Failed to load post-startup queue from %1 after safety recovery"
-#~ msgstr ""
-#~ "Avís: ha fallat en carregar la cua posterior d'inici de %1 després de la "
-#~ "recuperació de seguretat"
-
-#~ msgid ""
-#~ "Resetting startup state to run startup procedures after preemptive "
-#~ "shutdown."
-#~ msgstr ""
-#~ "S'està reiniciant l'estat d'inici per a executar els procediments d'inici "
-#~ "després de l'aturada preventiva."
-
-#~| msgid "World Coordinate System (WCS) is disabled."
-#~ msgid "%+: World Coordinate System (WCS) is disabled."
-#~ msgstr ""
-#~ "%+: El sistema de coordenades mundial (World Coordinate System -WCS-) "
-#~ "està desactivat."
-
-#~ msgid "Warning: Failed to add mount park task."
-#~ msgstr "Avís: Ha fallat en afegir la tasca d'aparcament de la muntura."
-
-#~ msgid "Warning: Failed to add mount unpark task, attempting to slew anyway."
-#~ msgstr ""
-#~ "Avís: Ha fallat en afegir la tasca de desaparcament de la muntura, "
-#~ "igualment s'intenta l'orientació."
-
-#~ msgid "Apply filter to image after capture to enhance it"
-#~ msgstr ""
-#~ "Aplica un filtre a la imatge després de la captura per a millorar-la"
-
-#~ msgctxt "@title:window"
-#~ msgid "KStars Live Stacker (BETA)"
-#~ msgstr "Apilador en directe del KStars (BETA)"
-
-#~ msgid ""
-#~ "Process 3D (RGB) FITS images. If unchecked, only first channel is "
-#~ "processed."
-#~ msgstr ""
-#~ "Processa les imatges FITS en 3D (RGB). Si no està marcada, només es "
-#~ "processarà el primer canal."
-
-#~ msgid ""
-#~ "Job '%1' cannot start because safety status is %2. Waiting until weather "
-#~ "improves or until %3"
-#~ msgstr ""
-#~ "La tasca «%1» no es pot iniciar perquè l'estat de seguretat és %2. "
-#~ "S'espera fins que millori la meteorologia o fins a %3"
-
-#~ msgctxt "@title:window"
-#~ msgid "Stack Directory"
-#~ msgstr "Directori d'apilament"
-
-#~ msgctxt "@title:window"
-#~ msgid "Select Master Dark"
-#~ msgstr "Selecció de fotograma fosc mestre"
-
-#~ msgctxt "@title:window"
-#~ msgid "Select Master Flat"
-#~ msgstr "Selecció de fotograma pla mestre"
-
-#~ msgid "Watching %1"
-#~ msgstr "S'està controlant %1"
-
-#~ msgid "Stopped Watching (%1)"
-#~ msgstr "S'ha aturat el control de %1"
-
-#~ msgid "Stopped (%1)"
-#~ msgstr "Aturat (%1)"
-
-#~ msgid "Signal-to-noise ratio Max / Min / Mean of the processed subs"
-#~ msgstr ""
-#~ "Relació de senyal a soroll Màx. / Mín. / Mitjana de les subsolucions "
-#~ "processades"
-
-#~ msgid "SNR Av / Min / Max:"
-#~ msgstr "SNR Mit. / Mín. / Màx.:"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Kappa controls the multiplicative update constraint "
-#~ "per iteration (preventing large pixel updates). Usual values between 1.0 "
-#~ "(no update) and 2.0.</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>La Kappa controla la restricció d'actualització "
-#~ "multiplicativa per iteració (evitant les actualitzacions de píxels "
-#~ "grans). Valors habituals entre 1,0 (sense actualització) i 2,0.</p></"
-#~ "body></html>"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Update PSF Interval. Adapt the PSF used in the "
-#~ "ImageMM method to provide a better result. This is resource intensive and "
-#~ "if overdone can lead to ringing.</p><p>0 = No update</p><p>1 = Every "
-#~ "iteration</p><p>n = Every nth iteration</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Interval d'actualització del PSF. Adapta el PSF "
-#~ "utilitzat en el mètode ImageMM per a proporcionar un resultat millor. "
-#~ "Aquest és un recurs intensiu i si es fa en excés pot conduir a "
-#~ "anellaments.</p><p>0 = Sense actualitzar</p><p>1 = Cada iteració</p><p>n "
-#~ "= Cada n iteració</p></body></html>"
-
-#~ msgid "Rejection Method:"
-#~ msgstr "Mètode de rebuig:"
-
-#~ msgid "Live Stacking pixel rejection mechanism"
-#~ msgstr "Mecanisme de rebuig de píxels de l'apilament en directe"
-
-#~ msgid "Camera Rotation updated for Pierside "
-#~ msgstr "Gir de la càmera actualitzat segons el costat del moll"
-
-#~ msgid "Calibration OK: CamRotation %1 / CalRotation %2"
-#~ msgstr "Calibratge correcte: GirCam %1 / GirCal %2"
-
-#~ msgid "\"My Weather Station\"@localhost:8000"
-#~ msgstr "\"Estació meteorològica\"@localhost:8000"
-
-#~ msgid "Warning: Device %1 is not a weather device"
-#~ msgstr "Avís: el dispositiu %1 no es cap dispositiu meteorològic"
-
-#~ msgid ""
-#~ "Observatory startup script is normally only executed if Ekos is offline. "
-#~ "Enable this option to start it whenever scheduler is starting up."
-#~ msgstr ""
-#~ "L'script d'inici de l'observatori normalment només s'executa si l'Ekos "
-#~ "està fora de línia. Activeu aquesta opció per a iniciar-lo sempre que "
-#~ "s'iniciï el programador."
-
-#~ msgid "Always Execute Startup Script"
-#~ msgstr "Executa sempre l'script d'inici"
-
-#~ msgid "Always execute startup script regardless of Ekos status."
-#~ msgstr ""
-#~ "Executa sempre l'script d'inici sense tenir en compte l'estat de l'Ekos."
-
-#~ msgid "Script (*)"
-#~ msgstr "Script (*)"
-
-#~ msgctxt "@title:window"
-#~ msgid "Select Shutdown Script"
-#~ msgstr "Selecció de l'script de tancament"
-
-#~ msgid "Manual startup procedure terminated due to errors."
-#~ msgstr "El procediment d'inici manual ha finalitzat a causa d'errors."
-
-#~ msgid ""
-#~ "<html><head/><body><p>One-time startup procedure to be executed before "
-#~ "starting Ekos. The script is executed <span style=\" font-weight:600; "
-#~ "text-decoration: underline;\">before</span> the startup procedures (e.g. "
-#~ "unpark scope), if selected, are executed.</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Procediment d'inici a executar una única vegada "
-#~ "abans d'iniciar l'Ekos. Si està seleccionat, l'script s'executarà <span "
-#~ "style=\" font-weight:600; text-decoration: underline;\">abans</span> dels "
-#~ "procediments d'inici (p. ex., desaparcar el telescopi).</p></body></html>"
-
-#~ msgid "Park dome to home position"
-#~ msgstr "Aparca la cúpula a la posició inicial"
-
-#~ msgid "UnPark Dome"
-#~ msgstr "Desaparca la cúpula"
-
-#~ msgid "Park telescope to home position."
-#~ msgstr "Aparca el telescopi a la posició inicial."
-
-#~ msgid "UnPark Mount"
-#~ msgstr "Desaparca la muntura"
-
-#~ msgid "Open dust cover"
-#~ msgstr "Obre la funda de protecció"
-
-#~ msgid "UnCap"
-#~ msgstr "Treu la funda"
-
-#~ msgid "Script:"
-#~ msgstr "Script:"
-
-#~ msgid ""
-#~ "<html><head/><body><p>One-time shutdown procedure to be executed after "
-#~ "all scheduler jobs are completed. The script is executed <span style=\" "
-#~ "font-weight:600; text-decoration: underline;\">after</span> the shutdown "
-#~ "procedures (e.g. parking), if selected, are completed.</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Procediment de tancament a executar una única "
-#~ "vegada després de completar totes les tasques del programador. Si està "
-#~ "seleccionada, l'script s'executarà <span style=\"font-weight:600; text-"
-#~ "decoration: underline;\">després</span> dels procediments de tancament "
-#~ "(p. ex., aparcar).</p></body></html>"
-
-#~ msgid "Turn off CCD cooler."
-#~ msgstr "Apaga el refrigerador del CCD."
-
-#~ msgid "Warm CCD"
-#~ msgstr "CCD calent"
-
-#~ msgid "Close dust cover"
-#~ msgstr "Tanca la funda de protecció"
-
-#~ msgid "Cap"
-#~ msgstr "Tapa"
-
-#~ msgid "Warning: startup script URL %1 is not valid."
-#~ msgstr "Avís: l'script d'inici a l'URL %1 no és vàlid."
-
-#~ msgid "Warning: shutdown script URL %1 is not valid."
-#~ msgstr "Avís: l'script de tancament a l'URL %1 no és vàlid."
-
-#~ msgid ""
-#~ "Warning: dome device not ready after timeout, attempting to recover..."
-#~ msgstr ""
-#~ "Avís: el dispositiu de la cúpula no està preparat després del temps "
-#~ "d'espera, s'intenta recuperar..."
-
-#~ msgid "Dome unpark required but dome is not yet ready."
-#~ msgstr ""
-#~ "S'ha requerit el desaparcament de la cúpula, però aquesta encara no està "
-#~ "preparada."
-
-#~ msgid ""
-#~ "Warning: mount device not ready after timeout, attempting to recover..."
-#~ msgstr ""
-#~ "Avís: el dispositiu de la muntura no està preparat després del temps "
-#~ "d'espera, s'intenta recuperar..."
-
-#~ msgid ""
-#~ "Warning: cap device not ready after timeout, attempting to recover..."
-#~ msgstr ""
-#~ "Avís: el dispositiu de la tapa no està preparat després del temps "
-#~ "d'espera, s'intenta recuperar..."
-
-#~ msgid "Cap parked."
-#~ msgstr "La tapa està aparcada."
-
-#~ msgid "Cap unparked."
-#~ msgstr "La tapa està desaparcada."
-
-#~ msgid "Operation timeout. Restarting operation..."
-#~ msgstr ""
-#~ "S'ha excedit el temps de l'operació. S'està tornant a iniciar "
-#~ "l'operació..."
-
-#~ msgid "Cap parking error."
-#~ msgstr "Error en aparcar la tapa."
-
-#~ msgid "Cap unparking error."
-#~ msgstr "Error en desaparcar la tapa."
-
-#~ msgid "Mount parked."
-#~ msgstr "La muntura està aparcada."
-
-#~ msgid ""
-#~ "Warning: mount unpark operation timed out on attempt %1/%2. Restarting "
-#~ "operation..."
-#~ msgstr ""
-#~ "Avís: l'operació de desaparcar la muntura ha esgotat el temps en l'intent "
-#~ "%1/%2. S'està reiniciant l'operació..."
-
-#~ msgid "Warning: mount unpark operation timed out on last attempt."
-#~ msgstr ""
-#~ "Avís: l'operació de desaparcar la muntura ha esgotat el temps en el "
-#~ "darrer intent."
-
-#~ msgid ""
-#~ "Warning: mount park operation timed out on attempt %1/%2. Restarting "
-#~ "operation..."
-#~ msgstr ""
-#~ "Avís: l'operació d'aparcar la muntura ha esgotat el temps en l'intent %1/"
-#~ "%2. S'està reiniciant l'operació..."
-
-#~ msgid "Warning: mount park operation timed out on last attempt."
-#~ msgstr ""
-#~ "Avís: l'operació d'aparcar la muntura ha esgotat el temps en el darrer "
-#~ "intent."
-
-#~ msgid "Mount unparking error."
-#~ msgstr "Error en desaparcar la muntura."
-
-#~ msgid ""
-#~ "Warning: mount park operation failed on attempt %1/%2. Restarting "
-#~ "operation..."
-#~ msgstr ""
-#~ "Avís: l'operació d'aparcar la muntura ha fallat en l'intent %1/%2. S'està "
-#~ "reiniciant l'operació..."
-
-#~ msgid "Mount parking error."
-#~ msgstr "Error en aparcar la muntura."
-
-#~ msgid "Dome parked."
-#~ msgstr "La cúpula està aparcada."
-
-#~ msgid "Dome unparked."
-#~ msgstr "La cúpula està desaparcada."
-
-#~ msgid "Dome parking failed. Restarting operation..."
-#~ msgstr ""
-#~ "Ha fallat en aparcar la cúpula. S'està tornant a iniciar l'operació..."
-
-#~ msgid "Dome parking error."
-#~ msgstr "Error en aparcar la cúpula."
-
-#~ msgid "Dome unparking failed. Restarting operation..."
-#~ msgstr ""
-#~ "Ha fallat en desaparcar la cúpula. S'està tornant a iniciar l'operació..."
-
-#~ msgid "Dome unparking error."
-#~ msgstr "Error en desaparcar la cúpula."
-
-#~ msgid "Ekos is already started, skipping startup script..."
-#~ msgstr "Ja s'ha iniciat l'Ekos, s'està ometent l'script d'inici..."
-
-#~ msgid "Warming up camera..."
-#~ msgstr "S'està escalfant la càmera..."
-
-#~ msgid "Warning: Bypassing parking procedures, no INDI connection."
-#~ msgstr ""
-#~ "Avís: passen per alt els procediments per a aparcar, sense connexió amb "
-#~ "l'INDI."
-
-#~ msgid "Warning: executing startup procedure manually..."
-#~ msgstr "Avís: s'està executant manualment el procediment d'inici..."
-
-#~ msgid "Are you sure you want to execute the startup procedure manually?"
-#~ msgstr "Segur que voleu executar manualment el procediment d'inici?"
-
-#~ msgid "Startup procedure terminated."
-#~ msgstr "El procediment d'inici ha finalitzat."
-
-#~ msgid "Warning: executing shutdown procedure manually..."
-#~ msgstr "Avís: s'està executant manualment el procediment de tancament..."
-
-#~ msgid "Are you sure you want to execute the shutdown procedure manually?"
-#~ msgstr "Segur que voleu executar manualment el procediment de tancament?"
-
-#~ msgid "Shutdown procedure terminated."
-#~ msgstr "El procediment de tancament ha finalitzat."
-
-#~ msgid "Dust cover park requested but no dust covers detected."
-#~ msgstr ""
-#~ "S'ha sol·licitat l'aparcament de la funda de protecció, però no se n'ha "
-#~ "detectat cap."
-
-#~ msgid "Parking Cap..."
-#~ msgstr "S'està aparcant la tapa..."
-
-#~ msgid "Cap already parked."
-#~ msgstr "La tapa ja està aparcada."
-
-#~ msgid "Dust cover unpark requested but no dust covers detected."
-#~ msgstr ""
-#~ "S'ha sol·licitat el desaparcament de la funda de protecció, però no se "
-#~ "n'ha detectat cap."
-
-#~ msgid "Unparking cap..."
-#~ msgstr "S'està desaparcant la tapa..."
-
-#~ msgid "Cap already unparked."
-#~ msgstr "La tapa ja està desaparcada."
-
-#~ msgid "Mount park requested but no mounts detected."
-#~ msgstr ""
-#~ "S'ha sol·licitat l'aparcament de la muntura, però no se n'ha detectat cap."
-
-#~ msgid "Parking mount in progress..."
-#~ msgstr "L'aparcament de la muntura es troba en curs..."
-
-#~ msgid "Mount unpark requested but no mounts detected."
-#~ msgstr ""
-#~ "S'ha sol·licitat el desaparcament de la muntura, però no se n'ha detectat "
-#~ "cap."
-
-#~ msgid "Mount already unparked."
-#~ msgstr "La muntura ja està desaparcada."
-
-#~ msgid "Dome park requested but no domes detected."
-#~ msgstr ""
-#~ "S'ha sol·licitat l'aparcament de la cúpula, però no se n'ha detectat cap."
-
-#~ msgid "Parking dome..."
-#~ msgstr "S'està aparcant la cúpula..."
-
-#~ msgid "Dome already parked."
-#~ msgstr "La cúpula ja està aparcada."
-
-#~ msgid "Dome unpark requested but no domes detected."
-#~ msgstr ""
-#~ "S'ha sol·licitat el desaparcament de la cúpula, però no se n'ha detectat "
-#~ "cap."
-
-#~ msgid "Unparking dome..."
-#~ msgstr "S'està desaparcant la cúpula..."
-
-#~ msgid "Dome already unparked."
-#~ msgstr "La cúpula ja està desaparcada."
-
-#~ msgid "Startup script failed, aborting..."
-#~ msgstr "L'script d'inici ha fallat. S'interromp..."
-
-#~ msgid "Shutdown script failed, aborting..."
-#~ msgstr "L'script de tancament ha fallat. S'interromp..."
-
-#~ msgid "Default scheduler checkbox for parking dome on shutdown."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per a l'aparcament de "
-#~ "la cúpula en tancar."
-
-#~ msgid "Default scheduler checkbox for parking mount on shutdown."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per a l'aparcament de "
-#~ "la muntura en tancar."
-
-#~ msgid "Default scheduler checkbox for closing dust cover on shutdown."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per a tancar la funda "
-#~ "de protecció en tancar."
-
-#~ msgid "Default scheduler checkbox for warming the CCD on shutdown."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per a l'escalfament "
-#~ "del CCD en tancar."
-
-#~ msgid "Default scheduler checkbox for unparking dome on startup."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per al desaparcament "
-#~ "de la cúpula en iniciar."
-
-#~ msgid "Default scheduler checkbox for unparking mount on startup."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per al desaparcament "
-#~ "de la muntura en iniciar."
-
-#~ msgid "Default scheduler checkbox for opening dust cover on startup."
-#~ msgstr ""
-#~ "Casella de selecció predeterminada del programador per a obrir la funda "
-#~ "de protecció en iniciar."
-
-#~ msgid "Execute this script when starting the scheduler."
-#~ msgstr "Executa aquest script en iniciar el programador."
-
-#~ msgid "Execute this script when shutting down the scheduler."
-#~ msgstr "Executa aquest script en aturar el programador."
-
-#~ msgid "Error: Lost connection to CCD."
-#~ msgstr "Error: S'ha perdut la connexió amb el CCD."
-
-#~ msgid "No CCD connected."
-#~ msgstr "No s'ha connectat cap CCD."
-
-#~ msgid "Error: lost connection to CCD."
-#~ msgstr "Error: s'ha perdut la connexió amb el CCD."
-
-#~ msgctxt "Charge-Coupled Device"
-#~ msgid "CCD"
-#~ msgstr "CCD"
-
-#~ msgid "Sky Flat"
-#~ msgstr "Fotograma pla del cel"
-
-#~ msgid "When shooting flats on sky with changing intensity."
-#~ msgstr "En prendre fotogrames plans del cel amb canvi d'intensitat."
-
-#~ msgid "Minimize the altitude vs time graph."
-#~ msgstr "Minimitza el gràfic d'altitud en funció de l'hora."
-
-#~ msgid "Maximize the altitude vs time graph."
-#~ msgstr "Maximitza el gràfic d'altitud en funció de l'hora."
-
-#~ msgid "Minimize the Astrobin search details section"
-#~ msgstr "Minimitza la secció de detalls de cerca de l'Astrobin"
-
-#~ msgid "Maximize the Astrobin search details section"
-#~ msgstr "Maximitza la secció de detalls de la cerca d'Astrobin"
-
-#~ msgid "Minimize the Filters section"
-#~ msgstr "Minimitza la secció Filtres"
-
-#~ msgid "Load Imaged"
-#~ msgstr "Càrrega l'obtenció d'imatges"
-
-#~ msgid "Enter keyword here"
-#~ msgstr "Introduïu aquí una paraula clau"
-
-#~ msgid "Minimize the image section"
-#~ msgstr "Minimitza la secció d'imatges"
-
-#~ msgid "Maximize the image section"
-#~ msgstr "Maximitza la secció d'imatges"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Averaged HFR value from the last frame.</p></body></"
-#~ "html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Valor de la mitjana de l'HFR del darrer fotograma.</"
-#~ "p></body></html>"
-
-#~ msgid "  FWHM:"
-#~ msgstr "  FWHM:"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Averaged FWHM value from the last frame.</p></"
-#~ "body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Valor de la mitjana de l'FWHM del darrer fotograma."
-#~ "</p></body></html>"
-
-#~ msgid "  Stars:"
-#~ msgstr "  Estrelles:"
-
-#~ msgid "  Iter:"
-#~ msgstr "  Iter.:"
-
-#~ msgid "Save autofocus images on disk?"
-#~ msgstr "Deso les imatges de l'enfocament automàtic al disc?"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Save autofocus frames. Only enable to troubleshoot "
-#~ "autofocus by examining frames. This can consume a lot of storage space.</"
-#~ "p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>Desa els fotogrames de l'enfocament automàtic. "
-#~ "Activeu-ho només per a solucionar problemes de l'enfocament automàtic "
-#~ "examinant els fotogrames. Pot consumir molt espai d'emmagatzematge.</p></"
-#~ "body></html>"

@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-14 02:09+0000\n"
-"PO-Revision-Date: 2026-04-11 20:45+0300\n"
+"POT-Creation-Date: 2026-04-15 02:05+0000\n"
+"PO-Revision-Date: 2026-04-14 13:29+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -771,7 +771,7 @@ msgstr "Astrometri Yapılandırma Dosyası okuma hatası."
 msgid "Internal Astrometry Configuration File Write Error."
 msgstr "İç Astrometri Yapılandırma Dosyası yazma hatası."
 
-#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2945
+#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2968
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -8310,36 +8310,28 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:400
-#, fuzzy, kde-format
-#| msgid "Enable Automatic PAC Correction"
+#, kde-format
 msgid "Automatic PAC Correction"
-msgstr "Otomatik PAC düzeltmesini etkinleştir"
+msgstr "Otomatik PAC düzeltmesi"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PAHAutoChangeDirection)
 #: ekos/align/opsalign.ui:407
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>When enabled and a PAC (Polar Alignment Corrector) "
-#| "device is connected, the system will automatically send correction "
-#| "commands to the PAC during the refresh phase instead of requiring manual "
-#| "knob adjustments.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>When enabled, if the polar alignment error in an axis "
 "<b>increases</b> after the first PAC correction, the system will "
 "automatically reverse the correction direction for that axis on the next "
 "attempt.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Etkinleştirildiğinde ve bir PAC (Kutup Hizalaması "
-"Düzelticisi) aygıtı bağlandığında, sistem elle düğme ayarlamaları "
-"gerektirmek yerine yenileme aşamasında PAC’ye otomatik olarak düzeltme "
-"komutları gönderir.</p></body></html>"
+"<html><head/><body><p>Etkinleştirildiğinde, bir eksendeki kutup hizalaması "
+"hatası ilk PAC düzeltmesinden sonra <b>artıyorsa</b> sistem, bir sonraki "
+"denemede düzeltme yönünü kendiliğniden geri döndürecektir.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoChangeDirection)
 #: ekos/align/opsalign.ui:410
-#, fuzzy, kde-format
-#| msgid "Change Location..."
+#, kde-format
 msgid "Auto Change Direction"
-msgstr "Konumu Değiştir…"
+msgstr "Yönü kendiliğinden değiştir"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:417
@@ -10338,6 +10330,7 @@ msgstr ""
 #, kde-format
 msgid "PAC: Az error increase confirmed (%1' → %2') – reversing Az direction."
 msgstr ""
+"PAC: Yanca hatası artımı onaylandı (%1’ → %2’) — AZ yönü geriye alınıyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1466
 #, kde-format
@@ -10345,12 +10338,16 @@ msgid ""
 "PAC: Az error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
+"PAC: Yanca hatası artımı onaylanmadı (büyük olasılıkla gürültü) — özgün yön "
+"korunuyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1473
 #, kde-format
 msgid ""
 "PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction."
 msgstr ""
+"PAC: Yükseklik hatası artımı onaylandı (%1’ → %2’) — Yükseklik yönü geriye "
+"alınıyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1479
 #, kde-format
@@ -10358,6 +10355,8 @@ msgid ""
 "PAC: Alt error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
+"PAC: Yükseklik hatası artımı onaylanmadı (büyük olasılıkla gürültü) — özgün "
+"yön korunuyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1504
 #, kde-format
@@ -10365,6 +10364,8 @@ msgid ""
 "PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: "
 "%3')."
 msgstr ""
+"PAC: %1 art arda yineleme sonrası iyileme gözlenmedi (en iyi: %2’, şu anki: "
+"%3’)."
 
 #: ekos/align/polaralignmentassistant.cpp:1510
 #, kde-format
@@ -10372,6 +10373,8 @@ msgid ""
 "PAC: No improvement after %1 consecutive iterations. Best error reached: "
 "%2'. Stopping polar alignment."
 msgstr ""
+"PAC: %1 art arda yineleme sonrası iyileme gözlenmedi Erişilen en iyi hata: "
+"%2’. Kutup hizalaması durduruluyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1527
 #, kde-format
@@ -10379,6 +10382,8 @@ msgid ""
 "PAC: Az error increased (%1' → %2') – re-solving to confirm before direction "
 "change."
 msgstr ""
+"PAC: Yanca hatası arttı (%1’ → %2’) — Yön değişikliği önceki doğrulama "
+"amaçlı olarak yeniden çözülüyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1534
 #, kde-format
@@ -10386,6 +10391,8 @@ msgid ""
 "PAC: Alt error increased (%1' → %2') – re-solving to confirm before "
 "direction change."
 msgstr ""
+"PAC: Yükseklik hatası arttı (%1’ → %2’) — Yön değişikliği önceki doğrulama "
+"amaçlı olarak yeniden çözülüyor."
 
 #: ekos/align/polaralignmentassistant.cpp:1558
 #, kde-format
@@ -18565,12 +18572,12 @@ msgstr "Çevrim içi"
 msgid "Offline"
 msgstr "Çevrim dışı"
 
-#: ekos/ekoslive/message.cpp:784
+#: ekos/ekoslive/message.cpp:788
 #, kde-format
 msgid "target"
 msgstr "hedef"
 
-#: ekos/ekoslive/message.cpp:1072
+#: ekos/ekoslive/message.cpp:1076
 #, kde-format
 msgid "Mosaic import failed."
 msgstr "Mozaik içe aktarma başarısız."
@@ -32166,7 +32173,7 @@ msgstr "FITS dosyası açma hatası (fits_get_img_param): %1"
 msgid "1D FITS images are not supported in KStars."
 msgstr "1B FITS görselleri, K Yıldızlar tarafından desteklenmiyor."
 
-#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2774
+#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2797
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "%1 bit derinliği desteklenmiyor."
@@ -32181,167 +32188,167 @@ msgstr "Görselin boyutları geçersiz: %1 × %2"
 msgid "Error reading image: %1"
 msgstr "Görsel okunurken hata: %1"
 
-#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2734
+#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2757
 #, kde-format
 msgid "XISF file open error: "
 msgstr "XISF dosyası açma hatası: "
 
-#: fitsviewer/fitsdata.cpp:2648
+#: fitsviewer/fitsdata.cpp:2671
 #, kde-format
 msgid "File contain no images"
 msgstr "Dosyada görsel yok"
 
-#: fitsviewer/fitsdata.cpp:2677
+#: fitsviewer/fitsdata.cpp:2700
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "%1 örneklem biçimi desteklenmiyor."
 
-#: fitsviewer/fitsdata.cpp:2812
+#: fitsviewer/fitsdata.cpp:2835
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "XISF görseli kaydedilirken hata"
 
-#: fitsviewer/fitsdata.cpp:2904 fitsviewer/fitsdata.cpp:3020
+#: fitsviewer/fitsdata.cpp:2927 fitsviewer/fitsdata.cpp:3043
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
 msgstr ""
 "FITSData: image_buffer channel için yeterli bellek yok. %1 bayt istendi "
 
-#: fitsviewer/fitsdata.cpp:2959
+#: fitsviewer/fitsdata.cpp:2982
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "%1 dosyası açılamıyor: %2"
 
-#: fitsviewer/fitsdata.cpp:2972
+#: fitsviewer/fitsdata.cpp:2995
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "Arabellek açılamıyor: %1"
 
-#: fitsviewer/fitsdata.cpp:2983
+#: fitsviewer/fitsdata.cpp:3006
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "unpack_thumb yapılamıyor: %1"
 
-#: fitsviewer/fitsdata.cpp:2990
+#: fitsviewer/fitsdata.cpp:3013
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "dcraw_process yapılamıyor: %1"
 
-#: fitsviewer/fitsdata.cpp:2998
+#: fitsviewer/fitsdata.cpp:3021
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "Belleğe yüklenemiyor: %1"
 
-#: fitsviewer/fitsdata.cpp:3145
+#: fitsviewer/fitsdata.cpp:3168
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "Sıkıştırılmış dosyaları kaydetme desteklenmiyor."
 
-#: fitsviewer/fitsdata.cpp:3213
+#: fitsviewer/fitsdata.cpp:3232
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Dosya oluşturulamadı: %1"
 
-#: fitsviewer/fitsdata.cpp:3228
+#: fitsviewer/fitsdata.cpp:3254
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Görsel oluşturulamadı: %1"
 
-#: fitsviewer/fitsdata.cpp:3237 fitsviewer/fitsdata.cpp:3244
+#: fitsviewer/fitsdata.cpp:3263 fitsviewer/fitsdata.cpp:3270
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Anahtar güncellenemedi: %1"
 
-#: fitsviewer/fitsdata.cpp:3372
+#: fitsviewer/fitsdata.cpp:3398
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Tarih güncellenemedi: %1"
 
-#: fitsviewer/fitsdata.cpp:3381
+#: fitsviewer/fitsdata.cpp:3407
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Geçmiş güncellenemedi: %1"
 
-#: fitsviewer/fitsdata.cpp:3403
+#: fitsviewer/fitsdata.cpp:3429
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Görsel yazılamadı: %1"
 
-#: fitsviewer/fitsdata.cpp:5174 fitsviewer/fitsdata.cpp:5185
-#: fitsviewer/fitsdata.cpp:5222 fitsviewer/fitsdata.cpp:5258
-#: fitsviewer/fitsdata.cpp:5392
+#: fitsviewer/fitsdata.cpp:5204 fitsviewer/fitsdata.cpp:5215
+#: fitsviewer/fitsdata.cpp:5252 fitsviewer/fitsdata.cpp:5288
+#: fitsviewer/fitsdata.cpp:5422
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "Bir dünya koordinat sistemi bulunamadı."
 
-#: fitsviewer/fitsdata.cpp:5567 fitsviewer/fitsdata.cpp:5673
+#: fitsviewer/fitsdata.cpp:5597 fitsviewer/fitsdata.cpp:5703
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "Simbad sorgusu yapılırken hata"
 
-#: fitsviewer/fitsdata.cpp:5582
+#: fitsviewer/fitsdata.cpp:5612
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "Simbad sorgusu zaman aşımına uğradı"
 
-#: fitsviewer/fitsdata.cpp:6559 fitsviewer/fitsdata.cpp:6672
+#: fitsviewer/fitsdata.cpp:6589 fitsviewer/fitsdata.cpp:6702
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr "Yalnızca 8 ve 16 bitlik bayer görselleri desteklenir."
 
-#: fitsviewer/fitsdata.cpp:6567 fitsviewer/fitsdata.cpp:6678
+#: fitsviewer/fitsdata.cpp:6597 fitsviewer/fitsdata.cpp:6708
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Bilinmeyen bayer deseni %1"
 
-#: fitsviewer/fitsdata.cpp:6591 fitsviewer/fitsdata.cpp:6617
+#: fitsviewer/fitsdata.cpp:6621 fitsviewer/fitsdata.cpp:6647
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Desteklenmeyen bayer deseni %1"
 
-#: fitsviewer/fitsdata.cpp:6625
+#: fitsviewer/fitsdata.cpp:6655
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Desteklenmeyen bayer ofsetleri %1 %2"
 
-#: fitsviewer/fitsdata.cpp:6636 fitsviewer/fitsdata.cpp:6689
+#: fitsviewer/fitsdata.cpp:6666 fitsviewer/fitsdata.cpp:6719
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Geçersiz dc1394 bayer kaldırıcısı parametreleri"
 
-#: fitsviewer/fitsdata.cpp:6647 fitsviewer/fitsdata.cpp:6700
+#: fitsviewer/fitsdata.cpp:6677 fitsviewer/fitsdata.cpp:6730
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Geçersiz OpenCV bayer kaldırıcısı parametreleri"
 
-#: fitsviewer/fitsdata.cpp:6656 fitsviewer/fitsdata.cpp:6709
+#: fitsviewer/fitsdata.cpp:6686 fitsviewer/fitsdata.cpp:6739
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Geçersiz bayer kaldırıcısı işletkesi"
 
-#: fitsviewer/fitsdata.cpp:6963
+#: fitsviewer/fitsdata.cpp:6993
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr "debayer_8bit, geçersiz bayer kaldırıcısı parametreleriyle çağrıldı"
 
-#: fitsviewer/fitsdata.cpp:6979 fitsviewer/fitsdata.cpp:7025
-#: fitsviewer/fitsdata.cpp:7083 fitsviewer/fitsdata.cpp:7129
+#: fitsviewer/fitsdata.cpp:7009 fitsviewer/fitsdata.cpp:7055
+#: fitsviewer/fitsdata.cpp:7113 fitsviewer/fitsdata.cpp:7159
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr "Geçici bayer arabelleği için bellek ayrılamadı: %1"
 
-#: fitsviewer/fitsdata.cpp:6989 fitsviewer/fitsdata.cpp:7093
+#: fitsviewer/fitsdata.cpp:7019 fitsviewer/fitsdata.cpp:7123
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr "Geçici bayer arabelleği için bellek ayrılamıyor."
 
-#: fitsviewer/fitsdata.cpp:7008 fitsviewer/fitsdata.cpp:7112
+#: fitsviewer/fitsdata.cpp:7038 fitsviewer/fitsdata.cpp:7142
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "Bayeri kaldırma başarısız (%1)"
 
-#: fitsviewer/fitsdata.cpp:7068
+#: fitsviewer/fitsdata.cpp:7098
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr "debayer_16bit, geçersiz bayer kaldırıcısı parametreleriyle çağrıldı"
@@ -44287,6 +44294,8 @@ msgid ""
 "Automatically reverse the correction direction for an axis if its polar "
 "alignment error increases after the first PAC correction attempt."
 msgstr ""
+"İlk PAC düzeltmesi sonrası onun kutup hizalama hatası artıyorsa düzeltme "
+"yönünü kendiliğinden geriye alın."
 
 #. i18n: ectx: label, entry (PAHSuccessThreshold), group (Align)
 #: kstars.kcfg:3041

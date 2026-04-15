@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-14 02:09+0000\n"
-"PO-Revision-Date: 2026-04-11 22:51+0200\n"
+"POT-Creation-Date: 2026-04-15 02:05+0000\n"
+"PO-Revision-Date: 2026-04-14 22:16+0200\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -785,7 +785,7 @@ msgstr ""
 "S'ha produït un error mentre s'escrivia en el fitxer de configuració intern "
 "de l'astrometria."
 
-#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2945
+#: auxiliary/ksutils.cpp:1769 fitsviewer/fitsdata.cpp:2968
 #, kde-format
 msgid ""
 "Unable to find dcraw and cjpeg. Please install the required tools to convert "
@@ -8468,36 +8468,29 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoPACCorrection)
 #: ekos/align/opsalign.ui:400
-#, fuzzy, kde-format
-#| msgid "Enable Automatic PAC Correction"
+#, kde-format
 msgid "Automatic PAC Correction"
-msgstr "Activa la correcció automàtica del PAC"
+msgstr "Correcció automàtica del PAC"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, kcfg_PAHAutoChangeDirection)
 #: ekos/align/opsalign.ui:407
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>When enabled and a PAC (Polar Alignment Corrector) "
-#| "device is connected, the system will automatically send correction "
-#| "commands to the PAC during the refresh phase instead of requiring manual "
-#| "knob adjustments.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>When enabled, if the polar alignment error in an axis "
 "<b>increases</b> after the first PAC correction, the system will "
 "automatically reverse the correction direction for that axis on the next "
 "attempt.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Quan està activada i es connecta un dispositiu PAC "
-"(corrector de l'alineació polar), el sistema enviarà automàticament ordres "
-"de correcció al PAC durant la fase d'actualització en lloc de requerir "
-"ajustos manuals de la roda.</p></body></html>"
+"<html><head/><body><p>Quan es marca, si l'error de l'alineació polar en un "
+"eix <b>augmenta</b> després de la primera correcció del PAC, el sistema "
+"invertirà automàticament la direcció de la correcció d'este eix a l'intent "
+"següent.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_PAHAutoChangeDirection)
 #: ekos/align/opsalign.ui:410
-#, fuzzy, kde-format
-#| msgid "Change Location..."
+#, kde-format
 msgid "Auto Change Direction"
-msgstr "Canvia l'emplaçament…"
+msgstr "Canvia la direcció automàticament"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, labelSuccessThreshold)
 #: ekos/align/opsalign.ui:417
@@ -10545,10 +10538,13 @@ msgstr ""
 "PAC: s'ha arribat fins al temps d'espera de la correcció (%1 s). L'error "
 "total és %2'. Es para."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1460
 #, kde-format
 msgid "PAC: Az error increase confirmed (%1' → %2') – reversing Az direction."
 msgstr ""
+"PAC: s'ha confirmat l'augment de l'error Az (%1' → %2'): s'invertix la "
+"direcció Az"
 
 #: ekos/align/polaralignmentassistant.cpp:1466
 #, kde-format
@@ -10556,12 +10552,17 @@ msgid ""
 "PAC: Az error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
+"PAC: no s'ha confirmat l'augment de l'error Az (segurament és soroll): es "
+"manté la direcció original."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1473
 #, kde-format
 msgid ""
 "PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction."
 msgstr ""
+"PAC: s'ha confirmat l'augment de l'error «Alt» (%1' → %2'): s'invertix la "
+"direcció «Alt»."
 
 #: ekos/align/polaralignmentassistant.cpp:1479
 #, kde-format
@@ -10569,6 +10570,8 @@ msgid ""
 "PAC: Alt error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
+"PAC: no s'ha confirmat l'augment de l'error «Alt» (segurament és soroll): es "
+"manté la direcció original."
 
 #: ekos/align/polaralignmentassistant.cpp:1504
 #, kde-format
@@ -10576,6 +10579,8 @@ msgid ""
 "PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: "
 "%3')."
 msgstr ""
+"PAC: no hi ha cap millora durant %1 iteracions consecutives (millor: %2', "
+"actual: %3')."
 
 #: ekos/align/polaralignmentassistant.cpp:1510
 #, kde-format
@@ -10583,20 +10588,28 @@ msgid ""
 "PAC: No improvement after %1 consecutive iterations. Best error reached: "
 "%2'. Stopping polar alignment."
 msgstr ""
+"PAC: no hi ha cap millora durant %1 iteracions consecutives. El millor error "
+"assolit: %2'. Es para l'alineació polar."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1527
 #, kde-format
 msgid ""
 "PAC: Az error increased (%1' → %2') – re-solving to confirm before direction "
 "change."
 msgstr ""
+"PAC: l'error Az ha augmentat (%1' → %2'): es trona a resoldre per a "
+"confirmar abans del canvi de direcció."
 
+# skip-rule: t-apo_fin
 #: ekos/align/polaralignmentassistant.cpp:1534
 #, kde-format
 msgid ""
 "PAC: Alt error increased (%1' → %2') – re-solving to confirm before "
 "direction change."
 msgstr ""
+"PAC: l'error «Alt» ha augmentat (%1' → %2'): es trona a resoldre per a "
+"confirmar abans del canvi de direcció."
 
 #: ekos/align/polaralignmentassistant.cpp:1558
 #, kde-format
@@ -19044,12 +19057,12 @@ msgstr "Connectat"
 msgid "Offline"
 msgstr "Desconnectat"
 
-#: ekos/ekoslive/message.cpp:784
+#: ekos/ekoslive/message.cpp:788
 #, kde-format
 msgid "target"
 msgstr "Objectiu"
 
-#: ekos/ekoslive/message.cpp:1072
+#: ekos/ekoslive/message.cpp:1076
 #, kde-format
 msgid "Mosaic import failed."
 msgstr "Ha fallat la importació del mosaic."
@@ -32984,7 +32997,7 @@ msgstr ""
 msgid "1D FITS images are not supported in KStars."
 msgstr "KStars no admet les imatges FITS en 1D."
 
-#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2774
+#: fitsviewer/fitsdata.cpp:2065 fitsviewer/fitsdata.cpp:2797
 #, kde-format
 msgid "Bit depth %1 is not supported."
 msgstr "La profunditat de bits %1 no està admesa."
@@ -33000,27 +33013,27 @@ msgid "Error reading image: %1"
 msgstr "S'ha produït un error mentre es llegia la imatge: %1"
 
 # skip-rule: k-Alt-1
-#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2734
+#: fitsviewer/fitsdata.cpp:2536 fitsviewer/fitsdata.cpp:2757
 #, kde-format
 msgid "XISF file open error: "
 msgstr "S'ha produït un error mentre s'obria el fitxer XISF: "
 
-#: fitsviewer/fitsdata.cpp:2648
+#: fitsviewer/fitsdata.cpp:2671
 #, kde-format
 msgid "File contain no images"
 msgstr "El fitxer no conté cap imatge"
 
-#: fitsviewer/fitsdata.cpp:2677
+#: fitsviewer/fitsdata.cpp:2700
 #, kde-format
 msgid "Sample format %1 is not supported."
 msgstr "El format de mostra %1 no està admés."
 
-#: fitsviewer/fitsdata.cpp:2812
+#: fitsviewer/fitsdata.cpp:2835
 #, kde-format
 msgid "Error saving XISF image"
 msgstr "S'ha produït un error mentre es guardava la imatge XISF"
 
-#: fitsviewer/fitsdata.cpp:2904 fitsviewer/fitsdata.cpp:3020
+#: fitsviewer/fitsdata.cpp:2927 fitsviewer/fitsdata.cpp:3043
 #, kde-format
 msgid ""
 "FITSData: Not enough memory for image_buffer channel. Requested: %1 bytes "
@@ -33028,148 +33041,148 @@ msgstr ""
 "FITSData: No hi ha prou memòria per al canal «image_buffer». Es requerixen: "
 "%1 bytes "
 
-#: fitsviewer/fitsdata.cpp:2959
+#: fitsviewer/fitsdata.cpp:2982
 #, kde-format
 msgid "Cannot open file %1: %2"
 msgstr "No s'ha pogut obrir el fitxer %1: %2"
 
-#: fitsviewer/fitsdata.cpp:2972
+#: fitsviewer/fitsdata.cpp:2995
 #, kde-format
 msgid "Cannot open buffer: %1"
 msgstr "No s'ha pogut la memòria intermèdia: %1"
 
-#: fitsviewer/fitsdata.cpp:2983
+#: fitsviewer/fitsdata.cpp:3006
 #, kde-format
 msgid "Cannot unpack_thumb: %1"
 msgstr "No s'ha pogut fer «unpack_thumb»: %1"
 
-#: fitsviewer/fitsdata.cpp:2990
+#: fitsviewer/fitsdata.cpp:3013
 #, kde-format
 msgid "Cannot dcraw_process: %1"
 msgstr "No s'ha pogut fer «dcraw_process»: %1"
 
-#: fitsviewer/fitsdata.cpp:2998
+#: fitsviewer/fitsdata.cpp:3021
 #, kde-format
 msgid "Cannot load to memory: %1"
 msgstr "No s'ha pogut carregar a la memòria: %1"
 
-#: fitsviewer/fitsdata.cpp:3145
+#: fitsviewer/fitsdata.cpp:3168
 #, kde-format
 msgid "Saving compressed files is not supported."
 msgstr "No s'admet la guardada de fitxers comprimits."
 
-#: fitsviewer/fitsdata.cpp:3213
+#: fitsviewer/fitsdata.cpp:3232
 #, kde-format
 msgid "Failed to create file: %1"
 msgstr "Ha fallat mentre es creava el fitxer: %1"
 
-#: fitsviewer/fitsdata.cpp:3228
+#: fitsviewer/fitsdata.cpp:3254
 #, kde-format
 msgid "Failed to create image: %1"
 msgstr "Ha fallat mentre es creava la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:3237 fitsviewer/fitsdata.cpp:3244
+#: fitsviewer/fitsdata.cpp:3263 fitsviewer/fitsdata.cpp:3270
 #, kde-format
 msgid "Failed to update key: %1"
 msgstr "Ha fallat mentre s'actualitzava la clau: %1"
 
-#: fitsviewer/fitsdata.cpp:3372
+#: fitsviewer/fitsdata.cpp:3398
 #, kde-format
 msgid "Failed to update date: %1"
 msgstr "Ha fallat mentre s'actualitzava la data: %1"
 
-#: fitsviewer/fitsdata.cpp:3381
+#: fitsviewer/fitsdata.cpp:3407
 #, kde-format
 msgid "Failed to update history: %1"
 msgstr "Ha fallat mentre s'actualitzava l'historial: %1"
 
-#: fitsviewer/fitsdata.cpp:3403
+#: fitsviewer/fitsdata.cpp:3429
 #, kde-format
 msgid "Failed to write image: %1"
 msgstr "Ha fallat mentre s'escrivia la imatge: %1"
 
-#: fitsviewer/fitsdata.cpp:5174 fitsviewer/fitsdata.cpp:5185
-#: fitsviewer/fitsdata.cpp:5222 fitsviewer/fitsdata.cpp:5258
-#: fitsviewer/fitsdata.cpp:5392
+#: fitsviewer/fitsdata.cpp:5204 fitsviewer/fitsdata.cpp:5215
+#: fitsviewer/fitsdata.cpp:5252 fitsviewer/fitsdata.cpp:5288
+#: fitsviewer/fitsdata.cpp:5422
 #, kde-format
 msgid "No world coordinate systems found."
 msgstr "No s'ha trobat cap sistema de coordenades mundial."
 
-#: fitsviewer/fitsdata.cpp:5567 fitsviewer/fitsdata.cpp:5673
+#: fitsviewer/fitsdata.cpp:5597 fitsviewer/fitsdata.cpp:5703
 #, kde-format
 msgid "Error querying Simbad"
 msgstr "S'ha produït un error mentre es consultava Simbad"
 
-#: fitsviewer/fitsdata.cpp:5582
+#: fitsviewer/fitsdata.cpp:5612
 #, kde-format
 msgid "Simbad query timed out"
 msgstr "La consulta de Simbad ha excedit el temps"
 
-#: fitsviewer/fitsdata.cpp:6559 fitsviewer/fitsdata.cpp:6672
+#: fitsviewer/fitsdata.cpp:6589 fitsviewer/fitsdata.cpp:6702
 #, kde-format
 msgid "Only 8 and 16 bits bayered images supported."
 msgstr ""
 "Només es permeten imatges de 8 i 16 bits construïdes amb el filtre mosaic de "
 "Bayer."
 
-#: fitsviewer/fitsdata.cpp:6567 fitsviewer/fitsdata.cpp:6678
+#: fitsviewer/fitsdata.cpp:6597 fitsviewer/fitsdata.cpp:6708
 #, kde-format
 msgid "Unknown bayer pattern %1"
 msgstr "Patró de Bayer desconegut %1"
 
-#: fitsviewer/fitsdata.cpp:6591 fitsviewer/fitsdata.cpp:6617
+#: fitsviewer/fitsdata.cpp:6621 fitsviewer/fitsdata.cpp:6647
 #, kde-format
 msgid "Unsupported bayer pattern %1"
 msgstr "Patró de Bayer no implementat %1."
 
-#: fitsviewer/fitsdata.cpp:6625
+#: fitsviewer/fitsdata.cpp:6655
 #, kde-format
 msgid "Unsupported bayer offsets %1 %2."
 msgstr "Desplaçaments del filtre mosaic de Bayer no implementats %1 %2."
 
-#: fitsviewer/fitsdata.cpp:6636 fitsviewer/fitsdata.cpp:6689
+#: fitsviewer/fitsdata.cpp:6666 fitsviewer/fitsdata.cpp:6719
 #, kde-format
 msgid "Invalid dc1394 debayer parameters."
 msgstr "Paràmetres no vàlids de la reconstrucció de Bayer de dc1394."
 
-#: fitsviewer/fitsdata.cpp:6647 fitsviewer/fitsdata.cpp:6700
+#: fitsviewer/fitsdata.cpp:6677 fitsviewer/fitsdata.cpp:6730
 #, kde-format
 msgid "Invalid OpenCV debayer parameters."
 msgstr "Paràmetres no vàlids de la reconstrucció de Bayer de l'OpenCV."
 
-#: fitsviewer/fitsdata.cpp:6656 fitsviewer/fitsdata.cpp:6709
+#: fitsviewer/fitsdata.cpp:6686 fitsviewer/fitsdata.cpp:6739
 #, kde-format
 msgid "Invalid debayer engine"
 msgstr "Motor no vàlid per a la reconstrucció de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6963
+#: fitsviewer/fitsdata.cpp:6993
 #, kde-format
 msgid "debayer_8bit called with invalid debayer parameters"
 msgstr ""
 "Reconstrucció de 8 bits invocada amb paràmetres no vàlids de la "
 "reconstrucció de Bayer"
 
-#: fitsviewer/fitsdata.cpp:6979 fitsviewer/fitsdata.cpp:7025
-#: fitsviewer/fitsdata.cpp:7083 fitsviewer/fitsdata.cpp:7129
+#: fitsviewer/fitsdata.cpp:7009 fitsviewer/fitsdata.cpp:7055
+#: fitsviewer/fitsdata.cpp:7113 fitsviewer/fitsdata.cpp:7159
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer: %1"
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer: %1"
 
-#: fitsviewer/fitsdata.cpp:6989 fitsviewer/fitsdata.cpp:7093
+#: fitsviewer/fitsdata.cpp:7019 fitsviewer/fitsdata.cpp:7123
 #, kde-format
 msgid "Unable to allocate memory for temporary bayer buffer."
 msgstr ""
 "No s'ha pogut reservar la memòria intermèdia temporal per al filtre mosaic "
 "de Bayer."
 
-#: fitsviewer/fitsdata.cpp:7008 fitsviewer/fitsdata.cpp:7112
+#: fitsviewer/fitsdata.cpp:7038 fitsviewer/fitsdata.cpp:7142
 #, kde-format
 msgid "Debayer failed (%1)"
 msgstr "La reconstrucció des de Bayer ha fallat (%1)"
 
-#: fitsviewer/fitsdata.cpp:7068
+#: fitsviewer/fitsdata.cpp:7098
 #, kde-format
 msgid "debayer_16bit called with invalid debayer parameters"
 msgstr ""
@@ -45484,6 +45497,8 @@ msgid ""
 "Automatically reverse the correction direction for an axis if its polar "
 "alignment error increases after the first PAC correction attempt."
 msgstr ""
+"Invertix automàticament la direcció de correcció d'un eix si el seu error de "
+"l'alineació polar augmenta després del primer intent de correcció PAC."
 
 #. i18n: ectx: label, entry (PAHSuccessThreshold), group (Align)
 #: kstars.kcfg:3041
