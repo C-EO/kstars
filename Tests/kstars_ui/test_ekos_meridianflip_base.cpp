@@ -273,7 +273,7 @@ bool TestEkosMeridianFlipBase::prepareMFTestcase(bool guideDeviation, bool initi
     QFETCH(double, exptime);
     QFETCH(QString, filters);
 
-    KWRAP_SUB(foreach(QString filter, filters.split(",")) KTRY_CAPTURE_ADD_LIGHT(exptime, count, 0, filter, "test",
+    KWRAP_SUB(for (auto filter : filters.split(",")) KTRY_CAPTURE_ADD_LIGHT(exptime, count, 0, filter, "test",
               destination.path()));
 
     QFETCH(bool, guide);

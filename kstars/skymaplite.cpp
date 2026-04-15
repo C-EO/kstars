@@ -159,7 +159,7 @@ QSGNode *SkyMapLite::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *upda
         /** Add or delete telescope crosshairs **/
         if (m_newTelescopes.count() > 0)
         {
-            foreach (INDI::BaseDevice *telescope, m_newTelescopes)
+            for (auto telescope : m_newTelescopes)
             {
                 n->telescopeSymbolsItem()->addTelescope(telescope);
             }
@@ -168,7 +168,7 @@ QSGNode *SkyMapLite::updatePaintNode(QSGNode *oldNode, UpdatePaintNodeData *upda
 
         if (m_delTelescopes.count() > 0)
         {
-            foreach (INDI::BaseDevice *telescope, m_delTelescopes)
+            for (auto telescope : m_delTelescopes)
             {
                 n->telescopeSymbolsItem()->removeTelescope(telescope);
             }
@@ -1000,7 +1000,7 @@ void SkyMapLite::initStarImages()
         //Delete all existing pixmaps
         if (imageCache.length() != 0)
         {
-            foreach (QVector<QPixmap *> vec, imageCache)
+            for (auto vec : imageCache)
             {
                 qDeleteAll(vec.begin(), vec.end());
             }

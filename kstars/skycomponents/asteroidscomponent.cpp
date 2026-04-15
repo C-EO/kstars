@@ -212,7 +212,7 @@ void AsteroidsComponent::draw(SkyPainter *skyp)
     // It is however assured that labelMagLimit <= showMagLimit.
     labelMagLimit = showMagLimit - 20.0 / densityLabelFactor + std::max(zoomLimit, labelMagLimit);
 
-    foreach (SkyObject *so, m_ObjectList)
+    for (auto so : m_ObjectList)
     {
         KSAsteroid *ast = dynamic_cast<KSAsteroid *>(so);
 

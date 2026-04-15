@@ -2962,7 +2962,7 @@ void FITSView::setStarsEnabled(bool enable)
     markStars = enable;
     if (floatingToolBar != nullptr)
     {
-        foreach (QAction * action, floatingToolBar->actions())
+        for (auto action : floatingToolBar->actions())
         {
             if (action->text() == i18n("Detect Stars in Image"))
             {

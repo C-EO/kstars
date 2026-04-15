@@ -29,7 +29,7 @@ void TestEkosWizard::init()
 
 void TestEkosWizard::cleanup()
 {
-    foreach (QDialog * d, KStars::Instance()->findChildren<QDialog*>())
+    for (auto d : KStars::Instance()->findChildren<QDialog * >())
         if (d->isVisible())
             d->hide();
 }

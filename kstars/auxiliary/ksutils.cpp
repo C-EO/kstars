@@ -200,7 +200,7 @@ QList<SkyObject *> *castStarObjListToSkyObjList(QList<StarObject *> *starObjList
 {
     QList<SkyObject *> *skyObjList = new QList<SkyObject *>();
 
-    foreach (StarObject *so, *starObjList)
+    for (auto so : *starObjList)
     {
         skyObjList->append(so);
     }

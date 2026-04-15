@@ -78,7 +78,7 @@ void CometsItem::recreateList()
         delete n;
     }
 
-    foreach (SkyObject *comet, m_cometsList)
+    for (auto comet : m_cometsList)
     {
         KSComet *com = static_cast<KSComet *>(comet);
         appendChildNode(new PointSourceNode(com, rootNode(), labelType()));

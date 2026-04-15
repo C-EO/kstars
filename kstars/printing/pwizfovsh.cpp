@@ -69,7 +69,7 @@ void PWizFovShUI::slotBeginCapture()
 void PWizFovShUI::setupWidgets()
 {
     QStringList fovNames;
-    foreach (FOV *fov, KStarsData::Instance()->getAvailableFOVs())
+    for (auto fov : KStarsData::Instance()->getAvailableFOVs())
     {
         fovNames.append(fov->name());
     }

@@ -549,7 +549,7 @@ void KStars::showImgExportDialog()
 
 void KStars::syncFOVActions()
 {
-    foreach (QAction *action, fovActionMenu->menu()->actions())
+    for (auto action : fovActionMenu->menu()->actions())
     {
         if (action->text().isEmpty())
         {

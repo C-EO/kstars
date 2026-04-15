@@ -62,7 +62,7 @@ void FindDialogLite::filterByType(uint typeIndex)
         case 0: // All object types
         {
             QVector<QPair<QString, const SkyObject *>> allObjects;
-            foreach (int type, data->skyComposite()->objectLists().keys())
+            for (auto type : data->skyComposite()->objectLists().keys())
             {
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::TYPE(type)));
             }

@@ -63,7 +63,7 @@ void TestEkosScheduler::testScheduleManipulation_data()
     std::list<char const *> Objects = { "Polaris", "Mizar", "M 51", "M 13", "M 47", "Vega", "NGC 2238", "M 81" };
     size_t count = 0;
 
-    foreach (char const *name, Objects)
+    for (auto name : Objects)
     {
         SkyObject const * const so = KStars::Instance()->data()->objectNamed(name);
         if (so != nullptr)

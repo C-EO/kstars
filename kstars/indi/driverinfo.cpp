@@ -119,7 +119,7 @@ void DriverInfo::removeDevice(DeviceInfo *idv)
 
 DeviceInfo *DriverInfo::getDevice(const QString &deviceName) const
 {
-    foreach (DeviceInfo *idv, devices)
+    for (auto idv : devices)
     {
         if (idv->getDeviceName() == deviceName)
             return idv;

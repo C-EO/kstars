@@ -66,7 +66,7 @@ dms SkyLine::angularSize(int i) const
 
 void SkyLine::update(KStarsData *d, KSNumbers *num)
 {
-    foreach (SkyPoint *p, m_pList)
+    for (auto p : m_pList)
     {
         if (num)
             p->updateCoords(num);

@@ -579,12 +579,12 @@ void DetailDialogLite::createLinksTab()
     setProperty("isLinksOn", true);
 
     QStringList newInfoList;
-    foreach (const QString &s, selectedObject->InfoTitle())
+    for (auto s : selectedObject->InfoTitle())
         newInfoList.append(i18nc("Image/info menu item (should be translated)", s.toLocal8Bit()));
     setProperty("infoTitleList", newInfoList);
 
     QStringList newImageList;
-    foreach (const QString &s, selectedObject->ImageTitle())
+    for (auto s : selectedObject->ImageTitle())
         newImageList.append(i18nc("Image/info menu item (should be translated)", s.toLocal8Bit()));
 
     setProperty("imageTitleList", newImageList);

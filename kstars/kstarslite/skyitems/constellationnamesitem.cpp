@@ -45,7 +45,7 @@ void ConstellationNamesItem::update()
 
     const Projector *proj = SkyMapLite::Instance()->projector();
 
-    foreach (ConstellationName *constName, m_names)
+    for (auto constName : m_names)
     {
         SkyObject *p = constName->obj;
         if (!proj->checkVisibility(p))
@@ -102,7 +102,7 @@ void ConstellationNamesItem::recreateList()
     rootNode()->labelsItem()->deleteLabels(labelType());
     m_names.clear();
 
-    foreach (SkyObject *skyObj, m_constelNamesComp->objectList())
+    for (auto skyObj : m_constelNamesComp->objectList())
     {
         m_names.append(new ConstellationName(skyObj));
     }

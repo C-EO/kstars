@@ -496,7 +496,7 @@ void KSPopupMenu::initFlagActions(SkyObject *obj)
         m_EditActionMapping   = new QHash<QAction *, int>;
         m_DeleteActionMapping = new QHash<QAction *, int>;
 
-        foreach (int idx, flags)
+        for (auto idx : flags)
         {
             QIcon flagIcon(
                 QPixmap::fromImage(ks->data()->skyComposite()->flags()->image(idx)));

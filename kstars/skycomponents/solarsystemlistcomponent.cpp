@@ -34,7 +34,7 @@ void SolarSystemListComponent::update(KSNumbers *)
     {
         KStarsData *data = KStarsData::Instance();
 
-        foreach (SkyObject *o, m_ObjectList)
+        for (auto o : m_ObjectList)
         {
             KSPlanetBase *p = dynamic_cast<KSPlanetBase*>(o);
 
@@ -49,7 +49,7 @@ void SolarSystemListComponent::updateSolarSystemBodies(KSNumbers *num)
     if (selected())
     {
         KStarsData *data = KStarsData::Instance();
-        foreach (SkyObject *o, m_ObjectList)
+        for (auto o : m_ObjectList)
         {
             KSPlanetBase *p = (KSPlanetBase *)o;
             p->findPosition(num, data->geo()->lat(), data->lst(), m_Earth);
@@ -66,7 +66,7 @@ void SolarSystemListComponent::drawTrails(SkyPainter *skyp)
     //FIXME: here for all objects trails are drawn this could be source of inefficiency
     if (selected())
     {
-        foreach (SkyObject *obj, m_ObjectList)
+        for (auto obj : m_ObjectList)
             // Will segfault if not TrailObject
             dynamic_cast<TrailObject *>(obj)->drawTrail(skyp);
     }

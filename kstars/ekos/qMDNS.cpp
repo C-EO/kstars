@@ -418,7 +418,7 @@ void qMDNS::sendResponse (const quint16 query_id)
         /* Get local IPs */
         quint32 ipv4 = 0;
         QList<QIPv6Address> ipv6;
-        foreach (QHostAddress address, QNetworkInterface::allAddresses())
+        for (auto address : QNetworkInterface::allAddresses())
         {
             if (!address.isLoopback())
             {
@@ -467,7 +467,7 @@ void qMDNS::sendResponse (const quint16 query_id)
         data.append (ENCODE_16_BIT (kFQDN_Length));
 
         /* Add IPv6 addresses */
-        foreach (QIPv6Address ip, ipv6)
+        for (auto ip : ipv6)
         {
             data.append (ENCODE_16_BIT (kRecordAAAA));
             data.append (ENCODE_16_BIT (kIN_BitFlush));
@@ -702,7 +702,7 @@ QList<QHostAddress> qMDNS::getAddressesFromResponse (const QByteArray &data,
         list.append (IPv4Address);
 
     /* Add IPv6 addresses */
-    foreach (QString ip, getIPv6FromResponse (data, host))
+    for (auto ip : getIPv6FromResponse (data, host))
     {
         QHostAddress address = QHostAddress (ip);
         if (!address.isNull())

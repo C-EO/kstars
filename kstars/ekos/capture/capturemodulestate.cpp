@@ -81,7 +81,7 @@ void CaptureModuleState::setGuideStatus(GuideState newstate)
     {
         case GUIDE_DITHERING_SUCCESS:
         case GUIDE_DITHERING_ERROR:
-            foreach (auto cam, cameras())
+            for (auto cam : cameras())
             {
                 // dithering action finished
                 if (activeAction(cam->cameraId()) == CAPTURE_ACTION_DITHER)
@@ -92,7 +92,7 @@ void CaptureModuleState::setGuideStatus(GuideState newstate)
             }
             break;
         case GUIDE_GUIDING:
-            foreach (auto cam, cameras())
+            for (auto cam : cameras())
             {
                 // successful wait for guiding
                 if (activeAction(cam->cameraId()) == CAPTURE_ACTION_CHECK_GUIDING)
@@ -105,7 +105,7 @@ void CaptureModuleState::setGuideStatus(GuideState newstate)
     }
 
     // forward state to cameras
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
         cam->state()->setGuideState(newstate);
 
     // check what to do next
@@ -116,7 +116,7 @@ void CaptureModuleState::setGuideDeviation(double delta_ra, double delta_dec)
 {
     const double deviation_rms = std::hypot(delta_ra, delta_dec);
     // forward the deviation to all cameras
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
         cam->state()->setGuideDeviation(deviation_rms);
 }
 
@@ -125,7 +125,7 @@ void Ekos::CaptureModuleState::pauseCapturingImmediately(int cameraID, bool foll
     // execute for all cameras
     if (cameraID < 0)
     {
-        foreach (auto cam, cameras())
+        for (auto cam : cameras())
         {
             pauseCapturingImmediately(cam->cameraId(), followersOnly);
         }
@@ -230,7 +230,7 @@ void CaptureModuleState::enqueueAction(int cameraID, CaptureWorkflowActionType a
 
 void CaptureModuleState::checkActiveActions()
 {
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
     {
         const int cameraID = cam->cameraId();
         switch (activeAction(cameraID))
@@ -260,7 +260,7 @@ void CaptureModuleState::checkNextActionExecution(int cameraID)
 {
     if (cameraID == -1)
     {
-        foreach (auto cam, cameras())
+        for (auto cam : cameras())
             checkNextActionExecution(cam->cameraId());
 
         return;
@@ -317,7 +317,7 @@ void CaptureModuleState::prepareDitheringAction(int cameraId)
 {
     const double maxRemainingExposureTime = 0.5 * mutableCameras()[cameraId]->activeJob()->getCoreProperty(
             SequenceJob::SJ_Exposure).toDouble();
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
     {
         if (cam->state()->isCaptureRunning() && cam->cameraId() != cameraId)
         {
@@ -347,7 +347,7 @@ void CaptureModuleState::checkReadyForDithering(int cameraId)
 {
     // check if there is still another camera capturing
     bool ready = true;
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
         if (cam->state()->isCaptureRunning() && cam->cameraId() != cameraId)
         {
             ready = false;
@@ -359,7 +359,7 @@ void CaptureModuleState::checkReadyForDithering(int cameraId)
     {
         qCInfo(KSTARS_EKOS_CAPTURE) << "Execute dithering requested by camera" << cameraId;
         setActiveAction(cameraId, CAPTURE_ACTION_DITHER);
-        foreach(auto cam, cameras())
+        for (auto cam : cameras())
         {
             const int id = cam->cameraId();
             // clear dithering requests for all other cameras
@@ -378,7 +378,7 @@ void CaptureModuleState::startDithering()
 {
     // find first camera that has requested dithering
     bool found = false;
-    foreach (auto id, m_activeActions.keys())
+    for (auto id : m_activeActions.keys())
         if (activeAction(id) == CAPTURE_ACTION_DITHER_REQUEST)
         {
             setActiveAction(id, CAPTURE_ACTION_DITHER);
@@ -392,7 +392,7 @@ void CaptureModuleState::startDithering()
         return;
 
     // abort all other running captures that do not requested a dither
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
         if (cam->state()->isCaptureRunning() && activeAction(cam->cameraId()) != CAPTURE_ACTION_DITHER)
         {
             qCInfo(KSTARS_EKOS_CAPTURE) << "Aborting capture of camera" << cam->cameraId() << "before dithering starts";
@@ -413,7 +413,7 @@ void CaptureModuleState::setupRestartPostMF()
     const bool waitForGuiding = leadState()->getMeridianFlipState()->resumeGuidingAfterFlip()
                                 && leadState()->getGuideState() != GUIDE_GUIDING;
 
-    foreach (auto cam, cameras())
+    for (auto cam : cameras())
     {
         if (cam->cameraId() > 0 && (cam->state()->isCaptureStopped() || cam->state()->isCapturePausing()))
         {

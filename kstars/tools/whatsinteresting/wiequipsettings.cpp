@@ -32,7 +32,7 @@ void WIEquipSettings::populateScopeListWidget()
     ScopeListWidget->clear();
     ///Get telescope list from KStars user database.
     KStars::Instance()->data()->userdb()->GetAllScopes(m_ScopeList);
-    foreach (OAL::Scope *scope, m_ScopeList)
+    for (auto scope : m_ScopeList)
     {
         QListWidgetItem *scopeItem = new QListWidgetItem;
         scopeItem->setText(scope->vendor());

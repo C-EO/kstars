@@ -351,7 +351,7 @@ void AVTPlotWidget::paintEvent(QPaintEvent *e)
                        "HorzColor")); // asimha changed to use color from scheme. Formerly was QColor( "#002200" )
     }
 
-    foreach (KPlotObject *po, plotObjects())
+    for (auto po : plotObjects())
     {
         po->draw(&p, this);
     }

@@ -58,7 +58,7 @@ void SatellitesComponent::loadData()
     objectNames(SkyObject::SATELLITE).clear();
     objectLists(SkyObject::SATELLITE).clear();
 
-    foreach (SatelliteGroup *group, m_groups)
+    for (auto group : m_groups)
     {
         for (int i = 0; i < group->size(); i++)
         {
@@ -85,7 +85,7 @@ void SatellitesComponent::update(KSNumbers *)
     if (!selected())
         return;
 
-    foreach (SatelliteGroup *group, m_groups)
+    for (auto group : m_groups)
     {
         group->updateSatellitesPos();
     }
@@ -100,7 +100,7 @@ void SatellitesComponent::draw(SkyPainter *skyp)
 
     bool hideLabels = (!Options::showSatellitesLabels() || (SkyMap::Instance()->isSlewing() && Options::hideLabels()));
 
-    foreach (SatelliteGroup *group, m_groups)
+    for (auto group : m_groups)
     {
         for (int i = 0; i < group->size(); i++)
         {
@@ -148,7 +148,7 @@ void SatellitesComponent::updateTLEs()
     progressDlg.setWindowModality(Qt::WindowModal);
     progressDlg.setValue(0);
 
-    foreach (SatelliteGroup *group, m_groups)
+    for (auto group : m_groups)
     {
         if (progressDlg.wasCanceled())
             return;
@@ -199,7 +199,7 @@ QList<SatelliteGroup *> SatellitesComponent::groups()
 
 Satellite *SatellitesComponent::findSatellite(QString name)
 {
-    foreach (SatelliteGroup *group, m_groups)
+    for (auto group : m_groups)
     {
         for (int i = 0; i < group->size(); i++)
         {
@@ -223,7 +223,7 @@ SkyObject *SatellitesComponent::objectNearest(SkyPoint *p, double &maxrad)
     double rBest     = maxrad;
     double r;
 
-    foreach (SatelliteGroup *group, m_groups)
+    for (auto group : m_groups)
     {
         for (int i = 0; i < group->size(); i++)
         {

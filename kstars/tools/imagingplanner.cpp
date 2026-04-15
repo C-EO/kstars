@@ -636,7 +636,7 @@ bool downsampleImageFiles(const QString &baseDir, int maxHeight)
 
     int numSaved = 0;
     QStringList files = directory.entryList(QStringList() << "*.jpg" << "*.JPG" << "*.png", QDir::Files);
-    foreach (QString filename, files)
+    for (auto filename : files)
     {
         QString fullPath = QString("%1%2%3").arg(baseDir).arg(QDir::separator()).arg(filename);
         QImage img(fullPath);

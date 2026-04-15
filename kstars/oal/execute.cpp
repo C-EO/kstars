@@ -220,20 +220,20 @@ void Execute::loadEquipment()
     ui.Eyepiece->clear();
     ui.Lens->clear();
     ui.Filter->clear();
-    foreach (OAL::Scope *s, *(logObject->scopeList()))
+    for (auto s : * (logObject->scopeList()))
         ui.Scope->addItem(s->name());
-    foreach (OAL::Eyepiece *e, *(logObject->eyepieceList()))
+    for (auto e : * (logObject->eyepieceList()))
         ui.Eyepiece->addItem(e->name());
-    foreach (OAL::Lens *l, *(logObject->lensList()))
+    for (auto l : * (logObject->lensList()))
         ui.Lens->addItem(l->name());
-    foreach (OAL::Filter *f, *(logObject->filterList()))
+    for (auto f : * (logObject->filterList()))
         ui.Filter->addItem(f->name());
 }
 
 void Execute::loadObservers()
 {
     ui.Observer->clear();
-    foreach (OAL::Observer *o, *(logObject->observerList()))
+    for (auto o : * (logObject->observerList()))
         ui.Observer->addItem(o->name() + ' ' + o->surname());
 }
 

@@ -49,7 +49,7 @@ void CalendarWidget::paintEvent(QPaintEvent *e)
 
     drawHorizon(&p);
 
-    foreach (KPlotObject *po, plotObjects())
+    for (auto po : plotObjects())
     {
         po->draw(&p, this);
     }

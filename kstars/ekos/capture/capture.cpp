@@ -170,7 +170,7 @@ QSharedPointer<Camera> Capture::addCamera()
         newCamera->opticalTrainCombo->setCurrentText(train);
 
     //ensure that the rotator control panels are using the correct devices of the optical train
-    foreach(auto cam, cameras())
+    for (auto cam : cameras())
     {
         if (cam->devices()->rotator() && cam->m_RotatorControlPanel)
         {
@@ -188,7 +188,7 @@ QSharedPointer<Camera> Capture::addCamera()
 const QString Capture::findUnusedOpticalTrain()
 {
     QList<QString> names = OpticalTrainManager::Instance()->getTrainNames();
-    foreach(auto cam, cameras())
+    for (auto cam : cameras())
         names.removeAll(cam->opticalTrain());
 
     if (names.isEmpty())
@@ -575,7 +575,7 @@ void Capture::setAlignResults(double solverPA, double ra, double de, double pixs
     Q_UNUSED(pixscale)
 
     //for now, let's sync the PA position to all rotators
-    foreach( auto cam, cameras() )
+    for (auto cam : cameras())
     {
         if (cam->devices()->rotator() && cam->m_RotatorControlPanel)
             cam->m_RotatorControlPanel->refresh(solverPA);

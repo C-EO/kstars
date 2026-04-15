@@ -285,7 +285,7 @@ void ConjunctionsTool::slotCompute(void)
     switch (FilterTypeComboBox->currentIndex())
     {
         case 1: // All object types
-            foreach (int type, data->skyComposite()->objectNames().keys())
+            for (auto type : data->skyComposite()->objectNames().keys())
                 objects += data->skyComposite()->objectNames(type);
             break;
         case 2: // Stars

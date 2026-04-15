@@ -18,7 +18,7 @@ PlanetsItem::PlanetsItem(QList<SolarSystemSingleComponent *> planets,
                          /* QList<PlanetMoonsComponent *> moons, */ RootNode *rootNode)
     : SkyItem(LabelsItem::label_t::PLANET_LABEL, rootNode), m_planetComponents(planets) /*, m_moonsComponents(moons)*/
 {
-    foreach (SolarSystemSingleComponent *planetComp, m_planetComponents)
+    for (auto planetComp : m_planetComponents)
     {
         KSPlanetBase *planet   = planetComp->planet();
         PlanetMoonsNode *pNode = new PlanetMoonsNode(planet, rootNode);
@@ -35,7 +35,7 @@ PlanetsItem::PlanetsItem(QList<SolarSystemSingleComponent *> planets,
 
 SolarSystemSingleComponent *PlanetsItem::getParentComponent(SkyObject *planet)
 {
-    foreach (SolarSystemSingleComponent *planetComp, m_planetComponents)
+    for (auto planetComp : m_planetComponents)
     {
         if (planetComp->planet() == planet)
             return planetComp;

@@ -379,7 +379,7 @@ void KStarsData::setTimeDirection(float scale)
 
 GeoLocation *KStarsData::locationNamed(const QString &city, const QString &province, const QString &country)
 {
-    foreach (GeoLocation *loc, geoList)
+    for (auto loc : geoList)
     {
         if (loc->translatedName() == city && (province.isEmpty() || loc->translatedProvince() == province) &&
                 (country.isEmpty() || loc->translatedCountry() == country))
@@ -433,7 +433,7 @@ void KStarsData::setLocation(const GeoLocation &l)
     Options::setLongitude(m_Geo.lng()->Degrees());
     Options::setLatitude(m_Geo.lat()->Degrees());
     // set the rule from rulebook
-    foreach (const QString &key, Rulebook.keys())
+    for (auto key : Rulebook.keys())
     {
         if (!key.isEmpty() && m_Geo.tzrule()->equals(&Rulebook[key]))
             Options::setDST(key);
@@ -1471,7 +1471,7 @@ bool KStarsData::executeScript(const QString &scriptname, SkyMap *map)
                 }
 
                 bool cityFound(false);
-                foreach (GeoLocation *loc, geoList)
+                for (auto loc : geoList)
                 {
                     if (loc->translatedName() == city &&
                             (province.isEmpty() || loc->translatedProvince() == province) &&
@@ -1504,7 +1504,7 @@ void KStarsData::syncFOV()
 {
     visibleFOVs.clear();
     // Add visible FOVs
-    foreach (FOV *fov, availFOVs)
+    for (auto fov : availFOVs)
     {
         if (Options::fOVNames().contains(fov->name()))
             visibleFOVs.append(fov);
@@ -1517,7 +1517,7 @@ void KStarsData::syncFOV()
     QSet<QString> names (m_fOVNames.begin(), m_fOVNames.end());
 #endif
     QSet<QString> all;
-    foreach (FOV *fov, visibleFOVs)
+    for (auto fov : visibleFOVs)
     {
         all.insert(fov->name());
     }

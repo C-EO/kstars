@@ -1223,7 +1223,7 @@ void Scheduler::saveJob(SchedulerJob *job)
     int numWarnings = 0;
     if (job->isLead())
     {
-        foreach (SchedulerJob *a_job, moduleState()->jobs())
+        for (auto a_job : moduleState()->jobs())
         {
             if (a_job == job || !a_job->isLead())
             {
@@ -1594,7 +1594,7 @@ void Scheduler::setJobManipulation(bool can_reorder, bool can_delete, bool is_le
 bool Scheduler::reorderJobs(QList<SchedulerJob*> reordered_sublist)
 {
     /* Add jobs not reordered at the end of the list, in initial order */
-    foreach (SchedulerJob* job, moduleState()->jobs())
+    for (auto job : moduleState()->jobs())
         if (!reordered_sublist.contains(job))
             reordered_sublist.append(job);
 

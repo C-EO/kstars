@@ -95,7 +95,7 @@ void LocationDialogLite::initCityList()
 {
     KStarsData *data = KStarsData::Instance();
     QStringList cities;
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         QString name = loc->fullName();
         cities.append(name);
@@ -114,7 +114,7 @@ void LocationDialogLite::initCityList()
 
     QStringList DST;
 
-    foreach (const QString &key, data->getRulebook().keys())
+    for (auto key : data->getRulebook().keys())
     {
         if (!key.isEmpty())
             DST.append(key);
@@ -128,7 +128,7 @@ void LocationDialogLite::filterCity(const QString &city, const QString &province
     QStringList cities;
     filteredCityList.clear();
 
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         QString sc(loc->translatedName());
         QString ss(loc->translatedCountry());
@@ -378,7 +378,7 @@ int LocationDialogLite::getDST(const QString &fullName)
 
     if (geo)
     {
-        foreach (const QString &key, Rulebook.keys())
+        for (auto key : Rulebook.keys())
         {
             if (!key.isEmpty() && geo->tzrule()->equals(&Rulebook[key]))
                 return m_DSTRules.indexOf(key);
@@ -391,7 +391,7 @@ bool LocationDialogLite::isDuplicate(const QString &city, const QString &provinc
 {
     KStarsData *data = KStarsData::Instance();
 
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         QString sc(loc->translatedName());
         QString ss(loc->translatedCountry());
@@ -486,7 +486,7 @@ bool LocationDialogLite::setLocation(const QString &fullName)
     GeoLocation *geo = filteredCityList.value(fullName);
     if (!geo)
     {
-        foreach (GeoLocation *loc, data->getGeoList())
+        for (auto loc : data->getGeoList())
         {
             if (loc->fullName() == fullName)
             {

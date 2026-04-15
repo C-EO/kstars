@@ -110,7 +110,7 @@ void OpsSatellites::updateListView()
     m_Model->setHorizontalHeaderLabels(QStringList(i18n("Satellite Name")));
 
     // Add each groups and satellites in the list
-    foreach (SatelliteGroup *sat_group, data->skyComposite()->satellites()->groups())
+    for (auto sat_group : data->skyComposite()->satellites()->groups())
     {
         QStandardItem *group_item;
         QStandardItem *sat_item;

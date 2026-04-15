@@ -399,7 +399,7 @@ void ImageOverlayComponent::updateTable()
     emit updateLog(i18n("Updating from directory: %1", m_Directory));
     QStringList images = directory.entryList(QStringList() << "*", QDir::Files);
     QSet<QString> imageFiles;
-    foreach(QString filename, images)
+    for (auto filename : images)
     {
         if (!FITSData::readableFilename(filename))
             continue;

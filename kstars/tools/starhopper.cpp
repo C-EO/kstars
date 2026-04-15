@@ -18,7 +18,7 @@ QList<StarObject *> *StarHopper::computePath(const SkyPoint &src, const SkyPoint
 {
     QList<const StarObject *> starHopList_const = computePath_const(src, dest, fov__, maglim__, metadata_);
     QList<StarObject *> *starHopList_unconst    = new QList<StarObject *>();
-    foreach (const StarObject *so, starHopList_const)
+    for (auto so : starHopList_const)
     {
         starHopList_unconst->append(const_cast<StarObject *>(so));
     }
@@ -60,7 +60,7 @@ QList<const StarObject *> StarHopper::computePath_const(const SkyPoint &src, con
         SkyPoint const *curr_node = nullptr;
         double lowfscore          = 1.0e8;
 
-        foreach (const SkyPoint *sp, oSet)
+        for (auto sp : oSet)
         {
             if (f_score[sp] < lowfscore)
             {
@@ -280,7 +280,7 @@ float StarHopper::cost(const SkyPoint *curr, const SkyPoint *next)
             StarComponent::Instance()->starsInAperture(
                 localNeighbors, *next, fov / factor,
                 nextstar->mag() + 1.0); // Use a larger aperture for pattern identification; max 1.0 mag difference
-            foreach (StarObject *star, localNeighbors)
+            for (auto star : localNeighbors)
             {
                 if (star == nextstar)
                     localNeighbors.removeOne(star);

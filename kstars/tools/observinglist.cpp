@@ -748,9 +748,9 @@ void ObservingList::slotAddToSession()
     Q_ASSERT(!sessionView);
     if (getSelectedItems().size())
     {
-        foreach (const QModelIndex &i, getSelectedItems())
+        for (auto i : getSelectedItems())
         {
-            foreach (QSharedPointer<SkyObject> o, obsList())
+            for (auto o : obsList())
                 if (getObjectName(o.data()) == i.data().toString())
                     slotAddObject(
                         o.data(),
@@ -834,7 +834,7 @@ void ObservingList::slotAVT()
     if (selectedItems.size())
     {
         QPointer<AltVsTime> avt = new AltVsTime(KStars::Instance());
-        foreach (const QModelIndex &i, selectedItems)
+        for (auto i : selectedItems)
         {
             if (i.column() == 0)
             {
@@ -1024,7 +1024,7 @@ void ObservingList::slotSaveList()
     QString fileContents;
     QTextStream ostream(
         &fileContents); // We first write to a QString to prevent truncating the file in case there is a crash.
-    foreach (const QSharedPointer<SkyObject> o, obsList())
+    for (auto o : obsList())
     {
         if (!o)
         {
@@ -1199,7 +1199,7 @@ void ObservingList::slotWizard()
         addingObjectsProgress->setValue(0);
         addingObjectsProgress->show();
         int counter = 1;
-        foreach (SkyObject *o, wizard->obsList())
+        for (auto o : wizard->obsList())
         {
             slotAddObject(o);
             addingObjectsProgress->setValue(counter++);
@@ -1479,7 +1479,7 @@ void ObservingList::slotSaveAllImages()
     ui->WishListView->clearSelection();
     ui->SessionView->clearSelection();
 
-    foreach (QSharedPointer<SkyObject> o, getActiveList())
+    for (auto o : getActiveList())
     {
         if (!o)
             continue; // FIXME: Why would we have null objects? But appears that we do.
@@ -1691,9 +1691,9 @@ void ObservingList::slotAddVisibleObj()
         m_WishListSortModel->mapSelectionToSource(ui->WishListView->selectionModel()->selection()).indexes();
     if (selectedItems.size())
     {
-        foreach (const QModelIndex &i, selectedItems)
+        for (auto i : selectedItems)
         {
-            foreach (QSharedPointer<SkyObject> o, obsList())
+            for (auto o : obsList())
                 if (getObjectName(o.data()) == i.data().toString() && w->checkVisibility(o.data()))
                     slotAddObject(
                         o.data(),
@@ -1705,7 +1705,7 @@ void ObservingList::slotAddVisibleObj()
 
 SkyObject *ObservingList::findObjectByName(QString name)
 {
-    foreach (QSharedPointer<SkyObject> o, sessionList())
+    for (auto o : sessionList())
     {
         if (getObjectName(o.data(), false) == name)
             return o.data();
@@ -1778,7 +1778,7 @@ QSharedPointer<SkyObject> ObservingList::findObject(const SkyObject *o, bool ses
 {
     const QList<QSharedPointer<SkyObject>> &list = (session ? sessionList() : obsList());
     const QString &target                        = getObjectName(o);
-    foreach (QSharedPointer<SkyObject> obj, list)
+    for (auto obj : list)
     {
         if (getObjectName(obj.data()) == target)
             return obj;

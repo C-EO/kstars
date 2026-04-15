@@ -59,7 +59,7 @@ void TestEkos::init()
 
 void TestEkos::cleanup()
 {
-    foreach (QDialog * d, KStars::Instance()->findChildren<QDialog*>())
+    for (auto d : KStars::Instance()->findChildren<QDialog * >())
         if (d->isVisible())
             d->hide();
 
@@ -173,7 +173,7 @@ void TestEkos::testManipulateProfiles()
         /*
         // If the name of the widget is unknown, use this snippet to look it up from its class
         if (profileEditor == nullptr)
-            foreach (QWidget *w, QApplication::topLevelWidgets())
+            for (auto w : QApplication::topLevelWidgets())
                 if (w->inherits("ProfileEditor"))
                     profileEditor = qobject_cast <ProfileEditor*> (w);
         */

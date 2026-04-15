@@ -35,7 +35,7 @@ void ConstellationArtItem::loadNodes()
     if (!childCount())
     {
         QList<ConstellationsArt *> list = m_artComp->m_ConstList;
-        foreach (ConstellationsArt *art, list)
+        for (auto art : list)
         {
             ConstellationArtNode *constArt = new ConstellationArtNode(art);
             appendChildNode(constArt);

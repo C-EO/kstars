@@ -65,7 +65,7 @@ void SkyMapDrawAbstract::drawOverlays(QPainter &p, bool drawFov)
     if (drawFov)
     {
         //draw FOV symbol
-        foreach (FOV *fov, m_KStarsData->getVisibleFOVs())
+        for (auto fov : m_KStarsData->getVisibleFOVs())
         {
             if (fov->lockCelestialPole())
             {
@@ -424,7 +424,7 @@ void SkyMapDrawAbstract::drawObjectLabels(QList<SkyObject *> &labelObjects)
         skyLabeler->drawNameLabel(m_SkyMap->focusObject(), o);
     }
 
-    foreach (SkyObject *obj, labelObjects)
+    for (auto obj : labelObjects)
     {
         //Only draw an attached label if the object is being drawn to the map
         //reproducing logic from other draw funcs here...not an optimal solution

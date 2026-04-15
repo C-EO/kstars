@@ -47,7 +47,7 @@ ModelManager::ModelManager(ObsConditions *obs)
 ModelManager::~ModelManager()
 {
     qDeleteAll(m_ModelList);
-    foreach (QList<SkyObjItem *> list, m_ObjectList)
+    for (auto list : m_ObjectList)
         qDeleteAll(list);
     delete tempModel;
 }
@@ -217,7 +217,7 @@ void ModelManager::loadObjectsIntoModel(SkyObjListModel &model, QList<SkyObjItem
 {
     KStarsData *data = KStarsData::Instance();
 
-    foreach (SkyObjItem *soitem, skyObjectList)
+    for (auto soitem : skyObjectList)
     {
         bool isVisible =
             (showOnlyVisible) ? (m_ObsConditions->isVisible(data->geo(), data->lst(), soitem->getSkyObject())) : true;
@@ -228,7 +228,7 @@ void ModelManager::loadObjectsIntoModel(SkyObjListModel &model, QList<SkyObjItem
 
 void ModelManager::resetAllModels()
 {
-    foreach (SkyObjListModel *model, m_ModelList)
+    for (auto model : m_ModelList)
         model->resetModel();
 }
 

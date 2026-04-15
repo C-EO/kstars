@@ -745,7 +745,7 @@ QList<SkyObject *> SkyMapComposite::planets()
 QList<SkyObject*> SkyMapComposite::moons()
 {
     QList<SkyObject*> skyObjects;
-    foreach(PlanetMoonsComponent *pMoons, m_SolarSystem->planetMoonsComponent()) {
+    for (auto pMoons : m_SolarSystem->planetMoonsComponent()) {
         PlanetMoons *moons = pMoons->getMoons();
         for(int i = 0; i < moons->nMoons(); ++i) {
             skyObjects.append(moons->moon(i));

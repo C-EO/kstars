@@ -38,7 +38,7 @@ void PlanetMoonsNode::hide()
 {
     m_planetNode->hide();
 
-    foreach (PointSourceNode *moon, m_moonNodes)
+    for (auto moon : m_moonNodes)
     {
         moon->hide();
     }

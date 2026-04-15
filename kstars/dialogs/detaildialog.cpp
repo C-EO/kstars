@@ -980,7 +980,7 @@ void DetailDialog::populateADVTree()
 
     // We populate the tree iteratively, keeping track of parents as we go
     // This solution is more efficient than the previous recursion algorithm.
-    foreach (ADVTreeData *item, KStarsData::Instance()->avdTree())
+    for (auto item : KStarsData::Instance()->avdTree())
     {
         switch (item->Type)
         {
@@ -1017,7 +1017,7 @@ void DetailDialog::viewADVData()
     if (!current || current->childCount() > 0)
         return;
 
-    foreach (ADVTreeData *item, KStarsData::Instance()->avdTree())
+    for (auto item : KStarsData::Instance()->avdTree())
     {
         if (item->Name == current->text(0))
         {

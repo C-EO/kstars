@@ -30,7 +30,7 @@ void AsteroidsItem::recreateList()
         delete n;
     }
 
-    foreach (SkyObject *asteroid, m_asteroidsList)
+    for (auto asteroid : m_asteroidsList)
     {
         KSAsteroid *ast = static_cast<KSAsteroid *>(asteroid);
         if (ast->image().isNull() == false)

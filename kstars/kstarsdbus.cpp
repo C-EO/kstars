@@ -280,7 +280,7 @@ bool KStars::setGeoLocation(const QString &city, const QString &province, const 
     //Set the geographic location
     bool cityFound(false);
 
-    foreach (GeoLocation *loc, data()->geoList)
+    for (auto loc : data()->geoList)
     {
         if (loc->translatedName() == city && (province.isEmpty() || loc->translatedProvince() == province) &&
                 loc->translatedCountry() == country)

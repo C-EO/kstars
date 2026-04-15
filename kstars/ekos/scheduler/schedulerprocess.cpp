@@ -268,7 +268,7 @@ void SchedulerProcess::findNextJob()
         }
 
         /* Mark the job idle as well as all its duplicates for re-evaluation */
-        foreach(SchedulerJob *a_job, moduleState()->jobs())
+        for (auto a_job : moduleState()->jobs())
             if (a_job == activeJob() || a_job->isDuplicateOf(activeJob()))
                 a_job->setState(SCHEDJOB_IDLE);
 
@@ -389,7 +389,7 @@ void SchedulerProcess::findNextJob()
             emit jobEnded(activeJob()->getName(), activeJob()->getStopReason());
 
             /* Mark the job idle as well as all its duplicates for re-evaluation */
-            foreach(SchedulerJob *a_job, moduleState()->jobs())
+            for (auto a_job : moduleState()->jobs())
                 if (a_job == activeJob() || a_job->isDuplicateOf(activeJob()))
                     a_job->setState(SCHEDJOB_IDLE);
             stopCurrentJobAction();
@@ -687,7 +687,7 @@ void SchedulerProcess::start()
     resetLatchedStartupErrorIfQueuesDisabled();
 
     // New scheduler session shouldn't inherit ABORT or ERROR states from the last one.
-    foreach (auto j, moduleState()->jobs())
+    for (auto j : moduleState()->jobs())
     {
         j->setState(SCHEDJOB_IDLE);
         emit updateJobTable(j);
@@ -818,7 +818,7 @@ void SchedulerProcess::resetAllJobs()
         return;
 
     // Reset capture count of all jobs before re-evaluating
-    foreach (SchedulerJob *job, moduleState()->jobs())
+    for (auto job : moduleState()->jobs())
         job->setCompletedCount(0);
 
     // Evaluate all jobs, this refreshes storage and resets job states
@@ -1056,7 +1056,7 @@ void SchedulerProcess::startFocusing()
     // start focusing of the lead job
     startFocusing(activeJob());
     // start focusing of all follower jobds
-    foreach (auto follower, activeJob()->followerJobs())
+    for (auto follower : activeJob()->followerJobs())
     {
         m_activeJobs.insert(follower->getOpticalTrain(), follower);
         startFocusing(follower);
@@ -2767,7 +2767,7 @@ void SchedulerProcess::checkJobStageEpilogue()
             if (moduleState()->getCurrentOperationMsec() > static_cast<int>(FOCUS_INACTIVITY_TIMEOUT))
             {
                 bool success = true;
-                foreach (const QString trainname, m_activeJobs.keys())
+                for (auto trainname : m_activeJobs.keys())
                 {
                     QList<QVariant> dbusargs;
                     dbusargs.append(trainname);
@@ -4741,7 +4741,7 @@ void SchedulerProcess::printStates(const QString &label)
                                    .arg(startupStateString(moduleState()->startupState()))
                                    .arg(shutdownStateString(moduleState()->shutdownState()))
                                    .arg(parkWaitStateString(moduleState()->parkWaitState())).toLatin1().data();
-    foreach (auto j, moduleState()->jobs())
+    for (auto j : moduleState()->jobs())
         qCDebug(KSTARS_EKOS_SCHEDULER) << QString("job %1 %2\n").arg(j->getName()).arg(SchedulerJob::jobStatusString(
                                            j->getState())).toLatin1().data();
 }

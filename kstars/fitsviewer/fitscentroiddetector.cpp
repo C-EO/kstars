@@ -459,7 +459,7 @@ bool FITSCentroidDetector::findSources(const QRect &boundary)
         sdev = (std::sqrt(lsum / (starCenters.count() - 1))) * 4;
 
         // Reject stars > 4 * stddev
-        foreach (Edge * center, starCenters)
+        for (auto center : starCenters)
             if (center->width > sdev)
                 starCenters.removeOne(center);
 

@@ -62,14 +62,14 @@ void OpsLogs::slotToggleVerbosityOptions()
     if (kcfg_DisableLogging->isChecked())
         KSUtils::Logging::Disable();
 
-    foreach (QAbstractButton *b, modulesGroup->buttons())
+    for (auto b : modulesGroup->buttons())
     {
         b->setEnabled(kcfg_VerboseLogging->isChecked());
         // If verbose is not checked, CLEAR all selections
         b->setChecked(kcfg_VerboseLogging->isChecked() ? b->isChecked() : false);
     }
 
-    foreach (QAbstractButton *b, driversGroup->buttons())
+    for (auto b : driversGroup->buttons())
     {
         b->setEnabled(kcfg_VerboseLogging->isChecked());
         // If verbose is not checked, CLEAR all selections

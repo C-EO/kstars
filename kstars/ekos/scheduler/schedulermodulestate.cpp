@@ -72,7 +72,7 @@ SchedulerJob *SchedulerModuleState::activeJob(const QString &trainname) const
         return m_activeJob;
     else
     {
-        foreach (auto follower, m_activeJob->followerJobs())
+        for (auto follower : m_activeJob->followerJobs())
         {
             if (follower->getOpticalTrain() == trainname)
                 return follower;

@@ -61,7 +61,7 @@ LocationDialog::LocationDialog(QWidget *parent) : QDialog(parent), timer(nullptr
         ld->TZBox->addItem(QLocale().toString(static_cast<double>(i - 12)));
 
     //Populate DSTRuleBox
-    foreach (const QString &key, data->getRulebook().keys())
+    for (auto key : data->getRulebook().keys())
     {
         if (!key.isEmpty())
             ld->DSTRuleBox->addItem(key);
@@ -121,7 +121,7 @@ LocationDialog::LocationDialog(QWidget *parent) : QDialog(parent), timer(nullptr
 void LocationDialog::initCityList()
 {
     KStarsData *data = KStarsData::Instance();
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         ld->GeoBox->addItem(loc->fullName());
         filteredCityList.append(loc);
@@ -184,7 +184,7 @@ void LocationDialog::filterCity()
     ld->AddCityButton->setEnabled(false);
     ld->UpdateButton->setEnabled(false);
 
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         QString sc(loc->translatedName());
         QString ss(loc->translatedCountry());
@@ -499,7 +499,7 @@ void LocationDialog::findCitiesNear(int lng, int lat)
     while (!filteredCityList.isEmpty())
         filteredCityList.takeFirst();
 
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         if ((abs(lng - int(loc->lng()->Degrees())) < 3) && (abs(lat - int(loc->lat()->Degrees())) < 3))
         {

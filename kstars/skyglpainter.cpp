@@ -526,7 +526,7 @@ void SkyGLPainter::drawObservingList(const QList<SkyObject *> &obs)
     // texture changeable etc.
     // TODO: Draw labels when required
 
-    foreach (SkyObject *obj, obs)
+    for (auto obj : obs)
     {
         if (!m_proj->checkVisibility(obj))
             continue;

@@ -110,7 +110,7 @@ void ObsListWizard::initialize()
     olw->olwStack->setCurrentIndex(0);
 
     //Populate the list of constellations
-    foreach (SkyObject *p, data->skyComposite()->constellationNames())
+    for (auto p : data->skyComposite()->constellationNames())
         olw->ConstellationList->addItem(p->name());
 
     //unSelect all object types
@@ -175,7 +175,7 @@ void ObsListWizard::initialize()
 
 bool ObsListWizard::isItemSelected(const QString &name, QListWidget *listWidget)
 {
-    foreach(QListWidgetItem *item, listWidget->selectedItems())
+    for (auto item : listWidget->selectedItems())
     {
         if (item->text().compare(name, Qt::CaseInsensitive) == 0)
             return true;
@@ -530,13 +530,13 @@ void ObsListWizard::applyFilters(bool doBuildList)
 
     if (isItemSelected(i18n("Comets"), olw->TypeList))
     {
-        foreach (SkyObject *o, data->skyComposite()->comets())
+        for (auto o : data->skyComposite()->comets())
             applyMagnitudeAndRegionAndObservableFilter(o, filterParameters);
     }
 
     if (isItemSelected(i18n("Asteroids"), olw->TypeList))
     {
-        foreach (SkyObject *o, data->skyComposite()->asteroids())
+        for (auto o : data->skyComposite()->asteroids())
             applyMagnitudeAndRegionAndObservableFilter(o, filterParameters);
     }
 

@@ -30,7 +30,7 @@ NotifyUpdatesUI::~NotifyUpdatesUI()
 void NotifyUpdatesUI::addItems(QList<SkyObject *> updatesList)
 {
     //int len = updatesList.size();
-    foreach (SkyObject *so, updatesList)
+    for (auto so : updatesList)
     {
         Supernova *sup = (Supernova *)so;
 

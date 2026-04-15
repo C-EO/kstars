@@ -1038,7 +1038,7 @@ void ScriptBuilder::writeScript(QTextStream &ostream)
     ostream << "#last modified: " << KStarsDateTime::currentDateTime().toString(Qt::ISODate) << '\n';
     ostream << "#\n";
 
-    foreach (ScriptFunction *sf, ScriptList)
+    for (auto sf : ScriptList)
     {
         if (!sf->valid())
             continue;
@@ -1196,7 +1196,7 @@ bool ScriptBuilder::parseFunction(const QString &fn_name, const QString &fn_args
             return true;
         }
 
-        foreach (ScriptFunction *sf, SimClockFunctionList)
+        for (auto sf : SimClockFunctionList)
         {
             if (fn_name == sf->name())
             {

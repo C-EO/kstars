@@ -26,7 +26,7 @@ int letterToNum(QChar c)
 int letterDesigToN(QString s)
 {
     int n = 0;
-    foreach (const QChar &c, s)
+    for (auto c : s)
     {
         int nl = letterToNum(c);
         if (nl == 0)

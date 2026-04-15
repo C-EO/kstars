@@ -195,7 +195,7 @@ void Camera::resetJobs()
             return;
         }
 
-        foreach (auto job, state()->allJobs())
+        for (auto job : state()->allJobs())
         {
             job->resetStatus();
             updateJobTable(job);

@@ -1469,7 +1469,7 @@ void Manager::start()
     // Search for extensions
     if (m_extensions.discover())
     {
-        foreach (QString extension, m_extensions.found->keys())
+        for (auto extension : m_extensions.found->keys())
         {
             extensions::extDetails m_ext = m_extensions.found->value(extension);
             extensionCombo->addItem(m_ext.icon, extension);

@@ -1200,7 +1200,7 @@ int CameraState::pendingJobCount()
 {
     int completedJobs = 0;
 
-    foreach (auto job, allJobs())
+    for (auto job : allJobs())
     {
         if (job->getStatus() == JOB_DONE)
             completedJobs++;
@@ -1294,7 +1294,7 @@ double CameraState::progressPercentage()
     int totalImageCount     = 0;
     int totalImageCompleted = 0;
 
-    foreach (auto job, allJobs())
+    for (auto job : allJobs())
     {
         totalImageCount += job->getCoreProperty(SequenceJob::SJ_Count).toInt();
         totalImageCompleted += job->getCompleted();
@@ -1324,7 +1324,7 @@ int CameraState::overallRemainingTime()
     int remaining = 0;
     double estimatedDownloadTime = averageDownloadTime();
 
-    foreach (auto job, allJobs())
+    for (auto job : allJobs())
         remaining += job->getJobRemainingTime(estimatedDownloadTime);
 
     return remaining;
@@ -1340,7 +1340,7 @@ QString CameraState::sequenceQueueStatus()
 
     int idle = 0, error = 0, complete = 0, aborted = 0, running = 0;
 
-    foreach (auto job, allJobs())
+    for (auto job : allJobs())
     {
         switch (job->getStatus())
         {

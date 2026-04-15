@@ -232,7 +232,7 @@ void SupernovaeComponent::notifyNewSupernovae()
 #ifndef KSTARS_LITE
     //qDebug()<<"New Supernovae discovered";
     QList<SkyObject *> latestList;
-    foreach (SkyObject * so, latest)
+    for (auto so : latest)
     {
         Supernova * sup = (Supernova *)so;
 

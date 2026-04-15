@@ -34,7 +34,7 @@ void InfoBoxes::addInfoBox(InfoBoxWidget *ibox)
 
 void InfoBoxes::resizeEvent(QResizeEvent *)
 {
-    foreach (InfoBoxWidget *w, m_boxes)
+    for (auto w : m_boxes)
         w->adjust();
 }
 
@@ -51,7 +51,7 @@ void InfoBoxWidget::updateSize()
 {
     QFontMetrics fm(font());
     int w = 0;
-    foreach (const QString &str, m_strings)
+    for (auto str : m_strings)
     {
         w = qMax(w, fm.horizontalAdvance(str));
     }
@@ -194,7 +194,7 @@ void InfoBoxWidget::paintEvent(QPaintEvent *)
     int h = QFontMetrics(font()).height();
     int y = 0;
     p.setPen(cs->colorNamed("BoxTextColor"));
-    foreach (const QString &str, m_strings)
+    for (auto str : m_strings)
     {
         y += h;
         p.drawText(padX, padY + y, str);

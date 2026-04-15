@@ -511,7 +511,7 @@ void TestEkosSchedulerOps::startupJobs2(
         {
             // check if there is a job scheduled
             bool scheduled_job = false;
-            foreach (Ekos::SchedulerJob *sched_job, scheduler->moduleState()->jobs())
+            for (auto sched_job : scheduler->moduleState()->jobs())
                 if (sched_job->state == Ekos::SCHEDJOB_SCHEDULED)
                     scheduled_job = true;
             if (scheduled_job)
@@ -2050,7 +2050,7 @@ void TestEkosSchedulerOps::testGreedyAborts()
     KStarsData::Instance()->changeDateTime(abortUTime);
 
     Ekos::SchedulerJob *m104Job = nullptr;
-    foreach (auto &job, scheduler->moduleState()->jobs())
+    for (auto job : scheduler->moduleState()->jobs())
         if (job->getName() == "M 104")
         {
             m104Job = job;

@@ -956,7 +956,7 @@ QList<QString> findAllImagesBelowDir(const QDir &topDir)
         auto dir = dirs.back();
         dirs.removeLast();
         auto list = dir.entryInfoList( nameFilter, filter );
-        foreach( const QFileInfo &entry,  list)
+        for (auto entry : list)
         {
             if( entry.isDir() )
                 dirs.push_back(entry.filePath());

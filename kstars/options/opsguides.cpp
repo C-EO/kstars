@@ -23,7 +23,7 @@ OpsGuides::OpsGuides() : QFrame(KStars::Instance())
 {
     setupUi(this);
 
-    foreach (const QString &item, KStarsData::Instance()->skyComposite()->getCultureNames())
+    for (auto item : KStarsData::Instance()->skyComposite()->getCultureNames())
         SkyCultureComboBox->addItem(i18nc("Sky Culture", item.toUtf8().constData()));
 
     m_ConfigDialog = KConfigDialog::exists("settings");

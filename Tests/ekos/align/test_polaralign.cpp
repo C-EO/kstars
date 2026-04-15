@@ -1064,7 +1064,7 @@ void runRefreshCoords(const GeoLocation &geo,
 {
 
     PolarAlign polarAlign(&geo);
-    foreach (const Solution &p, ps)
+    for (auto p : ps)
     {
         QSharedPointer<FITSData> image;
         setupData(p, image, true);
@@ -1078,7 +1078,7 @@ void runRefreshCoords(const GeoLocation &geo,
     dms azError(initialAzimuthError), altError(initialAltitudeError);
 
     int i = 0;
-    foreach (const Solution &r, rs)
+    for (auto r : rs)
     {
         KStarsDateTime newTime;
         newTime.setDate(QDate(r.year, r.month, r.day));

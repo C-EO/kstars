@@ -102,7 +102,7 @@ void WUTDialog::initCategories()
                  << i18n("Galaxies") << i18n("Star Clusters") << i18n("Constellations")
                  << i18n("Asteroids") << i18n("Comets");
 
-    foreach (const QString &c, m_Categories)
+    for (auto c : m_Categories)
         WUT->CategoryListWidget->addItem(c);
 
     WUT->CategoryListWidget->setCurrentRow(0);
@@ -115,7 +115,7 @@ void WUTDialog::init()
     int hDur, mDur;
     KStarsData *data = KStarsData::Instance();
     // reset all lists
-    foreach (const QString &c, m_Categories)
+    for (auto c : m_Categories)
     {
         if (m_VisibleList.contains(c))
             visibleObjects(c).clear();
@@ -313,8 +313,7 @@ void WUTDialog::slotLoadList(const QString &c)
     {
         if (c == m_Categories[0]) //Planets
         {
-            foreach (const QString &name,
-                     data->skyComposite()->objectNames(SkyObject::PLANET))
+            for (auto name : data->skyComposite()->objectNames(SkyObject::PLANET))
             {
                 SkyObject *o = data->skyComposite()->findByName(name);
 
@@ -347,7 +346,7 @@ void WUTDialog::slotLoadList(const QString &c)
 
         else if (c == m_Categories[5]) //Constellations
         {
-            foreach (SkyObject *o, data->skyComposite()->constellationNames())
+            for (auto o : data->skyComposite()->constellationNames())
                 if (checkVisibility(o))
                     visibleObjects(c).insert(o);
 
@@ -356,7 +355,7 @@ void WUTDialog::slotLoadList(const QString &c)
 
         else if (c == m_Categories[6]) //Asteroids
         {
-            foreach (SkyObject *o, data->skyComposite()->asteroids())
+            for (auto o : data->skyComposite()->asteroids())
                 if (o->mag() <= m_Mag &&
                         o->name() != i18nc("Asteroid name (optional)", "Pluto") &&
                         checkVisibility(o))
@@ -367,7 +366,7 @@ void WUTDialog::slotLoadList(const QString &c)
 
         else if (c == m_Categories[7]) //Comets
         {
-            foreach (SkyObject *o, data->skyComposite()->comets())
+            for (auto o : data->skyComposite()->comets())
                 if (o->mag() <= m_Mag && checkVisibility(o))
                     visibleObjects(c).insert(o);
 

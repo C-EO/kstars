@@ -46,7 +46,7 @@ void StarHopperDialog::starHop(const SkyPoint &startHop, const SkyPoint &stopHop
 
     if (!starList->empty())
     {
-        foreach (StarObject *so, *starList)
+        for (auto so : *starList)
         {
             setData(so);
         }

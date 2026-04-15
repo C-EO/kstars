@@ -298,7 +298,7 @@ void Camera::setBusy(bool enable)
     opticalTrainCombo->setEnabled(!enable);
     trainB->setEnabled(!enable);
 
-    foreach (QAbstractButton * button, queueEditButtonGroup->buttons())
+    for (auto button : queueEditButtonGroup->buttons())
         button->setEnabled(!enable);
 }
 

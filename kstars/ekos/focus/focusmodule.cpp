@@ -685,7 +685,7 @@ void FocusModule::checkCloseFocuserTab(int tabIndex)
 const QString FocusModule::findUnusedOpticalTrain()
 {
     QList<QString> names = OpticalTrainManager::Instance()->getTrainNames();
-    foreach(auto focuser, m_Focusers)
+    for (auto focuser : m_Focusers)
         names.removeAll(focuser->opticalTrain());
 
     if (names.isEmpty())

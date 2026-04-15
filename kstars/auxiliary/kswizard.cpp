@@ -196,7 +196,7 @@ void KSWizard::initGeoPage()
 
     //Populate the CityListBox
     //flag the ID of the current City
-    foreach (GeoLocation *loc, data->getGeoList())
+    for (auto loc : data->getGeoList())
     {
         location->CityListBox->addItem(loc->fullName());
         filteredCityList.append(loc);
@@ -237,7 +237,7 @@ void KSWizard::slotFilterCities()
     //Do NOT delete members of filteredCityList!
     filteredCityList.clear();
 
-    foreach (GeoLocation *loc, KStarsData::Instance()->getGeoList())
+    for (auto loc : KStarsData::Instance()->getGeoList())
     {
         if (hasPrefix(loc->translatedName(), location->CityFilter->text()) &&
                 hasPrefix(loc->translatedCountry(), location->CountryFilter->text()) &&

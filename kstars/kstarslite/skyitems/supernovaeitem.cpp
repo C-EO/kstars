@@ -43,7 +43,7 @@ void SupernovaeItem::update()
 
 void SupernovaeItem::recreateList()
 {
-    foreach (SkyObject *so, m_snovaComp->objectList())
+    for (auto so : m_snovaComp->objectList())
     {
         Supernova *sup = static_cast<Supernova*>(so);
 

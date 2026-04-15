@@ -87,7 +87,7 @@ void MapCanvas::paintEvent(QPaintEvent *)
     //Draw cities
     QPoint o;
 
-    foreach (GeoLocation *g, KStarsData::Instance()->getGeoList())
+    for (auto g : KStarsData::Instance()->getGeoList())
     {
         convertAndScale(o, *g);
 
@@ -105,7 +105,7 @@ void MapCanvas::paintEvent(QPaintEvent *)
         if (ld->filteredList().size())
         {
             p.setPen(Qt::white);
-            foreach (GeoLocation *g, ld->filteredList())
+            for (auto g : ld->filteredList())
             {
                 convertAndScale(o, *g);
 

@@ -97,7 +97,7 @@ QStringList TestEkosCaptureHelper::searchFITS(const QDir &dir) const
     //foreach (auto &f, list)
     //    QWARN(QString(dir.path()+'/'+f).toStdString().c_str());
 
-    foreach (auto &d, dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs))
+    for (auto d : dir.entryList(QDir::NoDotAndDotDot | QDir::Dirs))
         list.append(searchFITS(QDir(dir.path() + '/' + d)));
 
     return list;

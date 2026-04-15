@@ -59,7 +59,7 @@ bool extensions::discover()
             qCDebug(KSTARS) << "Found extension(s): " << filesExe;
 
             // Remove any executable without a .conf fileROCm
-            foreach (QString exe, filesExe)
+            for (auto exe : filesExe)
             {
                 if (!filesConf.contains(QString(exe).append(".conf")))
                 {
@@ -72,7 +72,7 @@ bool extensions::discover()
             {
 
                 // Remove any .conf files that don't share filename with an executable
-                foreach (QString conf, filesConf)
+                for (auto conf : filesConf)
                 {
                     if (!filesExe.contains(QString(conf).remove(".conf")))
                     {
@@ -88,7 +88,7 @@ bool extensions::discover()
                 }
 
                 //Check if any executable doesn't have a valid .conf
-                foreach (QString exe, filesExe)
+                for (auto exe : filesExe)
                 {
                     if (!filesConf.contains(QString(exe).append(".conf")))
                     {
@@ -99,12 +99,12 @@ bool extensions::discover()
                 // Check if we have any executables with valid .conf files and build map
                 if (! filesExe.isEmpty() && (filesExe.count() == filesConf.count()))
                 {
-                    foreach (QString exe, filesExe)
+                    for (auto exe : filesExe)
                     {
                         extDetails m_ext;
 
                         QString iconName = "";
-                        foreach (QString name, filesIcons)
+                        for (auto name : filesIcons)
                         {
                             if (name.contains(exe))
                             {
@@ -196,7 +196,7 @@ bool extensions::confValid(const QString &filePath)
                     if (minVersionElements.count() == 3)
                     {
                         QList <int> minVersionElementInts;
-                        foreach (QString element, minVersionElements)
+                        for (auto element : minVersionElements)
                         {
                             if (element.toInt() || element == "0")
                             {
@@ -208,7 +208,7 @@ bool extensions::confValid(const QString &filePath)
                         {
                             QStringList KStarsVersionElements = QString(KSTARS_VERSION).split(".");
                             QList <int> KStarsVersionElementInts;
-                            foreach (QString element, KStarsVersionElements)
+                            for (auto element : KStarsVersionElements)
                             {
                                 if (element.toInt() || element == "0")
                                 {

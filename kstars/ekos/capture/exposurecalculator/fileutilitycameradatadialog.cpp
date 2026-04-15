@@ -47,7 +47,7 @@ void FileUtilityCameraDataDialog::refreshCameraList()
 
     // This probably needs to move to a method called when downloadRepositoryCameraDataFileList has completed
     QVector<QString> availableCameraDataFiles = getAvailableCameraDataFiles();
-    foreach(QString availableCameraFile, availableCameraDataFiles)
+    for (auto availableCameraFile : availableCameraDataFiles)
     {
         // Make the camera list user friendly... to match the camera device id
         QString availableCameraId = OptimalExposure::FileUtilityCameraData::cameraDataFileNameToCameraId(availableCameraFile);
@@ -73,7 +73,7 @@ void FileUtilityCameraDataDialog::startCameraDownload()
     {
         this->setDownloadFileCounter(selectedItems.size());
         // qCInfo(KSTARS_EKOS_CAPTURE) << "Selected Cameras " << selectedItems.size();
-        foreach(QListWidgetItem *aSelectedCameraItem, selectedItems)
+        for (auto aSelectedCameraItem : selectedItems)
         {
             QString aSelectedCameraId = aSelectedCameraItem->text();
             // qCInfo(KSTARS_EKOS_CAPTURE) << "attempt Download of " << aSelectedCameraId;

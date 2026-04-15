@@ -466,7 +466,7 @@ bool SchedulerUtils::estimateJobTime(SchedulerJob * schedJob, const CapturedFram
                                    completedIterations);
     schedJob->setCompletedIterations(completedIterations);
     // Loop through sequence jobs to calculate the number of required frames and estimate duration.
-    foreach (auto seqJob, seqJobs)
+    for (auto seqJob : seqJobs)
     {
         // FIXME: find a way to actually display the filter name.
         QString seqName = i18n("Job '%1' %2x%3\" %4", schedJob->getName(), seqJob->getCoreProperty(SequenceJob::SJ_Count).toInt(),
@@ -530,7 +530,7 @@ bool SchedulerUtils::estimateJobTime(SchedulerJob * schedJob, const CapturedFram
                                               captures_completed).arg(QFileInfo(signature).path());
 
             // Enumerate sequence jobs to check how many captures are completed overall in the same storage as the current one
-            foreach (auto prevSeqJob, seqJobs)
+            for (auto prevSeqJob : seqJobs)
             {
                 // Enumerate seqJobs up to the current one
                 if (seqJob == prevSeqJob)

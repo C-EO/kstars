@@ -113,7 +113,7 @@ void Manager::setCurrentTheme(const QString &name)
 
     QList<QAction*> list = d->themeMenuActionGroup->actions();
 
-    foreach(QAction* const action, list)
+    for (auto action : list)
     {
         if (action->text().remove(QLatin1Char('&')) == name)
         {
@@ -150,7 +150,7 @@ void Manager::slotChangePalette()
     qApp->setPalette(palette);
 
     QList<QWidget *> widgets = qApp->allWidgets();
-    foreach(QWidget *w, widgets)
+    for (auto w : widgets)
     {
         dmsBox *box = qobject_cast<dmsBox *>(w);
         if(box)
@@ -213,7 +213,7 @@ void Manager::populateThemeQListWidget(QListWidget *themeWidget)
 
     QList<QAction*> list = d->themeMenuActionGroup->actions();
 
-    foreach(QAction* const action, list)
+    for (auto action : list)
     {
         QListWidgetItem *item = new QListWidgetItem();
         item->setText( action->text().remove('&') );
@@ -292,7 +292,7 @@ void Manager::populateThemeMenu()
     QStringList actionMapKeys = actionMap.keys();
     actionMapKeys.sort();
 
-    foreach(const QString &name, actionMapKeys)
+    for (auto name : actionMapKeys)
     {
         d->themeMenuAction->addAction(actionMap.value(name));
     }
@@ -305,7 +305,7 @@ void Manager::updateCurrentDesktopDefaultThemePreview()
 {
     QList<QAction*> list = d->themeMenuActionGroup->actions();
 
-    foreach(QAction* const action, list)
+    for (auto action : list)
     {
         if (action->text().remove(QLatin1Char('&')) == defaultThemeName())
         {
@@ -401,7 +401,7 @@ void Manager::setIconTheme(IconTheme theme)
     // The important point is that the current theme must be left as is to avoid empty icons
     {
         bool missing = true;
-        foreach (auto &path, themeSearchPaths)
+        for (auto path : themeSearchPaths)
             if (QFile(path + '/' + iconTheme + "/index.theme").exists())
                 missing = false;
 

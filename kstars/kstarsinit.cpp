@@ -843,7 +843,7 @@ void KStars::repopulateFOV()
 
     // Iterate through FOVs
     fovActionMenu->menu()->clear();
-    foreach (FOV *fov, data()->availFOVs)
+    for (auto fov : data()->availFOVs)
     {
         KToggleAction *kta = actionCollection()->add<KToggleAction>("fov:" + fov->name());
         kta->setText(fov->name());

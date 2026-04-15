@@ -746,9 +746,8 @@ void SkyMap::slotEndRulerMode()
         else if (!data->getAvailableFOVs().isEmpty())
         {
             // Ask the user to choose from a list of available FOVs.
-            FOV const *f;
             QMap<QString, double> nameToFovMap;
-            foreach (f, data->getAvailableFOVs())
+            for (auto f : data->getAvailableFOVs())
             {
                 nameToFovMap.insert(f->name(),
                                     ((f->sizeX() >= f->sizeY() && f->sizeY() != 0) ? f->sizeY() : f->sizeX()));

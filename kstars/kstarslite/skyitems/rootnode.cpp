@@ -294,7 +294,7 @@ void RootNode::update(bool clearTextures)
         //Delete old textures
         if (m_oldTextureCache.length())
         {
-            foreach (QVector<QSGTexture *> textures, m_oldTextureCache)
+            for (auto textures : m_oldTextureCache)
             {
                 qDeleteAll(textures.begin(), textures.end());
             }

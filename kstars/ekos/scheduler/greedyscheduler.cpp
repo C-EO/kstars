@@ -195,7 +195,7 @@ void GreedyScheduler::prepareJobsForEvaluation(
     const QMap<QString, uint16_t> &capturedFramesCount, ModuleLogger *logger, bool reestimateJobTimes) const
 {
     // Remove some finished jobs from eval.
-    foreach (SchedulerJob *job, jobs)
+    for (auto job : jobs)
     {
         job->clearSimulatedSchedule();
         switch (job->getCompletionCondition())
@@ -227,7 +227,7 @@ void GreedyScheduler::prepareJobsForEvaluation(
     }
 
     // Change the state to eval or ERROR/ABORTED for all jobs that will be evaluated.
-    foreach (SchedulerJob *job, jobs)
+    for (auto job : jobs)
     {
         switch (job->getState())
         {
@@ -251,7 +251,7 @@ void GreedyScheduler::prepareJobsForEvaluation(
     }
 
     // Estimate the job times
-    foreach (SchedulerJob *job, jobs)
+    for (auto job : jobs)
     {
         if (job->getState() == SCHEDJOB_INVALID || job->getState() == SCHEDJOB_COMPLETE)
             continue;
@@ -608,7 +608,7 @@ QDateTime GreedyScheduler::simulate(const QList<SchedulerJob *> &jobs, const QDa
     QList<SchedulerJob *> scheduledJobs;
     QDateTime simEndTime;
 
-    foreach (SchedulerJob *job, jobs)
+    for (auto job : jobs)
     {
         SchedulerJob *newJob = new SchedulerJob();
         // Make sure the copied class pointers aren't affected!
@@ -624,7 +624,7 @@ QDateTime GreedyScheduler::simulate(const QList<SchedulerJob *> &jobs, const QDa
     // and the number of them where a simulated start has been scheduled.
     int numStartupCandidates = 0, numStartups = 0;
     // Reset the start times.
-    foreach (SchedulerJob *job, copiedJobs)
+    for (auto job : copiedJobs)
     {
         job->setStartupTime(QDateTime());
         const auto state = job->getState();
@@ -671,7 +671,7 @@ QDateTime GreedyScheduler::simulate(const QList<SchedulerJob *> &jobs, const QDa
         // Find the next start_at time, and use that as an end constraint to getNextEndTime
         // if it's before jobInterruptTime.
         QDateTime nextStartAtTime;
-        foreach (SchedulerJob *job, simJobs)
+        for (auto job : simJobs)
         {
             if (job != selectedJob &&
                     job->getStartupCondition() == START_AT &&
@@ -926,7 +926,7 @@ QString GreedyScheduler::jobScheduleString(const JobSchedule &jobSchedule)
 
 void GreedyScheduler::printSchedule(const QList<JobSchedule> &schedule)
 {
-    foreach (auto &line, schedule)
+    for (auto line : schedule)
     {
         fprintf(stderr, "%s\n", QString("%1 %2 --> %3 (%4)")
                 .arg(jobScheduleString(line)).toLatin1().data());

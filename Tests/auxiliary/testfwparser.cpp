@@ -26,7 +26,7 @@ void TestFWParser::initTestCase()
     QVERIFY(temp_file.open());
     test_file_name_ = temp_file.fileName();
     QTextStream out_stream(&temp_file);
-    foreach (const QString &test_case, test_cases_)
+    for (auto test_case : test_cases_)
         out_stream << test_case;
     temp_file.close();
 

@@ -132,7 +132,7 @@ void PlanetMoonsComponent::draw(SkyPainter *skyp)
     m_Planet->draw(skyp);
 
     //Now draw the remaining moons, as stored in frontMoons
-    foreach (TrailObject *moon, frontMoons)
+    for (auto moon : frontMoons)
     {
         skyp->drawPointSource(moon, moon->mag());
     }

@@ -167,7 +167,7 @@ bool ArtificialHorizonComponent::load()
     KStarsData::Instance()->userdb()->GetAllHorizons(list);
     horizon.load(list);
 
-    foreach (ArtificialHorizonEntity *horizon, *horizon.horizonList())
+    for (auto horizon : *horizon.horizonList())
         appendLine(horizon->list());
 
     return true;
@@ -177,7 +177,7 @@ void ArtificialHorizonComponent::save()
 {
     KStarsData::Instance()->userdb()->DeleteAllHorizons();
 
-    foreach (ArtificialHorizonEntity *horizon, *horizon.horizonList())
+    for (auto horizon : *horizon.horizonList())
         KStarsData::Instance()->userdb()->AddHorizon(horizon);
 }
 
@@ -647,7 +647,7 @@ ArtificialHorizonEntity *ArtificialHorizon::findRegion(const QString &regionName
 {
     ArtificialHorizonEntity *regionHorizon = nullptr;
 
-    foreach (ArtificialHorizonEntity *horizon, m_HorizonList)
+    for (auto horizon : m_HorizonList)
     {
         if (horizon->region() == regionName)
         {
@@ -738,7 +738,7 @@ void ArtificialHorizonComponent::addRegion(const QString &regionName, bool enabl
 
 bool ArtificialHorizon::altitudeConstraintsExist() const
 {
-    foreach (ArtificialHorizonEntity *horizon, m_HorizonList)
+    for (auto horizon : m_HorizonList)
     {
         if (horizon->enabled())
             return true;
@@ -752,7 +752,7 @@ const ArtificialHorizonEntity *ArtificialHorizon::getConstraintAbove(double azim
     double closestAbove = 1e6;
     const ArtificialHorizonEntity *entity = nullptr;
 
-    foreach (ArtificialHorizonEntity *horizon, m_HorizonList)
+    for (auto horizon : m_HorizonList)
     {
         if (!horizon->enabled()) continue;
         if (horizon == ignore) continue;
@@ -826,7 +826,7 @@ const ArtificialHorizonEntity *ArtificialHorizon::getConstraintBelow(double azim
     double closestBelow = -1e6;
     const ArtificialHorizonEntity *entity = nullptr;
 
-    foreach (ArtificialHorizonEntity *horizon, m_HorizonList)
+    for (auto horizon : m_HorizonList)
     {
         if (!horizon->enabled()) continue;
         if (horizon == ignore) continue;

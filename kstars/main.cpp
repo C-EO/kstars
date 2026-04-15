@@ -422,7 +422,7 @@ int main(int argc, char *argv[])
     // take arguments
     if (!urls.isEmpty())
     {
-        foreach (const QString &url, urls)
+        for (auto url : urls)
         {
             const QUrl u = QUrl::fromUserInput(url, QDir::currentPath());
 

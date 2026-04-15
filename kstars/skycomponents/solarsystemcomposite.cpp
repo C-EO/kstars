@@ -80,7 +80,7 @@ SolarSystemComposite::SolarSystemComposite(SkyComposite *parent) : SkyComposite(
     m_planetObjects.append(uranus->planet());
     m_planetObjects.append(nep->planet());
 
-    foreach(PlanetMoonsComponent *pMoons, planetMoonsComponent()) {
+    for (auto pMoons : planetMoonsComponent()) {
         PlanetMoons *moons = pMoons->getMoons();
         for(int i = 0; i < moons->nMoons(); ++i) {
             SkyObject *moon = moons->moon(i);
@@ -115,7 +115,7 @@ void SolarSystemComposite::update(KSNumbers *num)
     m_Moon->EquatorialToHorizontal(data->lst(), data->geo()->lat());
     //    m_JupiterMoons->update( num );
 
-    foreach (SkyComponent *comp, components())
+    for (auto comp : components())
     {
         comp->update(num);
     }
@@ -124,7 +124,7 @@ void SolarSystemComposite::update(KSNumbers *num)
 void SolarSystemComposite::updateSolarSystemBodies(KSNumbers *num)
 {
     m_Earth->findPosition(num);
-    foreach (SkyComponent *comp, components())
+    for (auto comp : components())
     {
         comp->updateSolarSystemBodies(num);
     }
@@ -134,7 +134,7 @@ void SolarSystemComposite::updateMoons(KSNumbers *num)
 {
     //    if ( ! selected() ) return;
     m_Earth->findPosition(num);
-    foreach (SkyComponent *comp, components())
+    for (auto comp : components())
     {
         comp->updateMoons(num);
     }
@@ -145,7 +145,7 @@ void SolarSystemComposite::drawTrails(SkyPainter *skyp)
 {
     if (selected())
     {
-        foreach (SkyComponent *comp, components())
+        for (auto comp : components())
             comp->drawTrails(skyp);
     }
 }

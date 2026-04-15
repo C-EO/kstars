@@ -303,7 +303,7 @@ void ClientManagerLite::setConnected(bool connected)
 
 QString ClientManagerLite::syncLED(const QString &device, const QString &property, const QString &name)
 {
-    foreach (DeviceInfoLite *devInfo, m_devices)
+    for (auto devInfo : m_devices)
     {
         if (devInfo->device->getDeviceName() == device)
         {
@@ -650,7 +650,7 @@ void ClientManagerLite::buildLightGUI(INDI::Property property)
 
 void ClientManagerLite::sendNewINDISwitch(const QString &deviceName, const QString &propName, const QString &name)
 {
-    foreach (DeviceInfoLite *devInfo, m_devices)
+    for (auto devInfo : m_devices)
     {
         INDI::BaseDevice *device = devInfo->device;
         if (device->getDeviceName() == deviceName)
@@ -699,7 +699,7 @@ void ClientManagerLite::sendNewINDISwitch(const QString &deviceName, const QStri
 void ClientManagerLite::sendNewINDINumber(const QString &deviceName, const QString &propName, const QString &numberName,
         double value)
 {
-    foreach (DeviceInfoLite *devInfo, m_devices)
+    for (auto devInfo : m_devices)
     {
         INDI::BaseDevice *device = devInfo->device;
         if (device->getDeviceName() == deviceName)
@@ -728,7 +728,7 @@ void ClientManagerLite::sendNewINDINumber(const QString &deviceName, const QStri
 void ClientManagerLite::sendNewINDIText(const QString &deviceName, const QString &propName, const QString &fieldName,
                                         const QString &text)
 {
-    foreach (DeviceInfoLite *devInfo, m_devices)
+    for (auto devInfo : m_devices)
     {
         INDI::BaseDevice *device = devInfo->device;
         if (device->getDeviceName() == deviceName)
@@ -758,7 +758,7 @@ void ClientManagerLite::sendNewINDISwitch(const QString &deviceName, const QStri
 {
     if (index >= 0)
     {
-        foreach (DeviceInfoLite *devInfo, m_devices)
+        for (auto devInfo : m_devices)
         {
             INDI::BaseDevice *device = devInfo->device;
             if (device->getDeviceName() == deviceName)
@@ -866,7 +866,7 @@ void ClientManagerLite::newProperty(INDI::Property property)
     QString label           = property->getLabel();
     DeviceInfoLite *devInfo = nullptr;
 
-    foreach (DeviceInfoLite *di, m_devices)
+    for (auto di : m_devices)
     {
         if (di->device->getDeviceName() == deviceName)
         {
@@ -939,7 +939,7 @@ void ClientManagerLite::removeProperty(INDI::Property property)
     emit removeINDIProperty(property->getDeviceName(), property->getGroupName(), property->getName());
 
     DeviceInfoLite *devInfo = nullptr;
-    foreach (DeviceInfoLite *di, m_devices)
+    for (auto di : m_devices)
     {
         if (di->device == property->getBaseDevice())
         {
@@ -1209,7 +1209,7 @@ void ClientManagerLite::serverDisconnected(int exit_code)
 void ClientManagerLite::clearDevices()
 {
     //Delete all created devices
-    foreach (DeviceInfoLite *devInfo, m_devices)
+    for (auto devInfo : m_devices)
     {
         if (devInfo->telescope.get() != nullptr)
         {

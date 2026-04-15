@@ -230,7 +230,7 @@ bool FITSBahtinovDetector::findBahtinovStar(const QRect &boundary)
 
         // Debug output
         qCDebug(KSTARS_FITS) << "Sorted bahtinov angles:";
-        foreach (HoughLine* ln, top3Lines)
+        for (auto ln : top3Lines)
         {
             ln->printHoughLine();
         }

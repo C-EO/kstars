@@ -187,7 +187,7 @@ template <typename T>
 QList<T *> makeVanillaPointerList(const QList<QSharedPointer<T >> &spList)
 {
     QList<T *> vpList;
-    foreach (QSharedPointer<T> sp, spList)
+    for (auto sp : spList)
         vpList.append(sp.data());
     return vpList;
 }

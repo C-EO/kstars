@@ -1251,7 +1251,7 @@ bool InternalGuider::selectAutoStar()
             }
 
             // Moderately reject stars close to other stars
-            foreach (Edge *edge, starCenters)
+            for (auto edge : starCenters)
             {
                 if (edge == center)
                     continue;

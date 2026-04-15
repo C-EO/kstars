@@ -94,7 +94,7 @@ FOVDialog::FOVDialog(QWidget *p) : QDialog(p)
     connect(fov->RemoveButton, SIGNAL(clicked()), SLOT(slotRemoveFOV()));
 
     // Read list of FOVs and for each FOV create listbox entry, which stores it.
-    foreach (FOV *f, FOVManager::getFOVs())
+    for (auto f : FOVManager::getFOVs())
     {
         addListWidget(f);
     }

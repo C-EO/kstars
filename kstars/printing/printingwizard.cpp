@@ -204,7 +204,7 @@ void PrintingWizard::beginShFovCapture()
 
     // Get selected FOV symbol
     double fovArcmin(0);
-    foreach (FOV *fov, KStarsData::Instance()->getAvailableFOVs())
+    for (auto fov : KStarsData::Instance()->getAvailableFOVs())
     {
         if (fov->name() == m_WizFovShUI->getFovName())
         {

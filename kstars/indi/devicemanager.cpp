@@ -88,7 +88,7 @@ void DeviceManager::startServer()
     *serverProcess << "-v"
                    << "-p" << QString::number(port);
 
-    foreach (IDevice *device, managed_devices)
+    for (auto device : managed_devices)
     {
         // JM: Temporary workaround for indiserver limit of client BLOBs for CCDs.
         if (device->type == KSTARS_CCD)
@@ -99,7 +99,7 @@ void DeviceManager::startServer()
         }
     }
 
-    foreach (IDevice *device, managed_devices)
+    for (auto device : managed_devices)
         *serverProcess << device->driver;
 
     if (mode == DeviceManager::M_LOCAL)
@@ -193,7 +193,7 @@ void DeviceManager::appendManagedDevices(QList<IDevice *> &processed_devices)
 {
     managed_devices = processed_devices;
 
-    foreach (IDevice *device, managed_devices)
+    for (auto device : managed_devices)
     {
         device->unique_label = parent->getUniqueDeviceLabel(device->tree_label);
         //device->mode		= mode;
@@ -380,7 +380,7 @@ INDI_D *DeviceManager::addDevice(XMLEle *dep, QString &errmsg)
     device_name = QString(valuXMLAtt(ap));
 
     if (mode != M_CLIENT)
-        foreach (IDevice *device, managed_devices)
+        for (auto device : managed_devices)
         {
             // Each device manager has a list of managed_devices (IDevice). Each IDevice has the original constant name of the driver (driver_class)
             // Therefore, when a new device is discovered, we match the driver name (which never changes, it's always static from indiserver) against the driver_class
@@ -515,7 +515,7 @@ void DeviceManager::sendNewText(INDI_P *pp)
     serverFP << QString("  name='%1'\n>").arg(qPrintable(pp->name));
 
     //for (lp = pp->el.first(); lp != nullptr; lp = pp->el.next())
-    foreach (lp, pp->el)
+    for (auto lp : pp->el)
     {
         serverFP << QString("  <oneText\n");
         serverFP << QString("    name='%1'>\n").arg(qPrintable(lp->name));
@@ -535,7 +535,7 @@ void DeviceManager::sendNewNumber(INDI_P *pp)
     serverFP << QString("  device='%1'\n").arg(qPrintable(pp->pg->dp->name));
     serverFP << QString("  name='%1'\n>").arg(qPrintable(pp->name));
 
-    foreach (lp, pp->el)
+    for (auto lp : pp->el)
     {
         serverFP << QString("  <oneNumber\n");
         serverFP << QString("    name='%1'>\n").arg(qPrintable(lp->name));

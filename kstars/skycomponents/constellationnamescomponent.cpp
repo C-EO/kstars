@@ -114,7 +114,7 @@ void ConstellationNamesComponent::update(KSNumbers *)
     if (!selected())
         return;
     KStarsData *data = KStarsData::Instance();
-    foreach (SkyObject *o, m_ObjectList)
+    for (auto o : m_ObjectList)
         o->EquatorialToHorizontal(data->lst(), data->geo()->lat());
 }
 
@@ -133,7 +133,7 @@ void ConstellationNamesComponent::draw(SkyPainter *skyp)
     skyLabeler->setPen(QColor(KStarsData::Instance()->colorScheme()->colorNamed("CNameColor")));
 
     QString name;
-    foreach (SkyObject *p, m_ObjectList)
+    for (auto p : m_ObjectList)
     {
         if (!proj->checkVisibility(p))
             continue;

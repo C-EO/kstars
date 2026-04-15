@@ -89,7 +89,7 @@ INDIDriver::INDIDriver(KStars *_ks) : QDialog(_ks), ksw(_ks)
     setCaption(xi18n("Device Manager"));
     setButtons(QDialog::Close);
 
-    foreach (INDIHostsInfo *host, ksw->data()->INDIHostsList)
+    for (auto host : ksw->data()->INDIHostsList)
     {
         QTreeWidgetItem *item = new QTreeWidgetItem(ui->clientTreeWidget, lastGroup);
         lastGroup             = item;
@@ -124,12 +124,12 @@ void INDIDriver::enableDevice(INDI_D *indi_device)
 
    if (indi_device->deviceManager->mode == DeviceManager::M_CLIENT)
    {
-   	foreach (INDIHostsInfo * host, ksw->data()->INDIHostsList)
+   	for (auto host : ksw->data()->INDIHostsList)
     	{
 
 	        if (host->deviceManager == indi_device->deviceManager && host->isConnected == false)
 	        {
-	    		foreach (QTreeWidgetItem *item, ui->clientTreeWidget->findItems(host->name, Qt::MatchExactly, 1))
+	    		for (auto item : ui->clientTreeWidget->findItems(host->name, Qt::MatchExactly, 1))
                                 item->setIcon(HOST_STATUS_COLUMN, ui->connected);
 
              		host->isConnected = true;
@@ -142,11 +142,11 @@ void INDIDriver::enableDevice(INDI_D *indi_device)
     }
     else
       {
-	foreach (IDevice *device, devices)
+	for (auto device : devices)
     	{
 		if (device->unique_label == indi_device->label)
 		{
-			foreach (QTreeWidgetItem *item, ui->localTreeWidget->findItems(device->tree_label, Qt::MatchExactly |  Qt::MatchRecursive))
+			for (auto item : ui->localTreeWidget->findItems(device->tree_label, Qt::MatchExactly |  Qt::MatchRecursive))
 			{
                                 item->setIcon(LOCAL_STATUS_COLUMN, ui->runningPix);
                                 item->setText(LOCAL_PORT_COLUMN, QString::number(indi_device->deviceManager->port));
@@ -169,11 +169,11 @@ void INDIDriver::disableDevice(INDI_D *indi_device)
 
    if (indi_device->deviceManager->mode == DeviceManager::M_CLIENT)
    {
-   	foreach (INDIHostsInfo * host, ksw->data()->INDIHostsList)
+   	for (auto host : ksw->data()->INDIHostsList)
     	{
 	        if (host->deviceManager == indi_device->deviceManager && host->isConnected == true)
 	        {
-	    		foreach (QTreeWidgetItem *item, ui->clientTreeWidget->findItems(host->name, Qt::MatchExactly,1))
+	    		for (auto item : ui->clientTreeWidget->findItems(host->name, Qt::MatchExactly,1))
                                 item->setIcon(HOST_STATUS_COLUMN, ui->disconnected);
 
 			host->deviceManager = nullptr;
@@ -186,11 +186,11 @@ void INDIDriver::disableDevice(INDI_D *indi_device)
     }
     else
       {
-	foreach (IDevice *device, devices)
+	for (auto device : devices)
     	{
 		if (device->unique_label == indi_device->label)
 		{
-			foreach (QTreeWidgetItem *item, ui->localTreeWidget->findItems(device->tree_label, Qt::MatchExactly |  Qt::MatchRecursive))
+			for (auto item : ui->localTreeWidget->findItems(device->tree_label, Qt::MatchExactly |  Qt::MatchRecursive))
 			{
                                 item->setIcon(LOCAL_STATUS_COLUMN, ui->stopPix);
                                 item->setIcon(LOCAL_MODE_COLUMN, QIcon());
@@ -231,7 +231,7 @@ void INDIDriver::updateLocalTab()
     if (ui->localTreeWidget->currentItem() == nullptr)
         return;
 
-    foreach (IDevice *device, devices)
+    for (auto device : devices)
     {
         if (ui->localTreeWidget->currentItem()->text(LOCAL_NAME_COLUMN) == device->tree_label)
         {
@@ -251,7 +251,7 @@ void INDIDriver::updateClientTab()
     if (ui->clientTreeWidget->currentItem() == nullptr)
         return;
 
-    foreach (INDIHostsInfo *host, ksw->data()->INDIHostsList)
+    for (auto host : ksw->data()->INDIHostsList)
     {
         if (ui->clientTreeWidget->currentItem()->text(HOST_NAME_COLUMN) == host->name &&
                 ui->clientTreeWidget->currentItem()->text(HOST_PORT_COLUMN) == host->portnumber)
@@ -270,9 +270,9 @@ void INDIDriver::processLocalTree(IDevice::DeviceStatus dev_request)
     int port                     = 0;
     bool portOK                  = false;
 
-    foreach (QTreeWidgetItem *item, ui->localTreeWidget->selectedItems())
+    for (auto item : ui->localTreeWidget->selectedItems())
     {
-        foreach (IDevice *device, devices)
+        for (auto device : devices)
         {
             //device->state = (dev_request == IDevice::DEV_TERMINATE) ? IDevice::DEV_START : IDevice::DEV_TERMINATE;
             if (item->text(LOCAL_NAME_COLUMN) == device->tree_label && device->state != dev_request)
@@ -336,7 +336,7 @@ void INDIDriver::processRemoteTree(IDevice::DeviceStatus dev_request)
         return;
     bool toConnect = (dev_request == IDevice::DEV_START);
 
-    foreach (INDIHostsInfo *host, ksw->data()->INDIHostsList)
+    for (auto host : ksw->data()->INDIHostsList)
     {
         if (currentItem->text(HOST_NAME_COLUMN) == host->name &&
                 currentItem->text(HOST_PORT_COLUMN) == host->portnumber)
@@ -401,9 +401,9 @@ void INDIDriver::updateMenuActions()
     if (devMenu->managers.count() > 0)
         activeDevice = true;
 
-    foreach (DeviceManager *dev_managers, devMenu->managers)
+    for (auto dev_managers : devMenu->managers)
     {
-        foreach (INDI_D *device, dev_managers->indi_dev)
+        for (auto device : dev_managers->indi_dev)
         {
             imgProp = device->findProp("CCD_EXPOSURE");
             if (imgProp && device->isOn())
@@ -426,7 +426,7 @@ void INDIDriver::updateMenuActions()
 
 bool INDIDriver::isDeviceRunning(const QString &deviceLabel)
 {
-    foreach (IDevice *dev, devices)
+    for (auto dev : devices)
     {
         if (deviceLabel == dev->tree_label)
             return dev->state == IDevice::DEV_START;
@@ -494,7 +494,7 @@ bool INDIDriver::readXMLDrivers()
     indiDir.setFilter(QDir::Files | QDir::NoSymLinks);
     QFileInfoList list = indiDir.entryInfoList();
 
-    foreach (QFileInfo fileInfo, list)
+    for (auto fileInfo : list)
     {
         // libindi 0.7.1: Skip skeleton files
         if (fileInfo.fileName().endsWith(QLatin1String("_sk.xml")))
@@ -728,7 +728,7 @@ void INDIDriver::updateCustomDrivers()
         return;
 
     // Find custom telescope to ADD
-    foreach (OAL::Scope *s, *(KStarsData::Instance()->logObject()->scopeList()))
+    for (auto s : * (KStarsData::Instance()->logObject()->scopeList()))
     {
         label = s->vendor() + ' ' + s->model();
 
@@ -762,7 +762,7 @@ void INDIDriver::updateCustomDrivers()
     }
 
     // Find custom telescope to REMOVE
-    foreach (IDevice *dev, devices)
+    for (auto dev : devices)
     {
         // If it's from primary xml file or it is in a running state, continue.
         if (dev->xmlSource != IDevice::EM_XML || dev->state == IDevice::DEV_START)
@@ -816,7 +816,7 @@ void INDIDriver::addINDIHost()
 
         //search for duplicates
         //for (uint i=0; i < ksw->data()->INDIHostsList.count(); i++)
-        foreach (INDIHostsInfo *host, ksw->data()->INDIHostsList)
+        for (auto host : ksw->data()->INDIHostsList)
             if (hostItem->name == host->name && hostItem->portnumber == host->portnumber)
             {
                 KMessageBox::error(0, xi18n("Host: %1 Port: %2 already exists.", hostItem->name, hostItem->portnumber));
@@ -847,7 +847,7 @@ void INDIDriver::modifyINDIHost()
     if (currentItem == nullptr)
         return;
 
-    foreach (INDIHostsInfo *host, ksw->data()->INDIHostsList)
+    for (auto host : ksw->data()->INDIHostsList)
     {
         if (currentItem->text(HOST_NAME_COLUMN) == host->name &&
                 currentItem->text(HOST_PORT_COLUMN) == host->portnumber)
@@ -925,7 +925,7 @@ void INDIDriver::saveHosts()
     QTextStream outstream(&file);
 
     //for (uint i= 0; i < ksw->data()->INDIHostsList.count(); i++)
-    foreach (INDIHostsInfo *host, ksw->data()->INDIHostsList)
+    for (auto host : ksw->data()->INDIHostsList)
     {
         hostData = "<INDIHost name='";
         hostData += host->name;
@@ -943,7 +943,7 @@ void INDIDriver::saveHosts()
 
 IDevice *INDIDriver::findDeviceByLabel(const QString &label)
 {
-    foreach (IDevice *dev, devices)
+    for (auto dev : devices)
     {
         if (dev->tree_label == label)
             return dev;

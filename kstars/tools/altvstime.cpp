@@ -292,7 +292,7 @@ void AltVsTime::slotAddSource()
         //An object with the current name exists.  If the object is not already
         //in the avt list, add it.
         bool found = false;
-        foreach (SkyObject *o, pList)
+        for (auto o : pList)
         {
             //if ( o->name() == obj->name() ) {
             if (getObjectName(o, false) == getObjectName(obj, false))
@@ -334,7 +334,7 @@ void AltVsTime::slotAddSource()
 
             //make sure the coords do not already exist from another object
             bool found = false;
-            foreach (SkyObject *p, pList)
+            for (auto p : pList)
             {
                 //within an arcsecond?
                 if (fabs(newRA.Degrees() - p->ra().Degrees()) < 0.0003 &&
@@ -410,7 +410,7 @@ void AltVsTime::processObject(SkyObject *o, bool forceAdd)
 
     //If this point is not in list already, add it to list
     bool found(false);
-    foreach (SkyObject *p, pList)
+    for (auto p : pList)
     {
         if (o->ra().Degrees() == p->ra().Degrees() && o->dec().Degrees() == p->dec().Degrees())
         {

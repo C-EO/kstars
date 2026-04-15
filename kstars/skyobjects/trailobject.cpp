@@ -86,7 +86,7 @@ void TrailObject::clearTrail()
 void TrailObject::clearTrailsExcept(SkyObject *o)
 {
     TrailObject *keep = nullptr;
-    foreach (TrailObject *tr, trailObjects)
+    for (auto tr : trailObjects)
     {
         if (tr != o)
             tr->clearTrail();

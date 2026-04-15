@@ -60,7 +60,7 @@ bool FOVManager::save()
     }
 
     QTextStream ostream(&f);
-    foreach (FOV *fov, m_FOVs)
+    for (auto fov : m_FOVs)
     {
         ostream << fov->name() << ':' << fov->sizeX() << ':' << fov->sizeY() << ':' << fov->offsetX() << ':'
                 << fov->offsetY() << ':' << fov->PA() << ':' << QString::number(fov->shape())

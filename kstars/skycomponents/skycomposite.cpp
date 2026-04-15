@@ -24,7 +24,7 @@ void SkyComposite::addComponent(SkyComponent *component, int priority)
     //qDebug() << Q_FUNC_INFO << "Adding sky component " << component << " of type " << typeid( *component ).name() << " with priority " << priority;
     m_Components.insert(priority, component);
     /*
-    foreach( SkyComponent *p, components() ) {
+    for (auto p : components()) {
         qDebug() << Q_FUNC_INFO << "List now has: " << p << " of type " << typeid( *p ).name();
     }
     */
@@ -41,7 +41,7 @@ void SkyComposite::removeComponent(SkyComponent *const component)
             ++it;
     }
     /*
-    foreach( SkyComponent *p, components() ) {
+    for (auto p : components()) {
         qDebug() << Q_FUNC_INFO << "List now has: " << p << " of type " << typeid( *p ).name();
     }
     */
@@ -51,14 +51,14 @@ void SkyComposite::draw(SkyPainter *skyp)
 {
     if (selected())
     {
-        foreach (SkyComponent *component, components())
+        for (auto component : components())
             component->draw(skyp);
     }
 }
 
 void SkyComposite::update(KSNumbers *num)
 {
-    foreach (SkyComponent *component, components())
+    for (auto component : components())
         component->update(num);
 }
 
@@ -78,7 +78,7 @@ SkyObject *SkyComposite::objectNearest(SkyPoint *p, double &maxrad)
     if (!selected())
         return nullptr;
     SkyObject *oBest = nullptr;
-    foreach (SkyComponent *comp, components())
+    for (auto comp : components())
     {
         //qDebug() << Q_FUNC_INFO << "Checking " << typeid( *comp ).name() <<" for oBest";
         SkyObject *oTry = comp->objectNearest(p, maxrad);

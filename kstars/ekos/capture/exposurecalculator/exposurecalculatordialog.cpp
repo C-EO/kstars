@@ -698,7 +698,7 @@ void ExposureCalculatorDialog::initializeSubExposureCalculator(double aNoiseTole
     }
 
     ui->cameraReadModeSelector->clear();
-    foreach(OptimalExposure::CameraGainReadMode aReadMode, anImagingCameraData->getCameraGainReadModeVector())
+    for (auto aReadMode : anImagingCameraData->getCameraGainReadModeVector())
     {
         QString readModeText = QString::number(aReadMode.getCameraGainReadModeNumber()) + " : " +
                                aReadMode.getCameraGainReadModeName();
@@ -734,7 +734,7 @@ void ExposureCalculatorDialog::initializeSubExposureCalculator(double aNoiseTole
 
             ui->gainISODiscreteSelector->clear();
             // Load the ISO Combo from the camera data
-            foreach(int isoSetting, anImagingCameraData->getGainSelectionRange())
+            for (auto isoSetting : anImagingCameraData->getGainSelectionRange())
             {
                 ui->gainISODiscreteSelector->addItem(QString::number(isoSetting));
             }
@@ -941,7 +941,7 @@ void ExposureCalculatorDialog::refreshCameraSelector(Ui::ExposureCalculatorDialo
     */
     availableCameraFileNames.sort();
 
-    foreach(QString filename, availableCameraFileNames)
+    for (auto filename : availableCameraFileNames)
     {
         QString aCameraId = OptimalExposure::FileUtilityCameraData::cameraDataFileNameToCameraId(filename);
 

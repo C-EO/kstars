@@ -958,7 +958,7 @@ bool SchedulerJob::StartTimeCache::check(const QDateTime &from, const QDateTime 
     // Look at the cached results from getNextPossibleStartTime.
     // If the desired 'from' time is in one of them, that is, between computation.from and computation.until,
     // then we can re-use that result (as long as the desired until time is < computation.until).
-    foreach (const StartTimeComputation &computation, startComputations)
+    for (auto computation : startComputations)
     {
         if (from >= computation.from &&
                 (!computation.until.isValid() || from < computation.until) &&

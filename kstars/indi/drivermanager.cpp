@@ -1352,7 +1352,7 @@ void DriverManager::updateCustomDrivers()
     KStarsData::Instance()->logObject()->readAll();
 
     // Find custom telescope to ADD/UPDATE
-    foreach (OAL::Scope *s, *(KStarsData::Instance()->logObject()->scopeList()))
+    for (auto s : * (KStarsData::Instance()->logObject()->scopeList()))
     {
         name = label = s->name();
 
@@ -1402,7 +1402,7 @@ void DriverManager::updateCustomDrivers()
     }
 
     // Find custom telescope to REMOVE
-    foreach (QSharedPointer<DriverInfo>dev, driversList)
+    for (auto dev : driversList)
     {
         // If it's from primary xml file or it is in a running state, continue.
         if (dev->getDriverSource() != EM_XML || dev->getClientState())
@@ -1453,7 +1453,7 @@ void DriverManager::addINDIHost()
 
         //search for duplicates
         //for (uint i=0; i < ksw->data()->INDIHostsList.count(); i++)
-        foreach (QSharedPointer<DriverInfo>host, driversList)
+        for (auto host : driversList)
             if (hostItem->getName() == host->getName() &&
                     hostItem->getPort() == host->getPort())
             {
@@ -1522,7 +1522,7 @@ void DriverManager::removeINDIHost()
     if (ui->clientTreeWidget->currentItem() == nullptr)
         return;
 
-    foreach (QSharedPointer<DriverInfo>host, driversList)
+    for (auto host : driversList)
         if (ui->clientTreeWidget->currentItem()->text(HOST_NAME_COLUMN) ==
                 host->getName() &&
                 ui->clientTreeWidget->currentItem()->text(HOST_PORT_COLUMN).toInt() ==
@@ -1571,7 +1571,7 @@ void DriverManager::saveHosts()
     QTextStream outstream(&file);
 
     //for (uint i= 0; i < ksw->data()->INDIHostsList.count(); i++)
-    foreach (QSharedPointer<DriverInfo>host, driversList)
+    for (auto host : driversList)
     {
         if (host->getDriverSource() != HOST_SOURCE)
             continue;

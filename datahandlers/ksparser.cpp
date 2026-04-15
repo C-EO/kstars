@@ -138,7 +138,7 @@ QHash<QString, QVariant> KSParser::ReadFixedWidthRow()
     QHash<QString, QVariant> newRow;
     int total_min_length = 0;
 
-    foreach (const int width_value, width_sequence_)
+    for (auto width_value : width_sequence_)
     {
         total_min_length += width_value;
     }
@@ -293,7 +293,7 @@ QList<QString> KSParser::CombineQuoteParts(QList<QString> &separated)
             }
 
             QString col_result;
-            foreach (const QString &join, queue)
+            for (auto join : queue)
                 col_result += (join + delimiter_);
             if (!col_result.isEmpty())
                 col_result.chop(1); // remove extra delimiter

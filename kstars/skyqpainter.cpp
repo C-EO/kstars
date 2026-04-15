@@ -1238,7 +1238,7 @@ void SkyQPainter::drawDeepSkySymbol(const QPointF &pos, int type, float size, fl
 
 void SkyQPainter::drawObservingList(const QList<SkyObject *> &obs)
 {
-    foreach (SkyObject *obj, obs)
+    for (auto obj : obs)
     {
         bool visible = false;
         QPointF o    = m_proj->toScreen(obj, true, &visible);

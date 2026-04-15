@@ -229,7 +229,7 @@ void EquipmentWriter::slotRemoveEyepiece()
     ui.Fov->setValue(0);
     ui.e_focalLength->setValue(0);
     ui.EyepieceList->clear();
-    foreach (OAL::Eyepiece *e, *(KStarsData::Instance()->logObject()->eyepieceList()))
+    for (auto e : * (KStarsData::Instance()->logObject()->eyepieceList()))
         ui.EyepieceList->addItem(e->name());
 }
 void EquipmentWriter::slotSaveEyepiece()
@@ -285,7 +285,7 @@ void EquipmentWriter::slotRemoveLens()
     ui.l_Vendor->clear();
     ui.l_Factor->setValue(0);
     ui.LensList->clear();
-    foreach (OAL::Lens *l, *(KStarsData::Instance()->logObject()->lensList()))
+    for (auto l : * (KStarsData::Instance()->logObject()->lensList()))
         ui.LensList->addItem(l->name());
 }
 void EquipmentWriter::slotSaveLens()
@@ -367,7 +367,7 @@ void EquipmentWriter::slotRemoveFilter()
     ui.f_FocusTicksPerAlt->setValue(0.0);
     ui.f_Wavelength->setValue(500.0);
     ui.FilterList->clear();
-    foreach (OAL::Filter *f, *(KStarsData::Instance()->logObject()->filterList()))
+    for (auto f : * (KStarsData::Instance()->logObject()->filterList()))
         ui.FilterList->addItem(f->name());
 }
 
@@ -449,15 +449,15 @@ void EquipmentWriter::loadEquipment()
     ui.LensList->clear();
     ui.FilterList->clear();
     ui.DSLRLensList->clear();
-    foreach (OAL::Scope *s, *(KStarsData::Instance()->logObject()->scopeList()))
+    for (auto s : * (KStarsData::Instance()->logObject()->scopeList()))
         ui.ScopeList->addItem(s->name());
-    foreach (OAL::Eyepiece *e, *(KStarsData::Instance()->logObject()->eyepieceList()))
+    for (auto e : * (KStarsData::Instance()->logObject()->eyepieceList()))
         ui.EyepieceList->addItem(e->name());
-    foreach (OAL::Lens *l, *(KStarsData::Instance()->logObject()->lensList()))
+    for (auto l : * (KStarsData::Instance()->logObject()->lensList()))
         ui.LensList->addItem(l->name());
-    foreach (OAL::Filter *f, *(KStarsData::Instance()->logObject()->filterList()))
+    for (auto f : * (KStarsData::Instance()->logObject()->filterList()))
         ui.FilterList->addItem(f->name());
-    foreach (OAL::DSLRLens *l, *(KStarsData::Instance()->logObject()->dslrLensList()))
+    for (auto l : * (KStarsData::Instance()->logObject()->dslrLensList()))
         ui.DSLRLensList->addItem(l->name());
 
 #ifdef HAVE_INDI
@@ -476,7 +476,7 @@ void EquipmentWriter::slotSave()
             else
                 slotSaveScope();
             ui.ScopeList->clear();
-            foreach (OAL::Scope *s, *(KStarsData::Instance()->logObject()->scopeList()))
+            for (auto s : * (KStarsData::Instance()->logObject()->scopeList()))
                 ui.ScopeList->addItem(s->name());
             break;
         }
@@ -487,7 +487,7 @@ void EquipmentWriter::slotSave()
             else
                 slotSaveEyepiece();
             ui.EyepieceList->clear();
-            foreach (OAL::Eyepiece *e, *(KStarsData::Instance()->logObject()->eyepieceList()))
+            for (auto e : * (KStarsData::Instance()->logObject()->eyepieceList()))
                 ui.EyepieceList->addItem(e->name());
             break;
         }
@@ -509,7 +509,7 @@ void EquipmentWriter::slotSave()
             else
                 slotSaveLens();
             ui.LensList->clear();
-            foreach (OAL::Lens *l, *(KStarsData::Instance()->logObject()->lensList()))
+            for (auto l : * (KStarsData::Instance()->logObject()->lensList()))
                 ui.LensList->addItem(l->name());
             break;
         }
@@ -520,7 +520,7 @@ void EquipmentWriter::slotSave()
             else
                 slotSaveFilter();
             ui.FilterList->clear();
-            foreach (OAL::Filter *f, *(KStarsData::Instance()->logObject()->filterList()))
+            for (auto f : * (KStarsData::Instance()->logObject()->filterList()))
                 ui.FilterList->addItem(f->name());
             break;
         }
