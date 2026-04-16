@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-15 02:05+0000\n"
+"POT-Creation-Date: 2026-04-16 02:01+0000\n"
 "PO-Revision-Date: 2009-04-22 00:00+0530\n"
 "Last-Translator: Sangeeta Kumari <sangeeta09@gmail.com>\n"
 "Language-Team: Maithili <maithili.sf.net>\n"
@@ -1334,7 +1334,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox_Saturn)
 #: auxiliary/xplanetimageviewer.cpp:212
 #: kstarslite/skyitems/skynodes/planetnode.cpp:30 options/opssolarsystem.ui:56
-#: skycomponents/skymapcomposite.cpp:611 skyglpainter.cpp:298 skymap.cpp:1430
+#: skycomponents/skymapcomposite.cpp:611 skyglpainter.cpp:298 skymap.cpp:1429
 #: skymapdrawabstract.cpp:456 skyobjects/ksplanet.cpp:136
 #: skyobjects/ksplanet.cpp:167 skyobjects/ksplanet.cpp:381
 #: skyobjects/ksplanet.cpp:425 skyobjects/ksplanetbase.cpp:147
@@ -3763,7 +3763,7 @@ msgstr "तारा"
 
 #: dialogs/detaildialog.cpp:220 printing/detailstable.cpp:150
 #: printing/pwizobjectselection.cpp:129
-#: skycomponents/asteroidscomponent.cpp:154 tools/wutdialog.cpp:361
+#: skycomponents/asteroidscomponent.cpp:154 tools/wutdialog.cpp:360
 #, kde-format
 msgctxt "Asteroid name (optional)"
 msgid "Pluto"
@@ -6463,7 +6463,7 @@ msgstr ""
 msgid "Dustcap error detected. Aborting alignment."
 msgstr ""
 
-#: ekos/align/align.cpp:871 ekos/focus/focus.cpp:5875
+#: ekos/align/align.cpp:871 ekos/focus/focus.cpp:5877
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Dawson Creek"
@@ -6552,7 +6552,7 @@ msgid "Error: lost connection to filter wheel."
 msgstr "कनेक्शन"
 
 #: ekos/align/align.cpp:1569 ekos/capture/cameraprocess.cpp:216
-#: ekos/capture/cameraprocess.cpp:637 ekos/focus/focus.cpp:6074
+#: ekos/capture/cameraprocess.cpp:637 ekos/focus/focus.cpp:6076
 #, kde-format
 msgid ""
 "Image transfer is disabled for this camera. Would you like to enable it?"
@@ -6602,7 +6602,7 @@ msgid "Capturing image..."
 msgstr ""
 
 #: ekos/align/align.cpp:1828 ekos/auxiliary/ledstatuswidget.cpp:71
-#: ekos/focus/focus.cpp:3160
+#: ekos/focus/focus.cpp:3162
 #, fuzzy, kde-format
 #| msgid "View Resource"
 msgid "Image received."
@@ -6977,7 +6977,7 @@ msgid "dDE (arcsec)"
 msgstr "सकेण्ड"
 
 #: ekos/align/align.cpp:3820 ekos/capture/camera_config.cpp:717
-#: ekos/focus/focus.cpp:5955
+#: ekos/focus/focus.cpp:5957
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "Filter operation failed."
@@ -10283,63 +10283,63 @@ msgstr "चित्र सहेजबामे विफल"
 msgid "PAA: Failed to find RA Axis center."
 msgstr "चित्र सहेजबामे विफल"
 
-#: ekos/align/polaralignmentassistant.cpp:1048
+#: ekos/align/polaralignmentassistant.cpp:1049
 #, kde-format
 msgid ""
 "Polar-alignment star cannot be updated during refresh phase as it might "
 "affect error measurements."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1065
+#: ekos/align/polaralignmentassistant.cpp:1066
 #, fuzzy, kde-format
 #| msgid "Location:"
 msgid "First manual rotation done."
 msgstr "स्थानः"
 
-#: ekos/align/polaralignmentassistant.cpp:1070
+#: ekos/align/polaralignmentassistant.cpp:1071
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Charleston"
 msgid "Second manual rotation done."
 msgstr "चार्ल्सटन"
 
-#: ekos/align/polaralignmentassistant.cpp:1136
+#: ekos/align/polaralignmentassistant.cpp:1137
 #, kde-format
 msgid ""
 "Mount is synced to celestial pole. You can now continue Polar Alignment "
 "Assistant procedure."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1155
+#: ekos/align/polaralignmentassistant.cpp:1156
 #, kde-format
 msgid "Please wait while WCS data is processed..."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1186
+#: ekos/align/polaralignmentassistant.cpp:1187
 #, fuzzy, kde-format
 #| msgid "Computer"
 msgid "WCS data processing is complete."
 msgstr "कम्प्यूटर"
 
-#: ekos/align/polaralignmentassistant.cpp:1195
+#: ekos/align/polaralignmentassistant.cpp:1196
 #, kde-format
 msgid "WCS info is now valid. Capturing next frame..."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1237
+#: ekos/align/polaralignmentassistant.cpp:1238
 #, fuzzy, kde-format
 #| msgid "Location:"
 msgid "Failed to process World Coordinate System: %1. Try again."
 msgstr "स्थानः"
 
-#: ekos/align/polaralignmentassistant.cpp:1255
+#: ekos/align/polaralignmentassistant.cpp:1256
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "PAA: Failed to find the RA axis. Quitting."
 msgstr "चित्र सहेजबामे विफल"
 
 #. i18n: ectx: property (text), widget (QLabel, PAHMessageText)
-#: ekos/align/polaralignmentassistant.cpp:1286
+#: ekos/align/polaralignmentassistant.cpp:1287
 #: ekos/align/polaralignmentassistant.ui:216
 #, kde-format
 msgid ""
@@ -10347,60 +10347,60 @@ msgid ""
 "capturing the first image...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1288
+#: ekos/align/polaralignmentassistant.cpp:1289
 #, kde-format
 msgid "<p>Solving the <i>first</i> image...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1290
+#: ekos/align/polaralignmentassistant.cpp:1291
 #, kde-format
 msgid "<p>Executing the <i>first</i> mount rotation...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1292
+#: ekos/align/polaralignmentassistant.cpp:1293
 #, kde-format
 msgid "<p>Settling after the <i>first</i> mount rotation.</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1294
+#: ekos/align/polaralignmentassistant.cpp:1295
 #, kde-format
 msgid "<p>Settling after the <i>second</i> mount rotation.</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1296
+#: ekos/align/polaralignmentassistant.cpp:1297
 #, fuzzy, kde-format
 #| msgid "string"
 msgid "<p>Capturing the second image...</p>"
 msgstr "स्ट्रिंग"
 
-#: ekos/align/polaralignmentassistant.cpp:1298
+#: ekos/align/polaralignmentassistant.cpp:1299
 #, kde-format
 msgid "<p>Solving the <i>second</i> image...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1300
+#: ekos/align/polaralignmentassistant.cpp:1301
 #, kde-format
 msgid "<p>Executing the <i>second</i> mount rotation...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1302
+#: ekos/align/polaralignmentassistant.cpp:1303
 #, kde-format
 msgid "<p>Capturing the <i>third</i> and final image...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1304
+#: ekos/align/polaralignmentassistant.cpp:1305
 #, kde-format
 msgid "<p>Solving the <i>third</i> image...</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1307
+#: ekos/align/polaralignmentassistant.cpp:1308
 #, kde-format
 msgid ""
 "<p>Choose your exposure time & select an adjustment method. Then click "
 "<i>refresh</i> to begin adjustments.</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1309
+#: ekos/align/polaralignmentassistant.cpp:1310
 #, kde-format
 msgid ""
 "<p>Choose your exposure time & select an adjustment method. Click "
@@ -10409,7 +10409,7 @@ msgid ""
 "<i>MoveStar & Calc Error</i> method to estimate the remaining error.</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1312
+#: ekos/align/polaralignmentassistant.cpp:1313
 #, kde-format
 msgid ""
 "<p>Adjust mount's <i>Altitude and Azimuth knobs</i> to reduce the polar "
@@ -10418,7 +10418,7 @@ msgid ""
 "you're finished.</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1314
+#: ekos/align/polaralignmentassistant.cpp:1315
 #, kde-format
 msgid ""
 "<p>Adjust mount's <i>Altitude knob</i> to move the star along the yellow "
@@ -10427,97 +10427,97 @@ msgid ""
 "<i>Stop</i> when the star is centered.</p>"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1330
+#: ekos/align/polaralignmentassistant.cpp:1331
 #, kde-format
 msgid "Cannot change to MoveStar algorithm once refresh has begun"
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1364
+#: ekos/align/polaralignmentassistant.cpp:1365
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "PAC: Polar Alignment Corrector connected."
 msgstr "क्लाएँट"
 
-#: ekos/align/polaralignmentassistant.cpp:1377
+#: ekos/align/polaralignmentassistant.cpp:1378
 #, kde-format
 msgid "PAC: Correction in progress – adjusting azimuth and altitude axes..."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1382
+#: ekos/align/polaralignmentassistant.cpp:1383
 #, kde-format
 msgid "PAC: Correction applied. Capturing next image to verify alignment..."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1388
+#: ekos/align/polaralignmentassistant.cpp:1389
 #, kde-format
 msgid "PAC: Correction failed. Stopping polar alignment."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1419
+#: ekos/align/polaralignmentassistant.cpp:1420
 #, kde-format
 msgid ""
 "PAC: Polar alignment successful! Total error %1' is within threshold %2'."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1430
+#: ekos/align/polaralignmentassistant.cpp:1431
 #, kde-format
 msgid "PAC: Correction timeout (%1s) reached. Total error is %2'. Stopping."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1460
+#: ekos/align/polaralignmentassistant.cpp:1461
 #, kde-format
 msgid "PAC: Az error increase confirmed (%1' → %2') – reversing Az direction."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1466
+#: ekos/align/polaralignmentassistant.cpp:1467
 #, kde-format
 msgid ""
 "PAC: Az error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1473
+#: ekos/align/polaralignmentassistant.cpp:1474
 #, kde-format
 msgid ""
 "PAC: Alt error increase confirmed (%1' → %2') – reversing Alt direction."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1479
+#: ekos/align/polaralignmentassistant.cpp:1480
 #, kde-format
 msgid ""
 "PAC: Alt error increase not confirmed (likely noise) – keeping original "
 "direction."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1504
+#: ekos/align/polaralignmentassistant.cpp:1505
 #, kde-format
 msgid ""
 "PAC: No improvement for %1 consecutive iteration(s) (best: %2', current: "
 "%3')."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1510
+#: ekos/align/polaralignmentassistant.cpp:1511
 #, kde-format
 msgid ""
 "PAC: No improvement after %1 consecutive iterations. Best error reached: "
 "%2'. Stopping polar alignment."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1527
+#: ekos/align/polaralignmentassistant.cpp:1528
 #, kde-format
 msgid ""
 "PAC: Az error increased (%1' → %2') – re-solving to confirm before direction "
 "change."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1534
+#: ekos/align/polaralignmentassistant.cpp:1535
 #, kde-format
 msgid ""
 "PAC: Alt error increased (%1' → %2') – re-solving to confirm before "
 "direction change."
 msgstr ""
 
-#: ekos/align/polaralignmentassistant.cpp:1558
+#: ekos/align/polaralignmentassistant.cpp:1559
 #, kde-format
 msgid "PAC: Commanding corrector – Az: %1'  Alt: %2'  Total: %3'"
 msgstr ""
@@ -16466,8 +16466,8 @@ msgstr ""
 msgid "Post job script finished with code %1."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2124 ekos/focus/focus.cpp:6126
-#: ekos/focus/focus.cpp:6150
+#: ekos/capture/cameraprocess.cpp:2124 ekos/focus/focus.cpp:6128
+#: ekos/focus/focus.cpp:6152
 #, fuzzy, kde-format
 #| msgid "string"
 msgid "Exposure timeout. Aborting..."
@@ -16478,7 +16478,7 @@ msgstr "स्ट्रिंग"
 msgid "Exposure timeout. More than 3 have been detected, will restart driver."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2149 ekos/focus/focus.cpp:6131
+#: ekos/capture/cameraprocess.cpp:2149 ekos/focus/focus.cpp:6133
 #: ekos/guide/guide.cpp:1078
 #, kde-format
 msgid "Exposure timeout. Restarting exposure..."
@@ -19685,7 +19685,7 @@ msgstr "फिल्टर:"
 msgid "No Focuser connected."
 msgstr "डिसकनेक्ट करू"
 
-#: ekos/focus/focus.cpp:1151 ekos/focus/focus.cpp:5031
+#: ekos/focus/focus.cpp:1151 ekos/focus/focus.cpp:5033
 #, fuzzy, kde-format
 #| msgid "Disconnect"
 msgid "No camera connected."
@@ -19712,8 +19712,8 @@ msgstr ""
 msgid "In Focus Loop, Autofocus rejected."
 msgstr ""
 
-#: ekos/focus/focus.cpp:1191 ekos/focus/focus.cpp:5458
-#: ekos/focus/focus.cpp:5733
+#: ekos/focus/focus.cpp:1191 ekos/focus/focus.cpp:5460
+#: ekos/focus/focus.cpp:5735
 #, fuzzy, kde-format
 #| msgid "Stars"
 msgid "Adjust Focus"
@@ -19721,8 +19721,8 @@ msgstr "तारासभ"
 
 #. i18n: ectx: property (title), widget (QGroupBox, adaptiveFocusGroup)
 #. i18n: ectx: property (text), widget (QCheckBox, focusAdaptive)
-#: ekos/focus/focus.cpp:1191 ekos/focus/focus.cpp:5460
-#: ekos/focus/focus.cpp:5733 ekos/focus/opsfocussettings.ui:503
+#: ekos/focus/focus.cpp:1191 ekos/focus/focus.cpp:5462
+#: ekos/focus/focus.cpp:5735 ekos/focus/opsfocussettings.ui:503
 #: ekos/focus/opsfocussettings.ui:583
 #, fuzzy, kde-format
 #| msgid "Advanced"
@@ -19936,7 +19936,7 @@ msgstr "निर्देशाँक"
 msgid "Autofocus operation failed"
 msgstr "निर्देशाँक"
 
-#: ekos/focus/focus.cpp:2752
+#: ekos/focus/focus.cpp:2753
 #, fuzzy, kde-format
 #| msgid "Computer"
 msgid "Focus procedure completed after %1 iteration."
@@ -19944,320 +19944,320 @@ msgid_plural "Focus procedure completed after %1 iterations."
 msgstr[0] "कम्प्यूटर"
 msgstr[1] "कम्प्यूटर"
 
-#: ekos/focus/focus.cpp:2838
+#: ekos/focus/focus.cpp:2840
 #, fuzzy, kde-format
 #| msgid "&Settings"
 msgid "Settling for %1s..."
 msgstr "जमावट (&S)"
 
-#: ekos/focus/focus.cpp:2846
+#: ekos/focus/focus.cpp:2848
 #, fuzzy, kde-format
 #| msgid "Client"
 msgid "Settling complete."
 msgstr "क्लाएँट"
 
-#: ekos/focus/focus.cpp:2859
+#: ekos/focus/focus.cpp:2861
 #, kde-format
 msgid "Autofocus failed, moving back to initial focus position %1."
 msgstr ""
 
-#: ekos/focus/focus.cpp:2892
+#: ekos/focus/focus.cpp:2894
 #, kde-format
 msgid "FITS received. No stars detected."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3225
+#: ekos/focus/focus.cpp:3227
 #, kde-format
 msgid "Capture complete. Select a region of interest."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3266
+#: ekos/focus/focus.cpp:3268
 #, kde-format
 msgid "Failed to automatically select a star. Please select a star manually."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3360
+#: ekos/focus/focus.cpp:3362
 #, kde-format
 msgid "Capture complete. Select a star to focus."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3391
+#: ekos/focus/focus.cpp:3393
 #, kde-format
 msgid "No stars detected while testing HFR, capturing again..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3412
+#: ekos/focus/focus.cpp:3414
 #, fuzzy, kde-format
 #| msgid "Size:"
 msgid "HFR %1 > Limit %2"
 msgstr "आकार:"
 
-#: ekos/focus/focus.cpp:3554
+#: ekos/focus/focus.cpp:3556
 #, fuzzy, kde-format
 #| msgid "Computer"
 msgid "Autofocus failed: exceeded max iterations %1"
 msgstr "कम्प्यूटर"
 
-#: ekos/focus/focus.cpp:3565 ekos/focus/focus.cpp:3827
-#: ekos/focus/focus.cpp:4435
+#: ekos/focus/focus.cpp:3567 ekos/focus/focus.cpp:3829
+#: ekos/focus/focus.cpp:4437
 #, kde-format
 msgid "No stars detected, capturing again..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3571 ekos/focus/focus.cpp:4441
+#: ekos/focus/focus.cpp:3573 ekos/focus/focus.cpp:4443
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "Failed to detect any stars at position %1. Continuing..."
 msgstr "चित्र सहेजबामे विफल"
 
-#: ekos/focus/focus.cpp:3577 ekos/focus/focus.cpp:4447
+#: ekos/focus/focus.cpp:3579 ekos/focus/focus.cpp:4449
 #, kde-format
 msgid "Failed to detect any stars. Reset frame and try again."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3764
+#: ekos/focus/focus.cpp:3766
 #, kde-format
 msgid "Unable to launch Aberration Inspector run %1..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3784
+#: ekos/focus/focus.cpp:3786
 #, kde-format
 msgid "Launching Aberration Inspector run %1..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3810
+#: ekos/focus/focus.cpp:3812
 #, fuzzy, kde-format
 #| msgid "Position"
 msgid "Starting scan for initial focuser position."
 msgstr "स्थिति"
 
-#: ekos/focus/focus.cpp:3811
+#: ekos/focus/focus.cpp:3813
 #, fuzzy, kde-format
 #| msgid "Could not open file %1"
 msgid "Scanning for starting position..."
 msgstr "फाइल %1 खोलि नहि सकल"
 
-#: ekos/focus/focus.cpp:3833
+#: ekos/focus/focus.cpp:3835
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "Failed to detect any stars. Aborting..."
 msgstr "चित्र सहेजबामे विफल"
 
-#: ekos/focus/focus.cpp:3842
+#: ekos/focus/focus.cpp:3844
 #, fuzzy, kde-format
 #| msgid "Computer"
 msgid "Scan Start Pos: exceeded max iterations %1"
 msgstr "कम्प्यूटर"
 
-#: ekos/focus/focus.cpp:3861
+#: ekos/focus/focus.cpp:3863
 #, kde-format
 msgid "Scanning for starting position %1/%2"
 msgstr ""
 
-#: ekos/focus/focus.cpp:3875
+#: ekos/focus/focus.cpp:3877
 #, kde-format
 msgid "No scan minimum - widening search..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3888
+#: ekos/focus/focus.cpp:3890
 #, kde-format
 msgid "Scan Start Position %1 Found"
 msgstr ""
 
-#: ekos/focus/focus.cpp:3889
+#: ekos/focus/focus.cpp:3891
 #, kde-format
 msgid "Scan Start Position %1 found"
 msgstr ""
 
-#: ekos/focus/focus.cpp:3958
+#: ekos/focus/focus.cpp:3960
 #, kde-format
 msgid "Curve Fit check failed R2=%1 focusR2Limit=%2 retrying..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3960
+#: ekos/focus/focus.cpp:3962
 #, fuzzy, kde-format
 #| msgid "Size:"
 msgid "R2=%1 < Limit=%2"
 msgstr "आकार:"
 
-#: ekos/focus/focus.cpp:3968
+#: ekos/focus/focus.cpp:3970
 #, kde-format
 msgid "Curve Fit check failed again R2=%1 focusR2Limit=%2 but continuing..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:3978
+#: ekos/focus/focus.cpp:3980
 #, kde-format
 msgid "Linear autofocus algorithm aborted: %1"
 msgstr ""
 
-#: ekos/focus/focus.cpp:4013
+#: ekos/focus/focus.cpp:4015
 #, kde-format
 msgid "FITS received. HFR %1 @ %2. Delta (%3%)"
 msgstr ""
 
-#: ekos/focus/focus.cpp:4015
+#: ekos/focus/focus.cpp:4017
 #, kde-format
 msgid "FITS received. HFR %1 @ %2."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4076
+#: ekos/focus/focus.cpp:4078
 #, kde-format
 msgid ""
 "Change in HFR is too small. Try increasing the step size or decreasing the "
 "tolerance."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4083
+#: ekos/focus/focus.cpp:4085
 #, kde-format
 msgid "Failed to detect focus star in frame. Capture and select a focus star."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4189
+#: ekos/focus/focus.cpp:4191
 #, kde-format
 msgid "Found polynomial solution @ %1"
 msgstr ""
 
-#: ekos/focus/focus.cpp:4253
+#: ekos/focus/focus.cpp:4255
 #, kde-format
 msgid "Focuser cannot move further, device limits reached. Autofocus aborted."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4264
+#: ekos/focus/focus.cpp:4266
 #, kde-format
 msgid ""
 "Unstable fluctuations. Try increasing initial step size or exposure time."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4274
+#: ekos/focus/focus.cpp:4276
 #, kde-format
 msgid "Deadlock reached. Please try again with different settings."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4303
+#: ekos/focus/focus.cpp:4305
 #, kde-format
 msgid "Maximum travel limit reached. Autofocus aborted."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4420
+#: ekos/focus/focus.cpp:4422
 #, kde-format
 msgid "FITS received. HFR %1. Delta (%2%) Min HFR (%3)"
 msgstr ""
 
-#: ekos/focus/focus.cpp:4424
+#: ekos/focus/focus.cpp:4426
 #, kde-format
 msgid ""
 "Autofocus failed to reach proper focus. Try adjusting the tolerance value."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4538 ekos/focus/focus.cpp:4561
-#: ekos/focus/focus.cpp:4746 ekos/focus/focus.cpp:4839
-#: ekos/focus/focus.cpp:4921 ekos/focus/focus.cpp:5006
+#: ekos/focus/focus.cpp:4540 ekos/focus/focus.cpp:4563
+#: ekos/focus/focus.cpp:4748 ekos/focus/focus.cpp:4841
+#: ekos/focus/focus.cpp:4923 ekos/focus/focus.cpp:5008
 #, kde-format
 msgid "Focuser error, check INDI panel."
 msgstr ""
 
-#: ekos/focus/focus.cpp:4622 ekos/focus/focus.cpp:4762
+#: ekos/focus/focus.cpp:4624 ekos/focus/focus.cpp:4764
 #, fuzzy, kde-format
 #| msgid "Computer"
 msgid "Simulate focuser comms failure..."
 msgstr "कम्प्यूटर"
 
-#: ekos/focus/focus.cpp:4723 ekos/focus/focus.cpp:4820
-#: ekos/focus/focus.cpp:4902 ekos/focus/focus.cpp:4943
+#: ekos/focus/focus.cpp:4725 ekos/focus/focus.cpp:4822
+#: ekos/focus/focus.cpp:4904 ekos/focus/focus.cpp:4945
 #, kde-format
 msgid "Restarting autofocus process..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5047
+#: ekos/focus/focus.cpp:5049
 #, kde-format
 msgid "Starting continuous exposure..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5428
+#: ekos/focus/focus.cpp:5430
 #, kde-format
 msgid "Disabling Auto Star Selection as star selection box was moved manually."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5434
+#: ekos/focus/focus.cpp:5436
 #, fuzzy, kde-format
 #| msgid "Guides"
 msgid "Focus star is selected."
 msgstr "निर्देश"
 
-#: ekos/focus/focus.cpp:5436
+#: ekos/focus/focus.cpp:5438
 #, fuzzy, kde-format
 #| msgid "Guides"
 msgid "Region of interest is selected."
 msgstr "निर्देश"
 
-#: ekos/focus/focus.cpp:5456
+#: ekos/focus/focus.cpp:5458
 #, fuzzy, kde-format
 #| msgid "Stars"
 msgid "Autofocus"
 msgstr "तारासभ"
 
-#: ekos/focus/focus.cpp:5464
+#: ekos/focus/focus.cpp:5466
 #, kde-format
 msgid "Check focus request - Waiting 10sec for %1 to complete."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5472
+#: ekos/focus/focus.cpp:5474
 #, kde-format
 msgid "Discarding Check Focus request - %1 in progress."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5485
+#: ekos/focus/focus.cpp:5487
 #, kde-format
 msgid "Check Focus ignored - Star Measure must be star based"
 msgstr ""
 
-#: ekos/focus/focus.cpp:5490
+#: ekos/focus/focus.cpp:5492
 #, fuzzy, kde-format
 #| msgid "string"
 msgid "Capturing to check HFR..."
 msgstr "स्ट्रिंग"
 
-#: ekos/focus/focus.cpp:5620
+#: ekos/focus/focus.cpp:5622
 #, kde-format
 msgid "No star was selected. Using last known position..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5626
+#: ekos/focus/focus.cpp:5628
 #, kde-format
 msgid "No star was selected. Aborting..."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5637
+#: ekos/focus/focus.cpp:5639
 #, fuzzy, kde-format
 #| msgid "Scope"
 msgid "Focuser already at %1..."
 msgstr "स्कोप"
 
-#: ekos/focus/focus.cpp:5736
+#: ekos/focus/focus.cpp:5738
 #, kde-format
 msgid "Adjust focus request - Waiting 10sec for %1 to complete."
 msgstr ""
 
-#: ekos/focus/focus.cpp:5770
+#: ekos/focus/focus.cpp:5772
 #, fuzzy, kde-format
 #| msgid "Time"
 msgctxt "@title:window"
 msgid "Focus Frame"
 msgstr "समय"
 
-#: ekos/focus/focus.cpp:6174
+#: ekos/focus/focus.cpp:6176
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "Failed to save image. Aborting..."
 msgstr "चित्र सहेजबामे विफल"
 
-#: ekos/focus/focus.cpp:6189 ekos/focus/focus.cpp:6214
+#: ekos/focus/focus.cpp:6191 ekos/focus/focus.cpp:6216
 #, fuzzy, kde-format
 #| msgid "string"
 msgid "Exposure failure. Aborting..."
 msgstr "स्ट्रिंग"
 
-#: ekos/focus/focus.cpp:6513
+#: ekos/focus/focus.cpp:6515
 #, fuzzy, kde-format
 #| msgid "Remove Link"
 msgctxt "@title:window"
@@ -91447,32 +91447,32 @@ msgstr ""
 msgid "; Physical distance: %1 pc"
 msgstr ""
 
-#: skymap.cpp:756
+#: skymap.cpp:755
 #, kde-format
 msgid "Star Hopper: Choose a field-of-view"
 msgstr ""
 
-#: skymap.cpp:757
+#: skymap.cpp:756
 #, kde-format
 msgid "FOV to use for star hopping:"
 msgstr ""
 
-#: skymap.cpp:764
+#: skymap.cpp:763
 #, kde-format
 msgid "Star Hopper: Enter field-of-view to use"
 msgstr ""
 
-#: skymap.cpp:765
+#: skymap.cpp:764
 #, kde-format
 msgid "FOV to use for star hopping (in arcminutes):"
 msgstr ""
 
-#: skymap.cpp:943
+#: skymap.cpp:942
 #, kde-format
 msgid "No object selected."
 msgstr ""
 
-#: skymap.cpp:943
+#: skymap.cpp:942
 #, kde-format
 msgid "Object Details"
 msgstr "वस्तु विवरण"
@@ -98182,12 +98182,12 @@ msgctxt "@title:window"
 msgid "What's up Tonight"
 msgstr ""
 
-#: tools/wutdialog.cpp:70 tools/wutdialog.cpp:651
+#: tools/wutdialog.cpp:70 tools/wutdialog.cpp:650
 #, kde-format
 msgid "at %1"
 msgstr ""
 
-#: tools/wutdialog.cpp:72 tools/wutdialog.cpp:630
+#: tools/wutdialog.cpp:72 tools/wutdialog.cpp:629
 #, kde-format
 msgid "The night of %1"
 msgstr ""
@@ -98200,13 +98200,13 @@ msgid "Star Clusters"
 msgstr "स्टेट्सविल्ले"
 
 #: tools/wutdialog.cpp:147 tools/wutdialog.cpp:148 tools/wutdialog.cpp:207
-#: tools/wutdialog.cpp:208 tools/wutdialog.cpp:519 tools/wutdialog.cpp:520
+#: tools/wutdialog.cpp:208 tools/wutdialog.cpp:518 tools/wutdialog.cpp:519
 #, kde-format
 msgid "circumpolar"
 msgstr ""
 
 #: tools/wutdialog.cpp:154 tools/wutdialog.cpp:155 tools/wutdialog.cpp:212
-#: tools/wutdialog.cpp:213 tools/wutdialog.cpp:524 tools/wutdialog.cpp:525
+#: tools/wutdialog.cpp:213 tools/wutdialog.cpp:523 tools/wutdialog.cpp:524
 #, kde-format
 msgid "does not rise"
 msgstr ""
@@ -98260,31 +98260,31 @@ msgstr ""
 msgid "Moon sets at: %1 on %2"
 msgstr ""
 
-#: tools/wutdialog.cpp:499
+#: tools/wutdialog.cpp:498
 #, kde-format
 msgid "No Object Selected"
 msgstr ""
 
-#: tools/wutdialog.cpp:508
+#: tools/wutdialog.cpp:507
 #, fuzzy, kde-format
 #| msgid "Object type"
 msgid "Object Not Found"
 msgstr "वस्तु वर्ग"
 
-#: tools/wutdialog.cpp:543
+#: tools/wutdialog.cpp:542
 #, fuzzy, kde-format
 #| msgid "Size:"
 msgid "Rises at: %1"
 msgstr "आकार:"
 
-#: tools/wutdialog.cpp:544
+#: tools/wutdialog.cpp:543
 #, fuzzy, kde-format
 #| msgctxt "Region/state name (optional, rarely needs a translation)"
 #| msgid "Manitoba"
 msgid "Transits at: %1"
 msgstr "मैनीटोबा"
 
-#: tools/wutdialog.cpp:545
+#: tools/wutdialog.cpp:544
 #, fuzzy, kde-format
 #| msgid "Time"
 msgid "Sets at: %1"
