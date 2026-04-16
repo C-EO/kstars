@@ -3549,48 +3549,65 @@ void Message::processArtificialHorizonCommands(const QString &command, const QJs
 {
     auto *horizonComponent = KStarsData::Instance()->skyComposite()->artificialHorizon();
     if (!horizonComponent)
+    {
         return;
+    }
 
     if (command == commands[ARTIFICIAL_HORIZON_IMPORT])
     {
-        // payload["data"] contains the raw horizon file content as a single string
-        const QString data = payload["data"].toString();
-        if (data.isEmpty())
-            return;
-
         QString name;
         bool isCeiling = false;
         QList<SkyPoint> pts;
 
-        QTextStream in(const_cast<QString *>(&data), QIODevice::ReadOnly);
-        while (!in.atEnd())
+
+        if (payload.contains("data"))
         {
-            const QString line = in.readLine().trimmed();
-            if (line.isEmpty() || line.startsWith('#'))
-                continue;
-            if (line.startsWith("Ceiling"))
+
+            QString data = payload["data"].toString();
+
+            if (data.isEmpty())
             {
-                isCeiling = true;
-                name = line.mid(static_cast<int>(strlen("Ceiling"))).trimmed();
+                qCWarning(KSTARS_EKOS) << "Artificial Horizon import: data is empty";
+                return;
             }
-            else if (line.startsWith("Horizon"))
+
+            QJsonParseError parseError;
+            QJsonDocument jsonDoc = QJsonDocument::fromJson(data.toUtf8(), &parseError);
+
+            // Parse as raw KStars horizon text format
+            QTextStream in(&data, QIODevice::ReadOnly);
+            while (!in.atEnd())
             {
-                name = line.mid(static_cast<int>(strlen("Horizon"))).trimmed();
-            }
-            else
-            {
-                const QStringList cols = line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
-                if (cols.size() != 2 || cols[0].isEmpty() || cols[1].isEmpty())
+                const QString line = in.readLine().trimmed();
+                if (line.isEmpty() || line.startsWith('#'))
                     continue;
-                SkyPoint pt;
-                pt.setAz(dms::fromString(cols[0], true));
-                pt.setAlt(dms::fromString(cols[1], true));
-                pts.append(pt);
+                if (line.startsWith("Ceiling"))
+                {
+                    isCeiling = true;
+                    name = line.mid(static_cast<int>(strlen("Ceiling"))).trimmed();
+                }
+                else if (line.startsWith("Horizon"))
+                {
+                    name = line.mid(static_cast<int>(strlen("Horizon"))).trimmed();
+                }
+                else
+                {
+                    const QStringList cols = line.split(QRegularExpression("\\s+"), Qt::SkipEmptyParts);
+                    if (cols.size() != 2 || cols[0].isEmpty() || cols[1].isEmpty())
+                        continue;
+                    SkyPoint pt;
+                    pt.setAz(dms::fromString(cols[0], true));
+                    pt.setAlt(dms::fromString(cols[1], true));
+                    pts.append(pt);
+                }
             }
         }
 
+
         if (pts.size() < 2 || name.isEmpty())
+        {
             return;
+        }
 
         std::shared_ptr<LineList> list(new LineList());
         for (const auto &pt : pts)
@@ -3605,6 +3622,13 @@ void Message::processArtificialHorizonCommands(const QString &command, const QJs
         horizonComponent->removeRegion(name);
         horizonComponent->addRegion(name, true, list, isCeiling);
         horizonComponent->save();
+
+        // Ensure the ground/horizon is visible after import
+        if (!Options::showGround())
+        {
+            Options::setShowGround(true);
+        }
+
         SkyMap::Instance()->forceUpdateNow();
     }
     else if (command == commands[ARTIFICIAL_HORIZON_TOGGLE])
