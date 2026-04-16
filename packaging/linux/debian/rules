@@ -2,15 +2,31 @@
 
 export DEB_BUILD_MAINT_OPTIONS = optimize=-lto
 
-l10npkgs_firstversion_ok := 4:17.03.90-0~
+# Architecture handling
+include /usr/share/dpkg/architecture.mk
 
-include /usr/share/pkg-kde-tools/qt-kde-team/2/debian-qt-kde.mk
-include /usr/share/pkg-kde-tools/qt-kde-team/2/l10n-packages.mk
+archs_using_clang = mips64el mipsel
+ifeq ($(DEB_HOST_ARCH),$(filter $(DEB_HOST_ARCH),$(archs_using_clang)))
+export CC = clang
+export CXX = clang++
+export DEB_CFLAGS_MAINT_APPEND = -gdwarf-4
+export DEB_CXXFLAGS_MAINT_APPEND = -gdwarf-4
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+endif
 
-override_dh_strip:
-	dh_strip --dbg-package=kstars-bleeding-dbg
-	
+%:
+	dh $@ --buildsystem=cmake --with kf6
+
 override_dh_auto_configure:
-	dh_auto_configure -- -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=Off
+	dh_auto_configure -- \
+		-DBUILD_TESTING=OFF \
+		-DBUILD_WITH_QT6=ON \
+		-DKDE_SKIP_STRICT_BUILD_FLAGS=ON
 
-.PHONY: override_dh_auto_test override_dh_auto_configure
+override_dh_auto_test:
+	# tests disabled
+	true
+
+execute_after_dh_auto_install:
+	# remove static libraries (should not be shipped)
+	find debian/tmp -name '*.a' -delete
