@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-16 02:01+0000\n"
+"POT-Creation-Date: 2026-04-17 02:06+0000\n"
 "PO-Revision-Date: 2022-02-26 11:47+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: Hindi <kde-l10n-hi@kde.org>\n"
@@ -3134,7 +3134,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QPushButton, preview_button)
 #. i18n: ectx: property (text), widget (QLabel, previewLabel)
 #: dialogs/catalogcsvimport.ui:297 ekos/capture/camera.ui:2373
-#: ekos/capture/cameraprocess.cpp:2470 ekos/capture/capturecountswidget.cpp:321
+#: ekos/capture/cameraprocess.cpp:2489 ekos/capture/capturecountswidget.cpp:321
 #: ekos/scheduler/taskqueue/ui/templatelibrarywidget.cpp:61
 #: fitsviewer/fitsviewer.cpp:833 fitsviewer/fitsviewer.cpp:834
 #, fuzzy, kde-format
@@ -6595,8 +6595,8 @@ msgstr ""
 msgid "Error: lost connection to filter wheel."
 msgstr "कनेक्शन"
 
-#: ekos/align/align.cpp:1569 ekos/capture/cameraprocess.cpp:216
-#: ekos/capture/cameraprocess.cpp:637 ekos/focus/focus.cpp:6076
+#: ekos/align/align.cpp:1569 ekos/capture/cameraprocess.cpp:235
+#: ekos/capture/cameraprocess.cpp:656 ekos/focus/focus.cpp:6076
 #, kde-format
 msgid ""
 "Image transfer is disabled for this camera. Would you like to enable it?"
@@ -6967,8 +6967,8 @@ msgstr "आउटपुट फ़ाइल के लिए निर्दे�
 msgid "Capture error. Aborting..."
 msgstr "छवि कैप्चर करें"
 
-#: ekos/align/align.cpp:3473 ekos/capture/cameraprocess.cpp:1641
-#: ekos/capture/cameraprocess.cpp:2202
+#: ekos/align/align.cpp:3473 ekos/capture/cameraprocess.cpp:1660
+#: ekos/capture/cameraprocess.cpp:2221
 #, kde-format
 msgid "Restarting capture attempt #%1"
 msgstr ""
@@ -7080,7 +7080,7 @@ msgstr "छवि : %1 सहेजेने में अक्षम"
 
 #: ekos/align/align.cpp:4154 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
-#: ekos/capture/cameraprocess.cpp:2615 ekos/capture/sequencequeue.cpp:33
+#: ekos/capture/cameraprocess.cpp:2634 ekos/capture/sequencequeue.cpp:33
 #: ekos/guide/guidedriftgraph.cpp:512 ekos/scheduler/schedulerprocess.cpp:2949
 #: ekos/scheduler/schedulerprocess.cpp:3404
 #: ekos/scheduler/schedulerprocess.cpp:4541
@@ -7778,7 +7778,7 @@ msgid "Open Ekos Alignment List"
 msgstr "सूची को देखा जा रहा है"
 
 #: ekos/align/mountmodel.cpp:285 ekos/capture/camera_jobs.cpp:355
-#: ekos/capture/cameraprocess.cpp:2614 ekos/capture/sequencequeue.cpp:32
+#: ekos/capture/cameraprocess.cpp:2633 ekos/capture/sequencequeue.cpp:32
 #: ekos/scheduler/schedulerprocess.cpp:3403
 #: ekos/scheduler/schedulerprocess.cpp:4560
 #, fuzzy, kde-format
@@ -15437,7 +15437,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, calibrationLabel)
 #. i18n: ectx: property (title), widget (QGroupBox, CalibrationGroupBox)
 #. i18n: ectx: property (text), widget (QLabel, CalibrationMinimized)
-#: ekos/capture/camera.ui:1176 ekos/capture/cameraprocess.cpp:2483
+#: ekos/capture/camera.ui:1176 ekos/capture/cameraprocess.cpp:2502
 #: ekos/guide/guide.cpp:70 fitsviewer/livestacking.ui:2169
 #: fitsviewer/livestacking.ui:2795
 #, fuzzy, kde-format
@@ -16274,7 +16274,7 @@ msgstr ""
 msgid "Are you sure you want to reset status of all jobs?"
 msgstr "क्या आप वाक़ई लिंक %1 को मिटाना चाहते हैं?"
 
-#: ekos/capture/camera_jobs.cpp:192 ekos/capture/cameraprocess.cpp:2735
+#: ekos/capture/camera_jobs.cpp:192 ekos/capture/cameraprocess.cpp:2754
 #, fuzzy, kde-format
 #| msgid "Reset Position"
 msgid "Reset job status"
@@ -16336,311 +16336,311 @@ msgid_plural "%1 dark flats jobs were created."
 msgstr[0] ""
 msgstr[1] ""
 
-#: ekos/capture/cameraprocess.cpp:217 ekos/capture/cameraprocess.cpp:638
+#: ekos/capture/cameraprocess.cpp:236 ekos/capture/cameraprocess.cpp:657
 #, fuzzy, kde-format
 #| msgid "Image Format"
 msgid "Image Transfer"
 msgstr "छवि फ़ॉर्मेट"
 
-#: ekos/capture/cameraprocess.cpp:238
+#: ekos/capture/cameraprocess.cpp:257
 #, fuzzy, kde-format
 msgid "Sequence resumed."
 msgstr "आकाश की वस्तुएँ लोड की जा रही हैं"
 
-#: ekos/capture/cameraprocess.cpp:274
+#: ekos/capture/cameraprocess.cpp:293
 #, kde-format
 msgid "No pending jobs found. Please add a job to the sequence queue."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:288
+#: ekos/capture/cameraprocess.cpp:307
 #, fuzzy, kde-format
 #| msgid "completed"
 msgid "No new job created."
 msgstr "पूर्ण"
 
-#: ekos/capture/cameraprocess.cpp:311 ekos/capture/cameraprocess.cpp:897
+#: ekos/capture/cameraprocess.cpp:330 ekos/capture/cameraprocess.cpp:916
 #, kde-format
 msgid "Cannot capture while focus module is busy."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:318
+#: ekos/capture/cameraprocess.cpp:337
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Farmington"
 msgid "Starting framing..."
 msgstr "फार्मिंगटन"
 
-#: ekos/capture/cameraprocess.cpp:352
+#: ekos/capture/cameraprocess.cpp:371
 #, fuzzy, kde-format
 #| msgid "Supernova Remnant"
 msgid "Camera capture suspended"
 msgstr "सुपरनोवा अवशिष्ट"
 
-#: ekos/capture/cameraprocess.cpp:357
+#: ekos/capture/cameraprocess.cpp:376
 #, fuzzy, kde-format
 #| msgid "Capture Image"
 msgid "Camera capture complete"
 msgstr "छवि कैप्चर करें"
 
-#: ekos/capture/cameraprocess.cpp:362
+#: ekos/capture/cameraprocess.cpp:381
 #, fuzzy, kde-format
 #| msgctxt "Constellation name (optional)"
 #| msgid "INDUS"
 msgid "Framing stopped"
 msgstr "इंडस"
 
-#: ekos/capture/cameraprocess.cpp:362 ekos/capture/cameraprocess.cpp:368
+#: ekos/capture/cameraprocess.cpp:381 ekos/capture/cameraprocess.cpp:387
 #, fuzzy, kde-format
 #| msgid "Capture Image"
 msgid "Camera capture stopped"
 msgstr "छवि कैप्चर करें"
 
-#: ekos/capture/cameraprocess.cpp:446
+#: ekos/capture/cameraprocess.cpp:465
 #, kde-format
 msgid "Pausing only possible while frame capture is running."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:453
+#: ekos/capture/cameraprocess.cpp:472
 #, kde-format
 msgid "Sequence shall be paused after current exposure is complete."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:466
+#: ekos/capture/cameraprocess.cpp:485
 #, kde-format
 msgid "No camera detected. Check train configuration and connection settings."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:491
+#: ekos/capture/cameraprocess.cpp:510
 #, kde-format
 msgid "No view available for previews. Enable FITS viewer?"
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:492
+#: ekos/capture/cameraprocess.cpp:511
 #, fuzzy, kde-format
 #| msgid "Display view toolbar?"
 msgid "Display preview"
 msgstr "दृश्य औज़ारपट्टी दिखाएँ?"
 
-#: ekos/capture/cameraprocess.cpp:576
+#: ekos/capture/cameraprocess.cpp:595
 #, kde-format
 msgid ""
 "Job requires %1-second %2 images, has already %3/%4 captures and does not "
 "need to run."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:591
+#: ekos/capture/cameraprocess.cpp:610
 #, kde-format
 msgid ""
 "Job requires %1-second %2 images, has %3/%4 frames captured and will be "
 "processed."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:604
+#: ekos/capture/cameraprocess.cpp:623
 #, kde-format
 msgid "Job requires %1 x %2-second %3 video and will be processed."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:843
+#: ekos/capture/cameraprocess.cpp:862
 #, fuzzy, kde-format
 msgid "Autoguiding resumed."
 msgstr "आकाश की वस्तुएँ लोड की जा रही हैं"
 
-#: ekos/capture/cameraprocess.cpp:887
+#: ekos/capture/cameraprocess.cpp:906
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "Failed to set sub frame."
 msgstr "छवि लोड करने में असफल"
 
-#: ekos/capture/cameraprocess.cpp:892
+#: ekos/capture/cameraprocess.cpp:911
 #, fuzzy, kde-format
 #| msgid "Failed to load image"
 msgid "Failed to set binning."
 msgstr "छवि लोड करने में असफल"
 
-#: ekos/capture/cameraprocess.cpp:1052
+#: ekos/capture/cameraprocess.cpp:1071
 #, fuzzy, kde-format
 #| msgid "FITS file saved to %1"
 msgid "file saved to %1"
 msgstr "एफ़आईटीएस फ़ाइल को %1 में सहेजा"
 
-#: ekos/capture/cameraprocess.cpp:1062
+#: ekos/capture/cameraprocess.cpp:1081
 #, kde-format
 msgid ""
 "Failed writing image to %1\n"
 "Please check folder, filename & permissions."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1064
+#: ekos/capture/cameraprocess.cpp:1083
 #, fuzzy, kde-format
 #| msgid "Capture Image"
 msgid "Image Write Failed"
 msgstr "छवि कैप्चर करें"
 
-#: ekos/capture/cameraprocess.cpp:1292
+#: ekos/capture/cameraprocess.cpp:1311
 #, fuzzy, kde-format
 #| msgid "Data file saved to %1"
 msgid "Remote image saved to %1"
 msgstr "डाटा फ़ाइल को %1 में सहेजा"
 
-#: ekos/capture/cameraprocess.cpp:1318
+#: ekos/capture/cameraprocess.cpp:1337
 #, fuzzy, kde-format
 msgid "Autoguiding suspended."
 msgstr "आकाश की वस्तुएँ लोड की जा रही हैं"
 
-#: ekos/capture/cameraprocess.cpp:1348
+#: ekos/capture/cameraprocess.cpp:1367
 #, kde-format
 msgid "Warning: Calibration process was prematurely terminated."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1413
+#: ekos/capture/cameraprocess.cpp:1432
 #, fuzzy, kde-format
 #| msgid "Supernova Remnant"
 msgid "Camera capture sequence completed"
 msgstr "सुपरनोवा अवशिष्ट"
 
-#: ekos/capture/cameraprocess.cpp:1470
+#: ekos/capture/cameraprocess.cpp:1489
 #, fuzzy, kde-format
 #| msgid "Connection"
 msgid "Error: Lost connection to camera."
 msgstr "कनेक्शन"
 
-#: ekos/capture/cameraprocess.cpp:1498
+#: ekos/capture/cameraprocess.cpp:1517
 #, kde-format
 msgid "Cannot calculate ADU levels in non-FITS images."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1633 ekos/capture/cameraprocess.cpp:2194
+#: ekos/capture/cameraprocess.cpp:1652 ekos/capture/cameraprocess.cpp:2213
 #, kde-format
 msgid "Capture failed. Check INDI Control Panel for details."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1733
+#: ekos/capture/cameraprocess.cpp:1752
 #, kde-format
 msgid "Download Time: %1 s, New Download Time Estimate: %2 s."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1799
+#: ekos/capture/cameraprocess.cpp:1818
 #, kde-format
 msgid "Received image %1 out of %2."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1836
+#: ekos/capture/cameraprocess.cpp:1855
 #, fuzzy, kde-format
 #| msgid "Capture Image"
 msgid "Captured %1"
 msgstr "छवि कैप्चर करें"
 
-#: ekos/capture/cameraprocess.cpp:1842
+#: ekos/capture/cameraprocess.cpp:1861
 #, kde-format
 msgid "WARNING: remaining and potentially unknown placeholders %1 in %2"
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1885
+#: ekos/capture/cameraprocess.cpp:1904
 #, fuzzy, kde-format
 #| msgid "Running script: %1"
 msgid "Executing capture script %1"
 msgstr "स्क्रिप्ट: %1 चलाया जा रहा है"
 
-#: ekos/capture/cameraprocess.cpp:1900
+#: ekos/capture/cameraprocess.cpp:1919
 #, kde-format
 msgid "Pre capture script finished with code %1."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1911
+#: ekos/capture/cameraprocess.cpp:1930
 #, kde-format
 msgid "Post capture script finished with code %1."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1923
+#: ekos/capture/cameraprocess.cpp:1942
 #, fuzzy, kde-format
 #| msgid "&Automatic display of FITS upon capture"
 msgid "Processing meridian flip..."
 msgstr "कैप्चर के बाद एफआईटीएस का स्वचालित प्रदर्शन (&A)"
 
-#: ekos/capture/cameraprocess.cpp:1933
+#: ekos/capture/cameraprocess.cpp:1952
 #, kde-format
 msgid "Pre job script finished with code %1."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:1938
+#: ekos/capture/cameraprocess.cpp:1957
 #, kde-format
 msgid "Post job script finished with code %1."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2124 ekos/focus/focus.cpp:6128
+#: ekos/capture/cameraprocess.cpp:2143 ekos/focus/focus.cpp:6128
 #: ekos/focus/focus.cpp:6152
 #, fuzzy, kde-format
 #| msgid "Start Camera/CCD exposure. The duration is in seconds."
 msgid "Exposure timeout. Aborting..."
 msgstr "कैमरा सीसीडी एक्सपोजर प्रारंभ करें. अवधि सेकंड में है."
 
-#: ekos/capture/cameraprocess.cpp:2131
+#: ekos/capture/cameraprocess.cpp:2150
 #, kde-format
 msgid "Exposure timeout. More than 3 have been detected, will restart driver."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2149 ekos/focus/focus.cpp:6133
+#: ekos/capture/cameraprocess.cpp:2168 ekos/focus/focus.cpp:6133
 #: ekos/guide/guide.cpp:1078
 #, fuzzy, kde-format
 #| msgid "Start Camera/CCD exposure. The duration is in seconds."
 msgid "Exposure timeout. Restarting exposure..."
 msgstr "कैमरा सीसीडी एक्सपोजर प्रारंभ करें. अवधि सेकंड में है."
 
-#: ekos/capture/cameraprocess.cpp:2175
+#: ekos/capture/cameraprocess.cpp:2194
 #, fuzzy, kde-format
 #| msgid "Start Camera/CCD exposure. The duration is in seconds."
 msgid "Exposure timeout. Too many. Aborting..."
 msgstr "कैमरा सीसीडी एक्सपोजर प्रारंभ करें. अवधि सेकंड में है."
 
-#: ekos/capture/cameraprocess.cpp:2256
+#: ekos/capture/cameraprocess.cpp:2275
 #, kde-format
 msgid ""
 "Flat calibration failed. Captured image is only %1-bit while requested ADU "
 "is %2."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2267
+#: ekos/capture/cameraprocess.cpp:2286
 #, kde-format
 msgid "Current image is saturated (%1). Next exposure is %2 seconds."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2289
+#: ekos/capture/cameraprocess.cpp:2308
 #, kde-format
 msgid "Current ADU %1 within target ADU tolerance range."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2318
+#: ekos/capture/cameraprocess.cpp:2337
 #, kde-format
 msgid ""
 "Unable to calculate optimal exposure settings, please capture the flats "
 "manually."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2326
+#: ekos/capture/cameraprocess.cpp:2345
 #, kde-format
 msgid "Current ADU is %1 Next exposure is %2 seconds."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2467
+#: ekos/capture/cameraprocess.cpp:2486
 #, fuzzy, kde-format
 #| msgid "Preview of %1"
 msgid "%1 Preview"
 msgstr "%1 का पूर्वावलोकन"
 
-#: ekos/capture/cameraprocess.cpp:2478 ekos/capture/cameraprocess.cpp:2480
+#: ekos/capture/cameraprocess.cpp:2497 ekos/capture/cameraprocess.cpp:2499
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Caliente"
 msgid "Flat Calibration"
 msgstr "केलिएन्टे"
 
-#: ekos/capture/cameraprocess.cpp:2684
+#: ekos/capture/cameraprocess.cpp:2703
 #, fuzzy, kde-format
 #| msgid "Frequency:"
 msgid "Sequence paused."
 msgstr "आवृत्तिः"
 
-#: ekos/capture/cameraprocess.cpp:2734
+#: ekos/capture/cameraprocess.cpp:2753
 #, fuzzy, kde-format
 #| msgid "Are you sure you want to remove the %1 link?"
 msgid ""
@@ -16648,26 +16648,26 @@ msgid ""
 "restart capturing?"
 msgstr "क्या आप वाक़ई लिंक %1 को मिटाना चाहते हैं?"
 
-#: ekos/capture/cameraprocess.cpp:2748
+#: ekos/capture/cameraprocess.cpp:2767
 #, kde-format
 msgid ""
 "Warning: option \"Always Reset Sequence When Starting\" is enabled and "
 "resets the sequence counts."
 msgstr ""
 
-#: ekos/capture/cameraprocess.cpp:2984
+#: ekos/capture/cameraprocess.cpp:3003
 #, fuzzy, kde-format
 #| msgid "Are you sure you want to remove the %1 client?"
 msgid "Are you sure you want to restart %1 camera driver?"
 msgstr "क्या आप वाक़ई क्लाएंट %1 को मिटाना चाहते हैं?"
 
-#: ekos/capture/cameraprocess.cpp:2985
+#: ekos/capture/cameraprocess.cpp:3004
 #, fuzzy, kde-format
 #| msgid "star"
 msgid "Driver Restart"
 msgstr "तारा"
 
-#: ekos/capture/cameraprocess.cpp:3132 ekos/capture/sequencejobstate.cpp:72
+#: ekos/capture/cameraprocess.cpp:3151 ekos/capture/sequencejobstate.cpp:72
 #, fuzzy, kde-format
 #| msgid "FITS file saved to %1"
 msgid "Capture operations timed out after %1 seconds."
