@@ -1,4 +1,5 @@
 {
+  "cmake.generator": "Ninja",
   "cmake.configureArgs": [
     "-DBUILD_TESTING=OFF",
     "-DBUILD_WITH_QT6=ON",

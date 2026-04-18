@@ -1,1367 +1,935 @@
 {
   "version": "0.2.0",
-  "configurations": [
+  "configurations": [    
     {
       "name": "Debug KStars",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/kstars/kstars",
       "args": [],
-      "stopAtEntry": false,
       "cwd": "${fileDirname}",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        },
-        {
-          "text": "skip file memory"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
       "name": "Debug test_ekos_scheduler_ops (all)",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testBasics",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testBasics", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testBasics",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testSimpleJob",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testSimpleJob", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testSimpleJob",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testTimeZone",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testTimeZone", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testTimeZone",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testDawnShutdown",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testDawnShutdown", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testDawnShutdown",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testPreemptiveShutdown",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testPreemptiveShutdown", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testPreemptiveShutdown",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testPreemptiveShutdownTimerSwitchOnQueueComplete",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testPreemptiveShutdownTimerSwitchOnQueueComplete", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testPreemptiveShutdownTimerSwitchOnQueueComplete",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testWeatherSoftShutdownFullCycle",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-            "args": ["testWeatherSoftShutdownSimulator", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testWeatherSoftShutdownSimulator",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testWeatherHardShutdownSimulator",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testWeatherHardShutdownSimulator", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testWeatherHardShutdownSimulator",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testWeatherMonitoringModeSimulator",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testWeatherMonitoringModeSimulator", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testWeatherMonitoringModeSimulator",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testGreedySchedulerRun",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testGreedySchedulerRun", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testGreedySchedulerRun",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testTwilightStartup",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testTwilightStartup", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testTwilightStartup",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testArtificialHorizonConstraints",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testArtificialHorizonConstraints", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testArtificialHorizonConstraints",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testGreedy",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testGreedy", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testGreedy",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testMaxMoonAltitude",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testMaxMoonAltitude", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testMaxMoonAltitude",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testGreedyStartAt",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testGreedyStartAt", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testGreedyStartAt",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testGroups",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testGroups", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testGroups",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testGreedyAborts",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testGreedyAborts", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testGreedyAborts",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testArtificialCeiling",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testArtificialCeiling", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testArtificialCeiling",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testSettingAltitudeBug",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testSettingAltitudeBug", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testSettingAltitudeBug",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testEstimateTimeBug",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testEstimateTimeBug", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testEstimateTimeBug",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testRememberJobProgress",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testRememberJobProgress", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testRememberJobProgress",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Scheduler: Test testGreedyMessier",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler_ops",
-      "args": ["testGreedyMessier", "-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "testGreedyMessier",
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        { "name": "LD_BIND_NOW", "value": "1" },
-        { "name": "KSTARS_NO_WEB_MANAGER_SYNC", "value": "1" }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        { "description": "Enable pretty-printing for gdb", "text": "-enable-pretty-printing", "ignoreFailures": true },
-        { "description": "Set Disassembly Flavor to Intel", "text": "-gdb-set disassembly-flavor intel", "ignoreFailures": true },
-        { "text": "handle SIGPIPE nostop noprint pass" },
-        { "text": "skip -rfu ^std::.*" }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_ekos_scheduler",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_scheduler",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_ekos_capture",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_capture",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_ekos_focus",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_focus",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_ekos_simulator",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_simulator",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_ekos_meridianflip",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_meridianflip",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_ekos_align",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_ekos_align",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-      "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
       "name": "Debug test_artificial_horizon",
-      "type": "cppdbg",
+      "type": "lldb",
       "request": "launch",
       "program": "${workspaceFolder}/build/Tests/kstars_ui/test_artificial_horizon",
-      "args": ["-v2"],
-      "stopAtEntry": false,
+      "args": [
+        "-v2"
+      ],
       "cwd": "${workspaceFolder}/build/Tests/kstars_ui",
-      "externalConsole": false,
-      "MIMode": "gdb",
-      "environment": [
-        {
-          "name": "LD_BIND_NOW",
-          "value": "1"
-        },
-        {
-          "name": "KSTARS_NO_WEB_MANAGER_SYNC",
-          "value": "1"
-        }
+      "sourceLanguages": [
+        "cpp"
       ],
-      "setupCommands": [
-        {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
-        },
-        {
-          "description": "Set Disassembly Flavor to Intel",
-          "text": "-gdb-set disassembly-flavor intel",
-          "ignoreFailures": true
-        },
-        {
-          "text": "handle SIGPIPE nostop noprint pass"
-        },
-        {
-          "text": "skip -rfu ^std::.*"
-        }
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
       ],
-      "showDisplayString": true
-    },
-     {
-        "name": "Auxiliary: Test testcsvparser",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testcsvparser",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "env": {
+        "LD_BIND_NOW": "1",
+        "KSTARS_NO_WEB_MANAGER_SYNC": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testfwparser",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testfwparser",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testcsvparser",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testcsvparser",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testdms",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testdms",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testfwparser",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testfwparser",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testcachingdms",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testcachingdms",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testdms",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testdms",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testcolorscheme",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testcolorscheme",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testcachingdms",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testcachingdms",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testbinhelper",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testbinhelper",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testcolorscheme",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testcolorscheme",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testfov",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testfov",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testbinhelper",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testbinhelper",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testgeolocation",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testgeolocation",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testfov",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testfov",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testksuserdb",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testksuserdb",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testgeolocation",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testgeolocation",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testkspaths",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testkspaths",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testksuserdb",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testksuserdb",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testtrixelcache",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testtrixelcache",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testkspaths",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testkspaths",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testrectangleoverlap",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testrectangleoverlap",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testtrixelcache",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testtrixelcache",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     },
     {
-        "name": "Auxiliary: Test testksalmanac",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${workspaceFolder}/build/Tests/auxiliary/testksalmanac",
-        "args": [
-            "-v2"
-        ],
-        "stopAtEntry": false,
-        "cwd": "${workspaceFolder}/build/Tests/auxiliary",
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "environment": [
-            {
-                "name": "LD_BIND_NOW",
-                "value": "1"
-            }
-        ],
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            },
-            {
-                "description": "Set Disassembly Flavor to Intel",
-                "text": "-gdb-set disassembly-flavor intel",
-                "ignoreFailures": true
-            },
-            {
-                "text": "handle SIGPIPE nostop noprint pass"
-            },
-            {
-                "text": "skip -rfu ^std::.*"
-            }
-        ],
-        "visualizerFile": "${workspaceFolder}/.vscode/qt6.natvis.xml",
-        "showDisplayString": true
+      "name": "Auxiliary: Test testrectangleoverlap",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testrectangleoverlap",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
+    },
+    {
+      "name": "Auxiliary: Test testksalmanac",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/Tests/auxiliary/testksalmanac",
+      "args": [
+        "-v2"
+      ],
+      "cwd": "${workspaceFolder}/build/Tests/auxiliary",
+      "sourceLanguages": [
+        "cpp"
+      ],
+      "initCommands": [
+        "command script import ${workspaceFolder}/.lldb/formatters/all.py",
+        "process handle SIGPIPE -s false -p false -n false"
+      ],
+      "env": {
+        "LD_BIND_NOW": "1"
+      }
     }
   ]
 }
