@@ -182,12 +182,12 @@ AltVsTime::AltVsTime(QWidget *parent) : QDialog(parent)
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Close);
     topLayout->addWidget(buttonBox);
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::rejected, this, &AltVsTime::reject);
 
     QPushButton *printB = new QPushButton(QIcon::fromTheme("document-print"), i18n("&Print..."));
     printB->setToolTip(i18n("Print the Altitude vs. time plot"));
     buttonBox->addButton(printB, QDialogButtonBox::ActionRole);
-    connect(printB, SIGNAL(clicked()), this, SLOT(slotPrint()));
+    connect(printB, &QPushButton::clicked, this, &AltVsTime::slotPrint);
 
     geo = KStarsData::Instance()->geo();
 
@@ -206,28 +206,28 @@ AltVsTime::AltVsTime(QWidget *parent) : QDialog(parent)
     //setLSTLimits();
     //setDawnDusk();
 
-    connect(avtUI->View->yAxis, SIGNAL(rangeChanged(QCPRange)), this, SLOT(onYRangeChanged(QCPRange)));
-    connect(avtUI->View->xAxis2, SIGNAL(rangeChanged(QCPRange)), this, SLOT(onXRangeChanged(QCPRange)));
-    connect(avtUI->View, SIGNAL(plottableClick(QCPAbstractPlottable*, int, QMouseEvent*)), this,
-            SLOT(plotMousePress(QCPAbstractPlottable*, int, QMouseEvent*)));
-    connect(avtUI->View, SIGNAL(mouseMove(QMouseEvent*)), this, SLOT(mouseOverLine(QMouseEvent*)));
+    connect(avtUI->View->yAxis, qOverload<const QCPRange &>(&QCPAxis::rangeChanged), this, &AltVsTime::onYRangeChanged);
+    connect(avtUI->View->xAxis2, qOverload<const QCPRange &>(&QCPAxis::rangeChanged), this, &AltVsTime::onXRangeChanged);
+    connect(avtUI->View, &QCustomPlot::plottableClick, this,
+            &AltVsTime::plotMousePress);
+    connect(avtUI->View, &QCustomPlot::mouseMove, this, &AltVsTime::mouseOverLine);
 
-    connect(avtUI->browseButton, SIGNAL(clicked()), this, SLOT(slotBrowseObject()));
-    connect(avtUI->cityButton, SIGNAL(clicked()), this, SLOT(slotChooseCity()));
-    connect(avtUI->updateButton, SIGNAL(clicked()), this, SLOT(slotUpdateDateLoc()));
-    connect(avtUI->clearButton, SIGNAL(clicked()), this, SLOT(slotClear()));
-    connect(avtUI->addButton, SIGNAL(clicked()), this, SLOT(slotAddSource()));
-    connect(avtUI->nameBox, SIGNAL(returnPressed()), this, SLOT(slotAddSource()));
-    connect(avtUI->raBox, SIGNAL(returnPressed()), this, SLOT(slotAddSource()));
-    connect(avtUI->decBox, SIGNAL(returnPressed()), this, SLOT(slotAddSource()));
-    connect(avtUI->clearFieldsButton, SIGNAL(clicked()), this, SLOT(slotClearBoxes()));
-    connect(avtUI->longBox, SIGNAL(returnPressed()), this, SLOT(slotAdvanceFocus()));
-    connect(avtUI->latBox, SIGNAL(returnPressed()), this, SLOT(slotAdvanceFocus()));
-    connect(avtUI->PlotList, SIGNAL(currentRowChanged(int)), this, SLOT(slotHighlight(int)));
-    connect(avtUI->computeButton, SIGNAL(clicked()), this, SLOT(slotComputeAltitudeByTime()));
-    connect(avtUI->riseButton, SIGNAL(clicked()), this, SLOT(slotMarkRiseTime()));
-    connect(avtUI->setButton, SIGNAL(clicked()), this, SLOT(slotMarkSetTime()));
-    connect(avtUI->transitButton, SIGNAL(clicked()), this, SLOT(slotMarkTransitTime()));
+    connect(avtUI->browseButton, &QPushButton::clicked, this, &AltVsTime::slotBrowseObject);
+    connect(avtUI->cityButton, &QPushButton::clicked, this, &AltVsTime::slotChooseCity);
+    connect(avtUI->updateButton, &QPushButton::clicked, this, &AltVsTime::slotUpdateDateLoc);
+    connect(avtUI->clearButton, &QPushButton::clicked, this, &AltVsTime::slotClear);
+    connect(avtUI->addButton, &QPushButton::clicked, this, &AltVsTime::slotAddSource);
+    connect(avtUI->nameBox, &QLineEdit::returnPressed, this, &AltVsTime::slotAddSource);
+    connect(avtUI->raBox, &QLineEdit::returnPressed, this, &AltVsTime::slotAddSource);
+    connect(avtUI->decBox, &QLineEdit::returnPressed, this, &AltVsTime::slotAddSource);
+    connect(avtUI->clearFieldsButton, &QPushButton::clicked, this, &AltVsTime::slotClearBoxes);
+    connect(avtUI->longBox, &QLineEdit::returnPressed, this, &AltVsTime::slotAdvanceFocus);
+    connect(avtUI->latBox, &QLineEdit::returnPressed, this, &AltVsTime::slotAdvanceFocus);
+    connect(avtUI->PlotList, &QListWidget::currentRowChanged, this, &AltVsTime::slotHighlight);
+    connect(avtUI->computeButton, &QPushButton::clicked, this, &AltVsTime::slotComputeAltitudeByTime);
+    connect(avtUI->riseButton, &QPushButton::clicked, this, &AltVsTime::slotMarkRiseTime);
+    connect(avtUI->setButton, &QPushButton::clicked, this, &AltVsTime::slotMarkSetTime);
+    connect(avtUI->transitButton, &QPushButton::clicked, this, &AltVsTime::slotMarkTransitTime);
 
     // Set up the Rise/Set/Transit buttons' icons:
 
@@ -606,22 +606,22 @@ void AltVsTime::plotMousePress(QCPAbstractPlottable *abstractPlottable, int data
                 QToolTip::hideText();
                 QToolTip::showText(QtCompat::mouseGlobalPos(event).toPoint(),
                                    i18n("<table>"
-                     "<tr>"
-                     "<th colspan=\"2\">%1</th>"
-                     "</tr>"
-                     "<tr>"
-                     "<td>LST:   </td>"
-                     "<td>%3</td>"
-                     "</tr>"
-                     "<tr>"
-                     "<td>LT:   </td>"
-                     "<td>%2</td>"
-                     "</tr>"
-                     "<tr>"
-                     "<td>Altitude:   </td>"
-                     "<td>%4</td>"
-                     "</tr>"
-                     "</table>",
+                                        "<tr>"
+                                        "<th colspan=\"2\">%1</th>"
+                                        "</tr>"
+                                        "<tr>"
+                                        "<td>LST:   </td>"
+                                        "<td>%3</td>"
+                                        "</tr>"
+                                        "<tr>"
+                                        "<td>LT:   </td>"
+                                        "<td>%2</td>"
+                                        "</tr>"
+                                        "<tr>"
+                                        "<td>Altitude:   </td>"
+                                        "<td>%4</td>"
+                                        "</tr>"
+                                        "</table>",
                                         graph->name().isEmpty() ? "???" : graph->name(),
                                         localTime.toString(),
                                         localSiderealTime.toString(),
@@ -901,22 +901,22 @@ void AltVsTime::mouseOverLine(QMouseEvent *event)
                 QToolTip::hideText();
                 QToolTip::showText(QtCompat::mouseGlobalPos(event).toPoint(),
                                    i18n("<table>"
-                     "<tr>"
-                     "<th colspan=\"2\">%1</th>"
-                     "</tr>"
-                     "<tr>"
-                     "<td>LST:   </td>"
-                     "<td>%3</td>"
-                     "</tr>"
-                     "<tr>"
-                     "<td>LT:   </td>"
-                     "<td>%2</td>"
-                     "</tr>"
-                     "<tr>"
-                     "<td>Altitude:   </td>"
-                     "<td>%4</td>"
-                     "</tr>"
-                     "</table>",
+                                        "<tr>"
+                                        "<th colspan=\"2\">%1</th>"
+                                        "</tr>"
+                                        "<tr>"
+                                        "<td>LST:   </td>"
+                                        "<td>%3</td>"
+                                        "</tr>"
+                                        "<tr>"
+                                        "<td>LT:   </td>"
+                                        "<td>%2</td>"
+                                        "</tr>"
+                                        "<tr>"
+                                        "<td>Altitude:   </td>"
+                                        "<td>%4</td>"
+                                        "</tr>"
+                                        "</table>",
                                         graph->name().isEmpty() ? "???" : graph->name(),
                                         localTime.toString(), localSiderealTime.toString(),
                                         QString::number(yValue, 'f', 2) + ' ' + QChar(176)),

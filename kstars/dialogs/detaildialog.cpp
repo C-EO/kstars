@@ -76,14 +76,14 @@ void DetailDialog::createGeneralTab()
     Data->Names->setPalette(titlePalette);
 
     //Connections
-    connect(Data->ObsListButton, SIGNAL(clicked()), this, SLOT(addToObservingList()));
-    connect(Data->CenterButton, SIGNAL(clicked()), this, SLOT(centerMap()));
+    connect(Data->ObsListButton, &QPushButton::clicked, this, &DetailDialog::addToObservingList);
+    connect(Data->CenterButton, &QPushButton::clicked, this, &DetailDialog::centerMap);
 #ifdef HAVE_INDI
-    connect(Data->ScopeButton, SIGNAL(clicked()), this, SLOT(centerTelescope()));
+    connect(Data->ScopeButton, &QPushButton::clicked, this, &DetailDialog::centerTelescope);
 #else
     Data->ScopeButton->setEnabled(false);
 #endif
-    connect(Data->Image, SIGNAL(clicked()), this, SLOT(updateThumbnail()));
+    connect(Data->Image, &ClickLabel::clicked, this, &DetailDialog::updateThumbnail);
 
     // Stuff that should be visible only for specific types of objects
     Data->IllumLabel->setVisible(false); // Only shown for the moon
@@ -132,7 +132,7 @@ void DetailDialog::createGeneralTab()
             //The thumbnail image is empty, and isn't clickable for stars
             //Also, don't show the border around the Image QFrame.
             Data->Image->setFrameStyle(QFrame::NoFrame);
-            disconnect(Data->Image, SIGNAL(clicked()), this, SLOT(updateThumbnail()));
+            disconnect(Data->Image, &ClickLabel::clicked, this, &DetailDialog::updateThumbnail);
 
             //distance
             if (s->distance() > 2000. || s->distance() < 0.) // parallax < 0.5 mas
@@ -699,28 +699,28 @@ void DetailDialog::createLinksTab()
                                            "Image/info menu item (should be translated)", link.title.toLocal8Bit()));
 
     // Signals/Slots
-    connect(Links->ViewButton, SIGNAL(clicked()), this, SLOT(viewLink()));
-    connect(Links->AddLinkButton, SIGNAL(clicked()), this, SLOT(addLink()));
-    connect(Links->EditLinkButton, SIGNAL(clicked()), this, SLOT(editLinkDialog()));
-    connect(Links->RemoveLinkButton, SIGNAL(clicked()), this, SLOT(removeLinkDialog()));
+    connect(Links->ViewButton, &QPushButton::clicked, this, &DetailDialog::viewLink);
+    connect(Links->AddLinkButton, &QPushButton::clicked, this, &DetailDialog::addLink);
+    connect(Links->EditLinkButton, &QPushButton::clicked, this, &DetailDialog::editLinkDialog);
+    connect(Links->RemoveLinkButton, &QPushButton::clicked, this, &DetailDialog::removeLinkDialog);
 
     // When an item is selected in info list, selected items are cleared image list.
-    connect(Links->InfoTitleList, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this,
-            SLOT(setCurrentLink(QListWidgetItem*)));
-    connect(Links->InfoTitleList, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)),
-            Links->ImageTitleList, SLOT(clearSelection()));
+    connect(Links->InfoTitleList, &QListWidget::currentItemChanged, this,
+            &DetailDialog::setCurrentLink);
+    connect(Links->InfoTitleList, &QListWidget::currentItemChanged,
+            Links->ImageTitleList, &QListWidget::clearSelection);
 
     // vice versa
-    connect(Links->ImageTitleList, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this,
-            SLOT(setCurrentLink(QListWidgetItem*)));
-    connect(Links->ImageTitleList, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)),
-            Links->InfoTitleList, SLOT(clearSelection()));
+    connect(Links->ImageTitleList, &QListWidget::currentItemChanged, this,
+            &DetailDialog::setCurrentLink);
+    connect(Links->ImageTitleList, &QListWidget::currentItemChanged,
+            Links->InfoTitleList, &QListWidget::clearSelection);
 
-    connect(Links->InfoTitleList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(viewLink()));
-    connect(Links->ImageTitleList, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this, SLOT(viewLink()));
+    connect(Links->InfoTitleList, &QListWidget::itemDoubleClicked, this, &DetailDialog::viewLink);
+    connect(Links->ImageTitleList, &QListWidget::itemDoubleClicked, this, &DetailDialog::viewLink);
 
-    connect(Links->InfoTitleList, SIGNAL(itemSelectionChanged()), this, SLOT(updateButtons()));
-    connect(Links->ImageTitleList, SIGNAL(itemSelectionChanged()), this, SLOT(updateButtons()));
+    connect(Links->InfoTitleList, &QListWidget::itemSelectionChanged, this, &DetailDialog::updateButtons);
+    connect(Links->ImageTitleList, &QListWidget::itemSelectionChanged, this, &DetailDialog::updateButtons);
 
     updateLists();
 }
@@ -765,7 +765,7 @@ void DetailDialog::createAdvancedTab()
     Adv = new DatabaseWidget(this);
     addPage(Adv, i18n("Advanced"));
 
-    connect(Adv->ADVTree, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(viewADVData()));
+    connect(Adv->ADVTree, &QTreeWidget::itemDoubleClicked, this, &DetailDialog::viewADVData);
 
     populateADVTree();
 }
@@ -791,7 +791,7 @@ void DetailDialog::createLogTab()
         Log->UserLog->setText(log);
 
     //Automatically save the log contents when the widget loses focus
-    connect(Log->UserLog, SIGNAL(focusOut()), this, SLOT(saveLogData()));
+    connect(Log->UserLog, &LogEdit::focusOut, this, &DetailDialog::saveLogData);
 }
 
 void DetailDialog::setCurrentLink(QListWidgetItem *it)
@@ -869,8 +869,8 @@ void DetailDialog::editLinkDialog()
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     mainLayout->addWidget(buttonBox);
-    connect(buttonBox, SIGNAL(accepted()), &editDialog, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), &editDialog, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, &editDialog, &QDialog::accept);
+    connect(buttonBox, &QDialogButtonBox::rejected, &editDialog, &QDialog::reject);
 
     editDialog.setLayout(mainLayout);
 
