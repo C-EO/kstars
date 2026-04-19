@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 02:06+0000\n"
+"POT-Creation-Date: 2026-04-19 02:11+0000\n"
 "PO-Revision-Date: 2010-01-28 23:11+0100\n"
 "Last-Translator: Marko Dimjasevic <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -35099,17 +35099,17 @@ msgstr ""
 "Trenutno nema pokrenutih INDI uređaja. Da biste pokrenuli uređaje, odaberite "
 "uređaje u uraditelju uređaja, u izborniku uređaja."
 
-#: indi/indicamera.cpp:482
+#: indi/indicamera.cpp:490
 #, kde-format
 msgid "Video Recording Stopped"
 msgstr ""
 
-#: indi/indicamera.cpp:489
+#: indi/indicamera.cpp:497
 #, kde-format
 msgid "Video Recording Started"
 msgstr ""
 
-#: indi/indicamera.cpp:865
+#: indi/indicamera.cpp:881
 #, fuzzy, kde-format
 msgid "Image file is received"
 msgstr "Smanjenje tinte"

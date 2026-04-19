@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 02:06+0000\n"
+"POT-Creation-Date: 2026-04-19 02:11+0000\n"
 "PO-Revision-Date: 2026-04-03 19:50+0200\n"
 "Last-Translator: Valter Mura <valtermura@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -37026,17 +37026,17 @@ msgstr ""
 "Nessun dispositivo INDI attualmente in esecuzione. Per attivare i "
 "dispositivi, selezionali dal Gestore dei dispositivi nel menu Dispositivi."
 
-#: indi/indicamera.cpp:482
+#: indi/indicamera.cpp:490
 #, kde-format
 msgid "Video Recording Stopped"
 msgstr "Registrazione video interrotta"
 
-#: indi/indicamera.cpp:489
+#: indi/indicamera.cpp:497
 #, kde-format
 msgid "Video Recording Started"
 msgstr "Registrazione video iniziata"
 
-#: indi/indicamera.cpp:865
+#: indi/indicamera.cpp:881
 #, kde-format
 msgid "Image file is received"
 msgstr "File immagine ricevuto"

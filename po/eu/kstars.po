@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 02:06+0000\n"
+"POT-Creation-Date: 2026-04-19 02:11+0000\n"
 "PO-Revision-Date: 2025-07-29 14:41+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -36509,17 +36509,17 @@ msgstr ""
 "Momentu honetan ez dago INDI gailurik martxan. Gailuak exekutatzeko, hautatu "
 "gailuak 'Gailuak' menuko gailuen kudeatzailetik."
 
-#: indi/indicamera.cpp:482
+#: indi/indicamera.cpp:490
 #, kde-format
 msgid "Video Recording Stopped"
 msgstr ""
 
-#: indi/indicamera.cpp:489
+#: indi/indicamera.cpp:497
 #, kde-format
 msgid "Video Recording Started"
 msgstr ""
 
-#: indi/indicamera.cpp:865
+#: indi/indicamera.cpp:881
 #, fuzzy, kde-format
 #| msgid "Capture"
 msgid "Image file is received"

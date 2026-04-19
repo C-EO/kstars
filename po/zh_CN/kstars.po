@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 02:06+0000\n"
+"POT-Creation-Date: 2026-04-19 02:11+0000\n"
 "PO-Revision-Date: 2024-04-22 16:05\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -35140,17 +35140,17 @@ msgid ""
 "from the Device Manager in the devices menu."
 msgstr "没有正在运行的 INDI 设备。请从设备菜单的设备管理器中选择要运行的设备。"
 
-#: indi/indicamera.cpp:482
+#: indi/indicamera.cpp:490
 #, kde-format
 msgid "Video Recording Stopped"
 msgstr "已停止录制视频"
 
-#: indi/indicamera.cpp:489
+#: indi/indicamera.cpp:497
 #, kde-format
 msgid "Video Recording Started"
 msgstr "已开始录制视频。"
 
-#: indi/indicamera.cpp:865
+#: indi/indicamera.cpp:881
 #, kde-format
 msgid "Image file is received"
 msgstr "图像文件已收到"

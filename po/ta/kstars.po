@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 02:06+0000\n"
+"POT-Creation-Date: 2026-04-19 02:11+0000\n"
 "PO-Revision-Date: 2021-01-18 19:03+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -35943,17 +35943,17 @@ msgstr ""
 "INDI சாதனங்கள் எதுவும் தற்போது இயங்கவில்லை. இச்சாதனங்களை இயக்க சாதன நிரலில் உள்ள சாதன "
 "மேலாளரில் இருந்து சாதனங்களை தேர்வு செய்க."
 
-#: indi/indicamera.cpp:482
+#: indi/indicamera.cpp:490
 #, kde-format
 msgid "Video Recording Stopped"
 msgstr ""
 
-#: indi/indicamera.cpp:489
+#: indi/indicamera.cpp:497
 #, kde-format
 msgid "Video Recording Started"
 msgstr ""
 
-#: indi/indicamera.cpp:865
+#: indi/indicamera.cpp:881
 #, fuzzy, kde-format
 #| msgid "Image Reduction Process..."
 msgid "Image file is received"

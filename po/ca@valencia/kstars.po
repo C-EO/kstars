@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-17 02:06+0000\n"
+"POT-Creation-Date: 2026-04-19 02:11+0000\n"
 "PO-Revision-Date: 2026-04-14 22:16+0200\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -37490,17 +37490,17 @@ msgstr ""
 "los des del Gestor de dispositius amb l'element de menú «Dades → "
 "Dispositius»."
 
-#: indi/indicamera.cpp:482
+#: indi/indicamera.cpp:490
 #, kde-format
 msgid "Video Recording Stopped"
 msgstr "S'ha parat la gravació de vídeo"
 
-#: indi/indicamera.cpp:489
+#: indi/indicamera.cpp:497
 #, kde-format
 msgid "Video Recording Started"
 msgstr "Ha començat la gravació de vídeo"
 
-#: indi/indicamera.cpp:865
+#: indi/indicamera.cpp:881
 #, kde-format
 msgid "Image file is received"
 msgstr "S'ha rebut un fitxer d'imatge"
