@@ -1906,26 +1906,26 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
 
         switch (objectType)
         {
-                // Stars
+            // Stars
             case SkyObject::STAR:
             case SkyObject::CATALOG_STAR:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::STAR));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::CATALOG_STAR));
                 break;
-                // Planets & Moon
+            // Planets & Moon
             case SkyObject::PLANET:
             case SkyObject::MOON:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::PLANET));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::MOON));
                 break;
-                // Comets & Asteroids
+            // Comets & Asteroids
             case SkyObject::COMET:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::COMET));
                 break;
             case SkyObject::ASTEROID:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::ASTEROID));
                 break;
-                // Clusters
+            // Clusters
             case SkyObject::OPEN_CLUSTER:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::OPEN_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
@@ -1934,7 +1934,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GLOBULAR_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
                 break;
-                // Nebuale
+            // Nebuale
             case SkyObject::GASEOUS_NEBULA:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GASEOUS_NEBULA, objectMaxMagnitude));
                 isDSO = true;
@@ -3650,6 +3650,33 @@ void Message::processArtificialHorizonCommands(const QString &command, const QJs
 
         horizonComponent->save();
         SkyMap::Instance()->forceUpdateNow();
+    }
+    else if (command == commands[ARTIFICIAL_HORIZON_GET])
+    {
+        QJsonArray regionsArray;
+        for (const auto *entity : *horizonComponent->getHorizon().horizonList())
+        {
+            QJsonObject regionObject;
+            regionObject["name"]    = entity->region();
+            regionObject["enabled"] = entity->enabled();
+            regionObject["ceiling"] = entity->ceiling();
+
+            QJsonArray pointsArray;
+            if (entity->list())
+            {
+                const auto *pts = entity->list()->points();
+                for (const auto &sp : *pts)
+                {
+                    QJsonObject pt;
+                    pt["az"]  = sp->az().Degrees();
+                    pt["alt"] = sp->alt().Degrees();
+                    pointsArray.append(pt);
+                }
+            }
+            regionObject["points"] = pointsArray;
+            regionsArray.append(regionObject);
+        }
+        sendResponse(commands[ARTIFICIAL_HORIZON_GET], regionsArray);
     }
 }
 

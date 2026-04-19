@@ -265,6 +265,7 @@ enum COMMANDS
     // Artificial Horizon
     ARTIFICIAL_HORIZON_IMPORT,
     ARTIFICIAL_HORIZON_TOGGLE,
+    ARTIFICIAL_HORIZON_GET,
 };
 
 static QMap<COMMANDS, QString> const commands =
@@ -495,6 +496,7 @@ static QMap<COMMANDS, QString> const commands =
 
     {ARTIFICIAL_HORIZON_IMPORT, "artificial_horizon_import"},
     {ARTIFICIAL_HORIZON_TOGGLE, "artificial_horizon_toggle"},
+    {ARTIFICIAL_HORIZON_GET,    "artificial_horizon_get"},
 };
 
 }
