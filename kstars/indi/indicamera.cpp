@@ -655,13 +655,12 @@ QSharedPointer<FITSData> Camera::buildGuideFrameFromStream(INDI::WidgetViewBlob 
     fmt.remove("stream_");
     const bool fmtSupported = QImageReader::supportedImageFormats().contains(fmt.toLatin1());
 
-    // ── Decode stream blob into a flat 8-bit grayscale pixel buffer ──────────────────────
-    // For compressed formats (JPEG, PNG …) we use Qt's image decoders — there is no
-    // alternative.  For uncompressed raw blobs we operate directly on the pixel data to
-    // avoid redundant copies.  At modern guide-camera resolutions (1920×1080 and above)
-    // at 5 Hz the difference is measurable: the raw path touches N bytes once vs the
-    // QImage path touching 3–7N bytes for an RGB frame.
+    // ── Decode stream blob into a grayscale pixel buffer ────────────────────────────────
+    // Supports 8-bit mono, 16-bit mono (RAW16), and 8-bit RGB formats.
+    // For compressed formats (JPEG, PNG …) we use Qt's image decoders.
+    // For uncompressed raw blobs we operate directly on the pixel data.
     QByteArray rawGray;
+    bool is16bit = false;
 
     if (fmtSupported)
     {
@@ -682,11 +681,15 @@ QSharedPointer<FITSData> Camera::buildGuideFrameFromStream(INDI::WidgetViewBlob 
         // 8-bit raw monochrome — single memcpy, no conversion needed.
         rawGray = QByteArray(reinterpret_cast<const char *>(blobPtr), static_cast<int>(blobLen));
     }
+    else if (blobLen == totalPx * 2)
+    {
+        // 16-bit raw monochrome (RAW16) — pass through as-is.
+        rawGray = QByteArray(reinterpret_cast<const char *>(blobPtr), static_cast<int>(blobLen));
+        is16bit = true;
+    }
     else if (blobLen == totalPx * 3)
     {
         // 8-bit raw RGB — extract luminance in a single pass.
-        // Using the standard ITU-R BT.601 coefficients gives better star contrast than
-        // a bare green-channel extraction on colour guide cameras.
         rawGray.resize(static_cast<int>(totalPx));
         uint8_t *dst = reinterpret_cast<uint8_t *>(rawGray.data());
         for (uint32_t i = 0; i < totalPx; ++i)
@@ -720,7 +723,8 @@ QSharedPointer<FITSData> Camera::buildGuideFrameFromStream(INDI::WidgetViewBlob 
     }
 
     long naxes[2] = { streamW, streamH };
-    if (fits_create_img(fptr, BYTE_IMG, 2, naxes, &status))
+    int imgType = is16bit ? USHORT_IMG : BYTE_IMG;
+    if (fits_create_img(fptr, imgType, 2, naxes, &status))
     {
         fits_get_errstatus(status, errStr);
         qCWarning(KSTARS_INDI) << "buildGuideFrameFromStream: fits_create_img:" << errStr;
@@ -730,7 +734,8 @@ QSharedPointer<FITSData> Camera::buildGuideFrameFromStream(INDI::WidgetViewBlob 
         return {};
     }
 
-    if (fits_write_img(fptr, TBYTE, 1, static_cast<long>(totalPx),
+    int dataType = is16bit ? TUSHORT : TBYTE;
+    if (fits_write_img(fptr, dataType, 1, static_cast<long>(totalPx),
                        const_cast<char *>(rawGray.constData()), &status))
     {
         fits_get_errstatus(status, errStr);
