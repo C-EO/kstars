@@ -383,6 +383,7 @@ struct LiveStackFile
 struct LiveStackPPData
 {
     bool postProcess;
+    double gradientAmt;
     double deconvAmt;
     double PSFSigma;
     double denoiseAmt;

@@ -2359,9 +2359,16 @@ cv::Mat FITSStack::postProcessImage(const cv::Mat &image32F)
         if (!m_StackData.postProcessing.postProcess)
             return image32F;
 
-        cv::Mat finalImage;
-        // Firstly perform deconvolution (if requested). Calculate psf then use this for deconvolution
-        cv::Mat deconvolvedImage = image32F;
+        cv::Mat finalImage, gradCorrect;
+
+        // Firstly perform gradient correction (if requested)
+        if (m_StackData.postProcessing.gradientAmt <= 0.0)
+            gradCorrect = image32F;
+        else
+            gradCorrect = gradientCorrection(image32F, m_StackData.postProcessing.gradientAmt);
+        \
+        // Next perform deconvolution (if requested). Calculate psf then use this for deconvolution
+        cv::Mat deconvolvedImage = gradCorrect;
         if (m_StackData.postProcessing.deconvAmt > 0.0)
         {
             cv::Mat greyImage32F, deconvolved;
@@ -2453,6 +2460,175 @@ cv::Mat FITSStack::postProcessImage(const cv::Mat &image32F)
         QString s1 = ex.what();
         qCDebug(KSTARS_FITS) << QString("openCV exception %1 called from %2").arg(s1).arg(__FUNCTION__);
         return cv::Mat();
+    }
+}
+
+// Performs Automatic Gradient Removal using a dual-pass
+// Pass1: Division for vignetting
+// Pass2: Subtraction for sky glow
+cv::Mat FITSStack::gradientCorrection(const cv::Mat& image, const double strength)
+{
+    QElapsedTimer timer;
+    timer.start();
+
+    try
+    {
+        if (image.empty())
+            return image;
+
+        const int targetWidth = 200;
+        cv::Size smallSize(targetWidth, std::max(1, (int)(image.rows * ((double)targetWidth / image.cols))));
+
+        std::vector<cv::Mat> channels;
+        cv::split(image, channels);
+
+        // Multi-thread per channel
+        QtConcurrent::blockingMap(channels, [&](cv::Mat & channel)
+        {
+            cv::Scalar initial_mu, initial_sigma;
+            cv::meanStdDev(channel, initial_mu, initial_sigma);
+            float originalBackgroundLevel = (float)initial_mu[0];
+
+            for (int pass = 1; pass <= 2; pass++)
+            {
+                cv::Mat smallChan;
+                cv::resize(channel, smallChan, smallSize, 0, 0, cv::INTER_AREA);
+
+                cv::Scalar g_mu, g_sigma;
+                cv::meanStdDev(smallChan, g_mu, g_sigma);
+
+                // Masking
+                cv::Mat starMask, blurred;
+                cv::GaussianBlur(smallChan, blurred, cv::Size(5, 5), 0);
+                float threshMult = (pass == 1) ? 0.6f : 0.2f;
+                cv::threshold(smallChan - blurred, starMask, g_sigma[0] * threshMult, 255, cv::THRESH_BINARY);
+                starMask.convertTo(starMask, CV_8U);
+
+                int dilateSize = (pass == 1) ? 7 : 13;
+                cv::dilate(starMask, starMask, cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(dilateSize, dilateSize)));
+
+                // Protected Sampling
+                int marginX = (int)(smallSize.width * 0.05);
+                int marginY = (int)(smallSize.height * 0.05);
+                int step = (pass == 1) ? 18 : 12;
+
+                int cx1 = smallSize.width * 0.35, cx2 = smallSize.width * 0.65;
+                int cy1 = smallSize.height * 0.35, cy2 = smallSize.height * 0.65;
+
+                std::vector<cv::Point3f> points;
+                for (int y = marginY; y < smallSize.height - marginY; y += step)
+                {
+                    const uchar* maskRow = starMask.ptr<uchar>(y);
+                    for (int x = marginX; x < smallSize.width - marginX; x += step)
+                    {
+                        if (maskRow[x] > 0 || (x > cx1 && x < cx2 && y > cy1 && y < cy2))
+                            continue;
+
+                        cv::Rect roi = cv::Rect(x - 2, y - 2, 5, 5) & cv::Rect(0, 0, smallSize.width, smallSize.height);
+                        double t_mu = cv::mean(smallChan(roi))[0];
+
+                        if (t_mu < g_mu[0] + g_sigma[0] * 0.15)
+                            points.push_back(cv::Point3f((float)x, (float)y, (float)t_mu));
+                    }
+                }
+
+                if (points.size() < 10)
+                    break;
+
+                // TPS SOLVER
+                int N = (int)points.size();
+                int M = N + 3;
+                cv::Mat A = cv::Mat::zeros(M, M, CV_64F);
+                cv::Mat B_vec = cv::Mat::zeros(M, 1, CV_64F);
+                double lambda = (pass == 1) ? 0.1 : 0.05;
+
+                for (int i = 0; i < N; i++)
+                {
+                    for (int j = 0; j < N; j++)
+                    {
+                        double dx = points[i].x - points[j].x;
+                        double dy = points[i].y - points[j].y;
+                        double r2 = dx * dx + dy * dy;
+                        if (r2 > 1e-6)
+                            // Optimized TPS: 0.5 * r2 * log(r2) avoids sqrt()
+                            A.at<double>(i, j) = 0.5 * r2 * std::log(r2);
+                        if (i == j)
+                            A.at<double>(i, j) += lambda;
+                    }
+                    A.at<double>(i, N) = points[i].x;
+                    A.at<double>(i, N + 1) = points[i].y;
+                    A.at<double>(i, N + 2) = 1.0;
+                    A.at<double>(N, i) = points[i].x;
+                    A.at<double>(N + 1, i) = points[i].y;
+                    A.at<double>(N + 2, i) = 1.0;
+                    B_vec.at<double>(i, 0) = points[i].z;
+                }
+
+                cv::Mat weights;
+                if (!cv::solve(A, B_vec, weights, cv::DECOMP_LU))
+                    break;
+
+                // Reconstruct Model (Optimized loop)
+                cv::Mat modelSmall = cv::Mat::zeros(smallSize, CV_32F);
+                const double wN = weights.at<double>(N, 0);
+                const double wN1 = weights.at<double>(N + 1, 0);
+                const double wN2 = weights.at<double>(N + 2, 0);
+
+                for (int y = 0; y < modelSmall.rows; y++)
+                {
+                    float* row = modelSmall.ptr<float>(y);
+                    for (int x = 0; x < modelSmall.cols; x++)
+                    {
+                        double val = 0;
+                        for (int i = 0; i < N; i++)
+                        {
+                            double dx = x - points[i].x;
+                            double dy = y - points[i].y;
+                            double r2 = dx * dx + dy * dy;
+                            if (r2 > 1e-6)
+                                val += weights.at<double>(i, 0) * (0.5 * r2 * std::log(r2));
+                        }
+                        val += wN * x + wN1 * y + wN2;
+                        row[x] = (float)val;
+                    }
+                }
+
+                cv::GaussianBlur(modelSmall, modelSmall, cv::Size(11, 11), 0);
+                cv::Mat modelFull;
+                cv::resize(modelSmall, modelFull, channel.size(), 0, 0, cv::INTER_CUBIC);
+
+                // Apply the correction
+                if (pass == 1)
+                {
+                    cv::Scalar model_mu = cv::mean(modelFull);
+                    cv::Mat divCorrection = (1.0f - (float)strength) + (modelFull / (float)model_mu[0] * (float)strength);
+                    cv::max(divCorrection, 0.1f, divCorrection);
+                    channel /= divCorrection;
+                }
+                else
+                {
+                    channel -= (modelFull * (float)strength);
+                    cv::Scalar mid_mu = cv::mean(channel);
+                    channel += (float)mid_mu[0] * (float)strength;
+                }
+            }
+
+            // Anchor to original baseline
+            cv::Scalar f_mu;
+            cv::meanStdDev(channel, f_mu, cv::noArray());
+            channel += (originalBackgroundLevel - (float)f_mu[0]);
+            cv::max(channel, 0.0f, channel);
+        });
+
+        cv::Mat result;
+        cv::merge(channels, result);
+        qCDebug(KSTARS_FITS) << QString("Gradient removal in %1 ms").arg(timer.elapsed());
+        return result;
+    }
+    catch (const cv::Exception &ex)
+    {
+        qCDebug(KSTARS_FITS) << QString("openCV exception %1 called from %2").arg(ex.what()).arg(__FUNCTION__);
+        return image;
     }
 }
 

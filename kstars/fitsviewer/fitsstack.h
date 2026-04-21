@@ -597,6 +597,14 @@ class FITSStack : public QObject
         double getSNR(const cv::Mat &image);
 
         /**
+         * @brief Performs Automatic Gradient Removal
+         * @param image is the input image
+         * @param strength of gradient removal to apply
+         * @return the gradient corrected image
+        */
+        cv::Mat gradientCorrection(const cv::Mat& input, const double strength);
+
+        /**
          * @brief Return a PSF for stars (upto 20) in the passed in image
          * @param image
          * @param patchSize is the patch region around a star - multiple stars are ignored. Must be odd

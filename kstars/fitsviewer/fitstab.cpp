@@ -1052,6 +1052,11 @@ void FITSTab::initLiveStacking()
     connect(m_View.get(), &FITSView::stackUpdateStats, this, &FITSTab::stackUpdateStats);
     connect(m_View.get(), &FITSView::updateStackSNR, this, &FITSTab::updateStackSNR);
     connect(m_View.get(), &FITSView::resetStack, this, &FITSTab::resetStack);
+
+    // Sync slider and associated spinbox bidirectionally
+    connect(m_LiveStackingUI.GradientAmt, &QSlider::valueChanged, m_LiveStackingUI.GradientSpin, &QSpinBox::setValue);
+    connect(m_LiveStackingUI.GradientSpin, QOverload<int>::of(&QSpinBox::valueChanged),
+            m_LiveStackingUI.GradientAmt, &QSlider::setValue);
 #endif // !KSTARS_LITE
 }
 
@@ -1077,6 +1082,7 @@ void FITSTab::initSettings()
     m_LiveStackingUI.Sigma->setValue(Options::fitsLSSigma());
     m_LiveStackingUI.PSFUpdate->setValue(Options::fitsPSFUpdate());
     m_LiveStackingUI.PostProcGroupBox->setChecked(Options::fitsLSPostProc());
+    m_LiveStackingUI.GradientAmt->setValue(Options::fitsLSGradientAmt() * 100.0);
     m_LiveStackingUI.DeconvAmt->setValue(Options::fitsLSDeconvAmt());
     m_LiveStackingUI.PSFSigma->setValue(Options::fitsLSPSFSigma());
     m_LiveStackingUI.DenoiseAmt->setValue(Options::fitsLSDenoiseAmt());
@@ -1110,6 +1116,7 @@ void FITSTab::saveSettings()
     Options::setFitsPSFUpdate(m_LiveStackingUI.PSFUpdate->value());
 
     Options::setFitsLSPostProc(m_LiveStackingUI.PostProcGroupBox->isChecked());
+    Options::setFitsLSGradientAmt(m_LiveStackingUI.GradientAmt->value() / 100.0);
     Options::setFitsLSDeconvAmt(m_LiveStackingUI.DeconvAmt->value());
     Options::setFitsLSPSFSigma(m_LiveStackingUI.PSFSigma->value());
     Options::setFitsLSDenoiseAmt(m_LiveStackingUI.DenoiseAmt->value());
@@ -1172,6 +1179,7 @@ LiveStackPPData FITSTab::getPPSettings()
 {
     LiveStackPPData data;
     data.postProcess = m_LiveStackingUI.PostProcGroupBox->isChecked();
+    data.gradientAmt = m_LiveStackingUI.GradientAmt->value() / 100.0;
     data.deconvAmt = m_LiveStackingUI.DeconvAmt->value();
     data.PSFSigma = m_LiveStackingUI.PSFSigma->value();
     data.denoiseAmt = m_LiveStackingUI.DenoiseAmt->value();
@@ -1754,7 +1762,8 @@ void FITSTab::liveStack()
                 << " | PSF Update: " << lsd.PSFUpdate
                 << " | NumInMem: " << lsd.numInMem
                 << " | PostProc: " << (lsd.postProcessing.postProcess ? "On" : "Off")
-                << " [Deconv=" << lsd.postProcessing.deconvAmt
+                << " [Gradient=" << lsd.postProcessing.gradientAmt
+                << ", Deconv=" << lsd.postProcessing.deconvAmt
                 << ", PSFSigma=" << lsd.postProcessing.PSFSigma
                 << ", Denoise=" << lsd.postProcessing.denoiseAmt
                 << ", Sharpen=" << lsd.postProcessing.sharpenAmt

@@ -1906,26 +1906,26 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
 
         switch (objectType)
         {
-            // Stars
+                // Stars
             case SkyObject::STAR:
             case SkyObject::CATALOG_STAR:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::STAR));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::CATALOG_STAR));
                 break;
-            // Planets & Moon
+                // Planets & Moon
             case SkyObject::PLANET:
             case SkyObject::MOON:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::PLANET));
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::MOON));
                 break;
-            // Comets & Asteroids
+                // Comets & Asteroids
             case SkyObject::COMET:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::COMET));
                 break;
             case SkyObject::ASTEROID:
                 allObjects.append(data->skyComposite()->objectLists(SkyObject::ASTEROID));
                 break;
-            // Clusters
+                // Clusters
             case SkyObject::OPEN_CLUSTER:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::OPEN_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
@@ -1934,7 +1934,7 @@ void Message::processAstronomyCommands(const QString &command, const QJsonObject
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GLOBULAR_CLUSTER, objectMaxMagnitude));
                 isDSO = true;
                 break;
-            // Nebuale
+                // Nebuale
             case SkyObject::GASEOUS_NEBULA:
                 dsoObjects.splice(dsoObjects.end(), m_DSOManager.get_objects(SkyObject::GASEOUS_NEBULA, objectMaxMagnitude));
                 isDSO = true;
@@ -3252,6 +3252,7 @@ void Message::processLiveStackerCommands(const QString &command, const QJsonObje
         params.postProcessing.sharpenAmt = m_LiveStackerSettings.value("sharpenAmt", 0.0).toDouble();
         params.postProcessing.denoiseAmt = m_LiveStackerSettings.value("denoiseAmt", 0.0).toDouble();
         params.postProcessing.deconvAmt = m_LiveStackerSettings.value("deconvAmt", 0.0).toDouble();
+        params.postProcessing.gradientAmt = m_LiveStackerSettings.value("gradientAmt", 0.0).toDouble();
 
         // Master dark/flat paths
         QString masterDark = m_LiveStackerSettings.value("masterDarkPath").toString();
@@ -3507,6 +3508,7 @@ void Message::onLiveStackerJobChanged(const QSharedPointer<Ekos::SequenceJob> &j
     params.postProcessing.sharpenAmt  = m_LiveStackerSettings.value("sharpenAmt", 0.0).toDouble();
     params.postProcessing.denoiseAmt  = m_LiveStackerSettings.value("denoiseAmt", 0.0).toDouble();
     params.postProcessing.deconvAmt   = m_LiveStackerSettings.value("deconvAmt", 0.0).toDouble();
+    params.postProcessing.gradientAmt   = m_LiveStackerSettings.value("gradientAmt", 0.0).toDouble();
 
     const QString masterDark = m_LiveStackerSettings.value("masterDarkPath").toString();
     const QString masterFlat = m_LiveStackerSettings.value("masterFlatPath").toString();
