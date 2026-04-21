@@ -37,6 +37,14 @@
             "name": "eigen",
             "buildsystem": "cmake-ninja",
             "builddir": true,
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DEIGEN_BUILD_BLAS=OFF",
+                "-DEIGEN_BUILD_LAPACK=OFF",
+                "-DEIGEN_BUILD_DOC=OFF",
+                "-DEIGEN_BUILD_DEMOS=OFF",
+                "-DEIGEN_BUILD_TESTING=OFF"
+            ],
             "cleanup": [
                 "*"
             ],
@@ -534,6 +542,13 @@
                 "-DBUILD_TESTING=OFF",
                 "-DBUILD_WITH_QT6=ON"
             ],
+            "build-options": {
+                "arch": {
+                    "aarch64": {
+                        "make-args": ["-j2"]
+                    }
+                }
+            },
             "sources": [
                 {
                     "type": "dir",
