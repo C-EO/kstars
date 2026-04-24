@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-23 02:04+0000\n"
-"PO-Revision-Date: 2026-04-22 08:54+0200\n"
+"PO-Revision-Date: 2026-04-23 09:02+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -29560,7 +29560,7 @@ msgstr "Avís: Es requereix el nom de l'objectiu."
 #: ekos/scheduler/scheduler.cpp:1104
 #, kde-format
 msgid "Warning: A job with name '%1' already exists. Please use a unique name."
-msgstr ""
+msgstr "Avís: Ja existeix una tasca amb el nom «%1». Feu servir un nom únic."
 
 #: ekos/scheduler/scheduler.cpp:1112
 #, kde-format

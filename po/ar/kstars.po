@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-23 02:04+0000\n"
-"PO-Revision-Date: 2026-04-16 13:15+0400\n"
+"PO-Revision-Date: 2026-04-23 10:20+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -29438,7 +29438,7 @@ msgstr "طابور ما بعد بدء التشغيل المختار لتشغيل
 #: ekos/scheduler/scheduler.ui:2131 ekos/scheduler/scheduler.ui:2232
 #, kde-format
 msgid "Reset or Restore to Default if empty"
-msgstr ""
+msgstr "صفّر أو ارجع للمبدئي إذا كان فارغًا"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, selectPostStartupQueueB)
 #: ekos/scheduler/scheduler.ui:2150
@@ -34013,23 +34013,19 @@ msgstr " سيجما PSF:"
 #. i18n: ectx: property (toolTip), widget (QSpinBox, GradientSpin)
 #: fitsviewer/livestacking.ui:1892 fitsviewer/livestacking.ui:2053
 #: fitsviewer/livestacking.ui:2187
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Amount of denoise to apply. Larger values apply "
-#| "more denoising.</p><p>Set to 0 to skip denoising</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Percentage of Gradient Removal to apply.</p><p>Set to "
 "0 to switch off.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>كمية إزالة الضوضاء للتطبيق. القيم الأكبر تطبّق إزالة "
-"ضوضاء أكثر.</p><p>اضبط القيمة على ٠ لتخطي إزالة الضوضاء</p></body></html>"
+"<html><head/><body><p>نسبة إزالة التدرج للتطبيق..</p><p>اضبط القيمة على 0 "
+"لتعطله</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, gradientLabel)
 #: fitsviewer/livestacking.ui:1895
-#, fuzzy, kde-format
-#| msgid "Gradient"
+#, kde-format
 msgid "Gradient Removal:"
-msgstr "التّدرّج"
+msgstr "إزالة التدرّج"
 
 #. i18n: ectx: property (toolTip), widget (QLabel, DeconvLabel)
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, DeconvAmt)
@@ -41425,10 +41421,9 @@ msgstr "مفتاح ما بعد المعالجة لتكديس البث المبا
 
 #. i18n: ectx: label, entry (fitsLSGradientAmt), group (FITSViewer)
 #: kstars.kcfg:1911
-#, fuzzy, kde-format
-#| msgid "Live Stacking denoise amount"
+#, kde-format
 msgid "Live Stacking gradient removal amount"
-msgstr "مقدار إزالة الضوضاء لتكديس البث المباشر"
+msgstr "مقدار إزالة التدرج لتكديس البث المباشر"
 
 #. i18n: ectx: label, entry (fitsLSDeconvAmt), group (FITSViewer)
 #: kstars.kcfg:1915

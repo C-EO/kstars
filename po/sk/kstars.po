@@ -28657,6 +28657,7 @@ msgstr "Vyžaduje sa cieľový názov."
 #, kde-format
 msgid "Warning: A job with name '%1' already exists. Please use a unique name."
 msgstr ""
+"Upozornenie: Úloha s názvom '%1' už existuje. Použite prosím jedinečný názov."
 
 #: ekos/scheduler/scheduler.cpp:1112
 #, kde-format
