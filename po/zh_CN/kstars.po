@@ -33264,23 +33264,17 @@ msgstr "  点扩散函数 Sigma："
 #. i18n: ectx: property (toolTip), widget (QSpinBox, GradientSpin)
 #: fitsviewer/livestacking.ui:1892 fitsviewer/livestacking.ui:2053
 #: fitsviewer/livestacking.ui:2187
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Amount of denoise to apply. Larger values apply "
-#| "more denoising.</p><p>Set to 0 to skip denoising</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Percentage of Gradient Removal to apply.</p><p>Set to "
 "0 to switch off.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>去噪强度。取值越大，去噪效果越强。</p><p>设为0则跳过去"
-"噪流程。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, gradientLabel)
 #: fitsviewer/livestacking.ui:1895
-#, fuzzy, kde-format
-#| msgid "Gradient"
+#, kde-format
 msgid "Gradient Removal:"
-msgstr "梯度"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLabel, DeconvLabel)
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, DeconvAmt)
@@ -40537,10 +40531,9 @@ msgstr "实时堆叠后处理开关"
 
 #. i18n: ectx: label, entry (fitsLSGradientAmt), group (FITSViewer)
 #: kstars.kcfg:1911
-#, fuzzy, kde-format
-#| msgid "Live Stacking denoise amount"
+#, kde-format
 msgid "Live Stacking gradient removal amount"
-msgstr "实时堆叠去噪音强度"
+msgstr ""
 
 #. i18n: ectx: label, entry (fitsLSDeconvAmt), group (FITSViewer)
 #: kstars.kcfg:1915
