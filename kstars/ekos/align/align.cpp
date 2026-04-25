@@ -1098,7 +1098,7 @@ void Align::calculateEffectiveFocalLength(double newFOVW)
         new_focal_length = ((m_CameraWidth * m_CameraPixelWidth / 1000.0) / tan(newFOVW / 2)) / 2;
     else
         new_focal_length = ((m_CameraWidth * m_CameraPixelWidth / 1000.0) * 206264.8062470963552) / (newFOVW * 60.0);
-    double focal_diff = std::fabs(new_focal_length - reducedFocalLength);
+    double focal_diff = std::abs(new_focal_length - reducedFocalLength);
 
     if (focal_diff > 1)
     {
@@ -1172,7 +1172,7 @@ void Align::calculateFOV()
 
     if (m_EffectiveFocalLength > 0)
     {
-        double focal_diff = std::fabs(m_EffectiveFocalLength  - m_FocalLength);
+        double focal_diff = std::abs(m_EffectiveFocalLength  - m_FocalLength);
         if (focal_diff < 5)
             FocalLengthOut->setStyleSheet("color:green");
         else if (focal_diff < 15)
@@ -2206,7 +2206,7 @@ void Align::solverFinished(double orientation, double ra, double dec, double pix
 
     // When solving (without Load&Slew), update effective FOV and focal length accordingly.
     if (!m_SolveFromFile &&
-            (isEqual(m_FOVWidth, 0) || m_EffectiveFOVPending || std::fabs(pixscale - m_FOVPixelScale) > 0.005) &&
+            (isEqual(m_FOVWidth, 0) || m_EffectiveFOVPending || std::abs(pixscale - m_FOVPixelScale) > 0.005) &&
             pixscale > 0)
     {
         double newFOVW = m_CameraWidth * pixscale / binx / 60.0;
@@ -2340,6 +2340,42 @@ void Align::solverFinished(double orientation, double ra, double dec, double pix
                 }
                 qCDebug(KSTARS_EKOS_ALIGN) << "Raw Rotator Angle:" << sRawAngle << "Rotator PA:" << solverPA
                                            << "Rotator Offset:" << OffsetAngle << "Direction:" << reverseStatus;
+
+                // Check if the rotator is moving in the wrong direction.
+                // If we have a target PA set (meaning we're in a rotation sequence),
+                // compare the new PA error with the error before the rotation command.
+                // If the error increased instead of decreased, the rotator is going the wrong way.
+                // KSUtils::rangePA normalizes the difference to [-180, +180], so the absolute value
+                // gives the shortest angular distance regardless of sign.
+                // Detect if the rotator is moving in the wrong direction.
+                // m_PreviousPAError is set ONLY in checkIfRotationRequired() when a rotation command
+                // is actually issued. This ensures we only compare errors across a genuine rotation move,
+                // not across a mount slew or when the rotator was already within range.
+                if (std::isnan(m_TargetPositionAngle) == false && m_PreviousPAError >= 0)
+                {
+                    double newPAError = std::abs(KSUtils::rangePA(solverPA - m_TargetPositionAngle));
+                    if (newPAError > m_PreviousPAError + 0.5)
+                    {
+                        appendLogText(i18n("Rotator is moving in the wrong direction. "
+                                           "The position angle error increased from %1° to %2° after rotation. "
+                                           "Please reverse the rotator direction and try again.",
+                                           QString::number(m_PreviousPAError, 'f', 2),
+                                           QString::number(newPAError, 'f', 2)));
+                        qCDebug(KSTARS_EKOS_ALIGN) << "Rotator wrong direction detected."
+                                                   << "Previous PA error:" << m_PreviousPAError
+                                                   << "New PA error:" << newPAError;
+                        m_TargetPositionAngle = std::numeric_limits<double>::quiet_NaN();
+                        m_PreviousPAError = -1;
+                        setState(ALIGN_FAILED);
+                        emit newStatus(state);
+                        solveB->setEnabled(true);
+                        loadSlewB->setEnabled(true);
+                        return;
+                    }
+                    // Good direction: reset so we don't recheck until the next rotation command is issued
+                    m_PreviousPAError = -1;
+                }
+
                 // Flow is: newSolverResults() -> capture: setAlignresult() -> RotatorSettings: refresh()
                 Q_EMIT newSolverResults(solverPA, ra, dec, pixscale);
                 // appendLogText(i18n("Camera offset angle is %1 degrees.", OffsetAngle));
@@ -2616,8 +2652,8 @@ bool Align::checkIfRotationRequired()
                 // treat it as a flipped image scenario and skip rotation.
                 else if (Options::astrometryFlipRotationAllowed())
                 {
-                    double paDiff = fabs(KSUtils::rangePA(currentRotatorPA - m_TargetPositionAngle));
-                    if (fabs(paDiff - 180.0) < ROTATOR_FLIP_TOLERANCE)
+                    double paDiff = std::abs(KSUtils::rangePA(currentRotatorPA - m_TargetPositionAngle));
+                    if (std::abs(paDiff - 180.0) < ROTATOR_FLIP_TOLERANCE)
                     {
                         appendLogText(i18n("PA difference ~%1°, image is flipped. Preserving rotator angle.",
                                            QString::number(paDiff, 'f', 1)));
@@ -2628,9 +2664,12 @@ bool Align::checkIfRotationRequired()
                 // Match the position angle with rotator
                 if  (m_Rotator != nullptr && m_Rotator->isConnected())
                 {
-                    if(fabs(KSUtils::rangePA(currentRotatorPA - m_TargetPositionAngle)) * 60 >
+                    if(std::abs(KSUtils::rangePA(currentRotatorPA - m_TargetPositionAngle)) * 60 >
                             Options::astrometryRotatorThreshold())
                     {
+                        // Store current PA error before commanding the rotator to move.
+                        // This is used to detect wrong rotation direction on the next solve.
+                        m_PreviousPAError = std::abs(KSUtils::rangePA(currentRotatorPA - m_TargetPositionAngle));
                         // Signal flow: newSolverResults() -> capture: setAlignresult() -> RS: refresh()
                         Q_EMIT newSolverResults(m_TargetPositionAngle, 0, 0, 0);
                         appendLogText(i18n("Setting camera position angle to %1 degrees ...", m_TargetPositionAngle));
@@ -2662,7 +2701,7 @@ bool Align::checkIfRotationRequired()
                     Q_EMIT manualRotatorChanged(current, target, threshold);
 
                     m_ManualRotator->setRotatorDiff(current, target, diff);
-                    if (fabs(diff) > threshold)
+                    if (std::abs(diff) > threshold)
                     {
                         targetAccuracyNotMet = true;
                         m_ManualRotator->show();
@@ -3003,7 +3042,7 @@ void Align::updateProperty(INDI::Property prop)
         // loadSlewTarget defined if activation through [Load & Slew] and rotator just reached position
         if (std::isnan(m_TargetPositionAngle) == false && state == ALIGN_ROTATING && nvp->s == IPS_OK)
         {
-            auto diff = fabs(RotatorUtils::Instance()->DiffPA(currentRotatorPA - m_TargetPositionAngle)) * 60;
+            auto diff = std::abs(RotatorUtils::Instance()->DiffPA(currentRotatorPA - m_TargetPositionAngle)) * 60;
             qCDebug(KSTARS_EKOS_ALIGN) << "Raw Rotator Angle:" << RAngle << "Current PA:" << currentRotatorPA
                                        << "Target PA:" << m_TargetPositionAngle << "Diff (arcmin):" << diff << "Offset:"
                                        << Options::pAOffset();

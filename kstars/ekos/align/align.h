@@ -780,6 +780,8 @@ class Align : public QWidget, public Ui::Align
         // Target Pierside of solver Load&Slew image to be used
         ISD::Mount::PierSide m_TargetPierside = ISD::Mount::PIER_UNKNOWN;
         double currentRotatorPA { -1 };
+        /// Previous PA error before the last rotation command (to detect wrong direction)
+        double m_PreviousPAError { -1 };
         /// Solver iterations count
         uint8_t solverIterations { 0 };
         /// Was solving with scale off used?
