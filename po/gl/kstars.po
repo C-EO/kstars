@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-23 02:04+0000\n"
+"POT-Creation-Date: 2026-04-26 02:03+0000\n"
 "PO-Revision-Date: 2025-06-21 12:07+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.gal>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -474,14 +474,14 @@ msgctxt "@title:window"
 msgid "Save Image"
 msgstr "Gardar a imaxe"
 
-#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4134
+#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4173
 #: ekos/guide/guidedriftgraph.cpp:492 kstarsactions.cpp:1391
 #: printing/pwizprint.cpp:77 tools/scriptbuilder.cpp:879
 #, kde-format
 msgid "A file named \"%1\" already exists. Overwrite it?"
 msgstr "Xa existe un ficheiro chamado «%1». Quérelo substituír?"
 
-#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4137
+#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4176
 #: ekos/guide/guidedriftgraph.cpp:495 kstarsactions.cpp:1392
 #: printing/pwizprint.cpp:78 tools/scriptbuilder.cpp:882
 #, kde-format
@@ -2698,7 +2698,7 @@ msgstr ""
 "O URL non é correcto. Quere abrir unha xanela de navegador\n"
 "para buscalo en Google?"
 
-#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4145
+#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4184
 #: ekos/align/mountmodel.cpp:267 ekos/align/mountmodel.cpp:393
 #: ekos/capture/camera_jobs.cpp:341 ekos/capture/camera_jobs.cpp:427
 #: ekos/guide/guidedriftgraph.cpp:503 ekos/scheduler/scheduler.cpp:2223
@@ -6329,7 +6329,7 @@ msgstr ""
 "inténteo de novo."
 
 #: ekos/align/align.cpp:1487 ekos/align/align.cpp:1519
-#: ekos/align/align.cpp:2565
+#: ekos/align/align.cpp:2601
 #, kde-format
 msgid "Astrometry alignment failed"
 msgstr "O aliñamento de astrometría fallou."
@@ -6427,7 +6427,7 @@ msgstr ""
 "Non se pode capturar mentres o rotor está ocupado: Intentarase de novo en %1 "
 "segundos…"
 
-#: ekos/align/align.cpp:1685 ekos/align/align.cpp:3240
+#: ekos/align/align.cpp:1685 ekos/align/align.cpp:3279
 #, kde-format
 msgid "No remote astrometry driver detected, switching to StellarSolver."
 msgstr ""
@@ -6539,60 +6539,68 @@ msgstr ""
 msgid "Target is within %1 degrees of solution coordinates."
 msgstr "O obxectivo está a %1 graos ou menos das coordenadas da solución."
 
+#: ekos/align/align.cpp:2359
+#, kde-format
+msgid ""
+"Rotator is moving in the wrong direction. The position angle error increased "
+"from %1° to %2° after rotation. Please reverse the rotator direction and try "
+"again."
+msgstr ""
+
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
-#: ekos/align/align.cpp:2346
+#: ekos/align/align.cpp:2382
 #, fuzzy, kde-format
 #| msgid "Camera position angle is %1 degrees."
 msgid "Camera position angle is %1 degrees."
 msgstr "O ángulo de posición da cámara é de %1 graos."
 
-#: ekos/align/align.cpp:2382 ekos/align/align.cpp:2522
+#: ekos/align/align.cpp:2418 ekos/align/align.cpp:2558
 #, kde-format
 msgid "Dynamic threshold adjusted to %1 (stars found: %2)."
 msgstr ""
 
-#: ekos/align/align.cpp:2390 ekos/align/align.cpp:2871
+#: ekos/align/align.cpp:2426 ekos/align/align.cpp:2910
 #, kde-format
 msgid "Astrometry alignment completed successfully"
 msgstr "Completouse o aliñamento de astrometría."
 
-#: ekos/align/align.cpp:2412
+#: ekos/align/align.cpp:2448
 #, kde-format
 msgid "Maximum number of iterations reached. Solver failed."
 msgstr "Acadouse o número máximo de iteracións. O resolvente fallou."
 
-#: ekos/align/align.cpp:2441
+#: ekos/align/align.cpp:2477
 #, kde-format
 msgid "Target is within acceptable range."
 msgstr "O destino está dentro do alcance aceptábel."
 
-#: ekos/align/align.cpp:2504
+#: ekos/align/align.cpp:2540
 #, kde-format
 msgid "Saving failed solver image to %1"
 msgstr "Non foi posíbel gardar a imaxe do resolvente en %1."
 
-#: ekos/align/align.cpp:2528
+#: ekos/align/align.cpp:2564
 #, fuzzy, kde-format
 #| msgid "Solver failed. Retrying without scale constraint."
 msgid "Solver failed. Retrying with blind dynamic threshold."
 msgstr "O resolvente fallou. Intentarase de novo sen a restrición da escala."
 
-#: ekos/align/align.cpp:2542
+#: ekos/align/align.cpp:2578
 #, kde-format
 msgid "Solver failed. Retrying without scale constraint."
 msgstr "O resolvente fallou. Intentarase de novo sen a restrición da escala."
 
-#: ekos/align/align.cpp:2552
+#: ekos/align/align.cpp:2588
 #, kde-format
 msgid "Solver failed. Retrying without position constraint."
 msgstr "O resolvente fallou. Intentarase de novo sen a restrición da posición."
 
-#: ekos/align/align.cpp:2560
+#: ekos/align/align.cpp:2596
 #, kde-format
 msgid "Solver Failed."
 msgstr "O resolvente fallou."
 
-#: ekos/align/align.cpp:2563
+#: ekos/align/align.cpp:2599
 #, kde-format
 msgid ""
 "Please check you have sufficient stars in the image, the indicated FOV is "
@@ -6604,46 +6612,46 @@ msgstr ""
 "rexistro do aliñamento en «Configuración → Rexistro» para consultar "
 "información detallada do fallo."
 
-#: ekos/align/align.cpp:2622
+#: ekos/align/align.cpp:2658
 #, kde-format
 msgid "PA difference ~%1°, image is flipped. Preserving rotator angle."
 msgstr ""
 
-#: ekos/align/align.cpp:2636
+#: ekos/align/align.cpp:2675
 #, fuzzy, kde-format
 #| msgid "Setting camera position angle to %1 degrees ..."
 msgid "Setting camera position angle to %1 degrees ..."
 msgstr "Definindo o ángulo de posición da cámara en %1 graos…"
 
-#: ekos/align/align.cpp:2646
+#: ekos/align/align.cpp:2685
 #, fuzzy, kde-format
 #| msgid "Camera position angle is within acceptable range."
 msgid "Camera position angle is within acceptable range."
 msgstr "O ángulo de posición da cámara está dentro do alcance aceptábel."
 
-#: ekos/align/align.cpp:2660
+#: ekos/align/align.cpp:2699
 #, kde-format
 msgid "Current PA is %1; Target PA is %2; diff: %3"
 msgstr "O ángulo de posición actual é %1. O de destino é %2. A diferenza é %3."
 
-#: ekos/align/align.cpp:2734
+#: ekos/align/align.cpp:2773
 #, kde-format
 msgid "Refresh is complete."
 msgstr "Completouse a actualización."
 
-#: ekos/align/align.cpp:2741 ekos/auxiliary/darklibrary.cpp:1455
+#: ekos/align/align.cpp:2780 ekos/auxiliary/darklibrary.cpp:1455
 #: ekos/focus/focus.cpp:1711
 #, kde-format
 msgid "Capture aborted."
 msgstr "Interrompeuse a captura."
 
-#: ekos/align/align.cpp:2744
+#: ekos/align/align.cpp:2783
 #, fuzzy, kde-format
 #| msgid "Solving aborted."
 msgid "Solver aborted."
 msgstr "Interrompeuse a resolución."
 
-#: ekos/align/align.cpp:2786 ekos/analyze/analyze.cpp:4167
+#: ekos/align/align.cpp:2825 ekos/analyze/analyze.cpp:4167
 #: ekos/capture/capture.cpp:318 ekos/focus/focusmodule.cpp:458
 #: ekos/guide/guide.cpp:1343 ekos/manager.cpp:2394 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1048
@@ -6653,59 +6661,59 @@ msgctxt "log entry; %1 is the date, %2 is the text"
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: ekos/align/align.cpp:2842
+#: ekos/align/align.cpp:2881
 #, kde-format
 msgid "Mount completed slewing near celestial pole. Capture again to verify."
 msgstr ""
 "A montura completou o movemento preto o polo celeste. Capture de novo para "
 "verificar."
 
-#: ekos/align/align.cpp:2865
+#: ekos/align/align.cpp:2904
 #, kde-format
 msgid "Mount is synced to solution coordinates."
 msgstr "A montura sincronizouse coas coordenadas da solución."
 
-#: ekos/align/align.cpp:2901 ekos/align/align.cpp:2919
-#: ekos/align/align.cpp:3548 ekos/align/align.cpp:4293
+#: ekos/align/align.cpp:2940 ekos/align/align.cpp:2958
+#: ekos/align/align.cpp:3587 ekos/align/align.cpp:4332
 #: ekos/align/polaralignmentassistant.cpp:665
 #, kde-format
 msgid "Settling..."
 msgstr "Asentando…"
 
-#: ekos/align/align.cpp:2909
+#: ekos/align/align.cpp:2948
 #, kde-format
 msgid "Slew complete. Target accuracy is not met, running solver again..."
 msgstr ""
 "Completouse o movemento. Non se conseguiu a precisión esperada, executando "
 "de novo o resolvente…"
 
-#: ekos/align/align.cpp:2911
+#: ekos/align/align.cpp:2950
 #, kde-format
 msgid "Slew complete. Solving Alignment Point. . ."
 msgstr "Completouse a rotación. Resolvendo o punto de aliñamento…"
 
-#: ekos/align/align.cpp:2954 ekos/align/align.cpp:3118
+#: ekos/align/align.cpp:2993 ekos/align/align.cpp:3157
 #, kde-format
 msgid "Syncing failed."
 msgstr "Fallou a sincronización."
 
-#: ekos/align/align.cpp:2956
+#: ekos/align/align.cpp:2995
 #, kde-format
 msgid "Slewing failed."
 msgstr "O movemento fallou."
 
-#: ekos/align/align.cpp:2994
+#: ekos/align/align.cpp:3033
 #, fuzzy, kde-format
 #| msgid "No star was selected. Aborting..."
 msgid "Rotator error detected. Aborting alignment."
 msgstr "Non seleccionou ningunha estrela. Interrompendo…"
 
-#: ekos/align/align.cpp:3013
+#: ekos/align/align.cpp:3052
 #, kde-format
 msgid "Rotator reached camera position angle."
 msgstr "O rotor acadou o ángulo de posición da cámara."
 
-#: ekos/align/align.cpp:3026
+#: ekos/align/align.cpp:3065
 #, kde-format
 msgid ""
 "Rotator failed to arrive at the requested position angle (Deviation %1 "
@@ -6714,22 +6722,22 @@ msgstr ""
 "O rotor non conseguiu chegar ao ángulo de posición solicitado (desviación de "
 "%1 minutos de arco)."
 
-#: ekos/align/align.cpp:3064
+#: ekos/align/align.cpp:3103
 #, kde-format
 msgid "Slew detected, suspend solving..."
 msgstr "Detectouse a orientación, suspenderase a resolución…"
 
-#: ekos/align/align.cpp:3112
+#: ekos/align/align.cpp:3151
 #, kde-format
 msgid "Syncing to RA (%1) DEC (%2)"
 msgstr "Sincronizando con α (%1) δ (%2)"
 
-#: ekos/align/align.cpp:3136
+#: ekos/align/align.cpp:3175
 #, kde-format
 msgid "Slewing to target coordinates: RA (%1) DEC (%2)."
 msgstr "Movéndose ás coordenadas de destino: %1 α, %2 δ."
 
-#: ekos/align/align.cpp:3141
+#: ekos/align/align.cpp:3180
 #, kde-format
 msgid ""
 "Slewing to target coordinates: RA (%1) DEC (%2) is rejected. (see "
@@ -6738,116 +6746,116 @@ msgstr ""
 "Orientando cara ás coordenadas de destino: rexeitouse %1 α, %2 δ. Consulte a "
 "notificación."
 
-#: ekos/align/align.cpp:3160
+#: ekos/align/align.cpp:3199
 #, kde-format
 msgid "Ekos job (%1) - Telescope synced"
 msgstr "Traballo de Ekos (%1) - Sincronizouse o telescopio"
 
-#: ekos/align/align.cpp:3209
+#: ekos/align/align.cpp:3248
 #, kde-format
 msgctxt "@title:window"
 msgid "Load Image"
 msgstr "Cargar unha imaxe"
 
-#: ekos/align/align.cpp:3444
+#: ekos/align/align.cpp:3483
 #, fuzzy, kde-format
 #| msgid "World Coordinate System (WCS) is enabled."
 msgid "World Coordinate System (WCS) is enabled."
 msgstr "O sistema de coordenadas mundial (SCM) está activado."
 
-#: ekos/align/align.cpp:3449
+#: ekos/align/align.cpp:3488
 #, fuzzy, kde-format
 #| msgid "World Coordinate System (WCS) is disabled."
 msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "O sistema de coordenadas mundial (SCM) está desactivado."
 
-#: ekos/align/align.cpp:3468
+#: ekos/align/align.cpp:3507
 #, kde-format
 msgid "Capture error. Aborting..."
 msgstr "Erro de captura. Interrompendo…"
 
-#: ekos/align/align.cpp:3473 ekos/capture/cameraprocess.cpp:1660
+#: ekos/align/align.cpp:3512 ekos/capture/cameraprocess.cpp:1660
 #: ekos/capture/cameraprocess.cpp:2221
 #, kde-format
 msgid "Restarting capture attempt #%1"
 msgstr "Reiniciando o intento de captura número %1."
 
-#: ekos/align/align.cpp:3599
+#: ekos/align/align.cpp:3638
 #, kde-format
 msgctxt "@title:window"
 msgid "Align Frame"
 msgstr "Aliñar o fotograma"
 
-#: ekos/align/align.cpp:3674
+#: ekos/align/align.cpp:3713
 #, kde-format
 msgid "StellarSolver Options"
 msgstr "Opcións de StellarSolver"
 
-#: ekos/align/align.cpp:3679
+#: ekos/align/align.cpp:3718
 #, kde-format
 msgid "External & Online Programs"
 msgstr "Programas externos e por Internet"
 
-#: ekos/align/align.cpp:3683
+#: ekos/align/align.cpp:3722
 #, kde-format
 msgid "Scale & Position"
 msgstr "Escala e posición"
 
-#: ekos/align/align.cpp:3687
+#: ekos/align/align.cpp:3726
 #, kde-format
 msgid "Align Options Profiles Editor"
 msgstr "Editor de perfís de opcións de aliñamento"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ekos/align/align.cpp:3706 ekos/align/opsastrometryindexfiles.ui:329
+#: ekos/align/align.cpp:3745 ekos/align/opsastrometryindexfiles.ui:329
 #, kde-format
 msgid "Index Files"
 msgstr "Ficheiros de índice"
 
-#: ekos/align/align.cpp:3771 ekos/guide/guidetargetplot.cpp:55
+#: ekos/align/align.cpp:3810 ekos/guide/guidetargetplot.cpp:55
 #, kde-format
 msgid "dRA (arcsec)"
 msgstr "dα (segundos de arco)"
 
-#: ekos/align/align.cpp:3772 ekos/guide/guidetargetplot.cpp:56
+#: ekos/align/align.cpp:3811 ekos/guide/guidetargetplot.cpp:56
 #, kde-format
 msgid "dDE (arcsec)"
 msgstr "dδ (segundos de arco)"
 
-#: ekos/align/align.cpp:3820 ekos/capture/camera_config.cpp:717
+#: ekos/align/align.cpp:3859 ekos/capture/camera_config.cpp:717
 #: ekos/focus/focus.cpp:5957
 #, kde-format
 msgid "Filter operation failed."
 msgstr "A operación de filtro fallou."
 
-#: ekos/align/align.cpp:3832 ekos/capture/camera.cpp:577
+#: ekos/align/align.cpp:3871 ekos/capture/camera.cpp:577
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr "Cambiando o desprazamento do foco en %1 pasos…"
 
-#: ekos/align/align.cpp:3839 ekos/auxiliary/buildfilteroffsets.cpp:466
+#: ekos/align/align.cpp:3878 ekos/auxiliary/buildfilteroffsets.cpp:466
 #: ekos/capture/camera.cpp:582
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr "Cambiando o filtro a %1…"
 
-#: ekos/align/align.cpp:3844 ekos/capture/camera.cpp:587
+#: ekos/align/align.cpp:3883 ekos/capture/camera.cpp:587
 #, kde-format
 msgid "Auto focus on filter change..."
 msgstr "Enfoque automático co cambio de filtro…"
 
-#: ekos/align/align.cpp:3965
+#: ekos/align/align.cpp:4004
 #, kde-format
 msgid "Invalid FOV."
 msgstr "Campo de visión incorrecto."
 
-#: ekos/align/align.cpp:4121
+#: ekos/align/align.cpp:4160
 #, kde-format
 msgctxt "@title:window"
 msgid "Export Solution Points"
 msgstr "Exportar os puntos de solución"
 
-#: ekos/align/align.cpp:4144 ekos/align/mountmodel.cpp:266
+#: ekos/align/align.cpp:4183 ekos/align/mountmodel.cpp:266
 #: ekos/align/mountmodel.cpp:392 ekos/capture/camera_jobs.cpp:340
 #: ekos/capture/camera_jobs.cpp:426 ekos/guide/guidedriftgraph.cpp:502
 #: ekos/scheduler/scheduler.cpp:2222 ekos/scheduler/scheduler.cpp:2332
@@ -6857,7 +6865,7 @@ msgstr "Exportar os puntos de solución"
 msgid "Invalid URL: %1"
 msgstr "O URL é incorrecto: %1"
 
-#: ekos/align/align.cpp:4153 ekos/align/mountmodel.cpp:403
+#: ekos/align/align.cpp:4192 ekos/align/mountmodel.cpp:403
 #: ekos/capture/sequencequeue.cpp:259 ekos/guide/guidedriftgraph.cpp:511
 #: ekos/scheduler/schedulerprocess.cpp:2948
 #: ekos/scheduler/schedulerprocess.cpp:4554
@@ -6865,7 +6873,7 @@ msgstr "O URL é incorrecto: %1"
 msgid "Unable to write to file %1"
 msgstr "Non é posíbel escribir no ficheiro %1."
 
-#: ekos/align/align.cpp:4154 ekos/align/mountmodel.cpp:286
+#: ekos/align/align.cpp:4193 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
 #: ekos/capture/cameraprocess.cpp:2634 ekos/capture/sequencequeue.cpp:33
 #: ekos/guide/guidedriftgraph.cpp:512 ekos/scheduler/schedulerprocess.cpp:2949
@@ -6885,32 +6893,32 @@ msgstr "Non é posíbel escribir no ficheiro %1."
 msgid "Could Not Open File"
 msgstr "Non foi posíbel abrir o ficheiro"
 
-#: ekos/align/align.cpp:4175
+#: ekos/align/align.cpp:4214
 #, kde-format
 msgid "Error in table structure."
 msgstr "Erro na estrutura da táboa."
 
-#: ekos/align/align.cpp:4184
+#: ekos/align/align.cpp:4223
 #, kde-format
 msgid "Solution Points Saved as: %1"
 msgstr "Os puntos de solución gardáronse como: %1"
 
-#: ekos/align/align.cpp:4201
+#: ekos/align/align.cpp:4240
 #, kde-format
 msgid "Polar Alignment"
 msgstr "Aliñamento polar"
 
-#: ekos/align/align.cpp:4775
+#: ekos/align/align.cpp:4814
 #, kde-format
 msgid "Capture timed out."
 msgstr "Esgotouse o tempo límite da captura."
 
-#: ekos/align/align.cpp:4784
+#: ekos/align/align.cpp:4823
 #, kde-format
 msgid "Capturing still running, Retrying in %1 seconds..."
 msgstr "A captura segue en marcha. Intentarase de novo en %1 segundos…"
 
-#: ekos/align/align.cpp:4830
+#: ekos/align/align.cpp:4869
 #, fuzzy, kde-format
 #| msgid "Solver aborted after %1 seconds."
 msgid "Rotator timeout after %1 seconds. Aborting alignment."

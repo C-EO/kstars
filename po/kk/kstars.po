@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-23 02:04+0000\n"
+"POT-Creation-Date: 2026-04-26 02:03+0000\n"
 "PO-Revision-Date: 2013-11-16 05:16+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -500,14 +500,14 @@ msgctxt "@title:window"
 msgid "Save Image"
 msgstr "Бүкіл кескіндерді сақтау"
 
-#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4134
+#: auxiliary/imageviewer.cpp:321 ekos/align/align.cpp:4173
 #: ekos/guide/guidedriftgraph.cpp:492 kstarsactions.cpp:1391
 #: printing/pwizprint.cpp:77 tools/scriptbuilder.cpp:879
 #, kde-format
 msgid "A file named \"%1\" already exists. Overwrite it?"
 msgstr "\"%1\" деп аталған файл бар екен. Үстінен жазыла берсін бе?"
 
-#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4137
+#: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4176
 #: ekos/guide/guidedriftgraph.cpp:495 kstarsactions.cpp:1392
 #: printing/pwizprint.cpp:78 tools/scriptbuilder.cpp:882
 #, kde-format
@@ -2770,7 +2770,7 @@ msgstr ""
 "Бұл жарамсыз URL сілтемесі. Google-мен іздеуге шолғыш\n"
 "терезесі ашылсын ба?"
 
-#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4145
+#: dialogs/addlinkdialog.cpp:60 ekos/align/align.cpp:4184
 #: ekos/align/mountmodel.cpp:267 ekos/align/mountmodel.cpp:393
 #: ekos/capture/camera_jobs.cpp:341 ekos/capture/camera_jobs.cpp:427
 #: ekos/guide/guidedriftgraph.cpp:503 ekos/scheduler/scheduler.cpp:2223
@@ -6551,7 +6551,7 @@ msgid "Mount coordinates are invalid. Check mount connection and try again."
 msgstr "%1 телескоппен байланыс жоқ. Қайта қосылып көріңіз."
 
 #: ekos/align/align.cpp:1487 ekos/align/align.cpp:1519
-#: ekos/align/align.cpp:2565
+#: ekos/align/align.cpp:2601
 #, fuzzy, kde-format
 #| msgid "Alignment"
 msgid "Astrometry alignment failed"
@@ -6647,7 +6647,7 @@ msgstr "Автотоғыстау барысында..."
 msgid "Cannot capture while rotator is busy: Retrying in %1 seconds..."
 msgstr "Автотоғыстау барысында..."
 
-#: ekos/align/align.cpp:1685 ekos/align/align.cpp:3240
+#: ekos/align/align.cpp:1685 ekos/align/align.cpp:3279
 #, kde-format
 msgid "No remote astrometry driver detected, switching to StellarSolver."
 msgstr ""
@@ -6753,64 +6753,72 @@ msgstr ""
 msgid "Target is within %1 degrees of solution coordinates."
 msgstr "Телескопты шешім координаттармен қадамдастыру"
 
+#: ekos/align/align.cpp:2359
+#, kde-format
+msgid ""
+"Rotator is moving in the wrong direction. The position angle error increased "
+"from %1° to %2° after rotation. Please reverse the rotator direction and try "
+"again."
+msgstr ""
+
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
-#: ekos/align/align.cpp:2346
+#: ekos/align/align.cpp:2382
 #, fuzzy, kde-format
 #| msgid "Set the target CCD chip temperature."
 msgid "Camera position angle is %1 degrees."
 msgstr "CCD матрицасының температурасы."
 
-#: ekos/align/align.cpp:2382 ekos/align/align.cpp:2522
+#: ekos/align/align.cpp:2418 ekos/align/align.cpp:2558
 #, kde-format
 msgid "Dynamic threshold adjusted to %1 (stars found: %2)."
 msgstr ""
 
-#: ekos/align/align.cpp:2390 ekos/align/align.cpp:2871
+#: ekos/align/align.cpp:2426 ekos/align/align.cpp:2910
 #, fuzzy, kde-format
 #| msgid "Telescope Wizard completed successfully."
 msgid "Astrometry alignment completed successfully"
 msgstr "Телескоп шебері сәтті аяқтады."
 
-#: ekos/align/align.cpp:2412
+#: ekos/align/align.cpp:2448
 #, kde-format
 msgid "Maximum number of iterations reached. Solver failed."
 msgstr ""
 
-#: ekos/align/align.cpp:2441
+#: ekos/align/align.cpp:2477
 #, kde-format
 msgid "Target is within acceptable range."
 msgstr ""
 
-#: ekos/align/align.cpp:2504
+#: ekos/align/align.cpp:2540
 #, fuzzy, kde-format
 #| msgid "Save the image to disk"
 msgid "Saving failed solver image to %1"
 msgstr "Кескінді дискіге сақтау"
 
-#: ekos/align/align.cpp:2528
+#: ekos/align/align.cpp:2564
 #, fuzzy, kde-format
 #| msgid "Solver failed. Try again."
 msgid "Solver failed. Retrying with blind dynamic threshold."
 msgstr "Есеп шығарғыш жаңылысы. Қайталап көріңіз."
 
-#: ekos/align/align.cpp:2542
+#: ekos/align/align.cpp:2578
 #, fuzzy, kde-format
 #| msgid "Solver failed. Try again."
 msgid "Solver failed. Retrying without scale constraint."
 msgstr "Есеп шығарғыш жаңылысы. Қайталап көріңіз."
 
-#: ekos/align/align.cpp:2552
+#: ekos/align/align.cpp:2588
 #, kde-format
 msgid "Solver failed. Retrying without position constraint."
 msgstr ""
 
-#: ekos/align/align.cpp:2560
+#: ekos/align/align.cpp:2596
 #, fuzzy, kde-format
 #| msgid "No FOV"
 msgid "Solver Failed."
 msgstr "ШӨР орнатылмаған"
 
-#: ekos/align/align.cpp:2563
+#: ekos/align/align.cpp:2599
 #, kde-format
 msgid ""
 "Please check you have sufficient stars in the image, the indicated FOV is "
@@ -6818,46 +6826,46 @@ msgid ""
 "Logging in Setup Tab -> Logs to get detailed information on the failure."
 msgstr ""
 
-#: ekos/align/align.cpp:2622
+#: ekos/align/align.cpp:2658
 #, kde-format
 msgid "PA difference ~%1°, image is flipped. Preserving rotator angle."
 msgstr ""
 
-#: ekos/align/align.cpp:2636
+#: ekos/align/align.cpp:2675
 #, fuzzy, kde-format
 #| msgid "Set the target CCD chip temperature."
 msgid "Setting camera position angle to %1 degrees ..."
 msgstr "CCD матрицасының температурасы."
 
-#: ekos/align/align.cpp:2646
+#: ekos/align/align.cpp:2685
 #, kde-format
 msgid "Camera position angle is within acceptable range."
 msgstr ""
 
-#: ekos/align/align.cpp:2660
+#: ekos/align/align.cpp:2699
 #, kde-format
 msgid "Current PA is %1; Target PA is %2; diff: %3"
 msgstr ""
 
-#: ekos/align/align.cpp:2734
+#: ekos/align/align.cpp:2773
 #, fuzzy, kde-format
 #| msgid "%1 is online."
 msgid "Refresh is complete."
 msgstr "%1 байланыста."
 
-#: ekos/align/align.cpp:2741 ekos/auxiliary/darklibrary.cpp:1455
+#: ekos/align/align.cpp:2780 ekos/auxiliary/darklibrary.cpp:1455
 #: ekos/focus/focus.cpp:1711
 #, kde-format
 msgid "Capture aborted."
 msgstr "Түсіріп алу доғарылды."
 
-#: ekos/align/align.cpp:2744
+#: ekos/align/align.cpp:2783
 #, fuzzy, kde-format
 #| msgid "Autoguiding started."
 msgid "Solver aborted."
 msgstr "Автодәлдеу басталды."
 
-#: ekos/align/align.cpp:2786 ekos/analyze/analyze.cpp:4167
+#: ekos/align/align.cpp:2825 ekos/analyze/analyze.cpp:4167
 #: ekos/capture/capture.cpp:318 ekos/focus/focusmodule.cpp:458
 #: ekos/guide/guide.cpp:1343 ekos/manager.cpp:2394 ekos/mount/mount.cpp:780
 #: ekos/observatory/observatory.cpp:1048
@@ -6867,19 +6875,19 @@ msgctxt "log entry; %1 is the date, %2 is the text"
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: ekos/align/align.cpp:2842
+#: ekos/align/align.cpp:2881
 #, kde-format
 msgid "Mount completed slewing near celestial pole. Capture again to verify."
 msgstr ""
 
-#: ekos/align/align.cpp:2865
+#: ekos/align/align.cpp:2904
 #, fuzzy, kde-format
 #| msgid "Sync the telescope to the solution coordinates"
 msgid "Mount is synced to solution coordinates."
 msgstr "Телескопты шешім координаттармен қадамдастыру"
 
-#: ekos/align/align.cpp:2901 ekos/align/align.cpp:2919
-#: ekos/align/align.cpp:3548 ekos/align/align.cpp:4293
+#: ekos/align/align.cpp:2940 ekos/align/align.cpp:2958
+#: ekos/align/align.cpp:3587 ekos/align/align.cpp:4332
 #: ekos/align/polaralignmentassistant.cpp:665
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
@@ -6887,66 +6895,66 @@ msgstr "Телескопты шешім координаттармен қада�
 msgid "Settling..."
 msgstr "Баптау"
 
-#: ekos/align/align.cpp:2909
+#: ekos/align/align.cpp:2948
 #, kde-format
 msgid "Slew complete. Target accuracy is not met, running solver again..."
 msgstr ""
 
-#: ekos/align/align.cpp:2911
+#: ekos/align/align.cpp:2950
 #, kde-format
 msgid "Slew complete. Solving Alignment Point. . ."
 msgstr ""
 
-#: ekos/align/align.cpp:2954 ekos/align/align.cpp:3118
+#: ekos/align/align.cpp:2993 ekos/align/align.cpp:3157
 #, kde-format
 msgid "Syncing failed."
 msgstr "Қадамдастыру жаңылды."
 
-#: ekos/align/align.cpp:2956
+#: ekos/align/align.cpp:2995
 #, fuzzy, kde-format
 #| msgctxt "Satellite group name"
 #| msgid "Other"
 msgid "Slewing failed."
 msgstr "Басқа"
 
-#: ekos/align/align.cpp:2994
+#: ekos/align/align.cpp:3033
 #, fuzzy, kde-format
 #| msgid "No stars detected, capturing again..."
 msgid "Rotator error detected. Aborting alignment."
 msgstr "Жұлдыздар табылған жоқ, қайталап көру..."
 
-#: ekos/align/align.cpp:3013
+#: ekos/align/align.cpp:3052
 #, fuzzy, kde-format
 #| msgid "Position Angle"
 msgid "Rotator reached camera position angle."
 msgstr "Орнының бұрышы"
 
-#: ekos/align/align.cpp:3026
+#: ekos/align/align.cpp:3065
 #, kde-format
 msgid ""
 "Rotator failed to arrive at the requested position angle (Deviation %1 "
 "arcmin)."
 msgstr ""
 
-#: ekos/align/align.cpp:3064
+#: ekos/align/align.cpp:3103
 #, fuzzy, kde-format
 #| msgid "No stars detected, capturing again..."
 msgid "Slew detected, suspend solving..."
 msgstr "Жұлдыздар табылған жоқ, қайталап көру..."
 
-#: ekos/align/align.cpp:3112
+#: ekos/align/align.cpp:3151
 #, fuzzy, kde-format
 #| msgid "Syncing successful."
 msgid "Syncing to RA (%1) DEC (%2)"
 msgstr "Қадамдастыру сәтті өтті."
 
-#: ekos/align/align.cpp:3136
+#: ekos/align/align.cpp:3175
 #, fuzzy, kde-format
 #| msgid "Slew the telescope to the target coordinates"
 msgid "Slewing to target coordinates: RA (%1) DEC (%2)."
 msgstr "Телескопты көздеген координаттарға бұрау"
 
-#: ekos/align/align.cpp:3141
+#: ekos/align/align.cpp:3180
 #, fuzzy, kde-format
 #| msgid "Slew the telescope to the target coordinates"
 msgid ""
@@ -6954,130 +6962,130 @@ msgid ""
 "notification)"
 msgstr "Телескопты көздеген координаттарға бұрау"
 
-#: ekos/align/align.cpp:3160
+#: ekos/align/align.cpp:3199
 #, kde-format
 msgid "Ekos job (%1) - Telescope synced"
 msgstr ""
 
-#: ekos/align/align.cpp:3209
+#: ekos/align/align.cpp:3248
 #, fuzzy, kde-format
 #| msgid "Loading Image URLs"
 msgctxt "@title:window"
 msgid "Load Image"
 msgstr "Кескін URL-лерін жүктеу"
 
-#: ekos/align/align.cpp:3444
+#: ekos/align/align.cpp:3483
 #, fuzzy, kde-format
 #| msgid "Select Coordinate System for Output File"
 msgid "World Coordinate System (WCS) is enabled."
 msgstr "Шығыс файл үшін координаттар жүйесін таңдау"
 
-#: ekos/align/align.cpp:3449
+#: ekos/align/align.cpp:3488
 #, fuzzy, kde-format
 #| msgid "Select Coordinate System for Output File"
 msgid "%1: World Coordinate System (WCS) is disabled."
 msgstr "Шығыс файл үшін координаттар жүйесін таңдау"
 
-#: ekos/align/align.cpp:3468
+#: ekos/align/align.cpp:3507
 #, fuzzy, kde-format
 #| msgid "Capture aborted."
 msgid "Capture error. Aborting..."
 msgstr "Түсіріп алу доғарылды."
 
-#: ekos/align/align.cpp:3473 ekos/capture/cameraprocess.cpp:1660
+#: ekos/align/align.cpp:3512 ekos/capture/cameraprocess.cpp:1660
 #: ekos/capture/cameraprocess.cpp:2221
 #, kde-format
 msgid "Restarting capture attempt #%1"
 msgstr ""
 
-#: ekos/align/align.cpp:3599
+#: ekos/align/align.cpp:3638
 #, fuzzy, kde-format
 #| msgid "Alignment"
 msgctxt "@title:window"
 msgid "Align Frame"
 msgstr "Дәлдеу"
 
-#: ekos/align/align.cpp:3674
+#: ekos/align/align.cpp:3713
 #, fuzzy, kde-format
 #| msgid "Plate Solve Options"
 msgid "StellarSolver Options"
 msgstr "Астрометриялық шешім параметрлері"
 
-#: ekos/align/align.cpp:3679
+#: ekos/align/align.cpp:3718
 #, kde-format
 msgid "External & Online Programs"
 msgstr ""
 
-#: ekos/align/align.cpp:3683
+#: ekos/align/align.cpp:3722
 #, fuzzy, kde-format
 #| msgid "Reset Position"
 msgid "Scale & Position"
 msgstr "Ысырып тастау"
 
-#: ekos/align/align.cpp:3687
+#: ekos/align/align.cpp:3726
 #, fuzzy, kde-format
 #| msgid "Thumbnail Editor"
 msgid "Align Options Profiles Editor"
 msgstr "Нобай өңдегіші"
 
 #. i18n: ectx: property (title), widget (QGroupBox, groupBox)
-#: ekos/align/align.cpp:3706 ekos/align/opsastrometryindexfiles.ui:329
+#: ekos/align/align.cpp:3745 ekos/align/opsastrometryindexfiles.ui:329
 #, fuzzy, kde-format
 #| msgid "Invalid File"
 msgid "Index Files"
 msgstr "Жарамсыз файл"
 
-#: ekos/align/align.cpp:3771 ekos/guide/guidetargetplot.cpp:55
+#: ekos/align/align.cpp:3810 ekos/guide/guidetargetplot.cpp:55
 #, fuzzy, kde-format
 #| msgctxt "string from libindi, used in the config dialog"
 #| msgid "RA (arcmin)"
 msgid "dRA (arcsec)"
 msgstr "ТК (бұрыш.мин.)"
 
-#: ekos/align/align.cpp:3772 ekos/guide/guidetargetplot.cpp:56
+#: ekos/align/align.cpp:3811 ekos/guide/guidetargetplot.cpp:56
 #, fuzzy, kde-format
 #| msgid "arcseconds"
 msgid "dDE (arcsec)"
 msgstr "бұрыш.сек."
 
-#: ekos/align/align.cpp:3820 ekos/capture/camera_config.cpp:717
+#: ekos/align/align.cpp:3859 ekos/capture/camera_config.cpp:717
 #: ekos/focus/focus.cpp:5957
 #, fuzzy, kde-format
 #| msgid "Calibration"
 msgid "Filter operation failed."
 msgstr "Калибрлеу"
 
-#: ekos/align/align.cpp:3832 ekos/capture/camera.cpp:577
+#: ekos/align/align.cpp:3871 ekos/capture/camera.cpp:577
 #, kde-format
 msgid "Changing focus offset by %1 steps..."
 msgstr ""
 
-#: ekos/align/align.cpp:3839 ekos/auxiliary/buildfilteroffsets.cpp:466
+#: ekos/align/align.cpp:3878 ekos/auxiliary/buildfilteroffsets.cpp:466
 #: ekos/capture/camera.cpp:582
 #, kde-format
 msgid "Changing filter to %1..."
 msgstr ""
 
-#: ekos/align/align.cpp:3844 ekos/capture/camera.cpp:587
+#: ekos/align/align.cpp:3883 ekos/capture/camera.cpp:587
 #, fuzzy, kde-format
 #| msgid "Autofocus complete."
 msgid "Auto focus on filter change..."
 msgstr "Автотоғыстыру бітті."
 
-#: ekos/align/align.cpp:3965
+#: ekos/align/align.cpp:4004
 #, fuzzy, kde-format
 #| msgid "Invalid URL"
 msgid "Invalid FOV."
 msgstr "Жарамсыз URL"
 
-#: ekos/align/align.cpp:4121
+#: ekos/align/align.cpp:4160
 #, fuzzy, kde-format
 #| msgid "Clear all orbit trails"
 msgctxt "@title:window"
 msgid "Export Solution Points"
 msgstr "Барлық орбиталық траекторияларын өшіру"
 
-#: ekos/align/align.cpp:4144 ekos/align/mountmodel.cpp:266
+#: ekos/align/align.cpp:4183 ekos/align/mountmodel.cpp:266
 #: ekos/align/mountmodel.cpp:392 ekos/capture/camera_jobs.cpp:340
 #: ekos/capture/camera_jobs.cpp:426 ekos/guide/guidedriftgraph.cpp:502
 #: ekos/scheduler/scheduler.cpp:2222 ekos/scheduler/scheduler.cpp:2332
@@ -7087,7 +7095,7 @@ msgstr "Барлық орбиталық траекторияларын өшір�
 msgid "Invalid URL: %1"
 msgstr "Жарамсыз URL: %1"
 
-#: ekos/align/align.cpp:4153 ekos/align/mountmodel.cpp:403
+#: ekos/align/align.cpp:4192 ekos/align/mountmodel.cpp:403
 #: ekos/capture/sequencequeue.cpp:259 ekos/guide/guidedriftgraph.cpp:511
 #: ekos/scheduler/schedulerprocess.cpp:2948
 #: ekos/scheduler/schedulerprocess.cpp:4554
@@ -7096,7 +7104,7 @@ msgstr "Жарамсыз URL: %1"
 msgid "Unable to write to file %1"
 msgstr "Келесі кескін сақталмады: %1"
 
-#: ekos/align/align.cpp:4154 ekos/align/mountmodel.cpp:286
+#: ekos/align/align.cpp:4193 ekos/align/mountmodel.cpp:286
 #: ekos/align/mountmodel.cpp:404 ekos/capture/camera_jobs.cpp:356
 #: ekos/capture/cameraprocess.cpp:2634 ekos/capture/sequencequeue.cpp:33
 #: ekos/guide/guidedriftgraph.cpp:512 ekos/scheduler/schedulerprocess.cpp:2949
@@ -7116,37 +7124,37 @@ msgstr "Келесі кескін сақталмады: %1"
 msgid "Could Not Open File"
 msgstr "Файл ашылмады"
 
-#: ekos/align/align.cpp:4175
+#: ekos/align/align.cpp:4214
 #, fuzzy, kde-format
 #| msgid "Errors in lines"
 msgid "Error in table structure."
 msgstr "Жолдарда қате"
 
-#: ekos/align/align.cpp:4184
+#: ekos/align/align.cpp:4223
 #, fuzzy, kde-format
 #| msgid "Solution Coordinates"
 msgid "Solution Points Saved as: %1"
 msgstr "Шешім координаттары"
 
-#: ekos/align/align.cpp:4201
+#: ekos/align/align.cpp:4240
 #, fuzzy, kde-format
 #| msgid "Polar Alignment Measurement"
 msgid "Polar Alignment"
 msgstr "Полярлық дәлдеу өлшемі"
 
-#: ekos/align/align.cpp:4775
+#: ekos/align/align.cpp:4814
 #, fuzzy, kde-format
 #| msgid "Capture aborted."
 msgid "Capture timed out."
 msgstr "Түсіріп алу доғарылды."
 
-#: ekos/align/align.cpp:4784
+#: ekos/align/align.cpp:4823
 #, fuzzy, kde-format
 #| msgid "Autofocus in progress..."
 msgid "Capturing still running, Retrying in %1 seconds..."
 msgstr "Автотоғыстау барысында..."
 
-#: ekos/align/align.cpp:4830
+#: ekos/align/align.cpp:4869
 #, fuzzy, kde-format
 #| msgid "Solver aborted after %1 second."
 #| msgid_plural "Solver aborted after %1 seconds"
