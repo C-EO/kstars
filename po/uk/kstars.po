@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-26 02:03+0000\n"
-"PO-Revision-Date: 2026-04-23 08:13+0300\n"
+"PO-Revision-Date: 2026-04-26 12:30+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -6520,6 +6520,9 @@ msgid ""
 "from %1° to %2° after rotation. Please reverse the rotator direction and try "
 "again."
 msgstr ""
+"Обертання відбувається у помилковому напрямку. Після обертання похибка "
+"позиційного кута збільшилася з %1° до %2°. Будь ласка, інвертуйте обертання "
+"і повторіть спробу."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2382

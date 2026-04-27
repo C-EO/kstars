@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-26 02:03+0000\n"
-"PO-Revision-Date: 2026-04-23 11:07+0100\n"
+"PO-Revision-Date: 2026-04-26 12:21+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -6553,6 +6553,9 @@ msgid ""
 "from %1° to %2° after rotation. Please reverse the rotator direction and try "
 "again."
 msgstr ""
+"El rotador se está moviendo en la dirección equivocada. El error del ángulo "
+"de posición ha aumentado de %1° a %2° tras la rotación. Invierta la "
+"dirección del rotador y vuelva a probar."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2382

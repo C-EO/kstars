@@ -2329,8 +2329,8 @@ msgid ""
 "objects are considered 'interesting' if they appear on the KStars "
 "'interesting' list."
 msgstr ""
-"Toto tlaČidlo prepína filtrovanie zoznamu tak, aby zobrazoval iba zaujímavé "
-"objekty alebo ľuboľvoľné objekty v zozname. Toto nastavenie sa vzťahuje iba "
+"Toto tlačidlo prepína filtrovanie zoznamu tak, aby zobrazoval iba zaujímavé "
+"objekty alebo ľubovoľné objekty v zozname. Toto nastavenie sa vzťahuje iba "
 "na zoznamy galaxií, hmlovín a hviezd. Objekty sa považujú za zaujímavé, ak "
 "sa nachádzajú v zozname zaujímavých objektov KStars."
 
@@ -2345,12 +2345,13 @@ msgid ""
 "only the filtered objects will be downloaded.  If you actually want all the "
 "objects in the list, turn off the filters."
 msgstr ""
-"Toto tlaČidlo sa pokusí stiahnuť informácie a obrázky o objekte (objektoch) "
+"Toto tlačidlo sa pokúsi stiahnuť informácie a obrázky o objekte (objektoch) "
 "z Wikipédie. Môžete si vybrať, či chcete stiahnuť informácie iba o jednom "
-"objekte, o všetkých objektoch v zozname alebo iba o tch objektoch v zozname, "
-"pre ktoré ešte neboli stiahnuté žiadne údaje. Poznámka: Ak je zoznam "
-"momentne filtrovaný pre viditelné alebo zaujímavé objekty, stiahnu sa iba "
-"filtrované objekty. Ak chcete všetky objekty v zozname, vypňte filtre."
+"objekte, o všetkých objektoch v zozname alebo iba o tých objektoch v "
+"zozname, pre ktoré ešte neboli stiahnuté žiadne údaje. Poznámka: Ak je "
+"zoznam momentálne filtrovaný pre viditeľné alebo zaujímavé objekty, stiahnu "
+"sa iba filtrované objekty. Ak chcete všetky objekty v zozname, vypnite "
+"filtre."
 
 #: data/qml/whatisinteresting/wiview.qml:1781
 #: ekos/scheduler/taskqueue/ui/propertytemplatebuilder.cpp:108
@@ -6492,6 +6493,8 @@ msgid ""
 "from %1° to %2° after rotation. Please reverse the rotator direction and try "
 "again."
 msgstr ""
+"Rotátor sa pohybuje nesprávnym smerom. Chyba uhla pozície sa po otočení "
+"zvýšila z %1° na %2°. Prosím, zmeňte smer rotátora a skúste znova."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2382
