@@ -95,6 +95,12 @@ void SequenceJobState::initPreparation(bool isPreview)
     // checkAllActionsReady() safely ignores calls during PREP_NONE via its
     // "case PREP_NONE: break" branch, preventing premature prepareComplete().
     m_PreparationState = PREP_NONE;
+    // Reset the cover query state so that the dialog is re-shown if the job is
+    // restarted after being externally aborted (e.g. user stop, guiding failure,
+    // captureOperationsTimeout) while a cover confirmation was still pending.
+    // The actual physical cover state (m_CameraState->m_ManualCoverState) is NOT
+    // reset here, so if the scope was already covered the dialog will not appear.
+    coverQueryState    = CAL_CHECK_TASK;
     m_CaptureOperationsTimer.start();
 }
 
@@ -1003,7 +1009,10 @@ void SequenceJobState::updateManualScopeCover(bool closed, bool success, bool li
     // cancelled
     else
     {
-        m_CameraState->shutterStatus = SHUTTER_UNKNOWN;
+        // Do NOT reset shutterStatus here: the shutter state was already correctly
+        // determined (camera is in shutterlessCCDs or shutterfulCCDs). Resetting it
+        // to SHUTTER_UNKNOWN would force a redundant re-query on the next job run,
+        // creating an unnecessary re-entrant call chain.
         coverQueryState = CAL_CHECK_TASK;
         // abort, no further checks
         Q_EMIT abortCapture();
