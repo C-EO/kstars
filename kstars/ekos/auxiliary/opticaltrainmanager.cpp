@@ -242,13 +242,46 @@ void OpticalTrainManager::syncDevices()
 ////////////////////////////////////////////////////////////////////////////
 void OpticalTrainManager::refreshModel()
 {
+    // Capture the currently selected train name BEFORE calling GetOpticalTrains(), because
+    // that call overwrites m_OpticalTrains in-place, which immediately invalidates
+    // m_CurrentOpticalTrain (a raw pointer into the old list).  Reading through the pointer
+    // after the overwrite is undefined behaviour and causes a crash.
+    QString selectedName;
+    if (trainNamesList->currentItem() != nullptr)
+        selectedName = trainNamesList->currentItem()->text();
+    else if (m_CurrentOpticalTrain != nullptr)
+        selectedName = (*m_CurrentOpticalTrain)["name"].toString();
+
     KStars::Instance()->data()->userdb()->GetOpticalTrains(m_Profile->id, m_OpticalTrains);
+
+    // m_OpticalTrains has been replaced; m_CurrentOpticalTrain is now dangling.
+    // Null it out so no other code path can accidentally use it before selectOpticalTrain()
+    // re-establishes a valid pointer into the new list.
+    m_CurrentOpticalTrain = nullptr;
+
     m_TrainNames.clear();
     for (auto &oneTrain : m_OpticalTrains)
         m_TrainNames << oneTrain["name"].toString();
 
     trainNamesList->clear();
     trainNamesList->addItems(m_TrainNames);
+
+    // Restore the previous selection so that currentItem() is never null after a refresh.
+    // A null currentItem causes updateOpticalTrainValue() to silently discard any combobox
+    // changes the user makes in the editor, meaning device re-selections are lost across
+    // sessions even though they appear to work within the current one.
+    if (!selectedName.isEmpty())
+    {
+        const auto matches = trainNamesList->findItems(selectedName, Qt::MatchExactly);
+        if (!matches.isEmpty())
+        {
+            trainNamesList->setCurrentItem(matches.first());
+            return;
+        }
+    }
+    // Fall back to the first train when no previous selection can be restored.
+    if (trainNamesList->count() > 0)
+        trainNamesList->setCurrentRow(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -1276,6 +1309,31 @@ void OpticalTrainManager::checkMissingDevices()
                                        devices.join(", ")),
                                   KSNotification::General, KSNotification::Warn);
         }
+
+        // Auto-select the first train that has a missing device so that currentItem() in the
+        // list widget is always non-null when the editor opens. Without this, the user can
+        // change combobox values while no train is selected and updateOpticalTrainValue() will
+        // silently discard the changes (the nullptr guard prevents any DB write), causing the
+        // same missing-device warning to reappear on every subsequent profile start.
+        for (auto &oneTrain : m_OpticalTrains)
+        {
+            if (devices.contains(oneTrain["mount"].toString())       ||
+                    devices.contains(oneTrain["camera"].toString())      ||
+                    devices.contains(oneTrain["focuser"].toString())     ||
+                    devices.contains(oneTrain["filterwheel"].toString()) ||
+                    devices.contains(oneTrain["guider"].toString())      ||
+                    devices.contains(oneTrain["dustcap"].toString())     ||
+                    devices.contains(oneTrain["lightbox"].toString()))
+            {
+                const QString trainName = oneTrain["name"].toString();
+                selectOpticalTrain(trainName);
+                const auto matches = trainNamesList->findItems(trainName, Qt::MatchExactly);
+                if (!matches.isEmpty())
+                    trainNamesList->setCurrentItem(matches.first());
+                break;
+            }
+        }
+
         show();
         raise();
         Q_EMIT configurationRequested(true);
