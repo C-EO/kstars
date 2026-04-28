@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars-gu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-26 02:03+0000\n"
+"POT-Creation-Date: 2026-04-28 02:14+0000\n"
 "PO-Revision-Date: 2009-07-10 16:23+0530\n"
 "Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
 "Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
@@ -13134,32 +13134,32 @@ msgstr "શરૂઆત ડિરેક્ટરી પસંદ કરો"
 msgid "New Train"
 msgstr "નવો કેમેરા"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:470
+#: ekos/auxiliary/opticaltrainmanager.cpp:503
 #, fuzzy, kde-format
 #| msgctxt "Country name (optional, but should be translated)"
 #| msgid "Panama"
 msgid "Primary"
 msgstr "પનામા"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:473
+#: ekos/auxiliary/opticaltrainmanager.cpp:506
 #, fuzzy, kde-format
 #| msgid "seconds"
 msgid "Secondary"
 msgstr "સેકન્ડો"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:476
+#: ekos/auxiliary/opticaltrainmanager.cpp:509
 #, fuzzy, kde-format
 msgid "Tertiary"
 msgstr "ઓપ્ટિકલ કેરેક્ટર રેકોગ્નાઇઝેશન"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1268
+#: ekos/auxiliary/opticaltrainmanager.cpp:1301
 #, kde-format
 msgid ""
 "Missing device detected (%1). Please reconfigure the optical trains before "
 "proceeding any further."
 msgstr ""
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1275
+#: ekos/auxiliary/opticaltrainmanager.cpp:1308
 #, kde-format
 msgid ""
 "Missing devices detected (%1). Please reconfigure the optical trains before "
@@ -16427,7 +16427,7 @@ msgid "Does %1 have a shutter?"
 msgstr ""
 
 #: ekos/capture/capturedeviceadaptor.cpp:825
-#: ekos/capture/sequencejobstate.cpp:540
+#: ekos/capture/sequencejobstate.cpp:546
 #, fuzzy, kde-format
 #| msgid "Equator"
 msgid "Dark Exposure"
@@ -17696,142 +17696,142 @@ msgstr "પ્રગતિ"
 msgid "Complete"
 msgstr "પરિવહન પ્રક્રિયા પૂરી થઇ છે"
 
-#: ekos/capture/sequencejobstate.cpp:527
+#: ekos/capture/sequencejobstate.cpp:533
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:528
+#: ekos/capture/sequencejobstate.cpp:534
 #, fuzzy, kde-format
 msgid "Flat Frame"
 msgstr "એન્ટ્રોપી ફાઇલ વાપરો"
 
-#: ekos/capture/sequencejobstate.cpp:539
+#: ekos/capture/sequencejobstate.cpp:545
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:577 ekos/capture/sequencejobstate.cpp:786
+#: ekos/capture/sequencejobstate.cpp:583 ekos/capture/sequencejobstate.cpp:792
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Unparking dust cap..."
 msgstr "રેડિઓટેલિસ્કોપ"
 
-#: ekos/capture/sequencejobstate.cpp:577
+#: ekos/capture/sequencejobstate.cpp:583
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Parking dust cap..."
 msgstr "રેડિઓટેલિસ્કોપ"
 
-#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
+#: ekos/capture/sequencejobstate.cpp:595 ekos/capture/sequencejobstate.cpp:674
 #, kde-format
 msgid "Turn light box light on..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
-#: ekos/capture/sequencejobstate.cpp:772
+#: ekos/capture/sequencejobstate.cpp:595 ekos/capture/sequencejobstate.cpp:674
+#: ekos/capture/sequencejobstate.cpp:778
 #, kde-format
 msgid "Turn light box light off..."
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:608 ekos/capture/sequencejobstate.cpp:686
+#: ekos/capture/sequencejobstate.cpp:614 ekos/capture/sequencejobstate.cpp:692
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Parking mount failed, aborting..."
 msgstr "રેડિઓટેલિસ્કોપ"
 
-#: ekos/capture/sequencejobstate.cpp:617
+#: ekos/capture/sequencejobstate.cpp:623
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Unparking mount..."
 msgstr "રેડિઓટેલિસ્કોપ"
 
-#: ekos/capture/sequencejobstate.cpp:626
+#: ekos/capture/sequencejobstate.cpp:632
 #, fuzzy, kde-format
 msgid "Mount unparked."
 msgstr "માઉન્ટ બિંદુ:"
 
-#: ekos/capture/sequencejobstate.cpp:639
+#: ekos/capture/sequencejobstate.cpp:645
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr ""
 
-#: ekos/capture/sequencejobstate.cpp:651
+#: ekos/capture/sequencejobstate.cpp:657
 #, fuzzy, kde-format
 #| msgid "Center"
 msgid "Slew to wall position complete, stop tracking."
 msgstr "કેન્દ્ર"
 
-#: ekos/capture/sequencejobstate.cpp:655
+#: ekos/capture/sequencejobstate.cpp:661
 #, fuzzy, kde-format
 #| msgid "Center"
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "કેન્દ્ર"
 
-#: ekos/capture/sequencejobstate.cpp:695
+#: ekos/capture/sequencejobstate.cpp:701
 #, fuzzy, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "%B, %Y પર પહેલાં"
 
-#: ekos/capture/sequencejobstate.cpp:714
+#: ekos/capture/sequencejobstate.cpp:720
 #, fuzzy, kde-format
 #| msgid "Radiotelescope"
 msgid "Parking dome failed, aborting..."
 msgstr "રેડિઓટેલિસ્કોપ"
 
-#: ekos/capture/sequencejobstate.cpp:724
+#: ekos/capture/sequencejobstate.cpp:730
 #, fuzzy, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "%B, %Y પર પહેલાં"
 
-#: ekos/capture/sequencejobstate.cpp:1031
+#: ekos/capture/sequencejobstate.cpp:1040
 #, fuzzy, kde-format
 msgid "Light box light turned on."
 msgstr "પરિવહન પ્રક્રિયા પૂરી થઇ છે"
 
-#: ekos/capture/sequencejobstate.cpp:1034
+#: ekos/capture/sequencejobstate.cpp:1043
 #, fuzzy, kde-format
 msgid "Light box light turned off."
 msgstr "પરિવહન પ્રક્રિયા પૂરી થઇ છે"
 
-#: ekos/capture/sequencejobstate.cpp:1037
+#: ekos/capture/sequencejobstate.cpp:1046
 #, fuzzy, kde-format
 #| msgid "Height:"
 msgid "Light box busy."
 msgstr "ઉંચાઇ:"
 
-#: ekos/capture/sequencejobstate.cpp:1040
+#: ekos/capture/sequencejobstate.cpp:1049
 #, fuzzy, kde-format
 #| msgid "Height:"
 msgid "Light box error."
 msgstr "ઉંચાઇ:"
 
-#: ekos/capture/sequencejobstate.cpp:1064
+#: ekos/capture/sequencejobstate.cpp:1073
 #, fuzzy, kde-format
 msgid "Dust cap error occurred."
 msgstr "અમેરિકા/ડાઉસન_ક્રીક"
 
-#: ekos/capture/sequencejobstate.cpp:1070
+#: ekos/capture/sequencejobstate.cpp:1079
 #, fuzzy, kde-format
 msgid "Dust cap is idle."
 msgstr "પરિવહન પ્રક્રિયા પૂરી થઇ છે"
 
-#: ekos/capture/sequencejobstate.cpp:1073
+#: ekos/capture/sequencejobstate.cpp:1082
 #, fuzzy, kde-format
 msgid "Dust cap is parked."
 msgstr "અમેરિકા/ડાઉસન_ક્રીક"
 
-#: ekos/capture/sequencejobstate.cpp:1076
+#: ekos/capture/sequencejobstate.cpp:1085
 #, fuzzy, kde-format
 msgid "Dust cap is parking..."
 msgstr "અમેરિકા/ડાઉસન_ક્રીક"
 
-#: ekos/capture/sequencejobstate.cpp:1079
+#: ekos/capture/sequencejobstate.cpp:1088
 #, fuzzy, kde-format
 msgid "Dust cap is unparking..."
 msgstr "અમેરિકા/ડાઉસન_ક્રીક"
 
-#: ekos/capture/sequencejobstate.cpp:1082
+#: ekos/capture/sequencejobstate.cpp:1091
 #, fuzzy, kde-format
 msgid "Dust cap status unknown."
 msgstr "અમેરિકા/ડાઉસન_ક્રીક"

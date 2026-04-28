@@ -38,7 +38,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-26 02:03+0000\n"
+"POT-Creation-Date: 2026-04-28 02:14+0000\n"
 "PO-Revision-Date: 2026-04-26 07:32+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -13444,22 +13444,22 @@ msgstr "Odpri mapo dnevnikov …"
 msgid "New Train"
 msgstr "Nova optika"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:470
+#: ekos/auxiliary/opticaltrainmanager.cpp:503
 #, kde-format
 msgid "Primary"
 msgstr "Glavna"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:473
+#: ekos/auxiliary/opticaltrainmanager.cpp:506
 #, kde-format
 msgid "Secondary"
 msgstr "Drugotna"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:476
+#: ekos/auxiliary/opticaltrainmanager.cpp:509
 #, kde-format
 msgid "Tertiary"
 msgstr "Terciarna"
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1268
+#: ekos/auxiliary/opticaltrainmanager.cpp:1301
 #, kde-format
 msgid ""
 "Missing device detected (%1). Please reconfigure the optical trains before "
@@ -13468,7 +13468,7 @@ msgstr ""
 "Zaznana je manjkajoča naprava (%1). Preden nadaljujete, ponovno prilagodite "
 "optike."
 
-#: ekos/auxiliary/opticaltrainmanager.cpp:1275
+#: ekos/auxiliary/opticaltrainmanager.cpp:1308
 #, kde-format
 msgid ""
 "Missing devices detected (%1). Please reconfigure the optical trains before "
@@ -16893,7 +16893,7 @@ msgid "Does %1 have a shutter?"
 msgstr "Ali ima %1 zaklep?"
 
 #: ekos/capture/capturedeviceadaptor.cpp:825
-#: ekos/capture/sequencejobstate.cpp:540
+#: ekos/capture/sequencejobstate.cpp:546
 #, kde-format
 msgid "Dark Exposure"
 msgstr "Osvetlitev teme"
@@ -18209,133 +18209,133 @@ msgstr "V teku"
 msgid "Complete"
 msgstr "Zaključeno"
 
-#: ekos/capture/sequencejobstate.cpp:527
+#: ekos/capture/sequencejobstate.cpp:533
 #, kde-format
 msgid "Cover the telescope with an evenly illuminated light source."
 msgstr "Pokrij teleskop z enakomerno osvetljenim svetlobnim virom."
 
-#: ekos/capture/sequencejobstate.cpp:528
+#: ekos/capture/sequencejobstate.cpp:534
 #, kde-format
 msgid "Flat Frame"
 msgstr "Ploski posnetek"
 
-#: ekos/capture/sequencejobstate.cpp:539
+#: ekos/capture/sequencejobstate.cpp:545
 #, kde-format
 msgid "Cover the telescope in order to take a dark exposure."
 msgstr "Pokrij teleskop za zajem posnetka teme."
 
-#: ekos/capture/sequencejobstate.cpp:577 ekos/capture/sequencejobstate.cpp:786
+#: ekos/capture/sequencejobstate.cpp:583 ekos/capture/sequencejobstate.cpp:792
 #, kde-format
 msgid "Unparking dust cap..."
 msgstr "Odparkiranje proti-prašnega pokrova …"
 
-#: ekos/capture/sequencejobstate.cpp:577
+#: ekos/capture/sequencejobstate.cpp:583
 #, kde-format
 msgid "Parking dust cap..."
 msgstr "Parkiranje proti-prašnega pokrova…"
 
-#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
+#: ekos/capture/sequencejobstate.cpp:595 ekos/capture/sequencejobstate.cpp:674
 #, kde-format
 msgid "Turn light box light on..."
 msgstr "Prižiganje luči svetilne škatle…"
 
-#: ekos/capture/sequencejobstate.cpp:589 ekos/capture/sequencejobstate.cpp:668
-#: ekos/capture/sequencejobstate.cpp:772
+#: ekos/capture/sequencejobstate.cpp:595 ekos/capture/sequencejobstate.cpp:674
+#: ekos/capture/sequencejobstate.cpp:778
 #, kde-format
 msgid "Turn light box light off..."
 msgstr "Ugašanje luči svetilne škatle…"
 
-#: ekos/capture/sequencejobstate.cpp:608 ekos/capture/sequencejobstate.cpp:686
+#: ekos/capture/sequencejobstate.cpp:614 ekos/capture/sequencejobstate.cpp:692
 #, kde-format
 msgid "Parking mount failed, aborting..."
 msgstr "Parkiranje stojala ni uspelo. Prekinjanje…"
 
-#: ekos/capture/sequencejobstate.cpp:617
+#: ekos/capture/sequencejobstate.cpp:623
 #, kde-format
 msgid "Unparking mount..."
 msgstr "Odparkiranje montaže..."
 
-#: ekos/capture/sequencejobstate.cpp:626
+#: ekos/capture/sequencejobstate.cpp:632
 #, kde-format
 msgid "Mount unparked."
 msgstr "Montaža odparkirana."
 
-#: ekos/capture/sequencejobstate.cpp:639
+#: ekos/capture/sequencejobstate.cpp:645
 #, kde-format
 msgid "Mount slewing to wall position (az =%1 alt =%2)"
 msgstr "Obračanje stojala v smer zidu (az. = %1, viš. = %2)"
 
-#: ekos/capture/sequencejobstate.cpp:651
+#: ekos/capture/sequencejobstate.cpp:657
 #, kde-format
 msgid "Slew to wall position complete, stop tracking."
 msgstr "Obračanje v smer zidu zaključeno, ustavljanje sledenja."
 
-#: ekos/capture/sequencejobstate.cpp:655
+#: ekos/capture/sequencejobstate.cpp:661
 #, kde-format
 msgid "Slew to wall position complete, tracking stopped."
 msgstr "Obračanje v smer zidu zaključeno, sledenje ustavljeno."
 
-#: ekos/capture/sequencejobstate.cpp:695
+#: ekos/capture/sequencejobstate.cpp:701
 #, kde-format
 msgid "Parking mount prior to calibration frames capture..."
 msgstr "Parkiranje stojala pred zajemom umeritvenih posnetkov…"
 
-#: ekos/capture/sequencejobstate.cpp:714
+#: ekos/capture/sequencejobstate.cpp:720
 #, kde-format
 msgid "Parking dome failed, aborting..."
 msgstr "Parkiranje kupole ni uspelo, prekinjanje…"
 
-#: ekos/capture/sequencejobstate.cpp:724
+#: ekos/capture/sequencejobstate.cpp:730
 #, kde-format
 msgid "Parking dome prior to calibration frames capture..."
 msgstr "Parkiranje kupole pred zajemom umeritvenih posnetkov …"
 
-#: ekos/capture/sequencejobstate.cpp:1031
+#: ekos/capture/sequencejobstate.cpp:1040
 #, kde-format
 msgid "Light box light turned on."
 msgstr "Luči svetilne škatle prižgane."
 
-#: ekos/capture/sequencejobstate.cpp:1034
+#: ekos/capture/sequencejobstate.cpp:1043
 #, kde-format
 msgid "Light box light turned off."
 msgstr "Luči svetilne škatle ugasnjene."
 
-#: ekos/capture/sequencejobstate.cpp:1037
+#: ekos/capture/sequencejobstate.cpp:1046
 #, kde-format
 msgid "Light box busy."
 msgstr "Svetilna škatla je zasedena."
 
-#: ekos/capture/sequencejobstate.cpp:1040
+#: ekos/capture/sequencejobstate.cpp:1049
 #, kde-format
 msgid "Light box error."
 msgstr "Napaka svetilne škatle."
 
-#: ekos/capture/sequencejobstate.cpp:1064
+#: ekos/capture/sequencejobstate.cpp:1073
 #, kde-format
 msgid "Dust cap error occurred."
 msgstr "Napaka proti-prašnega pokrova."
 
-#: ekos/capture/sequencejobstate.cpp:1070
+#: ekos/capture/sequencejobstate.cpp:1079
 #, kde-format
 msgid "Dust cap is idle."
 msgstr "Proti-prašni pokrov je neaktiven."
 
-#: ekos/capture/sequencejobstate.cpp:1073
+#: ekos/capture/sequencejobstate.cpp:1082
 #, kde-format
 msgid "Dust cap is parked."
 msgstr "Proti-prašni pokrov je parkiran."
 
-#: ekos/capture/sequencejobstate.cpp:1076
+#: ekos/capture/sequencejobstate.cpp:1085
 #, kde-format
 msgid "Dust cap is parking..."
 msgstr "Proti-prašni pokrov je v parkiranju..."
 
-#: ekos/capture/sequencejobstate.cpp:1079
+#: ekos/capture/sequencejobstate.cpp:1088
 #, kde-format
 msgid "Dust cap is unparking..."
 msgstr "Proti-prašni pokrov je v odparkiranju..."
 
-#: ekos/capture/sequencejobstate.cpp:1082
+#: ekos/capture/sequencejobstate.cpp:1091
 #, kde-format
 msgid "Dust cap status unknown."
 msgstr "Stanje proti-prašnega pokrova neznano."
