@@ -177,13 +177,13 @@ do {\
 /** @brief Helper to click a button from a certain module view (subroutine version for KTRY_CLICK).
  * @param module KStars module that holds the checkbox
  * @param button is the gadget name of the button to look for in the UI configuration.
+ * @note Uses animateClick() so callers can arm modal-dialog safety timers before exec() starts.
  * @warning Fails the test if the button is not currently enabled.
  */
 #define KTRY_CLICK_SUB(module, button) do { \
     KTRY_GADGET_SUB(module, QPushButton, button); \
     KTRY_VERIFY_WITH_TIMEOUT_SUB(button->isEnabled(), 5000); \
-    QTest::mouseClick(button, Qt::LeftButton); \
-    QTest::qWait(50); } while(false)
+    button->animateClick(); } while(false)
 
 /** @brief Helper to set a checkbox and verify whether it succeeded
  * @param module KStars module that holds the checkbox
