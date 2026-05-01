@@ -133,28 +133,28 @@ ObservingList::ObservingList()
     ui->SessionView->installEventFilter(this);
     // setDefaultImage();
     //Connections
-    connect(ui->WishListView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(slotCenterObject()));
-    connect(ui->WishListView->selectionModel(),
-            SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(slotNewSelection()));
-    connect(ui->SessionView->selectionModel(), SIGNAL(selectionChanged(QItemSelection, QItemSelection)),
-            this, SLOT(slotNewSelection()));
-    connect(ui->WUTButton, SIGNAL(clicked()), this, SLOT(slotWUT()));
-    connect(ui->FindButton, SIGNAL(clicked()), this, SLOT(slotFind()));
-    connect(ui->OpenButton, SIGNAL(clicked()), this, SLOT(slotOpenList()));
-    connect(ui->SaveButton, SIGNAL(clicked()), this, SLOT(slotSaveSession()));
-    connect(ui->SaveAsButton, SIGNAL(clicked()), this, SLOT(slotSaveSessionAs()));
-    connect(ui->WizardButton, SIGNAL(clicked()), this, SLOT(slotWizard()));
-    connect(ui->batchAddButton, SIGNAL(clicked()), this, SLOT(slotBatchAdd()));
-    connect(ui->SetLocation, SIGNAL(clicked()), this, SLOT(slotLocation()));
-    connect(ui->Update, SIGNAL(clicked()), this, SLOT(slotUpdate()));
-    connect(ui->DeleteImage, SIGNAL(clicked()), this, SLOT(slotDeleteCurrentImage()));
-    connect(ui->SearchImage, SIGNAL(clicked()), this, SLOT(slotSearchImage()));
-    connect(ui->SetTime, SIGNAL(clicked()), this, SLOT(slotSetTime()));
-    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(slotChangeTab(int)));
-    connect(ui->saveImages, SIGNAL(clicked()), this, SLOT(slotSaveAllImages()));
-    connect(ui->DeleteAllImages, SIGNAL(clicked()), this, SLOT(slotDeleteAllImages()));
-    connect(ui->OALExport, SIGNAL(clicked()), this, SLOT(slotOALExport()));
-    connect(ui->clearListB, SIGNAL(clicked()), this, SLOT(slotClearList()));
+    connect(ui->WishListView, &QTableView::doubleClicked, this, &ObservingList::slotCenterObject);
+    connect(ui->WishListView->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &ObservingList::slotNewSelection);
+    connect(ui->SessionView->selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &ObservingList::slotNewSelection);
+    connect(ui->WUTButton, &QPushButton::clicked, this, &ObservingList::slotWUT);
+    connect(ui->FindButton, &QPushButton::clicked, this, &ObservingList::slotFind);
+    connect(ui->OpenButton, &QPushButton::clicked, this, &ObservingList::slotOpenList);
+    connect(ui->SaveButton, &QPushButton::clicked, this, &ObservingList::slotSaveSession);
+    connect(ui->SaveAsButton, &QPushButton::clicked, this, &ObservingList::slotSaveSessionAs);
+    connect(ui->WizardButton, &QPushButton::clicked, this, &ObservingList::slotWizard);
+    connect(ui->batchAddButton, &QPushButton::clicked, this, &ObservingList::slotBatchAdd);
+    connect(ui->SetLocation, &QPushButton::clicked, this, &ObservingList::slotLocation);
+    connect(ui->Update, &QPushButton::clicked, this, &ObservingList::slotUpdate);
+    connect(ui->DeleteImage, &QPushButton::clicked, this, &ObservingList::slotDeleteCurrentImage);
+    connect(ui->SearchImage, &QPushButton::clicked, this, &ObservingList::slotSearchImage);
+    connect(ui->SetTime, &QPushButton::clicked, this, &ObservingList::slotSetTime);
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &ObservingList::slotChangeTab);
+    connect(ui->saveImages, &QPushButton::clicked, this, &ObservingList::slotSaveAllImages);
+    connect(ui->DeleteAllImages, &QPushButton::clicked, this, &ObservingList::slotDeleteAllImages);
+    connect(ui->OALExport, &QPushButton::clicked, this, &ObservingList::slotOALExport);
+    connect(ui->clearListB, &QPushButton::clicked, this, &ObservingList::slotClearList);
     //Add icons to Push Buttons
     ui->OpenButton->setIcon(QIcon::fromTheme("document-open"));
     ui->OpenButton->setAttribute(Qt::WA_LayoutUsesWidgetRect);
@@ -235,7 +235,7 @@ void ObservingList::showEvent(QShowEvent *)
 
         slotUpdateAltitudes();
         m_altitudeUpdater = new QTimer(this);
-        connect(m_altitudeUpdater, SIGNAL(timeout()), this, SLOT(slotUpdateAltitudes()));
+        connect(m_altitudeUpdater, &QTimer::timeout, this, &ObservingList::slotUpdateAltitudes);
         m_altitudeUpdater->start(120000); // update altitudes every 2 minutes
     }
 }
@@ -413,7 +413,7 @@ void ObservingList::slotRemoveObject(const SkyObject *_o, bool session, bool upd
     QSharedPointer<SkyObject> o = findObject(_o, session);
     if (!o)
     {
-        qWarning() << "Object (name: " << getObjectName(o.data())
+        qWarning() << "Object (name: " << getObjectName(_o)
                    << ") supplied to ObservingList::slotRemoveObject() was not found in the "
                    << QString(session ? "session" : "observing") << " list!";
         return;
@@ -1199,6 +1199,12 @@ void ObservingList::slotWizard()
         addingObjectsProgress->setValue(0);
         addingObjectsProgress->show();
         int counter = 1;
+        // Disable event processing on the list views to prevent re-entrant operations
+        // (e.g. Delete key triggering slotRemoveSelectedObjects) while the wizard is adding objects.
+        ui->WishListView->removeEventFilter(this);
+        ui->SessionView->removeEventFilter(this);
+        ui->WishListView->viewport()->removeEventFilter(this);
+        ui->SessionView->viewport()->removeEventFilter(this);
         for (auto o : wizard->obsList())
         {
             slotAddObject(o);
@@ -1207,6 +1213,11 @@ void ObservingList::slotWizard()
                 break;
             qApp->processEvents();
         }
+        // Re-install event filters
+        ui->WishListView->viewport()->installEventFilter(this);
+        ui->WishListView->installEventFilter(this);
+        ui->SessionView->viewport()->installEventFilter(this);
+        ui->SessionView->installEventFilter(this);
         delete addingObjectsProgress;
     }
 
@@ -1361,7 +1372,7 @@ void ObservingList::slotCustomDSS()
 
     delete m_dl;
     m_dl = new KSDssDownloader();
-    connect(m_dl, SIGNAL(downloadComplete(bool)), SLOT(downloadReady(bool)));
+    connect(m_dl, &KSDssDownloader::downloadComplete, this, &ObservingList::downloadReady);
     m_dl->startSingleDownload(srcUrl, getCurrentImagePath(), md);
 }
 
