@@ -258,6 +258,20 @@ bool StreamWG::queryDebayerParameters()
     else
         m_BBP = 8;
 
+    // If the camera sensor is 16-bit, check if the stream is being transferred
+    // at full depth or downscaled to 8-bit. The server downscales 16-bit streams
+    // to 8-bit unless STREAM_FULL_DEPTH is set to FULL_DEPTH_16BIT.
+    if (m_BBP == 16)
+    {
+        auto fullDepthSP = m_Camera->getSwitch("STREAM_FULL_DEPTH");
+        if (fullDepthSP)
+        {
+            auto fullDepth16 = fullDepthSP.findWidgetByName("FULL_DEPTH_16BIT");
+            if (fullDepth16 && fullDepth16->getState() != ISS_ON)
+                m_BBP = 8;
+        }
+    }
+
     uint16_t offsetX, offsetY;
     if (targetChip->getBayerInfo(offsetX, offsetY, pattern) == false)
         return false;

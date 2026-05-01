@@ -359,8 +359,8 @@ bool VideoWG::debayerCV(const IBLOB *bp, const BayerParameters &params)
         Q_EMIT imageChanged(streamImage);
 
         auto end = std::chrono::high_resolution_clock::now();
-        qCDebug(KSTARS) << "Stack Debayer (openCV) using algo:" << BayerUtils::openCVAlgoToString(algo)
-                        << " took:" << std::chrono::duration<double, std::milli>(end - start).count() << "ms";
+        // qCDebug(KSTARS) << "Stack Debayer (openCV) using algo:" << BayerUtils::openCVAlgoToString(algo)
+        //                 << " took:" << std::chrono::duration<double, std::milli>(end - start).count() << "ms";
         return true;
     }
     catch (const cv::Exception &ex)
