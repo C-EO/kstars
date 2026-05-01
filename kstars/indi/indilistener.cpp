@@ -217,8 +217,9 @@ void INDIListener::processUniversalMessage(const QString &message)
     if (colonIndex > 0)
         displayMessage = displayMessage.mid(colonIndex + 2);
 
-    // Special case for Alignment since it is not tied to a device
-    if (displayMessage.startsWith("[ALIGNMENT]") || displayMessage.startsWith("[DEBUG]"))
+    // Special case for Alignment/Debug/Scope since they are not tied to a device
+    if (displayMessage.startsWith("[ALIGNMENT]") || displayMessage.startsWith("[DEBUG]") ||
+            displayMessage.startsWith("[SCOPE]"))
     {
         qCDebug(KSTARS_INDI) << displayMessage;
         return;
