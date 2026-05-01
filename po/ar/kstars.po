@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-28 02:14+0000\n"
-"PO-Revision-Date: 2026-04-23 10:20+0400\n"
+"PO-Revision-Date: 2026-04-30 17:36+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -6452,6 +6452,8 @@ msgid ""
 "from %1° to %2° after rotation. Please reverse the rotator direction and try "
 "again."
 msgstr ""
+"يتحرك جهاز الدوران في الاتجاه الخاطئ. زاد خطأ زاوية الموضع من %1° إلى %2° "
+"بعد الدوران. يرجى عكس اتجاه جهاز الدوران ومحاولة إعادة العملية."
 
 #. i18n("Camera offset angle is %1 degrees.", OffsetAngle));
 #: ekos/align/align.cpp:2382
@@ -28660,7 +28662,7 @@ msgstr "تحذير: اسم الهدف مطلوب."
 #: ekos/scheduler/scheduler.cpp:1104
 #, kde-format
 msgid "Warning: A job with name '%1' already exists. Please use a unique name."
-msgstr ""
+msgstr "تحذير: توجد مهمة باسم ”%1“ من قبل. يرجى استخدام اسم فريد."
 
 #: ekos/scheduler/scheduler.cpp:1112
 #, kde-format
