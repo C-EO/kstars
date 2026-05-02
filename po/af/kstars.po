@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2002-11-07 11:31+0200\n"
 "Last-Translator: WEB-Translator <http://kde.af.org.za>\n"
 "Language-Team: AFRIKAANS <AF@lia.org.za>\n"
@@ -34311,7 +34311,7 @@ msgstr "Kon nie open pasmaak data lêer: "
 msgid "Not enough memory for file %1"
 msgstr ""
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, fuzzy, kde-format
 msgid "INDI Server Message"
 msgstr "St. Peter Poort"
@@ -34921,12 +34921,12 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "Planeet"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 msgid "Stop recording"
 msgstr "Stop Horlosie"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 msgid "Start recording"
 msgstr "Spanje"
@@ -87546,43 +87546,43 @@ msgstr "Kon nie lees "
 msgid "Please wait while adding objects..."
 msgstr ""
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr ""
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, kde-format
 msgid "Specify image width (arcminutes): "
 msgstr ""
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, kde-format
 msgid "Specify image height (arcminutes): "
 msgstr ""
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, fuzzy, kde-format
 msgid "Specify version: "
 msgstr "Stoor Beeld"
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, fuzzy, kde-format
 msgid "Failed to download DSS/SDSS image."
 msgstr "Kon nie Open Lêer"
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr ""
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, fuzzy, kde-format
 msgid "Delete All Images"
 msgstr "Invoer Keuse"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, fuzzy, kde-format
 msgid "Image Chooser"
 msgstr "Invoer Keuse"

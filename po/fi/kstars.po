@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2024-11-21 20:29+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -36419,7 +36419,7 @@ msgstr "Tiedoston %1 avaaminen lukemista varten epäonnistui"
 msgid "Not enough memory for file %1"
 msgstr "Ei riittävästi muistia FITS-tiedoston lataamiseen."
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, kde-format
 msgid "INDI Server Message"
 msgstr "INDI-palvelimen viesti"
@@ -37068,13 +37068,13 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "Video"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 #| msgid "Stop &Tracking"
 msgid "Stop recording"
 msgstr "Pysäytä &seuranta"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Farmington"
@@ -89103,43 +89103,43 @@ msgstr "Älä kokeile"
 msgid "Please wait while adding objects..."
 msgstr "Odota, kun kohteita lisätään…"
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr "Mukautettu DSS-lataus"
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, kde-format
 msgid "Specify image width (arcminutes): "
 msgstr "Aseta kuvan leveys (kaariminuutteina): "
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, kde-format
 msgid "Specify image height (arcminutes): "
 msgstr "Anna kuvan korkeus (kaariminuutteina): "
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Specify version: "
 msgstr "Määritä versio: "
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, kde-format
 msgid "Failed to download DSS/SDSS image."
 msgstr "DSS/SDSS-kuvan lataaminen epäonnistui."
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr ""
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, kde-format
 msgid "Delete All Images"
 msgstr "Poista kaikki kuvat"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, kde-format
 msgid "Image Chooser"
 msgstr "Kuvan valitsin"

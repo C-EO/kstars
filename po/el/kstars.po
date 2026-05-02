@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2013-02-16 13:09+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -37670,7 +37670,7 @@ msgstr "Δεν ήταν δυνατό το άνοιγμα του αρχείου %
 msgid "Not enough memory for file %1"
 msgstr "Μη επαρκής μνήμη για φόρτωση του %1"
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, fuzzy, kde-format
 #| msgid "INDI Server:"
 msgid "INDI Server Message"
@@ -38342,13 +38342,13 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "Βίντεο"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 #| msgid "Stop &Tracking"
 msgid "Stop recording"
 msgstr "Σταμάτημα ανί&χνευσης"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 #| msgid "Start Framing"
 msgid "Start recording"
@@ -92767,49 +92767,49 @@ msgstr "Να μη γίνει δοκιμή"
 msgid "Please wait while adding objects..."
 msgstr "Παρακαλώ περιμένετε την αναταξινόμηση των αστέρων..."
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr ""
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image width (arcminutes): "
 msgstr "Ορισμός τοποθεσίας εικόνας:"
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image height (arcminutes): "
 msgstr "Ορισμός τοποθεσίας εικόνας:"
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify version: "
 msgstr "Ορισμός τοποθεσίας εικόνας:"
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, fuzzy, kde-format
 #| msgid "Save the downloaded DSS/SDSS images?"
 msgid "Failed to download DSS/SDSS image."
 msgstr "Αποθήκευση των ληφθεισών εικόνων DSS/SDSS; "
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr ""
 "Όλες οι αποθηκευμένες εικόνες θα διαγραφούν. Είστε σίγουροι ότι θέλετε να "
 "γίνει κάτι τέτοιο;"
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, kde-format
 msgid "Delete All Images"
 msgstr "Διαγραφή όλων των εικόνων"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, kde-format
 msgid "Image Chooser"
 msgstr "Επιλογέας εικόνας"

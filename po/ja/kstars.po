@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2010-09-25 18:49-0700\n"
 "Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -37131,7 +37131,7 @@ msgstr "ファイル ‘%1’ を読み込みのために開けません"
 msgid "Not enough memory for file %1"
 msgstr "<filename>%1</filename> をロードするメモリが足りません"
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, fuzzy, kde-format
 #| msgid "INDI Server:"
 msgid "INDI Server Message"
@@ -37805,13 +37805,13 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "ビデオポート:"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 #| msgid "Stop &Tracking"
 msgid "Stop recording"
 msgstr "追尾を停止(&T)"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 #| msgid "Stars"
 msgid "Start recording"
@@ -91079,47 +91079,47 @@ msgstr "やめる"
 msgid "Please wait while adding objects..."
 msgstr "恒星のインデックスを再作成しています。お待ちください..."
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr ""
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image width (arcminutes): "
 msgstr "画像の場所を指定:"
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image height (arcminutes): "
 msgstr "画像の場所を指定:"
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify version: "
 msgstr "画像の場所を指定:"
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, fuzzy, kde-format
 #| msgid "Save the downloaded DSS/SDSS images?"
 msgid "Failed to download DSS/SDSS image."
 msgstr "ダウンロードした DSS/SDSS 画像を保存しますか？"
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr ""
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, kde-format
 msgid "Delete All Images"
 msgstr "すべての画像を削除"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, fuzzy, kde-format
 #| msgctxt "City in Quebec Canada"
 #| msgid "Montreal"

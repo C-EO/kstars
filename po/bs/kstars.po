@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2015-01-30 09:02+0100\n"
 "Last-Translator: Samir Ribic <samir.ribic@etf.unsa.ba>\n"
 "Language-Team: Bosnian <lokal@lugbih.org>\n"
@@ -37086,7 +37086,7 @@ msgstr "Ne mogu da otvorim datoteku %1 za čitanje."
 msgid "Not enough memory for file %1"
 msgstr "Nema dovoljno memorije za učitavanje %1"
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, fuzzy, kde-format
 #| msgid "INDI Server"
 msgid "INDI Server Message"
@@ -37755,13 +37755,13 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "Video"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 #| msgid "Stop &Tracking"
 msgid "Stop recording"
 msgstr "Zaustavi &praćenje"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 #| msgid "Start Framing"
 msgid "Start recording"
@@ -97256,49 +97256,49 @@ msgstr "Ne pokušavaj"
 msgid "Please wait while adding objects..."
 msgstr "Molimo sačekajte dok se zvijezde reindeksiraju..."
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr ""
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image width (arcminutes): "
 msgstr "Navedite lokaciju slike:"
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image height (arcminutes): "
 msgstr "Navedite lokaciju slike:"
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify version: "
 msgstr "Navedite lokaciju slike:"
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, fuzzy, kde-format
 #| msgid "Save the downloaded DSS/SDSS images?"
 msgid "Failed to download DSS/SDSS image."
 msgstr "Spremi preuzetu DSS/SDSS sliku?"
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr ""
 "Ovo će izbrisati sve spremljene slike. Da li  ste sigurni da želite to "
 "učiniti?"
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, kde-format
 msgid "Delete All Images"
 msgstr "Obriši sve slike"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, kde-format
 msgid "Image Chooser"
 msgstr "Biranje slike"

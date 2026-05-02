@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2012-12-24 16:57+0200\n"
 "Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -36659,7 +36659,7 @@ msgstr "Neizdevās atvērt lasīšanai failu %1"
 msgid "Not enough memory for file %1"
 msgstr "Nepietiek atmiņas, lai ielādētu %1"
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, fuzzy, kde-format
 #| msgid "INDI Server:"
 msgid "INDI Server Message"
@@ -37325,13 +37325,13 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "Video"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 #| msgid "Stop &Tracking"
 msgid "Stop recording"
 msgstr "Apturē&t sekošanu"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 #| msgid "Start date:"
 msgid "Start recording"
@@ -93008,48 +93008,48 @@ msgstr "Nemēģināt"
 msgid "Please wait while adding objects..."
 msgstr "Lūdzu, uzgaidiet, kamēr tiek pārindeksētas zvaigznes..."
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr ""
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image width (arcminutes): "
 msgstr "Norādiet attēla vietu:"
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify image height (arcminutes): "
 msgstr "Norādiet attēla vietu:"
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, fuzzy, kde-format
 #| msgid "Specify image location:"
 msgid "Specify version: "
 msgstr "Norādiet attēla vietu:"
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, fuzzy, kde-format
 #| msgctxt "Image/info menu item (should be translated)"
 #| msgid "Daily Solar Images"
 msgid "Failed to download DSS/SDSS image."
 msgstr "Ikdienas saules attēli"
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr "Tiks dzēsti visi saglabātie attēli. Vai tiešām vēlaties to darīt?"
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, kde-format
 msgid "Delete All Images"
 msgstr "Dzēst visus attēlus"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, kde-format
 msgid "Image Chooser"
 msgstr "Attēla izvēlētājs"

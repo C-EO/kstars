@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2026-04-26 08:51+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -37279,7 +37279,7 @@ msgstr "No s'ha pogut obrir el fitxer %1 per a lectura"
 msgid "Not enough memory for file %1"
 msgstr "No hi ha memòria suficient per al fitxer %1"
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, kde-format
 msgid "INDI Server Message"
 msgstr "Missatge del servidor INDI"
@@ -37921,12 +37921,12 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "%1 vídeo en directe"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, kde-format
 msgid "Stop recording"
 msgstr "Atura l'enregistrament"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, kde-format
 msgid "Start recording"
 msgstr "Comença la gravació"
@@ -90563,43 +90563,43 @@ msgstr "No ho intentis"
 msgid "Please wait while adding objects..."
 msgstr "Si us plau, espereu mentre s'afegeixen objectes..."
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr "Baixada DSS personalitzada"
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, kde-format
 msgid "Specify image width (arcminutes): "
 msgstr "Especifiqueu l'amplada de la imatge (minuts d'arc): "
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, kde-format
 msgid "Specify image height (arcminutes): "
 msgstr "Especifiqueu l'alçada de la imatge (minuts d'arc): "
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Specify version: "
 msgstr "Especifiqueu la versió: "
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, kde-format
 msgid "Failed to download DSS/SDSS image."
 msgstr "Ha fallat en baixar la imatge DSS/SDSS."
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr "Això suprimirà totes les imatges desades. Segur que voleu fer-ho?"
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, kde-format
 msgid "Delete All Images"
 msgstr "Suprimeix totes les imatges"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, kde-format
 msgid "Image Chooser"
 msgstr "Selector d'imatges"

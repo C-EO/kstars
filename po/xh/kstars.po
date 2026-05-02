@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-28 02:14+0000\n"
+"POT-Creation-Date: 2026-05-02 02:02+0000\n"
 "PO-Revision-Date: 2002-11-09 20:07+0200\n"
 "Last-Translator: Thelma Lungcuzo <thelma@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -34926,7 +34926,7 @@ msgstr "Ayinakuvula ifayile yedata yesiko:"
 msgid "Not enough memory for file %1"
 msgstr "KStars::slotFind() - Akukho nkumbulo eyaneleyo yencoko yababini"
 
-#: indi/indilistener.cpp:234
+#: indi/indilistener.cpp:235
 #, fuzzy, kde-format
 msgid "INDI Server Message"
 msgstr "Nakanye"
@@ -35555,12 +35555,12 @@ msgctxt "@title:window"
 msgid "%1 Live Video"
 msgstr "Ubeko lwephepha"
 
-#: indi/streamwg.cpp:396 indi/streamwg.cpp:443
+#: indi/streamwg.cpp:410 indi/streamwg.cpp:457
 #, fuzzy, kde-format
 msgid "Stop recording"
 msgstr "Misa &Ikloko"
 
-#: indi/streamwg.cpp:401 indi/streamwg.cpp:411
+#: indi/streamwg.cpp:415 indi/streamwg.cpp:425
 #, fuzzy, kde-format
 #| msgctxt "City name (optional, probably does not need a translation)"
 #| msgid "Farmington"
@@ -92725,43 +92725,43 @@ msgstr "Khangela iincwadi"
 msgid "Please wait while adding objects..."
 msgstr ""
 
-#: tools/observinglist.cpp:1345 tools/observinglist.cpp:1347
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1356 tools/observinglist.cpp:1358
+#: tools/observinglist.cpp:1368
 #, kde-format
 msgid "Customized DSS Download"
 msgstr ""
 
-#: tools/observinglist.cpp:1345
+#: tools/observinglist.cpp:1356
 #, kde-format
 msgid "Specify image width (arcminutes): "
 msgstr ""
 
-#: tools/observinglist.cpp:1348
+#: tools/observinglist.cpp:1359
 #, fuzzy, kde-format
 msgid "Specify image height (arcminutes): "
 msgstr "Umatshini"
 
-#: tools/observinglist.cpp:1357
+#: tools/observinglist.cpp:1368
 #, fuzzy, kde-format
 msgid "Specify version: "
 msgstr "Gcina umfanekiso"
 
-#: tools/observinglist.cpp:1394
+#: tools/observinglist.cpp:1405
 #, fuzzy, kde-format
 msgid "Failed to download DSS/SDSS image."
 msgstr "imifanekiso Yelanga Yemihla yonke"
 
-#: tools/observinglist.cpp:1524
+#: tools/observinglist.cpp:1535
 #, kde-format
 msgid "This will delete all saved images. Are you sure you want to do this?"
 msgstr ""
 
-#: tools/observinglist.cpp:1525
+#: tools/observinglist.cpp:1536
 #, fuzzy, kde-format
 msgid "Delete All Images"
 msgstr "Ukhetho Lwegalelo"
 
-#: tools/observinglist.cpp:1622
+#: tools/observinglist.cpp:1633
 #, fuzzy, kde-format
 msgid "Image Chooser"
 msgstr "&Indawo ekuyo"
