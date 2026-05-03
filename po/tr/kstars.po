@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kstars\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-02 02:02+0000\n"
-"PO-Revision-Date: 2026-04-26 13:37+0300\n"
+"PO-Revision-Date: 2026-05-02 19:34+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -483,7 +483,7 @@ msgstr "Görseli Kaydet"
 #: printing/pwizprint.cpp:77 tools/scriptbuilder.cpp:879
 #, kde-format
 msgid "A file named \"%1\" already exists. Overwrite it?"
-msgstr "“%1” adlı bir dosya halihazırda var. Üzerine yazılsın mı?"
+msgstr "“%1” adlı bir dosya hâlihazırda var. Üzerine yazılsın mı?"
 
 #: auxiliary/imageviewer.cpp:324 ekos/align/align.cpp:4176
 #: ekos/guide/guidedriftgraph.cpp:495 kstarsactions.cpp:1392
@@ -1657,7 +1657,7 @@ msgstr "%1 görseli kaydedilemedi."
 #: catalogsdb/catalogsdb.cpp:325
 #, kde-format
 msgid "Catalog with that ID already exists."
-msgstr "Bu kimliğe iye katalog halihazırda var."
+msgstr "Bu kimliğe iye katalog hâlihazırda var."
 
 #: catalogsdb/catalogsdb.cpp:619 catalogsdb/catalogsdb.cpp:756
 #, kde-format
@@ -1677,7 +1677,7 @@ msgstr "Katalog değiştirilemeyen türden!"
 #: catalogsdb/catalogsdb.cpp:728 catalogsdb/catalogsdb.cpp:1084
 #, kde-format
 msgid "The object is already in the catalog!"
-msgstr "Nesne halihazırda katalogda!"
+msgstr "Nesne hâlihazırda katalogda!"
 
 #: catalogsdb/catalogsdb.cpp:730 catalogsdb/catalogsdb.cpp:1086
 #, kde-format
@@ -1748,7 +1748,7 @@ msgstr "Katalog kimliği okunamadı.<br>%1"
 #: catalogsdb/catalogsdb.cpp:867
 #, kde-format
 msgid "Catalog already exists in the database!"
-msgstr "Katalog veri tabanında halihazırda var!"
+msgstr "Katalog veri tabanında hâlihazırda var!"
 
 #: catalogsdb/catalogsdb.cpp:884 dialogs/catalogsdbui.cpp:213
 #, kde-format
@@ -4882,7 +4882,7 @@ msgstr "Şehri Kaldır?"
 #: dialogs/locationdialog.cpp:301
 #, kde-format
 msgid "This city already exists in the database."
-msgstr "Bu şehir halihazırda veri tabanında var."
+msgstr "Bu şehir hâlihazırda veri tabanında var."
 
 #: dialogs/locationdialog.cpp:302
 #, kde-format
@@ -5921,7 +5921,7 @@ msgid ""
 "There already exists a view with the name you attempted to use. Please "
 "choose a different name for this view."
 msgstr ""
-"Kullanmaya çalıştığınız adı taşıyan bir görünüm halihazırda var. Lütfen bu "
+"Kullanmaya çalıştığınız adı taşıyan bir görünüm hâlihazırda var. Lütfen bu "
 "görünüm için farklı bir ad seçin."
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, ViewsDialog)
@@ -6003,7 +6003,7 @@ msgid ""
 msgstr ""
 "Veri dizininiz bulunamadı. Öntanımlı bir K Yıldızlar veri dizinini doğru "
 "konuma kopyalamak için aşağıdaki düğmeye tıklayabilirsiniz veya başka bir "
-"yerde halihazırda bir K Yıldızlar dizininiz varsa K Yıldızlar’dan çıkıp o "
+"yerde hâlihazırda bir K Yıldızlar dizininiz varsa K Yıldızlar’dan çıkıp o "
 "konuma kendiniz kopyalayabilirsiniz."
 
 #. i18n: ectx: property (text), widget (QPushButton, copyKStarsData)
@@ -7269,7 +7269,7 @@ msgid ""
 "for alignment. </p><p>If you want to use a certain (fixed) filter for "
 "alignment, leave unchecked and select the filter manually.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>İşaretlenirse hizalama için halihazırda seçili olan "
+"<html><head/><body><p>İşaretlenirse hizalama için hâlihazırda seçili olan "
 "süzgeç kullanılacaktır.</p><p>Hizalama için belirli (sabit) bir süzgeç "
 "kullanmak istiyorsanız işareti kaldırmadan bırakın ve süzgeci elle seçin.</"
 "p></body></html>"
@@ -8915,7 +8915,7 @@ msgid ""
 "The file %1 already exists in another directory.  Are you sure you want to "
 "download it to this directory as well?"
 msgstr ""
-"%1 dosyası halihazırda başka bir dizinde var. Bu dizine de indirmek "
+"%1 dosyası hâlihazırda başka bir dizinde var. Bu dizine de indirmek "
 "istediğinizden emin misiniz?"
 
 #: ekos/align/opsastrometryindexfiles.cpp:680
@@ -14147,7 +14147,7 @@ msgstr ""
 #, kde-format
 msgid "This allows you to remove the currently selected options profile"
 msgstr ""
-"Bu, halihazırda seçili olan seçenekler profilini kaldırmanıza olanak tanır."
+"Bu, hâlihazırda seçili olan seçenekler profilini kaldırmanıza olanak tanır."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, saveProfile)
 #: ekos/auxiliary/stellarsolverprofileeditor.ui:260
@@ -16282,7 +16282,7 @@ msgid ""
 "Job requires %1-second %2 images, has already %3/%4 captures and does not "
 "need to run."
 msgstr ""
-"İş %1 saniyelik %2 görsel gerektiriyor, halihazırda %3/%4 yakalama var ve "
+"İş %1 saniyelik %2 görsel gerektiriyor, hâlihazırda %3/%4 yakalama var ve "
 "çalıştırılmasına gerek yok."
 
 #: ekos/capture/cameraprocess.cpp:610
@@ -19563,12 +19563,12 @@ msgstr ""
 #, kde-format
 msgid "Autofocus is already running, discarding start request."
 msgstr ""
-"Kendiliğinden odaklama halihazırda çalışıyor, başlatma isteği yok sayılıyor."
+"Kendiliğinden odaklama hâlihazırda çalışıyor, başlatma isteği yok sayılıyor."
 
 #: ekos/focus/focus.cpp:1176
 #, kde-format
 msgid "Build Offset is already running, Autofocus rejected."
-msgstr "Yapı ofseti halihazırda çalışıyor, kendiliğinden odaklama reddedildi."
+msgstr "Yapı ofseti hâlihazırda çalışıyor, kendiliğinden odaklama reddedildi."
 
 #: ekos/focus/focus.cpp:1184
 #, kde-format
@@ -20068,7 +20068,7 @@ msgstr "Seçili yıldız yok. İptal ediliyor…"
 #: ekos/focus/focus.cpp:5639
 #, kde-format
 msgid "Focuser already at %1..."
-msgstr "Odaklayıcı halihazırda %1 konumunda…"
+msgstr "Odaklayıcı hâlihazırda %1 konumunda…"
 
 #: ekos/focus/focus.cpp:5738
 #, kde-format
@@ -22585,7 +22585,7 @@ msgstr "PHD2 hatası: Ekipman bağlı değil."
 #: ekos/guide/externalguide/phd2.cpp:1390
 #, kde-format
 msgid "PHD2: Guiding is already running."
-msgstr "PHD2: Kılavuzlama halihazırda çalışıyor."
+msgstr "PHD2: Kılavuzlama hâlihazırda çalışıyor."
 
 #: ekos/guide/externalguide/phd2.cpp:1397
 #, kde-format
@@ -25109,7 +25109,7 @@ msgid ""
 "Ekos detected an instance of INDI server running. Do you wish to shut down "
 "the existing instance before starting a new one?"
 msgstr ""
-"Ekos, bir INDI sunucusunun halihazırda çalıştığını tespit etti. Yenisini "
+"Ekos, bir INDI sunucusunun hâlihazırda çalıştığını tespit etti. Yenisini "
 "başlatmadan önce var olan örneği kapatmak istiyor musunuz?"
 
 #. i18n: ectx: property (title), widget (QGroupBox, indiServerGroup)
@@ -25777,7 +25777,7 @@ msgstr "Hizalama modeli temizlenemedi."
 #: ekos/mount/mount.cpp:1290
 #, kde-format
 msgid "Mount already parked."
-msgstr "Kaide halihazırda park edilmiş."
+msgstr "Kaide hâlihazırda park edilmiş."
 
 #: ekos/mount/mount.cpp:1315
 #, kde-format
@@ -26866,7 +26866,7 @@ msgstr "Boş bir profil kaydedilemez."
 #: ekos/profileeditor.cpp:129
 #, kde-format
 msgid "Profile name already exists."
-msgstr "Profil adı halihazırda var."
+msgstr "Profil adı hâlihazırda var."
 
 #: ekos/profileeditor.cpp:336
 #, kde-format
@@ -27007,7 +27007,7 @@ msgstr ""
 "<p>INDI sunucusuyla kullanılacak bağlantı kipi:</p>\n"
 "<p><span style=\"font-weight:600\">Yerel</span><br/>Ekos başlatıldığında "
 "oluşturulan yerel bir INDI sunucusuna bağlanın.</p>\n"
-"<p><span style=\"font-weight:600\">Uzak</span><br/>Halihazırda çalışmakta "
+"<p><span style=\"font-weight:600\">Uzak</span><br/>Hâlihazırda çalışmakta "
 "olan uzak bir INDI sunucusuna bağlanın.</p>\n"
 "</body></html>"
 
@@ -27214,7 +27214,7 @@ msgstr ""
 "\">@192.168.1.50</span><br/>192.168.1.50, 7624 numaralı kapıda bulunan tüm "
 "sürücülere bağlanın.</p><p>Atlandığında, makine öntanımlı olarak localhost’a "
 "ve kapı öntanımlı olarak 7624’e ayarlanır.<br/>Bağlantının başarılı olması "
-"için uzak INDI sürücülerinin halihazırda çalışıyor olması gerekir.</p></"
+"için uzak INDI sürücülerinin hâlihazırda çalışıyor olması gerekir.</p></"
 "body></html>"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, remoteDrivers)
@@ -29145,7 +29145,7 @@ msgstr "Uyarı: Hedef adı gerekiyor."
 #, kde-format
 msgid "Warning: A job with name '%1' already exists. Please use a unique name."
 msgstr ""
-"Uyarı: “%1” adlı bir iş halihazırda var. Lütfen benzersiz bir ad kullanın."
+"Uyarı: “%1” adlı bir iş hâlihazırda var. Lütfen benzersiz bir ad kullanın."
 
 #: ekos/scheduler/scheduler.cpp:1112
 #, kde-format
@@ -30310,7 +30310,7 @@ msgstr "“%1” işi yakalıyor ve plaka çözme yapıyor."
 #, kde-format
 msgid "Guiding already running for %1, starting next scheduler action..."
 msgstr ""
-"%1 için kılavuzluk halihazırda sürüyor, sonraki zamanlayıcı eylemi "
+"%1 için kılavuzluk hâlihazırda sürüyor, sonraki zamanlayıcı eylemi "
 "başlatılıyor…"
 
 #: ekos/scheduler/schedulerprocess.cpp:1367
@@ -30539,7 +30539,7 @@ msgstr "Yürütülebilir iş bulunamadı. Zamanlayıcı durduruluyor."
 #: ekos/scheduler/schedulerprocess.cpp:2502
 #, kde-format
 msgid "Guiding already running, directly start capturing."
-msgstr "Kılavuzluk halihazırda çalışıyor, doğrudan yakalamayı başlatın."
+msgstr "Kılavuzluk hâlihazırda çalışıyor, doğrudan yakalamayı başlatın."
 
 #: ekos/scheduler/schedulerprocess.cpp:2514
 #, kde-format
@@ -36356,7 +36356,7 @@ msgstr "PCD:"
 #: indi/customdrivers.cpp:106
 #, kde-format
 msgid "Label already exists. Label must be unique."
-msgstr "Etiket halihazırda var. Etiket benzersiz olmalıdır."
+msgstr "Etiket hâlihazırda var. Etiket benzersiz olmalıdır."
 
 #: indi/customdrivers.cpp:122
 #, kde-format
@@ -36444,7 +36444,7 @@ msgstr "Aygıt Yöneticisi"
 #, kde-format
 msgid "Driver %1 is already running, do you want to restart it?"
 msgstr ""
-"%1 sürücüsü halihazırda çalışıyor, onu yeniden başlatmak istiyor musunuz?"
+"%1 sürücüsü hâlihazırda çalışıyor, onu yeniden başlatmak istiyor musunuz?"
 
 #: indi/drivermanager.cpp:357 indi/indidriver.cpp:309
 #, kde-format, kde-kuit-format
@@ -36494,7 +36494,7 @@ msgstr "Hata: Kapı numarası geçersiz."
 #: indi/drivermanager.cpp:1460 indi/indidriver.cpp:822
 #, kde-format, kde-kuit-format
 msgid "Host: %1 Port: %2 already exists."
-msgstr "Makine: Kapı %1: %2 halihazırda var."
+msgstr "Makine: Kapı %1: %2 hâlihazırda var."
 
 #: indi/drivermanager.cpp:1488
 #, kde-format
@@ -39697,7 +39697,7 @@ msgstr "Kısaltılmış takımyıldız adları kullanılsın mı?"
 #: kstars.kcfg:765
 #, kde-format
 msgid "Use official IAU abbreviations for constellation names."
-msgstr "Takımyıldız adları için resmi IAU kısaltmalarını kullanın."
+msgstr "Takımyıldız adları için resmî IAU kısaltmalarını kullanın."
 
 #. i18n: ectx: label, entry (UseLatinConstellNames), group (View)
 #: kstars.kcfg:769
@@ -44104,7 +44104,7 @@ msgid ""
 "before blindly trying to solve the image. It is recommended to keep it "
 "checked."
 msgstr ""
-"Bu, çözücünün körü körüne görseli çözmeye çalışmadan önce halihazırda var "
+"Bu, çözücünün körü körüne görseli çözmeye çalışmadan önce hâlihazırda var "
 "olan bir WCS başlığına bakmasını önleyecektir. İşaretli tutulması önerilir."
 
 #. i18n: ectx: label, entry (AstrometryImageScaleLow), group (Align)
@@ -74526,7 +74526,7 @@ msgstr "Şehir tablosuna “Yükselti” sütünu ekleniyor."
 #: kstarsdata.cpp:177
 #, kde-format
 msgid "City table already contains \"Elevation\"."
-msgstr "Şehir tablosunda “Yükselti” halihazırda var."
+msgstr "Şehir tablosunda “Yükselti” hâlihazırda var."
 
 #: kstarsdata.cpp:182
 #, kde-format
@@ -75913,7 +75913,7 @@ msgstr "Ya enlem ya da boylam verisi geçerli değil"
 msgid ""
 "This location already exists. Change either the city, the province or the "
 "country"
-msgstr "Bu konum halihazırda var. Ya şehri ya ili ya da ülkeyi değiştirin"
+msgstr "Bu konum hâlihazırda var. Ya şehri ya ili ya da ülkeyi değiştirin"
 
 #: kstarslite/qml/dialogs/helpers/LocationEdit.qml:414
 #, kde-kuit-format
@@ -80465,7 +80465,7 @@ msgid ""
 "Official telescope focal length in millimeters without any reducers or "
 "barlows"
 msgstr ""
-"Herhangi bir redüktör veya barlow olmadan milimetre türünden resmi teleskop "
+"Herhangi bir redüktör veya barlow olmadan milimetre türünden resmî teleskop "
 "odak uzunluğu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_13)
@@ -80902,7 +80902,7 @@ msgstr "Gözlemcileri Yönet"
 msgid ""
 "Another Observer already exists with the given Name and Surname, Overwrite?"
 msgstr ""
-"Aynı ad ve soyada sahip bir gözlemci halihazırda var. Üzerine yazılsın mı?"
+"Aynı ad ve soyada sahip bir gözlemci hâlihazırda var. Üzerine yazılsın mı?"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: oal/observeradd.ui:63
@@ -84030,12 +84030,12 @@ msgstr "Çözüm iptal edildi."
 #: skycomponents/imageoverlaycomponent.cpp:782
 #, kde-format
 msgid "Skipping already solved: %1."
-msgstr "Atlama halihazırda çözüldü: %1."
+msgstr "Atlama hâlihazırda çözüldü: %1."
 
 #: skycomponents/imageoverlaycomponent.cpp:801
 #, kde-format
 msgid "%1 already solved. Skipping."
-msgstr "%1 halihazırda çözüldü. Atlanıyor."
+msgstr "%1 hâlihazırda çözüldü. Atlanıyor."
 
 #: skycomponents/imageoverlaycomponent.cpp:819
 #, kde-format
@@ -88016,7 +88016,7 @@ msgid ""
 "Load a file listing the names of already imaged objects--one name per line. "
 "This adds to the list of imaged object, it does not replace them."
 msgstr ""
-"Halihazırda görüntülenmiş nesnelerin adlarını listeleyen bir dosya yükleyin "
+"Hâlihazırda görüntülenmiş nesnelerin adlarını listeleyen bir dosya yükleyin "
 "— her satırda bir ad. Bu, görüntülenen nesne listesine ekleme yapar, onları "
 "değiştirmez."
 
@@ -89263,12 +89263,12 @@ msgstr ""
 #: tools/observinglist.cpp:277
 #, kde-format
 msgid "%1 is already in your wishlist."
-msgstr "%1 halihazırda istek listenizde."
+msgstr "%1 hâlihazırda istek listenizde."
 
 #: tools/observinglist.cpp:292
 #, kde-format
 msgid "%1 is already in the session plan."
-msgstr "%1 halihazırda oturum planında."
+msgstr "%1 hâlihazırda oturum planında."
 
 #: tools/observinglist.cpp:355
 #, kde-format
