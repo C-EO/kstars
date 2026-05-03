@@ -2076,6 +2076,19 @@ bool SchedulerProcess::checkShutdownState()
 
             qCDebug(KSTARS_EKOS_SCHEDULER) << "Shutdown Idle. Starting shutdown process...";
 
+            // If the observatory was never started (Ekos/INDI not running), there is nothing
+            // to shut down: no pre-shutdown tasks to execute, no mount/dome to park, and no
+            // Ekos/INDI processes to stop.  Go straight to SHUTDOWN_COMPLETE.
+            // Do NOT set STARTUP_POST_DEVICES here: the observatory was never started, so
+            // when conditions improve the full startup sequence (including launching Ekos)
+            // must run.  Leaving startupState at STARTUP_IDLE achieves exactly that.
+            if (!observatoryStarted)
+            {
+                appendLogText(i18n("Observatory was not started, skipping shutdown procedure."));
+                moduleState()->setShutdownState(SHUTDOWN_COMPLETE);
+                return true;
+            }
+
             // Phase 1: Execute pre-shutdown tasks (before Ekos/INDI stop)
             if (Options::schedulerShutdownEnabled() && m_queueManager && !moduleState()->preShutdownScriptURL().isEmpty())
             {
