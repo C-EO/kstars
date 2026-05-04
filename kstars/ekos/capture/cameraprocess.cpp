@@ -30,6 +30,7 @@
 #include "fitsviewer/fitsviewer.h"
 
 #include "ksnotification.h"
+#include "auxiliary/ksutils.h"
 #include <ekos_capture_debug.h>
 
 #include <QJsonDocument>
@@ -1897,10 +1898,14 @@ IPState CameraProcess::runCaptureScript(ScriptTypes scriptType, bool precond)
         if (captureScript.isEmpty() == false && precond)
         {
             state()->setCaptureScriptType(scriptType);
-            m_CaptureScript.start(captureScript);
+            // If running inside a Flatpak sandbox, use flatpak-spawn to execute
+            // the script on the host system where all Python packages are available.
+            if (KSUtils::isFlatpak())
+                m_CaptureScript.start("flatpak-spawn", QStringList() << "--host" << captureScript);
+            else
+                m_CaptureScript.start(captureScript);
             m_CaptureScript.write(generateScriptInput());
             m_CaptureScript.closeWriteChannel();
-            //m_CaptureScript.start("/bin/bash", QStringList() << captureScript);
             Q_EMIT newLog(i18n("Executing capture script %1", captureScript));
             return IPS_BUSY;
         }
