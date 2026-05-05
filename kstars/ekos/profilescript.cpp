@@ -35,7 +35,8 @@ ProfileScript::ProfileScript(QWidget *parent) : QWidget(parent)
 #endif
 
     m_PreDelaySpin = new QSpinBox(this);
-    m_PreDelaySpin->setToolTip(i18n("Delay this many seconds before executing pre driver script."));
+    m_PreDelaySpin->setToolTip(
+        i18n("Wait this many seconds before starting the driver. The delay applies whether or not a pre-startup script is set."));
     m_PreDelaySpin->setRange(0, 300);
     m_PreDelaySpin->setSingleStep(5);
     connect(m_PreDelaySpin, &QSpinBox::editingFinished, this, [this]()
@@ -44,7 +45,8 @@ ProfileScript::ProfileScript(QWidget *parent) : QWidget(parent)
     });
 
     m_PostDelaySpin = new QSpinBox(this);
-    m_PostDelaySpin->setToolTip(i18n("Delay this many seconds after driver startup before executing post driver script."));
+    m_PostDelaySpin->setToolTip(
+        i18n("Wait this many seconds after the driver starts. The delay applies whether or not a post-startup script is set."));
     m_PostDelaySpin->setRange(0, 300);
     m_PostDelaySpin->setSingleStep(5);
     connect(m_PostDelaySpin, &QSpinBox::editingFinished, this, [this]()
@@ -54,7 +56,7 @@ ProfileScript::ProfileScript(QWidget *parent) : QWidget(parent)
 
     m_StoppingDelaySpin = new QSpinBox(this);
     m_StoppingDelaySpin->setToolTip(
-        i18n("Delay this many seconds after executing stopping driver script before stopping driver."));
+        i18n("Wait this many seconds before stopping the driver. The delay applies whether or not a pre-shutdown script is set."));
     m_StoppingDelaySpin->setRange(0, 300);
     m_StoppingDelaySpin->setSingleStep(5);
     connect(m_StoppingDelaySpin, &QSpinBox::editingFinished, this, [this]()
@@ -64,7 +66,7 @@ ProfileScript::ProfileScript(QWidget *parent) : QWidget(parent)
 
     m_StoppedDelaySpin = new QSpinBox(this);
     m_StoppedDelaySpin->setToolTip(
-        i18n("Delay this many seconds after driver stopped before executing stopped driver script."));
+        i18n("Wait this many seconds after the driver stops. The delay applies whether or not a post-shutdown script is set."));
     m_StoppedDelaySpin->setRange(0, 300);
     m_StoppedDelaySpin->setSingleStep(5);
     connect(m_StoppedDelaySpin, &QSpinBox::editingFinished, this, [this]()
