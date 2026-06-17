@@ -1,16 +1,1 @@
-<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-
- <metadata id="metadata824">image/svg+xml</metadata>
- <g>
-  <title>background</title>
-  <rect fill="none" id="canvas_background" height="66" width="66" y="-1" x="-1"/>
- </g>
- <g>
-  <title>Layer 1</title>
-  <g id="layer1">
-   <rect fill="#008000" stroke="#ffffff" stroke-width="1.322917" stroke-miterlimit="4" stroke-dashoffset="0" y="-23.359384" x="-37.078803" height="113.03387" width="139.4306" id="rect1372"/>
-   <rect fill="#aa0000" stroke="#ffffff" stroke-width="1.322917" stroke-miterlimit="4" stroke-dashoffset="0" y="-23.359384" x="-37.078803" height="56.275623" width="69.431175" id="rect1374"/>
-   <rect fill="#0000ff" stroke="#ffffff" stroke-width="1.322917" stroke-miterlimit="4" stroke-dashoffset="0" y="32.916238" x="32.352369" height="56.75824" width="69.999435" id="rect1376"/>
-  </g>
- </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><metadata id="metadata824">image/svg+xml</metadata><g><title>background</title><rect id="canvas_background" width="66" height="66" x="-1" y="-1" fill="none"/></g><g><title>Layer 1</title><g id="layer1"><rect id="rect1372" width="139.431" height="113.034" x="-37.079" y="-23.359" fill="green" stroke="#fff" stroke-dashoffset="0" stroke-miterlimit="4" stroke-width="1.323"/><rect id="rect1374" width="69.431" height="56.276" x="-37.079" y="-23.359" fill="#a00" stroke="#fff" stroke-dashoffset="0" stroke-miterlimit="4" stroke-width="1.323"/><rect id="rect1376" width="69.999" height="56.758" x="32.352" y="32.916" fill="#00f" stroke="#fff" stroke-dashoffset="0" stroke-miterlimit="4" stroke-width="1.323"/></g></g></svg>
